@@ -26,7 +26,5 @@ README.md                | this file
 Uml-diagram-modules.jpeg | uml diagram(image)
 Uml-diagram-modules.xml  | uml diagram(xml)
 
-To add all required modules run following:
->$ cd .../art-forms            (Windows)
-yarn
+
 
