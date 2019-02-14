@@ -18,7 +18,7 @@ Please make sure the release file is unpacked under a Web-accessible directory. 
 File name                | Description
 ------------------------ | -----------------------
 packages/                | repositories source fil
-.gitignore               | add it to ignore node_modules within you project
+.gitignore               | sensible defaults for gitignore
 lerna.json               | lerna configuration file
 package.json             | npm configuration file
 yarn.lock                | yarn configuration file
