@@ -1,12 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 export class BaseLayout extends React.Component {
     render() {
-        return (
-            <div>
-                {'Hello!'}
-            </div>
-        )
+        return <div>
+            Hello!
+        </div>
     }
 }
 
