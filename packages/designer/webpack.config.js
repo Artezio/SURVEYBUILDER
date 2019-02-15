@@ -13,12 +13,21 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" }
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public/index.html')
         })
-    ]
+    ],
+    devServer: {
+        contentBase: path.resolve(__dirname, '/dist'),
+        host: 'localhost',
+        port: '8080',
+    }
 }
