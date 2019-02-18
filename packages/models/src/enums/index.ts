@@ -1,10 +1,3 @@
-export enum QUESTIONNAIRE_STATUS {
-    DRAFT,
-    ACTIVE,
-    RETIRED,
-    UNKNOWN,
-};
-
 export enum QUESTIONNAIRE_ITEM_TYPES {
     GROUP,
     DISPLAY,
