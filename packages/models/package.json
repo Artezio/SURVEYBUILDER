@@ -2,5 +2,6 @@
   "name": "@art-forms/models",
   "version": "0.1.1",
   "main": "./src/index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "registry": "http://10.11.40.28:4873/",
 }
