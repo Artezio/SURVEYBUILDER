@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
 import QuestionnaireDesigner from './QuestionnaireDesigner';
+import { connect } from 'react-redux';
 
 export class MainView extends React.Component {
     render() {

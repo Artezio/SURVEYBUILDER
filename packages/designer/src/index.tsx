@@ -1,5 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import MainView from './components/MainView';
+import { Provider } from 'react-redux';
+import { makeStore } from './store/store';
 
-ReactDOM.render(<MainView />, document.getElementById('root'));
+
+render(
+    <Provider store={makeStore()}>
+        <MainView />
+    </Provider>,
+    document.getElementById('root')
+);
