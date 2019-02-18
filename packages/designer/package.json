@@ -1,5 +1,5 @@
 {
-  "name": "designer",
+  "name": "@art-forms/designer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,18 +8,16 @@
     "@types/react": "^16.8.3",
     "@types/react-dom": "^16.8.1",
     "bootstrap": "^4.3.1",
-    "css-loader": "^2.1.0",
-    "html-webpack-plugin": "^3.2.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "react-redux": "^6.0.0",
     "react-scripts": "2.1.5",
-    "typescript": "^3.3.3",
-    "webpack-cli": "^3.2.3"
+    "redux": "^4.0.1",
+    "typescript": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "webpack-dev-server",
-    "build": "react-scripts build",
+    "build": "webpack build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -33,8 +31,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "awesome-typescript-loader": "^5.2.1",
-    "webpack": "^4.29.3",
-    "webpack-dev-server": "^3.1.14"
+    "awesome-typescript-loader": "^5.2.1"
   }
 }
