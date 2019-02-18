@@ -1,6 +1,5 @@
 {
   "name": "@art-forms/models",
-  "private": true,
   "version": "0.1.4",
   "main": "./src/index.js",
   "license": "MIT",
