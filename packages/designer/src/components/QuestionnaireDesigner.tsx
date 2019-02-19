@@ -1,13 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { TextItem, Questionnaire as QuestionnaireInterface } from '../../../models';
+import { Dispatch } from 'redux';
+import Questionnaire from './Questionnaire';
+import { addTextItem } from "../actions";
 
 interface QuestionnaireProps {
-    title?: string;
-    description?: string;
-    // items?: DisplayItem[];
+    addTextItem: (item: TextItem) => void;
 }
 
 export class QuestionnaireDesigner extends React.Component<QuestionnaireProps> {
+    onClick = () => {
+        const { addTextItem } = this.props;
+        addTextItem && addTextItem({ id: '1', type: 2 });
+    }
     render(): React.ReactNode {
         return <div className="questionnaire-designer container border border-secondary">
             <div className="dropdown d-flex justify-content-end m-1">
@@ -15,20 +21,26 @@ export class QuestionnaireDesigner extends React.Component<QuestionnaireProps> {
                     Context menu
                 </button>
                 <div className="dropdown-menu" aria-labelledby="context-menu-link">
-                    <button className="dropdown-item btn btn-primary">Create text item</button>
+                    <button className="dropdown-item btn btn-primary" onClick={this.onClick}>Create text item</button>
                 </div>
             </div>
-            <div className="from-group my-3">
-                <input className="form-control" type="text" name="title" placeholder="Title" style={{ height: '50px', fontSize: '30px' }} autoFocus={true}></input>
-            </div>
-            <div className="from-group my-3">
-                <textarea className="form-control" rows={3} name="description" placeholder="Description"></textarea>
-            </div>
-            <div className="item-list">
-
-            </div>
+            <Questionnaire />
         </div>
     }
 }
 
-export default connect()(QuestionnaireDesigner);
+const mapStateToProps = (state: { questionnaire: { questionnaire?: QuestionnaireInterface } }) => {
+    return state.questionnaire;
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): { addTextItem: (item: TextItem) => void } => {
+    return {
+        addTextItem: (item: TextItem) => {
+            dispatch(addTextItem(item));
+        }
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionnaireDesigner);
