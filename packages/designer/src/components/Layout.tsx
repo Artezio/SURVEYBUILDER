@@ -9,7 +9,7 @@ import { Dispatch } from 'redux';
 import { Store } from '../interfaces/store';
 
 
-export class MainView extends React.Component<{ questionnaire?: Questionnaire, createQuestionnaire: (questionnaire: Questionnaire) => void }> {
+export class Layout extends React.Component<{ questionnaire?: Questionnaire, createQuestionnaire: (questionnaire: Questionnaire) => void }> {
     onClick = () => {
         const { createQuestionnaire } = this.props;
         createQuestionnaire && createQuestionnaire({ id: '1q' });
@@ -42,4 +42,4 @@ const mapDispatchToProps = (dispatch: Dispatch): { createQuestionnaire: (questio
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

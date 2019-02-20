@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import MainView from './components/MainView';
+import Layout from './components/Layout';
 import { Provider } from 'react-redux';
 import { createStore } from './store/store';
 
 
 render(
     <Provider store={createStore()}>
-        <MainView />
+        <Layout />
     </Provider>,
     document.getElementById('root')
 );
