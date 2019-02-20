@@ -1,4 +1,4 @@
-import DisplayItem from './displayItem';
+import DisplayItem from './DisplayItem';
 
 export interface Questionnaire {
     id: string;
