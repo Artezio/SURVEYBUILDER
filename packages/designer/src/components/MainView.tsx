@@ -2,10 +2,11 @@ import React from 'react';
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
 import QuestionnaireDesigner from './QuestionnaireDesigner';
-import { Questionnaire } from '../../../models/src';
-import { createQuestionnaire } from '../actions';
+import { Questionnaire } from '@art-forms/models';
+import { createQuestionnaire } from '../actions/questionnaire';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { Store } from '../interfaces/store';
 
 
 export class MainView extends React.Component<{ questionnaire?: Questionnaire, createQuestionnaire: (questionnaire: Questionnaire) => void }> {
@@ -29,8 +30,8 @@ export class MainView extends React.Component<{ questionnaire?: Questionnaire, c
 
 
 
-const mapStateToProps = (state: { questionnaire: { questionnaire?: Questionnaire } }) => {
-    return state.questionnaire;
+const mapStateToProps = (store: Store) => {
+    return store.questionnaire;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): { createQuestionnaire: (questionnaire: Questionnaire) => void } => {

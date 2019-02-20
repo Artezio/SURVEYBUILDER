@@ -1,4 +1,15 @@
-import { createStore } from 'redux';
-import { createReducer } from '../reducers/createReducer';
+import * as redux from 'redux';
+import { combineReducers, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import questionnaire from '../reducers/questionnaire';
+import { Store } from '../interfaces/store';
 
-export const makeStore = (initialState?: any | null) => createStore(createReducer(), initialState);
+export const createStore = (initialState?: Store) => redux.createStore(
+    combineReducers({
+        questionnaire
+    }),
+    initialState,
+    applyMiddleware(logger),
+);
+
+export default createStore;

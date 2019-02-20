@@ -2,11 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import MainView from './components/MainView';
 import { Provider } from 'react-redux';
-import { makeStore } from './store/store';
+import { createStore } from './store/store';
 
 
 render(
-    <Provider store={makeStore()}>
+    <Provider store={createStore()}>
         <MainView />
     </Provider>,
     document.getElementById('root')

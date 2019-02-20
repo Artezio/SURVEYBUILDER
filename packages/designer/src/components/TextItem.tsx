@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextItem } from '../../../models/src';
+import { TextItem } from '@art-forms/models';
 
 export const TextItemComponent = (props: { item: TextItem }) => {
     const { item } = props;
