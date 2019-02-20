@@ -1,7 +1,7 @@
 {
   "name": "@art-forms/models",
   "version": "0.1.5",
-  "main": "./src/index.js",
+  "main": "./src/index.ts",
   "license": "MIT",
   "registry": "http://10.11.40.28:4873/",
   "publishConfig": {
