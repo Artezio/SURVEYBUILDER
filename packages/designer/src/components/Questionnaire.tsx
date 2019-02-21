@@ -5,6 +5,7 @@ import { addTextItem } from "../actions/questionnaire";
 import { Store } from '../interfaces/store';
 import TextItemComponent from './TextItem';
 import QuestionnaireActions from '../interfaces/QuestionnaireActions';
+import DropdownMenu from './DropdownMenu';
 
 export interface QuestionnaireComponentProps extends QuestionnaireActions {
     questionnaire: Questionnaire;
@@ -25,16 +26,13 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
     }
     render() {
         const { questionnaire } = this.props;
-        return <div className="questionnaire-designer container border border-secondary">
+        return <div className="questionnaire container border border-secondary">
             <div className="dropdown d-flex justify-content-end m-1">
-                <button className="btn btn-secondary dropdown-toggle" role="button" id="context-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Context menu
-                </button>
-                <div className="dropdown-menu" aria-labelledby="context-menu-link">
-                    <button className="dropdown-item btn btn-primary" onClick={this.onClick}>Create text item</button>
-                </div>
+                <DropdownMenu title='Context menu' items={[
+                    { title: 'Create text item', action: this.onClick }
+                ]} />
             </div>
-            <div className="questionnaire container">
+            <div className="container">
                 <div className="from-group my-3">
                     <input className="form-control" type="text" name="title" placeholder="Title" style={{ height: '50px', fontSize: '30px' }} autoFocus={true}></input>
                 </div>

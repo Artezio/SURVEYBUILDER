@@ -1,6 +1,6 @@
 import { TextItem, Questionnaire } from '@art-forms/models';
 import { Action } from '../interfaces/actionTypes';
-import { CREATE_QUESTIONNAIRE, ADD_TEXT_ITEM, QUESTIONNAIRE_ACTION, SET_DESCRIPTION, SET_TITLE } from '../constants/actions';
+import { CREATE_QUESTIONNAIRE, ADD_TEXT_ITEM, QUESTIONNAIRE_ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM } from '../constants/actions';
 
 const INITIAL_STATE: Questionnaire | null = null;
 
@@ -26,6 +26,13 @@ export const questionnaire = (state: Questionnaire | null = INITIAL_STATE, actio
         case ADD_TEXT_ITEM: {
             const newItems = (state && state.items) ? state.items.slice() : [];
             newItems.push(action.payload);
+            return {
+                ...state as Questionnaire,
+                items: newItems
+            }
+        }
+        case REMOVE_ITEM: {
+            const newItems = (state && state.items) ? state.items.filter(item => item !== action.payload) : [];
             return {
                 ...state as Questionnaire,
                 items: newItems
