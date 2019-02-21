@@ -1,15 +1,27 @@
 import React from 'react';
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
-import QuestionnaireDesigner from './QuestionnaireDesigner';
+import QuestionnaireComponent from './Questionnaire';
 import { Questionnaire } from '@art-forms/models';
 import { createQuestionnaire } from '../actions/questionnaire';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { Store } from '../interfaces/store';
+import LayoutActions from '../interfaces/LayoutActions';
 
 
-export class Layout extends React.Component<{ questionnaire?: Questionnaire, createQuestionnaire: (questionnaire: Questionnaire) => void }> {
+export interface LayoutProps extends LayoutActions {
+    questionnaire: Questionnaire | null;
+}
+
+const mapStateToProps = (store: Store) => {
+    return { questionnaire: store.questionnaire };
+}
+
+const mapDispatchToProps: LayoutActions = {
+    createQuestionnaire,
+}
+
+export class Layout extends React.Component<LayoutProps> {
     onClick = () => {
         const { createQuestionnaire } = this.props;
         createQuestionnaire && createQuestionnaire({ id: '1q' });
@@ -22,23 +34,9 @@ export class Layout extends React.Component<{ questionnaire?: Questionnaire, cre
                 <button className="btn btn-primary" onClick={this.onClick}>Create Questionnaire</button>
             </div>
             <div className="main-area my-5">
-                {questionnaire && <QuestionnaireDesigner />}
+                {questionnaire && <QuestionnaireComponent />}
             </div>
         </div>
-    }
-}
-
-
-
-const mapStateToProps = (store: Store) => {
-    return store.questionnaire;
-}
-
-const mapDispatchToProps = (dispatch: Dispatch): { createQuestionnaire: (questionnaire: Questionnaire) => void } => {
-    return {
-        createQuestionnaire: (questionnaire: Questionnaire) => {
-            dispatch(createQuestionnaire(questionnaire));
-        }
     }
 }
 
