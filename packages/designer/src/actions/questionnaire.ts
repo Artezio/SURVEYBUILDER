@@ -1,5 +1,5 @@
 import { ADD_TEXT_ITEM, CREATE_QUESTIONNAIRE, SET_TITLE, SET_DESCRIPTION, REMOVE_ITEM } from '../constants/actions';
-import { TextItem, Questionnaire, DisplayItem, QUESTION_ITEM } from "@art-forms/models";
+import { TextItem, Questionnaire, DisplayItem } from "@art-forms/models";
 import { actionCreator } from './helpers';
 import uuidv1 from 'uuid/v1';
 
@@ -13,7 +13,7 @@ const addTextItemWrapped = (textItem: {}) => {
     return addTextItem({
         ...textItem,
         id: uuidv1(),
-        type: QUESTION_ITEM
+        type: 2
     })
 }
 
