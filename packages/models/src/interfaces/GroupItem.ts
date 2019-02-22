@@ -1,9 +1,9 @@
 import DisplayItem from './DisplayItem';
-import { GROUP_ITEM } from '../constants';
+import { QUESTIONNAIRE_ITEM_TYPES } from '../enums';
 
 export interface GroupItem extends DisplayItem {
     items: DisplayItem[];
-    type: GROUP_ITEM;
+    type: QUESTIONNAIRE_ITEM_TYPES.GROUP;
 }
 
 export default GroupItem;
