@@ -7,7 +7,7 @@ import TextItemComponent from './TextItem';
 import QuestionnaireActions from '../interfaces/QuestionnaireActions';
 import DropdownMenu from './DropdownMenu';
 
-export interface QuestionnaireComponentProps extends QuestionnaireActions {
+export interface QuestionnaireProps extends QuestionnaireActions {
     questionnaire: Questionnaire;
 }
 
@@ -19,17 +19,17 @@ const mapDispatchToProps: QuestionnaireActions = {
     addTextItem,
 }
 
-export class QuestionnaireComponent extends React.Component<QuestionnaireComponentProps> {
-    onClick = () => {
+export class QuestionnaireComponent extends React.Component<QuestionnaireProps> {
+    addTextItem = () => {
         const { addTextItem } = this.props;
-        addTextItem && addTextItem({ id: '1', type: 2 });
+        addTextItem({ text: 'text' });
     }
     render() {
         const { questionnaire } = this.props;
         return <div className="questionnaire container border border-secondary">
-            <div className="dropdown d-flex justify-content-end m-1">
+            <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title='Context menu' items={[
-                    { title: 'Create text item', action: this.onClick }
+                    { title: 'Create text item', action: this.addTextItem }
                 ]} />
             </div>
             <div className="container">
@@ -39,7 +39,7 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
                 <div className="from-group my-3">
                     <textarea className="form-control" rows={3} name="description" placeholder="Description"></textarea>
                 </div>
-                <div className="item-list">
+                <div className="item-list my-3">
                     {questionnaire.items && questionnaire.items.map(item => <TextItemComponent key={item.id} item={item as TextItem} />)}
                 </div>
             </div>

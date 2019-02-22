@@ -12,7 +12,7 @@ export interface DropdownMenuProps {
 
 export const DropdownMenu = (props: DropdownMenuProps) => {
     const { items, title } = props;
-    return <div className="js-dropdown-menu">
+    return <div>
         <button className="btn btn-secondary dropdown-toggle" role="button" id="context-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {title}
         </button>
