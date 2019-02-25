@@ -1,28 +1,26 @@
 import React from 'react';
-import { TextItem } from '@art-forms/models';
-import TextItemActions from '../interfaces/TextItemActions';
 import { connect } from 'react-redux';
-import { removeItem } from '../actions/questionnaire';
-import DropdownMenu from './DropdownMenu';
+import { removeItem } from '../actions/textItem';
+import DropdownMenuComponent from './DropdownMenu';
+import TextItemComponentProps, { TextItemComponentActions, TextItemComponentOwnProps } from '../interfaces/TextItemComponentProps';
 
-export interface TextItemComponentProps extends TextItemActions {
-    item: TextItem;
-}
-
-const mapDispatchToProps: TextItemActions = {
+const mapDispatchToProps: TextItemComponentActions = {
     removeItem
 }
 
+const mergeProps = (stateProps: null, dispatchProps: TextItemComponentActions, ownProps: TextItemComponentOwnProps): TextItemComponentProps => Object.assign({}, ownProps, stateProps, { actions: { ...dispatchProps } });
+
 export class TextItemComponent extends React.Component<TextItemComponentProps> {
     removeItem = () => {
-        const { removeItem, item } = this.props;
-        removeItem && removeItem(item);
+        const { item } = this.props;
+        const { removeItem } = this.props.actions;
+        removeItem(item);
     }
     render() {
         const { item } = this.props;
         return <div className="container text-item border border-success my-1 py-1">
             <div className="d-flex justify-content-end m-1">
-                <DropdownMenu title="Context menu" items={[
+                <DropdownMenuComponent title="Context menu" items={[
                     { title: 'Remove item', action: this.removeItem }
                 ]} />
             </div>
@@ -31,4 +29,4 @@ export class TextItemComponent extends React.Component<TextItemComponentProps> {
     }
 }
 
-export default connect(store => store, mapDispatchToProps)(TextItemComponent);
+export default connect(null, mapDispatchToProps, mergeProps)(TextItemComponent);

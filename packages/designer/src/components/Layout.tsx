@@ -2,29 +2,27 @@ import React from 'react';
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
 import QuestionnaireComponent from './Questionnaire';
-import { Questionnaire } from '@art-forms/models';
-import { createQuestionnaire } from '../actions/questionnaire';
+import { createQuestionnaire } from '../actions/layout';
 import { connect } from 'react-redux';
-import { Store } from '../interfaces/store';
-import LayoutActions from '../interfaces/LayoutActions';
+import { Store } from '../interfaces/Store';
+import LayoutComponentProps, { LayoutComponentState, LayoutComponentActions } from '../interfaces/LayoutComponentProps';
 
 
-export interface LayoutProps extends LayoutActions {
-    questionnaire: Questionnaire | null;
-}
-
-const mapStateToProps = (store: Store) => {
+const mapStateToProps = (store: Store): LayoutComponentState => {
     return { questionnaire: store.questionnaire };
 }
 
-const mapDispatchToProps: LayoutActions = {
+const mapDispatchToProps: LayoutComponentActions = {
     createQuestionnaire,
 }
 
-export class Layout extends React.Component<LayoutProps> {
+const mergeProps = (stateProps: LayoutComponentState, dispatchProps: LayoutComponentActions, ownProps: any): LayoutComponentProps =>
+    Object.assign({}, ownProps, stateProps, { actions: { ...dispatchProps } });
+
+export class Layout extends React.Component<LayoutComponentProps> {
     onClick = () => {
-        const { createQuestionnaire } = this.props;
-        createQuestionnaire && createQuestionnaire({ id: '1q' });
+        const { createQuestionnaire } = this.props.actions;
+        createQuestionnaire && createQuestionnaire();
     }
     render() {
         const { questionnaire } = this.props;
@@ -40,4 +38,4 @@ export class Layout extends React.Component<LayoutProps> {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Layout);

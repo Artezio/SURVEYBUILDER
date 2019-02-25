@@ -2,33 +2,33 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { TextItem, Questionnaire } from '@art-forms/models';
 import { addTextItem } from "../actions/questionnaire";
-import { Store } from '../interfaces/store';
+import { Store } from '../interfaces/Store';
 import TextItemComponent from './TextItem';
-import QuestionnaireActions from '../interfaces/QuestionnaireActions';
-import DropdownMenu from './DropdownMenu';
+import DropdownMenuComponent from './DropdownMenu';
+import { QuestionnaireComponentActions, QuestionnaireComponentState, QuestionnaireComponentProps } from '../interfaces/QuestionnaireComponentProps';
 
-export interface QuestionnaireProps extends QuestionnaireActions {
-    questionnaire: Questionnaire;
-}
 
-const mapStateToProps = (store: Store) => {
+const mapStateToProps = (store: Store): QuestionnaireComponentState => {
     return { questionnaire: store.questionnaire as Questionnaire };
 }
 
-const mapDispatchToProps: QuestionnaireActions = {
-    addTextItem,
+const mapDispatchToProps: QuestionnaireComponentActions = {
+    addTextItem
 }
 
-export class QuestionnaireComponent extends React.Component<QuestionnaireProps> {
+const mergeProps = (stateProps: any, dispatchProps: QuestionnaireComponentActions, ownProps: any): QuestionnaireComponentProps =>
+    Object.assign({}, ownProps, stateProps, { actions: { ...dispatchProps } });
+
+export class QuestionnaireComponent extends React.Component<QuestionnaireComponentProps> {
     addTextItem = () => {
-        const { addTextItem } = this.props;
-        addTextItem({ text: 'text' });
+        const { addTextItem } = this.props.actions;
+        addTextItem({ text: 'text', });
     }
     render() {
         const { questionnaire } = this.props;
         return <div className="questionnaire container border border-secondary">
             <div className="d-flex justify-content-end m-1">
-                <DropdownMenu title='Context menu' items={[
+                <DropdownMenuComponent title='Context menu' items={[
                     { title: 'Create text item', action: this.addTextItem }
                 ]} />
             </div>
@@ -47,4 +47,4 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireProps> 
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionnaireComponent);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(QuestionnaireComponent);

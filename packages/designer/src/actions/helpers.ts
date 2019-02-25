@@ -1,10 +1,14 @@
-import { Action } from '../interfaces/actionTypes';
+import { Action } from '../interfaces/Action';
 
-export function actionCreator<T, P>(type: T): (payload: P) => Action<T, P> {
-    return (payload: P) => ({
+export function createAction<T, P>(type: T, payload: P): Action<T, P> {
+    return {
         type: type,
         payload: payload
-    })
+    }
 }
 
-export default actionCreator;
+export function createActionCreator<T, P>(type: T): (payload: P) => Action<T, P> {
+    return (payload: P) => createAction<T, P>(type, payload);
+}
+
+export default createActionCreator;

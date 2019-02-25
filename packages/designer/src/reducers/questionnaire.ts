@@ -1,5 +1,5 @@
 import { TextItem, Questionnaire } from '@art-forms/models';
-import { Action } from '../interfaces/actionTypes';
+import { Action } from '../interfaces/Action';
 import { CREATE_QUESTIONNAIRE, ADD_TEXT_ITEM, QUESTIONNAIRE_ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM } from '../constants/actions';
 
 const INITIAL_STATE: Questionnaire | null = null;
