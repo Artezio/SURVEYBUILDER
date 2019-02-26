@@ -6,6 +6,7 @@ import { Store } from '../interfaces/Store';
 import TextItemComponent from './TextItem';
 import DropdownMenuComponent from './DropdownMenu';
 import { QuestionnaireComponentActions, QuestionnaireComponentState, QuestionnaireComponentProps } from '../interfaces/QuestionnaireComponentProps';
+import { Form, Text, TextArea } from 'informed';
 
 
 const mapStateToProps = (store: Store): QuestionnaireComponentState => {
@@ -33,12 +34,10 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
                 ]} />
             </div>
             <div className="container">
-                <div className="from-group my-3">
-                    <input className="form-control" type="text" name="title" placeholder="Title" style={{ height: '50px', fontSize: '30px' }} autoFocus={true}></input>
-                </div>
-                <div className="from-group my-3">
-                    <textarea className="form-control" rows={3} name="description" placeholder="Description"></textarea>
-                </div>
+                <Form className="from-group my-3" key={questionnaire.id} initialValues={questionnaire}>
+                    <Text className="form-control my-2" field="title" placeholder="Title" style={{ height: '50px', fontSize: '30px' }} autoFocus={true} />
+                    <TextArea className="form-control my-2" field="description" placeholder="Description" />
+                </Form>
                 <div className="item-list my-3">
                     {questionnaire.items && questionnaire.items.map(item => <TextItemComponent key={item.id} item={item as TextItem} />)}
                 </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { removeItem } from '../actions/textItem';
 import DropdownMenuComponent from './DropdownMenu';
 import TextItemComponentProps, { TextItemComponentActions, TextItemComponentOwnProps } from '../interfaces/TextItemComponentProps';
+import { Form, Text } from 'informed';
 
 const mapDispatchToProps: TextItemComponentActions = {
     removeItem
@@ -24,7 +25,9 @@ export class TextItemComponent extends React.Component<TextItemComponentProps> {
                     { title: 'Remove item', action: this.removeItem }
                 ]} />
             </div>
-            <input className="form-control" type="text" defaultValue={item.text} autoFocus={true} />
+            <Form className="from-group" initialValues={item} key={item.id}>
+                <Text className="form-control" field="text" autoFocus={true} />
+            </Form>
         </div>
     }
 }
