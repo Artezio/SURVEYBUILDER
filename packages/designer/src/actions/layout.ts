@@ -1,6 +1,6 @@
 import { Questionnaire } from "@art-forms/models";
 import { createAction } from "./helpers";
-import { CREATE_QUESTIONNAIRE } from "../constants/actions";
+import { CREATE_QUESTIONNAIRE } from "../constants/questionnaireActions";
 import { createQuestionnaire as createQuestionnaireAction } from '../interfaces/LayoutComponentProps';
 import uuidv1 from 'uuid/v1';
 

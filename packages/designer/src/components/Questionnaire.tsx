@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { TextItem, Questionnaire } from '@art-forms/models';
-import { addTextItem, setDescription, setTitle, updateQuestionnaire } from "../actions/questionnaire";
+import { addTextItem, setDescription, setTitle, updateQuestionnaire, updateTextItem, removeItem } from "../actions/questionnaire";
 import { Store } from '../interfaces/Store';
 import TextItemComponent from './TextItem';
 import DropdownMenuComponent from './DropdownMenu';
@@ -17,7 +17,9 @@ const mapDispatchToProps: QuestionnaireComponentActions = {
     addTextItem,
     setTitle,
     setDescription,
-    updateQuestionnaire
+    updateQuestionnaire,
+    updateTextItem,
+    removeItem
 }
 
 const mergeProps = (stateProps: any, dispatchProps: QuestionnaireComponentActions, ownProps: any): QuestionnaireComponentProps =>
@@ -36,6 +38,11 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
         this.formApi.submitForm();
     }
 
+    addTextItem() {
+        const { addTextItem } = this.props.actions;
+        addTextItem && addTextItem();
+    }
+
     getFormApi(formApi: FormApi<Questionnaire>) {
         this.formApi = formApi;
     }
@@ -45,7 +52,7 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
         return <div className="questionnaire container border border-secondary">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenuComponent title='Context menu' items={[
-                    { title: 'Create text item', action: actions.addTextItem }
+                    { title: 'Create text item', action: this.addTextItem.bind(this) }
                 ]} />
             </div>
             <div className="container">
@@ -54,7 +61,7 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
                     <TextArea className="form-control my-2" field="description" placeholder="Description" onBlur={this.submitForm.bind(this)} />
                 </Form>
                 <div className="item-list my-3">
-                    {questionnaire.items && questionnaire.items.map(item => <TextItemComponent key={item.id} item={item as TextItem} />)}
+                    {questionnaire.items && questionnaire.items.map(item => <TextItemComponent key={item.id} item={item as TextItem} actions={{ removeItem: actions.removeItem, updateTextItem: actions.updateTextItem }} />)}
                 </div>
             </div>
         </div>
