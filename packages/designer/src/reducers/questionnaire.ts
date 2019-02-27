@@ -1,6 +1,6 @@
 import { Questionnaire } from '@art-forms/models';
 import { Action } from '../interfaces/Action';
-import { CREATE_QUESTIONNAIRE, ADD_TEXT_ITEM, QUESTIONNAIRE_ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM, UPDATE_QUESTIONNAIRE, UPDATE_TEXT_ITEM } from '../constants/questionnaireActions';
+import { CREATE_QUESTIONNAIRE, ADD_DISPLAY_ITEM, QUESTIONNAIRE_ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM, UPDATE_QUESTIONNAIRE, UPDATE_DISPLAY_ITEM } from '../constants/questionnaireActions';
 
 const INITIAL_STATE: Questionnaire | null = null;
 
@@ -23,7 +23,7 @@ export const questionnaire = (state: Questionnaire | null = INITIAL_STATE, actio
                 title: action.payload
             }
         }
-        case ADD_TEXT_ITEM: {
+        case ADD_DISPLAY_ITEM: {
             const newItems = (state && state.items) ? state.items.slice() : [];
             newItems.push(action.payload);
             return {
@@ -44,7 +44,7 @@ export const questionnaire = (state: Questionnaire | null = INITIAL_STATE, actio
                 ...action.payload
             }
         }
-        case UPDATE_TEXT_ITEM: {
+        case UPDATE_DISPLAY_ITEM: {
             let newItems = (state && state.items) ? state.items.slice() : [];
             newItems = newItems.map(item => {
                 if (item.id === action.payload.id) {

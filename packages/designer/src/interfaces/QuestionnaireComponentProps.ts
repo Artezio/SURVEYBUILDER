@@ -1,22 +1,19 @@
-import { TextItem, Questionnaire } from "@art-forms/models";
-import { ADD_TEXT_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE, UPDATE_TEXT_ITEM } from "../constants/questionnaireActions";
+import { DisplayItem, Questionnaire } from "@art-forms/models";
+import { ADD_DISPLAY_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE } from "../constants/questionnaireActions";
 import { Action } from "./Action";
-import { removeItem } from "./TextItemComponentProps";
+import { DisplayItemComponentActions } from "./DisplayItemComponentProps";
 
 
-export type addTextItem = (textItem?: Omit<TextItem, 'id' | 'type'>) => Action<ADD_TEXT_ITEM, TextItem>;
+export type addDisplayItem = (displayItem?: Omit<DisplayItem, 'id' | 'type'>) => Action<ADD_DISPLAY_ITEM, DisplayItem>;
 export type setTitle = (title?: string) => Action<SET_TITLE, string | undefined>;
 export type setDescription = (description?: string) => Action<SET_DESCRIPTION, string | undefined>;
 export type updateQuestionnaire = (questionnaire: Partial<Questionnaire>) => Action<UPDATE_QUESTIONNAIRE, Partial<Questionnaire>>;
-export type updateTextItem = (textItem: TextItem) => Action<UPDATE_TEXT_ITEM, TextItem>;
 
-export interface QuestionnaireComponentActions {
-    addTextItem: addTextItem;
+export interface QuestionnaireComponentActions extends DisplayItemComponentActions {
+    addDisplayItem: addDisplayItem;
     setTitle: setTitle;
     setDescription: setDescription;
     updateQuestionnaire: updateQuestionnaire;
-    updateTextItem: updateTextItem;
-    removeItem: removeItem;
 }
 
 export interface QuestionnaireComponentState {
