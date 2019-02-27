@@ -3,10 +3,8 @@ Typescript library designed with react and redux provides questionnaire designer
 ***
 ## _Installation_
 
->$ npm i @art-form/designer -D
+>$ npm install @art-form/designer
 
 or
->$yarn add @art-form/designer -D
+>$ yarn add @art-form/designer
 
-***
-## _Usage_

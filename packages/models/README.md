@@ -15,7 +15,7 @@ or
 [XML file](./Uml-diagram-models.xml "Link for xml file")
 
 ***
-## _Usage_
+## _Example_
 
 ```shell
 import { Questionnaire } from '@art-form/models';
