@@ -21,8 +21,8 @@ const mergeProps = (stateProps: LayoutComponentState, dispatchProps: LayoutCompo
 
 export class Layout extends React.Component<LayoutComponentProps> {
     onClick = () => {
-        const { createQuestionnaire } = this.props.actions;
-        createQuestionnaire && createQuestionnaire();
+        const { actions } = this.props;
+        actions.createQuestionnaire();
     }
     render() {
         const { questionnaire } = this.props;

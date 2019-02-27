@@ -30,8 +30,8 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
     formApi!: FormApi<Questionnaire>;
 
     handleSubmit(values: Partial<Questionnaire>) {
-        const { updateQuestionnaire } = this.props.actions;
-        updateQuestionnaire(values);
+        const { actions } = this.props;
+        actions.updateQuestionnaire(values);
     }
 
     submitForm() {
@@ -40,8 +40,8 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
     }
 
     addDisplayItem() {
-        const { addDisplayItem } = this.props.actions;
-        addDisplayItem && addDisplayItem();
+        const { actions } = this.props;
+        actions.addDisplayItem();
     }
 
     getFormApi(formApi: FormApi<Questionnaire>) {

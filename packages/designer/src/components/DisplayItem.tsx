@@ -9,9 +9,8 @@ export class DisplayItemComponent extends React.Component<DisplayItemComponentPr
     formApi!: FormApi<DisplayItem>;
 
     removeItem = () => {
-        const { item } = this.props;
-        const { removeItem } = this.props.actions;
-        removeItem(item);
+        const { item, actions } = this.props;
+        actions.removeItem(item);
     }
 
     submitForm() {
