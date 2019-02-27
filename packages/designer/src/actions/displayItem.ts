@@ -1,10 +1,10 @@
 import { createActionCreator, createAction } from "./helpers";
 import { REMOVE_ITEM, UPDATE_DISPLAY_ITEM } from "../constants/questionnaireActions";
-import { updateDisplayItem as updateDisplayItemAction, removeItem as removeItemAction } from "../interfaces/DisplayItemComponentProps";
+import { UpdateDisplayItem, RemoveItem } from "../interfaces/DisplayItemComponentProps";
 
-export const removeItem: removeItemAction = createActionCreator(REMOVE_ITEM);
+export const removeItem: RemoveItem = createActionCreator(REMOVE_ITEM);
 
-export const updateDisplayItem: updateDisplayItemAction = (textItem) => {
+export const updateDisplayItem: UpdateDisplayItem = (textItem) => {
     return createAction(UPDATE_DISPLAY_ITEM, {
         ...textItem
     })

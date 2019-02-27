@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { TextItem, Questionnaire } from '@art-forms/models';
-import { addTextItem, setDescription, setTitle, updateQuestionnaire, updateTextItem, removeItem } from "../actions/questionnaire";
+import { Questionnaire, DisplayItem } from '@art-forms/models';
+import { addDisplayItem, setDescription, setTitle, updateQuestionnaire } from "../actions/questionnaire";
+import { updateDisplayItem, removeItem } from "../actions/displayItem";
 import { Store } from '../interfaces/Store';
-import TextItemComponent from './TextItem';
+import DisplayItemComponent from './DisplayItem';
 import DropdownMenuComponent from './DropdownMenu';
 import { QuestionnaireComponentActions, QuestionnaireComponentState, QuestionnaireComponentProps } from '../interfaces/QuestionnaireComponentProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
@@ -14,11 +15,11 @@ const mapStateToProps = (store: Store): QuestionnaireComponentState => {
 }
 
 const mapDispatchToProps: QuestionnaireComponentActions = {
-    addTextItem,
+    addDisplayItem,
     setTitle,
     setDescription,
     updateQuestionnaire,
-    updateTextItem,
+    updateDisplayItem: updateDisplayItem,
     removeItem
 }
 
@@ -38,9 +39,9 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
         this.formApi.submitForm();
     }
 
-    addTextItem() {
-        const { addTextItem } = this.props.actions;
-        addTextItem && addTextItem();
+    addDisplayItem() {
+        const { addDisplayItem } = this.props.actions;
+        addDisplayItem && addDisplayItem();
     }
 
     getFormApi(formApi: FormApi<Questionnaire>) {
@@ -52,7 +53,7 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
         return <div className="questionnaire container border border-secondary">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenuComponent title='Context menu' items={[
-                    { title: 'Create text item', action: this.addTextItem.bind(this) }
+                    { title: 'Create text item', action: this.addDisplayItem.bind(this) }
                 ]} />
             </div>
             <div className="container">
@@ -61,7 +62,7 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
                     <TextArea className="form-control my-2" field="description" placeholder="Description" onBlur={this.submitForm.bind(this)} />
                 </Form>
                 <div className="item-list my-3">
-                    {questionnaire.items && questionnaire.items.map(item => <TextItemComponent key={item.id} item={item as TextItem} actions={{ removeItem: actions.removeItem, updateTextItem: actions.updateTextItem }} />)}
+                    {questionnaire.items && questionnaire.items.map(item => <DisplayItemComponent key={item.id} item={item as DisplayItem} actions={{ removeItem: actions.removeItem, updateDisplayItem: actions.updateDisplayItem }} />)}
                 </div>
             </div>
         </div>

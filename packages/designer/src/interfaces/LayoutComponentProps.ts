@@ -3,10 +3,10 @@ import { Action } from "./Action";
 import { CREATE_QUESTIONNAIRE } from "../constants/questionnaireActions";
 
 
-export type createQuestionnaire = (questionnaire?: Omit<Questionnaire, 'id'>) => Action<CREATE_QUESTIONNAIRE, Questionnaire>
+export type CreateQuestionnaire = (questionnaire?: Omit<Questionnaire, 'id'>) => Action<CREATE_QUESTIONNAIRE, Questionnaire>
 
 export interface LayoutComponentActions {
-    createQuestionnaire: createQuestionnaire;
+    createQuestionnaire: CreateQuestionnaire;
 }
 
 export interface LayoutComponentState {

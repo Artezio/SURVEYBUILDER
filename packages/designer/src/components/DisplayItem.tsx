@@ -1,12 +1,12 @@
 import React from 'react';
 import DropdownMenuComponent from './DropdownMenu';
-import TextItemComponentProps from '../interfaces/TextItemComponentProps';
+import DisplayItemComponentProps from '../interfaces/DisplayItemComponentProps';
 import { Form, TextArea, Text, FormApi } from 'informed';
-import { TextItem } from '@art-forms/models';
+import { DisplayItem } from '@art-forms/models';
 
 
-export class TextItemComponent extends React.Component<TextItemComponentProps> {
-    formApi!: FormApi<TextItem>;
+export class DisplayItemComponent extends React.Component<DisplayItemComponentProps> {
+    formApi!: FormApi<DisplayItem>;
 
     removeItem = () => {
         const { item } = this.props;
@@ -19,13 +19,13 @@ export class TextItemComponent extends React.Component<TextItemComponentProps> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<TextItem>) {
+    getFormApi(formApi: FormApi<DisplayItem>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<TextItem>) {
+    handleSubmit(values: Partial<DisplayItem>) {
         const { actions, item } = this.props;
-        actions.updateTextItem({ ...item, ...values });
+        actions.updateDisplayItem({ ...item, ...values });
     }
 
     render() {
@@ -44,4 +44,4 @@ export class TextItemComponent extends React.Component<TextItemComponentProps> {
     }
 }
 
-export default TextItemComponent;
+export default DisplayItemComponent;

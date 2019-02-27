@@ -6,12 +6,12 @@ export interface DisplayItemComponentOwnProps {
     item: DisplayItem
 }
 
-export type removeItem = (item: Item) => Action<REMOVE_ITEM, Item>;
-export type updateDisplayItem = (item: DisplayItem) => Action<UPDATE_DISPLAY_ITEM, Item>;
+export type RemoveItem = (item: Item) => Action<REMOVE_ITEM, Item>;
+export type UpdateDisplayItem = (item: DisplayItem) => Action<UPDATE_DISPLAY_ITEM, Item>;
 
 export interface DisplayItemComponentActions {
-    removeItem: removeItem;
-    updateDisplayItem: updateDisplayItem;
+    removeItem: RemoveItem;
+    updateDisplayItem: UpdateDisplayItem;
 }
 
 export type DisplayItemComponentProps = DisplayItemComponentOwnProps & AssignToActions<DisplayItemComponentActions>;
