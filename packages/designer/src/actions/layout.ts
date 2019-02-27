@@ -7,7 +7,6 @@ import uuidv1 from 'uuid/v1';
 export const createQuestionnaire: createQuestionnaireAction = (questionnaire?: Omit<Questionnaire, 'id'>) => {
     return createAction<CREATE_QUESTIONNAIRE, Questionnaire>(CREATE_QUESTIONNAIRE, {
         id: uuidv1(),
-        title: 'title',
         ...questionnaire
     });
 };
