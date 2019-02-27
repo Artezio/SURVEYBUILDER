@@ -1,4 +1,4 @@
-import DisplayItem from './DisplayItem';
+import { Item } from './Item';
 
 export interface Questionnaire {
     id: string;
@@ -6,7 +6,7 @@ export interface Questionnaire {
     description?: string;
     dateEffective?: Date;
     dateExpires?: Date;
-    items?: DisplayItem[];
+    items?: Item[];
 }
 
 export default Questionnaire;

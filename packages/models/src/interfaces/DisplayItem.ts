@@ -1,8 +1,6 @@
-import { QUESTIONNAIRE_ITEM_TYPES } from '../enums';
+import { Item } from './Item';
 
-export interface DisplayItem {
-    id: string;
-    type: QUESTIONNAIRE_ITEM_TYPES;
+export interface DisplayItem extends Item {
     text?: string;
 }
 
