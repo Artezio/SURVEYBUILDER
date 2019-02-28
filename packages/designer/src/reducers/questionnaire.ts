@@ -2,6 +2,7 @@ import * as Models from '@art-forms/models';
 import { Action } from '../interfaces/actions/Action';
 import { CREATE_QUESTIONNAIRE, ADD_DISPLAY_ITEM, ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM, UPDATE_QUESTIONNAIRE, UPDATE_DISPLAY_ITEM } from '../constants/actions';
 
+
 const INITIAL_STATE: Models.Questionnaire | null = null;
 
 export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE, action: Action<ACTION, any>): Models.Questionnaire | null => {

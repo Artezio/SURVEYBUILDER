@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import { Provider } from 'react-redux';
 import { createStore } from './store/store';
 
+
 render(
     <Provider store={createStore()}>
         <Layout />
