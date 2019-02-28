@@ -50,7 +50,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     render() {
         const { questionnaire, actions } = this.props;
-        return <div className="questionnaire container border border-secondary">
+        return <div className="questionnaire col-11 border border-secondary">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title='Context menu' items={[
                     { title: 'Create text item', action: this.addDisplayItem.bind(this) }
@@ -67,7 +67,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                         <TextArea className="form-control" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
                     </div>
                 </Form>
-                <div className="item-list my-3">
+                <div className="item-list row justify-content-center my-3">
                     {questionnaire.items && questionnaire.items.map(item => <Item key={item.id} item={item} actions={{ removeItem: actions.removeItem, updateItem: actions.updateItem }} />)}
                 </div>
             </div>
