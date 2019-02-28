@@ -1,12 +1,12 @@
 import React from 'react';
-import DropdownMenuComponent from './DropdownMenu';
-import DisplayItemComponentProps from '../interfaces/DisplayItemComponentProps';
+import DropdownMenu from './DropdownMenu';
+import DisplayItemProps from '../interfaces/components/DisplayItemProps';
 import { Form, TextArea, Text, FormApi } from 'informed';
-import { DisplayItem } from '@art-forms/models';
+import * as Models from '@art-forms/models';
 
 
-export class DisplayItemComponent extends React.Component<DisplayItemComponentProps> {
-    formApi!: FormApi<DisplayItem>;
+export class DisplayItem extends React.Component<DisplayItemProps> {
+    formApi!: FormApi<Models.DisplayItem>;
 
     removeItem = () => {
         const { item, actions } = this.props;
@@ -18,11 +18,11 @@ export class DisplayItemComponent extends React.Component<DisplayItemComponentPr
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<DisplayItem>) {
+    getFormApi(formApi: FormApi<Models.DisplayItem>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<DisplayItem>) {
+    handleSubmit(values: Partial<Models.DisplayItem>) {
         const { actions, item } = this.props;
         actions.updateDisplayItem({ ...item, ...values });
     }
@@ -31,7 +31,7 @@ export class DisplayItemComponent extends React.Component<DisplayItemComponentPr
         const { item } = this.props;
         return <div className="container text-item border border-success my-1 py-1">
             <div className="d-flex justify-content-end m-1">
-                <DropdownMenuComponent title="Context menu" items={[
+                <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: this.removeItem }
                 ]} />
             </div>
@@ -43,4 +43,4 @@ export class DisplayItemComponent extends React.Component<DisplayItemComponentPr
     }
 }
 
-export default DisplayItemComponent;
+export default DisplayItem;

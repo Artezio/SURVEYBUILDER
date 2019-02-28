@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Questionnaire, DisplayItem } from '@art-forms/models';
+import * as Models from '@art-forms/models';
 import { addDisplayItem, setDescription, setTitle, updateQuestionnaire } from "../actions/questionnaire";
 import { updateDisplayItem, removeItem } from "../actions/displayItem";
 import { Store } from '../interfaces/Store';
-import DisplayItemComponent from './DisplayItem';
-import DropdownMenuComponent from './DropdownMenu';
-import { QuestionnaireComponentActions, QuestionnaireComponentState, QuestionnaireComponentProps } from '../interfaces/QuestionnaireComponentProps';
+import DisplayItem from './DisplayItem';
+import DropdownMenu from './DropdownMenu';
+import { QuestionnaireActions, QuestionnaireState, QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 
 
-const mapStateToProps = (store: Store): QuestionnaireComponentState => {
-    return { questionnaire: store.questionnaire as Questionnaire };
+const mapStateToProps = (store: Store): QuestionnaireState => {
+    return { questionnaire: store.questionnaire as Models.Questionnaire };
 }
 
-const mapDispatchToProps: QuestionnaireComponentActions = {
+const mapDispatchToProps: QuestionnaireActions = {
     addDisplayItem,
     setTitle,
     setDescription,
@@ -23,13 +23,13 @@ const mapDispatchToProps: QuestionnaireComponentActions = {
     removeItem
 }
 
-const mergeProps = (stateProps: any, dispatchProps: QuestionnaireComponentActions, ownProps: any): QuestionnaireComponentProps =>
+const mergeProps = (stateProps: QuestionnaireState, dispatchProps: QuestionnaireActions, ownProps: any): QuestionnaireProps =>
     Object.assign({}, ownProps, stateProps, { actions: { ...dispatchProps } });
 
-export class QuestionnaireComponent extends React.Component<QuestionnaireComponentProps> {
-    formApi!: FormApi<Questionnaire>;
+export class Questionnaire extends React.Component<QuestionnaireProps> {
+    formApi!: FormApi<Models.Questionnaire>;
 
-    handleSubmit(values: Partial<Questionnaire>) {
+    handleSubmit(values: Partial<Models.Questionnaire>) {
         const { actions } = this.props;
         actions.updateQuestionnaire(values);
     }
@@ -44,7 +44,7 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
         actions.addDisplayItem();
     }
 
-    getFormApi(formApi: FormApi<Questionnaire>) {
+    getFormApi(formApi: FormApi<Models.Questionnaire>) {
         this.formApi = formApi;
     }
 
@@ -52,7 +52,7 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
         const { questionnaire, actions } = this.props;
         return <div className="questionnaire container border border-secondary">
             <div className="d-flex justify-content-end m-1">
-                <DropdownMenuComponent title='Context menu' items={[
+                <DropdownMenu title='Context menu' items={[
                     { title: 'Create text item', action: this.addDisplayItem.bind(this) }
                 ]} />
             </div>
@@ -62,11 +62,11 @@ export class QuestionnaireComponent extends React.Component<QuestionnaireCompone
                     <TextArea className="form-control my-2" field="description" placeholder="Description" onBlur={this.submitForm.bind(this)} />
                 </Form>
                 <div className="item-list my-3">
-                    {questionnaire.items && questionnaire.items.map(item => <DisplayItemComponent key={item.id} item={item as DisplayItem} actions={{ removeItem: actions.removeItem, updateDisplayItem: actions.updateDisplayItem }} />)}
+                    {questionnaire.items && questionnaire.items.map(item => <DisplayItem key={item.id} item={item as Models.DisplayItem} actions={{ removeItem: actions.removeItem, updateDisplayItem: actions.updateDisplayItem }} />)}
                 </div>
             </div>
         </div>
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(QuestionnaireComponent);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Questionnaire);

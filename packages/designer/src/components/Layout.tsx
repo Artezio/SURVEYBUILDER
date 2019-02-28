@@ -1,25 +1,25 @@
 import React from 'react';
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
-import QuestionnaireComponent from './Questionnaire';
-import { createQuestionnaire } from '../actions/layout';
+import Questionnaire from './Questionnaire';
+import { createQuestionnaire } from '../actions/questionnaire';
 import { connect } from 'react-redux';
 import { Store } from '../interfaces/Store';
-import LayoutComponentProps, { LayoutComponentState, LayoutComponentActions } from '../interfaces/LayoutComponentProps';
+import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/components/LayoutProps';
 
 
-const mapStateToProps = (store: Store): LayoutComponentState => {
+const mapStateToProps = (store: Store): LayoutState => {
     return { questionnaire: store.questionnaire };
 }
 
-const mapDispatchToProps: LayoutComponentActions = {
+const mapDispatchToProps: LayoutActions = {
     createQuestionnaire,
 }
 
-const mergeProps = (stateProps: LayoutComponentState, dispatchProps: LayoutComponentActions, ownProps: any): LayoutComponentProps =>
+const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
     Object.assign({}, ownProps, stateProps, { actions: { ...dispatchProps } });
 
-export class Layout extends React.Component<LayoutComponentProps> {
+export class Layout extends React.Component<LayoutProps> {
     onClick = () => {
         const { actions } = this.props;
         actions.createQuestionnaire();
@@ -32,7 +32,7 @@ export class Layout extends React.Component<LayoutComponentProps> {
                 <button className="btn btn-primary" onClick={this.onClick}>Create Questionnaire</button>
             </div>
             <div className="main-area my-5">
-                {questionnaire && <QuestionnaireComponent />}
+                {questionnaire && <Questionnaire />}
             </div>
         </div>
     }

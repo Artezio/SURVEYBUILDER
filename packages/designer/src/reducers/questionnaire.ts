@@ -1,10 +1,10 @@
-import { Questionnaire } from '@art-forms/models';
-import { Action } from '../interfaces/Action';
-import { CREATE_QUESTIONNAIRE, ADD_DISPLAY_ITEM, QUESTIONNAIRE_ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM, UPDATE_QUESTIONNAIRE, UPDATE_DISPLAY_ITEM } from '../constants/questionnaireActions';
+import * as Models from '@art-forms/models';
+import { Action } from '../interfaces/actions/Action';
+import { CREATE_QUESTIONNAIRE, ADD_DISPLAY_ITEM, ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM, UPDATE_QUESTIONNAIRE, UPDATE_DISPLAY_ITEM } from '../constants/actions';
 
-const INITIAL_STATE: Questionnaire | null = null;
+const INITIAL_STATE: Models.Questionnaire | null = null;
 
-export const questionnaire = (state: Questionnaire | null = INITIAL_STATE, action: Action<QUESTIONNAIRE_ACTION, any>): Questionnaire | null => {
+export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE, action: Action<ACTION, any>): Models.Questionnaire | null => {
     switch (action.type) {
         case CREATE_QUESTIONNAIRE: {
             return {
@@ -13,13 +13,13 @@ export const questionnaire = (state: Questionnaire | null = INITIAL_STATE, actio
         }
         case SET_DESCRIPTION: {
             return {
-                ...state as Questionnaire,
+                ...state as Models.Questionnaire,
                 description: action.payload
             }
         }
         case SET_TITLE: {
             return {
-                ...state as Questionnaire,
+                ...state as Models.Questionnaire,
                 title: action.payload
             }
         }
@@ -27,20 +27,20 @@ export const questionnaire = (state: Questionnaire | null = INITIAL_STATE, actio
             const newItems = (state && state.items) ? state.items.slice() : [];
             newItems.push(action.payload);
             return {
-                ...state as Questionnaire,
+                ...state as Models.Questionnaire,
                 items: newItems
             }
         }
         case REMOVE_ITEM: {
             const newItems = (state && state.items) ? state.items.filter(item => item !== action.payload) : [];
             return {
-                ...state as Questionnaire,
+                ...state as Models.Questionnaire,
                 items: newItems
             }
         }
         case UPDATE_QUESTIONNAIRE: {
             return {
-                ...state as Questionnaire,
+                ...state as Models.Questionnaire,
                 ...action.payload
             }
         }
@@ -53,7 +53,7 @@ export const questionnaire = (state: Questionnaire | null = INITIAL_STATE, actio
                 return item;
             })
             return {
-                ...state as Questionnaire,
+                ...state as Models.Questionnaire,
                 items: newItems
             }
         }

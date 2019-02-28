@@ -1,5 +1,5 @@
-import { Questionnaire } from '@art-forms/models'
+import * as Models from '@art-forms/models'
 
 export interface Store {
-    questionnaire: Questionnaire | null;
+    questionnaire: Models.Questionnaire | null;
 }

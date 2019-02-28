@@ -1,7 +1,7 @@
 import React from 'react';
-import { DropdownMenuComponentProps } from '../interfaces/DropdownMenuComponentProps';
+import { DropdownMenuProps } from '../interfaces/components/DropdownMenuProps';
 
-export const DropdownMenuComponent = (props: DropdownMenuComponentProps) => {
+export const DropdownMenu = (props: DropdownMenuProps) => {
     const { items, title } = props;
     return <div>
         <button className="btn btn-secondary dropdown-toggle" role="button" id="context-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -13,4 +13,4 @@ export const DropdownMenuComponent = (props: DropdownMenuComponentProps) => {
     </div>
 }
 
-export default DropdownMenuComponent
+export default DropdownMenu
