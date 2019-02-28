@@ -3,7 +3,9 @@ import { Item } from './Item';
 
 
 export interface QuestionItem<T> extends Item {
-    type: QUESTIONNAIRE_ITEM_TYPES.QUESTION
+    type: QUESTIONNAIRE_ITEM_TYPES.QUESTION;
+    initialValue: T;
+    value: T;
 }
 
 

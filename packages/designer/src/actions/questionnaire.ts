@@ -1,4 +1,4 @@
-import uuidv1 from 'uuid/v1';
+import uuid from 'uuid/v1';
 import { ADD_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE, CREATE_QUESTIONNAIRE } from '../constants/actions';
 import { createActionCreator, createAction } from './helpers';
 import { AddItem, UpdateQuestionnaire, SetTitle, SetDescription } from '../interfaces/actions/Questionnaire';
@@ -10,7 +10,7 @@ export const setDescription: SetDescription = createActionCreator(SET_DESCRIPTIO
 
 export const addItem: AddItem = (item) => {
     return createAction(ADD_ITEM, {
-        id: uuidv1(),
+        id: uuid(),
         type: 2,
         ...item
     })
@@ -24,7 +24,7 @@ export const updateQuestionnaire: UpdateQuestionnaire = (questionnaire) => {
 
 export const createQuestionnaire: CreateQuestionnaire = (questionnaire) => {
     return createAction(CREATE_QUESTIONNAIRE, {
-        id: uuidv1(),
+        id: uuid(),
         ...questionnaire
     });
 };
