@@ -1,7 +1,7 @@
 import React from 'react';
 import DropdownMenu from './DropdownMenu';
 import ItemProps from '../interfaces/components/ItemProps';
-import { Form, TextArea, Text, FormApi } from 'informed';
+import { Form, TextArea, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
 
 
@@ -35,9 +35,11 @@ export class Item extends React.Component<ItemProps> {
                     { title: 'Remove item', action: this.removeItem }
                 ]} />
             </div>
-            <Form getApi={this.getFormApi.bind(this)} className="from-group" initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-                <Text className="form-control my-1" field="title" placeholder="Title" autoFocus={true} onBlur={this.submitForm.bind(this)} />
-                <TextArea className="form-control my-1" field="text" placeholder="Text" onBlur={this.submitForm.bind(this)} />
+            <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+                <div className="form-group">
+                    <label htmlFor="item-text">Text</label>
+                    <TextArea className="form-control" id="item-text" field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                </div>
             </Form>
         </div>
     }
