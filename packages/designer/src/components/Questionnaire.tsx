@@ -57,9 +57,15 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 ]} />
             </div>
             <div className="container">
-                <Form className="from-group my-3" getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
-                    <Text className="form-control my-2" field="title" placeholder="Title" style={{ height: '50px', fontSize: '30px' }} autoFocus={true} onBlur={this.submitForm.bind(this)} />
-                    <TextArea className="form-control my-2" field="description" placeholder="Description" onBlur={this.submitForm.bind(this)} />
+                <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
+                    <div className="form-group">
+                        <label htmlFor="questionnaire-title">Title</label>
+                        <Text className="form-control" id="questionnaire-title" field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="questionnaire-description">Description</label>
+                        <TextArea className="form-control" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                    </div>
                 </Form>
                 <div className="item-list my-3">
                     {questionnaire.items && questionnaire.items.map(item => <Item key={item.id} item={item} actions={{ removeItem: actions.removeItem, updateItem: actions.updateItem }} />)}
