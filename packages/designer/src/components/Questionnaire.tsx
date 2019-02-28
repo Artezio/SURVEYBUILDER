@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as Models from '@art-forms/models';
-import { addDisplayItem, setDescription, setTitle, updateQuestionnaire } from "../actions/questionnaire";
-import { updateDisplayItem, removeItem } from "../actions/displayItem";
+import { addItem, setDescription, setTitle, updateQuestionnaire } from "../actions/questionnaire";
+import { updateItem, removeItem } from "../actions/item";
 import { Store } from '../interfaces/Store';
-import DisplayItem from './DisplayItem';
+import Item from './Item';
 import DropdownMenu from './DropdownMenu';
 import { QuestionnaireActions, QuestionnaireState, QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
@@ -15,11 +15,11 @@ const mapStateToProps = (store: Store): QuestionnaireState => {
 }
 
 const mapDispatchToProps: QuestionnaireActions = {
-    addDisplayItem,
+    addItem: addItem,
     setTitle,
     setDescription,
     updateQuestionnaire,
-    updateDisplayItem: updateDisplayItem,
+    updateItem: updateItem,
     removeItem
 }
 
@@ -41,7 +41,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     addDisplayItem() {
         const { actions } = this.props;
-        actions.addDisplayItem();
+        actions.addItem();
     }
 
     getFormApi(formApi: FormApi<Models.Questionnaire>) {
@@ -62,7 +62,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     <TextArea className="form-control my-2" field="description" placeholder="Description" onBlur={this.submitForm.bind(this)} />
                 </Form>
                 <div className="item-list my-3">
-                    {questionnaire.items && questionnaire.items.map(item => <DisplayItem key={item.id} item={item as Models.DisplayItem} actions={{ removeItem: actions.removeItem, updateDisplayItem: actions.updateDisplayItem }} />)}
+                    {questionnaire.items && questionnaire.items.map(item => <Item key={item.id} item={item} actions={{ removeItem: actions.removeItem, updateItem: actions.updateItem }} />)}
                 </div>
             </div>
         </div>

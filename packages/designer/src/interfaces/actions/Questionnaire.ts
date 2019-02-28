@@ -1,9 +1,9 @@
 import { Action } from "./Action";
 import * as Models from "@art-forms/models";
-import { ADD_DISPLAY_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE, CREATE_QUESTIONNAIRE } from "../../constants/actions";
+import { ADD_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE, CREATE_QUESTIONNAIRE } from "../../constants/actions";
 
 
-export type AddDisplayItem = (displayItem?: Omit<Models.DisplayItem, 'id' | 'type'>) => Action<ADD_DISPLAY_ITEM, Models.DisplayItem>;
+export type AddItem = (item?: Omit<Models.Item, 'id' | 'type'>) => Action<ADD_ITEM, Models.Item>;
 export type SetTitle = (title?: string) => Action<SET_TITLE, string | undefined>;
 export type SetDescription = (description?: string) => Action<SET_DESCRIPTION, string | undefined>;
 export type UpdateQuestionnaire = (questionnaire: Partial<Models.Questionnaire>) => Action<UPDATE_QUESTIONNAIRE, Partial<Models.Questionnaire>>;

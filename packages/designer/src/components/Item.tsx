@@ -1,12 +1,12 @@
 import React from 'react';
 import DropdownMenu from './DropdownMenu';
-import DisplayItemProps from '../interfaces/components/DisplayItemProps';
+import ItemProps from '../interfaces/components/ItemProps';
 import { Form, TextArea, Text, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
 
 
-export class DisplayItem extends React.Component<DisplayItemProps> {
-    formApi!: FormApi<Models.DisplayItem>;
+export class Item extends React.Component<ItemProps> {
+    formApi!: FormApi<Models.Item>;
 
     removeItem = () => {
         const { item, actions } = this.props;
@@ -18,13 +18,13 @@ export class DisplayItem extends React.Component<DisplayItemProps> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.DisplayItem>) {
+    getFormApi(formApi: FormApi<Models.Item>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.DisplayItem>) {
+    handleSubmit(values: Partial<Models.Item>) {
         const { actions, item } = this.props;
-        actions.updateDisplayItem({ ...item, ...values });
+        actions.updateItem({ ...item, ...values });
     }
 
     render() {
@@ -43,4 +43,4 @@ export class DisplayItem extends React.Component<DisplayItemProps> {
     }
 }
 
-export default DisplayItem;
+export default Item;

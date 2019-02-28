@@ -1,5 +1,5 @@
 import * as Models from "@art-forms/models";
-import { CreateQuestionnaire } from "../actions/QuestionnaireActions";
+import { CreateQuestionnaire } from "../actions/Questionnaire";
 
 
 export interface LayoutActions {
