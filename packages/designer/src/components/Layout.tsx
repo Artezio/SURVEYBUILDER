@@ -27,9 +27,12 @@ export class Layout extends React.Component<LayoutProps> {
     render() {
         const { questionnaire } = this.props;
         return <div className="container-fluid">
-            <div className="menu d-flex justify-content-around py-2 bg-dark text-light ">
-                <h1 className="font-weight-bold">Questionnaire Designer</h1>
-                <button className="btn btn-primary" onClick={this.onClick}>Create Questionnaire</button>
+            <div className="menu d-flex row py-2 bg-dark text-light ">
+                <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
+                <div className="d-flex justify-content-around col-7">
+                    <button className="btn btn-info d-display">Preview</button>
+                    <button className="btn btn-primary" onClick={this.onClick}>Create Questionnaire</button>
+                </div>
             </div>
             <div className="main-area row justify-content-center my-5">
                 {questionnaire && <Questionnaire />}
