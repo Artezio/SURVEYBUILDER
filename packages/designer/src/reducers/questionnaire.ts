@@ -1,5 +1,5 @@
 import * as Models from '@art-forms/models';
-import { Action } from '../interfaces/actions/Action';
+import { Action } from '../interfaces/Action';
 import { CREATE_QUESTIONNAIRE, ADD_ITEM, ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM, UPDATE_QUESTIONNAIRE, UPDATE_ITEM, ADD_TEXT_ITEM } from '../constants/actions';
 
 

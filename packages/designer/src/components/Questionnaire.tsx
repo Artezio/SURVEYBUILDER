@@ -4,7 +4,6 @@ import * as Models from '@art-forms/models';
 import { addItem, setDescription, setTitle, updateQuestionnaire, addTextItem } from "../actions/questionnaire";
 import { updateItem, removeItem } from "../actions/item";
 import { Store } from '../interfaces/Store';
-import Item from './Item';
 import DropdownMenu from './DropdownMenu';
 import { QuestionnaireActions, QuestionnaireState, QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';

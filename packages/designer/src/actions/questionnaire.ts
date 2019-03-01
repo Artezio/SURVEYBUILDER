@@ -1,38 +1,36 @@
 import uuid from 'uuid/v1';
 import { ADD_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE, CREATE_QUESTIONNAIRE, ADD_TEXT_ITEM } from '../constants/actions';
 import { createActionCreator, createAction } from './helpers';
-import { AddItem, UpdateQuestionnaire, SetTitle, SetDescription, AddTextItem } from '../interfaces/actions/Questionnaire';
-import { CreateQuestionnaire } from '../interfaces/actions/Questionnaire';
-//import { DISPLAY, QUESTION } from '@art-forms/models';
+import * as Models from '@art-forms/models';
 
 
-export const setTitle: SetTitle = createActionCreator(SET_TITLE);
-export const setDescription: SetDescription = createActionCreator(SET_DESCRIPTION);
+export const setTitle = createActionCreator<SET_TITLE, string | undefined>(SET_TITLE);
+export const setDescription = createActionCreator<SET_DESCRIPTION, string | undefined>(SET_DESCRIPTION);
 
-export const addItem: AddItem = (item) => {
-    return createAction(ADD_ITEM, {
+export const addItem = (item?: Omit<Models.Item, 'id' | 'type'>) => {
+    return createAction<ADD_ITEM, Models.Item>(ADD_ITEM, {
         id: uuid(),
-        type: 'DISPLAY',
+        type: "DISPLAY",
         ...item
     })
 }
 
-export const addTextItem: AddTextItem = (item) => {
-    return createAction(ADD_TEXT_ITEM, {
+export const addTextItem = (item?: Omit<Models.TextItem, 'id' | 'type'>) => {
+    return createAction<ADD_TEXT_ITEM, Models.TextItem>(ADD_TEXT_ITEM, {
         id: uuid(),
         type: 'QUESTION',
         ...item
     })
 }
 
-export const updateQuestionnaire: UpdateQuestionnaire = (questionnaire) => {
-    return createAction(UPDATE_QUESTIONNAIRE, {
-        ...questionnaire
+export const updateQuestionnaire = (questionnaire: Partial<Models.Questionnaire>) => {
+    return createAction<UPDATE_QUESTIONNAIRE, Models.Questionnaire>(UPDATE_QUESTIONNAIRE, {
+        ...questionnaire as Models.Questionnaire
     })
 }
 
-export const createQuestionnaire: CreateQuestionnaire = (questionnaire) => {
-    return createAction(CREATE_QUESTIONNAIRE, {
+export const createQuestionnaire = (questionnaire?: Omit<Models.Questionnaire, 'id'>) => {
+    return createAction<CREATE_QUESTIONNAIRE, Models.Questionnaire>(CREATE_QUESTIONNAIRE, {
         id: uuid(),
         ...questionnaire
     });

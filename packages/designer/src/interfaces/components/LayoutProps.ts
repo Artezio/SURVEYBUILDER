@@ -1,9 +1,9 @@
 import * as Models from "@art-forms/models";
-import { CreateQuestionnaire } from "../actions/Questionnaire";
+import { createQuestionnaire } from "../../actions/questionnaire";
 
 
 export interface LayoutActions {
-    createQuestionnaire: CreateQuestionnaire;
+    createQuestionnaire: typeof createQuestionnaire;
 }
 
 export interface LayoutState {
