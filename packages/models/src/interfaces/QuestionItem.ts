@@ -1,9 +1,9 @@
-import { QUESTIONNAIRE_ITEM_TYPES } from '../enums';
+import { QUESTION } from '../constants';
 import { Item } from './Item';
 
 
 export interface QuestionItem<T> extends Item {
-    type: QUESTIONNAIRE_ITEM_TYPES.QUESTION;
+    type: QUESTION;
     initialValue?: T;
     value?: T;
 }

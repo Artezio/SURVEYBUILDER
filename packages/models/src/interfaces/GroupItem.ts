@@ -1,10 +1,10 @@
-import { QUESTIONNAIRE_ITEM_TYPES } from '../enums';
+import { GROUP } from '../constants';
 import { Item } from './Item';
 
 
 export interface GroupItem extends Item {
     items: Item[];
-    type: QUESTIONNAIRE_ITEM_TYPES.GROUP;
+    type: GROUP;
 }
 
 export default GroupItem;

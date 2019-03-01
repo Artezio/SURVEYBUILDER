@@ -3,6 +3,7 @@ import { ADD_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE, CREATE_QUES
 import { createActionCreator, createAction } from './helpers';
 import { AddItem, UpdateQuestionnaire, SetTitle, SetDescription, AddTextItem } from '../interfaces/actions/Questionnaire';
 import { CreateQuestionnaire } from '../interfaces/actions/Questionnaire';
+//import { DISPLAY, QUESTION } from '@art-forms/models';
 
 
 export const setTitle: SetTitle = createActionCreator(SET_TITLE);
@@ -11,7 +12,7 @@ export const setDescription: SetDescription = createActionCreator(SET_DESCRIPTIO
 export const addItem: AddItem = (item) => {
     return createAction(ADD_ITEM, {
         id: uuid(),
-        type: 2,
+        type: 'DISPLAY',
         ...item
     })
 }
@@ -19,7 +20,7 @@ export const addItem: AddItem = (item) => {
 export const addTextItem: AddTextItem = (item) => {
     return createAction(ADD_TEXT_ITEM, {
         id: uuid(),
-        type: 3,
+        type: 'QUESTION',
         ...item
     })
 }

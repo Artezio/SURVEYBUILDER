@@ -1,4 +1,4 @@
-import { QUESTIONNAIRE_ITEM_TYPES } from "../enums";
+import { QUESTIONNAIRE_ITEM_TYPES } from "../constants";
 
 
 export interface Item {
