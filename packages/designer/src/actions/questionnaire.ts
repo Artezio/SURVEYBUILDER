@@ -1,7 +1,7 @@
 import uuid from 'uuid/v1';
-import { ADD_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE, CREATE_QUESTIONNAIRE } from '../constants/actions';
+import { ADD_ITEM, SET_TITLE, SET_DESCRIPTION, UPDATE_QUESTIONNAIRE, CREATE_QUESTIONNAIRE, ADD_TEXT_ITEM } from '../constants/actions';
 import { createActionCreator, createAction } from './helpers';
-import { AddItem, UpdateQuestionnaire, SetTitle, SetDescription } from '../interfaces/actions/Questionnaire';
+import { AddItem, UpdateQuestionnaire, SetTitle, SetDescription, AddTextItem } from '../interfaces/actions/Questionnaire';
 import { CreateQuestionnaire } from '../interfaces/actions/Questionnaire';
 
 
@@ -12,6 +12,14 @@ export const addItem: AddItem = (item) => {
     return createAction(ADD_ITEM, {
         id: uuid(),
         type: 2,
+        ...item
+    })
+}
+
+export const addTextItem: AddTextItem = (item) => {
+    return createAction(ADD_TEXT_ITEM, {
+        id: uuid(),
+        type: 3,
         ...item
     })
 }
