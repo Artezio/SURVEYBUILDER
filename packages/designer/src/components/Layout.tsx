@@ -31,7 +31,7 @@ export class Layout extends React.Component<LayoutProps> {
                 <h1 className="font-weight-bold">Questionnaire Designer</h1>
                 <button className="btn btn-primary" onClick={this.onClick}>Create Questionnaire</button>
             </div>
-            <div className="main-area my-5">
+            <div className="main-area row justify-content-center my-5">
                 {questionnaire && <Questionnaire />}
             </div>
         </div>
