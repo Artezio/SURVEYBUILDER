@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as Models from '@art-forms/models';
-import { addItem, setDescription, setTitle, updateQuestionnaire } from "../actions/questionnaire";
+import { addItem, setDescription, setTitle, updateQuestionnaire, addTextItem } from "../actions/questionnaire";
 import { updateItem, removeItem } from "../actions/item";
 import { Store } from '../interfaces/Store';
 import Item from './Item';
 import DropdownMenu from './DropdownMenu';
 import { QuestionnaireActions, QuestionnaireState, QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
+import ItemProvider from './ItemProvider';
 
 
 const mapStateToProps = (store: Store): QuestionnaireState => {
@@ -19,8 +20,9 @@ const mapDispatchToProps: QuestionnaireActions = {
     setTitle,
     setDescription,
     updateQuestionnaire,
-    updateItem: updateItem,
-    removeItem
+    updateItem,
+    removeItem,
+    addTextItem
 }
 
 const mergeProps = (stateProps: QuestionnaireState, dispatchProps: QuestionnaireActions, ownProps: any): QuestionnaireProps =>
@@ -39,9 +41,14 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.formApi.submitForm();
     }
 
-    addDisplayItem() {
+    addItem() {
         const { actions } = this.props;
         actions.addItem();
+    }
+
+    addTextItem() {
+        const { actions } = this.props;
+        actions.addTextItem();
     }
 
     getFormApi(formApi: FormApi<Models.Questionnaire>) {
@@ -53,7 +60,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         return <div className="questionnaire container border border-secondary">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title='Context menu' items={[
-                    { title: 'Create text item', action: this.addDisplayItem.bind(this) }
+                    { title: 'Create item', action: this.addItem.bind(this) },
+                    { title: 'Create text item', action: this.addTextItem.bind(this) }
                 ]} />
             </div>
             <div className="container">
@@ -68,7 +76,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     </div>
                 </Form>
                 <div className="item-list my-3">
-                    {questionnaire.items && questionnaire.items.map(item => <Item key={item.id} item={item} actions={{ removeItem: actions.removeItem, updateItem: actions.updateItem }} />)}
+                    {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} item={item} actions={{ removeItem: actions.removeItem, updateItem: actions.updateItem }} />)}
                 </div>
             </div>
         </div>
