@@ -1,9 +1,10 @@
 import * as Models from "@art-forms/models";
 import { ItemActions } from "./ItemProps";
 import { addItem, addTextItem, setTitle, setDescription, updateQuestionnaire } from "../../actions/questionnaire";
+import { TextItemActions } from "./TextItemProps";
 
 
-export interface QuestionnaireActions extends ItemActions {
+export interface QuestionnaireActions extends ItemActions, TextItemActions {
     addItem: typeof addItem;
     addTextItem: typeof addTextItem
     setTitle: typeof setTitle;

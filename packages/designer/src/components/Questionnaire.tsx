@@ -8,6 +8,7 @@ import DropdownMenu from './DropdownMenu';
 import { QuestionnaireActions, QuestionnaireState, QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import ItemProvider from './ItemProvider';
+import { updateTextItem } from '../actions/textItem';
 
 
 const mapStateToProps = (store: Store): QuestionnaireState => {
@@ -21,7 +22,8 @@ const mapDispatchToProps: QuestionnaireActions = {
     updateQuestionnaire,
     updateItem,
     removeItem,
-    addTextItem
+    addTextItem,
+    updateTextItem
 }
 
 const mergeProps = (stateProps: QuestionnaireState, dispatchProps: QuestionnaireActions, ownProps: any): QuestionnaireProps =>
@@ -75,7 +77,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     </div>
                 </Form>
                 <div className="item-list row justify-content-center my-3">
-                    {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} item={item} actions={{ removeItem: actions.removeItem, updateItem: actions.updateItem }} />)}
+                    {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} item={item} actions={actions} />)}
                 </div>
             </div>
         </div>

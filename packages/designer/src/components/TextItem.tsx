@@ -17,8 +17,9 @@ export class TextItem extends React.Component<TextItemProps> {
         this.formApi = formApi;
     }
 
-    handleSubmit() {
-
+    handleSubmit(values: Partial<Models.TextItem>) {
+        const { actions, item } = this.props;
+        actions.updateTextItem({ ...item, ...values });
     }
 
     removeItem = () => {
@@ -37,11 +38,11 @@ export class TextItem extends React.Component<TextItemProps> {
             <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     <label htmlFor="text-item-text">Title</label>
-                    <Text className="form-control" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} />
+                    <Text className="form-control" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="text-item-initial-value">Default answer</label>
-                    <Text className="form-control" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" />
+                    <Text className="form-control" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
                 </div>
             </Form>
         </div>

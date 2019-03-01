@@ -1,13 +1,15 @@
 import * as Models from '@art-forms/models';
-import { ItemActions } from './ItemProps';
+import { removeItem } from '../../actions/item';
+import { updateTextItem } from '../../actions/textItem';
 
 
 export interface TextItemOwnProps {
     item: Models.TextItem;
 }
 
-export interface TextItemActions extends ItemActions {
-
+export interface TextItemActions {
+    removeItem: typeof removeItem;
+    updateTextItem: typeof updateTextItem;
 }
 
 export type TextItemProps = TextItemOwnProps & AssignToActions<TextItemActions>;
