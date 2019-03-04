@@ -7,6 +7,7 @@
   },
   "private": true,
   "dependencies": {
+    "@art-forms/models": "^0.1.5",
     "@types/jest": "24.0.9",
     "@types/node": "11.9.6",
     "@types/react": "16.8.6",
