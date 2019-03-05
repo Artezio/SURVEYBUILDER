@@ -1,13 +1,10 @@
-import React from 'react';
-import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
-import 'bootstrap';
+import * as React from 'react';
 import Questionnaire from './Questionnaire';
-import * as Models from '@art-forms/models';
 
 
-export class Layout extends React.Component<any> {
+export class Layout extends React.Component {
     render() {
-        const { questionnaire } = this.props;
+        const { questionnaire } = (this.props as any);
         return <div className="container-fluid">
             <div className="menu d-flex row py-2 bg-dark text-light ">
                 <h1 className="col-5 font-weight-bold">Questionnaire</h1>
@@ -16,7 +13,7 @@ export class Layout extends React.Component<any> {
                 </div>
             </div>
             <div className="main-area row justify-content-center my-5">
-                {questionnaire && <Questionnaire questionnaire={questionnaire} />}
+                {!questionnaire && <Questionnaire questionnaire={questionnaire} />}
             </div>
         </div>
     }
