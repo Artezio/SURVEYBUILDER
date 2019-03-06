@@ -1,6 +1,5 @@
 import * as Models from '@art-forms/models';
 import { removeItem, updateItem } from '../../actions/item';
-// import { RemoveItem, UpdateItem } from '../actions/Item';
 
 
 export interface ItemOwnProps {

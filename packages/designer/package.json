@@ -4,6 +4,7 @@
   "registry": "http://10.11.40.28:4873/",
   "dependencies": {
     "@art-forms/models": "^0.1.5",
+    "@art-forms/player": "file:./../player",
     "@types/jest": "^24.0.4",
     "@types/jquery": "^3.3.29",
     "@types/node": "^11.9.3",
@@ -16,10 +17,12 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
     "react": "^16.8.1",
+    "react-app-rewired": "^2.1.0",
     "react-dom": "^16.8.1",
     "react-redux": "^6.0.0",
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
+    "source-map-loader": "^0.2.4",
     "typescript": "^3.3.3",
     "uuid": "^3.3.2"
   },
@@ -41,7 +44,8 @@
   "devDependencies": {
     "@types/redux-logger": "^3.0.7",
     "awesome-typescript-loader": "^5.2.1",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "ts-loader": "^5.3.3"
   },
   "publishConfig": {
     "registry": "http://10.11.40.28:4873/"

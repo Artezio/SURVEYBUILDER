@@ -1,33 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import * as Models from '@art-forms/models';
-import { addItem, setDescription, setTitle, updateQuestionnaire, addTextItem } from "../actions/questionnaire";
-import { updateItem, removeItem } from "../actions/item";
-import { Store } from '../interfaces/Store';
 import DropdownMenu from './DropdownMenu';
-import { QuestionnaireActions, QuestionnaireState, QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
+import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import ItemProvider from './ItemProvider';
-import { updateTextItem } from '../actions/textItem';
 
-
-const mapStateToProps = (store: Store): QuestionnaireState => {
-    return { questionnaire: store.questionnaire as Models.Questionnaire };
-}
-
-const mapDispatchToProps: QuestionnaireActions = {
-    addItem: addItem,
-    setTitle,
-    setDescription,
-    updateQuestionnaire,
-    updateItem,
-    removeItem,
-    addTextItem,
-    updateTextItem
-}
-
-const mergeProps = (stateProps: QuestionnaireState, dispatchProps: QuestionnaireActions, ownProps: any): QuestionnaireProps =>
-    Object.assign({}, ownProps, stateProps, { actions: { ...dispatchProps } });
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.Questionnaire>;
@@ -84,4 +61,4 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Questionnaire);
+export default Questionnaire;

@@ -14,8 +14,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-//import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap';
 var Questionnaire_1 = require("./Questionnaire");
 var Layout = /** @class */ (function (_super) {
     __extends(Layout, _super);
@@ -23,13 +21,13 @@ var Layout = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Layout.prototype.render = function () {
-        var questionnaire = this.props.questionnaire;
+        var _a = (this.props), questionnaire = _a.questionnaire, actions = _a.actions;
         return React.createElement("div", { className: "container-fluid" },
             React.createElement("div", { className: "menu d-flex row py-2 bg-dark text-light " },
                 React.createElement("h1", { className: "col-5 font-weight-bold" }, "Questionnaire"),
                 React.createElement("div", { className: "d-flex justify-content-around col-7" },
-                    React.createElement("button", { className: "btn btn-info d-display" }, "Back to design"))),
-            React.createElement("div", { className: "main-area row justify-content-center my-5" }, !questionnaire && React.createElement(Questionnaire_1.default, { questionnaire: questionnaire })));
+                    React.createElement("button", { className: "btn btn-info d-display", onClick: actions.toggleAppModeToDesign }, "Back to design"))),
+            React.createElement("div", { className: "main-area row justify-content-center my-5" }, questionnaire && React.createElement(Questionnaire_1.default, { questionnaire: questionnaire })));
     };
     return Layout;
 }(React.Component));

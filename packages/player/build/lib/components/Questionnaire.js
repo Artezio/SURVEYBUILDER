@@ -22,9 +22,9 @@ var Questionnaire = /** @class */ (function (_super) {
     Questionnaire.prototype.render = function () {
         var questionnaire = this.props.questionnaire;
         return React.createElement("div", { className: "col-11 border border-secondary" },
-            React.createElement("h2", null, "My Title"),
-            React.createElement("h3", null, "My Description"),
-            React.createElement("div", { className: "item-list row justify-items-center" }));
+            React.createElement("h2", null, questionnaire.title),
+            React.createElement("h3", null, questionnaire.description),
+            React.createElement("div", { className: "item-list row justify-items-center" }, questionnaire.items && questionnaire.items.length));
     };
     return Questionnaire;
 }(React.Component));
