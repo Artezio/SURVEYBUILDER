@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
+var ItemProvider_1 = require("./ItemProvider");
 var Questionnaire = /** @class */ (function (_super) {
     __extends(Questionnaire, _super);
     function Questionnaire() {
@@ -24,7 +25,7 @@ var Questionnaire = /** @class */ (function (_super) {
         return React.createElement("div", { className: "col-11 border border-secondary" },
             React.createElement("h2", null, questionnaire.title),
             React.createElement("h3", null, questionnaire.description),
-            React.createElement("div", { className: "item-list row justify-items-center" }, questionnaire.items && questionnaire.items.length));
+            React.createElement("div", { className: "item-list row justify-items-center" }, questionnaire.items && questionnaire.items.map(function (item) { return React.createElement(ItemProvider_1.default, { item: item }); })));
     };
     return Questionnaire;
 }(React.Component));

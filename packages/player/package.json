@@ -5,8 +5,8 @@
   "publishConfig": {
     "registry": "http://10.11.40.28:4873/"
   },
-  "main": "./build/lib/index.js",
-  "types": "./build/lib/index.d.ts",
+  "main": "./build/lib/exports.js",
+  "types": "./build/lib/exports.d.ts",
   "private": true,
   "dependencies": {
     "@art-forms/models": "^0.1.5",
@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "tsc -p tsconfig.build.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
