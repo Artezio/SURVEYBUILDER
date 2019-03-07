@@ -10,7 +10,7 @@ export const setDescription = createActionCreator<SET_DESCRIPTION, string | unde
 export const addItem = (item?: Omit<Models.Item, 'id' | 'type'>) => {
     return createAction<ADD_ITEM, Models.Item>(ADD_ITEM, {
         id: uuid(),
-        type: "DISPLAY",
+        type: Models.DISPLAY,
         ...item
     })
 }
@@ -18,7 +18,7 @@ export const addItem = (item?: Omit<Models.Item, 'id' | 'type'>) => {
 export const addTextItem = (item?: Omit<Models.TextItem, 'id' | 'type'>) => {
     return createAction<ADD_TEXT_ITEM, Models.TextItem>(ADD_TEXT_ITEM, {
         id: uuid(),
-        type: 'QUESTION',
+        type: Models.QUESTION,
         ...item
     })
 }

@@ -10,6 +10,7 @@
     "@types/node" "11.9.6"
     "@types/react" "16.8.6"
     "@types/react-dom" "16.8.2"
+    "@types/react-redux" "^7.0.1"
     react "^16.8.3"
     react-dom "^16.8.3"
     react-redux "^6.0.1"
@@ -5893,6 +5894,14 @@ informed@^2.1.6:
   version "2.1.6"
   resolved "http://10.11.40.28:4873/informed/-/informed-2.1.6.tgz#b12dc9843874cd91be989833a03b000013c2efb6"
   integrity sha512-UZZa8DA15HJrlZSoP/02dyszKr/LLTWEiVzpH/H6xPUwQq3V+BOBFV7ybgpnVPDW1benso+yDD+5zMz0pCwXmg==
+  dependencies:
+    debug "^4.1.1"
+    lodash "^4.17.11"
+
+informed@^2.1.7:
+  version "2.1.7"
+  resolved "http://10.11.40.28:4873/informed/-/informed-2.1.7.tgz#113b766a024c6566090596229f2352d6b3c4986d"
+  integrity sha512-M9jUWUv1r3BUDRqqoMMPPcvxXw406JVeaIBMqomZ3eM6mPapJMjBERCRsxaHYJu7FDkRQj/+MH4rmiLabTGP9A==
   dependencies:
     debug "^4.1.1"
     lodash "^4.17.11"

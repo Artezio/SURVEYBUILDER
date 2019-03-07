@@ -27,7 +27,7 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --entry src/main.tsx",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
