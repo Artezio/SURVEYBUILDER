@@ -1,12 +1,11 @@
 import { QuestionnaireState } from "./Questionnaire";
-import { toggleAppModeToDesign } from "../../actions/application";
 
 export interface LayoutState extends QuestionnaireState {
 
 }
 
 export interface LayoutActions {
-    toggleAppModeToDesign: typeof toggleAppModeToDesign
+    toggleAppModeToDesign(): any;
 }
 
 export type LayoutProps = AssignToActions<LayoutActions> & LayoutState;

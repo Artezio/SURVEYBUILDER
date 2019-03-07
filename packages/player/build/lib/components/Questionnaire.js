@@ -25,7 +25,7 @@ var Questionnaire = /** @class */ (function (_super) {
         return React.createElement("div", { className: "col-11 border border-secondary" },
             React.createElement("h2", null, questionnaire.title),
             React.createElement("h3", null, questionnaire.description),
-            React.createElement("div", { className: "item-list row justify-items-center" }, questionnaire.items && questionnaire.items.map(function (item) { return React.createElement(ItemProvider_1.default, { item: item }); })));
+            React.createElement("div", { className: "item-list row d-flex justify-content-center my-3" }, questionnaire.items && questionnaire.items.map(function (item) { return React.createElement(ItemProvider_1.default, { key: item.id, item: item }); })));
     };
     return Questionnaire;
 }(React.Component));
