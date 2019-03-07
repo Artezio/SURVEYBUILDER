@@ -6,6 +6,12 @@ import { CREATE_QUESTIONNAIRE, ADD_ITEM, ACTION, SET_DESCRIPTION, SET_TITLE, REM
 const INITIAL_STATE: Models.Questionnaire | null = null;
 
 export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE, action: Action<ACTION, any>): Models.Questionnaire | null => {
+
+    const copyItems = () => {
+        const newItems = (state && state.items) ? state.items.slice() : [];
+        return newItems;
+    }
+
     switch (action.type) {
         case CREATE_QUESTIONNAIRE: {
             return {
@@ -25,7 +31,7 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
             }
         }
         case ADD_ITEM: {
-            const newItems = (state && state.items) ? state.items.slice() : [];
+            const newItems = copyItems();
             newItems.push(action.payload);
             return {
                 ...state as Models.Questionnaire,
@@ -33,7 +39,7 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
             }
         }
         case ADD_TEXT_ITEM: {
-            const newItems = (state && state.items) ? state.items.slice() : [];
+            const newItems = copyItems();
             newItems.push(action.payload);
             return {
                 ...state as Models.Questionnaire,
@@ -54,7 +60,7 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
             }
         }
         case UPDATE_ITEM: {
-            let newItems = (state && state.items) ? state.items.slice() : [];
+            let newItems = copyItems();
             newItems = newItems.map(item => {
                 if (item.id === action.payload.id) {
                     return action.payload;
@@ -67,7 +73,7 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
             }
         }
         case UPDATE_TEXT_ITEM: {
-            let newItems = (state && state.items) ? state.items.slice() : [];
+            let newItems = copyItems();
             newItems = newItems.map(item => {
                 if (item.id === action.payload.id) {
                     return action.payload;

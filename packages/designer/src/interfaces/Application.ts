@@ -1,4 +1,4 @@
-import { APP_MODE } from "../constants/appMode";
+import { APP_MODE } from "../constants/application";
 
 
 export interface Application {

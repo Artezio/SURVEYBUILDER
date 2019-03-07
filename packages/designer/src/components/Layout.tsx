@@ -4,7 +4,7 @@ import { createQuestionnaire, addItem, addTextItem, setDescription, setTitle, up
 import { connect } from 'react-redux';
 import { Store } from '../interfaces/Store';
 import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/components/LayoutProps';
-import { toggleAppModeToPlayer } from '../actions/application';
+import { toggleAppModeToPlay } from '../actions/application';
 import { removeItem, updateItem } from '../actions/item';
 import { updateTextItem } from '../actions/textItem';
 
@@ -15,7 +15,7 @@ const mapStateToProps = (store: Store): LayoutState => {
 
 const mapDispatchToProps: LayoutActions = {
     createQuestionnaire,
-    toggleAppModeToPlayer,
+    toggleAppModeToPlayer: toggleAppModeToPlay,
     addItem,
     addTextItem,
     removeItem,
@@ -47,7 +47,7 @@ export class Layout extends React.Component<LayoutProps> {
             <div className="menu d-flex row py-2 bg-dark text-light ">
                 <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
                 <div className="d-flex justify-content-around col-7">
-                    <button className="btn btn-info d-display" onClick={this.preview.bind(this)}>Preview</button>
+                    <button className="btn btn-info d-display" onClick={this.preview.bind(this)} disabled={!questionnaire}>Preview</button>
                     <button className="btn btn-primary" onClick={this.createQuestionnaire}>Create Questionnaire</button>
                 </div>
             </div>

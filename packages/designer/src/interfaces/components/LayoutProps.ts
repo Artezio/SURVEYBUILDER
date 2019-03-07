@@ -1,12 +1,12 @@
 import * as Models from "@art-forms/models";
 import { createQuestionnaire } from "../../actions/questionnaire";
-import { toggleAppModeToPlayer } from "../../actions/application";
+import { toggleAppModeToPlay } from "../../actions/application";
 import { QuestionnaireActions } from "./QuestionnaireProps";
 
 
 export interface LayoutActions extends QuestionnaireActions {
     createQuestionnaire: typeof createQuestionnaire;
-    toggleAppModeToPlayer: typeof toggleAppModeToPlayer;
+    toggleAppModeToPlayer: typeof toggleAppModeToPlay;
 }
 
 export interface LayoutState {

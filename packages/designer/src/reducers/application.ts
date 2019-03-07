@@ -1,4 +1,4 @@
-import { DESIGN } from "../constants/appMode";
+import { DESIGN } from "../constants/application";
 import { Action } from "../interfaces/Action";
 import { ACTION, SET_APP_MODE } from "../constants/actions";
 import { Application } from "../interfaces/Application";

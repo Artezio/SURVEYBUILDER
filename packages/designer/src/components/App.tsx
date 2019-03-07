@@ -5,7 +5,7 @@ import DesignLayout from './Layout';
 import { Layout } from '@art-forms/player';
 import { connect } from 'react-redux';
 import { Store } from '../interfaces/Store';
-import { PLAY, DESIGN } from '../constants/appMode';
+import { PLAY, DESIGN } from '../constants/application';
 import { AppProps, AppState } from '../interfaces/components/App';
 import * as Models from "@art-forms/models";
 import { toggleAppModeToDesign } from '../actions/application';
