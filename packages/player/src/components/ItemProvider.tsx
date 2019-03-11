@@ -9,10 +9,10 @@ export const ItemProvider = (props: ItemProviderProps) => {
     const { item } = props;
     switch (item.type) {
         case Models.DISPLAY: {
-            return <Item {...props} />
+            return <Item key={item.id} {...props} />
         }
         case Models.QUESTION: {
-            return <TextItem item={item as Models.TextItem} />
+            return <TextItem key={item.id} {...props} item={item as Models.TextItem} />
         }
         default: {
             return null;
