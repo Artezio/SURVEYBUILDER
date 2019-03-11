@@ -4,13 +4,16 @@ import { createQuestionnaire, addItem, addTextItem, setDescription, setTitle, up
 import { connect } from 'react-redux';
 import { Store } from '../interfaces/Store';
 import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/components/LayoutProps';
-import { toggleAppModeToPlay } from '../actions/application';
+import { toggleAppModeToPlay, toggleAppModeToDesign } from '../actions/application';
 import { removeItem, updateItem } from '../actions/item';
 import { updateTextItem } from '../actions/textItem';
+import * as Player from '@art-forms/player';
+import { DESIGN } from '../constants/application';
+import * as Models from '@art-forms/models';
 
 
 const mapStateToProps = (store: Store): LayoutState => {
-    return { questionnaire: store.questionnaire };
+    return { questionnaire: store.questionnaire, application: store.application };
 }
 
 const mapDispatchToProps: LayoutActions = {
@@ -23,7 +26,8 @@ const mapDispatchToProps: LayoutActions = {
     setTitle,
     updateItem,
     updateQuestionnaire,
-    updateTextItem
+    updateTextItem,
+    toggleAppModeToDesign
 }
 
 const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
@@ -41,18 +45,29 @@ export class Layout extends React.Component<LayoutProps> {
         actions.toggleAppModeToPlayer();
     }
 
+    backToDesign() {
+        const { actions } = this.props;
+        actions.toggleAppModeToDesign();
+    }
+
     render() {
-        const { questionnaire, actions } = this.props;
+        const { questionnaire, actions, application } = this.props;
         return <div className="container-fluid">
             <div className="menu d-flex row py-2 bg-dark text-light ">
                 <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
                 <div className="d-flex justify-content-around col-7">
-                    <button className="btn btn-info d-display" onClick={this.preview.bind(this)} disabled={!questionnaire}>Preview</button>
+                    {application.mode === DESIGN ?
+                        <button className="btn btn-info d-display" onClick={this.preview.bind(this)} disabled={!questionnaire}>Preview</button> :
+                        <button className="btn btn-info d-display" onClick={this.backToDesign.bind(this)}>Back to design</button>
+                    }
                     <button className="btn btn-primary" onClick={this.createQuestionnaire}>Create Questionnaire</button>
                 </div>
             </div>
             <div className="main-area row justify-content-center my-5">
-                {questionnaire && <Questionnaire questionnaire={questionnaire} actions={actions} />}
+                {questionnaire && (application.mode === DESIGN ?
+                    <Questionnaire questionnaire={questionnaire} actions={actions} /> :
+                    <Player.Questionnaire questionnaire={questionnaire} />)
+                }
             </div>
         </div>
     }

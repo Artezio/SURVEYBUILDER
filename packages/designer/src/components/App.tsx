@@ -31,6 +31,7 @@ export class App extends React.Component<AppProps> {
     }
     render() {
         const { application, questionnaire } = this.props;
+        return <DesignLayout />;
         switch (application.mode) {
             case DESIGN: {
                 return <DesignLayout />

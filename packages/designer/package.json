@@ -13,7 +13,7 @@
     "@types/react-redux": "^7.0.1",
     "@types/uuid": "^3.4.4",
     "bootstrap": "^4.3.1",
-    "informed": "^2.1.6",
+    "informed": "^2.1.7",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
     "react": "^16.8.1",
