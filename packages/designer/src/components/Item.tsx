@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import DropdownMenu from './DropdownMenu';
 import ItemProps from '../interfaces/components/ItemProps';
 import { Form, TextArea, FormApi } from 'informed';

@@ -7,7 +7,7 @@ import { Application } from "../Application";
 
 export interface LayoutActions extends QuestionnaireActions {
     createQuestionnaire: typeof createQuestionnaire;
-    toggleAppModeToPlayer: typeof toggleAppModeToPlay;
+    toggleAppModeToPlay: typeof toggleAppModeToPlay;
     toggleAppModeToDesign: typeof toggleAppModeToDesign;
 }
 

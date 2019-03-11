@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import * as Models from '@art-forms/models';
 import DropdownMenu from './DropdownMenu';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
@@ -54,7 +54,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     </div>
                 </Form>
                 <div className="item-list row justify-content-center my-3">
-                    {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} item={item} actions={actions} />)}
+                    {/* {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} item={item} actions={actions} />)} */}
+                    {questionnaire.items && questionnaire.items.map(item => ItemProvider({ actions, item, key: item.id }))}
                 </div>
             </div>
         </div>

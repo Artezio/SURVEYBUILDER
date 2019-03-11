@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Questionnaire from './Questionnaire';
 import { createQuestionnaire, addItem, addTextItem, setDescription, setTitle, updateQuestionnaire } from '../actions/questionnaire';
 import { connect } from 'react-redux';
@@ -9,7 +9,6 @@ import { removeItem, updateItem } from '../actions/item';
 import { updateTextItem } from '../actions/textItem';
 import * as Player from '@art-forms/player';
 import { DESIGN } from '../constants/application';
-import * as Models from '@art-forms/models';
 
 
 const mapStateToProps = (store: Store): LayoutState => {
@@ -18,15 +17,15 @@ const mapStateToProps = (store: Store): LayoutState => {
 
 const mapDispatchToProps: LayoutActions = {
     createQuestionnaire,
-    toggleAppModeToPlayer: toggleAppModeToPlay,
+    setTitle,
+    setDescription,
     addItem,
     addTextItem,
-    removeItem,
-    setDescription,
-    setTitle,
-    updateItem,
     updateQuestionnaire,
+    removeItem,
+    updateItem,
     updateTextItem,
+    toggleAppModeToPlay,
     toggleAppModeToDesign
 }
 
@@ -42,7 +41,7 @@ export class Layout extends React.Component<LayoutProps> {
 
     preview() {
         const { actions } = this.props;
-        actions.toggleAppModeToPlayer();
+        actions.toggleAppModeToPlay();
     }
 
     backToDesign() {
