@@ -12,12 +12,11 @@ const mapStateToProps = (store: Store): LayoutState => {
 
 export class Layout extends React.Component<LayoutProps> {
     render() {
-        const { questionnaire, actions } = this.props;
+        const { questionnaire } = this.props;
         return <div className="container-fluid">
             <div className="menu d-flex row py-2 bg-dark text-light ">
                 <h1 className="col-5 font-weight-bold">Questionnaire</h1>
                 <div className="d-flex justify-content-around col-7">
-                    <button className="btn btn-info d-display" onClick={actions.toggleAppModeToDesign}>Back to design</button>
                 </div>
             </div>
             <div className="main-area row justify-content-center my-5">

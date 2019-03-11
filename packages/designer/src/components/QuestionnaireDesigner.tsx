@@ -4,9 +4,9 @@ import { QuestionnaireDesignerProps } from '../interfaces/components/Questionnai
 
 
 export const QuestionnaireDesigner = (props: QuestionnaireDesignerProps) => {
-    return <div>
+    return <>
         <Questionnaire {...props} />
-    </div>
+    </>
 };
 
 export default QuestionnaireDesigner;

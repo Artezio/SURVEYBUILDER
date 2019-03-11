@@ -7,7 +7,7 @@ import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/component
 import { toggleAppModeToPlay, toggleAppModeToDesign } from '../actions/application';
 import { removeItem, updateItem } from '../actions/item';
 import { updateTextItem } from '../actions/textItem';
-import * as Player from '@art-forms/player';
+import { QuestionnairePlayer } from '@art-forms/player';
 import { DESIGN } from '../constants/application';
 
 
@@ -65,7 +65,7 @@ export class Layout extends React.Component<LayoutProps> {
             <div className="main-area row justify-content-center my-5">
                 {questionnaire && (application.mode === DESIGN ?
                     <Questionnaire questionnaire={questionnaire} actions={actions} /> :
-                    <Player.Questionnaire questionnaire={questionnaire} />)
+                    <QuestionnairePlayer questionnaire={questionnaire} />)
                 }
             </div>
         </div>

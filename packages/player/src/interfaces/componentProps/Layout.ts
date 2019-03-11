@@ -4,10 +4,6 @@ export interface LayoutState extends QuestionnaireState {
 
 }
 
-export interface LayoutActions {
-    toggleAppModeToDesign(): any;
-}
-
-export type LayoutProps = AssignToActions<LayoutActions> & LayoutState;
+export type LayoutProps = LayoutState;
 
 export default LayoutProps;

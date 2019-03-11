@@ -1,9 +1,9 @@
 import * as React from 'react';
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
-import DesignLayout from './Layout';
+import Layout from './Layout';
 
 
-export const App = () => <DesignLayout />
+export const App = () => <Layout />
 
 export default App;

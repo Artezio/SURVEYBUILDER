@@ -1,12 +1,15 @@
 {
   "name": "@art-forms/models",
   "version": "0.1.5",
-  "main": "./build/lib/index.js",
-  "types": "./build/lib/index.d.ts",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "license": "MIT",
   "registry": "http://10.11.40.28:4873/",
   "publishConfig": {
     "registry": "http://10.11.40.28:4873/"
+  },
+  "scripts": {
+    "build": "tsc"
   },
   "files": [
     "./Uml-diagram-models.JPG",
