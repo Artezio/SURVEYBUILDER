@@ -15,13 +15,19 @@
     "@types/react": "16.8.6",
     "@types/react-dom": "16.8.2",
     "@types/react-redux": "^7.0.1",
+    "@types/uuid": "^3.4.4",
     "informed": "2.1.9",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-redux": "6.0.1",
     "react-scripts": "2.1.5",
     "redux": "4.0.1",
-    "typescript": "3.3.3333"
+    "typescript": "3.3.3333",
+    "uuid": "3.3.2"
+  },
+  "devDependencies": {
+    "@types/redux-logger": "^3.0.7",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",

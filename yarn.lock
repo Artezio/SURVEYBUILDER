@@ -11,6 +11,7 @@
     "@types/react" "16.8.6"
     "@types/react-dom" "16.8.2"
     "@types/react-redux" "^7.0.1"
+    "@types/uuid" "^3.4.4"
     informed "2.1.9"
     react "16.8.3"
     react-dom "16.8.3"
@@ -18,6 +19,7 @@
     react-scripts "2.1.5"
     redux "4.0.1"
     typescript "3.3.3333"
+    uuid "3.3.2"
 
 "@babel/code-frame@7.0.0", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.0.0-beta.35":
   version "7.0.0"
@@ -11615,7 +11617,7 @@ utils-merge@1.0.1:
   resolved "http://10.11.40.28:4873/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
+uuid@3.3.2, uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "http://10.11.40.28:4873/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==

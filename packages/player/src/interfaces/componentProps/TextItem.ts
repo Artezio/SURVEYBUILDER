@@ -1,4 +1,6 @@
 import * as Models from '@art-forms/models';
+import { addQuestionnaireResponseItem } from '../../actions/questionnaireResponse';
+import { updateQuestionnaireResponseItem } from '../../actions/questionnaireResponseItem';
 
 
 export interface TextItemState {
@@ -6,7 +8,8 @@ export interface TextItemState {
 }
 
 export interface TextItemActions {
-
+    addQuestionnaireResponseItem: typeof addQuestionnaireResponseItem;
+    updateQuestionnaireResponseItem: typeof updateQuestionnaireResponseItem;
 }
 
-export type TextItemProps = TextItemState & TextItemActions;
+export type TextItemProps = TextItemState & AssignToActions<TextItemActions>;
