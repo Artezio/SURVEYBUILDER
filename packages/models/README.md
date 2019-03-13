@@ -11,8 +11,12 @@ or
 
 ***
 ## _UML_
-![uml diagram](./Uml-diagram-models.jpg)
-[XML file](./Uml-diagram-models.xml "Link for xml file")
+
+### Questionnaire
+![uml diagram](./Uml-diagram-questionnaire.jpg)
+
+### QuestionnaireResponse
+![uml diagram](./Uml-diagram-response.jpg)
 
 ***
 ## _Example_
