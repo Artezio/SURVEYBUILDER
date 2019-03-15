@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Questionnaire from './Questionnaire';
 import { createQuestionnaire, addItem, addTextItem, setDescription, setTitle, updateQuestionnaire } from '../actions/questionnaire';
 import { connect } from 'react-redux';
 import { Store } from '../interfaces/Store';
@@ -8,11 +7,17 @@ import { toggleAppModeToPlay, toggleAppModeToDesign } from '../actions/applicati
 import { removeItem, updateItem } from '../actions/item';
 import { updateTextItem } from '../actions/textItem';
 import { QuestionnairePlayer } from '@art-forms/player';
-import { DESIGN } from '../constants/application';
+import { DESIGN, PLAY } from '../constants/application';
+import { addQuestionnaireResponseItem, createQuestionnaireResponse, updateQuestionnaireResponseItem } from '@art-forms/player';
+import QuestionnaireDesigner from './QuestionnaireDesigner';
 
 
 const mapStateToProps = (store: Store): LayoutState => {
-    return { questionnaire: store.questionnaire, application: store.application };
+    return {
+        questionnaire: store.questionnaire,
+        application: store.application,
+        questionnaireResponse: store.questionnaireResponse
+    };
 }
 
 const mapDispatchToProps: LayoutActions = {
@@ -26,7 +31,10 @@ const mapDispatchToProps: LayoutActions = {
     updateItem,
     updateTextItem,
     toggleAppModeToPlay,
-    toggleAppModeToDesign
+    toggleAppModeToDesign,
+    addQuestionnaireResponseItem,
+    createQuestionnaireResponse,
+    updateQuestionnaireResponseItem
 }
 
 const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
@@ -50,7 +58,7 @@ export class Layout extends React.Component<LayoutProps> {
     }
 
     render() {
-        const { questionnaire, actions, application } = this.props;
+        const { questionnaire, actions, application, questionnaireResponse } = this.props;
         return <div className="container-fluid">
             <div className="menu d-flex row py-2 bg-dark text-light ">
                 <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
@@ -64,10 +72,11 @@ export class Layout extends React.Component<LayoutProps> {
             </div>
             <div className="main-area row justify-content-center my-5">
                 {questionnaire && (application.mode === DESIGN ?
-                    <Questionnaire questionnaire={questionnaire} actions={actions} /> :
-                    <QuestionnairePlayer questionnaire={questionnaire} />)
+                    <QuestionnaireDesigner questionnaire={questionnaire} actions={actions} /> :
+                    <QuestionnairePlayer actions={actions} questionnaire={questionnaire} />)
                 }
             </div>
+            {questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { console.log(questionnaireResponse) }}>Submit</button>}
         </div>
     }
 }

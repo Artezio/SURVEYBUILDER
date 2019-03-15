@@ -5,4 +5,5 @@ import { Application } from './Application';
 export interface Store {
     questionnaire: Models.Questionnaire | null;
     application: Application;
+    questionnaireResponse: Models.QuestionnaireResponse | null;
 }
