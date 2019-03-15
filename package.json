@@ -6,7 +6,9 @@
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bootstrap": "npx lerna bootstrap",
+    "publish": "npx lerna publish"
   },
   "devDependencies": {
     "lerna": "^3.13.0"
@@ -19,3 +21,4 @@
     "registry": "http://10.11.40.28:4873/"
   }
 }
+ 
