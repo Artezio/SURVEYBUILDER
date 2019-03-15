@@ -1,6 +1,6 @@
 {
   "name": "@art-forms/player",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "registry": "http://10.11.40.28:4873/",
   "publishConfig": {
     "registry": "http://10.11.40.28:4873/"
@@ -9,7 +9,7 @@
   "types": "./build/exports.d.ts",
   "private": true,
   "dependencies": {
-    "@art-forms/models": "^0.1.5",
+    "@art-forms/models": "^0.1.6",
     "@types/jest": "24.0.9",
     "@types/node": "11.9.6",
     "@types/react": "16.8.6",
