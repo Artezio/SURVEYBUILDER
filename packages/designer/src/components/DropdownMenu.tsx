@@ -9,7 +9,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
             {title}
         </button>
         <div className="dropdown-menu" aria-labelledby="context-menu-link">
-            {items.map((item, i) => <button key={i} className="dropdown-item btn" onClick={item.action}>{item.title}</button>)}
+            {items.map((item, i) => <button key={i} className="dropdown-item btn" onClick={() => { item.action() }}>{item.title}</button>)}
         </div>
     </div>
 }

@@ -22,17 +22,12 @@ export class TextItem extends React.Component<TextItemProps> {
         actions.updateTextItem({ ...item, ...values });
     }
 
-    removeItem = () => {
-        const { item, actions } = this.props;
-        actions.removeItem(item);
-    }
-
     render() {
-        const { item } = this.props;
+        const { item, actions } = this.props;
         return <div className="text-item border border-info my-1 p-3">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title="Context menu" items={[
-                    { title: 'Remove item', action: this.removeItem }
+                    { title: 'Remove item', action: actions.removeItem.bind(actions, item) }
                 ]} />
             </div>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>

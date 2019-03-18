@@ -19,16 +19,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.formApi.submitForm();
     }
 
-    addItem() {
-        const { actions } = this.props;
-        actions.addItem();
-    }
-
-    addTextItem() {
-        const { actions } = this.props;
-        actions.addTextItem();
-    }
-
     getFormApi(formApi: FormApi<Models.Questionnaire>) {
         this.formApi = formApi;
     }
@@ -38,8 +28,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         return <div className="container-fluid questionnaire border border-secondary">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title='Context menu' items={[
-                    { title: 'Create item', action: this.addItem.bind(this) },
-                    { title: 'Create text item', action: this.addTextItem.bind(this) }
+                    { title: 'Create item', action: actions.addItem },
+                    { title: 'Create text item', action: actions.addTextItem }
                 ]} />
             </div>
             <div>

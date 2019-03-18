@@ -41,21 +41,6 @@ const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownPr
 
 export class Layout extends React.Component<LayoutProps> {
 
-    createQuestionnaire = () => {
-        const { actions } = this.props;
-        actions.createQuestionnaire();
-    }
-
-    preview() {
-        const { actions } = this.props;
-        actions.toggleAppModeToPlay();
-    }
-
-    backToDesign() {
-        const { actions } = this.props;
-        actions.toggleAppModeToDesign();
-    }
-
     render() {
         const { questionnaire, actions, application, questionnaireResponse } = this.props;
         return <div>
@@ -64,10 +49,10 @@ export class Layout extends React.Component<LayoutProps> {
                     <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
                     <div className="d-flex justify-content-around col-7">
                         {application.mode === DESIGN ?
-                            <button className="btn btn-info d-display" onClick={this.preview.bind(this)} disabled={!questionnaire}>Preview</button> :
-                            <button className="btn btn-info d-display" onClick={this.backToDesign.bind(this)}>Back to design</button>
+                            <button className="btn btn-info d-display" onClick={actions.toggleAppModeToPlay} disabled={!questionnaire}>Preview</button> :
+                            <button className="btn btn-info d-display" onClick={actions.toggleAppModeToDesign}>Back to design</button>
                         }
-                        <button className="btn btn-primary" onClick={this.createQuestionnaire}>Create Questionnaire</button>
+                        <button className="btn btn-primary" onClick={() => { actions.createQuestionnaire() }}>Create Questionnaire</button>
                     </div>
                 </div>
             </div>
