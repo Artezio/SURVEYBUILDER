@@ -6,9 +6,8 @@ import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/component
 import { toggleAppModeToPlay, toggleAppModeToDesign } from '../actions/application';
 import { removeItem, updateItem } from '../actions/item';
 import { updateTextItem } from '../actions/textItem';
-import { QuestionnairePlayer } from '@art-forms/player';
 import { DESIGN, PLAY } from '../constants/application';
-import { addQuestionnaireResponseItem, createQuestionnaireResponse, updateQuestionnaireResponseItem } from '@art-forms/player';
+import { addQuestionnaireResponseItem, createQuestionnaireResponse, updateQuestionnaireResponseItem, QuestionnairePlayer } from '@art-forms/player';
 import QuestionnaireDesigner from './QuestionnaireDesigner';
 
 
@@ -59,22 +58,26 @@ export class Layout extends React.Component<LayoutProps> {
 
     render() {
         const { questionnaire, actions, application, questionnaireResponse } = this.props;
-        return <div className="container-fluid">
-            <div className="menu d-flex row py-2 bg-dark text-light ">
-                <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
-                <div className="d-flex justify-content-around col-7">
-                    {application.mode === DESIGN ?
-                        <button className="btn btn-info d-display" onClick={this.preview.bind(this)} disabled={!questionnaire}>Preview</button> :
-                        <button className="btn btn-info d-display" onClick={this.backToDesign.bind(this)}>Back to design</button>
-                    }
-                    <button className="btn btn-primary" onClick={this.createQuestionnaire}>Create Questionnaire</button>
+        return <div>
+            <div className="container-fluid">
+                <div className="menu d-flex row py-2 bg-dark text-light ">
+                    <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
+                    <div className="d-flex justify-content-around col-7">
+                        {application.mode === DESIGN ?
+                            <button className="btn btn-info d-display" onClick={this.preview.bind(this)} disabled={!questionnaire}>Preview</button> :
+                            <button className="btn btn-info d-display" onClick={this.backToDesign.bind(this)}>Back to design</button>
+                        }
+                        <button className="btn btn-primary" onClick={this.createQuestionnaire}>Create Questionnaire</button>
+                    </div>
                 </div>
             </div>
             <div className="main-area row justify-content-center my-5">
-                {questionnaire && (application.mode === DESIGN ?
-                    <QuestionnaireDesigner questionnaire={questionnaire} actions={actions} /> :
-                    <QuestionnairePlayer actions={actions} questionnaire={questionnaire} />)
-                }
+                <div className="col-11">
+                    {questionnaire && (application.mode === DESIGN ?
+                        <QuestionnaireDesigner questionnaire={questionnaire} actions={actions} /> :
+                        <QuestionnairePlayer actions={actions} questionnaire={questionnaire} />)
+                    }
+                </div>
             </div>
             {questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { console.log(questionnaireResponse) }}>Submit</button>}
         </div>
