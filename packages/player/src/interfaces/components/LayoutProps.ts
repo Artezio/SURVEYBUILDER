@@ -1,4 +1,4 @@
-import { QuestionnaireState, QuestionnaireActions } from "./Questionnaire";
+import { QuestionnaireState, QuestionnaireActions } from "./QuestionnaireProps";
 
 
 export interface LayoutState extends QuestionnaireState {

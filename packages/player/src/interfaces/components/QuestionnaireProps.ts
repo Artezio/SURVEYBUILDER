@@ -1,5 +1,5 @@
 import * as Models from '@art-forms/models';
-import { TextItemActions } from './TextItem';
+import { TextItemActions } from './TextItemProps';
 import { createQuestionnaireResponse } from '../../actions/questionnaireResponse';
 
 

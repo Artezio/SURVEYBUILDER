@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { QuestionnaireProps } from '../interfaces/componentProps/Questionnaire';
+import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import ItemProvider from './ItemProvider';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {

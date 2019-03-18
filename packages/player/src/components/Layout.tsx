@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/componentProps/Layout';
+import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/components/LayoutProps';
 import { connect } from 'react-redux';
 import { Store } from '../interfaces/Store';
 import * as Models from '@art-forms/models';

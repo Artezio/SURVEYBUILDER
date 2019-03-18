@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ItemProps } from '../interfaces/componentProps/Item';
+import { ItemProps } from '../interfaces/components/ItemProps';
 
 
 export class Item extends React.Component<ItemProps> {

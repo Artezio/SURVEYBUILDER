@@ -1,4 +1,4 @@
-import { QuestionnaireProps } from "./Questionnaire";
+import { QuestionnaireProps } from "./QuestionnaireProps";
 
 export interface QuestionnairePlayerProps extends QuestionnaireProps {
 

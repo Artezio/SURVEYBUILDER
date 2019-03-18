@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextItemProps } from '../interfaces/componentProps/TextItem';
+import { TextItemProps } from '../interfaces/components/TextItemProps';
 import { Form, Text, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
 
