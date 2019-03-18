@@ -28,16 +28,14 @@ export class Layout extends React.Component<LayoutProps> {
 
     render() {
         const { questionnaire, actions } = this.props;
-        return <div>
-            <div className="container-fluid">
-                <div className="menu d-flex row py-2 bg-dark text-light ">
-                    <h1 className="col-5 font-weight-bold">Questionnaire</h1>
-                    <div className="d-flex justify-content-around col-7">
-                    </div>
+        return <div className="container-fluid">
+            <div className="row py-2 bg-dark text-light">
+                <h1 className="col-5 font-weight-bold">Questionnaire</h1>
+                <div className="d-flex justify-content-around col-7">
                 </div>
             </div>
-            <div className="main-area d-flex justify-content-center my-5">
-                <div className="col-11">
+            <div className="main-area row my-5">
+                <div className="col-12">
                     {questionnaire && <QuestionnairePlayer actions={{
                         createQuestionnaireResponse: actions.createQuestionnaireResponse,
                         addQuestionnaireResponseItem: actions.addQuestionnaireResponseItem,

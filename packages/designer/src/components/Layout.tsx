@@ -43,21 +43,19 @@ export class Layout extends React.Component<LayoutProps> {
 
     render() {
         const { questionnaire, actions, application, questionnaireResponse } = this.props;
-        return <div>
-            <div className="container-fluid">
-                <div className="menu d-flex row py-2 bg-dark text-light ">
-                    <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
-                    <div className="d-flex justify-content-around col-7">
-                        {application.mode === DESIGN ?
-                            <button className="btn btn-info d-display" onClick={actions.toggleAppModeToPlay} disabled={!questionnaire}>Preview</button> :
-                            <button className="btn btn-info d-display" onClick={actions.toggleAppModeToDesign}>Back to design</button>
-                        }
-                        <button className="btn btn-primary" onClick={() => { actions.createQuestionnaire() }}>Create Questionnaire</button>
-                    </div>
+        return <div className="container-fluid">
+            <div className="row py-2 bg-dark text-light">
+                <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
+                <div className="d-flex justify-content-around col-7">
+                    {application.mode === DESIGN ?
+                        <button className="btn btn-info d-display" onClick={actions.toggleAppModeToPlay} disabled={!questionnaire}>Preview</button> :
+                        <button className="btn btn-info d-display" onClick={actions.toggleAppModeToDesign}>Back to design</button>
+                    }
+                    {application.mode === DESIGN && <button className="btn btn-primary" onClick={() => { actions.createQuestionnaire() }}>Create Questionnaire</button>}
                 </div>
             </div>
-            <div className="main-area d-flex justify-content-center my-5">
-                <div className="col-11">
+            <div className="main-area row my-5">
+                <div className="col-12">
                     {questionnaire && (application.mode === DESIGN ?
                         <QuestionnaireDesigner questionnaire={questionnaire} actions={actions} /> :
                         <QuestionnairePlayer actions={actions} questionnaire={questionnaire} />)
