@@ -1,6 +1,5 @@
 import * as Models from '@art-forms/models';
 import { TextItemActions } from './TextItemProps';
-import { createQuestionnaireResponse } from '../../actions/questionnaireResponse';
 
 
 export interface QuestionnaireState {
@@ -9,7 +8,7 @@ export interface QuestionnaireState {
 }
 
 export interface QuestionnaireActions extends TextItemActions {
-    createQuestionnaireResponse: typeof createQuestionnaireResponse;
+    createQuestionnaireResponse(questionnaireResponse?: Partial<Models.QuestionnaireResponse>): void;
 }
 
 export type QuestionnaireProps = QuestionnaireState & AssignToActions<QuestionnaireActions>;
