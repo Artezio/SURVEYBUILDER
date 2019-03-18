@@ -1,5 +1,4 @@
 import * as Models from '@art-forms/models';
-import { updateQuestionnaireResponseItem } from '../../actions/questionnaireResponseItem';
 
 
 export interface TextItemState {

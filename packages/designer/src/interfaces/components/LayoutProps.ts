@@ -5,7 +5,7 @@ import * as Player from '@art-forms/player';
 
 
 export interface LayoutActions extends QuestionnaireActions, Player.QuestionnaireActions {
-    createQuestionnaire(questionnaire?: Omit<Models.Questionnaire, 'id'>): void;
+    createQuestionnaire(questionnaire?: Partial<Models.Questionnaire>): void;
     toggleAppModeToPlay(): void;
     toggleAppModeToDesign(): void;
 }

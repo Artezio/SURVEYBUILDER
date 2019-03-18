@@ -7,7 +7,7 @@ import * as Models from '@art-forms/models';
 export const setTitle = createActionCreator<SET_TITLE, string | undefined>(SET_TITLE);
 export const setDescription = createActionCreator<SET_DESCRIPTION, string | undefined>(SET_DESCRIPTION);
 
-export const addItem = (item?: Omit<Models.Item, 'id' | 'type'>) => {
+export const addItem = (item?: Partial<Omit<Models.Item, 'type'>>) => {
     return createAction<ADD_ITEM, Models.Item>(ADD_ITEM, {
         id: uuid(),
         type: Models.DISPLAY,
@@ -15,7 +15,7 @@ export const addItem = (item?: Omit<Models.Item, 'id' | 'type'>) => {
     })
 }
 
-export const addTextItem = (item?: Omit<Models.TextItem, 'id' | 'type'>) => {
+export const addTextItem = (item?: Partial<Models.TextItem>) => {
     return createAction<ADD_TEXT_ITEM, Models.TextItem>(ADD_TEXT_ITEM, {
         id: uuid(),
         type: Models.QUESTION,
@@ -29,7 +29,7 @@ export const updateQuestionnaire = (questionnaire: Partial<Models.Questionnaire>
     })
 }
 
-export const createQuestionnaire = (questionnaire?: Omit<Models.Questionnaire, 'id'>) => {
+export const createQuestionnaire = (questionnaire?: Partial<Models.Questionnaire>) => {
     return createAction<CREATE_QUESTIONNAIRE, Models.Questionnaire>(CREATE_QUESTIONNAIRE, {
         id: uuid(),
         ...questionnaire
