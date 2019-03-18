@@ -1,6 +1,6 @@
 export interface QuestionnaireResponseItem {
     id: string;
     text?: string;
-    value: any;
+    value?: any;
     items?: QuestionnaireResponseItem[];
 }
