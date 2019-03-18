@@ -10,8 +10,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     render() {
-        const { questionnaire, actions } = this.props;
-        return <div className="container-fluid questionnaire border border-secondary">
+        const { questionnaire, actions, className = '' } = this.props;
+        return <div className={`container-fluid questionnaire border border-secondary ${className}`}>
             <h2>{questionnaire && questionnaire.title}</h2>
             <h3>{questionnaire && questionnaire.description}</h3>
             <div className="item-list row justify-content-center my-3">

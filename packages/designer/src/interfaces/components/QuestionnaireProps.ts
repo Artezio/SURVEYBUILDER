@@ -14,6 +14,7 @@ export interface QuestionnaireActions extends ItemActions, TextItemActions {
 
 export interface QuestionnaireState {
     questionnaire: Models.Questionnaire;
+    className?: string;
 }
 
 export type QuestionnaireProps = QuestionnaireState & AssignToActions<QuestionnaireActions>;

@@ -5,6 +5,7 @@ import { createQuestionnaireResponse } from '../../actions/questionnaireResponse
 
 export interface QuestionnaireState {
     questionnaire?: Models.Questionnaire;
+    className?: string;
 }
 
 export interface QuestionnaireActions extends TextItemActions {

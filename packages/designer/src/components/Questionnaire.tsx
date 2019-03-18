@@ -24,8 +24,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     render() {
-        const { questionnaire, actions } = this.props;
-        return <div className="container-fluid questionnaire border border-secondary">
+        const { questionnaire, actions, className = '' } = this.props;
+        return <div className={`container-fluid questionnaire border border-secondary ${className}`}>
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title='Context menu' items={[
                     { title: 'Create item', action: actions.addItem },
