@@ -42,7 +42,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     { title: 'Create text item', action: this.addTextItem.bind(this) }
                 ]} />
             </div>
-            <div className="container">
+            <div>
                 <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
                     <div className="form-group">
                         <label htmlFor="questionnaire-title">Title</label>
@@ -54,8 +54,11 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     </div>
                 </Form>
                 <div className="item-list row justify-content-center my-3">
-                    {/* {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} item={item} actions={actions} />)} */}
-                    {questionnaire.items && questionnaire.items.map(item => ItemProvider({ actions, item, key: item.id }))}
+                    {questionnaire.items && questionnaire.items.map(item =>
+                        <div className="col-11 justify-content-center" key={item.id}>
+                            {ItemProvider({ actions, item })}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

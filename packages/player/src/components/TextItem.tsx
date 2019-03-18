@@ -28,7 +28,7 @@ export class TextItem extends React.Component<TextItemProps> {
 
     render() {
         const { item } = this.props;
-        return <div className="col-11 border border-info py-1">
+        return <div className="border border-info p-3 my-1">
             <p>{item.text}</p>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">

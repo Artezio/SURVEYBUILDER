@@ -11,13 +11,17 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     render() {
         const { questionnaire, actions } = this.props;
-        return <div className="col-11 border border-secondary">
+        return <div className="container-fluid questionnaire border border-secondary">
             <h2>{questionnaire && questionnaire.title}</h2>
             <h3>{questionnaire && questionnaire.description}</h3>
-            <div className="item-list row d-flex justify-content-center my-3">
-                {questionnaire && questionnaire.items && questionnaire.items.map(item => ItemProvider({
-                    item, key: item.id, actions: { ...{ addQuestionnaireResponseItem: actions.addQuestionnaireResponseItem, updateQuestionnaireResponseItem: actions.updateQuestionnaireResponseItem } }
-                }))}
+            <div className="item-list row justify-content-center my-3">
+                {questionnaire && questionnaire.items && questionnaire.items.map(item =>
+                    <div className="col-11 justify-content-center" key={item.id}>
+                        {ItemProvider({
+                            item, actions: { ...{ addQuestionnaireResponseItem: actions.addQuestionnaireResponseItem, updateQuestionnaireResponseItem: actions.updateQuestionnaireResponseItem } }
+                        })}
+                    </div>
+                )}
             </div>
         </div>
     }

@@ -29,7 +29,7 @@ export class TextItem extends React.Component<TextItemProps> {
 
     render() {
         const { item } = this.props;
-        return <div className="text-item col-11 border border-info my-1">
+        return <div className="text-item border border-info my-1 p-3">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: this.removeItem }

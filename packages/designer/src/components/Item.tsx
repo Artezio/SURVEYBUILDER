@@ -29,7 +29,7 @@ export class Item extends React.Component<ItemProps> {
 
     render() {
         const { item } = this.props;
-        return <div className="col-11 item border border-success my-1">
+        return <div className="item border border-success my-1 p-3">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: this.removeItem }

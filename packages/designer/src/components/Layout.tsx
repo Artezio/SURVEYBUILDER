@@ -71,7 +71,7 @@ export class Layout extends React.Component<LayoutProps> {
                     </div>
                 </div>
             </div>
-            <div className="main-area row justify-content-center my-5">
+            <div className="main-area d-flex justify-content-center my-5">
                 <div className="col-11">
                     {questionnaire && (application.mode === DESIGN ?
                         <QuestionnaireDesigner questionnaire={questionnaire} actions={actions} /> :
