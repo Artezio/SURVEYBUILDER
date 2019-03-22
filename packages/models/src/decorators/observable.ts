@@ -28,8 +28,10 @@ export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
             this[subscribers] = [];
             const handler = {
                 set: (target: any, propertyName: string, value: any) => {
+                    // const oldValue = target[propertyName];
                     target[propertyName] = value;
-                    if (propertyName !== 'length') {
+                    // console.log("LOOOOG", oldValue, value, !Object.is(oldValue, value));///////    look
+                    if (propertyName !== 'length'/* && !Object.is(oldValue, value)*/) {
                         this[emitChangeSymbol]();
                     }
                     return true;
@@ -41,8 +43,10 @@ export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
                     if (Array.isArray(value)) {
                         value = proxify(value, handler)
                     }
+                    // const oldValue = target[propertyName];
+                    // console.log("LOOOOG", oldValue,Array.isArray(target[propertyName]), value, !Object.is(oldValue, value));///////    look
                     target[propertyName] = value;
-                    if (propertyName !== 'length') {
+                    if (propertyName !== 'length'/* && !Object.is(oldValue, value)*/) {
                         this[emitChangeSymbol]();
                     }
                     return true;
@@ -77,4 +81,5 @@ export const getObservable = (target: any): IObservable | undefined => {
             subscribe: target[subscribeSymbol].bind(target)
         };
     }
+    return undefined;
 }

@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "build",
-        "module": "es6",
+        "module": "commonjs",
         "target": "es5",
         "lib": [
             "es5",
@@ -27,7 +27,6 @@
         "node_modules",
         "build",
         "bower_components",
-        "jspm_packages",
-        "tests"
+        "jspm_packages"
     ]
 }

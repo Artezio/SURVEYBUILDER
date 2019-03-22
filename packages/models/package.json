@@ -9,20 +9,23 @@
     "registry": "http://10.11.40.28:4873/"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -p tsconfig.build.json",
+    "test": "mocha --config mocharc.json test/**/*.test.ts"
   },
   "files": [
     "./Uml-diagram-models.JPG",
     "./Uml-diagram-models.xml"
   ],
+  "dependencies": {
+    "@types/uuid": "^3.4.4",
+    "uuid": "3.3.2"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
-    "mocha": "^6.0.2"
-  },
-  "dependencies": {
-    "@types/uuid": "^3.4.4",
-    "uuid": "3.3.2"
+    "mocha": "^6.0.2",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.4000"
   }
 }
