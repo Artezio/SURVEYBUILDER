@@ -3,7 +3,7 @@ import { ACTION } from '../constants/actions';
 import { Action } from '../interfaces/Action';
 
 
-const mockQuestionnaire: Models.Questionnaire = {
+const mockQuestionnaire: Models.IQuestionnaire = {
     id: 'mockQuestionnaire_1',
     title: 'Super Puper Title',
     description: 'useless description',
@@ -18,12 +18,12 @@ const mockQuestionnaire: Models.Questionnaire = {
             type: Models.QUESTION,
             text: 'How Are You?',
             initialValue: "I'm fine"
-        } as Models.TextItem
+        } as Models.ITextItem
     ]
 }
 
-const INITIAL_STATE: Models.Questionnaire | null = mockQuestionnaire;
+const INITIAL_STATE: Models.IQuestionnaire | null = mockQuestionnaire;
 
-export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE, action: Action<ACTION, any>): Models.Questionnaire | null => {
+export const questionnaire = (state: Models.IQuestionnaire | null = INITIAL_STATE, action: Action<ACTION, any>): Models.IQuestionnaire | null => {
     return state;
 }

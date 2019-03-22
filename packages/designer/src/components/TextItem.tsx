@@ -6,18 +6,18 @@ import * as Models from '@art-forms/models';
 
 
 export class TextItem extends React.Component<TextItemProps> {
-    formApi!: FormApi<Models.TextItem>;
+    formApi!: FormApi<Models.ITextItem>;
 
     submitForm() {
         if (!this.formApi) return;
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.TextItem>) {
+    getFormApi(formApi: FormApi<Models.ITextItem>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.TextItem>) {
+    handleSubmit(values: Partial<Models.ITextItem>) {
         const { actions, item } = this.props;
         actions.updateTextItem({ ...item, ...values });
     }

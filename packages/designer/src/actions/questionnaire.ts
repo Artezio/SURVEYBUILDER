@@ -7,30 +7,30 @@ import * as Models from '@art-forms/models';
 export const setTitle = createActionCreator<SET_TITLE, string | undefined>(SET_TITLE);
 export const setDescription = createActionCreator<SET_DESCRIPTION, string | undefined>(SET_DESCRIPTION);
 
-export const addItem = (item?: Partial<Omit<Models.Item, 'type'>>) => {
-    return createAction<ADD_ITEM, Models.Item>(ADD_ITEM, {
+export const addItem = (item?: Partial<Omit<Models.IItem, 'type'>>) => {
+    return createAction<ADD_ITEM, Models.IItem>(ADD_ITEM, {
         id: uuid(),
         type: Models.DISPLAY,
         ...item
     })
 }
 
-export const addTextItem = (item?: Partial<Models.TextItem>) => {
-    return createAction<ADD_TEXT_ITEM, Models.TextItem>(ADD_TEXT_ITEM, {
+export const addTextItem = (item?: Partial<Models.ITextItem>) => {
+    return createAction<ADD_TEXT_ITEM, Models.ITextItem>(ADD_TEXT_ITEM, {
         id: uuid(),
         type: Models.QUESTION,
         ...item
     })
 }
 
-export const updateQuestionnaire = (questionnaire: Partial<Models.Questionnaire>) => {
-    return createAction<UPDATE_QUESTIONNAIRE, Models.Questionnaire>(UPDATE_QUESTIONNAIRE, {
-        ...questionnaire as Models.Questionnaire
+export const updateQuestionnaire = (questionnaire: Partial<Models.IQuestionnaire>) => {
+    return createAction<UPDATE_QUESTIONNAIRE, Models.IQuestionnaire>(UPDATE_QUESTIONNAIRE, {
+        ...questionnaire as Models.IQuestionnaire
     })
 }
 
-export const createQuestionnaire = (questionnaire?: Partial<Models.Questionnaire>) => {
-    return createAction<CREATE_QUESTIONNAIRE, Models.Questionnaire>(CREATE_QUESTIONNAIRE, {
+export const createQuestionnaire = (questionnaire?: Partial<Models.IQuestionnaire>) => {
+    return createAction<CREATE_QUESTIONNAIRE, Models.IQuestionnaire>(CREATE_QUESTIONNAIRE, {
         id: uuid(),
         ...questionnaire
     });

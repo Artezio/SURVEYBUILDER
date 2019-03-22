@@ -14,5 +14,11 @@
   "files": [
     "./Uml-diagram-models.JPG",
     "./Uml-diagram-models.xml"
-  ]
+  ],
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
 }

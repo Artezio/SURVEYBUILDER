@@ -10,8 +10,8 @@ import QuestionnairePlayer from './QuestionnairePlayer';
 
 const mapStateToProps = (store: Store): LayoutState => {
     return {
-        questionnaire: store.questionnaire as Models.Questionnaire,
-        questionnaireResponse: store.questionnaireResponse as Models.QuestionnaireResponse
+        questionnaire: store.questionnaire as Models.IQuestionnaire,
+        questionnaireResponse: store.questionnaireResponse as Models.IQuestionnaireResponse
     }
 }
 

@@ -3,9 +3,9 @@ import { Action } from '../interfaces/Action';
 import { ACTION, CREATE_QUESTIONNAIRE_RESPONSE, UPDATE_QUESTIONNAIRE_RESPONSE, ADD_QUESTIONNAIRE_RESPONSE_ITEM, UPDATE_QUESTIONNAIRE_RESPONSE_ITEM } from '../constants/actions';
 
 
-const INITIAL_STATE: Models.QuestionnaireResponse | null = null;
+const INITIAL_STATE: Models.IQuestionnaireResponse | null = null;
 
-export const questionnaireResponse = (state: Models.QuestionnaireResponse | null = INITIAL_STATE, action: Action<ACTION, any>): Models.QuestionnaireResponse | null => {
+export const questionnaireResponse = (state: Models.IQuestionnaireResponse | null = INITIAL_STATE, action: Action<ACTION, any>): Models.IQuestionnaireResponse | null => {
 
     const copyItems = () => {
         const newItems = (state && state.items) ? state.items.slice() : [];
@@ -20,7 +20,7 @@ export const questionnaireResponse = (state: Models.QuestionnaireResponse | null
         }
         case UPDATE_QUESTIONNAIRE_RESPONSE: {
             return {
-                ...state as Models.QuestionnaireResponse,
+                ...state as Models.IQuestionnaireResponse,
                 ...action.payload
             }
         }
@@ -28,7 +28,7 @@ export const questionnaireResponse = (state: Models.QuestionnaireResponse | null
             const newItems = copyItems();
             newItems.push(action.payload);
             return {
-                ...state as Models.QuestionnaireResponse,
+                ...state as Models.IQuestionnaireResponse,
                 items: newItems
             }
         }
@@ -41,7 +41,7 @@ export const questionnaireResponse = (state: Models.QuestionnaireResponse | null
                 return item;
             })
             return {
-                ...state as Models.QuestionnaireResponse,
+                ...state as Models.IQuestionnaireResponse,
                 items: newItems
             }
         }

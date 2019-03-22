@@ -3,12 +3,12 @@ import { TextItemActions } from './TextItemProps';
 
 
 export interface QuestionnaireState {
-    questionnaire?: Models.Questionnaire;
+    questionnaire?: Models.IQuestionnaire;
     className?: string;
 }
 
 export interface QuestionnaireActions extends TextItemActions {
-    createQuestionnaireResponse(questionnaireResponse?: Partial<Models.QuestionnaireResponse>): void;
+    createQuestionnaireResponse(questionnaireResponse?: Partial<Models.IQuestionnaireResponse>): void;
 }
 
 export type QuestionnaireProps = QuestionnaireState & AssignToActions<QuestionnaireActions>;

@@ -4,22 +4,22 @@ import { CREATE_QUESTIONNAIRE_RESPONSE, UPDATE_QUESTIONNAIRE_RESPONSE, ADD_QUEST
 import uuid from 'uuid/v1';
 
 
-export const createQuestionnaireResponse = (questionnaireResponse?: Partial<Models.QuestionnaireResponse>) => {
-    return createAction<CREATE_QUESTIONNAIRE_RESPONSE, Models.QuestionnaireResponse>(CREATE_QUESTIONNAIRE_RESPONSE, {
+export const createQuestionnaireResponse = (questionnaireResponse?: Partial<Models.IQuestionnaireResponse>) => {
+    return createAction<CREATE_QUESTIONNAIRE_RESPONSE, Models.IQuestionnaireResponse>(CREATE_QUESTIONNAIRE_RESPONSE, {
         id: uuid(),
         ...questionnaireResponse
     })
 }
 
-export const updateQuestionnaireResponse = (questionnaireResponse: Partial<Models.QuestionnaireResponse>) => {
-    return createAction<UPDATE_QUESTIONNAIRE_RESPONSE, Models.QuestionnaireResponse>(UPDATE_QUESTIONNAIRE_RESPONSE, {
-        ...questionnaireResponse as Models.QuestionnaireResponse
+export const updateQuestionnaireResponse = (questionnaireResponse: Partial<Models.IQuestionnaireResponse>) => {
+    return createAction<UPDATE_QUESTIONNAIRE_RESPONSE, Models.IQuestionnaireResponse>(UPDATE_QUESTIONNAIRE_RESPONSE, {
+        ...questionnaireResponse as Models.IQuestionnaireResponse
     })
 }
 
-export const addQuestionnaireResponseItem = (item?: Partial<Models.QuestionnaireResponseItem>) => {
-    return createAction<ADD_QUESTIONNAIRE_RESPONSE_ITEM, Models.QuestionnaireResponseItem>(ADD_QUESTIONNAIRE_RESPONSE_ITEM, {
+export const addQuestionnaireResponseItem = (item?: Partial<Models.IQuestionnaireResponseItem>) => {
+    return createAction<ADD_QUESTIONNAIRE_RESPONSE_ITEM, Models.IQuestionnaireResponseItem>(ADD_QUESTIONNAIRE_RESPONSE_ITEM, {
         id: uuid(),
-        ...item as Omit<Models.QuestionnaireResponseItem, 'id'>
+        ...item as Omit<Models.IQuestionnaireResponseItem, 'id'>
     })
 }

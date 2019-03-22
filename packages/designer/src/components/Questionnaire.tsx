@@ -7,9 +7,9 @@ import ItemProvider from './ItemProvider';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
-    formApi!: FormApi<Models.Questionnaire>;
+    formApi!: FormApi<Models.IQuestionnaire>;
 
-    handleSubmit(values: Partial<Models.Questionnaire>) {
+    handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { actions } = this.props;
         actions.updateQuestionnaire(values);
     }
@@ -19,7 +19,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.Questionnaire>) {
+    getFormApi(formApi: FormApi<Models.IQuestionnaire>) {
         this.formApi = formApi;
     }
 

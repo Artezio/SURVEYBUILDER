@@ -6,18 +6,18 @@ import * as Models from '@art-forms/models';
 
 
 export class Item extends React.Component<ItemProps> {
-    formApi!: FormApi<Models.Item>;
+    formApi!: FormApi<Models.IItem>;
 
     submitForm() {
         if (!this.formApi) return;
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.Item>) {
+    getFormApi(formApi: FormApi<Models.IItem>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.Item>) {
+    handleSubmit(values: Partial<Models.IItem>) {
         const { actions, item } = this.props;
         actions.updateItem({ ...item, ...values });
     }

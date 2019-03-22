@@ -5,15 +5,15 @@ import * as Player from '@art-forms/player';
 
 
 export interface LayoutActions extends QuestionnaireActions, Player.QuestionnaireActions {
-    createQuestionnaire(questionnaire?: Partial<Models.Questionnaire>): void;
+    createQuestionnaire(questionnaire?: Partial<Models.IQuestionnaire>): void;
     toggleAppModeToPlay(): void;
     toggleAppModeToDesign(): void;
 }
 
 export interface LayoutState {
-    questionnaire: Models.Questionnaire | null;
+    questionnaire: Models.IQuestionnaire | null;
     application: Application;
-    questionnaireResponse: Models.QuestionnaireResponse | null;
+    questionnaireResponse: Models.IQuestionnaireResponse | null;
 }
 
 export type LayoutProps = LayoutState & AssignToActions<LayoutActions>;

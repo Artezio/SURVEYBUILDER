@@ -3,9 +3,9 @@ import { Action } from '../interfaces/Action';
 import { CREATE_QUESTIONNAIRE, ADD_ITEM, ACTION, SET_DESCRIPTION, SET_TITLE, REMOVE_ITEM, UPDATE_QUESTIONNAIRE, UPDATE_ITEM, ADD_TEXT_ITEM, UPDATE_TEXT_ITEM } from '../constants/actions';
 
 
-const INITIAL_STATE: Models.Questionnaire | null = null;
+const INITIAL_STATE: Models.IQuestionnaire | null = null;
 
-export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE, action: Action<ACTION, any>): Models.Questionnaire | null => {
+export const questionnaire = (state: Models.IQuestionnaire | null = INITIAL_STATE, action: Action<ACTION, any>): Models.IQuestionnaire | null => {
 
     const copyItems = () => {
         const newItems = (state && state.items) ? state.items.slice() : [];
@@ -20,13 +20,13 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
         }
         case SET_DESCRIPTION: {
             return {
-                ...state as Models.Questionnaire,
+                ...state as Models.IQuestionnaire,
                 description: action.payload
             }
         }
         case SET_TITLE: {
             return {
-                ...state as Models.Questionnaire,
+                ...state as Models.IQuestionnaire,
                 title: action.payload
             }
         }
@@ -34,7 +34,7 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
             const newItems = copyItems();
             newItems.push(action.payload);
             return {
-                ...state as Models.Questionnaire,
+                ...state as Models.IQuestionnaire,
                 items: newItems
             }
         }
@@ -42,20 +42,20 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
             const newItems = copyItems();
             newItems.push(action.payload);
             return {
-                ...state as Models.Questionnaire,
+                ...state as Models.IQuestionnaire,
                 items: newItems
             }
         }
         case REMOVE_ITEM: {
             const newItems = (state && state.items) ? state.items.filter(item => item !== action.payload) : [];
             return {
-                ...state as Models.Questionnaire,
+                ...state as Models.IQuestionnaire,
                 items: newItems
             }
         }
         case UPDATE_QUESTIONNAIRE: {
             return {
-                ...state as Models.Questionnaire,
+                ...state as Models.IQuestionnaire,
                 ...action.payload
             }
         }
@@ -68,7 +68,7 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
                 return item;
             })
             return {
-                ...state as Models.Questionnaire,
+                ...state as Models.IQuestionnaire,
                 items: newItems
             }
         }
@@ -81,7 +81,7 @@ export const questionnaire = (state: Models.Questionnaire | null = INITIAL_STATE
                 return item;
             })
             return {
-                ...state as Models.Questionnaire,
+                ...state as Models.IQuestionnaire,
                 items: newItems
             }
         }

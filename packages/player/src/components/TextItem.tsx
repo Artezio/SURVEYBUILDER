@@ -5,7 +5,7 @@ import * as Models from '@art-forms/models';
 
 
 export class TextItem extends React.Component<TextItemProps> {
-    formApi!: FormApi<Models.QuestionnaireResponseItem>;
+    formApi!: FormApi<Models.IQuestionnaireResponseItem>;
 
     componentDidMount() {
         const { actions, item } = this.props;
@@ -17,11 +17,11 @@ export class TextItem extends React.Component<TextItemProps> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.QuestionnaireResponseItem>) {
+    getFormApi(formApi: FormApi<Models.IQuestionnaireResponseItem>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.QuestionnaireResponseItem>) {
+    handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
         const { actions, item } = this.props;
         actions.updateQuestionnaireResponseItem({ id: item.id, value: values.value })
     }
