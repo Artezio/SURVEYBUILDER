@@ -21,14 +21,12 @@
     "react-redux": "6.0.1",
     "react-scripts": "2.1.5",
     "redux": "4.0.1",
-    "typescript": "3.3.3333"
+    "typescript": "3.3.3333",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
     "@types/redux-logger": "^3.0.7",
     "redux-logger": "^3.0.6"
-  },
-  "peerDependencies": {
-    "uuid": "3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
