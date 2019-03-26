@@ -6,4 +6,7 @@ export * from './interfaces/IItem';
 export * from './interfaces/IQuestionnaireResponse';
 export * from './interfaces/IQuestionnaireResponseItem';
 export * from './constants/index';
-export * from './decorators/observable';
+export * from './decorators/temporaryObservable';
+export * from './models/item';
+export * from './models/textItem';
+export * from './models/questionnaire';

@@ -10,16 +10,13 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "test": "mocha --config mocharc.json test/**/*.test.ts"
+    "test": "mocha --config mocharc.json tests/**/*.test.ts"
   },
   "files": [
     "./Uml-diagram-models.JPG",
     "./Uml-diagram-models.xml"
   ],
-  "dependencies": {
-    "@types/uuid": "^3.4.4",
-    "uuid": "3.3.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",

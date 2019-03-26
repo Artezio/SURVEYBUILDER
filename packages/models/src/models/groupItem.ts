@@ -1,0 +1,29 @@
+import { IGroupItem, Item, ITextItem } from "..";
+import { IItem } from "../interfaces/IItem";
+import { ICollection } from "../interfaces/ICollection";
+import { GROUP } from "../constants";
+import TextItem from "./textItem";
+
+
+export class GroupItem extends Item implements IGroupItem {
+    items: IItem[];
+    type: GROUP;
+
+    constructor(item: Partial<IGroupItem> | undefined = {}, parent?: ICollection<IGroupItem>) {
+        super(item, parent);
+        this.type = GROUP;
+        this.items = item.items || [];
+    }
+
+    addItem(item?: Partial<IItem>) {
+        this.items = [...this.items, new Item(item, { ...this })]
+    }
+
+    addTextItem(item?: Partial<ITextItem>) {
+        this.items = [...this.items, new TextItem(item, { ...this })]
+    }
+
+    removeItem(item?: IItem) {
+        this.items = this.items.filter(x => x !== item);
+    }
+}
