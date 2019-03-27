@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore } from './store/store';
 import App from './App';
 
-debugger;
 
 
 render(
