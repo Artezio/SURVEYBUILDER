@@ -7,6 +7,7 @@ import uuid from 'uuid/v1';
 export const createQuestionnaireResponse = (questionnaireResponse?: Partial<Models.IQuestionnaireResponse>) => {
     return createAction<CREATE_QUESTIONNAIRE_RESPONSE, Models.IQuestionnaireResponse>(CREATE_QUESTIONNAIRE_RESPONSE, {
         id: uuid(),
+        items: questionnaireResponse && questionnaireResponse.items || [],
         ...questionnaireResponse
     })
 }

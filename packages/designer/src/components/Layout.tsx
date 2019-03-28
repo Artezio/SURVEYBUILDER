@@ -4,40 +4,25 @@ import { connect } from 'react-redux';
 import { Store } from '../interfaces/Store';
 import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/components/LayoutProps';
 import { toggleAppModeToPlay, toggleAppModeToDesign } from '../actions/application';
-import { removeItem, updateItem } from '../actions/item';
-import { updateTextItem } from '../actions/textItem';
 import { DESIGN, PLAY } from '../constants/application';
 import { addQuestionnaireResponseItem, createQuestionnaireResponse, updateQuestionnaireResponseItem, QuestionnairePlayer } from '@art-forms/player';
 import QuestionnaireDesigner from './QuestionnaireDesigner';
 
 
-// const mapStateToProps = (store: Store): LayoutState => {
-//     return {
-//         questionnaire: store.questionnaire,
-//         application: store.application,
-//         questionnaireResponse: store.questionnaireResponse
-//     };
-// }
+const mapStateToProps = (store: Store) => {
+    return {
+        questionnaireResponse: store.questionnaireResponse
+    };
+}
 
-// const mapDispatchToProps: LayoutActions = {
-//     createQuestionnaire,
-//     setTitle,
-//     setDescription,
-//     addItem,
-//     addTextItem,
-//     updateQuestionnaire,
-//     removeItem,
-//     updateItem,
-//     updateTextItem,
-//     toggleAppModeToPlay,
-//     toggleAppModeToDesign,
-//     addQuestionnaireResponseItem,
-//     createQuestionnaireResponse,
-//     updateQuestionnaireResponseItem
-// }
+const mapDispatchToProps = {
+    addQuestionnaireResponseItem,
+    createQuestionnaireResponse,
+    updateQuestionnaireResponseItem
+}
 
-// const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
-//     ({ ...ownProps, ...stateProps, ...{ actions: { ...dispatchProps } } });
+const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
+    ({ ...ownProps, ...stateProps, ...{ actions: { ...dispatchProps } } });
 
 export class Layout extends React.Component<LayoutProps> {
 
@@ -58,7 +43,7 @@ export class Layout extends React.Component<LayoutProps> {
                 <div className="col-12">
                     {application.questionnaire && (application.mode === DESIGN ?
                         <QuestionnaireDesigner questionnaire={application.questionnaire} /> :
-                        <QuestionnairePlayer actions={{} as any} questionnaire={application.questionnaire} />)
+                        <QuestionnairePlayer questionnaire={application.questionnaire} />)
                     }
                 </div>
             </div>

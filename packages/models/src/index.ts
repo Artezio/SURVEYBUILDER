@@ -10,3 +10,5 @@ export * from './decorators/temporaryObservable';
 export * from './models/item';
 export * from './models/textItem';
 export * from './models/questionnaire';
+export * from './models/questionnaireResponse';
+export * from './models/questionnaireResponseItem';

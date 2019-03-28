@@ -1,14 +1,7 @@
-import { QuestionnaireState, QuestionnaireActions } from "./QuestionnaireProps";
+import { QuestionnaireProps } from "../../exports";
 
-
-export interface LayoutState extends QuestionnaireState {
+export interface LayoutProps extends QuestionnaireProps {
     questionnaireResponse: any
 }
-
-export interface LayoutActions extends QuestionnaireActions {
-
-}
-
-export type LayoutProps = LayoutState & AssignToActions<LayoutActions>;
 
 export default LayoutProps;

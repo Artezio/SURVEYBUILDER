@@ -2,14 +2,15 @@ import * as React from 'react';
 import { TextItemProps } from '../interfaces/components/TextItemProps';
 import { Form, Text, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
+import useObservableModel from '../HOCs/useObservableModel';
 
 
 export class TextItem extends React.Component<TextItemProps> {
     formApi!: FormApi<Models.IQuestionnaireResponseItem>;
 
-    componentDidMount() {
-        const { actions, item } = this.props;
-        actions.addQuestionnaireResponseItem({ id: item.id, value: item.initialValue });
+    constructor(props: TextItemProps) {
+        super(props);
+        
     }
 
     submitForm() {
@@ -22,8 +23,8 @@ export class TextItem extends React.Component<TextItemProps> {
     }
 
     handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
-        const { actions, item } = this.props;
-        actions.updateQuestionnaireResponseItem({ id: item.id, value: values.value })
+        // const { item } = this.props;
+        // item && item.updateQuestionnaireResponseItem({ id: item.id, value: values.value })
     }
 
     render() {
@@ -39,4 +40,4 @@ export class TextItem extends React.Component<TextItemProps> {
     }
 }
 
-export default TextItem;
+export default useObservableModel<TextItemProps>(TextItem);
