@@ -4,14 +4,19 @@ import DropdownMenu from './DropdownMenu';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import ItemProvider from './ItemProvider';
+import useObservableModel from '../HOCs/useObservableModel';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.IQuestionnaire>;
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
-        const { actions } = this.props;
-        actions.updateQuestionnaire(values);
+        const { actions, questionnaire } = this.props;
+        if ((questionnaire as any).updateQuestionnaire) {
+            (questionnaire as any).updateQuestionnaire(values);
+        } else {
+            actions.updateQuestionnaire(values)
+        }
     }
 
     submitForm() {
@@ -23,9 +28,14 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.formApi = formApi;
     }
 
+    componentDidUpdate() {
+        const { questionnaire } = this.props;
+        this.formApi.setValues(questionnaire as Models.IQuestionnaire);
+    }
+
     render() {
         const { questionnaire, actions, className = '' } = this.props;
-        return <div className={`questionnaire border border-secondary ${className}`}>
+        return questionnaire && <div className={`questionnaire border border-secondary ${className}`}>
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title='Context menu' items={[
                     { title: 'Create item', action: actions.addItem },
@@ -55,4 +65,4 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 }
 
-export default Questionnaire;
+export default useObservableModel<QuestionnaireProps>(Questionnaire);
