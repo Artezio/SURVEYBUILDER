@@ -1,11 +1,13 @@
 import * as React from 'react';
 import Questionnaire from './Questionnaire';
-import { QuestionnaireDesignerProps } from '../interfaces/components/QuestionnaireDesignerProps';
+import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
+import * as Models from '@art-forms/models';
 
 
-export const QuestionnaireDesigner = (props: QuestionnaireDesignerProps) => {
+export const QuestionnaireDesigner = (props: QuestionnaireProps) => {
+    const questionnaire = new Models.Questionnaire(props.questionnaire);
     return <>
-        <Questionnaire {...props} />
+        <Questionnaire {...props} questionnaire={questionnaire} />
     </>
 };
 

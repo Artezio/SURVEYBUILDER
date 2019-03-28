@@ -33,11 +33,11 @@ export class Questionnaire implements IQuestionnaire {
     }
 
     addTextItem(textItem?: ITextItem) {
-        this.items = [...this.items, new TextItem(textItem, { ...this })];
+        this.items = [...this.items, new TextItem(textItem, this)];
     }
 
     addItem(item?: IItem) {
-        this.items = [...this.items, new Item(item, { ...this })];
+        this.items = [...this.items, new Item(item, this)];
     }
 
     removeItem(item?: IItem) {

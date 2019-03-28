@@ -6,7 +6,6 @@ import { getObservable } from "@art-forms/models";
 export function useObservableModel<T>(WrappedComponent: any) {
     class Enhance extends React.Component<T> {
         constructor(props: any) {
-            debugger;
             super(props);
             this.state = {}
             this.subscribeOnObservable();

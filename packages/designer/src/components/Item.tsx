@@ -3,6 +3,7 @@ import DropdownMenu from './DropdownMenu';
 import ItemProps from '../interfaces/components/ItemProps';
 import { Form, TextArea, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
+import useObservableModel from '../HOCs/useObservableModel';
 
 
 export class Item extends React.Component<ItemProps> {
@@ -18,16 +19,16 @@ export class Item extends React.Component<ItemProps> {
     }
 
     handleSubmit(values: Partial<Models.IItem>) {
-        const { actions, item } = this.props;
-        actions.updateItem({ ...item, ...values });
+        const { item } = this.props;
+        item.updateItem({ ...item, ...values });
     }
 
     render() {
-        const { item, actions } = this.props;
+        const { item } = this.props;
         return <div className="item border border-success my-1 p-3">
             <div className="d-flex justify-content-end m-1">
-                <DropdownMenu title="Context menu" items={[
-                    { title: 'Remove item', action: actions.removeItem.bind(actions, item) }
+                <DropdownMenu title="Context menu" items={[    //// Optimize
+                    { title: 'Remove item', action: item.removeItem.bind(item) },
                 ]} />
             </div>
             <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
@@ -40,4 +41,4 @@ export class Item extends React.Component<ItemProps> {
     }
 }
 
-export default Item;
+export default useObservableModel<ItemProps>(Item);

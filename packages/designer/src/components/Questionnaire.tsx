@@ -11,12 +11,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.IQuestionnaire>;
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
-        const { actions, questionnaire } = this.props;
-        if ((questionnaire as any).updateQuestionnaire) {
-            (questionnaire as any).updateQuestionnaire(values);
-        } else {
-            actions.updateQuestionnaire(values)
-        }
+        const { questionnaire } = this.props;
+        questionnaire && questionnaire.updateQuestionnaire({ ...questionnaire, ...values });
     }
 
     submitForm() {
@@ -34,12 +30,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     render() {
-        const { questionnaire, actions, className = '' } = this.props;
+        const { questionnaire, className = '' } = this.props;
         return questionnaire && <div className={`questionnaire border border-secondary ${className}`}>
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title='Context menu' items={[
-                    { title: 'Create item', action: actions.addItem },
-                    { title: 'Create text item', action: actions.addTextItem }
+                    { title: 'Create item', action: questionnaire.addItem.bind(questionnaire) },
+                    { title: 'Create text item', action: questionnaire.addTextItem.bind(questionnaire) }
                 ]} />
             </div>
             <div>
@@ -56,7 +52,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 <div className="item-list row my-3">
                     {questionnaire.items && questionnaire.items.map(item =>
                         <div className="col-12" key={item.id}>
-                            {ItemProvider({ actions, item })}
+                            {ItemProvider({ item })}
                         </div>
                     )}
                 </div>
