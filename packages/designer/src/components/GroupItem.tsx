@@ -11,8 +11,9 @@ export class GroupItem extends React.Component<GroupItemProps> {
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title="Context menu" items={[    //// Optimize (rise up logic)
                     { title: 'Remove item', action: item.remove.bind(item) },
-                    { title: 'Add Item', action: item.addItem.bind(item) },
-                    { title: 'Add TextItem', action: item.addTextItem.bind(item) }
+                    { title: 'Create item', action: item.addItem.bind(item) },
+                    { title: 'Create text item', action: item.addTextItem.bind(item) },
+                    { title: 'Create group item', action: item.addGroupItem.bind(item) }
                 ]} />
             </div>
             <div className="item-list my-3">

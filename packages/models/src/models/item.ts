@@ -26,7 +26,7 @@ export class Item implements IItem {
         this.text = item.text;
     }
 
-    removeItem() {
+    remove() {
         this.parent && this.parent.removeItem(this);
     }
 }

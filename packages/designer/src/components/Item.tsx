@@ -28,7 +28,7 @@ export class Item extends React.Component<ItemProps> {
         return <div className="item border border-success my-1 p-3">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title="Context menu" items={[    //// Optimize
-                    { title: 'Remove item', action: item.removeItem.bind(item) },
+                    { title: 'Remove item', action: item.remove.bind(item) },
                 ]} />
             </div>
             <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>

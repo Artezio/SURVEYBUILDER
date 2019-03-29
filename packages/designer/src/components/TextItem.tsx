@@ -28,7 +28,7 @@ export class TextItem extends React.Component<TextItemProps> {
         return <div className="text-item border border-info my-1 p-3">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title="Context menu" items={[
-                    { title: 'Remove item', action: item.removeItem.bind(item) }
+                    { title: 'Remove item', action: item.remove.bind(item) }
                 ]} />
             </div>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>

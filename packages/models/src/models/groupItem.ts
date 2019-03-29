@@ -24,6 +24,10 @@ export class GroupItem extends Item implements IGroupItem {
         this.items = [...this.items, new TextItem(item, this)]
     }
 
+    addGroupItem(item?: IGroupItem) {
+        this.items = [...this.items, new GroupItem(item, this)];
+    }
+
     remove() {
         this.parent && this.parent.removeItem(this);
     }
