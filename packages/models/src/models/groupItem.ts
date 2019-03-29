@@ -32,7 +32,7 @@ export class GroupItem extends Item implements IGroupItem {
         this.parent && this.parent.removeItem(this);
     }
 
-    removeItem(item?: IItem) {
-        this.items = this.items.filter(x => x !== item);
+    removeItem(item: IItem) {
+        this.items = this.items.filter(x => x.id !== item.id);
     }
 }

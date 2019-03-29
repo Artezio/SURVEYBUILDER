@@ -46,8 +46,8 @@ export class Questionnaire implements IQuestionnaire {
         this.items = [...this.items, new GroupItem(item, this)];
     }
 
-    removeItem(item?: IItem) {
-        this.items = this.items.filter(x => item && x.id !== item.id);
+    removeItem(item: IItem) {
+        this.items = this.items.filter(x => x.id !== item.id);
     }
 }
 
