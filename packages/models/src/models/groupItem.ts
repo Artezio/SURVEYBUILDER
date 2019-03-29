@@ -17,11 +17,15 @@ export class GroupItem extends Item implements IGroupItem {
     }
 
     addItem(item?: Partial<IItem>) {
-        this.items = [...this.items, new Item(item, { ...this })]
+        this.items = [...this.items, new Item(item, this)]
     }
 
     addTextItem(item?: Partial<ITextItem>) {
-        this.items = [...this.items, new TextItem(item, { ...this })]
+        this.items = [...this.items, new TextItem(item, this)]
+    }
+
+    remove() {
+        this.parent &&  this.parent.removeItem(this);
     }
 
     removeItem(item?: IItem) {

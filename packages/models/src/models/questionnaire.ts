@@ -1,6 +1,8 @@
 import { IQuestionnaire, IItem, observable, TextItem, Item } from "..";
 import ITextItem from "../interfaces/ITextItem";
 import uuid from 'uuid/v1';
+import IGroupItem from "../interfaces/IGroupItem";
+import { GroupItem } from "./groupItem";
 
 
 @observable
@@ -38,6 +40,10 @@ export class Questionnaire implements IQuestionnaire {
 
     addItem(item?: IItem) {
         this.items = [...this.items, new Item(item, this)];
+    }
+
+    addGroupItem(item?: IGroupItem) {
+        this.items = [...this.items, new GroupItem(item, this)];
     }
 
     removeItem(item?: IItem) {

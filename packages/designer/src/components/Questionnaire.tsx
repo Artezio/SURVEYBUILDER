@@ -35,7 +35,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title='Context menu' items={[
                     { title: 'Create item', action: questionnaire.addItem.bind(questionnaire) },
-                    { title: 'Create text item', action: questionnaire.addTextItem.bind(questionnaire) }
+                    { title: 'Create text item', action: questionnaire.addTextItem.bind(questionnaire) },
+                    { title: 'Create group item', action: questionnaire.addGroupItem.bind(questionnaire) }
                 ]} />
             </div>
             <div>

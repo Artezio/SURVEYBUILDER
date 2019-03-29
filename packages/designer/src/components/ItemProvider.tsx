@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Item from './Item';
-import { TextItem } from './TextItem';
+import TextItem from './TextItem';
 import * as Models from '@art-forms/models';
+import GroupItem from '../components/GroupItem';
 
 
 export const ItemProvider = (props: any) => {
@@ -12,6 +13,9 @@ export const ItemProvider = (props: any) => {
         }
         case Models.QUESTION: {
             return <TextItem {...props} />
+        }
+        case Models.GROUP: {
+            return <GroupItem {...props} />
         }
         default: {
             return null;
