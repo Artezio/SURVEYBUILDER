@@ -10,7 +10,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     constructor(props: QuestionnaireProps) {
         super(props);
         props.questionnaire && props.questionnaire.items.forEach(x => {    //////////// CREATE ANOTHER SOLUTION!!!!
-            props.questionnaireResponse && (!props.questionnaireResponse.items.some(item => item.id === x.id)) && props.questionnaireResponse.addQuestionnaireResponseItem({ id: x.id })
+            props.questionnaireResponse && (!props.questionnaireResponse.items.some(item => item.id === x.id)) && props.questionnaireResponse.addQuestionnaireResponseItem({ id: x.id, value: (x as Models.ITextItem).initialValue })
         })
     }
 
