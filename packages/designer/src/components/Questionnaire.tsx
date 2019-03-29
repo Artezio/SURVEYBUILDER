@@ -50,24 +50,22 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     { title: 'Create group item', action: questionnaire.addGroupItem.bind(questionnaire) }
                 ]} />
             </div>
-            <div>
-                <Form className="p-3" getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
-                    <div className="form-group">
-                        <label htmlFor="questionnaire-title">Title</label>
-                        <Text className="form-control" id="questionnaire-title" field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="questionnaire-description">Description</label>
-                        <TextArea className="form-control" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
-                    </div>
-                </Form>
-                <div className="item-list row my-3">
-                    {questionnaire.items && questionnaire.items.map(item =>
-                        <div className="col-12" key={item.id}>
-                            {ItemProvider({ item })}
-                        </div>
-                    )}
+            <Form className="p-3" getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
+                <div className="form-group">
+                    <label htmlFor="questionnaire-title">Title</label>
+                    <Text className="form-control" id="questionnaire-title" field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
+                <div className="form-group">
+                    <label htmlFor="questionnaire-description">Description</label>
+                    <TextArea className="form-control" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                </div>
+            </Form>
+            <div className="item-list row my-3">
+                {questionnaire.items && questionnaire.items.map(item =>
+                    <div className="col-12" key={item.id}>
+                        {ItemProvider({ item })}
+                    </div>
+                )}
             </div>
         </div>
     }
