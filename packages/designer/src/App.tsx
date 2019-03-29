@@ -40,7 +40,7 @@ export class App extends React.Component {
 
     createQuestionnaireResponse(questionnaireResponse?: Omit<Models.IQuestionnaireResponse, 'id'>) {  /////   CHANGE !!!!!!!!!!!!!!!  it's crutch
         this.setState({
-            questionnaireResponse: new Models.QuestionnaireResponse({ items: [], ...questionnaireResponse, questionnaire: ((this.state.questionnaire as any).id as string) })
+            questionnaireResponse: new Models.QuestionnaireResponse({ items: [], ...questionnaireResponse, questionnaireId: ((this.state.questionnaire as any).id as string) })
         })
     }
 

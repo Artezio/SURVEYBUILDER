@@ -16,6 +16,10 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.value = item.value;
     }
 
+    addQuestionnaireResponseItem(item?: Partial<IQuestionnaireResponseItem>) {
+        this.items = [...this.items, new QuestionnaireResponseItem(item)];
+    }
+
     updateQuestionnaireResponseItem(item: IQuestionnaireResponseItem) {
         this.id = item.id;
         this.items = item.items;

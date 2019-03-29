@@ -25,7 +25,7 @@ export class GroupItem extends Item implements IGroupItem {
     }
 
     remove() {
-        this.parent &&  this.parent.removeItem(this);
+        this.parent && this.parent.removeItem(this);
     }
 
     removeItem(item?: IItem) {

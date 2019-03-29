@@ -8,12 +8,12 @@ import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
 export class QuestionnaireResponse implements IQuestionnaireResponse {
     id: string;
     items: IQuestionnaireResponseItem[];
-    questionnaire: string;
+    questionnaireId: string;
 
     constructor(questionnaireResponse: Omit<IQuestionnaireResponse, 'id'>) {
         this.id = uuid();
         this.items = questionnaireResponse.items || [];
-        this.questionnaire = questionnaireResponse.questionnaire;
+        this.questionnaireId = questionnaireResponse.questionnaireId;
     }
 
     addQuestionnaireResponseItem(item?: Partial<IQuestionnaireResponseItem>) {
@@ -23,5 +23,6 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
     updateQuestionnaireResponse(questionnaireResponse: IQuestionnaireResponse) {
         this.id = questionnaireResponse.id;
         this.items = questionnaireResponse.items;
+        this.questionnaireId = questionnaireResponse.questionnaireId;
     }
 }

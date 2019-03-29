@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GroupItemProps from '../interfaces/components/GroupItem';
+import GroupItemProps from '../interfaces/components/GroupItemProps';
 import DropdownMenu from './DropdownMenu';
 import ItemProvider from './ItemProvider';
 import useObservableModel from '../HOCs/useObservableModel';
@@ -9,7 +9,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
         const { item } = this.props;
         return <div className="border border-primary my-1 p-3">
             <div className="d-flex justify-content-end m-1">
-                <DropdownMenu title="Context menu" items={[    //// Optimize
+                <DropdownMenu title="Context menu" items={[    //// Optimize (rise up logic)
                     { title: 'Remove item', action: item.remove.bind(item) },
                     { title: 'Add Item', action: item.addItem.bind(item) },
                     { title: 'Add TextItem', action: item.addTextItem.bind(item) }
@@ -26,4 +26,4 @@ export class GroupItem extends React.Component<GroupItemProps> {
     }
 }
 
-export default useObservableModel(GroupItem);
+export default useObservableModel<GroupItemProps>(GroupItem);

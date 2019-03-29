@@ -24,9 +24,20 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.formApi = formApi;
     }
 
+    // mapQuestionnaireToResponse(questionnaire: Models.Questionnaire, questionnaireResponse?: Models.IQuestionnaireResponse) {
+    //     if (!questionnaireResponse) {
+    //         questionnaireResponse = new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id, items: questionnaire.items.map(item => this.mapItemToResponse(item)) })
+    //     }
+    // }
+
+    // mapItemToResponse(item: Models.IItem): Models.IQuestionnaireResponseItem {
+
+    //     return new Models.QuestionnaireResponseItem({ id: item.id, items: (item as Models.GroupItem).items || [] })
+    // }
+
     componentDidUpdate() {
         const { questionnaire } = this.props;
-        this.formApi.setValues(questionnaire as Models.IQuestionnaire);
+        this.formApi.setValues(questionnaire as Models.Questionnaire);
     }
 
     render() {
