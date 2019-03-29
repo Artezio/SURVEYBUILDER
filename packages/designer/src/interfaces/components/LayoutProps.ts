@@ -6,11 +6,11 @@ export interface LayoutActions {
     createQuestionnaire(questionnaire?: Partial<Models.IQuestionnaire>): void;
     toggleModeToPlay(): void;
     toggleModeToDesign(): void;
+    createQuestionnaireResponse(questionnaireResponse: Models.IQuestionnaireResponse): void;
 }
 
 export interface LayoutState {
     application: Application;
-    questionnaireResponse: Models.IQuestionnaireResponse | null;
 }
 
 export type LayoutProps = LayoutState & AssignToActions<LayoutActions>;

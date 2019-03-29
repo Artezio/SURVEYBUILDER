@@ -30,8 +30,5 @@ export const updateQuestionnaire = (questionnaire: Partial<Models.IQuestionnaire
 }
 
 export const createQuestionnaire = (questionnaire?: Partial<Models.IQuestionnaire>) => {
-    return createAction<CREATE_QUESTIONNAIRE, Models.IQuestionnaire>(CREATE_QUESTIONNAIRE, {
-        id: uuid(),
-        ...questionnaire
-    });
+    return createAction<CREATE_QUESTIONNAIRE, Models.Questionnaire>(CREATE_QUESTIONNAIRE, new Models.Questionnaire(questionnaire));
 };

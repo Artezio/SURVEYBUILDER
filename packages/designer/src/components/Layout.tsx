@@ -22,12 +22,12 @@ const mapDispatchToProps = {
 }
 
 const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
-    ({ ...ownProps, ...stateProps, ...{ actions: { ...dispatchProps } } });
+    ({ ...ownProps, ...stateProps, ...{ actions: { ...dispatchProps, ...ownProps.actions } } });
 
 export class Layout extends React.Component<LayoutProps> {
 
     render() {
-        const { actions, application, questionnaireResponse } = this.props;
+        const { actions, application } = this.props;
         return <div className="container-fluid">
             <div className="row py-2 bg-dark text-light">
                 <h1 className="col-5 font-weight-bold">Questionnaire Designer</h1>
@@ -43,13 +43,13 @@ export class Layout extends React.Component<LayoutProps> {
                 <div className="col-12">
                     {application.questionnaire && (application.mode === DESIGN ?
                         <QuestionnaireDesigner questionnaire={application.questionnaire} /> :
-                        <QuestionnairePlayer questionnaire={application.questionnaire} />)
+                        <QuestionnairePlayer questionnaire={application.questionnaire} questionnaireResponse={application.questionnaireResponse} />)
                     }
                 </div>
             </div>
-            {application.questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { console.log(questionnaireResponse) }}>Submit</button>}
+            {application.questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { console.log(application.questionnaireResponse) }}>Submit</button>}
         </div>
     }
 }
-
+// connect((mapStateToProps as any), (mapDispatchToProps as any), mergeProps)
 export default Layout;

@@ -12,3 +12,4 @@ export * from './models/textItem';
 export * from './models/questionnaire';
 export * from './models/questionnaireResponse';
 export * from './models/questionnaireResponseItem';
+export * from './models/groupItem';

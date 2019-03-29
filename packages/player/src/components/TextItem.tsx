@@ -10,7 +10,6 @@ export class TextItem extends React.Component<TextItemProps> {
 
     constructor(props: TextItemProps) {
         super(props);
-        
     }
 
     submitForm() {
@@ -23,8 +22,8 @@ export class TextItem extends React.Component<TextItemProps> {
     }
 
     handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
-        // const { item } = this.props;
-        // item && item.updateQuestionnaireResponseItem({ id: item.id, value: values.value })
+        const { questionnaireResponseItem } = this.props;
+        questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, ...values })
     }
 
     render() {

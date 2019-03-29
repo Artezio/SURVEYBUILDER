@@ -33,7 +33,14 @@ export class App extends React.Component {
 
     createQuestionnaire(questionnaire?: Partial<Models.IQuestionnaire> | undefined) {
         this.setState({
-            questionnaire: new Models.Questionnaire(questionnaire)
+            questionnaire: new Models.Questionnaire(questionnaire),
+        })
+        setTimeout(() => { this.createQuestionnaireResponse() }, 0)  /////   CHANGE !!!!!!!!!!!!!!!  it's crutch
+    }
+
+    createQuestionnaireResponse(questionnaireResponse?: Omit<Models.IQuestionnaireResponse, 'id'>) {  /////   CHANGE !!!!!!!!!!!!!!!  it's crutch
+        this.setState({
+            questionnaireResponse: new Models.QuestionnaireResponse({ items: [], ...questionnaireResponse, questionnaire: ((this.state.questionnaire as any).id as string) })
         })
     }
 
@@ -41,8 +48,9 @@ export class App extends React.Component {
         return <Layout application={this.state} actions={{
             createQuestionnaire: this.createQuestionnaire.bind(this),
             toggleModeToDesign: this.toggleModeToDesign.bind(this),
-            toggleModeToPlay: this.toggleModeToPlay.bind(this)
-        }} questionnaireResponse={{ id: '1', items: [] }} />
+            toggleModeToPlay: this.toggleModeToPlay.bind(this),
+            createQuestionnaireResponse: this.createQuestionnaireResponse.bind(this)
+        }} />
     }
 }
 

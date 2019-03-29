@@ -8,13 +8,15 @@ import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
 export class QuestionnaireResponse implements IQuestionnaireResponse {
     id: string;
     items: IQuestionnaireResponseItem[];
+    questionnaire: string;
 
-    constructor(questionnaireResponse: Partial<IQuestionnaireResponse> | undefined = {}) {
-        this.id = questionnaireResponse.id || uuid();
+    constructor(questionnaireResponse: Omit<IQuestionnaireResponse, 'id'>) {
+        this.id = uuid();
         this.items = questionnaireResponse.items || [];
+        this.questionnaire = questionnaireResponse.questionnaire;
     }
 
-    addQuestionnaireResponseItem(item: IQuestionnaireResponseItem) {
+    addQuestionnaireResponseItem(item?: Partial<IQuestionnaireResponseItem>) {
         this.items = [...this.items, new QuestionnaireResponseItem(item)];
     }
 
