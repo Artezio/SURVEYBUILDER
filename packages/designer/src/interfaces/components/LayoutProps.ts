@@ -7,6 +7,7 @@ export interface LayoutActions {
     toggleModeToPlay(): void;
     toggleModeToDesign(): void;
     createQuestionnaireResponse(questionnaireResponse: Models.IQuestionnaireResponse): void;
+    createQuestionnaireWithEmptyResponse(): void;
 }
 
 export interface LayoutState {

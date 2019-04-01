@@ -3,7 +3,7 @@ import { Application } from './Application';
 
 
 export interface Store {
-    questionnaire: Models.IQuestionnaire | null;
+    questionnaire: Models.Questionnaire | undefined;
     application: Application;
-    questionnaireResponse: Models.IQuestionnaireResponse | null;
+    questionnaireResponse: Models.QuestionnaireResponse | undefined;
 }

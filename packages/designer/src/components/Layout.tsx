@@ -2,24 +2,30 @@ import * as React from 'react';
 import { Store } from '../interfaces/Store';
 import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/components/LayoutProps';
 import { DESIGN, PLAY } from '../constants/application';
-import { addQuestionnaireResponseItem, createQuestionnaireResponse, updateQuestionnaireResponseItem, QuestionnairePlayer } from '@art-forms/player';
+import { QuestionnairePlayer } from '@art-forms/player';
 import QuestionnaireDesigner from './QuestionnaireDesigner';
+import { createQuestionnaire } from '../actions/questionnaire';
+import { createQuestionnaireResponse } from '../actions/questionnaireResponse';
+import { toggleModeToDesign, toggleModeToPlay, createQuestionnaireWithEmptyResponse } from '../actions/application';
+import { connect } from 'react-redux';
 
 
-// const mapStateToProps = (store: Store) => {
-//     return {
-//         questionnaireResponse: store.questionnaireResponse
-//     };
-// }
+const mapStateToProps = (store: Store): LayoutState => {
+    return {
+        application: store.application
+    };
+}
 
-// const mapDispatchToProps = {
-//     addQuestionnaireResponseItem,
-//     createQuestionnaireResponse,
-//     updateQuestionnaireResponseItem
-// }
+const mapDispatchToProps = {
+    createQuestionnaire,
+    createQuestionnaireResponse,
+    toggleModeToDesign,
+    toggleModeToPlay,
+    createQuestionnaireWithEmptyResponse
+}
 
-// const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
-//     ({ ...ownProps, ...stateProps, ...{ actions: { ...dispatchProps, ...ownProps.actions } } });
+const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
+    ({ ...ownProps, ...stateProps, ...{ actions: { ...dispatchProps, ...ownProps.actions } } });
 
 export class Layout extends React.Component<LayoutProps> {
 
@@ -37,7 +43,7 @@ export class Layout extends React.Component<LayoutProps> {
                             <a className={`nav-link ${!application.questionnaire ? "disabled" : ""}`} href="javascript:void(0)" onClick={actions.toggleModeToPlay}>Play mode</a>
                         </li>
                     </ul>
-                    <a className="nav-link ml-auto text-dark" href="javascript:void(0)" onClick={() => { actions.createQuestionnaire() }}>Create Questionnaire</a>
+                    <a className="nav-link ml-auto text-dark" href="javascript:void(0)" onClick={() => { actions.createQuestionnaireWithEmptyResponse() }}>Create Questionnaire</a>
                 </div>
             </nav>
             <div className="main-area row my-2">
@@ -52,4 +58,4 @@ export class Layout extends React.Component<LayoutProps> {
         </div>
     }
 }
-export default Layout;
+export default connect(mapStateToProps, (mapDispatchToProps as any), mergeProps)(Layout);

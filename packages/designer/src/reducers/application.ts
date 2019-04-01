@@ -1,7 +1,9 @@
 import { DESIGN } from "../constants/application";
 import { Action } from "../interfaces/Action";
-import { ACTION, SET_APP_MODE } from "../constants/actions";
+import { ACTION, SET_APP_MODE, CREATE_QUESTIONNAIRE_WITH_EMPTY_RESPONSE } from "../constants/actions";
 import { Application } from "../interfaces/Application";
+import * as Models from '@art-forms/models';
+
 
 const INITIAL_STATE: Application = { mode: DESIGN };
 
@@ -11,6 +13,14 @@ export const application = (state: Application = INITIAL_STATE, action: Action<A
             return {
                 ...state,
                 mode: action.payload
+            }
+        }
+        case CREATE_QUESTIONNAIRE_WITH_EMPTY_RESPONSE: {
+            const questionnaire = new Models.Questionnaire();
+            return {
+                ...state,
+                questionnaire,
+                questionnaireResponse: new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id })
             }
         }
         default: {
