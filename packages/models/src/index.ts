@@ -5,7 +5,7 @@ export * from './interfaces/ITextItem';
 export * from './interfaces/IItem';
 export * from './interfaces/IQuestionnaireResponse';
 export * from './interfaces/IQuestionnaireResponseItem';
-export * from './constants/index';
+export * from './constants/itemTypes';
 export * from './decorators/temporaryObservable';
 export * from './models/item';
 export * from './models/textItem';

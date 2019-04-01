@@ -1,4 +1,4 @@
-import { QUESTIONNAIRE_ITEM_TYPES } from "../constants";
+import { QUESTIONNAIRE_ITEM_TYPES } from "../constants/itemTypes";
 
 
 export interface IItem {

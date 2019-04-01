@@ -1,9 +1,5 @@
-import { IGroupItem, Item, ITextItem } from "..";
-import { IItem } from "../interfaces/IItem";
+import { IGroupItem, Item, ITextItem, observable, IItem, GROUP, TextItem } from "..";
 import { ICollection } from "../interfaces/ICollection";
-import { GROUP } from "../constants";
-import TextItem from "./textItem";
-import { observable } from "../decorators/temporaryObservable";
 
 @observable
 export class GroupItem extends Item implements IGroupItem {

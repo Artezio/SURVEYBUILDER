@@ -1,4 +1,4 @@
-import { GROUP } from '../constants';
+import { GROUP } from '../constants/itemTypes';
 import { IItem } from './IItem';
 
 
