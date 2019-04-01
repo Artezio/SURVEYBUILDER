@@ -26,7 +26,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     render() {
         const { item } = this.props;
-        return <div className="border border-primary my-1 p-3">
+        return <div className="border border-primary my-3">
             <div className="d-flex justify-content-end m-1">
                 <DropdownMenu title="Context menu" items={[    //// Optimize (rise up logic)
                     { title: 'Remove item', action: item.remove.bind(item) },
@@ -35,18 +35,20 @@ export class GroupItem extends React.Component<GroupItemProps> {
                     { title: 'Create group item', action: item.addGroupItem.bind(item) }
                 ]} />
             </div>
-            <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                <div className="form-group">
-                    <label htmlFor="group-item-text">Title</label>
-                    <Text className="form-control" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
-                </div>
-            </Form>
-            <div className="item-list my-3">
-                {item.items.map(item =>
-                    <div key={item.id}>
-                        {ItemProvider({ item })}
+            <div className="p-1">
+                <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
+                    <div className="input-group-sm">
+                        <label htmlFor="group-item-text">Title</label>
+                        <Text className="form-control" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
-                )}
+                </Form>
+                <div className="item-list my-3">
+                    {item.items.map(item =>
+                        <div key={item.id}>
+                            {ItemProvider({ item })}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     }
