@@ -25,17 +25,17 @@ export class Item extends React.Component<ItemProps> {
 
     render() {
         const { item } = this.props;
-        return <div className="item border border-success my-1">
-            <div className="d-flex justify-content-end m-1">
-                <DropdownMenu title="Context menu" items={[    //// Optimize
+        return <div className="item card card-sm mb-3">
+            <div className="card-header p-1 d-flex justify-content-end">
+                <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: item.remove.bind(item) },
                 ]} />
             </div>
-            <div className="p-1">
+            <div className="card-body p-2">
                 <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="input-group-sm">
-                        <label htmlFor="item-text">Text</label>
-                        <TextArea className="form-control" id="item-text" field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <div className="form-group mb-2">
+                        <label htmlFor="item-text" className="small mb-0">Text</label>
+                        <TextArea className="form-control form-control-sm" id="item-text" field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
                 </Form>
             </div>

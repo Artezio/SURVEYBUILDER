@@ -31,32 +31,34 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     render() {
         const { questionnaire, className = '' } = this.props;
-        return questionnaire && <div className={`questionnaire border border-secondary ${className}`}>
-            <div className="d-flex justify-content-end">
-                <DropdownMenu title='Context menu' items={[
-                    { title: 'Create item', action: questionnaire.addItem.bind(questionnaire) },
-                    { title: 'Create text item', action: questionnaire.addTextItem.bind(questionnaire) },
-                    { title: 'Create group item', action: questionnaire.addGroupItem.bind(questionnaire) }
-                ]} />
-            </div>
-            <div className="p-1">
-                <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
-                    <div className="input-group-sm">
-                        <label htmlFor="questionnaire-title">Title</label>
-                        <Text className="form-control" id="questionnaire-title" field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
-                    </div>
-                    <div className="input-group-sm">
-                        <label htmlFor="questionnaire-description">Description</label>
-                        <TextArea className="form-control" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
-                    </div>
-                </Form>
-                <div className="item-list my-2">
-                    {questionnaire.items && questionnaire.items.map(item =>
-                        <div key={item.id}>
-                            {ItemProvider({ item })}
-                        </div>
-                    )}
+        return questionnaire && <div className={`questionnaire ${className}`}>
+            <div className="card card-sm mb-3">
+                <div className="card-header p-1 d-flex justify-content-end">
+                    <DropdownMenu title='Context menu' items={[
+                        { title: 'Create item', action: questionnaire.addItem.bind(questionnaire) },
+                        { title: 'Create text item', action: questionnaire.addTextItem.bind(questionnaire) },
+                        { title: 'Create group item', action: questionnaire.addGroupItem.bind(questionnaire) }
+                    ]} />
                 </div>
+                <div className="card-body p-2">
+                    <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
+                        <div className="form-group mb-2">
+                            <label htmlFor="questionnaire-title" className="small mb-0">Title</label>
+                            <Text className="form-control form-control-sm" id="questionnaire-title" field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                        </div>
+                        <div className="form-group mb-2">
+                            <label htmlFor="questionnaire-description" className="small mb-0">Description</label>
+                            <TextArea className="form-control form-control-sm" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                        </div>
+                    </Form>
+                </div>
+            </div>
+            <div className="item-list">
+                {questionnaire.items && questionnaire.items.map(item =>
+                    <div key={item.id}>
+                        {ItemProvider({ item })}
+                    </div>
+                )}
             </div>
         </div>
     }

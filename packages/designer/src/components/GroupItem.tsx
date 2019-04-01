@@ -26,23 +26,24 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     render() {
         const { item } = this.props;
-        return <div className="border border-primary my-3">
-            <div className="d-flex justify-content-end m-1">
-                <DropdownMenu title="Context menu" items={[    //// Optimize (rise up logic)
+        return <div className="card my-5">
+        <hr/>
+            <div className="card-header p-1 d-flex justify-content-end">
+                <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: item.remove.bind(item) },
                     { title: 'Create item', action: item.addItem.bind(item) },
                     { title: 'Create text item', action: item.addTextItem.bind(item) },
                     { title: 'Create group item', action: item.addGroupItem.bind(item) }
                 ]} />
             </div>
-            <div className="p-1">
+            <div className="card-body p-2">
                 <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="input-group-sm">
-                        <label htmlFor="group-item-text">Title</label>
-                        <Text className="form-control" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <div className="form-group mb-2">
+                        <label htmlFor="group-item-text" className="small mb-0">Title</label>
+                        <Text className="form-control form-control-sm" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
                 </Form>
-                <div className="item-list my-3">
+                <div className="item-list">
                     {item.items.map(item =>
                         <div key={item.id}>
                             {ItemProvider({ item })}
@@ -50,6 +51,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
                     )}
                 </div>
             </div>
+            <hr/>
         </div>
     }
 }

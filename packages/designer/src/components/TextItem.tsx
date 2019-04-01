@@ -25,21 +25,21 @@ export class TextItem extends React.Component<TextItemProps> {
 
     render() {
         const { item } = this.props;
-        return <div className="text-item border border-info my-1">
-            <div className="d-flex justify-content-end m-1">
+        return <div className="text-item card card-sm mb-3">
+            <div className="card-header p-1 d-flex justify-content-end">
                 <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: item.remove.bind(item) }
                 ]} />
             </div>
-            <div className="p-1">
+            <div className="card-body p-2">
                 <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="input-group-sm">
-                        <label htmlFor="text-item-text">Title</label>
-                        <Text className="form-control" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <div className="form-group mb-2">
+                        <label htmlFor="text-item-text" className="small mb-0">Title</label>
+                        <Text className="form-control form-control-sm" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
-                    <div className="input-group-sm">
-                        <label htmlFor="text-item-initial-value">Default answer</label>
-                        <Text className="form-control" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
+                    <div className="form-group mb-2">
+                        <label htmlFor="text-item-initial-value" className="small mb-0">Default answer</label>
+                        <Text className="form-control form-control-sm" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
                     </div>
                 </Form>
             </div>
