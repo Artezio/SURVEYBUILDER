@@ -5,11 +5,11 @@ const __notify = Symbol('notify');
 const __getHandler = Symbol('getHandler');
 const __subscribeOnObservable = Symbol('subscribeOnObservable');
 
-interface IObservable {
+export interface IObservable {
     subscribe(fn: Function): IDestroyable;
 }
 
-interface IDestroyable {
+export interface IDestroyable {
     destroy(): void;
 }
 

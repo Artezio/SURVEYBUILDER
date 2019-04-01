@@ -4,11 +4,11 @@ const __subscribers = Symbol('subscribers');
 const __notify = Symbol('notify');
 const __getHandler = Symbol('getHandler');
 
-interface IObservable {
+export interface IObservable {
     subscribe(fn: Function): IDestroyable;
 }
 
-interface IDestroyable {
+export interface IDestroyable {
     destroy(): void;
 }
 

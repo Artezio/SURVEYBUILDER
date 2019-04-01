@@ -3,7 +3,7 @@ import { IItem } from './IItem';
 
 
 export interface IGroupItem extends IItem {
-    items: IItem[];
+    items?: IItem[];
     type: GROUP;
 }
 

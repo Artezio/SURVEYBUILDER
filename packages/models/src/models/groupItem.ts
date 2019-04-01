@@ -7,7 +7,7 @@ import { observable } from "../decorators/temporaryObservable";
 
 @observable
 export class GroupItem extends Item implements IGroupItem {
-    items: IItem[];
+    items!: IItem[];
     type: GROUP;
 
     constructor(item: Partial<IGroupItem> | undefined = {}, parent?: ICollection<IGroupItem>) {
@@ -17,15 +17,21 @@ export class GroupItem extends Item implements IGroupItem {
     }
 
     addItem(item?: Partial<IItem>) {
-        this.items = [...this.items, new Item(item, this)]
+        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
+            this.items = [...this.items, new Item(item, this)]
+        }
     }
 
     addTextItem(item?: Partial<ITextItem>) {
-        this.items = [...this.items, new TextItem(item, this)]
+        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
+            this.items = [...this.items, new TextItem(item, this)]
+        }
     }
 
     addGroupItem(item?: IGroupItem) {
-        this.items = [...this.items, new GroupItem(item, this)];
+        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
+            this.items = [...this.items, new GroupItem(item, this)];
+        }
     }
 
     remove() {

@@ -9,7 +9,7 @@ import { GroupItem } from "./groupItem";
 export class Questionnaire implements IQuestionnaire {
     id: string;
     description?: string;
-    items: IItem[];
+    items!: IItem[];
     title?: string;
 
     constructor(questionnaire: Partial<IQuestionnaire> | undefined = {}) {
@@ -34,16 +34,22 @@ export class Questionnaire implements IQuestionnaire {
         this.items = questionnaire.items || [];
     }
 
-    addTextItem(textItem?: ITextItem) {
-        this.items = [...this.items, new TextItem(textItem, this)];
+    addTextItem(item?: ITextItem) {
+        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
+            this.items = [...this.items, new TextItem(item, this)];
+        }
     }
 
     addItem(item?: IItem) {
-        this.items = [...this.items, new Item(item, this)];
+        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
+            this.items = [...this.items, new Item(item, this)];
+        }
     }
 
     addGroupItem(item?: IGroupItem) {
-        this.items = [...this.items, new GroupItem(item, this)];
+        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
+            this.items = [...this.items, new GroupItem(item, this)];
+        }
     }
 
     removeItem(item: IItem) {
