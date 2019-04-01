@@ -8,7 +8,7 @@ import { createQuestionnaire } from '../actions/questionnaire';
 import { createQuestionnaireResponse } from '../actions/questionnaireResponse';
 import { toggleModeToDesign, toggleModeToPlay, createQuestionnaireWithEmptyResponse } from '../actions/application';
 import { connect } from 'react-redux';
-
+import { provider } from '@art-forms/providers';
 
 const mapStateToProps = (store: Store): LayoutState => {
     return {
@@ -54,7 +54,7 @@ export class Layout extends React.Component<LayoutProps> {
                     }
                 </div>
             </div>
-            {application.questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { console.log(application.questionnaireResponse) }}>Submit</button>}
+            {application.questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { provider.putQuestionnaireResponse(application.questionnaireResponse) }}>Submit</button>}
         </div>
     }
 }
