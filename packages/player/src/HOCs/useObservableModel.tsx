@@ -1,22 +1,32 @@
 import * as React from 'react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
-import { getObservable } from "@art-forms/models";
+import * as Models from '@art-forms/models';
 
 
 export function useObservableModel<T>(WrappedComponent: any) {
     class Enhance extends React.Component<T> {
+        subscriptions!: Models.IDestroyable[];
+
         constructor(props: any) {
             super(props);
             this.state = {}
+            this.subscriptions = [];
             this.subscribeOnObservable();
+        }
+
+        componentWillUnmount() {
+            super.componentWillUnmount && super.componentWillUnmount.call(this);
+            this.subscriptions.forEach(x => setTimeout(() => x.destroy()));
         }
 
         subscribeOnObservable() {
             Object.keys(this.props).forEach((propertyName: string) => {
-                const observable = getObservable((this.props as any)[propertyName]);
-                observable && observable.subscribe((obj: any) => {
-                    this.setState({ [propertyName]: obj });
-                })
+                if (Models.isObservable((this.props as any)[propertyName])) {
+                    const observable = Models.getObservable((this.props as any)[propertyName]);
+                    this.subscriptions.push((observable as Models.IObservable).subscribe((obj: any) => {
+                        this.setState({ [propertyName]: obj });
+                    }))
+                }
             })
         }
 
