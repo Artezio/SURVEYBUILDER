@@ -7,20 +7,20 @@ import useObservableModel from '../HOCs/useObservableModel';
 
 
 export class TextItem extends React.Component<TextItemProps> {
-    formApi!: FormApi<Models.ITextItem>;
+    formApi!: FormApi<Omit<Models.ITextItem, 'answerType'>>;
 
     submitForm() {
         if (!this.formApi) return;
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.ITextItem>) {
+    getFormApi(formApi: FormApi<Omit<Models.ITextItem, 'answerType'>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.ITextItem>) {
+    handleSubmit(values: Partial<Omit<Models.ITextItem, 'answerType'>>) {
         const { item } = this.props;
-        item.updateTextItem({ ...item, ...values });
+        item.updateItem({ ...item, ...values });
     }
 
     render() {
