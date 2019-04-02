@@ -1,4 +1,4 @@
-import { IItem, QUESTIONNAIRE_ITEM_TYPES, DISPLAY } from "..";
+import { IItem, ITEM_TYPE, DISPLAY } from "..";
 import { observable } from "../decorators/temporaryObservable";
 import uuid from "uuid/v1";
 import { ICollection } from "../interfaces/ICollection";
@@ -7,11 +7,11 @@ import { ICollection } from "../interfaces/ICollection";
 export class Item implements IItem {
     id: string;
     text?: string;
-    type: QUESTIONNAIRE_ITEM_TYPES;
+    type: ITEM_TYPE;
     parent?: ICollection<IItem>;
 
-    constructor(item: Partial<IItem> | undefined = {}, parent?: ICollection<IItem>) {
-        this.id = item.id || uuid();
+    constructor(item: Omit<IItem, 'id' | 'type'> | undefined = {}, parent?: ICollection<IItem>) {
+        this.id = uuid();
         this.type = DISPLAY;
         this.text = item.text;
         this.parent = parent;
@@ -21,8 +21,7 @@ export class Item implements IItem {
         this.text = text;
     }
 
-    updateItem(item: Omit<IItem, 'type'>) {
-        this.id = item.id;
+    updateItem(item: Omit<IItem, 'type' | 'id'>) {
         this.text = item.text;
     }
 

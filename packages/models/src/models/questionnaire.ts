@@ -1,8 +1,9 @@
-import { IQuestionnaire, IItem, observable, TextItem, Item } from "..";
+import { IQuestionnaire, IItem, observable, TextItem, Item, IQuestionItem } from "..";
 import ITextItem from "../interfaces/questionItems/ITextItem";
 import uuid from 'uuid/v1';
 import IGroupItem from "../interfaces/IGroupItem";
 import { GroupItem } from "./groupItem";
+import { itemFactory } from "../factories/itemFactory";
 
 
 @observable
@@ -12,8 +13,8 @@ export class Questionnaire implements IQuestionnaire {
     items!: IItem[];
     title?: string;
 
-    constructor(questionnaire: Partial<IQuestionnaire> | undefined = {}) {
-        this.id = questionnaire.id || uuid();
+    constructor(questionnaire: Omit<IQuestionnaire, 'id'> | undefined = {}) {
+        this.id = uuid();
         this.description = questionnaire.description;
         this.title = questionnaire.title;
         this.items = questionnaire.items || [];

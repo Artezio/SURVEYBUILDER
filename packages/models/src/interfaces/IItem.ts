@@ -1,8 +1,8 @@
-import { QUESTIONNAIRE_ITEM_TYPES } from "../constants/itemTypes";
+import { ITEM_TYPE } from "../constants/itemTypes";
 
 
 export interface IItem {
     id: string;
-    type: QUESTIONNAIRE_ITEM_TYPES;
+    type: ITEM_TYPE;
     text?: string;
 }

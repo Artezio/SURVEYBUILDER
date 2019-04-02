@@ -8,7 +8,7 @@ export * from './interfaces/IQuestionnaireResponseItem';
 export * from './constants/itemTypes';
 export * from './decorators/temporaryObservable';
 export * from './models/item';
-export * from './models/textItem';
+export * from './models/questionItems/textItem';
 export * from './models/questionnaire';
 export * from './models/questionnaireResponse';
 export * from './models/questionnaireResponseItem';

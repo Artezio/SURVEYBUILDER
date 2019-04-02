@@ -1,20 +1,20 @@
-import { ITextItem, QUESTION, observable } from "..";
-import { Item } from "./item";
-import { ICollection } from "../interfaces/ICollection";
-import { STRING } from "../constants/answerTypes";
+import { ITextItem, QUESTION, observable } from "../..";
+import { Item } from "../item";
+import { ICollection } from "../../interfaces/ICollection";
+import { TEXT } from "../../constants/answerTypes";
 
 
 @observable
 export class TextItem extends Item implements ITextItem {
     type: QUESTION;
     initialValue?: string;
-    answerType: STRING;
+    answerType: TEXT;
 
-    constructor(item: Partial<ITextItem> | undefined = {}, parent?: ICollection<ITextItem>) {
+    constructor(item: Partial<Omit<ITextItem, 'type' | 'answerType'>> | undefined = {}, parent?: ICollection<ITextItem>) {
         super(item, parent);
         this.type = QUESTION;
         this.initialValue = item.initialValue;
-        this.answerType = STRING;
+        this.answerType = TEXT;
     }
 
     setInitialValue(initialValue: string) {

@@ -7,4 +7,4 @@ export type DISPLAY = typeof DISPLAY;
 export const QUESTION = 'QUESTION';
 export type QUESTION = typeof QUESTION;
 
-export type QUESTIONNAIRE_ITEM_TYPES = QUESTION | DISPLAY | GROUP;
+export type ITEM_TYPE = QUESTION | DISPLAY | GROUP;
