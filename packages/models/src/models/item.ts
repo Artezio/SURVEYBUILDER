@@ -17,11 +17,7 @@ export class Item implements IItem {
         this.parent = parent;
     }
 
-    setText(text: string) {
-        this.text = text;
-    }
-
-    updateItem(item: Omit<IItem, 'type' | 'id'>) {
+    updateItem(item: IItem) {
         this.text = item.text;
     }
 

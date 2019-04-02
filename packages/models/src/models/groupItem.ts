@@ -6,27 +6,15 @@ export class GroupItem extends Item implements IGroupItem {
     items!: IItem[];
     type: GROUP;
 
-    constructor(item: Partial<IGroupItem> | undefined = {}, parent?: ICollection<IGroupItem>) {
+    constructor(item: Omit<IGroupItem, 'id' | 'type'> | undefined = {}, parent?: ICollection<IGroupItem>) {
         super(item, parent);
         this.type = GROUP;
         this.items = item.items || [];
     }
 
-    addItem(item?: Partial<IItem>) {
-        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
-            this.items = [...this.items, new Item(item, this)]
-        }
-    }
-
-    addTextItem(item?: Partial<ITextItem>) {
-        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
-            this.items = [...this.items, new TextItem(item, this)]
-        }
-    }
-
-    addGroupItem(item?: Partial<IGroupItem>) {
-        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
-            this.items = [...this.items, new GroupItem(item, this)];
+    addItem(item: Item) {
+        if (this.items.every(itm => itm.id !== item.id)) {
+            this.items = [...this.items, item]
         }
     }
 

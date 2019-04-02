@@ -1,19 +1,14 @@
 import { IStringItem } from "../../interfaces/questionItems/IStringItem";
-import { Item } from "../..";
 import { STRING } from "../../constants/answerTypes";
-import { QUESTION } from "../../constants/itemTypes";
+import { QuestionItem } from "./questionItem";
+import { ICollection } from "../../interfaces/ICollection";
 
-export class StringItem extends Item implements IStringItem {
+export class StringItem extends QuestionItem<string> implements IStringItem {
     answerType: STRING;
-    initialValue?: string;
-    type: QUESTION;
 
-    constructor(item: IStringItem) {
-        super(item);
-        this.id = item.id;
+    constructor(item: Omit<IStringItem, 'id' | 'answerType' | 'type'> | undefined = {}, parent?: ICollection<IStringItem>) {
+        super(item, parent);
         this.answerType = STRING;
-        this.initialValue = item.initialValue;
-        this.type = QUESTION;
     }
-    
+
 }
