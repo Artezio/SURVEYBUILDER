@@ -28,11 +28,11 @@ export class TextItem extends React.Component<TextItemProps> {
 
     render() {
         const { item } = this.props;
-        return <div className="border border-info p-3 my-1">
-            <p>{item.text}</p>
+        return <div className="mb-3">
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                    <Text className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
+                <label htmlFor="string-answer" className="">{item.text}</label>
+                    <Text id="string-answer" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
                 </div>
             </Form>
         </div>

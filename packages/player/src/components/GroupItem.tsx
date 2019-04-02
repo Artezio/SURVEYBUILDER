@@ -15,8 +15,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
     }
     render() {
         const { item, questionnaireResponseItem } = this.props;
-        return <div className="border border-primary p-3 my-1">
-            <p>{item.text}</p>
+        return <div className="my-5">
+            <h4>{item.text}</h4>
             {item.items.map(item => {
                 return <div key={item.id}>
                     {ItemProvider({ item, questionnaireResponseItem: questionnaireResponseItem && questionnaireResponseItem.items.find(x => x.id === item.id) })}
