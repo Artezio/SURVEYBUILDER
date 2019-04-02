@@ -21,7 +21,7 @@ export class Item implements IItem {
         this.text = text;
     }
 
-    updateItem(item: IItem) {
+    updateItem(item: Omit<IItem, 'type'>) {
         this.id = item.id;
         this.text = item.text;
     }

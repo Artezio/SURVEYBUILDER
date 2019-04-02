@@ -1,5 +1,5 @@
 import { IQuestionnaire, IItem, observable, TextItem, Item } from "..";
-import ITextItem from "../interfaces/ITextItem";
+import ITextItem from "../interfaces/questionItems/ITextItem";
 import uuid from 'uuid/v1';
 import IGroupItem from "../interfaces/IGroupItem";
 import { GroupItem } from "./groupItem";
@@ -34,19 +34,19 @@ export class Questionnaire implements IQuestionnaire {
         this.items = questionnaire.items || [];
     }
 
-    addTextItem(item?: ITextItem) {
+    addTextItem(item?: Partial<ITextItem>) {
         if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
             this.items = [...this.items, new TextItem(item, this)];
         }
     }
 
-    addItem(item?: IItem) {
+    addItem(item?: Partial<IItem>) {
         if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
             this.items = [...this.items, new Item(item, this)];
         }
     }
 
-    addGroupItem(item?: IGroupItem) {
+    addGroupItem(item?: Partial<IGroupItem>) {
         if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
             this.items = [...this.items, new GroupItem(item, this)];
         }

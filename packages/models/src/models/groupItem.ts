@@ -24,7 +24,7 @@ export class GroupItem extends Item implements IGroupItem {
         }
     }
 
-    addGroupItem(item?: IGroupItem) {
+    addGroupItem(item?: Partial<IGroupItem>) {
         if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
             this.items = [...this.items, new GroupItem(item, this)];
         }
