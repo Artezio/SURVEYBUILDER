@@ -8,6 +8,7 @@
     "registry": "http://10.11.40.28:4873/"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json"
+    "build": "tsc -p tsconfig.build.json",
+	"test": "mocha --config mocharc.json tests/**/*.test.ts"
   }
 }
