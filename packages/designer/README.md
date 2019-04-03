@@ -1,7 +1,10 @@
-Designer is a module that provides you tools for creating questionnaires
+# @art-forms/designer
+Typescript library designed with react and redux provides questionnaire designer for creating questionnaires.
+***
+## _Installation_
 
-//   to be described...  //
+>$ npm install @art-form/designer
 
-to add all required modules run following:
-$ cd .../art-forms/packages/designer            (Windows)
-$ yarn
+or
+>$ yarn add @art-form/designer
+

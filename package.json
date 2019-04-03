@@ -5,14 +5,17 @@
   "main": "index.js",
   "version": "1.0.0",
   "license": "ISC",
-  "author": "Daniil <Daniil.Yakovenko@artezio.com>",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "lerna": "^3.11.1"
+    "lerna": "^3.13.0"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "registry": "http://10.11.40.28:4873/",
+  "publishConfig": {
+    "registry": "http://10.11.40.28:4873/"
+  }
 }

@@ -1,0 +1,5 @@
+export enum QUESTIONNAIRE_ITEM_TYPES {
+    GROUP,
+    DISPLAY,
+    QUESTION
+};

@@ -1,13 +1,23 @@
-# Models
-
-There are basic models of application, to learn more about them look at diagram:
-
-![uml diagram](./Uml-diagram-models.jpg)
-[xml file](./Uml-diagram-models.xml "Link for xml file")
-
-They also include [interfaces](./src/interfaces) and [constant variables](./src/enums).
+# @art-form/models
+Typescript library contains interfaces and constant variables. 
 
 ***
-to add all required modules run following:
->$ cd .../art-forms/packages/models (Windows)
-yarn
+## _Installation_
+
+>$ npm i @art-form/models -D
+
+or
+>$yarn add @art-form/models -D
+
+***
+## _UML_
+![uml diagram](./Uml-diagram-models.jpg)
+[XML file](./Uml-diagram-models.xml "Link for xml file")
+
+***
+## _Example_
+
+```shell
+import { Questionnaire } from '@art-form/models';
+class QuestionnaireModel implements Questionnaire {...};
+```

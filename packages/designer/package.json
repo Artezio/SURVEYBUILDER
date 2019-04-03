@@ -1,0 +1,49 @@
+{
+  "name": "@art-forms/designer",
+  "version": "0.1.5",
+  "registry": "http://10.11.40.28:4873/",
+  "dependencies": {
+    "@art-forms/models": "^0.1.5",
+    "@types/jest": "^24.0.4",
+    "@types/jquery": "^3.3.29",
+    "@types/node": "^11.9.3",
+    "@types/react": "^16.8.3",
+    "@types/react-dom": "^16.8.1",
+    "@types/react-redux": "^7.0.1",
+    "@types/uuid": "^3.4.4",
+    "bootstrap": "^4.3.1",
+    "informed": "^2.1.6",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-redux": "^6.0.0",
+    "react-scripts": "2.1.5",
+    "redux": "^4.0.1",
+    "typescript": "^3.3.3",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "webpack build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/redux-logger": "^3.0.7",
+    "awesome-typescript-loader": "^5.2.1",
+    "redux-logger": "^3.0.6"
+  },
+  "publishConfig": {
+    "registry": "http://10.11.40.28:4873/"
+  }
+}
