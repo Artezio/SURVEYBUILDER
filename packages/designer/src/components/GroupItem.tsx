@@ -43,11 +43,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
                     </div>
                 </Form>
                 <div className="item-list">
-                    {item.items.map(item =>
-                        <div key={item.id}>
-                            {ItemProvider({ item })}
-                        </div>
-                    )}
+                    {item.items.map(item => <ItemProvider {...{ item }} />)}
                 </div>
             </div>
         </div>

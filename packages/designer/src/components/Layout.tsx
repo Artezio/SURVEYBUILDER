@@ -28,7 +28,17 @@ const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownPr
     ({ ...ownProps, ...stateProps, ...{ actions: { ...dispatchProps, ...ownProps.actions } } });
 
 export class Layout extends React.Component<LayoutProps> {
-///
+
+    createQuestionnaireAndResponse() {
+        const { actions } = this.props;
+        actions.createQuestionnaireWithEmptyResponse();
+    }
+
+    submitResponse() {
+        const { application } = this.props;
+        provider.putQuestionnaireResponse(application.questionnaireResponse);
+    }
+
     render() {
         const { actions, application } = this.props;
         return <div className="container-fluid">
@@ -43,7 +53,7 @@ export class Layout extends React.Component<LayoutProps> {
                             <a className={`nav-link ${!application.questionnaire ? "disabled" : ""}`} href="javascript:void(0)" onClick={actions.toggleModeToPlay}>Play mode</a>
                         </li>
                     </ul>
-                    {application.mode === DESIGN && <a className="nav-link ml-auto text-dark" href="javascript:void(0)" onClick={() => { actions.createQuestionnaireWithEmptyResponse() }}>Create Questionnaire</a>}
+                    {application.mode === DESIGN && <a className="nav-link ml-auto text-dark" href="javascript:void(0)" onClick={this.createQuestionnaireAndResponse.bind(this)}>Create Questionnaire</a>}
                 </div>
             </nav>
             <div className="main-area row my-2">
@@ -54,7 +64,7 @@ export class Layout extends React.Component<LayoutProps> {
                     }
                 </div>
             </div>
-            {application.questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { provider.putQuestionnaireResponse(application.questionnaireResponse) }}>To Console</button>}
+            {application.questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={this.submitResponse.bind(this)}>To Console</button>}
         </div>
     }
 }
