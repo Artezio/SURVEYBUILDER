@@ -28,7 +28,7 @@ const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownPr
     ({ ...ownProps, ...stateProps, ...{ actions: { ...dispatchProps, ...ownProps.actions } } });
 
 export class Layout extends React.Component<LayoutProps> {
-
+///
     render() {
         const { actions, application } = this.props;
         return <div className="container-fluid">
@@ -54,7 +54,7 @@ export class Layout extends React.Component<LayoutProps> {
                     }
                 </div>
             </div>
-            {application.questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { provider.putQuestionnaireResponse(application.questionnaireResponse) }}>Submit</button>}
+            {application.questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={() => { provider.putQuestionnaireResponse(application.questionnaireResponse) }}>To Console</button>}
         </div>
     }
 }

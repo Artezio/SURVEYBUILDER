@@ -34,10 +34,10 @@ export class TextItem extends React.Component<TextItemProps> {
             <div className="card-body p-2">
                 <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                     <div className="form-group mb-2">
-                        <label htmlFor="text-item-text" className="small mb-0">Title</label>
+                        <label htmlFor="text-item-text" className="small mb-0">Question</label>
                         <Text className="form-control form-control-sm" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
-                    <div className="form-group mb-2">
+                    <div className="form-group mb-0">
                         <label htmlFor="text-item-initial-value" className="small mb-0">Default answer</label>
                         <Text className="form-control form-control-sm" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
                     </div>

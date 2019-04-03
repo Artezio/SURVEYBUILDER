@@ -27,7 +27,6 @@ export class GroupItem extends React.Component<GroupItemProps> {
     render() {
         const { item } = this.props;
         return <div className="card my-5">
-            <hr />
             <div className="card-header p-1 d-flex justify-content-end">
                 <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: item.remove.bind(item) },
@@ -38,8 +37,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
             </div>
             <div className="card-body p-2">
                 <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="form-group mb-2">
-                        <label htmlFor="group-item-text" className="small mb-0">Title</label>
+                    <div className="form-group">
+                        <label htmlFor="group-item-text" className="small mb-0">Group Title</label>
                         <Text className="form-control form-control-sm" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
                 </Form>
@@ -51,7 +50,6 @@ export class GroupItem extends React.Component<GroupItemProps> {
                     )}
                 </div>
             </div>
-            <hr />
         </div>
     }
 }

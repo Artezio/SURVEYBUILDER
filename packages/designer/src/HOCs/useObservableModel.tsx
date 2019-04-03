@@ -5,12 +5,11 @@ import * as Models from '@art-forms/models';
 
 export function useObservableModel<T>(WrappedComponent: any) {
     class Enhance extends React.Component<T> {
-        subscriptions!: Models.IDestroyable[];
+        subscriptions: Models.IDestroyable[] = [];
 
-        constructor(props: any) {
+        constructor(props: T) {
             super(props);
-            this.state = {}
-            this.subscriptions = [];
+            this.state = {};
             this.subscribeOnObservable();
         }
 
@@ -20,10 +19,21 @@ export function useObservableModel<T>(WrappedComponent: any) {
         }
 
         subscribeOnObservable() {
+            // Object.entries(this.props)
+            //     .filter(entry => Models.isObservable(entry[1]))
+            //     .map(([key, value]) => [key, Models.getObservable(value)])
+            //     .forEach(([key, value]) => {
+            //         const observable = Models.getObservable(value);
+            //         if(observable){
+            //             this.subscriptions.push(observable.subscribe((obj: any) => {
+            //                 this.setState({ [key]: obj });
+            //             }));
+            //         }
+            //     });
             Object.keys(this.props).forEach((propertyName: string) => {
                 if (Models.isObservable((this.props as any)[propertyName])) {
                     const observable = Models.getObservable((this.props as any)[propertyName]);
-                    this.subscriptions.push((observable as Models.IObservable).subscribe((obj: any) => {
+                    observable && this.subscriptions.push(observable.subscribe((obj: any) => {
                         this.setState({ [propertyName]: obj });
                     }))
                 }
