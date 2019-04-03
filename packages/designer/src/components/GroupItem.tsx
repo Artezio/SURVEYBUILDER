@@ -24,6 +24,12 @@ export class GroupItem extends React.Component<GroupItemProps> {
         this.formApi = formApi;
     }
 
+    renderItemList() {
+        const { item } = this.props;
+        return item && <div className="item-list">
+            {item.items.map(item => <ItemProvider {...{ item }} key={item.id} />)}
+        </div>
+    }
 
     render() {
         const { item } = this.props;
@@ -43,9 +49,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
                         <Text className="form-control form-control-sm" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
                 </Form>
-                <div className="item-list">
-                    {item.items.map(item => <ItemProvider {...{ item }} key={item.id} />)}
-                </div>
+                {this.renderItemList()}
             </div>
         </div>
     }
