@@ -5,7 +5,7 @@ import * as Models from '@art-forms/models';
 
 export function useObservableModel<T>(WrappedComponent: any) {
     class Enhance extends React.Component<T> {
-        subscriptions!: Models.IDestroyable[];
+        subscriptions!: Models.IDisposable[];
 
         constructor(props: any) {
             super(props);

@@ -3,12 +3,11 @@ import { ICollection } from "../interfaces/ICollection";
 
 @observable
 export class GroupItem extends Item implements IGroupItem {
-    items!: IItem[];
-    type: GROUP;
+    items: IItem[];
+    type: GROUP = GROUP;
 
     constructor(item: Omit<IGroupItem, 'id' | 'type'> | undefined = {}, parent?: ICollection<IGroupItem>) {
         super(item, parent);
-        this.type = GROUP;
         this.items = item.items || [];
     }
 

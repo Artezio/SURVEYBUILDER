@@ -6,11 +6,10 @@ import { QuestionItem } from "./questionItem";
 
 @observable
 export class TextItem extends QuestionItem<string> implements ITextItem {
-    answerType: TEXT;
+    answerType: TEXT = TEXT;
 
     constructor(item: Omit<ITextItem, 'id' | 'type' | 'answerType'> | undefined = {}, parent?: ICollection<ITextItem>) {
         super(item, parent);
-        this.answerType = TEXT;
     }
 }
 

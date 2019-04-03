@@ -6,7 +6,7 @@ import uuid from 'uuid/v1';
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     id: string;
     text?: string;
-    items!: IQuestionnaireResponseItem[];
+    items: IQuestionnaireResponseItem[];
     value?: any;
 
     constructor(item: Partial<IQuestionnaireResponseItem> | undefined = {}) {

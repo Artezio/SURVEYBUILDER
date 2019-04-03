@@ -5,10 +5,10 @@ const __notify = Symbol('notify');
 const __getHandler = Symbol('getHandler');
 
 export interface IObservable {
-    subscribe(fn: Function): IDestroyable;
+    subscribe(fn: Function): IDisposable;
 }
 
-export interface IDestroyable {
+export interface IDisposable {
     destroy(): void;
 }
 
@@ -50,7 +50,7 @@ export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
             }
             return ({
                 destroy
-            }) as IDestroyable
+            }) as IDisposable
         }
 
         [__emitChange]() {

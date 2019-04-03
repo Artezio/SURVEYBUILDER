@@ -7,7 +7,7 @@ import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
 @observable
 export class QuestionnaireResponse implements IQuestionnaireResponse {
     id: string;
-    items!: IQuestionnaireResponseItem[];
+    items: IQuestionnaireResponseItem[];
     questionnaireId: string;
 
     constructor(questionnaireResponse: Partial<IQuestionnaireResponse> | undefined = {}) {

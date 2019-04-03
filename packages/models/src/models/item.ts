@@ -5,20 +5,18 @@ import { ICollection } from "../interfaces/ICollection";
 
 @observable
 export class Item implements IItem {
-    id: string;
+    id!: string;
     text?: string;
-    type: ITEM_TYPE;
+    type: ITEM_TYPE = DISPLAY;
     parent?: ICollection<IItem>;
 
     constructor(item: Omit<IItem, 'id' | 'type'> | undefined = {}, parent?: ICollection<IItem>) {
-        this.id = uuid();
-        this.type = DISPLAY;
-        this.text = item.text;
+        Object.assign(this, { id: uuid() }, item);
         this.parent = parent;
     }
 
     updateItem(item: IItem) {
-        this.text = item.text;
+        Object.assign(this, item);
     }
 
     remove() {
