@@ -1,5 +1,5 @@
 import { IStringItem } from "../../interfaces/questionItems/IStringItem";
-import { STRING } from "../../constants/answerTypes";
+import { STRING } from "../../constants/itemTypes";
 import { QuestionItem } from "./questionItem";
 import { ICollection } from "../../interfaces/ICollection";
 import { observable } from "../../decorators/temporaryObservable";
@@ -9,7 +9,7 @@ import { observable } from "../../decorators/temporaryObservable";
 export class StringItem extends QuestionItem<string> implements IStringItem {
     answerType: STRING = STRING;
 
-    constructor(item: Partial<Omit<IStringItem, 'answerType' | 'type'>> | undefined, parent?: ICollection<IStringItem>) {
+    constructor(item: Partial<Omit<IStringItem, 'type'>> | undefined, parent?: ICollection<IStringItem>) {
         super(item, parent);
     }
 

@@ -11,7 +11,7 @@ export const ItemProvider = (props: any) => {
         case Models.DISPLAY: {
             return <Item {...props} />
         }
-        case Models.QUESTION: {
+        case Models.TEXT: {
             return <TextItem {...props} />
         }
         case Models.GROUP: {

@@ -7,7 +7,6 @@ export * from './interfaces/IQuestionnaireResponse';
 export * from './interfaces/IQuestionnaireResponseItem';
 
 export * from './constants/itemTypes';
-export * from './constants/answerTypes';
 
 export * from './decorators/temporaryObservable';
 
@@ -20,4 +19,3 @@ export * from './models/questionnaireResponse';
 export * from './models/questionnaireResponseItem';
 
 export * from './factories/itemFactory';
-export * from './factories/questionItemFactory';

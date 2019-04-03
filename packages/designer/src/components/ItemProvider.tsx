@@ -2,7 +2,7 @@ import * as React from 'react';
 import Item from './Item';
 import * as Models from '@art-forms/models';
 import GroupItem from '../components/GroupItem';
-import { QuestionItemProvider } from './QuestionItemProvider';
+import TextItem from './TextItem';
 
 
 export const ItemProvider = (props: any) => {
@@ -11,11 +11,14 @@ export const ItemProvider = (props: any) => {
         case Models.DISPLAY: {
             return <Item {...props} />
         }
-        case Models.QUESTION: {
-            return QuestionItemProvider(props);
-        }
         case Models.GROUP: {
             return <GroupItem {...props} />
+        }
+        case Models.TEXT: {
+            return <TextItem {...props} />
+        }
+        case Models.STRING: {
+
         }
         default: {
             return null;

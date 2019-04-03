@@ -9,6 +9,7 @@ import useObservableModel from '../HOCs/useObservableModel';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.IQuestionnaire>;
+    itemFactory = new Models.ItemFactory(this.props.questionnaire);
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { questionnaire } = this.props;
@@ -52,9 +53,9 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 <div className="card-header p-1 d-flex justify-content-end">
                     {/* <Menu collection={questionnaire} factory={this.getFactory()}></Menu> */}
                     <DropdownMenu title='Context menu' items={[
-                        { title: 'Create item', action: questionnaire.addItem.bind(questionnaire, Models.itemFactory({ type: "DISPLAY" }, questionnaire)) },
-                        { title: 'Create text item', action: questionnaire.addItem.bind(questionnaire, Models.itemFactory({ type: "QUESTION", answerType: "TEXT" }, questionnaire)) },
-                        { title: 'Create group item', action: questionnaire.addItem.bind(questionnaire, Models.itemFactory({ type: "GROUP" }, questionnaire)) }
+                        { title: 'Create item', action: questionnaire.addItem.bind(questionnaire, this.itemFactory.createItem()) },
+                        { title: 'Create text item', action: questionnaire.addItem.bind(questionnaire, this.itemFactory.createTextItem()) },
+                        { title: 'Create group item', action: questionnaire.addItem.bind(questionnaire, this.itemFactory.createGroupItem()) }
                     ]} />
                 </div>
                 <div className="card-body p-2">

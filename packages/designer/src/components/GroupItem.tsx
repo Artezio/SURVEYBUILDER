@@ -8,6 +8,7 @@ import * as Models from '@art-forms/models';
 
 export class GroupItem extends React.Component<GroupItemProps> {
     formApi!: FormApi<Partial<Models.IGroupItem>>;
+    itemFactory = new Models.ItemFactory(this.props.item);
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { item } = this.props;
@@ -30,9 +31,9 @@ export class GroupItem extends React.Component<GroupItemProps> {
             <div className="card-header p-1 d-flex justify-content-end">
                 <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: item.remove.bind(item) },
-                    { title: 'Create item', action: item.addItem.bind(item, Models.itemFactory({ type: "DISPLAY" }, item)) },
-                    { title: 'Create text item', action: item.addItem.bind(item, Models.itemFactory({ type: "QUESTION", answerType: "TEXT" }, item)) },
-                    { title: 'Create group item', action: item.addItem.bind(item, Models.itemFactory({ type: "GROUP" }, item)) }
+                    { title: 'Create item', action: item.addItem.bind(item, this.itemFactory.createItem()) },
+                    { title: 'Create text item', action: item.addItem.bind(item, this.itemFactory.createTextItem()) },
+                    { title: 'Create group item', action: item.addItem.bind(item, this.itemFactory.createGroupItem()) }
                 ]} />
             </div>
             <div className="card-body p-2">
@@ -43,7 +44,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
                     </div>
                 </Form>
                 <div className="item-list">
-                    {item.items.map(item => <ItemProvider {...{ item }} />)}
+                    {item.items.map(item => <ItemProvider {...{ item }} key={item.id} />)}
                 </div>
             </div>
         </div>

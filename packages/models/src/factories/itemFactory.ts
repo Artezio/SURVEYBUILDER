@@ -1,24 +1,35 @@
-import { IItem, DISPLAY, GROUP, QUESTION, IQuestionItem } from "..";
+import { IItem, DISPLAY, GROUP, TEXT, TextItem, STRING } from "..";
 import Item from "../models/item";
 import { GroupItem } from "../models/groupItem";
-import { questionItemFactory } from "./questionItemFactory";
 import { ICollection } from "../interfaces/ICollection";
+import StringItem from "../models/questionItems/stringItem";
+import IGroupItem from "../interfaces/IGroupItem";
+import ITextItem from "../interfaces/questionItems/ITextItem";
+import { IStringItem } from "../interfaces/questionItems/IStringItem";
 
-export function itemFactory(item: Partial<IItem> | Partial<IQuestionItem<any>>, parent?: ICollection<any>): Item {
-    switch (item.type) {
-        case DISPLAY: {
-            return new Item(item, parent)
-        }
-        case GROUP: {
-            return new GroupItem(item, parent)
-        }
-        case QUESTION: {
-            return questionItemFactory(item as IQuestionItem<any>, parent);
-        }
-        default: {
-            return new Item(item, parent);
-        }
+
+export class ItemFactory {
+    parent?: ICollection<IItem>;
+
+    constructor(parent?: ICollection<IItem>) {
+        this.parent = parent;
+    }
+
+    createItem(item?: Partial<Omit<IItem, 'type'>>) {
+        return new Item(item, this.parent)
+    }
+
+    createGroupItem(item?: Partial<Omit<IGroupItem, 'type'>>) {
+        return new GroupItem(item, this.parent);
+    }
+
+    createTextItem(item?: Partial<Omit<ITextItem, 'type'>>) {
+        return new TextItem(item, this.parent);
+    }
+
+    createStringItem(item?: Partial<Omit<IStringItem, 'type'>>) {
+        return new StringItem(item, this.parent);
     }
 }
 
-export default itemFactory;
+export default ItemFactory;
