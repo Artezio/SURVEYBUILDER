@@ -9,7 +9,7 @@ import { observable } from "../../decorators/temporaryObservable";
 export class StringItem extends QuestionItem<string> implements IStringItem {
     answerType: STRING = STRING;
 
-    constructor(item: Omit<IStringItem, 'id' | 'answerType' | 'type'> | undefined = {}, parent?: ICollection<IStringItem>) {
+    constructor(item: Partial<Omit<IStringItem, 'answerType' | 'type'>> | undefined, parent?: ICollection<IStringItem>) {
         super(item, parent);
     }
 

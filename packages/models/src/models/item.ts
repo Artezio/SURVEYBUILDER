@@ -10,7 +10,7 @@ export class Item implements IItem {
     type: ITEM_TYPE = DISPLAY;
     parent?: ICollection<IItem>;
 
-    constructor(item: Omit<IItem, 'id' | 'type'> | undefined = {}, parent?: ICollection<IItem>) {
+    constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: ICollection<IItem>) {
         Object.assign(this, { id: uuid() }, item);
         this.parent = parent;
     }

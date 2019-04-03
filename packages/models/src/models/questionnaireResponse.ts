@@ -6,14 +6,12 @@ import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
 
 @observable
 export class QuestionnaireResponse implements IQuestionnaireResponse {
-    id: string;
-    items: IQuestionnaireResponseItem[];
-    questionnaireId: string;
+    id!: string;
+    items!: IQuestionnaireResponseItem[];
+    questionnaireId!: string;
 
-    constructor(questionnaireResponse: Partial<IQuestionnaireResponse> | undefined = {}) {
-        this.id = uuid();
-        this.items = questionnaireResponse.items || [];
-        this.questionnaireId = questionnaireResponse.questionnaireId || uuid();
+    constructor(questionnaireResponse?: Partial<IQuestionnaireResponse>) {
+        Object.assign(this, { id: uuid(), items: [], questionnaireId: uuid() }, questionnaireResponse);
     }
 
     addQuestionnaireResponseItem(item?: Partial<IQuestionnaireResponseItem>) {
@@ -23,8 +21,6 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
     }
 
     updateQuestionnaireResponse(questionnaireResponse: IQuestionnaireResponse) {
-        this.id = questionnaireResponse.id;
-        this.items = questionnaireResponse.items || [];
-        this.questionnaireId = questionnaireResponse.questionnaireId;
+        Object.assign(this, questionnaireResponse);
     }
 }

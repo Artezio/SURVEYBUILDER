@@ -33,9 +33,9 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         const { questionnaire } = this.props;
         return (questionnaire && <div className="item-list">
             {questionnaire.items && questionnaire.items.map(item =>
-                <div key={item.id}>
-                    {ItemProvider({ item })}
-                </div>
+                // <div key={item.id}>
+                    <ItemProvider {...{ item }} key={item.id} />
+                // </div>
             )}
         </div>)
         // this.factory = getFactory(questionnaire)

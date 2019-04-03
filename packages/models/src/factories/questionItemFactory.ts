@@ -5,7 +5,7 @@ import { StringItem } from "../models/questionItems/stringItem";
 import { ICollection } from "../interfaces/ICollection";
 import { QuestionItem } from "..";
 
-export function questionItemFactory(item: Omit<IQuestionItem<any>, 'id' | 'type'>, parent?: ICollection<any>): QuestionItem<any> {
+export function questionItemFactory(item: Partial<Omit<IQuestionItem<any>, 'type'>>, parent?: ICollection<any>): QuestionItem<any> {
     switch (item.answerType) {
         case TEXT: {
             return new TextItem(item, parent);

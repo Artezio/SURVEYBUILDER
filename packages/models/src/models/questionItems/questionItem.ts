@@ -9,9 +9,9 @@ export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
     answerType!: ANSWER_TYPE;
     type: QUESTION = QUESTION;
 
-    constructor(item: Omit<IQuestionItem<T>, 'id' | 'type' | 'answerType'> | undefined = {}, parent?: ICollection<IQuestionItem<T>>) {
+    constructor(item: Partial<Omit<IQuestionItem<T>, 'type' | 'answerType'>> | undefined, parent?: ICollection<IQuestionItem<T>>) {
         super(item, parent);
-        this.initialValue = item.initialValue;
+        this.initialValue = item && item.initialValue;
     }
 }
 

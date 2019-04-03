@@ -4,16 +4,13 @@ import uuid from 'uuid/v1';
 
 @observable
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
-    id: string;
+    id!: string;
     text?: string;
-    items: IQuestionnaireResponseItem[];
+    items!: IQuestionnaireResponseItem[];
     value?: any;
 
-    constructor(item: Partial<IQuestionnaireResponseItem> | undefined = {}) {
-        this.id = item.id || uuid();
-        this.text = item.text;
-        this.items = item.items || [];
-        this.value = item.value;
+    constructor(item?: Partial<IQuestionnaireResponseItem>) {
+        Object.assign(this, { id: uuid(), items: [] }, item);
     }
 
     addQuestionnaireResponseItem(item?: Partial<IQuestionnaireResponseItem>) {
@@ -23,9 +20,6 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     updateQuestionnaireResponseItem(item: IQuestionnaireResponseItem) {
-        this.id = item.id;
-        this.items = item.items || [];
-        this.text = item.text;
-        this.value = item.value;
+        Object.assign(this, item);
     }
 }

@@ -6,9 +6,9 @@ export class GroupItem extends Item implements IGroupItem {
     items: IItem[];
     type: GROUP = GROUP;
 
-    constructor(item: Omit<IGroupItem, 'id' | 'type'> | undefined = {}, parent?: ICollection<IGroupItem>) {
+    constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: ICollection<IGroupItem>) {
         super(item, parent);
-        this.items = item.items || [];
+        this.items = item && item.items || [];
     }
 
     addItem(item: Item) {

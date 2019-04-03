@@ -4,23 +4,17 @@ import uuid from 'uuid/v1';
 
 @observable
 export class Questionnaire implements IQuestionnaire {
-    id: string;
+    id!: string;
     description?: string;
-    items: IItem[];
+    items!: IItem[];
     title?: string;
 
-    constructor(questionnaire: Omit<IQuestionnaire, 'id'> | undefined = {}) {
-        this.id = uuid();
-        this.description = questionnaire.description;
-        this.title = questionnaire.title;
-        this.items = questionnaire.items || [];
+    constructor(questionnaire?: Partial<IQuestionnaire>) {
+        Object.assign(this, { id: uuid(), items: [] }, questionnaire);
     }
 
     updateQuestionnaire(questionnaire: IQuestionnaire) {
-        this.id = questionnaire.id;
-        this.description = questionnaire.description;
-        this.title = questionnaire.title;
-        this.items = questionnaire.items || [];
+        Object.assign(this, questionnaire);
     }
 
     addItem(item: Item) {

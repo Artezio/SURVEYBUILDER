@@ -4,7 +4,7 @@ import { GroupItem } from "../models/groupItem";
 import { questionItemFactory } from "./questionItemFactory";
 import { ICollection } from "../interfaces/ICollection";
 
-export function itemFactory(item: Omit<IItem, 'id'> | Omit<IQuestionItem<any>, 'id'>, parent?: ICollection<any>): Item {
+export function itemFactory(item: Partial<IItem> | Partial<IQuestionItem<any>>, parent?: ICollection<any>): Item {
     switch (item.type) {
         case DISPLAY: {
             return new Item(item, parent)
