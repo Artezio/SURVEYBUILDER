@@ -6,7 +6,7 @@ import { QuestionItem } from "./questionItem";
 
 @observable
 export class TextItem extends QuestionItem<string> implements ITextItem {
-    answerType: TEXT = TEXT;
+    type: TEXT = TEXT;
 
     constructor(item: Partial<Omit<ITextItem, 'type'>> | undefined, parent?: ICollection<ITextItem>) {
         super(item, parent);

@@ -1,4 +1,4 @@
-import { IItem, DISPLAY, GROUP, TEXT, TextItem, STRING } from "..";
+import { IItem, TextItem } from "..";
 import Item from "../models/item";
 import { GroupItem } from "../models/groupItem";
 import { ICollection } from "../interfaces/ICollection";

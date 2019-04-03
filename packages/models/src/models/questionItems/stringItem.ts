@@ -7,7 +7,7 @@ import { observable } from "../../decorators/temporaryObservable";
 
 @observable
 export class StringItem extends QuestionItem<string> implements IStringItem {
-    answerType: STRING = STRING;
+    type: STRING = STRING;
 
     constructor(item: Partial<Omit<IStringItem, 'type'>> | undefined, parent?: ICollection<IStringItem>) {
         super(item, parent);

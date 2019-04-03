@@ -3,7 +3,7 @@ import { TEXT } from '../../constants/itemTypes';
 
 
 export interface ITextItem extends IQuestionItem<string> {
-    answerType: TEXT;
+    type: TEXT;
 };
 
 export default ITextItem;
