@@ -35,9 +35,9 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             <div className="card card-sm mb-3">
                 <div className="card-header p-1 d-flex justify-content-end">
                     <DropdownMenu title='Context menu' items={[
-                        { title: 'Create item', action: questionnaire.addItem.bind(questionnaire) },
-                        { title: 'Create text item', action: questionnaire.addTextItem.bind(questionnaire) },
-                        { title: 'Create group item', action: questionnaire.addGroupItem.bind(questionnaire) }
+                        { title: 'Create item', action: questionnaire.addItem.bind(questionnaire, Models.itemFactory({ type: "DISPLAY" }, questionnaire)) },
+                        { title: 'Create text item', action: questionnaire.addItem.bind(questionnaire, Models.itemFactory({ type: "QUESTION", answerType: "TEXT" }, questionnaire)) },
+                        { title: 'Create group item', action: questionnaire.addItem.bind(questionnaire, Models.itemFactory({ type: "GROUP" }, questionnaire)) }
                     ]} />
                 </div>
                 <div className="card-body p-2">

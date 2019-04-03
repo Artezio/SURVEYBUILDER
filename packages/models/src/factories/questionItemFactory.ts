@@ -3,8 +3,9 @@ import TextItem from "../models/questionItems/textItem";
 import { TEXT, STRING } from "../constants/answerTypes";
 import { StringItem } from "../models/questionItems/stringItem";
 import { ICollection } from "../interfaces/ICollection";
+import { QuestionItem } from "..";
 
-export function questionItemFactory(item: Omit<IQuestionItem<any>, 'id' | 'type'>, parent?: ICollection<any>) {
+export function questionItemFactory(item: Omit<IQuestionItem<any>, 'id' | 'type'>, parent?: ICollection<any>): QuestionItem<any> {
     switch (item.answerType) {
         case TEXT: {
             return new TextItem(item, parent);
@@ -13,7 +14,9 @@ export function questionItemFactory(item: Omit<IQuestionItem<any>, 'id' | 'type'
             return new StringItem(item, parent);
         }
         default: {
-            return undefined;
+            return new StringItem(item, parent);
         }
     }
 }
+
+export default questionItemFactory;

@@ -10,7 +10,7 @@ export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
     type: QUESTION;
 
     constructor(item: Omit<IQuestionItem<T>, 'id' | 'type' | 'answerType'> | undefined = {}, parent?: ICollection<IQuestionItem<T>>) {
-        super(item);
+        super(item, parent);
         this.type = QUESTION;
         this.initialValue = item.initialValue;
     }
@@ -20,3 +20,5 @@ export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
         this.initialValue = item.initialValue;
     }
 }
+
+export default QuestionItem;

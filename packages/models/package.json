@@ -16,7 +16,10 @@
     "./Uml-diagram-models.JPG",
     "./Uml-diagram-models.xml"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "@types/uuid": "^3.4.4",
+    "uuid": "^3.3.2"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",

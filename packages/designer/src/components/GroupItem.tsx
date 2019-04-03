@@ -27,13 +27,13 @@ export class GroupItem extends React.Component<GroupItemProps> {
     render() {
         const { item } = this.props;
         return <div className="card my-5">
-        <hr/>
+            <hr />
             <div className="card-header p-1 d-flex justify-content-end">
                 <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: item.remove.bind(item) },
-                    { title: 'Create item', action: item.addItem.bind(item) },
-                    { title: 'Create text item', action: item.addTextItem.bind(item) },
-                    { title: 'Create group item', action: item.addGroupItem.bind(item) }
+                    { title: 'Create item', action: item.addItem.bind(item, Models.itemFactory({ type: "DISPLAY" }, item)) },
+                    { title: 'Create text item', action: item.addItem.bind(item, Models.itemFactory({ type: "QUESTION", answerType: "TEXT" }, item)) },
+                    { title: 'Create group item', action: item.addItem.bind(item, Models.itemFactory({ type: "GROUP" }, item)) }
                 ]} />
             </div>
             <div className="card-body p-2">
@@ -51,7 +51,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
                     )}
                 </div>
             </div>
-            <hr/>
+            <hr />
         </div>
     }
 }
