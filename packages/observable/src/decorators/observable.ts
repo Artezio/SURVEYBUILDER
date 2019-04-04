@@ -1,73 +1,71 @@
-const __subscribe = Symbol('subscribe');
-const __emitChange = Symbol('emitChange');
-const __subscribers = Symbol('subscribers');
-const __notify = Symbol('notify');
-const __getHandler = Symbol('getHandler');
+import { toObservable, isObservable, getObservable } from "../toObservable";
 
-export interface IObservable {
-    subscribe(fn: Function): IDestroyable;
-}
 
-export interface IDestroyable {
-    destroy(): void;
-}
-
-const createProxy = (target: any, handler: ProxyHandler<any>) => {
-    return new Proxy(target, handler);
-}
 export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
     return class Observable extends ctor {
-        [__subscribers]: Function[];
-
         constructor(...args: any[]) {
             super(...args);
-            this[__subscribers] = [];
-            return createProxy(this, this[__getHandler]());
-        }
-
-        [__notify](fn: Function) {
-            setTimeout(() => {
-                fn(createProxy(this, this[__getHandler]()));
-            }, 0)
-        }
-
-        [__getHandler]() {
-            return {
-                set: (target: any, propertyName: string, value: any) => {
-                    if (target[propertyName] !== value) {
-                        target[propertyName] = value;
-                        this[__emitChange]();
-                    }
-                    return true;
+            Object.keys(this).forEach((propertyName: string) => {
+                if (isObservable(this[propertyName])) {
+                    const obs = getObservable(this[propertyName]);
+                    obs.subscribe(field => {
+                        this[propertyName] = field;
+                    })
                 }
-            }
-        }
-
-        [__subscribe](fn: Function) {
-            this[__subscribers].push(fn);
-            const destroy = () => {
-                this[__subscribers] = this[__subscribers].filter(x => x !== fn);
-            }
-            return ({
-                destroy
-            }) as IDestroyable
-        }
-
-        [__emitChange]() {
-            this[__subscribers].forEach(this[__notify].bind(this))
+            })
+            return toObservable(this);
         }
     }
 }
 
-export const isObservable = (obj: any) => {
-    return obj && !!obj[__subscribe] && !!obj[__emitChange];
-}
+// var clone = function clone(func) {
+//     return function (obj) {
+//         func.prototype = obj;
+//         return new func;
+//     }
+// }(function () { });
 
-export const getObservable = (target: any): IObservable | undefined => {
-    if (isObservable(target)) {
-        return {
-            subscribe: target[__subscribe].bind(target)
-        };
-    }
-    return undefined;
+// function extend(A, B) {
+//     A.prototype = clone(B.prototype);
+//     A.prototype.constructor = A;
+//     return A;
+// };
+
+
+export const observableArray = (target: any, propertyName: string) => {
+    let _array = toObservable([]);
+    console.log('======', target, target.constructor)
+
+    // target.constructor = (function (Ctor) {
+    //     return extend(function () {
+    //         Ctor.apply(this, arguments);
+    //         console.log('MB THIS WILL WORK')
+    //         Reflect.defineProperty(this, propertyName, {
+    //             set: function (value: any[]) {
+    //                 _array = toObservable(value);
+    //             },
+    //             get: function () {
+    //                 return _array;
+    //             },
+    //             enumerable: true
+    //         })
+    //     }, Ctor)
+    // }(target.constructor));
+
+    const result = Reflect.defineProperty(target.constructor, 'constructor', {
+        value: function () {
+            console.log('INSIDE NEW CONSTRUCTOR')
+            target.constructor.constructor.apply(this, arguments);
+            Reflect.defineProperty(this, propertyName, {
+                set: function (value: any[]) {
+                    _array = toObservable(value);
+                },
+                get: function () {
+                    return _array;
+                },
+                enumerable: true
+            })
+        }
+    })
+    console.log('CONSTRUCTOR DEFINED: ', result)
 }

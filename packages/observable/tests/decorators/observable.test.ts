@@ -1,11 +1,10 @@
 const assert = require('chai').assert;
-import { getObservable, observable, isObservable } from '../../src/decorators/temporaryObservable';
-import Questionnaire from '../../src/models/questionnaire';
-import { Item } from '../../src';
-
+import { getObservable, isObservable, toObservable } from '../../src/toObservable';
+import { observable, observableArray } from '../../src/decorators/observable';
 
 @observable
 class Person {
+    @observableArray
     pets: any[];
     name: string;
     age: number;
@@ -136,7 +135,6 @@ describe("decorators/observable", () => {
                 done();
             })
             oldPets.push(animal_2);
-            person.pets = [...oldPets];
         })
         it("unsubscribe with primitive fields", (done) => {
             const person = new Person('Name', 15);
@@ -156,64 +154,80 @@ describe("decorators/observable", () => {
             }, 50);
         })
     })
-    describe("questionnaire model", () => {
-        it("is observable", () => {
-            const q = new Questionnaire();
-            assert(isObservable(q));
+    describe("toObservable", () => {
+        it('isObservable', () => {
+            const animal = toObservable(new Animal('name'));
+            assert(isObservable(animal));
         })
-        it("update questionnaire works", done => {
-            const q = new Questionnaire();
-            const oldTitle = q.title;
-            const oldId = q.id;
-            const oldItems = q.items;
-            const expectedVal = 'bla';
-            const obs = getObservable(q);
-            obs.subscribe(quest => {
-                assert.notEqual(q, quest);
-                assert.equal(oldId, quest.id);
-                assert.notEqual(oldTitle, quest.title);
-                assert.equal(oldItems, quest.items);
-                assert.equal(quest.title, expectedVal);
+        it('change observed', (done) => {
+            const arr = [1, 2, 3];
+            let animal = toObservable(arr);
+            const obs = getObservable(animal);
+            obs.subscribe((obj) => {
+                assert.notEqual(obj, animal);
                 done();
             })
-            q.updateQuestionnaire({ ...q, title: expectedVal })
-        })
-        it("add observable item", done => {
-            const i = new Item();
-            const q = new Questionnaire();
-            const oldItems = q.items;
-            const obs = getObservable(q);
-            obs.subscribe(quest => {
-                assert(isObservable(quest.items[0]));
-                assert.notEqual(quest.items, oldItems);
-                done();
-            })
-            q.addItem();
-        })
-        it("remove item from questionnaire", done => {
-            const i = new Item({});
-            const q = new Questionnaire({ items: [i] });
-            const oldItems = q.items;
-            const obs = getObservable(q);
-            obs.subscribe(quest => {
-                assert(quest.items.length === 0);
-                assert(oldItems.length === 1);
-                done();
-            })
-            q.removeItem(i);
-        })
-        it("remove item from item", done => {
-            const q = new Questionnaire();
-            const i = new Item({}, q);
-            q.addItem(i);
-            const obs = getObservable(q);
-            obs.subscribe(quest => {
-                assert(Array.isArray(quest.items));
-                assert(quest.items.indexOf(i) === -1);
-                assert(quest.items.length === 0);
-                done();
-            });
-            i.removeItem();
+            animal.push(1)
         })
     })
+    // describe("questionnaire model", () => {
+    //     it("is observable", () => {
+    //         const q = new Questionnaire();
+    //         assert(isObservable(q));
+    //     })
+    //     it("update questionnaire works", done => {
+    //         const q = new Questionnaire();
+    //         const oldTitle = q.title;
+    //         const oldId = q.id;
+    //         const oldItems = q.items;
+    //         const expectedVal = 'bla';
+    //         const obs = getObservable(q);
+    //         obs.subscribe(quest => {
+    //             assert.notEqual(q, quest);
+    //             assert.equal(oldId, quest.id);
+    //             assert.notEqual(oldTitle, quest.title);
+    //             assert.equal(oldItems, quest.items);
+    //             assert.equal(quest.title, expectedVal);
+    //             done();
+    //         })
+    //         q.updateQuestionnaire({ ...q, title: expectedVal })
+    //     })
+    //     it("add observable item", done => {
+    //         const i = new Item();
+    //         const q = new Questionnaire();
+    //         const oldItems = q.items;
+    //         const obs = getObservable(q);
+    //         obs.subscribe(quest => {
+    //             assert(isObservable(quest.items[0]));
+    //             assert.notEqual(quest.items, oldItems);
+    //             done();
+    //         })
+    //         q.addItem();
+    //     })
+    //     it("remove item from questionnaire", done => {
+    //         const i = new Item({});
+    //         const q = new Questionnaire({ items: [i] });
+    //         const oldItems = q.items;
+    //         const obs = getObservable(q);
+    //         obs.subscribe(quest => {
+    //             assert(quest.items.length === 0);
+    //             assert(oldItems.length === 1);
+    //             done();
+    //         })
+    //         q.removeItem(i);
+    //     })
+    //     it("remove item from item", done => {
+    //         const q = new Questionnaire();
+    //         const i = new Item({}, q);
+    //         q.addItem(i);
+    //         const obs = getObservable(q);
+    //         obs.subscribe(quest => {
+    //             assert(Array.isArray(quest.items));
+    //             assert(quest.items.indexOf(i) === -1);
+    //             assert(quest.items.length === 0);
+    //             done();
+    //         });
+    //         i.removeItem();
+    //     })
+    // })
 })
