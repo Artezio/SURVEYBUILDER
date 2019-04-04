@@ -31,16 +31,43 @@ export class GroupItem extends React.Component<GroupItemProps> {
         </div>
     }
 
+    remove() {
+        const { item } = this.props;
+        item.remove();
+    }
+
+    addItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createItem();
+        item && item.addItem(newItem);
+    }
+
+    addGroupItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createGroupItem();
+        item && item.addItem(newItem);
+    }
+
+    addTextItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createTextItem();
+        item && item.addItem(newItem);
+    }
+
+    renderMenu() {
+        return <DropdownMenu title="Context menu" items={[
+            { title: 'Remove item', action: this.remove.bind(this) },
+            { title: 'Add text', action: this.addItem.bind(this) },
+            { title: 'Add long-text question', action: this.addTextItem.bind(this) },
+            { title: 'Add group', action: this.addGroupItem.bind(this) }
+        ]} />
+    }
+
     render() {
         const { item } = this.props;
         return <div className="card my-5">
             <div className="card-header p-1 d-flex justify-content-end">
-                <DropdownMenu title="Context menu" items={[
-                    { title: 'Remove item', action: item.remove.bind(item) },
-                    { title: 'Create item', action: item.addItem.bind(item, this.itemFactory.createItem()) },
-                    { title: 'Create text item', action: item.addItem.bind(item, this.itemFactory.createTextItem()) },
-                    { title: 'Create group item', action: item.addItem.bind(item, this.itemFactory.createGroupItem()) }
-                ]} />
+                {this.renderMenu()}
             </div>
             <div className="card-body p-2">
                 <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>

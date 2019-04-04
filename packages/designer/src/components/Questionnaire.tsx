@@ -35,16 +35,33 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         return (questionnaire && <div className="item-list">
             {questionnaire.items.map(item => <ItemProvider {...{ item }} key={item.id} />)}
         </div>)
-        // this.factory = getFactory(questionnaire)
-        // this.factory.createTextItem(item);
-        // this.factory.createBooleanItem();
     }
 
-    // createDisplayItem(){
-    //     const {collection, factory} = this.props;
-    //     const item = factory.createDisplayItme();
-    //     collection.addItem(item);
-    // }
+    addItem() {
+        const { questionnaire } = this.props;
+        const item = this.itemFactory.createItem();
+        questionnaire && questionnaire.addItem(item);
+    }
+
+    addGroupItem() {
+        const { questionnaire } = this.props;
+        const item = this.itemFactory.createGroupItem();
+        questionnaire && questionnaire.addItem(item);
+    }
+
+    addTextItem() {
+        const { questionnaire } = this.props;
+        const item = this.itemFactory.createTextItem();
+        questionnaire && questionnaire.addItem(item);
+    }
+
+    renderMenu() {
+        return <DropdownMenu title='Context menu' items={[
+            { title: 'Add text', action: this.addItem.bind(this) },
+            { title: 'Add long-text question', action: this.addTextItem.bind(this) },
+            { title: 'Add group', action: this.addGroupItem.bind(this) }
+        ]} />
+    }
 
     render() {
         const { questionnaire, className = '' } = this.props;
@@ -52,11 +69,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             <div className="card card-sm mb-3">
                 <div className="card-header p-1 d-flex justify-content-end">
                     {/* <Menu collection={questionnaire} factory={this.getFactory()}></Menu> */}
-                    <DropdownMenu title='Context menu' items={[
-                        { title: 'Create item', action: questionnaire.addItem.bind(questionnaire, this.itemFactory.createItem()) },
-                        { title: 'Create text item', action: questionnaire.addItem.bind(questionnaire, this.itemFactory.createTextItem()) },
-                        { title: 'Create group item', action: questionnaire.addItem.bind(questionnaire, this.itemFactory.createGroupItem()) }
-                    ]} />
+                    {this.renderMenu()}
                 </div>
                 <div className="card-body p-2">
                     <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
