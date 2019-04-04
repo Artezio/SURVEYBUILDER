@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TextItemProps from '../interfaces/components/TextItemProps';
 import DropdownMenu from './DropdownMenu';
-import { FormApi, Form, Text } from 'informed';
+import { FormApi, Form, TextArea, Text } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../HOCs/useObservableModel';
 
@@ -33,13 +33,13 @@ export class TextItem extends React.Component<TextItemProps> {
             </div>
             <div className="card-body p-2">
                 <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="form-group mb-2">
-                        <label htmlFor="text-item-text" className="small mb-0">Question</label>
-                        <Text className="form-control form-control-sm" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <div className="form-group">
+                        <label htmlFor="text-item-text">Question</label>
+                        <Text className="form-control" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
                     <div className="form-group mb-0">
-                        <label htmlFor="text-item-initial-value" className="small mb-0">Default answer</label>
-                        <Text className="form-control form-control-sm" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
+                        <label htmlFor="text-item-initial-value">Default answer</label>
+                        <TextArea className="form-control" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
                     </div>
                 </Form>
             </div>

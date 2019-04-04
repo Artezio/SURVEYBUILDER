@@ -72,8 +72,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
             <div className="card-body p-2">
                 <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                     <div className="form-group">
-                        <label htmlFor="group-item-text" className="small mb-0">Group Title</label>
-                        <Text className="form-control form-control-sm" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                        <label htmlFor="group-item-text">Group Title</label>
+                        <Text className="form-control" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
                 </Form>
                 {this.renderItemList()}

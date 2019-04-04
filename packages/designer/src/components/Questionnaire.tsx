@@ -68,18 +68,17 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         return questionnaire && <div className={`questionnaire ${className}`}>
             <div className="card card-sm mb-3">
                 <div className="card-header p-1 d-flex justify-content-end">
-                    {/* <Menu collection={questionnaire} factory={this.getFactory()}></Menu> */}
                     {this.renderMenu()}
                 </div>
                 <div className="card-body p-2">
                     <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
-                        <div className="form-group mb-2">
-                            <label htmlFor="questionnaire-title" className="small mb-0">Questionnaire Title</label>
-                            <Text className="form-control form-control-sm" id="questionnaire-title" field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                        <div className="form-group">
+                            <label htmlFor="questionnaire-title">Questionnaire Title</label>
+                            <Text className="form-control" id="questionnaire-title" field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                         </div>
                         <div className="form-group mb-0">
-                            <label htmlFor="questionnaire-description" className="small mb-0">Questionnaire Description</label>
-                            <TextArea className="form-control form-control-sm" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                            <label htmlFor="questionnaire-description">Questionnaire Description</label>
+                            <TextArea className="form-control" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
                         </div>
                     </Form>
                 </div>

@@ -56,7 +56,7 @@ export class Layout extends React.Component<LayoutProps> {
                     {application.mode === DESIGN && <a className="nav-link ml-auto text-dark" href="javascript:void(0)" onClick={this.createQuestionnaireAndResponse.bind(this)}>Create Questionnaire</a>}
                 </div>
             </nav>
-            <div className="main-area row my-2">
+            <div className="main-area row py-2">
                 <div className="col-12">
                     {application.questionnaire && (application.mode === DESIGN ?
                         <QuestionnaireDesigner questionnaire={application.questionnaire} key={application.questionnaire.id} /> :
