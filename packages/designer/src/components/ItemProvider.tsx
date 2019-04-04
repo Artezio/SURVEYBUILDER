@@ -2,7 +2,7 @@ import * as React from 'react';
 import Item from './Item';
 import * as Models from '@art-forms/models';
 import GroupItem from '../components/GroupItem';
-import TextItem from './TextItem';
+import TextItem from './questionItems/TextItem';
 
 
 export const ItemProvider = (props: any) => {

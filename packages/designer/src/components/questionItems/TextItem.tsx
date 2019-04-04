@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TextItemProps from '../interfaces/components/TextItemProps';
-import DropdownMenu from './DropdownMenu';
+import TextItemProps from '../../interfaces/components/TextItemProps';
+import DropdownMenu from '../DropdownMenu';
 import { FormApi, Form, TextArea, Text } from 'informed';
 import * as Models from '@art-forms/models';
-import useObservableModel from '../HOCs/useObservableModel';
+import useObservableModel from '../../HOCs/useObservableModel';
 
 
 export class TextItem extends React.Component<TextItemProps> {
@@ -24,8 +24,8 @@ export class TextItem extends React.Component<TextItemProps> {
     }
 
     render() {
-        const { item } = this.props;
-        return <div className="text-item card card-sm mb-3">
+        const { item, className } = this.props;
+        return <div className={`text-item card card-sm mb-3 ${className}`}>
             <div className="card-header p-1 d-flex justify-content-end">
                 <DropdownMenu title="Context menu" items={[
                     { title: 'Remove item', action: item.remove.bind(item) }

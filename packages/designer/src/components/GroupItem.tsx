@@ -64,8 +64,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
     }
 
     render() {
-        const { item } = this.props;
-        return <div className="card my-5">
+        const { item, className } = this.props;
+        return <div className={`card my-5 ${className}`}>
             <div className="card-header p-1 d-flex justify-content-end">
                 {this.renderMenu()}
             </div>
