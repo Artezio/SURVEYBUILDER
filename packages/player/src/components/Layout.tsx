@@ -21,7 +21,7 @@ export class Layout extends React.Component<LayoutProps> {
                 </div>
             </nav>
             <div className="main-area row py-5 justify-content-center">
-                <div className="col-10">
+                <div className="col-9">
                     {questionnaire && <QuestionnairePlayer questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} className={className} />}
                 </div>
             </div>

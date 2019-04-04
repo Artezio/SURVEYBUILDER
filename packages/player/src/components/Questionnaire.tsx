@@ -14,21 +14,26 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         })
     }
 
+    renderItemList() {
+        const { questionnaire, questionnaireResponse } = this.props;
+        return <div className="item-list card-body">
+            {questionnaire && questionnaire.items && questionnaire.items.map(item => {
+                return <div key={item.id}>
+                    <ItemProvider {...{ item, questionnaireResponseItem: questionnaireResponse && questionnaireResponse.items.find(x => x.id === item.id) }} />
+                </div>
+            }
+            )}
+        </div>
+    }
+
     render() {
-        const { questionnaire, questionnaireResponse, className = '' } = this.props;
+        const { questionnaire, className = '' } = this.props;
         return <div className={`card card-sm ${className}`}>
             <div className="card-header">
                 <h2>{questionnaire && questionnaire.title}</h2>
                 <h5>{questionnaire && questionnaire.description}</h5>
             </div>
-            <div className="item-list card-body">
-                {questionnaire && questionnaire.items && questionnaire.items.map(item => {
-                    return <div key={item.id}>
-                        {ItemProvider({ item, questionnaireResponseItem: questionnaireResponse && questionnaireResponse.items.find(x => x.id === item.id) })}
-                    </div>
-                }
-                )}
-            </div>
+            {this.renderItemList()}
         </div>
     }
 }

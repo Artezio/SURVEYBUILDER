@@ -13,15 +13,19 @@ export class GroupItem extends React.Component<GroupItemProps> {
             (!props.questionnaireResponseItem.items.some(item => item.id === x.id)) && props.questionnaireResponseItem.addQuestionnaireResponseItem({ id: x.id, value: (x as Models.ITextItem).initialValue })
         })
     }
-    render() {
+
+    renderItemList() {
         const { item, questionnaireResponseItem } = this.props;
+        return <div className="item-list">
+            {item.items.map(item => <ItemProvider key={item.id} {...{ item, questionnaireResponseItem: questionnaireResponseItem && questionnaireResponseItem.items.find(x => x.id === item.id) }} />)}
+        </div>
+    }
+
+    render() {
+        const { item } = this.props;
         return <div className="my-5">
-            <h4>{item.text}</h4>
-            {item.items.map(item => {
-                return <div key={item.id}>
-                    {ItemProvider({ item, questionnaireResponseItem: questionnaireResponseItem && questionnaireResponseItem.items.find(x => x.id === item.id) })}
-                </div>
-            })}
+            <h4 className="mb-3">{item.text}</h4>
+            {this.renderItemList()}
         </div>
     }
 }

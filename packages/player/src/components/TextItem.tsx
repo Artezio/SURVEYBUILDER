@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { TextItemProps } from '../interfaces/components/TextItemProps';
-import { Form, Text, FormApi } from 'informed';
+import { Form, TextArea, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../HOCs/useObservableModel';
+import QuestionItemProps from '../interfaces/components/QuestionItemProps';
 
 
-export class TextItem extends React.Component<TextItemProps> {
+export class TextItem extends React.Component<QuestionItemProps<string>> {
     formApi!: FormApi<Models.IQuestionnaireResponseItem>;
 
-    constructor(props: TextItemProps) {
+    constructor(props: QuestionItemProps<string>) {
         super(props);
     }
 
@@ -31,12 +31,12 @@ export class TextItem extends React.Component<TextItemProps> {
         return <div className="mb-3">
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                <label htmlFor="string-answer" className="">{item.text}</label>
-                    <Text id="string-answer" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor="string-answer" className="mb-1">{item.text}</label>
+                    <TextArea id="string-answer" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
                 </div>
             </Form>
         </div>
     }
 }
 
-export default useObservableModel<TextItemProps>(TextItem);
+export default useObservableModel<QuestionItemProps<string>>(TextItem);
