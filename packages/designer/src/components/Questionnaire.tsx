@@ -9,7 +9,52 @@ import useObservableModel from '../HOCs/useObservableModel';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.IQuestionnaire>;
-    itemFactory = new Models.ItemFactory(this.props.questionnaire);
+    itemFactory: Models.ItemFactory;
+    documentListener: EventListener;
+    itemListener: EventListener;
+
+    constructor(props: QuestionnaireProps) {
+        super(props);
+        this.itemFactory = new Models.ItemFactory(this.props.questionnaire);
+        this.documentListener = (e: Event) => {
+            if (!e.defaultPrevented) {
+                this.clearSelected();
+            }
+        }
+        this.itemListener = (e: Event) => {
+            e.preventDefault();
+            const target = (e.currentTarget as Element);
+            if (!target.classList.contains('card-active')) {
+                this.clearSelected();
+                target && target.classList.add('card-active');
+                target && target.classList.add('shadow');
+            }
+        }
+        this.subscribeDocument();
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.documentListener);
+    }
+
+    clearSelected() {
+        const selectedItems = document.querySelectorAll('.card-active');
+        selectedItems.forEach(selectedItem => {
+            selectedItem && selectedItem.classList.remove('card-active');
+            selectedItem && selectedItem.classList.remove('shadow');
+        })
+    }
+
+    subscribeDocument() {
+        document.addEventListener('click', this.documentListener);
+    }
+
+    highlightActiveItems() {
+        document.querySelectorAll('.item').forEach(el => {
+            el.removeEventListener('click', this.itemListener);
+            el.addEventListener('click', this.itemListener);
+        })
+    }
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { questionnaire } = this.props;
@@ -28,6 +73,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     componentDidUpdate() {
         const { questionnaire } = this.props;
         this.formApi.setValues(questionnaire as Models.Questionnaire);
+        { this.highlightActiveItems() }
     }
 
     renderItemList() {
@@ -35,6 +81,14 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         return (questionnaire && <div className="item-list">
             {questionnaire.items.map(item => <ItemProvider {...{ item }} key={item.id} />)}
         </div>)
+    }
+
+    renderMenu() {
+        return <DropdownMenu title='Context menu' items={[
+            { title: 'Add text', action: this.addItem.bind(this) },
+            { title: 'Add long-text question', action: this.addTextItem.bind(this) },
+            { title: 'Add group', action: this.addGroupItem.bind(this) }
+        ]} />
     }
 
     addItem() {
@@ -53,14 +107,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         const { questionnaire } = this.props;
         const item = this.itemFactory.createTextItem();
         questionnaire && questionnaire.addItem(item);
-    }
-
-    renderMenu() {
-        return <DropdownMenu title='Context menu' items={[
-            { title: 'Add text', action: this.addItem.bind(this) },
-            { title: 'Add long-text question', action: this.addTextItem.bind(this) },
-            { title: 'Add group', action: this.addGroupItem.bind(this) }
-        ]} />
     }
 
     render() {

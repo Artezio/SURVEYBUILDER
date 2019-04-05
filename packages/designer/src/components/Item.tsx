@@ -24,7 +24,7 @@ export class Item extends React.Component<ItemProps> {
     }
 
     render() {
-        const { item, className } = this.props;
+        const { item, className = '' } = this.props;
         return <div className={`item card card-sm mb-3 ${className}`}>
             <div className="card-header p-1 d-flex justify-content-end">
                 <DropdownMenu title="Context menu" items={[
