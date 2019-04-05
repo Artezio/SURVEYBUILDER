@@ -4,7 +4,7 @@ import { observable, observableArray } from '../../src/decorators/observable';
 
 @observable
 class Person {
-    @observableArray
+    // @observableArray
     pets: any[];
     name: string;
     age: number;
