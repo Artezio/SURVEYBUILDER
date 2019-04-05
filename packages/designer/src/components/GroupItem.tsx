@@ -5,6 +5,8 @@ import ItemProvider from './ItemProvider';
 import useObservableModel from '../HOCs/useObservableModel';
 import { FormApi, Form, Text } from 'informed';
 import * as Models from '@art-forms/models';
+import Ocations, { Trashcan } from '@githubprimer/octicons-react';
+
 
 export class GroupItem extends React.Component<GroupItemProps> {
     formApi!: FormApi<Partial<Models.IGroupItem>>;
@@ -56,7 +58,6 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     renderMenu() {
         return <DropdownMenu title="Context menu" items={[
-            { title: 'Remove item', action: this.remove.bind(this) },
             { title: 'Add text', action: this.addItem.bind(this) },
             { title: 'Add long-text question', action: this.addTextItem.bind(this) },
             { title: 'Add group', action: this.addGroupItem.bind(this) }
@@ -78,6 +79,15 @@ export class GroupItem extends React.Component<GroupItemProps> {
                 </Form>
                 {this.renderItemList()}
             </div>
+            <div className="card-footer p-1 d-flex justify-content-between align-items-center">
+                    <div className="custom-control mb-0">
+                        <input name="required" type="checkbox" className="custom-control-input" id="item-required" />
+                        <label className="custom-control-label" htmlFor="item-required">Required</label>
+                    </div>
+                    <button className="btn p-1 mr-2" onClick={item.remove.bind(item)}>
+                        <Ocations icon={Trashcan} />
+                    </button>
+                </div>
         </div>
     }
 }

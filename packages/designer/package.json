@@ -46,6 +46,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@githubprimer/octicons-react": "^8.5.0",
     "@types/redux-logger": "^3.0.7",
     "awesome-typescript-loader": "^5.2.1",
     "redux-logger": "^3.0.6",
