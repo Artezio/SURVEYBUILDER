@@ -1,5 +1,17 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "target": "es5",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "jsx": "preserve",
+        "lib": [
+            "es5",
+            "es6",
+            "dom"
+        ]
     }
 }

@@ -136,6 +136,24 @@ describe("decorators/observable", () => {
             })
             oldPets.push(animal_2);
         })
+        it("array was observed few times", (done) => {
+            const animal_1 = new Animal('animal_1');
+            const animal_2 = new Animal('animal_2');
+            const person = new Person('Name', 15);
+            const oldPets = person.pets;
+            let i = 0;
+            const obs = getObservable(person);
+            obs && obs.subscribe((obj: any) => {
+                i++;
+            })
+            person.pets.push(animal_1);
+            person.pets.push(animal_2);
+            person.pets.push(animal_1);
+            setTimeout(() => {
+                assert(i === 3)
+                done()
+            }, 50);
+        })
         it("unsubscribe with primitive fields", (done) => {
             const person = new Person('Name', 15);
             const obs = getObservable(person);
@@ -145,7 +163,7 @@ describe("decorators/observable", () => {
             })
             person.age = 1;
             person.name = 'Masha';
-            unsubscribe && unsubscribe.destroy();
+            unsubscribe && unsubscribe.dispose();
             person.age = 14;
             person.name = 'Vypsen';
             setTimeout(() => {

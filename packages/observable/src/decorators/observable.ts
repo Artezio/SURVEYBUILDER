@@ -1,67 +1,32 @@
-import { toObservable, isObservable, getObservable } from "../toObservable";
+import { toObservable, getObservable } from "../toObservable";
 
 
 export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
     return class Observable extends ctor {
         constructor(...args: any[]) {
             super(...args);
-            // Object.getOwnPropertySymbols(ctor.prototype)
-            //     .map((symbol: any) => {
-            //         if (isObservable(ctor.prototype[symbol])) {
-            //             return ctor.prototype[symbol];
-            //         }
-            //     })
-            //     .forEach((obj: any) => {
-            //         let _array = toObservable([]);
-            //         Reflect.defineProperty(this, obj.key, {
-            //             set: function (value: any[]) {
-            //                 console.log('SETTER')
-            //                 _array = toObservable(value);
-            //             },
-            //             get: function () {
-            //                 console.log('GETTER')
-            //                 return _array;
-            //             },
-            //             enumerable: true
-            //         })
-            //         const obs = getObservable(this[obj.key]);
-            // obs.subscribe(value => {
-            //     this[obj.key] = value;
-            // })
-            //     })
-            // console.log(isObservable((this as any).pets))
-            // .forEach((propertyName: any) => {
-            //     if (isObservable(this[propertyName])) {
-            //         const obs = getObservable(this[propertyName]);
-            //         obs.subscribe(field => {
-            //             this[propertyName] = field;
-            //         })
-            //     }
-            // })
             Object.keys(this)
                 .filter(key => Array.isArray(this[key]))
                 .forEach(propertyName => {
-                    // let _array = toObservable([]);
-                    // Reflect.defineProperty(this, propertyName, {
-                    //     set: function (value: any[]) {
-                    //         console.log('SETTER')
-                    //         _array = toObservable(value);
-                    //     },
-                    //     get: function () {
-                    //         console.log('GETTER')
-                    //         return _array;
-                    //     },
-                    //     enumerable: true
-                    // })
                     this[propertyName] = toObservable(this[propertyName]);
                     const obs = getObservable(this[propertyName]);
-                    obs.subscribe(function (value) {
-                        console.log(this[propertyName])
-                        this[propertyName] = toObservable(value);
+                    const disposable = obs.subscribe((value) => {
+                        this._setField(propertyName, value);
+                        disposable.dispose();
                     })
-                })
-
+                });
             return toObservable(this);
+        }
+
+        _setField(propertyName: string, value: any) {
+            const old = this[propertyName];
+            this[propertyName] = toObservable(value);
+            const obs = getObservable(this[propertyName]);
+            obs.subscribe((value) => {
+                this._setField(propertyName, value);
+            })
+            console.log('before emit')
+            getObservable(this).emitChange();
         }
     }
 }
