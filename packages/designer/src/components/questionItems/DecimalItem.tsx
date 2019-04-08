@@ -1,32 +1,31 @@
 import * as React from 'react';
-import DropdownMenu from './DropdownMenu';
-import ItemProps from '../interfaces/components/ItemProps';
-import { Form, TextArea, FormApi, Checkbox } from 'informed';
+import DecimalItemProps from '../../interfaces/components/questionItems/DecimalItemProps';
+import { FormApi, Form, Checkbox, Text } from 'informed';
 import * as Models from '@art-forms/models';
-import useObservableModel from '../HOCs/useObservableModel';
+import useObservableModel from '../../HOCs/useObservableModel';
 import Ocations, { Trashcan } from '@githubprimer/octicons-react';
 
 
-export class Item extends React.Component<ItemProps> {
-    formApi!: FormApi<Models.IItem>;
+export class DecimalItem extends React.Component<DecimalItemProps> {
+    formApi!: FormApi<Omit<Models.IDecimalItem, 'type'>>;
 
     submitForm() {
         if (!this.formApi) return;
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.IItem>) {
+    getFormApi(formApi: FormApi<Omit<Models.IDecimalItem, 'type'>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.IItem>) {
+    handleSubmit(values: Partial<Omit<Models.IDecimalItem, 'type'>>) {
         const { item } = this.props;
         item.updateItem({ ...item, ...values });
     }
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.Item);
+        this.formApi.setValues(item as Models.IDecimalItem);
     }
 
     render() {
@@ -34,11 +33,15 @@ export class Item extends React.Component<ItemProps> {
         return <div className={`item card card-sm mb-3 ${className}`}>
             <div className="card-header p-1 d-flex justify-content-end">
             </div>
-            <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+            <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="card-body p-2">
+                    <div className="form-group">
+                        <label htmlFor="text-item-text">Question</label>
+                        <Text className="form-control" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    </div>
                     <div className="form-group mb-0">
-                        <label htmlFor="item-text">Text</label>
-                        <TextArea className="form-control" id="item-text" field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                        <label htmlFor="text-item-initial-value">Default answer</label>
+                        <Text className="form-control" type="number" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
                     </div>
                 </div>
                 <div className="card-footer p-1 d-flex justify-content-between align-items-center">
@@ -55,4 +58,4 @@ export class Item extends React.Component<ItemProps> {
     }
 }
 
-export default useObservableModel<ItemProps>(Item);
+export default useObservableModel<DecimalItemProps>(DecimalItem);

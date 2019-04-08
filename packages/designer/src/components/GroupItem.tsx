@@ -56,11 +56,30 @@ export class GroupItem extends React.Component<GroupItemProps> {
         item && item.addItem(newItem);
     }
 
+    addStringItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createStringItem();
+        item && item.addItem(newItem);
+    }
+
+    addDecimalItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createDecimalItem();
+        item && item.addItem(newItem);
+    }
+
+    componentDidUpdate() {
+        const { item } = this.props;
+        this.formApi.setValues(item as Models.GroupItem);
+    }
+
     renderMenu() {
         return <DropdownMenu title="Context menu" items={[
             { title: 'Add text', action: this.addItem.bind(this) },
+            { title: 'Add group', action: this.addGroupItem.bind(this) },
             { title: 'Add long-text question', action: this.addTextItem.bind(this) },
-            { title: 'Add group', action: this.addGroupItem.bind(this) }
+            { title: 'Add short-text question', action: this.addStringItem.bind(this) },
+            { title: 'Add decimal question', action: this.addDecimalItem.bind(this) }
         ]} />
     }
 
@@ -80,14 +99,14 @@ export class GroupItem extends React.Component<GroupItemProps> {
                 {this.renderItemList()}
             </div>
             <div className="card-footer p-1 d-flex justify-content-between align-items-center">
-                    <div className="custom-control mb-0">
-                        <input name="required" type="checkbox" className="custom-control-input" id="item-required" />
-                        <label className="custom-control-label" htmlFor="item-required">Required</label>
-                    </div>
-                    <button className="btn p-1 mr-2" onClick={item.remove.bind(item)}>
-                        <Ocations icon={Trashcan} />
-                    </button>
+                <div className="custom-control mb-0">
+                    <input name="required" type="checkbox" className="custom-control-input" id="item-required" />
+                    <label className="custom-control-label" htmlFor="item-required">Required</label>
                 </div>
+                <button className="btn p-1 mr-2" onClick={item.remove.bind(item)}>
+                    <Ocations icon={Trashcan} />
+                </button>
+            </div>
         </div>
     }
 }

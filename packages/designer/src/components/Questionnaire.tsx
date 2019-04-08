@@ -83,14 +83,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         </div>)
     }
 
-    renderMenu() {
-        return <DropdownMenu title='Context menu' items={[
-            { title: 'Add text', action: this.addItem.bind(this) },
-            { title: 'Add long-text question', action: this.addTextItem.bind(this) },
-            { title: 'Add group', action: this.addGroupItem.bind(this) }
-        ]} />
-    }
-
     addItem() {
         const { questionnaire } = this.props;
         const item = this.itemFactory.createItem();
@@ -107,6 +99,28 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         const { questionnaire } = this.props;
         const item = this.itemFactory.createTextItem();
         questionnaire && questionnaire.addItem(item);
+    }
+
+    addStringItem() {
+        const { questionnaire } = this.props;
+        const item = this.itemFactory.createStringItem();
+        questionnaire && questionnaire.addItem(item);
+    }
+
+    addDecimalItem() {
+        const { questionnaire } = this.props;
+        const item = this.itemFactory.createDecimalItem();
+        questionnaire && questionnaire.addItem(item);
+    }
+
+    renderMenu() {
+        return <DropdownMenu title='Context menu' items={[
+            { title: 'Add text', action: this.addItem.bind(this) },
+            { title: 'Add group', action: this.addGroupItem.bind(this) },
+            { title: 'Add long-text question', action: this.addTextItem.bind(this) },
+            { title: 'Add short-text question', action: this.addStringItem.bind(this) },
+            { title: 'Add decimal question', action: this.addDecimalItem.bind(this) }
+        ]} />
     }
 
     render() {

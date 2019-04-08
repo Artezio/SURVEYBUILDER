@@ -22,7 +22,8 @@ questionnaire.addItem(factory.createGroupItem({
     ]
 }
 ));
-questionnaire.addItem(factory.createItem({ text: 'end.' }))
+questionnaire.addItem(factory.createStringItem({ text: 'end.' }));
+questionnaire.addItem(factory.createDecimalItem({ text: 'end.' }));
 const questionnaireResponse = new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id })
 
 export const App = () => <Layout questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} />;
