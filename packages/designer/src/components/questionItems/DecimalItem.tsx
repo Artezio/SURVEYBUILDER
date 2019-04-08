@@ -36,18 +36,18 @@ export class DecimalItem extends React.Component<DecimalItemProps> {
             <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="card-body p-2">
                     <div className="form-group">
-                        <label htmlFor="text-item-text">Question</label>
-                        <Text className="form-control" id="text-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                        <label htmlFor="decimal-item-text">Question</label>
+                        <Text className="form-control" id="decimal-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                     </div>
                     <div className="form-group mb-0">
-                        <label htmlFor="text-item-initial-value">Default answer</label>
-                        <Text className="form-control" type="number" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
+                        <label htmlFor="decimal-item-initial-value">Default answer</label>
+                        <Text className="form-control" type="number" field="initialValue" id="decimal-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
                     </div>
                 </div>
                 <div className="card-footer p-1 d-flex justify-content-between align-items-center">
                     <div className="custom-control mb-0">
-                        <Checkbox field="required" type="checkbox" className="custom-control-input" id="item-required" />
-                        <label className="custom-control-label" htmlFor="item-required">Required</label>
+                        <Checkbox field="required" type="checkbox" className="custom-control-input" id="decimal-item-required" />
+                        <label className="custom-control-label" htmlFor="decimal-item-required">Required</label>
                     </div>
                     <button className="btn p-1 mr-2" onClick={item.remove.bind(item)}>
                         <Ocations icon={Trashcan} />

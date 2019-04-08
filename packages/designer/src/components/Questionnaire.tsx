@@ -4,7 +4,7 @@ import DropdownMenu from './DropdownMenu';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import ItemProvider from './ItemProvider';
-import useObservableModel from '../HOCs/useObservableModel';
+import { useObservableModel } from '@art-forms/observable';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
