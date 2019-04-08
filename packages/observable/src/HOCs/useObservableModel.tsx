@@ -34,7 +34,7 @@ export function useObservableModel<T>(WrappedComponent: any) {
                 if (Models.isObservable((this.props as any)[propertyName])) {
                     const observable = Models.getObservable((this.props as any)[propertyName]);
                     observable && this.subscriptions.push(observable.subscribe((obj: any) => {
-                        this.setState(obj);
+                        this.setState({ [propertyName]: obj });
                     }))
                 }
             })
