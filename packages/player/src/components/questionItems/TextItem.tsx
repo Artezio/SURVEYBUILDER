@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Form, TextArea, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
-import useObservableModel from '../HOCs/useObservableModel';
-import QuestionItemProps from '../interfaces/components/QuestionItemProps';
+import useObservableModel from '../../HOCs/useObservableModel';
+import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
 
 
 export class TextItem extends React.Component<QuestionItemProps<string>> {

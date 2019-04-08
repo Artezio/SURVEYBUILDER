@@ -1,31 +1,31 @@
 import * as React from 'react';
-import TextItemProps from '../../interfaces/components/questionItems/TextItemProps';
-import { FormApi, Form, TextArea, Text, Checkbox } from 'informed';
+import StringItemProps from '../../interfaces/components/questionItems/StringItemProps';
+import { FormApi, Form, Text, Checkbox } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
 import Ocations, { Trashcan } from '@githubprimer/octicons-react';
 
 
-export class TextItem extends React.Component<TextItemProps> {
-    formApi!: FormApi<Omit<Models.ITextItem, 'type'>>;
+export class StringItem extends React.Component<StringItemProps> {
+    formApi!: FormApi<Omit<Models.IStringItem, 'type'>>;
 
     submitForm() {
         if (!this.formApi) return;
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Omit<Models.ITextItem, 'type'>>) {
+    getFormApi(formApi: FormApi<Omit<Models.IStringItem, 'type'>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Omit<Models.ITextItem, 'type'>>) {
+    handleSubmit(values: Partial<Omit<Models.IStringItem, 'type'>>) {
         const { item } = this.props;
         item.updateItem({ ...item, ...values });
     }
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.TextItem);
+        this.formApi.setValues(item as Models.StringItem);
     }
 
     render() {
@@ -41,7 +41,7 @@ export class TextItem extends React.Component<TextItemProps> {
                     </div>
                     <div className="form-group mb-0">
                         <label htmlFor="text-item-initial-value">Default answer</label>
-                        <TextArea className="form-control" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
+                        <Text className="form-control" field="initialValue" id="text-item-initial-value" placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
                     </div>
                 </div>
                 <div className="card-footer p-1 d-flex justify-content-between align-items-center">
@@ -58,4 +58,4 @@ export class TextItem extends React.Component<TextItemProps> {
     }
 }
 
-export default useObservableModel<TextItemProps>(TextItem);
+export default useObservableModel<StringItemProps>(StringItem);
