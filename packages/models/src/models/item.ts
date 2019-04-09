@@ -16,7 +16,8 @@ export class Item implements IItem {
     }
 
     updateItem(item: IItem) {
-        Object.assign(this, item);
+        this.id = item.id;
+        this.text = item.text;
     }
 
     remove() {

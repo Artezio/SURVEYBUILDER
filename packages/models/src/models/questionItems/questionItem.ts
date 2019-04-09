@@ -1,6 +1,6 @@
 import IQuestionItem from "../../interfaces/questionItems/IQuestionItem";
 import { Item } from "../..";
-import { QUESTION, ANSWER_TYPE } from "../../constants/itemTypes";
+import { ANSWER_TYPE } from "../../constants/itemTypes";
 import { ICollection } from "../../interfaces/ICollection";
 
 export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {

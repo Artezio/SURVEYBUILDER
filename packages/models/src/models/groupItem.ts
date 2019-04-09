@@ -21,4 +21,9 @@ export class GroupItem extends Item implements IGroupItem {
     removeItem(item: IItem) {
         this.items = this.items.filter(x => x.id !== item.id);
     }
+
+    updateItem(item: GroupItem) {
+        super.updateItem(item);
+        this.items = item.items;
+    }
 }
