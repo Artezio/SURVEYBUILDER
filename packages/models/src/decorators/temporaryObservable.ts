@@ -9,7 +9,7 @@ export interface IObservable {
 }
 
 export interface IDisposable {
-    destroy(): void;
+    dispose(): void;
 }
 
 const createProxy = (target: any, handler: ProxyHandler<any>) => {
@@ -45,11 +45,11 @@ export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
 
         [__subscribe](fn: Function) {
             this[__subscribers].push(fn);
-            const destroy = () => {
+            const dispose = () => {
                 this[__subscribers] = this[__subscribers].filter(x => x !== fn);
             }
             return ({
-                destroy
+                dispose
             }) as IDisposable
         }
 
