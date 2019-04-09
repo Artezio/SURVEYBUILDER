@@ -4,7 +4,7 @@ import DropdownMenu from './DropdownMenu';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import ItemProvider from './ItemProvider';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../HOCs/useObservableModel';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
@@ -17,9 +17,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         super(props);
         this.itemFactory = new Models.ItemFactory(this.props.questionnaire);
         this.documentListener = (e: Event) => {
-            if (!e.defaultPrevented) {
-                this.clearSelected();
-            }
+            this.clearSelected();
         }
         this.itemListener = (e: Event) => {
             const target = (e.currentTarget as Element);
@@ -33,7 +31,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.documentListener);
+        document.removeEventListener('click', this.documentListener, true);
     }
 
     clearSelected() {
@@ -45,7 +43,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     subscribeDocument() {
-        document.addEventListener('click', this.documentListener);
+        document.addEventListener('click', this.documentListener, true);
     }
 
     highlightActiveItems() {
