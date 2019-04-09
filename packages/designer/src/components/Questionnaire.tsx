@@ -22,7 +22,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             }
         }
         this.itemListener = (e: Event) => {
-            e.preventDefault();
             const target = (e.currentTarget as Element);
             if (!target.classList.contains('card-active')) {
                 this.clearSelected();
