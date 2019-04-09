@@ -5,3 +5,5 @@ import { BOOLEAN } from "../..";
 export interface IBooleanItem extends IQuestionItem<boolean> {
     type: BOOLEAN;
 }
+
+export default IBooleanItem;
