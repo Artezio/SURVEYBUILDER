@@ -1,4 +1,4 @@
-import { toObservable, getObservable } from "../toObservable";
+import { toObservable, getObservable } from "./toObservable";
 
 
 export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {

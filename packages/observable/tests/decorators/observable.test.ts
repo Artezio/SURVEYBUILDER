@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-import { getObservable, isObservable, toObservable } from '../../src/toObservable';
+import { getObservable, isObservable, toObservable } from '../../src/decorators/toObservable';
 import { observable, observableArray } from '../../src/decorators/observable';
 
 @observable

@@ -13,8 +13,8 @@ export class GroupItem extends Item implements IGroupItem {
 
     addItem(item: Item) {
         if (this.items.every(itm => itm.id !== item.id)) {
-            // this.items = [...this.items, item]
-            this.items.push(item);
+            this.items = [...this.items, item]
+            // this.items.push(item);
         }
     }
 

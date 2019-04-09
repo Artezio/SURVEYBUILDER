@@ -1,27 +1,30 @@
 {
     "compilerOptions": {
-        "outDir": "build",
-        "module": "es6",
-        "target": "es5",
-        "lib": [
-            "es5",
-            "es6",
-            "dom"
-        ],
-        "rootDir": "src",
-        "sourceMap": true,
-        "allowJs": false,
-        "jsx": "preserve",
-        "moduleResolution": "node",
-        "forceConsistentCasingInFileNames": true,
-        "declaration": true,
-        "experimentalDecorators": true
+      "outDir": "build",
+      "module": "es6",
+      "target": "es5",
+      "lib": [
+        "es5",
+        "es6",
+        "dom"
+      ],
+      "sourceMap": true,
+      "allowJs": false,
+      "jsx": "react",
+      "moduleResolution": "node",
+      "rootDir": "src",
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "noUnusedLocals": true,
+      "declaration": true
     },
     "exclude": [
-        "node_modules",
-        "build",
-        "bower_components",
-        "jspm_packages",
-        "tests"
+      "node_modules",
+      "build",
+      "tests"
     ]
-}
+  }
