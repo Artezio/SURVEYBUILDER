@@ -1,5 +1,4 @@
 import * as React from 'react';
-import DropdownMenu from './DropdownMenu';
 import ItemProps from '../interfaces/components/ItemProps';
 import { Form, TextArea, FormApi, Checkbox } from 'informed';
 import * as Models from '@art-forms/models';
