@@ -2,24 +2,41 @@ import { observable, QuestionItem } from "../..";
 import { ICollection } from "../../interfaces/ICollection";
 import { IOpenChoiceItem } from "../../interfaces/questionItems/IOpenChoiceItem";
 import { OPEN_CHOICE } from "../../constants/itemTypes";
+import IChoiceOption from "../../interfaces/IChoiceOption";
 
 @observable
 export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem {
     type: OPEN_CHOICE = OPEN_CHOICE;
-    options: any[];
+    options: IChoiceOption[];
 
     constructor(item: Partial<Omit<IOpenChoiceItem, 'type'>> | undefined, parent?: ICollection<IOpenChoiceItem>) {
         super(item, parent);
         this.options = item && item.options || [];
     }
 
-    addOption(option: any) {
-        if (this.options.indexOf(option) === -1) {
+    addOption(option: IChoiceOption) {
+        if (this.options.every(anOption => anOption.id !== option.id)) {
             this.options = [...this.options, option];
         }
     }
+
+    updateOption(option: IChoiceOption) {
+        this.options.map(anOption => {
+            if (anOption.id === option.id) {
+                return option;
+            }
+            return anOption;
+        })
+    }
+
     removeOption(option: any) {
         this.options = this.options.filter(x => x !== option);
+    }
+
+    updateItem(item: IOpenChoiceItem) {
+        super.updateItem(item);
+        this.initialValue = item.initialValue;
+        this.options = item.options;
     }
 }
 

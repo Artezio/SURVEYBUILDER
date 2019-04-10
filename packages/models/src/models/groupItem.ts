@@ -29,3 +29,5 @@ export class GroupItem extends Item implements IGroupItem {
         }
     }
 }
+
+export default GroupItem;

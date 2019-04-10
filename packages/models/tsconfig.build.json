@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "rootDir": "src",
         "outDir": "build",
         "module": "es6",
         "target": "es5",
@@ -9,13 +10,8 @@
             "dom"
         ],
         "sourceMap": true,
-        "allowJs": false,
         "jsx": "react",
         "moduleResolution": "node",
-        "forceConsistentCasingInFileNames": true,
-        "noImplicitReturns": true,
-        "suppressImplicitAnyIndexErrors": true,
-        "noUnusedLocals": true,
         "declaration": true,
         "experimentalDecorators": true
     },
