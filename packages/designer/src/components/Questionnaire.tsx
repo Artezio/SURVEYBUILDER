@@ -140,6 +140,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         questionnaire && questionnaire.addItem(item);
     }
 
+    addChoiceItem() {
+        const { questionnaire } = this.props;
+        const item = this.itemFactory.createChoiceItem();
+        questionnaire && questionnaire.addItem(item);
+    }
+
     renderMenu() {
         return <DropdownMenu title='Context menu' items={[
             { title: 'Add display text', action: this.addItem.bind(this) },
@@ -151,7 +157,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             { title: 'Add time question', action: this.addTimeItem.bind(this) },
             { title: 'Add date question', action: this.addDateItem.bind(this) },
             { title: 'Add date-time question', action: this.addDateTimeItem.bind(this) },
-            { title: 'Add attachment question', action: this.addAttachmentItem.bind(this) }
+            { title: 'Add attachment question', action: this.addAttachmentItem.bind(this) },
+            { title: 'Add choice question', action: this.addChoiceItem.bind(this) }
         ]} />
     }
 

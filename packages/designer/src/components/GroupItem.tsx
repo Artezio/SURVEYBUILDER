@@ -103,6 +103,12 @@ export class GroupItem extends React.Component<GroupItemProps> {
         this.formApi.setValues(item as Models.GroupItem);
     }
 
+    addChoiceItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createChoiceItem();
+        item && item.addItem(newItem);
+    }
+
     renderMenu() {
         return <DropdownMenu title="Context menu" items={[
             { title: 'Add display text', action: this.addItem.bind(this) },
@@ -114,7 +120,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
             { title: 'Add time question', action: this.addTimeItem.bind(this) },
             { title: 'Add date question', action: this.addDateItem.bind(this) },
             { title: 'Add date-time question', action: this.addDateTimeItem.bind(this) },
-            { title: 'Add attachment question', action: this.addAttachmentItem.bind(this) }
+            { title: 'Add attachment question', action: this.addAttachmentItem.bind(this) },
+            { title: 'Add choice question', action: this.addChoiceItem.bind(this) }
         ]} />
     }
 
