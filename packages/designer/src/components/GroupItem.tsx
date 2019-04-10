@@ -68,6 +68,36 @@ export class GroupItem extends React.Component<GroupItemProps> {
         item && item.addItem(newItem);
     }
 
+    addBooleanItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createBooleanItem();
+        item && item.addItem(newItem);
+    }
+
+    addTimeItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createTimeItem();
+        item && item.addItem(newItem);
+    }
+
+    addDateItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createDateItem();
+        item && item.addItem(newItem);
+    }
+
+    addDateTimeItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createDateTimeItem();
+        item && item.addItem(newItem);
+    }
+
+    addAttachmentItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createAttachmentItem();
+        item && item.addItem(newItem);
+    }
+
     componentDidUpdate() {
         const { item } = this.props;
         this.formApi.setValues(item as Models.GroupItem);
@@ -75,11 +105,16 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     renderMenu() {
         return <DropdownMenu title="Context menu" items={[
-            { title: 'Add text', action: this.addItem.bind(this) },
+            { title: 'Add display text', action: this.addItem.bind(this) },
             { title: 'Add group', action: this.addGroupItem.bind(this) },
-            { title: 'Add long-text question', action: this.addTextItem.bind(this) },
-            { title: 'Add short-text question', action: this.addStringItem.bind(this) },
-            { title: 'Add decimal question', action: this.addDecimalItem.bind(this) }
+            { title: 'Add text question', action: this.addTextItem.bind(this) },
+            { title: 'Add string question', action: this.addStringItem.bind(this) },
+            { title: 'Add decimal question', action: this.addDecimalItem.bind(this) },
+            { title: 'Add boolean question', action: this.addBooleanItem.bind(this) },
+            { title: 'Add time question', action: this.addTimeItem.bind(this) },
+            { title: 'Add date question', action: this.addDateItem.bind(this) },
+            { title: 'Add date-time question', action: this.addDateTimeItem.bind(this) },
+            { title: 'Add attachment question', action: this.addAttachmentItem.bind(this) }
         ]} />
     }
 

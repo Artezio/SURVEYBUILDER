@@ -1,10 +1,15 @@
 import * as React from 'react';
-import Item from './Item';
 import * as Models from '@art-forms/models';
+import Item from './Item';
 import GroupItem from '../components/GroupItem';
 import TextItem from './questionItems/TextItem';
 import StringItem from './questionItems/StringItem';
 import DecimalItem from './questionItems/DecimalItem';
+import BooleanItem from './questionItems/BooleanItem';
+import TimeItem from './questionItems/TimeItem';
+import DateItem from './questionItems/DateItem';
+import DateTimeItem from './questionItems/DateTimeItem';
+import AttachmentItem from './questionItems/AttachmentItem';
 
 
 export const ItemProvider = (props: any) => {
@@ -24,6 +29,27 @@ export const ItemProvider = (props: any) => {
         }
         case Models.DECIMAL: {
             return <DecimalItem {...props} />
+        }
+        case Models.BOOLEAN: {
+            return <BooleanItem {...props} />
+        }
+        case Models.TIME: {
+            return <TimeItem {...props} />
+        }
+        case Models.DATE: {
+            return <DateItem {...props} />
+        }
+        case Models.DATE_TIME: {
+            return <DateTimeItem {...props} />
+        }
+        case Models.ATTACHMENT: {
+            return <AttachmentItem {...props} />
+        }
+        case Models.CHOICE: {
+
+        }
+        case Models.OPEN_CHOICE: {
+
         }
         default: {
             return null;
