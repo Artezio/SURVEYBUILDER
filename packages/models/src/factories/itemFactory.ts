@@ -52,31 +52,31 @@ export class ItemFactory {
     }
 
     createBooleanItem(item?: Partial<Omit<IBooleanItem, 'type'>>) {
-        return new BooleanItem(item);
+        return new BooleanItem(item, this.parent);
     }
 
     createTimeItem(item?: Partial<Omit<ITimeItem, 'type'>>) {
-        return new TimeItem(item);
+        return new TimeItem(item, this.parent);
     }
 
     createDateItem(item?: Partial<Omit<IDateItem, 'type'>>) {
-        return new DateItem(item);
+        return new DateItem(item, this.parent);
     }
 
     createDateTimeItem(item?: Partial<Omit<IDateTimeItem, 'type'>>) {
-        return new DateTimeItem(item);
+        return new DateTimeItem(item, this.parent);
     }
 
     createAttachmentItem(item?: Partial<Omit<IAttachmentItem, 'type'>>) {
-        return new AttachmentItem(item);
+        return new AttachmentItem(item, this.parent);
     }
 
     createChoiceItem(item?: Partial<Omit<IChoiceItem, 'type'>>) {
-        return new ChoiceItem(item);
+        return new ChoiceItem(item, this.parent);
     }
 
     createOpenChoiceItem(item?: Partial<Omit<IOpenChoiceItem, 'type'>>) {
-        return new OpenChoiceItem(item);
+        return new OpenChoiceItem(item, this.parent);
     }
 }
 
