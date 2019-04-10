@@ -12,7 +12,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
     formApi!: FormApi<Partial<Models.IGroupItem>>;
     itemFactory = new Models.ItemFactory(this.props.item);
 
-    handleSubmit(values: Partial<Models.IQuestionnaire>) {
+    handleSubmit(values: Partial<Models.IGroupItem>) {
         const { item } = this.props;
         item && item.updateItem({ ...item, ...values });
     }
