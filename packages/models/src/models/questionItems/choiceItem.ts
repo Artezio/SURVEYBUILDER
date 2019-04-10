@@ -21,7 +21,7 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
     }
 
     updateOption(option: IChoiceOption) {
-        this.options.map(anOption => {
+        this.options = this.options.map(anOption => {
             if (anOption.id === option.id) {
                 return option;
             }
