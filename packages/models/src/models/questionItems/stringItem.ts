@@ -14,7 +14,7 @@ export class StringItem extends QuestionItem<string> implements IStringItem {
         super(item, parent);
     }
 
-    updateItem(item: StringItem) {
+    updateItem(item: IStringItem) {
         super.updateItem(item);
         if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
             this.initialValue = item.initialValue;

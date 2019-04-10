@@ -12,7 +12,7 @@ export class DateItem extends QuestionItem<string> implements IDateItem {
         super(item, parent);
     }
 
-    updateItem(item: DateItem) {
+    updateItem(item: IDateItem) {
         super.updateItem(item);
         if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
             this.initialValue = item.initialValue;

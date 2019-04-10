@@ -22,8 +22,10 @@ export class GroupItem extends Item implements IGroupItem {
         this.items = this.items.filter(x => x.id !== item.id);
     }
 
-    updateItem(item: GroupItem) {
+    updateItem(item: IGroupItem) {
         super.updateItem(item);
-        this.items = item.items;
+        if (!!item.items) {
+            this.items = item.items;
+        }
     }
 }

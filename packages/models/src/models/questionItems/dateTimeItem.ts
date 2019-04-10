@@ -12,7 +12,7 @@ export class DateTimeItem extends QuestionItem<string> implements IDateTimeItem 
         super(item, parent);
     }
 
-    updateItem(item: DateTimeItem) {
+    updateItem(item: IDateTimeItem) {
         super.updateItem(item);
         if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
             this.initialValue = item.initialValue;

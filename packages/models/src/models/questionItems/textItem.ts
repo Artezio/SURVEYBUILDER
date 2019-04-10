@@ -13,7 +13,7 @@ export class TextItem extends QuestionItem<string> implements ITextItem {
         super(item, parent);
     }
 
-    updateItem(item: TextItem) {
+    updateItem(item: ITextItem) {
         super.updateItem(item);
         if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
             this.initialValue = item.initialValue;
