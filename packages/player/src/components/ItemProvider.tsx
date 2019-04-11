@@ -13,11 +13,11 @@ export const ItemProvider = (props: any) => {
         case Models.DISPLAY: {
             return <Item {...props} />
         }
-        case Models.TEXT: {
-            return <TextItem {...props} />
-        }
         case Models.GROUP: {
             return <GroupItem {...props} />
+        }
+        case Models.TEXT: {
+            return <TextItem {...props} />
         }
         case Models.STRING: {
             return <StringItem {...props} />

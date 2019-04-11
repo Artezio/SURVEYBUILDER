@@ -27,8 +27,8 @@ export class DecimalItem extends React.Component<QuestionItemProps<number>> {
     }
 
     render() {
-        const { item } = this.props;
-        return <div className="mb-3">
+        const { item, className = '' } = this.props;
+        return <div className={`mb-3 ${className}`}>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     <label htmlFor="string-answer" className="mb-1">{item.text}</label>

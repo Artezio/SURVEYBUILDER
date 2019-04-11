@@ -5,3 +5,5 @@ export interface Store {
     questionnaire: Models.IQuestionnaire | null;
     questionnaireResponse: Models.IQuestionnaireResponse | null;
 }
+
+export default Store;

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import LayoutProps from '../interfaces/components/LayoutProps';
+import QuestionnaireProps from '../interfaces/components/QuestionnaireProps';
 import QuestionnairePlayer from './QuestionnairePlayer';
 
-export class Layout extends React.Component<LayoutProps> {
+export class Layout extends React.Component<QuestionnaireProps> {
 
     render() {
         const { questionnaire, questionnaireResponse, className } = this.props;

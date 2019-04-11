@@ -16,14 +16,23 @@ questionnaire.addItem(factory.createGroupItem({
         factory.createGroupItem({
             text: 'group_2',
             items: [
-                factory.createItem({ text: "deep text" })
+                factory.createTextItem({ text: 'text question' }),
+                factory.createStringItem({ text: "string question" }),
+                factory.createDecimalItem({ text: "decimal question" }),
+                factory.createTimeItem({ text: "time question" }),
+                factory.createDateItem({ text: "date question" }),
+                factory.createDateTimeItem({ text: "date-time question" }),
+                factory.createBooleanItem({ text: "boolean question" }),
+                factory.createChoiceItem({ text: "choice question" }),
+                factory.createAttachmentItem({ text: "attachment question" }),
+                factory.createOpenChoiceItem({ text: "open-choice question" }),
             ]
-        })
+        }),
+        factory.createItem({ text: 'end_2' })
     ]
 }
 ));
-questionnaire.addItem(factory.createStringItem({ text: 'end.' }));
-questionnaire.addItem(factory.createDecimalItem({ text: 'end.' }));
+questionnaire.addItem(factory.createItem({ text: 'end_1' }));
 const questionnaireResponse = new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id })
 
 export const App = () => <Layout questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} />;

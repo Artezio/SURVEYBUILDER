@@ -22,8 +22,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
     }
 
     render() {
-        const { item } = this.props;
-        return <div className="my-5">
+        const { item, className } = this.props;
+        return <div className={`my-5 ${className}`}>
             <h4 className="mb-3">{item.text}</h4>
             {this.renderItemList()}
         </div>

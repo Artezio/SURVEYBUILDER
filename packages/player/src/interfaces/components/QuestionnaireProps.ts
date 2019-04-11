@@ -6,3 +6,5 @@ export interface QuestionnaireProps {
     className?: string;
     questionnaireResponse?: Models.QuestionnaireResponse;
 }
+
+export default QuestionnaireProps;
