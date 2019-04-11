@@ -32,20 +32,20 @@ export class BooleanItem extends React.Component<BooleanItemProps> {
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
             <div className="card-body p-2">
                 <div className="form-group">
-                    <label htmlFor="boolean-item-text">Question</label>
-                    <Text className="form-control" id="boolean-item-text" field="text" placeholder="My Question" onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor={`${item.id}-text`}>Question</label>
+                    <Text className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" onBlur={this.submitForm.bind(this)} />
                 </div>
                 <label>Default answer</label>
                 <RadioGroup field="initialValue">
                     <div className="form-group mb-0">
                         <button className="btn btn-sm btn-outline-dark" onClick={() => this.formApi.setValue('initialValue', undefined)}>Reset</button>
                         <div className="form-check">
-                            <Radio className="form-check-input" id="boolean-item-initial-value-true" value={true} />
-                            <label className="form-check-label" htmlFor="boolean-item-initial-value-true">Yes</label>
+                            <Radio className="form-check-input" id={`${item.id}-true`} value={true} />
+                            <label className="form-check-label" htmlFor={`${item.id}-true`}>Yes</label>
                         </div>
                         <div className="form-check">
-                            <Radio className="form-check-input" id="boolean-item-initial-value-false" value={false} />
-                            <label className="form-check-label" htmlFor="boolean-item-initial-value-false">No</label>
+                            <Radio className="form-check-input" id={`${item.id}-false`} value={false} />
+                            <label className="form-check-label" htmlFor={`${item.id}-false`}>No</label>
                         </div>
                     </div>
                 </RadioGroup>

@@ -32,12 +32,12 @@ export class DateItem extends React.Component<DateItemProps> {
         return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div className="card-body p-2">
                 <div className="form-group">
-                    <label htmlFor="date-item-text">Question</label>
-                    <Text className="form-control" id="date-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor={`${item.id}-text`}>Question</label>
+                    <Text className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
                 <div className="form-group mb-0">
-                    <label htmlFor="date-item-initial-value">Default answer</label>
-                    <Text className="form-control" type="date" field="initialValue" id="date-item-initial-value" onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor={`${item.id}-initial`}>Default answer</label>
+                    <Text className="form-control" type="date" field="initialValue" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
                 </div>
             </div>
         </Form>

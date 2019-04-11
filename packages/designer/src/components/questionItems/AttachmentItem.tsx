@@ -32,14 +32,14 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
             <div className="card-body p-2">
                 <div className="form-group">
-                    <label htmlFor="attachment-item-text">Question</label>
-                    <Text className="form-control" id="attachment-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor={`${item.id}-text`}>Question</label>
+                    <Text className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
                 <div className="form-group">
                     <div className="input-group">
                         <div className="custom-file">
-                            <input type="file" className="custom-file-input" id={item.id} disabled={true} />
-                            <label className="custom-file-label" htmlFor={item.id}>Choose file</label>
+                            <input type="file" className="custom-file-input" id={`${item.id}-initial`} disabled={true} />
+                            <label className="custom-file-label" htmlFor={`${item.id}-initial`}>Choose file</label>
                         </div>
                     </div>
                 </div>

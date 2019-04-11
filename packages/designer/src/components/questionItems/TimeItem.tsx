@@ -32,12 +32,12 @@ export class TimeItem extends React.Component<TimeItemProps> {
         return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div className="card-body p-2">
                 <div className="form-group">
-                    <label htmlFor="time-item-text">Question</label>
-                    <Text className="form-control" id="time-item-text" field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor={`${item.id}-text`}>Question</label>
+                    <Text className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
                 <div className="form-group mb-0">
-                    <label htmlFor="time-item-initial-value">Default answer</label>
-                    <Text className="form-control" type="time" field="initialValue" id="time-item-initial-value" onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor={`${item.id}-initial`}>Default answer</label>
+                    <Text className="form-control" type="time" field="initialValue" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
                 </div>
             </div>
         </Form>

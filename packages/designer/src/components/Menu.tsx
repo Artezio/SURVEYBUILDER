@@ -16,7 +16,8 @@ export class Menu extends React.Component<MenuProps> {
         { title: 'Add date question', action: this.addDateItem.bind(this) },
         { title: 'Add date-time question', action: this.addDateTimeItem.bind(this) },
         { title: 'Add attachment question', action: this.addAttachmentItem.bind(this) },
-        { title: 'Add choice question', action: this.addChoiceItem.bind(this) }
+        { title: 'Add choice question', action: this.addChoiceItem.bind(this) },
+        { title: 'Add choice question', action: this.addOpenChoiceItem.bind(this) }
     ]
 
     addItem() {
@@ -82,6 +83,12 @@ export class Menu extends React.Component<MenuProps> {
     addChoiceItem() {
         const { item } = this.props;
         const newItem = this.itemFactory.createChoiceItem({ options: [Models.ChoiceOptionFactory.createChoiceOption()] });
+        item.addItem(newItem);
+    }
+
+    addOpenChoiceItem() {
+        const { item } = this.props;
+        const newItem = this.itemFactory.createOpenChoiceItem({ options: [Models.ChoiceOptionFactory.createChoiceOption()] });
         item.addItem(newItem);
     }
 

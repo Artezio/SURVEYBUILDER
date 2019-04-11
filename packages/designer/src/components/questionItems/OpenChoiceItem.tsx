@@ -1,31 +1,31 @@
 import * as React from 'react';
-import { ChoiceItemProps } from '../../interfaces/components/questionItems/ChoiceItemProps';
+import { OpenChoiceItemProps } from '../../interfaces/components/questionItems/OpenChoiceItemProps';
 import { FormApi, Form, Text } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
 import ChoiceOption from '../ChoiceOption';
 
 
-export class ChoiceItem extends React.Component<ChoiceItemProps> {
-    formApi!: FormApi<Omit<Models.IChoiceItem, 'type'>>;
+export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
+    formApi!: FormApi<Omit<Models.IOpenChoiceItem, 'type'>>;
 
     submitForm() {
         if (!this.formApi) return;
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Omit<Models.IChoiceItem, 'type'>>) {
+    getFormApi(formApi: FormApi<Omit<Models.IOpenChoiceItem, 'type'>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Omit<Models.IChoiceItem, 'type'>>) {
+    handleSubmit(values: Partial<Omit<Models.IOpenChoiceItem, 'type'>>) {
         const { item } = this.props;
         item.updateItem({ ...item, ...values });
     }
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.ChoiceItem);
+        this.formApi.setValues(item as Models.OpenChoiceItem);
     }
 
     renderChoiceOptions() {
@@ -58,4 +58,4 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
     }
 }
 
-export default useObservableModel<ChoiceItemProps>(ChoiceItem);
+export default useObservableModel<OpenChoiceItemProps>(OpenChoiceItem);

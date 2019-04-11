@@ -40,8 +40,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
         return <>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                    <label htmlFor="group-item-text">Group Title</label>
-                    <Text className="form-control" id="group-item-text" field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor={item.id}>Group Title</label>
+                    <Text className="form-control" id={item.id} field="text" placeholder="Questions group" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
             </Form>
             {this.renderItemList()}

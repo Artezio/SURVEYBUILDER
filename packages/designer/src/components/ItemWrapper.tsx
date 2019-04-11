@@ -17,9 +17,9 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
                 <ItemProvider item={item} />
             </div>
             <div className="card-footer p-1 d-flex justify-content-between align-items-center">
-                <div className="custom-control mb-2">
-                    <input name="required" type="checkbox" className="custom-control-input" id={item.id} />
-                    <label className="custom-control-label" htmlFor={item.id}>Required</label>
+                <div className="custom-control ml-2">
+                    <input name="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} />
+                    <label className="custom-control-label" htmlFor={`${item.id}-required`}>Required</label>
                 </div>
                 <button className="btn btn-outline-danger" onClick={item.remove.bind(item)}>
                     <i className="fas fa-trash"></i>

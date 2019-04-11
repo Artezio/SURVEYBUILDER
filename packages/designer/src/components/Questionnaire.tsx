@@ -146,6 +146,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         questionnaire && questionnaire.addItem(item);
     }
 
+    addOpenChoiceItem() {
+        const { questionnaire } = this.props;
+        const item = this.itemFactory.createOpenChoiceItem({ options: [Models.ChoiceOptionFactory.createChoiceOption()] });
+        questionnaire && questionnaire.addItem(item);
+    }
+
     renderMenu() {
         return <DropdownMenu title='Context menu' items={[
             { title: 'Add display text', action: this.addItem.bind(this) },
@@ -158,7 +164,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             { title: 'Add date question', action: this.addDateItem.bind(this) },
             { title: 'Add date-time question', action: this.addDateTimeItem.bind(this) },
             { title: 'Add attachment question', action: this.addAttachmentItem.bind(this) },
-            { title: 'Add choice question', action: this.addChoiceItem.bind(this) }
+            { title: 'Add choice question', action: this.addChoiceItem.bind(this) },
+            { title: 'Add open-choice question', action: this.addOpenChoiceItem.bind(this) }
         ]} />
     }
 
@@ -172,12 +179,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 <div className="card-body p-2">
                     <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
                         <div className="form-group">
-                            <label htmlFor="questionnaire-title">Questionnaire Title</label>
-                            <Text className="form-control" id="questionnaire-title" field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                            <label htmlFor={`${questionnaire.id}-title`}>Questionnaire Title</label>
+                            <Text className="form-control" id={`${questionnaire.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                         </div>
                         <div className="form-group mb-0">
-                            <label htmlFor="questionnaire-description">Questionnaire Description</label>
-                            <TextArea className="form-control" id="questionnaire-description" field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                            <label htmlFor={`${questionnaire.id}-description`}>Questionnaire Description</label>
+                            <TextArea className="form-control" id={`${questionnaire.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
                         </div>
                     </Form>
                 </div>
