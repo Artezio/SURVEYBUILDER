@@ -6,7 +6,7 @@ import uuid from 'uuid/v1';
 export class Questionnaire implements IQuestionnaire {
     id!: string;
     description?: string;
-    items!: IItem[];
+    items!: Item[];
     title?: string;
 
     constructor(questionnaire?: Partial<IQuestionnaire>) {
