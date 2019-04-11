@@ -34,12 +34,12 @@ export class BooleanItem extends React.Component<QuestionItemProps<boolean>> {
                     <div className="form-group">
                         <label className="mb-1">{item.text}</label>
                         <div className="form-check">
-                            <Radio className="form-check-input" id="boolean-answer-true" value={true} onChange={this.submitForm.bind(this)} />
-                            <label className="form-check-label" htmlFor="boolean-answer-true">Yes</label>
+                            <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.submitForm.bind(this)} />
+                            <label className="form-check-label" htmlFor={`${item.id}-true`}>Yes</label>
                         </div>
                         <div className="form-check">
-                            <Radio className="form-check-input" id="boolean-answer-false" value={false} onChange={this.submitForm.bind(this)} />
-                            <label className="form-check-label" htmlFor="boolean-answer-false">No</label>
+                            <Radio className="form-check-input" id={`${item.id}-false`} value={false} onChange={this.submitForm.bind(this)} />
+                            <label className="form-check-label" htmlFor={`${item.id}-false`}>No</label>
                         </div>
                     </div>
                 </RadioGroup>

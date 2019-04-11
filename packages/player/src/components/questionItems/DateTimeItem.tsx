@@ -31,8 +31,8 @@ export class DateTimeItem extends React.Component<QuestionItemProps<string>> {
         return <div className={`mb-3 ${className}`}>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                    <label htmlFor="date-time-answer" className="mb-1">{item.text}</label>
-                    <Text id="date-time-answer" type="datetime-local" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor={item.id} className="mb-1">{item.text}</label>
+                    <Text id={item.id} type="datetime-local" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
                 </div>
             </Form>
         </div>

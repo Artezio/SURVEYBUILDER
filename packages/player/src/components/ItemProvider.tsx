@@ -9,6 +9,7 @@ import BooleanItem from './questionItems/BooleanItem';
 import TimeItem from './questionItems/TimeItem';
 import DateItem from './questionItems/DateItem';
 import DateTimeItem from './questionItems/DateTimeItem';
+import AttachmentItem from './questionItems/AttachmentItem';
 
 
 export const ItemProvider = (props: any) => {
@@ -40,6 +41,9 @@ export const ItemProvider = (props: any) => {
         }
         case Models.DATE_TIME: {
             return <DateTimeItem {...props} />
+        }
+        case Models.ATTACHMENT: {
+            return <AttachmentItem {...props} />
         }
         default: {
             return null;
