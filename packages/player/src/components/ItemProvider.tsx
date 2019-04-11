@@ -2,10 +2,13 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import Item from './Item';
 import TextItem from './questionItems/TextItem';
-import { GroupItem } from './GroupItem';
+import GroupItem from './GroupItem';
 import StringItem from './questionItems/StringItem';
-import { DecimalItem } from './questionItems/DecimalItem';
-import { BooleanItem } from './questionItems/BooleanItem';
+import DecimalItem from './questionItems/DecimalItem';
+import BooleanItem from './questionItems/BooleanItem';
+import TimeItem from './questionItems/TimeItem';
+import DateItem from './questionItems/DateItem';
+import DateTimeItem from './questionItems/DateTimeItem';
 
 
 export const ItemProvider = (props: any) => {
@@ -28,6 +31,15 @@ export const ItemProvider = (props: any) => {
         }
         case Models.BOOLEAN: {
             return <BooleanItem {...props} />
+        }
+        case Models.TIME: {
+            return <TimeItem {...props} />
+        }
+        case Models.DATE: {
+            return <DateItem {...props} />
+        }
+        case Models.DATE_TIME: {
+            return <DateTimeItem {...props} />
         }
         default: {
             return null;

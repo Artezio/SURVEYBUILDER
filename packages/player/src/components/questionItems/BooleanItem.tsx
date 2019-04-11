@@ -30,7 +30,7 @@ export class BooleanItem extends React.Component<QuestionItemProps<boolean>> {
         const { item, className = '' } = this.props;
         return <div className={`mb-3 ${className}`}>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-                <RadioGroup field="value">
+                <RadioGroup field="value" initialValue={item.initialValue}>
                     <div className="form-group">
                         <label className="mb-1">{item.text}</label>
                         <div className="form-check">
