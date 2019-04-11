@@ -31,8 +31,8 @@ export class TextItem extends React.Component<QuestionItemProps<string>> {
         return <div className={`mb-3 ${className}`}>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                    <label htmlFor="string-answer" className="mb-1">{item.text}</label>
-                    <TextArea id="string-answer" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
+                    <label htmlFor="text-answer" className="mb-1">{item.text}</label>
+                    <TextArea id="text-answer" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
                 </div>
             </Form>
         </div>

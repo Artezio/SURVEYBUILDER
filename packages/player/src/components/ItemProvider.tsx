@@ -5,6 +5,7 @@ import TextItem from './questionItems/TextItem';
 import { GroupItem } from './GroupItem';
 import StringItem from './questionItems/StringItem';
 import { DecimalItem } from './questionItems/DecimalItem';
+import { BooleanItem } from './questionItems/BooleanItem';
 
 
 export const ItemProvider = (props: any) => {
@@ -23,7 +24,10 @@ export const ItemProvider = (props: any) => {
             return <StringItem {...props} />
         }
         case Models.DECIMAL: {
-            return < DecimalItem {...props} />
+            return <DecimalItem {...props} />
+        }
+        case Models.BOOLEAN: {
+            return <BooleanItem {...props} />
         }
         default: {
             return null;

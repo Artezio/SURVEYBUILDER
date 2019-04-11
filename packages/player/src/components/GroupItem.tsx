@@ -9,15 +9,15 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     constructor(props: GroupItemProps) {
         super(props);
-        props.item.items.forEach(x => {    //////////// CREATE ANOTHER SOLUTION!!!!
-            (!props.questionnaireResponseItem.items.some(item => item.id === x.id)) && props.questionnaireResponseItem.addQuestionnaireResponseItem({ id: x.id, value: (x as Models.ITextItem).initialValue })
+        props.item.items.forEach(item => {    //////////// CREATE ANOTHER SOLUTION!!!!
+            props.questionnaireResponseItem.addQuestionnaireResponseItem({ id: item.id, value: (item as Models.ITextItem).initialValue, text: item.text })
         })
     }
 
     renderItemList() {
         const { item, questionnaireResponseItem } = this.props;
         return <div className="item-list">
-            {item.items.map(item => <ItemProvider key={item.id} {...{ item, questionnaireResponseItem: questionnaireResponseItem && questionnaireResponseItem.items.find(x => x.id === item.id) }} />)}
+            {item.items.map(item => <ItemProvider key={item.id} {...{ item, questionnaireResponseItem: questionnaireResponseItem && questionnaireResponseItem.items.find(responseItem => responseItem.id === item.id) }} />)}
         </div>
     }
 

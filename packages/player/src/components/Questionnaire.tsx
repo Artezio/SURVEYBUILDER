@@ -5,12 +5,10 @@ import ItemProvider from './ItemProvider';
 import useObservableModel from '../HOCs/useObservableModel';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
-    questionnaireResponse?: Models.QuestionnaireResponse;
-
     constructor(props: QuestionnaireProps) {
         super(props);
-        props.questionnaire && props.questionnaire.items && props.questionnaire.items.forEach(x => {    //////////// CREATE ANOTHER SOLUTION!!!!
-            props.questionnaireResponse && props.questionnaireResponse.addQuestionnaireResponseItem({ id: x.id, value: (x as Models.ITextItem).initialValue })
+        props.questionnaire && props.questionnaire.items && props.questionnaire.items.forEach(item => {    //////////// CREATE ANOTHER SOLUTION!!!!
+            props.questionnaireResponse && props.questionnaireResponse.addQuestionnaireResponseItem({ id: item.id, value: (item as Models.ITextItem).initialValue, text: item.text })
         })
     }
 
@@ -19,7 +17,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         return <div className="item-list card-body">
             {questionnaire && questionnaire.items && questionnaire.items.map(item => {
                 return <div key={item.id}>
-                    <ItemProvider {...{ item, questionnaireResponseItem: questionnaireResponse && questionnaireResponse.items.find(x => x.id === item.id) }} />
+                    <ItemProvider {...{ item, questionnaireResponseItem: questionnaireResponse && questionnaireResponse.items.find(item => item.id === item.id) }} />
                 </div>
             }
             )}
@@ -27,13 +25,14 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     render() {
-        const { questionnaire, className = '' } = this.props;
+        const { questionnaireResponse, questionnaire, className = '' } = this.props;
         return <div className={`card card-sm ${className}`}>
             <div className="card-header">
                 <h2>{questionnaire && questionnaire.title}</h2>
                 <h5>{questionnaire && questionnaire.description}</h5>
             </div>
             {this.renderItemList()}
+            <button onClick={e => console.log(JSON.stringify(questionnaireResponse, null, 2))}>To console</button>
         </div>
     }
 }
