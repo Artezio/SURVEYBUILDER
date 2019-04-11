@@ -3,12 +3,12 @@ import { ICollection } from "../interfaces/ICollection";
 
 @observable
 export class GroupItem extends Item implements IGroupItem {
-    items: IItem[];
+    items!: Item[];
     type: GROUP = GROUP;
 
     constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: ICollection<IGroupItem>) {
         super(item, parent);
-        this.items = item && item.items || [];
+        Object.assign(this, { items: [] }, item);
     }
 
     addItem(item: Item) {
@@ -22,7 +22,7 @@ export class GroupItem extends Item implements IGroupItem {
         this.items = this.items.filter(x => x.id !== item.id);
     }
 
-    updateItem(item: IGroupItem) {
+    updateItem(item: GroupItem) {
         super.updateItem(item);
         if (!!item.items) {
             this.items = item.items;
