@@ -6,7 +6,7 @@ export interface MenuProps {
     title: string;
 }
 
-export interface DropdownItem {
+export interface MenuItem {
     title: string;
     action: any;
 }

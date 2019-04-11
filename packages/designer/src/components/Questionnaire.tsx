@@ -3,9 +3,8 @@ import * as Models from '@art-forms/models';
 import DropdownMenu from './DropdownMenu';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
-import ItemProvider from './ItemProvider';
 import { useObservableModel } from '../HOCs/useObservableModel';
-import { ItemWrapper } from './questionItems/ItemWrapper';
+import { ItemWrapper } from './ItemWrapper';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
@@ -143,7 +142,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     addChoiceItem() {
         const { questionnaire } = this.props;
-        const item = this.itemFactory.createChoiceItem();
+        const item = this.itemFactory.createChoiceItem({ options: [Models.ChoiceOptionFactory.createChoiceOption()] });
         questionnaire && questionnaire.addItem(item);
     }
 

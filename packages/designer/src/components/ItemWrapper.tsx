@@ -1,9 +1,9 @@
 import * as React from 'react';
-import ItemWrapperProps from '../../interfaces/components/questionItems/ItemWrapperProps';
+import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
 import * as Models from '@art-forms/models';
-import useObservableModel from '../../HOCs/useObservableModel';
-import ItemProvider from '../ItemProvider';
-import Menu from '../Menu';
+import useObservableModel from '../HOCs/useObservableModel';
+import ItemProvider from './ItemProvider';
+import Menu from './Menu';
 
 
 export class ItemWrapper extends React.Component<ItemWrapperProps> {
@@ -17,7 +17,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
                 <ItemProvider item={item} />
             </div>
             <div className="card-footer p-1 d-flex justify-content-between align-items-center">
-                <div className="custom-control mb-0">
+                <div className="custom-control mb-2">
                     <input name="required" type="checkbox" className="custom-control-input" id={item.id} />
                     <label className="custom-control-label" htmlFor={item.id}>Required</label>
                 </div>
