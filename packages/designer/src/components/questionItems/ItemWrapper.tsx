@@ -18,10 +18,10 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
             </div>
             <div className="card-footer p-1 d-flex justify-content-between align-items-center">
                 <div className="custom-control mb-0">
-                    <input name="required" type="checkbox" className="custom-control-input" id="item-required" />
-                    <label className="custom-control-label" htmlFor="item-required">Required</label>
+                    <input name="required" type="checkbox" className="custom-control-input" id={item.id} />
+                    <label className="custom-control-label" htmlFor={item.id}>Required</label>
                 </div>
-                <button className="btn p-1 mr-2" onClick={item.remove.bind(item)}>
+                <button className="btn btn-outline-danger" onClick={item.remove.bind(item)}>
                     <i className="fas fa-trash"></i>
                 </button>
             </div>

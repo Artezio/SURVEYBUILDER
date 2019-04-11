@@ -5,6 +5,7 @@ import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps'
 import { Form, Text, TextArea, FormApi } from 'informed';
 import ItemProvider from './ItemProvider';
 import { useObservableModel } from '../HOCs/useObservableModel';
+import { ItemWrapper } from './questionItems/ItemWrapper';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
@@ -76,7 +77,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     renderItemList() {
         const { questionnaire } = this.props;
         return (questionnaire && <div className="item-list">
-            {questionnaire.items.map(item => <ItemProvider {...{ item }} key={item.id} />)}
+            {questionnaire.items.map(item => <ItemWrapper item={item} key={item.id} />)}
         </div>)
     }
 
