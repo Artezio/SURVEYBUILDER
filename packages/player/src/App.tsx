@@ -23,7 +23,7 @@ questionnaire.addItem(factory.createGroupItem({
                 factory.createDateItem({ text: "date question" }),
                 factory.createDateTimeItem({ text: "date-time question" }),
                 factory.createBooleanItem({ text: "boolean question", initialValue: true }),
-                factory.createChoiceItem({ text: "choice question" }),
+                factory.createChoiceItem({ text: "choice question", options: [{ id: '1', value: 'one' }, { id: '2', value: 'two' }, { id: '3', value: 'three' }, { id: '4', value: 'four' }] }),
                 factory.createAttachmentItem({ text: "attachment question" }),
                 factory.createOpenChoiceItem({ text: "open-choice question" }),
             ]

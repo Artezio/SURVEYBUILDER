@@ -1,22 +1,9 @@
 import * as React from 'react';
-import { Form, FormApi } from 'informed';
-import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
 import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
 
 
 export class AttachmentItem extends React.Component<QuestionItemProps<void>> {
-    formApi!: FormApi<Models.IQuestionnaireResponseItem>;
-    fileName?: string;
-
-    submitForm() {
-        if (!this.formApi) return;
-        this.formApi.submitForm();
-    }
-
-    getFormApi(formApi: FormApi<Models.IQuestionnaireResponseItem>) {
-        this.formApi = formApi;
-    }
 
     handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
