@@ -5,17 +5,16 @@ import * as Models from '@art-forms/models';
 
 export function useObservableModel<T>(WrappedComponent: any) {
     class Enhance extends React.Component<T> {
-        subscriptions!: Models.IDisposable[];
+        subscriptions: Models.IDisposable[] = [];
 
         constructor(props: any) {
             super(props);
             this.state = {}
-            this.subscriptions = [];
             this.subscribeOnObservable();
         }
 
         componentWillUnmount() {
-            super.componentWillUnmount && super.componentWillUnmount.call(this);
+            super.componentWillUnmount && super.componentWillUnmount();
             this.subscriptions.forEach(x => setTimeout(() => x.dispose()));
         }
 
@@ -23,7 +22,7 @@ export function useObservableModel<T>(WrappedComponent: any) {
             Object.keys(this.props).forEach((propertyName: string) => {
                 if (Models.isObservable((this.props as any)[propertyName])) {
                     const observable = Models.getObservable((this.props as any)[propertyName]);
-                    this.subscriptions.push((observable as Models.IObservable).subscribe((obj: any) => {
+                    this.subscriptions.push(observable.subscribe((obj: any) => {
                         this.setState({ [propertyName]: obj });
                     }))
                 }

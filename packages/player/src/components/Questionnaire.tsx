@@ -8,7 +8,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     constructor(props: QuestionnaireProps) {
         super(props);
         props.questionnaire && props.questionnaire.items && props.questionnaire.items.forEach(item => {    //////////// CREATE ANOTHER SOLUTION!!!!
-            props.questionnaireResponse && props.questionnaireResponse.addQuestionnaireResponseItem({ id: item.id, value: (item as Models.ITextItem).initialValue, text: item.text })
+            props.questionnaireResponse && props.questionnaireResponse.addQuestionnaireResponseItem({ id: item.id, value: (item as Models.IQuestionItem<any>).initialValue, text: item.text })
         })
     }
 
@@ -17,7 +17,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         return <div className="item-list card-body">
             {questionnaire && questionnaire.items && questionnaire.items.map(item => {
                 return <div key={item.id}>
-                    <ItemProvider {...{ item, questionnaireResponseItem: questionnaireResponse && questionnaireResponse.items.find(item => item.id === item.id) }} />
+                    <ItemProvider {...{ item, questionnaireResponseItem: questionnaireResponse && questionnaireResponse.items.find(responseItem => responseItem.id === item.id) }} />
                 </div>
             }
             )}

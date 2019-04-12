@@ -6,7 +6,7 @@ import uuid from 'uuid/v1';
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     id!: string;
     text?: string;
-    items!: IQuestionnaireResponseItem[];
+    items!: QuestionnaireResponseItem[];
     value?: any;
 
     constructor(item?: Partial<IQuestionnaireResponseItem>) {
@@ -19,7 +19,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         }
     }
 
-    updateQuestionnaireResponseItem(item: IQuestionnaireResponseItem) {
+    updateQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
         Object.assign(this, item);
     }
 }

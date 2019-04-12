@@ -10,7 +10,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
     constructor(props: GroupItemProps) {
         super(props);
         props.item.items.forEach(item => {    //////////// CREATE ANOTHER SOLUTION!!!!
-            props.questionnaireResponseItem.addQuestionnaireResponseItem({ id: item.id, value: (item as Models.ITextItem).initialValue, text: item.text })
+            props.questionnaireResponseItem.addQuestionnaireResponseItem({ id: item.id, value: (item as Models.IQuestionItem<any>).initialValue, text: item.text })
         })
     }
 

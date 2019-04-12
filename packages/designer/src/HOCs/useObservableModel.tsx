@@ -14,7 +14,7 @@ export function useObservableModel<T>(WrappedComponent: any) {
         }
 
         componentWillUnmount() {
-            super.componentWillUnmount && super.componentWillUnmount.call(this);
+            super.componentWillUnmount && super.componentWillUnmount();
             this.subscriptions.forEach(x => setTimeout(() => x.dispose()));
         }
 

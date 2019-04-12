@@ -1,4 +1,6 @@
-import { IItem, TextItem, BooleanItem } from "..";
+import { IItem } from "..";
+import TextItem from "../models/questionItems/textItem";
+import BooleanItem from "../models/questionItems/booleanItem";
 import Item from "../models/item";
 import GroupItem from "../models/groupItem";
 import ICollection from "../interfaces/ICollection";

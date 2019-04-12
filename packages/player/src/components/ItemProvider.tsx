@@ -11,6 +11,7 @@ import DateItem from './questionItems/DateItem';
 import DateTimeItem from './questionItems/DateTimeItem';
 import AttachmentItem from './questionItems/AttachmentItem';
 import ChoiceItem from './questionItems/ChoiceItem';
+import OpenChoiceItem from './questionItems/OpenChoiceItem';
 
 
 export const ItemProvider = (props: any) => {
@@ -48,6 +49,9 @@ export const ItemProvider = (props: any) => {
         }
         case Models.CHOICE: {
             return <ChoiceItem {...props} />
+        }
+        case Models.OPEN_CHOICE: {
+            return <OpenChoiceItem {...props} />
         }
         default: {
             return null;
