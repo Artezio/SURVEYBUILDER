@@ -9,6 +9,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     constructor(props: GroupItemProps) {
         super(props);
+        props.questionnaireResponseItem.clearQuestionnaireResponseItems();
         props.item.items.forEach(item => {    //////////// CREATE ANOTHER SOLUTION!!!!
             props.questionnaireResponseItem.addQuestionnaireResponseItem({ id: item.id, value: (item as Models.IQuestionItem<any>).initialValue, text: item.text })
         })

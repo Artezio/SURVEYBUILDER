@@ -7,6 +7,7 @@ import useObservableModel from '../HOCs/useObservableModel';
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     constructor(props: QuestionnaireProps) {
         super(props);
+        props.questionnaireResponse && props.questionnaireResponse.clearQuestionnaireResponseItems();
         props.questionnaire && props.questionnaire.items && props.questionnaire.items.forEach(item => {    //////////// CREATE ANOTHER SOLUTION!!!!
             props.questionnaireResponse && props.questionnaireResponse.addQuestionnaireResponseItem({ id: item.id, value: (item as Models.IQuestionItem<any>).initialValue, text: item.text })
         })

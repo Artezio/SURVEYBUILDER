@@ -40,11 +40,11 @@ export class BooleanItem extends React.Component<BooleanItemProps> {
                     <div className="form-group mb-0">
                         <button className="btn btn-sm btn-outline-dark" onClick={() => this.formApi.setValue('initialValue', undefined)}>Reset</button>
                         <div className="form-check">
-                            <Radio className="form-check-input" id={`${item.id}-true`} value={true} />
+                            <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.submitForm.bind(this)} />
                             <label className="form-check-label" htmlFor={`${item.id}-true`}>Yes</label>
                         </div>
                         <div className="form-check">
-                            <Radio className="form-check-input" id={`${item.id}-false`} value={false} />
+                            <Radio className="form-check-input" id={`${item.id}-false`} value={false} onChange={this.submitForm.bind(this)} />
                             <label className="form-check-label" htmlFor={`${item.id}-false`}>No</label>
                         </div>
                     </div>

@@ -23,4 +23,8 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
     updateQuestionnaireResponse(questionnaireResponse: IQuestionnaireResponse) {
         Object.assign(this, questionnaireResponse);
     }
+
+    clearQuestionnaireResponseItems() {
+        this.items = [];
+    }
 }
