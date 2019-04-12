@@ -1,4 +1,4 @@
-import { IQuestionnaire, IItem, observable, TextItem, Item, IQuestionItem } from "..";
+import { IQuestionnaire, IItem, observable, Item } from "..";
 import uuid from 'uuid/v1';
 
 

@@ -1,4 +1,4 @@
-import { IGroupItem, Item, ITextItem, observable, IItem, GROUP, TextItem } from "..";
+import { IGroupItem, Item, observable, IItem, GROUP } from "..";
 import { ICollection } from "../interfaces/ICollection";
 
 @observable
