@@ -26,6 +26,11 @@ export class Questionnaire implements IQuestionnaire {
     removeItem(item: IItem) {
         this.items = this.items.filter(x => x.id !== item.id);
     }
+
+    replaceItem(oldItem: Item, newItem: Item) {
+        const position = this.items.indexOf(oldItem);
+        this.items.splice(position, 1, newItem);
+    }
 }
 
 export default Questionnaire;
