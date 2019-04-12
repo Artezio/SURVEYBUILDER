@@ -17,7 +17,7 @@ export class Menu extends React.Component<MenuProps> {
         { title: 'Add date-time question', action: this.addDateTimeItem.bind(this) },
         { title: 'Add attachment question', action: this.addAttachmentItem.bind(this) },
         { title: 'Add choice question', action: this.addChoiceItem.bind(this) },
-        { title: 'Add choice question', action: this.addOpenChoiceItem.bind(this) }
+        { title: 'Add open-choice question', action: this.addOpenChoiceItem.bind(this) }
     ]
 
     addItem() {
