@@ -14,9 +14,9 @@ export class DateTimeItem extends QuestionItem<string> implements IDateTimeItem 
 
     updateItem(item: IDateTimeItem) {
         super.updateItem(item);
-        if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
+        // if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
             this.initialValue = item.initialValue;
-        }
+        // }
     }
 }
 

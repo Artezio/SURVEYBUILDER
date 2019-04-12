@@ -13,9 +13,9 @@ export class DecimalItem extends QuestionItem<number> implements IDecimalItem {
 
     updateItem(item: IDecimalItem) {
         super.updateItem(item);
-        if (item.initialValue === undefined || this.regexp.test(item.initialValue + '')) {
+        // if (item.initialValue === undefined || this.regexp.test(item.initialValue + '')) {
             this.initialValue = item.initialValue;
-        }
+        // }
     }
 }
 

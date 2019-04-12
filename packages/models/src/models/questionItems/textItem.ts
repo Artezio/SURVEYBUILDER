@@ -15,9 +15,9 @@ export class TextItem extends QuestionItem<string> implements ITextItem {
 
     updateItem(item: ITextItem) {
         super.updateItem(item);
-        if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
+        // if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
             this.initialValue = item.initialValue;
-        }
+        // }
     }
 }
 

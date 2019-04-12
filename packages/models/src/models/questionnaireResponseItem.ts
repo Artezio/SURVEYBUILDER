@@ -19,7 +19,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         }
     }
 
-    updateQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
+    updateQuestionnaireResponseItem(item: IQuestionnaireResponseItem) {
         Object.assign(this, item);
     }
 

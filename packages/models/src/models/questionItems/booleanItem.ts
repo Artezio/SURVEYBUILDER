@@ -13,9 +13,9 @@ export class BooleanItem extends QuestionItem<boolean> implements IBooleanItem {
 
     updateItem(item: IBooleanItem) {
         super.updateItem(item);
-        if (item.initialValue !== undefined && this.regexp.test(item.initialValue + '')) {
+        // if (item.initialValue !== undefined && this.regexp.test(item.initialValue + '')) {
             this.initialValue = item.initialValue;
-        }
+        // }
     }
 }
 
