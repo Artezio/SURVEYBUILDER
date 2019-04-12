@@ -9,6 +9,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     formApi!: FormApi<Models.IQuestionnaireResponseItem>;
     state: { isOtherAnswerChosen: boolean }
     customOption!: Models.IChoiceOption;
+    _isMounted: boolean = false;
 
     constructor(props: OpenChoiceItemProps) {
         super(props);
@@ -38,7 +39,33 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         const { questionnaireResponseItem } = this.props;
         questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value: undefined });
         const customInput = document.getElementById(`${this.customOption.id}-customOption`);
-        customInput && setTimeout(() => { customInput.focus(); this.formApi.setValue('value', (customInput as any).value) });
+        customInput && setTimeout(() => { customInput && customInput.focus(); customInput && this.formApi.setValue('value', (customInput as any).value) });
+    }
+
+    componentDidMount() {
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
+    toggleToOptions() {
+        this.submitForm();
+        this.setState({ isOtherAnswerChosen: false });
+    }
+
+    toggleToOtherAnswer() {
+        this.resetAnswer();
+        this.setState({ isOtherAnswerChosen: true });
+        setTimeout(() => { (document.getElementById(this.customOption.id) as any).checked = true })
+    }
+
+    setOtherAnswer1() {
+        const customInput = document.getElementById(`${this.customOption.id}-customOption`);
+        this.formApi.setValue('value', (customInput as any).value);
+        this.setOtherAnswer((customInput as any).value);
+        setTimeout(() => { (document.getElementById(this.customOption.id) as any).checked = true })
     }
 
     renderChoiceOptions() {
@@ -48,16 +75,16 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
             <RadioGroup field="value" initialValue={item.initialValue}>
                 {item.options.map(item => {
                     return <div className="form-check" key={item.id}>
-                        <Radio className="form-check-input" id={item.id} value={item.value} onChange={() => { this.submitForm(); this.setState({ isOtherAnswerChosen: false }) }} />
+                        <Radio className="form-check-input" id={item.id} value={item.value} onChange={this.toggleToOptions.bind(this)} />
                         <label className="form-check-label" htmlFor={item.id}>{item.value}</label>
                     </div>
                 })}
                 <div className="form-check" key={this.customOption.id}>
-                    <Radio className="form-check-input" id={this.customOption.id} value={0} onChange={() => { this.resetAnswer(); this.setState({ isOtherAnswerChosen: true }) }} />
+                    <Radio className="form-check-input" id={this.customOption.id} value={0} onChange={this.toggleToOtherAnswer.bind(this)} />
                     <label className="form-check-label" htmlFor={this.customOption.id}>Other</label>
                 </div>
             </RadioGroup>
-            <Text id={`${this.customOption.id}-customOption`} className="form-control" field="value" type="text" disabled={!this.state.isOtherAnswerChosen} onBlur={this.submitForm.bind(this)} />
+            <input id={`${this.customOption.id}-customOption`} className="form-control" name="value" type="text" disabled={!this.state.isOtherAnswerChosen} onBlur={this.setOtherAnswer1.bind(this)} />
         </Form>
     }
 

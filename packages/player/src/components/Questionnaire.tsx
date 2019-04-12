@@ -33,7 +33,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 <h5>{questionnaire && questionnaire.description}</h5>
             </div>
             {this.renderItemList()}
-            <button onClick={e => console.log(JSON.stringify(questionnaireResponse, null, 2))}>To console</button>
         </div>
     }
 }
