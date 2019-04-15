@@ -32,4 +32,4 @@ export class Menu extends React.Component<MenuProps> {
     }
 }
 
-export default Menu
+export default Menu;
