@@ -28,6 +28,11 @@ export class GroupItem extends Item implements IGroupItem {
             this.items = item.items;
         }
     }
+
+    replaceItem(oldItem: Item, newItem: Item) {
+        const position = this.items.indexOf(oldItem);
+        this.items.splice(position, 1, newItem);
+    }
 }
 
 export default GroupItem;

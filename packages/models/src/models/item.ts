@@ -23,6 +23,10 @@ export class Item implements IItem {
     remove() {
         this.parent && this.parent.removeItem(this);
     }
+
+    replace(newItem: Item) {
+        this.parent && this.parent.replaceItem(this, newItem);
+    }
 }
 
 export default Item;
