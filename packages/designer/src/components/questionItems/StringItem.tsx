@@ -30,15 +30,9 @@ export class StringItem extends React.Component<StringItemProps> {
     render() {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-            <div className="card-body p-2">
-                <div className="form-group">
-                    <label htmlFor={`${item.id}-text`}>Question</label>
-                    <Text className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
-                </div>
-                <div className="form-group mb-0">
-                    <label htmlFor={`${item.id}-initial`}>Default answer</label>
-                    <Text className="form-control" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
-                </div>
+            <div className="form-group">
+                <label htmlFor={`${item.id}-initial`}>Default answer</label>
+                <Text className="form-control" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
             </div>
         </Form>
     }

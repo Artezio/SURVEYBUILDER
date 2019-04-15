@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextItemProps from '../../interfaces/components/questionItems/TextItemProps';
-import { FormApi, Form, TextArea, Text } from 'informed';
+import { FormApi, Form, TextArea } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
 
@@ -30,7 +30,7 @@ export class TextItem extends React.Component<TextItemProps> {
     render() {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-            <div className="form-group mb-0">
+            <div className="form-group">
                 <label htmlFor={`${item.id}-initial`}>Default answer</label>
                 <TextArea className="form-control" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
             </div>

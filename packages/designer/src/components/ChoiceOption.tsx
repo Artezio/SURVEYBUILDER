@@ -11,17 +11,19 @@ export const ChoiceOption = (props: ChoiceOptionProps) => {
     const remove = () => {
         item.removeOption(option);
     }
-    return <div className="input-group my-1">
-        <div className="input-group-prepend">
-            <div className="input-group-text">
-                <input type="radio" disabled={true} />
+    return <div className="form-group">
+        <div className="input-group">
+            <div className="input-group-prepend">
+                <div className="input-group-text">
+                    <input type="radio" disabled={true} />
+                </div>
             </div>
-        </div>
-        <input className="form-control" defaultValue={option.value} onBlur={onBlur} />
-        <div className="input-group-append">
-            <button className="btn btn-outline-danger" onClick={remove}>
-                <i className="fas fa-trash"></i>
-            </button>
+            <input className="form-control" defaultValue={option.value} onBlur={onBlur} />
+            <div className="input-group-append">
+                <button className="btn btn-outline-danger" onClick={remove}>
+                    <i className="fas fa-trash"></i>
+                </button>
+            </div>
         </div>
     </div>
 }
