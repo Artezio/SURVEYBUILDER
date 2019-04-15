@@ -28,8 +28,14 @@ export class Questionnaire implements IQuestionnaire {
     }
 
     replaceItem(oldItem: Item, newItem: Item) {
-        const position = this.items.indexOf(oldItem);
-        this.items.splice(position, 1, newItem);
+        let position;
+        this.items.forEach((item, index) => {
+            if (item.id === oldItem.id) {
+                position = index;
+            }
+        })
+        position !== undefined && this.items.splice(position, 1, newItem);
+        this.items = [...this.items];
     }
 }
 
