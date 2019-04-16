@@ -1,10 +1,10 @@
-const assert = require('chai').assert;
-import { getObservable, isObservable, toObservable } from '../../src/decorators/toObservable';
-import { observable, observableArray } from '../../src/decorators/observable';
+import { assert } from 'chai';
+import { isObservable, getObservable } from '../../src/decorators/toObservable';
+import { observable, observableProperty } from '../../src/decorators/observable';
 
 @observable
 class Person {
-    // @observableArray
+    @observableProperty
     pets: any[];
     name: string;
     age: number;
@@ -12,7 +12,7 @@ class Person {
     constructor(name: string, age: number, pets?: any[]) {
         this.name = name;
         this.age = age;
-        this.pets = pets || [];
+        this.pets = pets || [1, 2, 3];
     }
 
     say() {
@@ -127,32 +127,31 @@ describe("decorators/observable", () => {
             const animal_1 = new Animal('animal_1');
             const animal_2 = new Animal('animal_2');
             const person = new Person('Name', 15, [animal_1]);
-            const oldPets = person.pets;
+            const oldPet = person.pets[0];
             const obs = getObservable(person);
             obs && obs.subscribe((obj: any) => {
-                assert.notEqual(oldPets, obj.pets);
-                assert.equal(oldPets[0], obj.pets[0]);
+                assert.equal(oldPet, obj.pets[0]);
                 done();
             })
-            oldPets.push(animal_2);
+            person.pets.push(animal_2);
         })
         it("array was observed few times", (done) => {
             const animal_1 = new Animal('animal_1');
             const animal_2 = new Animal('animal_2');
             const person = new Person('Name', 15);
-            const oldPets = person.pets;
-            let i = 0;
+            let newPerson;
             const obs = getObservable(person);
-            obs && obs.subscribe((obj: any) => {
-                i++;
+            const dispose = obs && obs.subscribe((obj: any) => {
+                newPerson = obj;
+                const obs = getObservable(newPerson);
+                obs.subscribe(() => {
+                    assert(true);
+                    done();
+                })
+                dispose.dispose();
+                newPerson.pets.push(animal_2);
             })
             person.pets.push(animal_1);
-            person.pets.push(animal_2);
-            person.pets.push(animal_1);
-            setTimeout(() => {
-                assert(i === 3)
-                done()
-            }, 50);
         })
         it("unsubscribe with primitive fields", (done) => {
             const person = new Person('Name', 15);
@@ -172,80 +171,4 @@ describe("decorators/observable", () => {
             }, 50);
         })
     })
-    describe("toObservable", () => {
-        it('isObservable', () => {
-            const animal = toObservable(new Animal('name'));
-            assert(isObservable(animal));
-        })
-        it('change observed', (done) => {
-            const arr = [1, 2, 3];
-            let animal = toObservable(arr);
-            const obs = getObservable(animal);
-            obs.subscribe((obj) => {
-                assert.notEqual(obj, animal);
-                done();
-            })
-            animal.push(1)
-        })
-    })
-    // describe("questionnaire model", () => {
-    //     it("is observable", () => {
-    //         const q = new Questionnaire();
-    //         assert(isObservable(q));
-    //     })
-    //     it("update questionnaire works", done => {
-    //         const q = new Questionnaire();
-    //         const oldTitle = q.title;
-    //         const oldId = q.id;
-    //         const oldItems = q.items;
-    //         const expectedVal = 'bla';
-    //         const obs = getObservable(q);
-    //         obs.subscribe(quest => {
-    //             assert.notEqual(q, quest);
-    //             assert.equal(oldId, quest.id);
-    //             assert.notEqual(oldTitle, quest.title);
-    //             assert.equal(oldItems, quest.items);
-    //             assert.equal(quest.title, expectedVal);
-    //             done();
-    //         })
-    //         q.updateQuestionnaire({ ...q, title: expectedVal })
-    //     })
-    //     it("add observable item", done => {
-    //         const i = new Item();
-    //         const q = new Questionnaire();
-    //         const oldItems = q.items;
-    //         const obs = getObservable(q);
-    //         obs.subscribe(quest => {
-    //             assert(isObservable(quest.items[0]));
-    //             assert.notEqual(quest.items, oldItems);
-    //             done();
-    //         })
-    //         q.addItem();
-    //     })
-    //     it("remove item from questionnaire", done => {
-    //         const i = new Item({});
-    //         const q = new Questionnaire({ items: [i] });
-    //         const oldItems = q.items;
-    //         const obs = getObservable(q);
-    //         obs.subscribe(quest => {
-    //             assert(quest.items.length === 0);
-    //             assert(oldItems.length === 1);
-    //             done();
-    //         })
-    //         q.removeItem(i);
-    //     })
-    //     it("remove item from item", done => {
-    //         const q = new Questionnaire();
-    //         const i = new Item({}, q);
-    //         q.addItem(i);
-    //         const obs = getObservable(q);
-    //         obs.subscribe(quest => {
-    //             assert(Array.isArray(quest.items));
-    //             assert(quest.items.indexOf(i) === -1);
-    //             assert(quest.items.length === 0);
-    //             done();
-    //         });
-    //         i.removeItem();
-    //     })
-    // })
 })

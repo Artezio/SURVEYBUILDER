@@ -23,7 +23,15 @@ const _handler = {
         if (target[propertyName] === value) {
             return true;
         }
-        target[propertyName] = value;
+        if (isObservable(target[propertyName])) {
+            target[propertyName] = toObservable(value);
+            target[subscribe](() => {
+                target[emitChange] && target[emitChange]();
+            })
+        }
+        else {
+            target[propertyName] = value;
+        }
         if (Array.isArray(target) && propertyName === 'length') {
             return true;
         }

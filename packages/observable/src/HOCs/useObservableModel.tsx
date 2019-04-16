@@ -4,7 +4,7 @@ import * as Models from '@art-forms/models';
 
 
 const filterObservableEntries = (entry: any[]) => Models.isObservable(entry[1]);
-const mapEntriesToObservable = ([key, value]) => [key, Models.getObservable(value)] as [string, Models.IObservable];
+const mapEntriesToObservable = ([key, value]: [string, Models.IObservable]) => [key, Models.getObservable(value)] as [string, Models.IObservable];
 
 export function useObservableModel<T>(WrappedComponent: any) {
     class Enhance extends React.Component<T> {
@@ -33,14 +33,6 @@ export function useObservableModel<T>(WrappedComponent: any) {
                         }));
                     }
                 });
-            // Object.keys(this.props).forEach((propertyName: string) => {
-            //     if (Models.isObservable((this.props as any)[propertyName])) {
-            //         const observable = Models.getObservable((this.props as any)[propertyName]);
-            //         observable && this.subscriptions.push(observable.subscribe((obj: any) => {
-            //             this.setState({ [propertyName]: obj });
-            //         }))
-            //     }
-            // })
         }
 
         getProps() {
