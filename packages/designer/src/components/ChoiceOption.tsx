@@ -18,7 +18,7 @@ export const ChoiceOption = (props: ChoiceOptionProps) => {
                     <input type="radio" disabled={true} />
                 </div>
             </div>
-            <input className="form-control" defaultValue={option.value} onBlur={onBlur} />
+            <input autoComplete="off" className="form-control" defaultValue={option.value} onBlur={onBlur} />
             <div className="input-group-append">
                 <button className="btn btn-outline-danger" onClick={remove}>
                     <i className="fas fa-trash"></i>

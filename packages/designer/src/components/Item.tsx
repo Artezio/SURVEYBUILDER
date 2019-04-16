@@ -33,7 +33,7 @@ export class Item extends React.Component<ItemProps> {
             <div className="card-body">
                 <div className="form-group">
                     <label htmlFor={item.id}>Text</label>
-                    <TextArea className="form-control" id={item.id} field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <TextArea autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
             </div>
         </Form>

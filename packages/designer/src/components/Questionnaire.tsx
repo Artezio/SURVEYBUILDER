@@ -96,11 +96,11 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
                         <div className="form-group">
                             <label htmlFor={`${questionnaire.id}-title`}>Questionnaire Title</label>
-                            <Text className="form-control" id={`${questionnaire.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                            <Text autoComplete="off" className="form-control" id={`${questionnaire.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                         </div>
                         <div className="form-group">
                             <label htmlFor={`${questionnaire.id}-description`}>Questionnaire Description</label>
-                            <TextArea className="form-control" id={`${questionnaire.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                            <TextArea autoComplete="off" className="form-control" id={`${questionnaire.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
                         </div>
                     </Form>
                 </div>

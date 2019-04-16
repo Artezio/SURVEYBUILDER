@@ -32,7 +32,7 @@ export class DateTimeItem extends React.Component<DateTimeItemProps> {
         return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
                 <label htmlFor={`${item.id}-initial`}>Default answer</label>
-                <Text className="form-control" type="datetime-local" field="initialValue" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
+                <Text autoComplete="off" className="form-control" type="datetime-local" field="initialValue" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
             </div>
         </Form>
     }

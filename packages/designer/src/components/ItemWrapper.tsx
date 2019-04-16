@@ -45,7 +45,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
                     <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
                             <label htmlFor={`${item.id}-text`}>Question</label>
-                            <Text className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                            <Text autoComplete="off" className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                         </div>
                     </Form>
                 </div>

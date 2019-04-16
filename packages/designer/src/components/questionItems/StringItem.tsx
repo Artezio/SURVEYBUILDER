@@ -32,7 +32,7 @@ export class StringItem extends React.Component<StringItemProps> {
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
                 <label htmlFor={`${item.id}-initial`}>Default answer</label>
-                <Text className="form-control" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
+                <Text autoComplete="off" className="form-control" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
             </div>
         </Form>
     }
