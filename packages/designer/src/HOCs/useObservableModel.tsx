@@ -19,17 +19,6 @@ export function useObservableModel<T>(WrappedComponent: any) {
         }
 
         subscribeOnObservable() {
-            // Object.entries(this.props)
-            //     .filter(entry => Models.isObservable(entry[1]))
-            //     .map(([key, value]) => [key, Models.getObservable(value)])
-            //     .forEach(([key, value]) => {
-            //         const observable = Models.getObservable(value);
-            //         if(observable){
-            //             this.subscriptions.push(observable.subscribe((obj: any) => {
-            //                 this.setState({ [key]: obj });
-            //             }));
-            //         }
-            //     });
             Object.keys(this.props).forEach((propertyName: string) => {
                 if (Models.isObservable((this.props as any)[propertyName])) {
                     const observable = Models.getObservable((this.props as any)[propertyName]);

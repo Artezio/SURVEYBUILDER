@@ -73,61 +73,61 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
 
     changeItemToString() {
         const { item } = this.props;
-        const newItem = this.factory.createStringItem(item);
+        const newItem = this.factory.createStringItem({ text: item.text, id: item.id });
         item.replace(newItem);
     }
 
     changeItemToText() {
         const { item } = this.props;
-        const newItem = this.factory.createTextItem(item);
+        const newItem = this.factory.createTextItem({ text: item.text, id: item.id });
         item.replace(newItem);
     }
 
     changeItemToBoolean() {
         const { item } = this.props;
-        const newItem = this.factory.createBooleanItem(item);
+        const newItem = this.factory.createBooleanItem({ text: item.text, id: item.id });
         item.replace(newItem);
     }
 
     changeItemToDecimal() {
         const { item } = this.props;
-        const newItem = this.factory.createDecimalItem(item);
+        const newItem = this.factory.createDecimalItem({ text: item.text, id: item.id });
         item.replace(newItem);
     }
 
     changeItemToTime() {
         const { item } = this.props;
-        const newItem = this.factory.createTimeItem(item);
+        const newItem = this.factory.createTimeItem({ text: item.text, id: item.id });
         item.replace(newItem);
     }
 
     changeItemToDate() {
         const { item } = this.props;
-        const newItem = this.factory.createDateItem(item);
+        const newItem = this.factory.createDateItem({ text: item.text, id: item.id });
         item.replace(newItem);
     }
 
     changeItemToDateTime() {
         const { item } = this.props;
-        const newItem = this.factory.createDateTimeItem(item);
+        const newItem = this.factory.createDateTimeItem({ text: item.text, id: item.id });
         item.replace(newItem);
     }
 
     changeItemToChoice() {
         const { item } = this.props;
-        const newItem = this.factory.createChoiceItem(item);
+        const newItem = this.factory.createChoiceItem({ text: item.text, id: item.id, options: (item as Models.OpenChoiceItem).options });
         item.replace(newItem);
     }
 
     changeItemToOpenChoice() {
         const { item } = this.props;
-        const newItem = this.factory.createOpenChoiceItem(item);
+        const newItem = this.factory.createOpenChoiceItem({ text: item.text, id: item.id, options: (item as Models.ChoiceItem).options });
         item.replace(newItem);
     }
 
     changeItemToAttachment() {
         const { item } = this.props;
-        const newItem = this.factory.createAttachmentItem(item);
+        const newItem = this.factory.createAttachmentItem({ text: item.text, id: item.id });
         item.replace(newItem);
     }
 

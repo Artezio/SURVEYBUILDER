@@ -54,7 +54,7 @@ export class Layout extends React.Component<LayoutProps> {
                                 <a className={`nav-link ${!application.questionnaire ? "disabled" : ""}`} href="javascript:void(0)" onClick={actions.toggleModeToPlay}>Try in action</a>
                             </li>
                         </ul>
-                        {application.mode === DESIGN && <a className="nav-link ml-auto text-dark" href="javascript:void(0)" onClick={this.createQuestionnaireAndResponse.bind(this)}>Create Questionnaire</a>}
+                        {application.mode === DESIGN && <a className="nav-link btn btn-outline-secondary ml-auto" href="javascript:void(0)" onClick={this.createQuestionnaireAndResponse.bind(this)}>Create Questionnaire</a>}
                     </div>
                 </div>
             </nav>
