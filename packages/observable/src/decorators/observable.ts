@@ -23,8 +23,10 @@ export const observableProperty = (target: any, propertyName: string, ) => {
         set(value) {
             Reflect.defineProperty(this, propertyName, {
                 value: toObservable(value),
-                enumerable: true
-            })
+                enumerable: true,
+                writable: true
+            });
+            Reflect.defineMetadata("observableProperty", true, this, propertyName);
         }
     })
 }

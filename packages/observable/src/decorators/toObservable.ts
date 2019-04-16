@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 const subscribe = Symbol('subscribe');
 const emitChange = Symbol('emitChange');
 const _subscribers = Symbol('subscribers');
@@ -17,16 +19,15 @@ export interface IObservable {
 export interface IDisposable {
     dispose(): void;
 }
-
 const _handler = {
     set(target: any, propertyName: string, value: any) {
         if (target[propertyName] === value) {
             return true;
         }
-        if (isObservable(target[propertyName])) {
+        if (Reflect.getMetadata("observableProperty", target, propertyName)) {
             target[propertyName] = toObservable(value);
-            target[subscribe](() => {
-                target[emitChange] && target[emitChange]();
+            getObservable(target[propertyName]).subscribe(() => {
+                target[emitChange] && target[emitChange]()
             })
         }
         else {
