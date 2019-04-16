@@ -1,6 +1,5 @@
 import { assert } from 'chai';
-import { isObservable, getObservable } from '../../src/decorators/toObservable';
-import { observable, observableProperty } from '../../src/decorators/observable';
+import { isObservable, getObservable, observable, observableProperty } from '../../src/decorators/observable';
 
 @observable
 class Person {
@@ -169,6 +168,14 @@ describe("decorators/observable", () => {
                 assert(i === 2)
                 done()
             }, 50);
+        })
+    })
+    describe("reflect metadata", () => {
+        it("metadata exist after del", () => {
+            const person = new Person('name', 12);
+            delete (person as any).__proto__.pets;
+            assert((person as any).__proto__.pets === undefined);
+            assert(Reflect.getMetadata("observableProperty", person, 'pets'));
         })
     })
 })

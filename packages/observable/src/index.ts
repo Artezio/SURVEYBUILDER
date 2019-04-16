@@ -1,5 +1,3 @@
-export * from './decorators/toObservable';
+export * from './decorators/observable';
 
 export * from './HOCs/useObservableModel';
-
-export * from './decorators/observable';

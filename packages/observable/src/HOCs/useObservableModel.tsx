@@ -1,14 +1,11 @@
 import * as React from 'react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
-import * as Models from '@art-forms/models';
+import { isObservable, getObservable, IDisposable } from '..';
 
 
-const filterObservableEntries = (entry: any[]) => Models.isObservable(entry[1]);
-const mapEntriesToObservable = ([key, value]: [string, Models.IObservable]) => [key, Models.getObservable(value)] as [string, Models.IObservable];
-
-export function useObservableModel<T>(WrappedComponent: any) {
+export function useObservableModel<T>(WrappedComponent: any): React.ComponentType<T> {
     class Enhance extends React.Component<T> {
-        subscriptions: Models.IDisposable[] = [];
+        subscriptions: IDisposable[] = [];
 
         constructor(props: T) {
             super(props);
@@ -22,17 +19,14 @@ export function useObservableModel<T>(WrappedComponent: any) {
         }
 
         subscribeOnObservable() {
-            Object.entries(this.props)
-                .filter(filterObservableEntries)
-                .map(mapEntriesToObservable)
-                .forEach(([key, value]) => {
-                    const observable = Models.getObservable(value);
-                    if (observable) {
-                        this.subscriptions.push(observable.subscribe((obj: any) => {
-                            this.setState({ [key]: obj });
-                        }));
-                    }
-                });
+            Object.keys(this.props).forEach((propertyName: string) => {
+                if (isObservable((this.props as any)[propertyName])) {
+                    const observable = getObservable((this.props as any)[propertyName]);
+                    observable && this.subscriptions.push(observable.subscribe((obj: any) => {
+                        this.setState({ [propertyName]: obj });
+                    }))
+                }
+            })
         }
 
         getProps() {
