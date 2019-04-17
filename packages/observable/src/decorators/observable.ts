@@ -19,6 +19,10 @@ export interface IDisposable {
     dispose(): void;
 }
 
+const notEqualToSymbols = (key: Symbol) => {
+    return key !== _subscribers && key !== subscribe && key !== emitChange && key !== _notify && key !== _isMuted && key !== mute && key !== unmute;
+}
+
 const _handler = {
     set(target: any, propertyName: string, value: any) {
         if (target[propertyName] === value) {
@@ -27,7 +31,9 @@ const _handler = {
         if (Reflect.getMetadata(observablePropertySym, target.__proto__, propertyName)) {
             target[propertyName] = toObservable(value);
             getObservable(target[propertyName]).subscribe(() => {
-                target[emitChange] && target[emitChange]()
+                if (notEqualToSymbols(propertyName as any)) {
+                    target[emitChange] && target[emitChange]();
+                }
             })
         }
         else {
@@ -36,6 +42,18 @@ const _handler = {
         if (Array.isArray(target) && propertyName === 'length') {
             return true;
         }
+        if (notEqualToSymbols(propertyName as any)) {
+            target[emitChange] && target[emitChange]();
+        }
+        return true;
+    },
+    deleteProperty(target: any, propertyName: string) {
+        if (Array.isArray(target)) {
+            target.splice(+propertyName, 1);
+            target[emitChange] && target[emitChange]();
+            return true;
+        }
+        delete target[propertyName];
         target[emitChange] && target[emitChange]();
         return true;
     }
@@ -68,13 +86,13 @@ function _addMethods(target: any) {
 
     Reflect.defineProperty(target, _isMuted, { value: false, writable: true })
 
-    Reflect.defineProperty(target, _subscribers, { value: [] });
+    Reflect.defineProperty(target, _subscribers, { value: [], writable: true });
 
     Reflect.defineProperty(target, subscribe, {
         value: function (fn: Function) {
             const index = this[_subscribers].push(fn) - 1;
             return ({
-                dispose: () => { this[_subscribers].splice(index, 1) }
+                dispose: () => { this[_subscribers] = this[_subscribers].filter(x => x !== fn) }
             }) as IDisposable
         }
     });
@@ -82,7 +100,7 @@ function _addMethods(target: any) {
     Reflect.defineProperty(target, _notify, {
         value: function (fn: Function) {
             setTimeout(() => {
-                fn(toObservable(this));
+                fn(proxify(this));
             })
         }
     })
@@ -125,7 +143,9 @@ export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
                 .forEach((key: string) => {
                     getObservable(this[key]).subscribe((obj) => {
                         const obs = getObservable(this);
-                        obs && obs.emitChange();
+                        if (notEqualToSymbols(key as any)) {
+                            obs && obs.emitChange();
+                        }
                     })
                 })
             return toObservable(this);
@@ -133,15 +153,18 @@ export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
     }
 }
 
-export const observableProperty = (target: any, propertyName: string, ) => {
+export const observableProperty = (target: any, propertyName: string) => {
     Reflect.defineProperty(target, propertyName, {
         set(value) {
             Reflect.defineProperty(this, propertyName, {
                 value: toObservable(value),
                 enumerable: true,
-                writable: true
+                writable: true,
+                configurable: true
             });
         }
     })
-    Reflect.defineMetadata(observablePropertySym, true, target, propertyName);
+    if (!Reflect.hasMetadata(observablePropertySym, target, propertyName)) {
+        Reflect.defineMetadata(observablePropertySym, true, target, propertyName);
+    }
 }

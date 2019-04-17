@@ -6,6 +6,7 @@ import { isObservable, getObservable, IDisposable } from '..';
 export function useObservableModel<T>(WrappedComponent: any): React.ComponentType<T> {
     class Enhance extends React.Component<T> {
         subscriptions: IDisposable[] = [];
+        wasNotUnmounted?: boolean = true;
 
         constructor(props: T) {
             super(props);
@@ -14,16 +15,17 @@ export function useObservableModel<T>(WrappedComponent: any): React.ComponentTyp
         }
 
         componentWillUnmount() {
+            this.wasNotUnmounted = false;
             super.componentWillUnmount && super.componentWillUnmount.call(this);
             this.subscriptions.forEach(x => setTimeout(() => x.dispose()));
         }
 
         subscribeOnObservable() {
-            Object.keys(this.props).forEach((propertyName: string) => {
+            Reflect.ownKeys(this.props).forEach((propertyName: string) => {
                 if (isObservable((this.props as any)[propertyName])) {
                     const observable = getObservable((this.props as any)[propertyName]);
                     observable && this.subscriptions.push(observable.subscribe((obj: any) => {
-                        this.setState({ [propertyName]: obj });
+                        this.wasNotUnmounted && this.setState({ [propertyName]: obj });
                     }))
                 }
             })

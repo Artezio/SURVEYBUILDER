@@ -19,9 +19,10 @@ class Person {
     }
 }
 
-//@observable
+@observable
 class Animal {
     nickname: string;
+    @observableProperty
     limbs: string[];
 
     constructor(nickname: string, limbs?: string[]) {
@@ -38,19 +39,6 @@ describe("decorators/observable", () => {
             const person = new Person('Name', 15);
             assert(isObservable(person));
         })
-        // it("", (done) => {
-        //     const animal = new Animal('sdf')
-        //     const person = new Person('Name', 15);
-        //     const person2 = new Person('sdf', 123);
-        //     const obs = getObservable(person);
-        //     assert(person.pets === person2.pets);
-        //     obs && obs.subscribe((arr: any) => {
-        //         console.log(arr);
-        //         assert(true);
-        //         done();
-        //     })
-        //     person.pets.push(animal)
-        // })
         it("primitive change was observed", (done) => {
             const person = new Person('Name', 15);
             const obs = getObservable(person);
@@ -168,14 +156,6 @@ describe("decorators/observable", () => {
                 assert(i === 2)
                 done()
             }, 50);
-        })
-    })
-    describe("reflect metadata", () => {
-        it("metadata exist after del", () => {
-            const person = new Person('name', 12);
-            delete (person as any).__proto__.pets;
-            assert((person as any).__proto__.pets === undefined);
-            assert(Reflect.getMetadata("observableProperty", person, 'pets'));
         })
     })
 })
