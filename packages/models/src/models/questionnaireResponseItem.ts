@@ -1,21 +1,22 @@
 import { observable } from "..";
 import { IQuestionnaireResponseItem } from "../interfaces/IQuestionnaireResponseItem";
 import uuid from 'uuid/v1';
+import Answer from "./answer";
 
 @observable
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     id!: string;
     text?: string;
     items!: QuestionnaireResponseItem[];
-    value?: any;
+    answers!: Answer<any>[];
 
     constructor(item?: Partial<IQuestionnaireResponseItem>) {
-        Object.assign(this, { id: uuid(), items: [] }, item);
+        Object.assign(this, { id: uuid(), items: [], answers: [] }, item);
     }
 
-    addQuestionnaireResponseItem(item?: Partial<IQuestionnaireResponseItem>) {
-        if ((item && this.items.every(itm => itm.id !== item.id)) || !item) {
-            this.items = [...this.items, new QuestionnaireResponseItem(item)];
+    addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
+        if (item && this.items.every(itm => itm.id !== item.id) && this.answers.length === 0) {
+            this.items = [...this.items, item];
         }
     }
 
@@ -23,7 +24,9 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         Object.assign(this, item);
     }
 
-    clearQuestionnaireResponseItems() {
-        this.items = [];
+    addAnswer(answer: Answer<any>) {
+        if (answer && this.answers.every(ans => ans.id !== answer.id) && this.items.length === 0) {
+            this.answers = [...this.answers, answer];
+        }
     }
 }

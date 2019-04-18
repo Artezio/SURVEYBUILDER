@@ -17,6 +17,7 @@ export * from './interfaces/questionItems/ITimeItem';
 export * from './interfaces/IQuestionnaire';
 export * from './interfaces/IQuestionnaireResponse';
 export * from './interfaces/IQuestionnaireResponseItem';
+export * from './interfaces/IAnswer';
 
 
 export * from './constants/itemTypes';
@@ -42,6 +43,7 @@ export * from './models/questionItems/timeItem';
 export * from './models/questionnaire';
 export * from './models/questionnaireResponse';
 export * from './models/questionnaireResponseItem';
+export * from './models/answer';
 
 export * from './factories/itemFactory';
 export * from './factories/choiceOptionFactory';

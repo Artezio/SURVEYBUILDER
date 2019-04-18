@@ -1,6 +1,8 @@
+import IAnswer from "./IAnswer";
+
 export interface IQuestionnaireResponseItem {
     id: string;
     text?: string;
-    value?: any;
+    answers?: IAnswer<any>[];
     items?: IQuestionnaireResponseItem[];
 }
