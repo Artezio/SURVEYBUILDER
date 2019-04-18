@@ -19,7 +19,7 @@ export class Menu extends React.Component<MenuProps> {
     }
     addChoiceItem() {
         const { item } = this.props;
-        const newItem = this.itemFactory.createChoiceItem({ options: [Models.ChoiceOptionFactory.createChoiceOption()] });
+        const newItem = this.itemFactory.createChoiceItem({ options: [Models.ChoiceOptionFactory.createChoiceOption({value: "Option 1"})] });
         item.addItem(newItem);
     }
 

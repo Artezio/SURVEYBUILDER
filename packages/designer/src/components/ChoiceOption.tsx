@@ -3,7 +3,7 @@ import ChoiceOptionProps from '../interfaces/components/ChoiceOptionProps';
 
 
 export const ChoiceOption = (props: ChoiceOptionProps) => {
-    const { option, item } = props;
+    const { option, item, disabled } = props;
     const onBlur = (e: any) => {
         option.value = e.target.value;
         item.updateOption(option);
@@ -18,9 +18,9 @@ export const ChoiceOption = (props: ChoiceOptionProps) => {
                     <input type="radio" disabled={true} />
                 </div>
             </div>
-            <input autoComplete="off" className="form-control" defaultValue={option.value} onBlur={onBlur} />
+            <input autoComplete="off" className="form-control" defaultValue={option.value} onBlur={onBlur} disabled={disabled} />
             <div className="input-group-append">
-                <button className="btn btn-outline-danger" onClick={remove}>
+                <button className="btn btn-outline-danger" onClick={remove} disabled={disabled} >
                     <i className="fas fa-trash"></i>
                 </button>
             </div>

@@ -115,13 +115,31 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
 
     changeItemToChoice() {
         const { item } = this.props;
-        const newItem = this.factory.createChoiceItem({ text: item.text, id: item.id, options: (item as Models.OpenChoiceItem).options });
+        let options;
+        if ((item as Models.OpenChoiceItem).options === undefined) {
+            options = [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })];
+        }
+        else {
+            options = (item as Models.OpenChoiceItem).options.length === 0 ?
+                [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })] :
+                (item as Models.OpenChoiceItem).options;
+        }
+        const newItem = this.factory.createChoiceItem({ text: item.text, id: item.id, options });
         item.replace(newItem);
     }
 
     changeItemToOpenChoice() {
         const { item } = this.props;
-        const newItem = this.factory.createOpenChoiceItem({ text: item.text, id: item.id, options: (item as Models.ChoiceItem).options });
+        let options;
+        if ((item as Models.OpenChoiceItem).options === undefined) {
+            options = [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })];
+        }
+        else {
+            options = (item as Models.OpenChoiceItem).options.length === 0 ?
+                [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })] :
+                (item as Models.OpenChoiceItem).options;
+        }
+        const newItem = this.factory.createOpenChoiceItem({ text: item.text, id: item.id, options });
         item.replace(newItem);
     }
 
