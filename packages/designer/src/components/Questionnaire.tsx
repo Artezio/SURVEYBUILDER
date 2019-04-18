@@ -3,7 +3,7 @@ import * as Models from '@art-forms/models';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import { useObservableModel } from '../HOCs/useObservableModel';
-import { ItemWrapper } from './ItemWrapper';
+import ItemWrapper from './ItemWrapper';
 import Menu from './Menu';
 
 

@@ -124,7 +124,7 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
                 [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })] :
                 (item as Models.OpenChoiceItem).options;
         }
-        const newItem = this.factory.createChoiceItem({ text: item.text, id: item.id, options });
+        const newItem = this.factory.createChoiceItem({ text: item.text, options });
         item.replace(newItem);
     }
 
@@ -139,13 +139,13 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
                 [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })] :
                 (item as Models.OpenChoiceItem).options;
         }
-        const newItem = this.factory.createOpenChoiceItem({ text: item.text, id: item.id, options });
+        const newItem = this.factory.createOpenChoiceItem({ text: item.text, options });
         item.replace(newItem);
     }
 
     changeItemToAttachment() {
         const { item } = this.props;
-        const newItem = this.factory.createAttachmentItem({ text: item.text, id: item.id });
+        const newItem = this.factory.createAttachmentItem({ text: item.text });
         item.replace(newItem);
     }
 

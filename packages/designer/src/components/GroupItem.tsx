@@ -3,7 +3,7 @@ import GroupItemProps from '../interfaces/components/GroupItemProps';
 import useObservableModel from '../HOCs/useObservableModel';
 import { FormApi, Form, Text } from 'informed';
 import * as Models from '@art-forms/models';
-import { ItemWrapper } from './ItemWrapper';
+import ItemWrapper from './ItemWrapper';
 
 
 export class GroupItem extends React.Component<GroupItemProps> {
