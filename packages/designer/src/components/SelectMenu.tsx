@@ -73,43 +73,43 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
 
     changeItemToString() {
         const { item } = this.props;
-        const newItem = this.factory.createStringItem({ text: item.text, id: item.id });
+        const newItem = this.factory.createStringItem({ text: item.text });
         item.replace(newItem);
     }
 
     changeItemToText() {
         const { item } = this.props;
-        const newItem = this.factory.createTextItem({ text: item.text, id: item.id });
+        const newItem = this.factory.createTextItem({ text: item.text });
         item.replace(newItem);
     }
 
     changeItemToBoolean() {
         const { item } = this.props;
-        const newItem = this.factory.createBooleanItem({ text: item.text, id: item.id });
+        const newItem = this.factory.createBooleanItem({ text: item.text });
         item.replace(newItem);
     }
 
     changeItemToDecimal() {
         const { item } = this.props;
-        const newItem = this.factory.createDecimalItem({ text: item.text, id: item.id });
+        const newItem = this.factory.createDecimalItem({ text: item.text });
         item.replace(newItem);
     }
 
     changeItemToTime() {
         const { item } = this.props;
-        const newItem = this.factory.createTimeItem({ text: item.text, id: item.id });
+        const newItem = this.factory.createTimeItem({ text: item.text });
         item.replace(newItem);
     }
 
     changeItemToDate() {
         const { item } = this.props;
-        const newItem = this.factory.createDateItem({ text: item.text, id: item.id });
+        const newItem = this.factory.createDateItem({ text: item.text });
         item.replace(newItem);
     }
 
     changeItemToDateTime() {
         const { item } = this.props;
-        const newItem = this.factory.createDateTimeItem({ text: item.text, id: item.id });
+        const newItem = this.factory.createDateTimeItem({ text: item.text });
         item.replace(newItem);
     }
 

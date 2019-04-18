@@ -79,7 +79,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
             </div>
             <div className="card-body">
                 {this.renderItemHeadLine()}
-                <ItemProvider item={item} />
+                <ItemProvider item={item} key={item.id} />
             </div>
             <div className="card-footer">
                 {this.renderFooter()}
