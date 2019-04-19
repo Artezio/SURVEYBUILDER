@@ -17,7 +17,7 @@ export class AttachmentItem extends React.Component<QuestionItemProps<void>> {
                     <label htmlFor={item.id}><b>{item.text}</b></label>
                     <div className="input-group">
                         <div className="custom-file">
-                            <input type="file" name="value" className="custom-file-input" id={item.id} />
+                            <input autoComplete="off" type="file" name="value" className="custom-file-input" id={item.id} />
                             <label className="custom-file-label" htmlFor={item.id}>Chose file</label>
                         </div>
                     </div>

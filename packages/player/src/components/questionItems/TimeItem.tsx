@@ -32,7 +32,7 @@ export class TimeItem extends React.Component<QuestionItemProps<string>> {
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                     <label htmlFor={item.id}><b>{item.text}</b></label>
-                    <Text id={item.id} type="time" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
+                    <Text autoComplete="off" id={item.id} type="time" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
                 </div>
             </Form>
         </div>

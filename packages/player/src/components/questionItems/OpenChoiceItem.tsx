@@ -84,7 +84,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                     <label className="form-check-label" htmlFor={this.customOption.id}>Other</label>
                 </div>
             </RadioGroup>
-            <input id={`${this.customOption.id}-customOption`} className="form-control" name="value" type="text" disabled={!this.state.isOtherAnswerChosen} onBlur={this.setOtherAnswer1.bind(this)} />
+            <input autoComplete="off" id={`${this.customOption.id}-customOption`} className="form-control" name="value" type="text" disabled={!this.state.isOtherAnswerChosen} onBlur={this.setOtherAnswer1.bind(this)} />
         </Form>
     }
 
