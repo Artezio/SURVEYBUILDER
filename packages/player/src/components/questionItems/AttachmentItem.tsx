@@ -10,20 +10,17 @@ export class AttachmentItem extends React.Component<QuestionItemProps<void>> {
     }
 
     render() {
-        const { item, className = '' } = this.props;
-        return <div className={`questionnaire-response-item ${className}`}>
-            <form key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-                <div className="form-group">
-                    <label htmlFor={item.id}><b>{item.text}</b></label>
-                    <div className="input-group">
-                        <div className="custom-file">
-                            <input autoComplete="off" type="file" name="value" className="custom-file-input" id={item.id} />
-                            <label className="custom-file-label" htmlFor={item.id}>Chose file</label>
-                        </div>
+        const { item } = this.props;
+        return <form key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+            <div className="form-group">
+                <div className="input-group">
+                    <div className="custom-file">
+                        <input autoComplete="off" type="file" name="value" className="custom-file-input" id={item.id} />
+                        <label className="custom-file-label" htmlFor={item.id}>Chose file</label>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     }
 }
 

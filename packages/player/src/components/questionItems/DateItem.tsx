@@ -27,15 +27,12 @@ export class DateItem extends React.Component<QuestionItemProps<string>> {
     }
 
     render() {
-        const { item, className = '' } = this.props;
-        return <div className={`questionnaire-response-item ${className}`}>
-            <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-                <div className="form-group">
-                    <label htmlFor={item.id}><b>{item.text}</b></label>
-                    <Text autoComplete="off" id={item.id} type="date" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
-                </div>
-            </Form>
-        </div>
+        const { item } = this.props;
+        return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+            <div className="form-group">
+                <Text autoComplete="off" id={item.id} type="date" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
+            </div>
+        </Form>
     }
 }
 

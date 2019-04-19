@@ -23,19 +23,17 @@ export class TextItem extends React.Component<QuestionItemProps<string>> {
 
     handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
         const { questionnaireResponseItem } = this.props;
+        // const answer = new Models.Answer({value: values.})
         questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, ...values })
     }
 
     render() {
-        const { item, className = '' } = this.props;
-        return <div className={`questionnaire-response-item ${className}`}>
-            <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-                <div className="form-group">
-                    <label htmlFor={item.id}><b>{item.text}</b></label>
-                    <TextArea autoComplete="off" id={item.id} className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
-                </div>
-            </Form>
-        </div>
+        const { item } = this.props;
+        return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+            <div className="form-group">
+                <TextArea autoComplete="off" id={item.id} className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
+            </div>
+        </Form>
     }
 }
 

@@ -12,6 +12,7 @@ import DateTimeItem from './questionItems/DateTimeItem';
 import AttachmentItem from './questionItems/AttachmentItem';
 import ChoiceItem from './questionItems/ChoiceItem';
 import OpenChoiceItem from './questionItems/OpenChoiceItem';
+import ItemWrapper from './ItemWrapper';
 
 
 export const ItemProvider = (props: any) => {
@@ -23,38 +24,39 @@ export const ItemProvider = (props: any) => {
         case Models.GROUP: {
             return <GroupItem {...props} />
         }
-        case Models.TEXT: {
-            return <TextItem {...props} />
-        }
-        case Models.STRING: {
-            return <StringItem {...props} />
-        }
-        case Models.DECIMAL: {
-            return <DecimalItem {...props} />
-        }
-        case Models.BOOLEAN: {
-            return <BooleanItem {...props} />
-        }
-        case Models.TIME: {
-            return <TimeItem {...props} />
-        }
-        case Models.DATE: {
-            return <DateItem {...props} />
-        }
-        case Models.DATE_TIME: {
-            return <DateTimeItem {...props} />
-        }
-        case Models.ATTACHMENT: {
-            return <AttachmentItem {...props} />
-        }
-        case Models.CHOICE: {
-            return <ChoiceItem {...props} />
-        }
-        case Models.OPEN_CHOICE: {
-            return <OpenChoiceItem {...props} />
-        }
+        // case Models.TEXT: {
+        //     return <TextItem {...props} />
+        // }
+        // case Models.STRING: {
+        //     return <StringItem {...props} />
+        // }
+        // case Models.DECIMAL: {
+        //     return <DecimalItem {...props} />
+        // }
+        // case Models.BOOLEAN: {
+        //     return <BooleanItem {...props} />
+        // }
+        // case Models.TIME: {
+        //     return <TimeItem {...props} />
+        // }
+        // case Models.DATE: {
+        //     return <DateItem {...props} />
+        // }
+        // case Models.DATE_TIME: {
+        //     return <DateTimeItem {...props} />
+        // }
+        // case Models.ATTACHMENT: {
+        //     return <AttachmentItem {...props} />
+        // }
+        // case Models.CHOICE: {
+        //     return <ChoiceItem {...props} />
+        // }
+        // case Models.OPEN_CHOICE: {
+        //     return <OpenChoiceItem {...props} />
+        // }
         default: {
-            return null;
+            // return null;
+            return <ItemWrapper {...props} />
         }
     }
 }

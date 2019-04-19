@@ -18,7 +18,8 @@ const completeResponse = (questionnaire: Models.IQuestionnaire, response: Models
             items = (item as Models.GroupItem).items.map(itm => recursivelyCompleteResponseItem(itm))
         }
         else {
-            answers = []
+            const responseItem = response.items.find(responseItem => responseItem.id === item.id);
+            answers = responseItem && responseItem.answers;
         }
         response.addQuestionnaireResponseItem(new Models.QuestionnaireResponseItem({ id: item.id, text: item.text, items, answers }))
     })
@@ -33,7 +34,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     renderItemList() {
         const { questionnaire, questionnaireResponse } = this.props;
         return <div className="response-item-list">
-            {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} {...{ item, questionnaireResponseItem: questionnaireResponse && questionnaireResponse.items.find(responseItem => responseItem.id === item.id) }} />)}
+            {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} item={item} questionnaireResponseItem={questionnaireResponse.items.find(responseItem => responseItem.id === item.id)} />)}
         </div>
     }
 

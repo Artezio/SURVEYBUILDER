@@ -27,24 +27,21 @@ export class BooleanItem extends React.Component<QuestionItemProps<boolean>> {
     }
 
     render() {
-        const { item, className = '' } = this.props;
-        return <div className={`questionnaire-response-item ${className}`}>
-            <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-                <RadioGroup field="value" initialValue={item.initialValue}>
-                    <div className="form-group">
-                        <label><b>{item.text}</b></label>
-                        <div className="form-check">
-                            <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.submitForm.bind(this)} />
-                            <label className="form-check-label" htmlFor={`${item.id}-true`}>Yes</label>
-                        </div>
-                        <div className="form-check">
-                            <Radio className="form-check-input" id={`${item.id}-false`} value={false} onChange={this.submitForm.bind(this)} />
-                            <label className="form-check-label" htmlFor={`${item.id}-false`}>No</label>
-                        </div>
+        const { item } = this.props;
+        return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+            <RadioGroup field="value" initialValue={item.initialValue}>
+                <div className="form-group">
+                    <div className="form-check">
+                        <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.submitForm.bind(this)} />
+                        <label className="form-check-label" htmlFor={`${item.id}-true`}>Yes</label>
                     </div>
-                </RadioGroup>
-            </Form>
-        </div>
+                    <div className="form-check">
+                        <Radio className="form-check-input" id={`${item.id}-false`} value={false} onChange={this.submitForm.bind(this)} />
+                        <label className="form-check-label" htmlFor={`${item.id}-false`}>No</label>
+                    </div>
+                </div>
+            </RadioGroup>
+        </Form>
     }
 }
 
