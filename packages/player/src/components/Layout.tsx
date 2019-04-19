@@ -6,8 +6,8 @@ export class Layout extends React.Component<QuestionnaireProps> {
 
     render() {
         const { questionnaire, questionnaireResponse, className } = this.props;
-        return <div className="container-fluid">
-            <nav className="row navbar navbar-expand-sm navbar-light bg-light">
+        return <div>
+            <nav className="navbar navbar-expand-sm navbar-light bg-light mb-3">
                 <div className="navbar-collapse">
                     <a className="navbar-brand" href="#">Questionnaire</a>
                     <ul className="navbar-nav mt-2 mt-lg-0">
@@ -20,9 +20,11 @@ export class Layout extends React.Component<QuestionnaireProps> {
                     </ul>
                 </div>
             </nav>
-            <div className="main-area row py-5 justify-content-center">
-                <div className="col-9">
-                    {questionnaire && <QuestionnairePlayer questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} className={className} />}
+            <div className="container">
+                <div className="main-area row">
+                    <div className="col-12">
+                        {questionnaire && <QuestionnairePlayer questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} className={className} />}
+                    </div>
                 </div>
             </div>
         </div>

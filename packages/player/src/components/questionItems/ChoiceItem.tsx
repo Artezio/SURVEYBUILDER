@@ -42,9 +42,9 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
 
     render() {
         const { item, className = '' } = this.props;
-        return <div className={`mb-3 ${className}`}>
+        return <div className={`questionnaire-response-item ${className}`}>
             <div className="form-group">
-                <label className="mb-1">{item.text}</label>
+                <label><b>{item.text}</b></label>
                 {this.renderChoiceOptions()}
             </div>
         </div>

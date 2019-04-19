@@ -28,10 +28,10 @@ export class DecimalItem extends React.Component<QuestionItemProps<number>> {
 
     render() {
         const { item, className = '' } = this.props;
-        return <div className={`mb-3 ${className}`}>
+        return <div className={`questionnaire-response-item ${className}`}>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                    <label htmlFor={item.id} className="mb-1">{item.text}</label>
+                    <label htmlFor={item.id}><b>{item.text}</b></label>
                     <Text id={item.id} type="number" className="form-control" field="value" initialValue={item.initialValue} onBlur={this.submitForm.bind(this)} />
                 </div>
             </Form>

@@ -32,12 +32,12 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
 
     setOtherAnswer(value: any) {
         const { questionnaireResponseItem } = this.props;
-        questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value });
+        // questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value });
     }
 
     resetAnswer() {
         const { questionnaireResponseItem } = this.props;
-        questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value: undefined });
+        // questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value: undefined });
         const customInput = document.getElementById(`${this.customOption.id}-customOption`);
         customInput && setTimeout(() => { customInput && customInput.focus(); customInput && this.formApi.setValue('value', (customInput as any).value) });
     }
@@ -90,9 +90,9 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
 
     render() {
         const { item, className = '' } = this.props;
-        return <div className={`mb-3 ${className}`}>
+        return <div className={`questionnaire-response-item ${className}`}>
             <div className="form-group">
-                <label className="mb-1">{item.text}</label>
+                <label><b>{item.text}</b></label>
                 {this.renderChoiceOptions()}
             </div>
         </div>

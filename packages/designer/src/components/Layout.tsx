@@ -42,20 +42,18 @@ export class Layout extends React.Component<LayoutProps> {
     render() {
         const { actions, application } = this.props;
         return <div>
-            <nav className="row navbar navbar-expand-sm navbar-light bg-light mb-2">
-                <div className="col-12">
-                    <div className="navbar-collapse">
-                        <a className="navbar-brand" href="#">Questionnaire Designer</a>
-                        <ul className="navbar-nav">
-                            <li className={`nav-item ${application.mode === 'DESIGN' ? "active" : ""}`}>
-                                <a className="nav-link" href="javascript:void(0)" onClick={actions.toggleModeToDesign}>Design mode</a>
-                            </li>
-                            <li className={`nav-item ${application.mode === 'PLAY' ? "active" : ""}`}>
-                                <a className={`nav-link ${!application.questionnaire ? "disabled" : ""}`} href="javascript:void(0)" onClick={actions.toggleModeToPlay}>Try in action</a>
-                            </li>
-                        </ul>
-                        {application.mode === DESIGN && <a className="nav-link btn btn-outline-secondary ml-auto" href="javascript:void(0)" onClick={this.createQuestionnaireAndResponse.bind(this)}>Create Questionnaire</a>}
-                    </div>
+            <nav className="navbar navbar-expand-sm navbar-light bg-light mb-2">
+                <div className="navbar-collapse">
+                    <a className="navbar-brand" href="#">Questionnaire Designer</a>
+                    <ul className="navbar-nav">
+                        <li className={`nav-item ${application.mode === 'DESIGN' ? "active" : ""}`}>
+                            <a className="nav-link" href="javascript:void(0)" onClick={actions.toggleModeToDesign}>Design mode</a>
+                        </li>
+                        <li className={`nav-item ${application.mode === 'PLAY' ? "active" : ""}`}>
+                            <a className={`nav-link ${!application.questionnaire ? "disabled" : ""}`} href="javascript:void(0)" onClick={actions.toggleModeToPlay}>Try in action</a>
+                        </li>
+                    </ul>
+                    {application.mode === DESIGN && <a className="nav-link btn btn-outline-secondary ml-auto" href="javascript:void(0)" onClick={this.createQuestionnaireAndResponse.bind(this)}>Create Questionnaire</a>}
                 </div>
             </nav>
             <div className="container">

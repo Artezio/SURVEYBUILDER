@@ -28,11 +28,11 @@ export class BooleanItem extends React.Component<QuestionItemProps<boolean>> {
 
     render() {
         const { item, className = '' } = this.props;
-        return <div className={`mb-3 ${className}`}>
+        return <div className={`questionnaire-response-item ${className}`}>
             <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <RadioGroup field="value" initialValue={item.initialValue}>
                     <div className="form-group">
-                        <label className="mb-1">{item.text}</label>
+                        <label><b>{item.text}</b></label>
                         <div className="form-check">
                             <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.submitForm.bind(this)} />
                             <label className="form-check-label" htmlFor={`${item.id}-true`}>Yes</label>

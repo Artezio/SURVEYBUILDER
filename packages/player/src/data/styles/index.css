@@ -1,0 +1,16 @@
+.questionnaire-response-item{
+    padding-bottom: 20px;
+}
+
+.item-list{
+    padding: 10px;
+}
+
+.questionnaire-response-group-item{
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.questionnaire-response > .header p{
+    word-wrap: break-word;
+}

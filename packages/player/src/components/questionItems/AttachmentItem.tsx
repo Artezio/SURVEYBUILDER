@@ -11,10 +11,10 @@ export class AttachmentItem extends React.Component<QuestionItemProps<void>> {
 
     render() {
         const { item, className = '' } = this.props;
-        return <div className={`mb-3 ${className}`}>
+        return <div className={`questionnaire-response-item ${className}`}>
             <form key={item.id} onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                    <label htmlFor={item.id} className="mb-1">{item.text}</label>
+                    <label htmlFor={item.id}><b>{item.text}</b></label>
                     <div className="input-group">
                         <div className="custom-file">
                             <input type="file" name="value" className="custom-file-input" id={item.id} />
