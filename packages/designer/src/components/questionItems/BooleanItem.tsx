@@ -33,7 +33,7 @@ export class BooleanItem extends React.Component<BooleanItemProps> {
             <label>Default answer</label>
             <RadioGroup field="initialValue">
                 <div className="form-group">
-                    <button className="btn btn-link text-dark" onClick={() => this.formApi.setValue('initialValue', undefined)}>
+                    <button className="btn btn-link text-secondary" onClick={() => this.formApi.setValue('initialValue', undefined)}>
                         Reset <i className="fas fa-undo"></i>
                     </button>
                     <div className="form-check">

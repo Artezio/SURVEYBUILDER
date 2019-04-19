@@ -20,7 +20,7 @@ export const ChoiceOption = (props: ChoiceOptionProps) => {
             </div>
             <input autoComplete="off" className="form-control" defaultValue={option.value} onBlur={onBlur} disabled={disabled} />
             <div className="input-group-append">
-                <button className="btn btn-outline-danger" onClick={remove} disabled={disabled} >
+                <button className="btn btn-outline-secondary" onClick={remove} disabled={disabled} >
                     <i className="fas fa-trash"></i>
                 </button>
             </div>

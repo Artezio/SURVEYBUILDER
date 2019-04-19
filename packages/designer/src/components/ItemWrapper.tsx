@@ -37,7 +37,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         const { item } = this.props;
         item.updateItem({ ...item, ...values });
     }
-    
+
     componentDidUpdate() {
         const { item } = this.props;
         this.formApi && this.formApi.setValues(item as Models.Item);
@@ -87,7 +87,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
                     </div>
                 </Form>
             </div>}
-            <button className="btn btn-outline-danger ml-auto" onClick={item.remove.bind(item)}>
+            <button className="btn btn-outline-secondary ml-auto" onClick={item.remove.bind(item)}>
                 <i className="fas fa-trash"></i>
             </button>
         </div>
