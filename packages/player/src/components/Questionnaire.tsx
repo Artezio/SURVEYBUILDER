@@ -7,22 +7,17 @@ import useObservableModel from '../HOCs/useObservableModel';
 
 const completeResponse = (questionnaire: Models.IQuestionnaire, response: Models.QuestionnaireResponse) => {
     questionnaire.items && questionnaire.items.forEach(item => {
-        let items,
-            answers;
-        if (item.type === Models.GROUP && (item as Models.IGroupItem).items !== undefined) {
-            items = (item as Models.GroupItem).items.map(itm => new Models.QuestionnaireResponseItem({ id: itm.id, text: itm.text }))
-        }
-        else {
+        let answers;
+        if (item.type !== Models.GROUP) {
             const responseItem = response.items.find(responseItem => responseItem.id === item.id);
-            if (responseItem && responseItem.answers !== undefined) {
-                answers = responseItem.answers.length === 0 ? [new Models.Answer()] :
-                    responseItem.answers;
+            if (responseItem && responseItem.answers !== undefined && responseItem.answers.length !== 0) {
+                answers = responseItem.answers;
             }
             else {
-                answers = [new Models.Answer()];
+                answers = [new Models.Answer({ value: (item as Models.QuestionItem<any>).initialValue })];
             }
         }
-        response.addQuestionnaireResponseItem(new Models.QuestionnaireResponseItem({ id: item.id, text: item.text, items, answers }))
+        response.addQuestionnaireResponseItem(new Models.QuestionnaireResponseItem({ id: item.id, text: item.text, answers }))
     })
 }
 

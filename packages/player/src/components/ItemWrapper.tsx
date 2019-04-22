@@ -11,7 +11,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     }
 
     render() {
-        const { className = '', item, questionnaireResponseItem } = this.props;
+        const { className = '', item } = this.props;
         return <div className={`questionnaire-response-item ${className}`}>
             <div className="d-flex justify-space-between">
                 <label htmlFor={item.id}><b>{item.text}</b></label>
