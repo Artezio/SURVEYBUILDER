@@ -6,7 +6,7 @@ import CollectionWrapper from './CollectionWrapper';
 
 
 export const ItemProvider = (props: any) => {
-    const { item, questionnaireResponseItem } = props;
+    const { item } = props;
     switch (item.type) {
         case Models.DISPLAY: {
             return <Item {...props} />
