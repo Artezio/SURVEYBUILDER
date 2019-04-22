@@ -1,9 +1,9 @@
-import { ANSWER_TYPE } from '../../constants/itemTypes';
+import { QUESTION_TYPE } from '../../constants/itemTypes';
 import { IItem } from '../IItem';
 
 
 export interface IQuestionItem<T> extends IItem {
-    type: ANSWER_TYPE;
+    type: QUESTION_TYPE;
     initialValue?: T;
     repeats: boolean;
 }

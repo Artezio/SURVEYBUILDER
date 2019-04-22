@@ -1,8 +1,9 @@
 import IAnswer from "../interfaces/IAnswer";
 import uuid from 'uuid/v1';
 import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
+import { observable } from "../..";
 
-
+@observable
 export class Answer<T> implements IAnswer<T> {
     id!: string;
     value?: T;

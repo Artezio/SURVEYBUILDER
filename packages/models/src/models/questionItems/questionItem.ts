@@ -1,12 +1,12 @@
 import IQuestionItem from "../../interfaces/questionItems/IQuestionItem";
 import { Item } from "../..";
-import { ANSWER_TYPE } from "../../constants/itemTypes";
+import { QUESTION_TYPE } from "../../constants/itemTypes";
 import { ICollection } from "../../interfaces/ICollection";
 import { IItem } from "../../interfaces/IItem";
 
 export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
     initialValue?: T;
-    type!: ANSWER_TYPE;
+    type!: QUESTION_TYPE;
     repeats: boolean;
 
     constructor(item: Partial<Omit<IQuestionItem<T>, 'type'>> | undefined, parent?: ICollection<IQuestionItem<T>>) {
