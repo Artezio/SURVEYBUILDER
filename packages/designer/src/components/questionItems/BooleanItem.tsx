@@ -27,13 +27,17 @@ export class BooleanItem extends React.Component<BooleanItemProps> {
         this.formApi.setValues(item as Models.IBooleanItem);
     }
 
+    reset() {
+        this.formApi && this.formApi.setValue('initialValue', undefined);
+    }
+
     render() {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
             <label>Default answer</label>
             <RadioGroup field="initialValue">
                 <div className="form-group">
-                    <button className="btn btn-link text-secondary" onClick={() => this.formApi.setValue('initialValue', undefined)}>
+                    <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
                         Reset <i className="fas fa-undo"></i>
                     </button>
                     <div className="form-check">
