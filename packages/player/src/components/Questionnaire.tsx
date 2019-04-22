@@ -5,21 +5,22 @@ import ItemProvider from './ItemProvider';
 import useObservableModel from '../HOCs/useObservableModel';
 
 
-const recursivelyCompleteResponseItem = (item: Models.Item): Models.QuestionnaireResponseItem => {
-    const items = (item as Models.IGroupItem).items && (item as Models.GroupItem).items.map(itm => recursivelyCompleteResponseItem(itm))
-    return new Models.QuestionnaireResponseItem({ id: item.id, text: item.text, items: items });
-};
-
 const completeResponse = (questionnaire: Models.IQuestionnaire, response: Models.QuestionnaireResponse) => {
     questionnaire.items && questionnaire.items.forEach(item => {
         let items,
             answers;
-        if ((item as Models.IGroupItem).items !== undefined) {
-            items = (item as Models.GroupItem).items.map(itm => recursivelyCompleteResponseItem(itm))
+        if (item.type === Models.GROUP && (item as Models.IGroupItem).items !== undefined) {
+            items = (item as Models.GroupItem).items.map(itm => new Models.QuestionnaireResponseItem({ id: itm.id, text: itm.text }))
         }
         else {
             const responseItem = response.items.find(responseItem => responseItem.id === item.id);
-            answers = responseItem && responseItem.answers;
+            if (responseItem && responseItem.answers !== undefined) {
+                answers = responseItem.answers.length === 0 ? [new Models.Answer()] :
+                    responseItem.answers;
+            }
+            else {
+                answers = [new Models.Answer()];
+            }
         }
         response.addQuestionnaireResponseItem(new Models.QuestionnaireResponseItem({ id: item.id, text: item.text, items, answers }))
     })

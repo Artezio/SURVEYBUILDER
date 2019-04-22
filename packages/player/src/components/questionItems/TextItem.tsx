@@ -22,9 +22,8 @@ export class TextItem extends React.Component<QuestionItemProps<string>> {
     }
 
     handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
-        const { questionnaireResponseItem } = this.props;
-        // const answer = new Models.Answer({value: values.})
-        questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, ...values })
+        const { answer } = this.props;
+        answer && answer.updateAnswer({ ...answer, ...values })
     }
 
     render() {

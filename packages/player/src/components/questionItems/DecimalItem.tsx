@@ -22,8 +22,8 @@ export class DecimalItem extends React.Component<QuestionItemProps<number>> {
     }
 
     handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
-        const { questionnaireResponseItem } = this.props;
-        questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, ...values })
+        const { answer } = this.props;
+        answer && answer.updateAnswer({ ...answer, ...values })
     }
 
     render() {

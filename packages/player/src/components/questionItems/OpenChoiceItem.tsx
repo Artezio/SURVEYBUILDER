@@ -26,20 +26,20 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     }
 
     handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
-        const { questionnaireResponseItem } = this.props;
-        questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, ...values })
+        const { answer } = this.props;
+        answer && answer.updateAnswer({ ...answer, ...values })
     }
 
     setOtherAnswer(value: any) {
-        const { questionnaireResponseItem } = this.props;
+        // const { questionnaireResponseItem } = this.props;
         // questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value });
     }
 
     resetAnswer() {
-        const { questionnaireResponseItem } = this.props;
+        // const { questionnaireResponseItem } = this.props;
         // questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value: undefined });
-        const customInput = document.getElementById(`${this.customOption.id}-customOption`);
-        customInput && setTimeout(() => { customInput && customInput.focus(); customInput && this.formApi.setValue('value', (customInput as any).value) });
+        // const customInput = document.getElementById(`${this.customOption.id}-customOption`);
+        // customInput && setTimeout(() => { customInput && customInput.focus(); customInput && this.formApi.setValue('value', (customInput as any).value) });
     }
 
     componentDidMount() {

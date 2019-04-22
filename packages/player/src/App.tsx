@@ -36,6 +36,11 @@ questionnaire.addItem(factory.createGroupItem({
 questionnaire.addItem(factory.createItem({ text: 'end_1' }));
 const questionnaireResponse = new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id })
 
-export const App = () => <Layout questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} />;
+export const App = () => {
+    return <>
+        <Layout questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} />
+        <button className="btn btn-block btn-primary" onClick={() => console.log(JSON.stringify(questionnaireResponse, null, 2))}>To console</button>
+    </>
+};
 
 export default App;
