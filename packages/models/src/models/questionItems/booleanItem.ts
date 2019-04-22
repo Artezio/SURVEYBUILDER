@@ -1,13 +1,13 @@
 import { BOOLEAN } from "../../constants/itemTypes";
 import { observable, QuestionItem, IBooleanItem } from "../..";
-import { ICollection } from "../../interfaces/ICollection";
+import { IItemCollection } from "../../interfaces/IItemCollection";
 
 @observable
 export class BooleanItem extends QuestionItem<boolean> implements IBooleanItem {
     type: BOOLEAN = BOOLEAN;
     regexp: RegExp = /true|false/;
 
-    constructor(item: Partial<Omit<IBooleanItem, 'type'>> | undefined, parent?: ICollection<IBooleanItem>) {
+    constructor(item: Partial<Omit<IBooleanItem, 'type'>> | undefined, parent?: IItemCollection<IBooleanItem>) {
         super(item, parent);
     }
 

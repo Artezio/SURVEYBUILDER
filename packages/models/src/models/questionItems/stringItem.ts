@@ -1,7 +1,7 @@
 import { IStringItem } from "../../interfaces/questionItems/IStringItem";
 import { STRING } from "../../constants/itemTypes";
 import { QuestionItem } from "./questionItem";
-import { ICollection } from "../../interfaces/ICollection";
+import { IItemCollection } from "../../interfaces/IItemCollection";
 import { observable } from "../../decorators/temporaryObservable";
 
 
@@ -10,7 +10,7 @@ export class StringItem extends QuestionItem<string> implements IStringItem {
     type: STRING = STRING;
     regexp: RegExp = /[ \r\n\t\S]+/;
 
-    constructor(item: Partial<Omit<IStringItem, 'type'>> | undefined, parent?: ICollection<IStringItem>) {
+    constructor(item: Partial<Omit<IStringItem, 'type'>> | undefined, parent?: IItemCollection<IStringItem>) {
         super(item, parent);
     }
 

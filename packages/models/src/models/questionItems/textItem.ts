@@ -1,5 +1,5 @@
 import { ITextItem, observable } from "../..";
-import { ICollection } from "../../interfaces/ICollection";
+import { IItemCollection } from "../../interfaces/IItemCollection";
 import { TEXT } from "../../constants/itemTypes";
 import { QuestionItem } from "./questionItem";
 
@@ -9,7 +9,7 @@ export class TextItem extends QuestionItem<string> implements ITextItem {
     type: TEXT = TEXT;
     regexp: RegExp = /[ \r\n\t\S]+/;
 
-    constructor(item: Partial<Omit<ITextItem, 'type'>> | undefined, parent?: ICollection<ITextItem>) {
+    constructor(item: Partial<Omit<ITextItem, 'type'>> | undefined, parent?: IItemCollection<ITextItem>) {
         super(item, parent);
     }
 

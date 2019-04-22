@@ -1,12 +1,12 @@
 import { IGroupItem, Item, observable, IItem, GROUP } from "..";
-import { ICollection } from "../interfaces/ICollection";
+import { IItemCollection } from "../interfaces/IItemCollection";
 
 @observable
 export class GroupItem extends Item implements IGroupItem {
     items!: Item[];
     type: GROUP = GROUP;
 
-    constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: ICollection<IGroupItem>) {
+    constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: IItemCollection<IGroupItem>) {
         super(item, parent);
         Object.assign(this, { items: [] }, item);
     }

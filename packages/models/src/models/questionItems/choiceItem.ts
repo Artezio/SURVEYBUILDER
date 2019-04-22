@@ -1,5 +1,5 @@
 import { observable, QuestionItem } from "../..";
-import { ICollection } from "../../interfaces/ICollection";
+import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IChoiceItem } from "../../interfaces/questionItems/IChoiceItem";
 import { CHOICE } from "../..";
 import IChoiceOption from "../../interfaces/IChoiceOption";
@@ -9,7 +9,7 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
     type: CHOICE = CHOICE;
     options: IChoiceOption[];
 
-    constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: ICollection<IChoiceItem>) {
+    constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IChoiceItem>) {
         super(item, parent);
         this.options = item && item.options || [];
     }

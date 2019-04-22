@@ -29,4 +29,8 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
             this.answers = [...this.answers, answer];
         }
     }
+
+    removeAnswer(answer: Answer<any>) {
+        this.answers = this.answers.filter(ans => ans.id !== answer.id);
+    }
 }

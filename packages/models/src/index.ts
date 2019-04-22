@@ -47,3 +47,4 @@ export * from './models/answer';
 
 export * from './factories/itemFactory';
 export * from './factories/choiceOptionFactory';
+export * from './factories/answerFactory';

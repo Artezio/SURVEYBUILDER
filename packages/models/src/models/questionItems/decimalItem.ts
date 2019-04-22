@@ -1,13 +1,13 @@
 import { DECIMAL } from "../../constants/itemTypes";
 import { observable, QuestionItem, IDecimalItem } from "../..";
-import { ICollection } from "../../interfaces/ICollection";
+import { IItemCollection } from "../../interfaces/IItemCollection";
 
 @observable
 export class DecimalItem extends QuestionItem<number> implements IDecimalItem {
     type: DECIMAL = DECIMAL;
     regexp: RegExp = /-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?/;
 
-    constructor(item: Partial<Omit<IDecimalItem, 'type'>> | undefined, parent?: ICollection<IDecimalItem>) {
+    constructor(item: Partial<Omit<IDecimalItem, 'type'>> | undefined, parent?: IItemCollection<IDecimalItem>) {
         super(item, parent);
     }
 

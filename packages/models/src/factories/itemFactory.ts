@@ -3,7 +3,7 @@ import TextItem from "../models/questionItems/textItem";
 import BooleanItem from "../models/questionItems/booleanItem";
 import Item from "../models/item";
 import GroupItem from "../models/groupItem";
-import ICollection from "../interfaces/ICollection";
+import IItemCollection from "../interfaces/IItemCollection";
 import StringItem from "../models/questionItems/stringItem";
 import IGroupItem from "../interfaces/IGroupItem";
 import ITextItem from "../interfaces/questionItems/ITextItem";
@@ -26,9 +26,9 @@ import IOpenChoiceItem from "../interfaces/questionItems/IOpenChoiceItem";
 
 
 export class ItemFactory {
-    parent?: ICollection<IItem>;
+    parent?: IItemCollection<IItem>;
 
-    constructor(parent?: ICollection<IItem>) {
+    constructor(parent?: IItemCollection<IItem>) {
         this.parent = parent;
     }
 

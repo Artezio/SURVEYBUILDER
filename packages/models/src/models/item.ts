@@ -1,16 +1,16 @@
 import { IItem, ITEM_TYPE, DISPLAY } from "..";
 import { observable } from "../decorators/temporaryObservable";
 import uuid from "uuid/v1";
-import { ICollection } from "../interfaces/ICollection";
+import { IItemCollection } from "../interfaces/IItemCollection";
 
 @observable
 export class Item implements IItem {
     id!: string;
     text?: string;
     type: ITEM_TYPE = DISPLAY;
-    parent?: ICollection<IItem>;
+    parent?: IItemCollection<IItem>;
 
-    constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: ICollection<IItem>) {
+    constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
         Object.assign(this, { id: uuid() }, item);
         this.parent = parent;
     }
