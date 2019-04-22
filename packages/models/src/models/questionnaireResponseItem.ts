@@ -24,8 +24,13 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         Object.assign(this, item);
     }
 
-    addAnswer(answer: Answer<any>) {
+    addAnswer(answer: Answer<any>, place?: number) {
         if (this.answers.every(ans => ans.id !== answer.id) && (!this.items || this.items.length === 0)) {
+            if (typeof place === 'number') {
+                this.answers.splice(place, 0, answer);
+                this.answers = [...this.answers];
+                return;
+            }
             this.answers = [...this.answers, answer];
         }
     }
