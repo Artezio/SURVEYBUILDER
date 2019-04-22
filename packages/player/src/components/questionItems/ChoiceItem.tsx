@@ -30,10 +30,10 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <RadioGroup field="value" initialValue={item.initialValue}>
-                {item.options.map(item => {
-                    return <div className="form-check" key={item.id}>
-                        <Radio className="form-check-input" id={item.id} value={item.value} onChange={this.submitForm.bind(this)} />
-                        <label className="form-check-label" htmlFor={item.id}>{item.value}</label>
+                {item.options.map(option => {
+                    return <div className="form-check" key={option.id}>
+                        <Radio className="form-check-input" id={option.id} value={option.value} onChange={this.submitForm.bind(this)} />
+                        <label className="form-check-label" htmlFor={option.id}>{option.value}</label>
                     </div>
                 })}
             </RadioGroup>
