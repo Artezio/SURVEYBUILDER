@@ -10,8 +10,8 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     renderChoiceOptions() {
         const { item } = this.props;
         return item && (<div className="choice-options">
-            {item.options.map(option => <ChoiceOption key={option.id} option={option} item={item} />)}
-            <ChoiceOption item={item} option={Models.ChoiceOptionFactory.createChoiceOption({value: "Other"})} disabled={true} />
+            {item.options.map(option => <ChoiceOption key={option.id} option={option} item={item} reset={() => {}} submitForm={() => {}} />)}
+            <ChoiceOption item={item} option={Models.ChoiceOptionFactory.createChoiceOption({value: "Other"})} disabled={true} reset={() => {}} submitForm={() => {}} />
         </div>);
     }
 
