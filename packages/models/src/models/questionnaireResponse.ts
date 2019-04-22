@@ -14,7 +14,7 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
-        if (item && this.items.every(itm => itm.id !== item.id)) {
+        if (this.items.every(itm => itm.id !== item.id)) {
             this.items = [...this.items, item];
         }
     }

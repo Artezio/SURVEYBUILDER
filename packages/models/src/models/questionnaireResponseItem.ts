@@ -15,7 +15,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
-        if (item && this.items.every(itm => itm.id !== item.id) && this.answers.length === 0) {
+        if (this.items.every(itm => itm.id !== item.id) && (!this.answers || this.answers.length === 0)) {
             this.items = [...this.items, item];
         }
     }
@@ -25,7 +25,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     addAnswer(answer: Answer<any>) {
-        if (answer && this.answers.every(ans => ans.id !== answer.id) && this.items.length === 0) {
+        if (this.answers.every(ans => ans.id !== answer.id) && (!this.items || this.items.length === 0)) {
             this.answers = [...this.answers, answer];
         }
     }
