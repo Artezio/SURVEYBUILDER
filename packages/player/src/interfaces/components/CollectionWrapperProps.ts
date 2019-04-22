@@ -1,12 +1,10 @@
 import * as Models from '@art-forms/models';
 
 
-export interface QuestionItemProps {
+export interface CollectionWrapperProps {
     item: Models.QuestionItem<any>;
     questionnaireResponseItem: Models.QuestionnaireResponseItem;
     className?: string;
-    answer: Models.Answer<any>;
-    answerIndex: number;
 }
 
-export default QuestionItemProps;
+export default CollectionWrapperProps;

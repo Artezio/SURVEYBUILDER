@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Layout from './components/Layout';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 import './data/styles/index.css';
 import 'bootstrap';
 import * as Models from '@art-forms/models';
@@ -39,7 +40,7 @@ const questionnaireResponse = new Models.QuestionnaireResponse({ questionnaireId
 export const App = () => {
     return <>
         <Layout questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} />
-        <button className="btn btn-block btn-primary" onClick={() => console.log(JSON.stringify(questionnaireResponse, null, 2))}>To console</button>
+        <button className="btn btn-block btn-primary" onClick={() => console.log(JSON.stringify(questionnaireResponse, ["value", "items", "id", "questionnaireId", "answers", "text"], 2))}>To console</button>
     </>
 };
 
