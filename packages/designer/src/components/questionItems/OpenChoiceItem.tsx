@@ -34,7 +34,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         const option = Models.ChoiceOptionFactory.createChoiceOption();
         item && item.addOption(option);
     }
-    
+
     componentDidUpdate() {
         const { item } = this.props;
         this.formApi.setValues(item);
@@ -45,8 +45,11 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         return item && (<div className="choice-options">
             <Form getApi={this.getFormApi.bind(this)} onSubmit={this.handleSubmit.bind(this)}>
                 <RadioGroup field="initialValue" initialValue={item.initialValue}>
-                    {item.options.map(option => <ChoiceOption key={option.id} option={option} item={item} submitForm={this.submitForm.bind(this)} reset={this.reset.bind(this)} />)}
-                    <ChoiceOption item={item} option={Models.ChoiceOptionFactory.createChoiceOption({ value: "Other" })} disabled={true} submitForm={this.submitForm.bind(this)} reset={this.reset.bind(this)} />
+                    {item.options.map((option, i) => {
+                        if (i !== item.options.length - 1) return <ChoiceOption key={option.id} option={option} item={item} submitForm={this.submitForm.bind(this)} reset={this.reset.bind(this)} />
+                    })}
+                    <label htmlFor={`${item.options[item.options.length - 1].id}-otherOption`}>Other option</label>
+                    <ChoiceOption item={item} option={item.options[item.options.length - 1]} otherOption={true} submitForm={this.submitForm.bind(this)} reset={this.reset.bind(this)} />
                 </RadioGroup>
             </Form>
         </div>);

@@ -21,20 +21,20 @@ export class ChoiceOption extends React.Component<ChoiceOptionProps> {
     }
 
     render() {
-        const { option, disabled, submitForm } = this.props;
+        const { option, otherOption, submitForm, item } = this.props;
         return <div className="form-group">
             <div className="input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
                         <label htmlFor={`${option.id}-initial`} className="mb-0 mr-1">As default</label>
-                        <Radio value={option.id} id={`${option.id}-initial`} type="submit" onChange={submitForm} />
+                        <Radio value={option.id} id={`${option.id}-initial`} onChange={submitForm} />
                     </div>
                 </div>
-                <input autoComplete="off" className="form-control" defaultValue={option.value} onBlur={this.onBlur.bind(this)} disabled={disabled} />
+                <input autoComplete="off" id={`${option.id}-otherOption`} disabled={otherOption && item.initialValue !== option.id} className="form-control" defaultValue={option.value} onBlur={this.onBlur.bind(this)} />
                 <div className="input-group-append">
-                    <button className="btn btn-outline-secondary" onClick={this.remove.bind(this)} disabled={disabled} >
+                    {!otherOption && <button className="btn btn-outline-secondary" onClick={this.remove.bind(this)} >
                         <i className="fas fa-trash"></i>
-                    </button>
+                    </button>}
                 </div>
             </div>
         </div >
