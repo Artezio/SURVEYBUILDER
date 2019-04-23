@@ -28,7 +28,9 @@ export class BooleanItem extends React.Component<BooleanItemProps> {
     }
 
     reset() {
+        const { item } = this.props;
         this.formApi && this.formApi.setValue('initialValue', undefined);
+        item.updateItem({ ...item, initialValue: undefined });
     }
 
     render() {
