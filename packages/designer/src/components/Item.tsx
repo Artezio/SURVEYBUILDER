@@ -24,7 +24,7 @@ export class Item extends React.Component<ItemProps> {
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.Item);
+        this.formApi.setValues(item);
     }
 
     render() {

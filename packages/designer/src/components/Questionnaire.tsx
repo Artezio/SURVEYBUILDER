@@ -55,7 +55,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { questionnaire } = this.props;
-        questionnaire && questionnaire.updateQuestionnaire({ ...questionnaire, ...values });
+        questionnaire.updateQuestionnaire({ ...questionnaire, ...values });
     }
 
     submitForm() {
@@ -69,7 +69,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     componentDidUpdate() {
         const { questionnaire } = this.props;
-        this.formApi.setValues(questionnaire as Models.Questionnaire);
+        this.formApi.setValues(questionnaire);
         { this.highlightActiveItems() }
     }
 
@@ -82,12 +82,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     renderMenu() {
         const { questionnaire } = this.props;
-        return questionnaire && <Menu item={questionnaire} />
+        return <Menu item={questionnaire} />
     }
 
     render() {
         const { questionnaire, className = '' } = this.props;
-        return questionnaire && <div className={`questionnaire ${className}`}>
+        return <div className={`questionnaire ${className}`}>
             <div className="card card-sm mb-3">
                 <div className="card-header d-flex justify-content-end">
                     {this.renderMenu()}

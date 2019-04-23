@@ -23,6 +23,23 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         item.updateItem({ ...item, initialValue: values.initialValue })
     }
 
+    reset() {
+        const { item } = this.props;
+        this.formApi && this.formApi.setValue('initialValue', undefined);
+        item.updateItem({ ...item, initialValue: undefined });
+    }
+
+    addOption() {
+        const { item } = this.props;
+        const option = Models.ChoiceOptionFactory.createChoiceOption();
+        item && item.addOption(option);
+    }
+    
+    componentDidUpdate() {
+        const { item } = this.props;
+        this.formApi.setValues(item);
+    }
+
     renderChoiceOptions() {
         const { item } = this.props;
         return item && (<div className="choice-options">
@@ -33,16 +50,6 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                 </RadioGroup>
             </Form>
         </div>);
-    }
-
-    reset() {
-        this.formApi && this.formApi.setValue('initialValue', undefined);
-    }
-
-    addOption() {
-        const { item } = this.props;
-        const option = Models.ChoiceOptionFactory.createChoiceOption();
-        item && item.addOption(option);
     }
 
     render() {

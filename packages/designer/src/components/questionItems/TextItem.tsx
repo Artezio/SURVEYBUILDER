@@ -24,7 +24,7 @@ export class TextItem extends React.Component<TextItemProps> {
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.TextItem);
+        this.formApi.setValues(item);
     }
 
     render() {

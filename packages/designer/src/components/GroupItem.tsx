@@ -32,7 +32,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.GroupItem);
+        this.formApi.setValues(item);
     }
 
     render() {

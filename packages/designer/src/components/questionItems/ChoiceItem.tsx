@@ -24,7 +24,20 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
     }
 
     reset() {
+        const { item } = this.props;
         this.formApi && this.formApi.setValue('initialValue', undefined);
+        item.updateItem({ ...item, initialValue: undefined });
+    }
+
+    addOption() {
+        const { item } = this.props;
+        const option = Models.ChoiceOptionFactory.createChoiceOption();
+        item && item.addOption(option);
+    }
+    
+    componentDidUpdate() {
+        const { item } = this.props;
+        this.formApi.setValues(item);
     }
 
     renderChoiceOptions() {
@@ -36,12 +49,6 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
                 </RadioGroup>
             </Form>
         </div>;
-    }
-
-    addOption() {
-        const { item } = this.props;
-        const option = Models.ChoiceOptionFactory.createChoiceOption();
-        item && item.addOption(option);
     }
 
     render() {

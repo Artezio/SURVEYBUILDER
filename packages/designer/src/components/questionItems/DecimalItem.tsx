@@ -24,7 +24,7 @@ export class DecimalItem extends React.Component<DecimalItemProps> {
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.IDecimalItem);
+        this.formApi.setValues(item);
     }
 
     render() {

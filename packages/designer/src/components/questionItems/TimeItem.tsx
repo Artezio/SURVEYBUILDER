@@ -24,7 +24,7 @@ export class TimeItem extends React.Component<TimeItemProps> {
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.TimeItem);
+        this.formApi.setValues(item);
     }
 
     render() {

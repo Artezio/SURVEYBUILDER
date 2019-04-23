@@ -2,9 +2,8 @@ import * as Models from "@art-forms/models";
 
 
 export interface QuestionnaireProps {
-    questionnaire?: Models.Questionnaire;
+    questionnaire: Models.Questionnaire;
     className?: string;
-    questionnaireResponse?: Models.QuestionnaireResponse;
 }
 
 export default QuestionnaireProps;

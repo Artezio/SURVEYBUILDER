@@ -40,7 +40,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi && this.formApi.setValues(item as Models.Item);
+        this.formApi && this.formApi.setValues(item);
         this.formApi_2 && this.formApi_2.setValues(item as Models.QuestionItem<any>);
     }
 

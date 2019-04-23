@@ -24,7 +24,7 @@ export class StringItem extends React.Component<StringItemProps> {
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.StringItem);
+        this.formApi.setValues(item);
     }
 
     render() {

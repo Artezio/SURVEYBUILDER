@@ -24,7 +24,7 @@ export class DateItem extends React.Component<DateItemProps> {
 
     componentDidUpdate() {
         const { item } = this.props;
-        this.formApi.setValues(item as Models.DateItem);
+        this.formApi.setValues(item);
     }
 
     render() {
