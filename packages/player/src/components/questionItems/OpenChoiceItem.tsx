@@ -25,6 +25,19 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         answer && answer.updateAnswer({ ...answer, ...values })
     }
 
+    componentDidMount() {
+        const { item } = this.props;
+        const otherOption = item.options[item.options.length - 1];
+        if (item.initialValue === otherOption.id) {
+            if (this.OtherAnswerRadioRef.current) {
+                this.OtherAnswerRadioRef.current.checked = true;
+                if (this.OtherAnswerInputRef.current) {
+                    this.OtherAnswerInputRef.current.disabled = false;
+                }
+            }
+        }
+    }
+
     toggleToOptions() {
         this.submitForm();
         if (this.OtherAnswerRadioRef.current && this.OtherAnswerRadioRef.current.checked) {
