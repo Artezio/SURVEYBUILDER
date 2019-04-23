@@ -116,13 +116,12 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
     changeItemToChoice() {
         const { item } = this.props;
         let options;
-        if ((item as Models.OpenChoiceItem).options === undefined) {
+        if ((item as Models.OpenChoiceItem).options === undefined || (item as Models.OpenChoiceItem).options.length === 0) {
             options = [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })];
         }
         else {
-            options = (item as Models.OpenChoiceItem).options.length === 0 ?
-                [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })] :
-                (item as Models.OpenChoiceItem).options;
+            options = (item as Models.OpenChoiceItem).options;
+            options.pop();
         }
         const newItem = this.factory.createChoiceItem({ text: item.text, options });
         item.replace(newItem);
