@@ -7,14 +7,9 @@ import OpenChoiceItemProps from '../../interfaces/components/OpenChoiceItemProps
 
 export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     formApi!: FormApi<Models.IQuestionnaireResponseItem>;
-    state: { isOtherAnswerChosen: boolean }
-    customOption!: Models.IChoiceOption;
-    _isMounted: boolean = false;
-
-    constructor(props: OpenChoiceItemProps) {
-        super(props);
-        this.state = { isOtherAnswerChosen: false }
-    }
+    OtherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
+    OtherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
+    OtherAnswerOption: Models.IChoiceOption = Models.ChoiceOptionFactory.createChoiceOption();
 
     submitForm() {
         if (!this.formApi) return;
@@ -30,61 +25,57 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         answer && answer.updateAnswer({ ...answer, ...values })
     }
 
-    setOtherAnswer(value: any) {
-        // const { questionnaireResponseItem } = this.props;
-        // questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value });
-    }
-
-    resetAnswer() {
-        // const { questionnaireResponseItem } = this.props;
-        // questionnaireResponseItem && questionnaireResponseItem.updateQuestionnaireResponseItem({ ...questionnaireResponseItem, value: undefined });
-        // const customInput = document.getElementById(`${this.customOption.id}-customOption`);
-        // customInput && setTimeout(() => { customInput && customInput.focus(); customInput && this.formApi.setValue('value', (customInput as any).value) });
-    }
-
-    componentDidMount() {
-        this._isMounted = true;
-    }
-
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
     toggleToOptions() {
         this.submitForm();
-        this.setState({ isOtherAnswerChosen: false });
+        if (this.OtherAnswerRadioRef.current && this.OtherAnswerRadioRef.current.checked) {
+            this.OtherAnswerRadioRef.current.checked = false;
+        }
+        if (this.OtherAnswerInputRef.current) {
+            this.OtherAnswerInputRef.current.disabled = true;
+        }
     }
 
     toggleToOtherAnswer() {
-        this.resetAnswer();
-        this.setState({ isOtherAnswerChosen: true });
-        setTimeout(() => { (document.getElementById(this.customOption.id) as any).checked = true })
+        if (!this.OtherAnswerRadioRef.current || !this.OtherAnswerRadioRef.current.checked) {
+            return;
+        }
+        if (this.OtherAnswerInputRef.current) {
+            this.OtherAnswerInputRef.current.disabled = false;
+            this.OtherAnswerInputRef.current.focus();
+            this.setOtherAnswer();
+        }
     }
 
-    setOtherAnswer1() {
-        const customInput = document.getElementById(`${this.customOption.id}-customOption`);
-        this.formApi.setValue('value', (customInput as any).value);
-        this.setOtherAnswer((customInput as any).value);
-        setTimeout(() => { (document.getElementById(this.customOption.id) as any).checked = true })
+    setOtherAnswer() {
+        const { answer, item } = this.props;
+        const otherOption = item.options[item.options.length - 1];
+        if (this.OtherAnswerInputRef.current) {
+            this.OtherAnswerOption.value = this.OtherAnswerInputRef.current.value;
+            this.formApi.setValue('value', this.OtherAnswerOption.id);
+            item.updateOption({ ...otherOption, value: this.OtherAnswerInputRef.current.value });
+            answer.updateAnswer({ ...answer, value: this.OtherAnswerOption.id });
+        }
     }
 
     renderChoiceOptions() {
-        const { item } = this.props;
-        this.customOption = Models.ChoiceOptionFactory.createChoiceOption();
+        const { item, answer } = this.props;
+        const otherOption = item.options[item.options.length - 1];
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <RadioGroup field="value" initialValue={item.initialValue}>
-                {item.options.map(item => {
-                    return <div className="form-check" key={item.id}>
-                        <Radio className="form-check-input" id={item.id} value={item.value} onChange={this.toggleToOptions.bind(this)} />
-                        <label className="form-check-label" htmlFor={item.id}>{item.value}</label>
-                    </div>
+                {item.options.map((option, i) => {
+                    if (i !== item.options.length - 1) {
+                        return <div className="form-check" key={`${option.id}-${answer.id}`}>
+                            <Radio name="value" className="form-check-input" id={`${option.id}-${answer.id}`} value={option.id} onChange={this.toggleToOptions.bind(this)} />
+                            <label className="form-check-label" htmlFor={`${option.id}-${answer.id}`}>{option.value}</label>
+                        </div>
+                    }
                 })}
-                <div className="form-check" key={this.customOption.id}>
-                    <Radio className="form-check-input" id={this.customOption.id} value={0} onChange={this.toggleToOtherAnswer.bind(this)} />
-                    <label className="form-check-label" htmlFor={this.customOption.id}>Other</label>
-                </div>
             </RadioGroup>
-            <input autoComplete="off" id={`${this.customOption.id}-customOption`} className="form-control" name="value" type="text" disabled={!this.state.isOtherAnswerChosen} onBlur={this.setOtherAnswer1.bind(this)} />
+            <div className="form-check">
+                <input type="radio" name="value" className="form-check-input" id={`${otherOption.id}-${answer.id}`} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.OtherAnswerRadioRef} />
+                <label className="form-check-label" htmlFor={`${otherOption.id}-${answer.id}`}>Other</label>
+            </div>
+            <input name="value" className="form-control" defaultValue={otherOption.value} onBlur={this.setOtherAnswer.bind(this)} disabled={true} ref={this.OtherAnswerInputRef} />
         </Form>
     }
 
