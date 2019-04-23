@@ -1,6 +1,7 @@
 export * from './interfaces/IItem';
 export * from './interfaces/IGroupItem';
 export * from './interfaces/IChoiceOption';
+export * from './interfaces/IMultiChoiceOption';
 
 export * from './interfaces/questionItems/IQuestionItem';
 export * from './interfaces/questionItems/IAttachmentItem';

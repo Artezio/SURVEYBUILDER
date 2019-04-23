@@ -1,4 +1,4 @@
-import { IItem } from "..";
+import { IItem, IMultiChoiceItem, MultiChoiceItem } from "..";
 import TextItem from "../models/questionItems/textItem";
 import BooleanItem from "../models/questionItems/booleanItem";
 import Item from "../models/item";
@@ -78,6 +78,10 @@ export class ItemFactory {
 
     createOpenChoiceItem(item?: Partial<Omit<IOpenChoiceItem, 'type'>>) {
         return new OpenChoiceItem(item, this.parent);
+    }
+
+    createMultiChoiceItem(item?: Partial<Omit<IMultiChoiceItem, 'type'>>) {
+        return new MultiChoiceItem(item, this.parent);
     }
 }
 

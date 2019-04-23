@@ -121,7 +121,9 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
         }
         else {
             options = (item as Models.OpenChoiceItem).options;
-            options.pop();
+            if (item.type === Models.OPEN_CHOICE) {
+                options.pop();
+            }
         }
         const newItem = this.factory.createChoiceItem({ text: item.text, options });
         item.replace(newItem);

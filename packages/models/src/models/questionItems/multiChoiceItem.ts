@@ -1,25 +1,25 @@
 import QuestionItem from "./questionItem";
 import IMultiChoiceItem from "../../interfaces/questionItems/IMultiChoiceItem";
 import { MULTI_CHOICE } from "../../constants/itemTypes";
-import { IChoiceOption, IChoiceItem } from "../..";
+import { IMultiChoiceOption } from "../..";
 import IItemCollection from "../../interfaces/IItemCollection";
 
 export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceItem {
     type: MULTI_CHOICE = MULTI_CHOICE;
-    options: IChoiceOption[];
+    options: IMultiChoiceOption[];
 
     constructor(item: Partial<Omit<IMultiChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IMultiChoiceItem>) {
         super(item, parent);
         this.options = item && item.options || [];
     }
 
-    addOption(option: IChoiceOption) {
+    addOption(option: IMultiChoiceOption) {
         if (this.options.every(anOption => anOption.id !== option.id)) {
             this.options = [...this.options, option];
         }
     }
 
-    updateOption(option: IChoiceOption) {
+    updateOption(option: IMultiChoiceOption) {
         this.options = this.options.map(anOption => {
             if (anOption.id === option.id) {
                 return option;
@@ -32,7 +32,7 @@ export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceIt
         this.options = this.options.filter(x => x !== option);
     }
 
-    updateItem(item: IChoiceItem) {
+    updateItem(item: IMultiChoiceItem) {
         super.updateItem(item);
         this.initialValue = item.initialValue;
         this.options = item.options;
