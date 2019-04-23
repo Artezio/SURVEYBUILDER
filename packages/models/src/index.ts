@@ -13,6 +13,7 @@ export * from './interfaces/questionItems/IOpenChoiceItem';
 export * from './interfaces/questionItems/IStringItem';
 export * from './interfaces/questionItems/ITextItem';
 export * from './interfaces/questionItems/ITimeItem';
+export * from './interfaces/questionItems/IMultiChoiceItem';
 
 export * from './interfaces/IQuestionnaire';
 export * from './interfaces/IQuestionnaireResponse';
@@ -39,6 +40,7 @@ export * from './models/questionItems/openChoiceItem';
 export * from './models/questionItems/stringItem';
 export * from './models/questionItems/textItem';
 export * from './models/questionItems/timeItem';
+export * from './models/questionItems/multiChoiceItem';
 
 export * from './models/questionnaire';
 export * from './models/questionnaireResponse';

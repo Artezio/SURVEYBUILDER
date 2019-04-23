@@ -1,5 +1,5 @@
 import QuestionItem from "./questionItem";
-import IMultiChoiceItem from "../../interfaces/questionItems/ImultiChoiceItem";
+import IMultiChoiceItem from "../../interfaces/questionItems/IMultiChoiceItem";
 import { MULTI_CHOICE } from "../../constants/itemTypes";
 import { IChoiceOption, IChoiceItem } from "../..";
 import IItemCollection from "../../interfaces/IItemCollection";
