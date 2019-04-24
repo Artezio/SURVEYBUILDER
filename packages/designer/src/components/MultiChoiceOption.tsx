@@ -14,19 +14,13 @@ export class MultiChoiceOption extends React.Component<MultiChoiceOptionProps> {
         item.removeOption(option);
     }
 
-    componentDidMount() {
-        const { setTouched, option } = this.props;
-        setTouched(`value-${option.id}`);
-    }
-
     render() {
-        const { option, submitForm } = this.props;
+        const { option } = this.props;
         return <div className="form-group">
             <div className="input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
-                        <label htmlFor={`${option.id}-initial`} className="mb-0 mr-1">Include to default</label>
-                        <Checkbox field={`value-${option.id}`} id={`${option.id}-initial`} onChange={submitForm} />
+                        <input type="checkbox" disabled={true} />
                     </div>
                 </div>
                 <input autoComplete="off" className="form-control" defaultValue={option.value} onBlur={this.onBlur.bind(this)} />
