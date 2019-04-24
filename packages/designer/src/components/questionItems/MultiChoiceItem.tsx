@@ -2,8 +2,8 @@ import * as React from 'react';
 import { MultiChoiceItemProps } from '../../interfaces/components/questionItems/MultiChoiceItemProps';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
-import ChoiceOption from '../ChoiceOption';
-import { Form, RadioGroup, FormApi } from 'informed';
+import { Form, FormApi } from 'informed';
+import MultiChoiceOption from '../MultiChoiceOption';
 
 
 export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
@@ -20,38 +20,38 @@ export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
 
     handleSubmit(values: Partial<Models.IMultiChoiceItem>) {
         const { item } = this.props;
-        item.updateItem({ ...item, initialValue: values.initialValue })
+        console.log(values);
     }
 
-    reset() {
-        const { item } = this.props;
-        this.formApi && this.formApi.setValue('initialValue', undefined);
-        item.updateItem({ ...item, initialValue: undefined });
+    setTouched(field: string) {
+        if (!this.formApi) return;
+        this.formApi.setTouched(field, true);
     }
 
     addOption() {
         const { item } = this.props;
-        const option = Models.ChoiceOptionFactory.createChoiceOption();
+        const option = Models.MultiChoiceOptionFactory.createMultiChoiceOption();
         item && item.addOption(option);
+        console.log(this.formApi.getState())
     }
 
     componentDidUpdate() {
         const { item } = this.props;
+        if (!this.formApi) return;
         this.formApi.setValues(item);
     }
 
     renderChoiceOptions() {
         const { item } = this.props;
         return <div className="choice-options">
-            {item.options.map(option => {})}
+            <Form getApi={this.getFormApi.bind(this)} onSubmit={this.handleSubmit.bind(this)}>
+                {item.options.map((option, i) => <MultiChoiceOption key={option.id} option={option} item={item} setTouched={this.setTouched.bind(this)} submitForm={this.submitForm.bind(this)} />)}
+            </Form>
         </div>;
     }
 
     render() {
         return <div>
-            <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
-                Reset <i className="fas fa-undo"></i>
-            </button>
             {this.renderChoiceOptions()}
             <div className="form-group">
                 <button className="btn btn-outline-secondary form-control" onClick={this.addOption.bind(this)}>Add option</button>

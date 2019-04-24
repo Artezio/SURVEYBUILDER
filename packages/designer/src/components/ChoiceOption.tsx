@@ -3,9 +3,6 @@ import ChoiceOptionProps from '../interfaces/components/ChoiceOptionProps';
 import { Radio } from 'informed';
 
 export class ChoiceOption extends React.Component<ChoiceOptionProps> {
-    constructor(props: ChoiceOptionProps) {
-        super(props);
-    }
 
     onBlur(e: any) {
         const { option, item } = this.props;

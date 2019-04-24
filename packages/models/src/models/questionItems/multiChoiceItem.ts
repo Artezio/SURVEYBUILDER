@@ -3,7 +3,9 @@ import IMultiChoiceItem from "../../interfaces/questionItems/IMultiChoiceItem";
 import { MULTI_CHOICE } from "../../constants/itemTypes";
 import { IMultiChoiceOption } from "../..";
 import IItemCollection from "../../interfaces/IItemCollection";
+import { observable } from "../../decorators/temporaryObservable";
 
+@observable
 export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceItem {
     type: MULTI_CHOICE = MULTI_CHOICE;
     options: IMultiChoiceOption[];
