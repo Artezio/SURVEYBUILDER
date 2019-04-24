@@ -14,20 +14,20 @@ questionnaire.addItem(factory.createTextItem({ text: 'Text', initialValue: 'init
 questionnaire.addItem(factory.createGroupItem({
     text: 'group_1', items: [
         factory.createItem({ text: 'Text plain' }),
-        factory.createTextItem({ text: 'question_2', repeats: true }),
+        factory.createTextItem({ text: 'question_2' }),
         factory.createGroupItem({
             text: 'group_2',
             items: [
-                factory.createTextItem({ text: 'text question', repeats: true }),
-                factory.createStringItem({ text: "string question", repeats: true }),
-                factory.createDecimalItem({ text: "decimal question", repeats: true }),
-                factory.createTimeItem({ text: "time question", repeats: true }),
-                factory.createDateItem({ text: "date question", repeats: true }),
-                factory.createDateTimeItem({ text: "date-time question", repeats: true }),
-                factory.createBooleanItem({ text: "boolean question", initialValue: true, repeats: true }),
-                factory.createChoiceItem({ text: "choice question", repeats: true, options: [{ id: '1', value: 'one' }, { id: '2', value: 'two' }, { id: '3', value: 'three' }, { id: '4', value: 'four' }] }),
-                factory.createAttachmentItem({ text: "attachment question", repeats: true }),
-                factory.createOpenChoiceItem({ text: "open-choice question", repeats: true, options: [{ id: '5', value: 'one' }, { id: '6', value: 'two' }, { id: '7', value: 'three' }, { id: '8', value: 'four' }] }),
+                factory.createTextItem({ text: 'text question' }),
+                factory.createStringItem({ text: "string question" }),
+                factory.createDecimalItem({ text: "decimal question" }),
+                factory.createTimeItem({ text: "time question" }),
+                factory.createDateItem({ text: "date question" }),
+                factory.createDateTimeItem({ text: "date-time question" }),
+                factory.createBooleanItem({ text: "boolean question", initialValue: true }),
+                factory.createChoiceItem({ text: "choice question", options: [{ id: '1', value: 'one' }, { id: '2', value: 'two' }, { id: '3', value: 'three' }, { id: '4', value: 'four' }] }),
+                factory.createAttachmentItem({ text: "attachment question" }),
+                factory.createOpenChoiceItem({ text: "open-choice question", options: [{ id: '5', value: 'one' }, { id: '6', value: 'two' }, { id: '7', value: 'three' }, { id: '8', value: 'four' }] }),
             ]
         }),
         factory.createItem({ text: 'end_2' })

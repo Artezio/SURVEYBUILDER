@@ -22,7 +22,8 @@ export class DateItem extends React.Component<QuestionItemProps<string>> {
     }
 
     handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
-        const { answer } = this.props;
+        const { questionnaireResponseItem } = this.props;
+        const answer = questionnaireResponseItem.answers[0];
         answer && answer.updateAnswer({ ...answer, ...values })
     }
 

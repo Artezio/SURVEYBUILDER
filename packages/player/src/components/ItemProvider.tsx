@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import Item from './Item';
 import GroupItem from './GroupItem';
-import CollectionWrapper from './CollectionWrapper';
+import QuestionItemWrapper from './questionItems/QuestionItemWrapper';
 
 
 export const ItemProvider = (props: any) => {
@@ -15,7 +15,7 @@ export const ItemProvider = (props: any) => {
             return <GroupItem {...props} />
         }
         default: {
-            return <CollectionWrapper {...props} />
+            return <QuestionItemWrapper {...props} />
         }
     }
 }

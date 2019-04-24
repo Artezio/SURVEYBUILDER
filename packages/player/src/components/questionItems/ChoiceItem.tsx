@@ -22,9 +22,10 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
     }
 
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
-        const { answer, item } = this.props;
+        const { questionnaireResponseItem, item } = this.props;
         const option = item.options.find(x => x.id === values.value);
         const value = option && option.value;
+        const answer = questionnaireResponseItem.answers[0];
         answer && answer.updateAnswer({ ...answer, value });
     }
 

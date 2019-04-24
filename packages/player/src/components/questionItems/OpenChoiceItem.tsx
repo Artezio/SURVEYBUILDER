@@ -21,14 +21,15 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     }
 
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
-        const { answer, item } = this.props;
+        const { questionnaireResponseItem, item } = this.props;
         const option = item.options.find(x => x.id === values.value);
         const value = option && option.value;
+        const answer = questionnaireResponseItem.answers[0];
         answer.updateAnswer({ ...answer, value });
     }
 
     componentDidMount() {
-        const { item, answer } = this.props;
+        const { item, questionnaireResponseItem } = this.props;
         const otherOption = item.options[item.options.length - 1];
         if (item.initialValue === otherOption.id) {
             if (this.OtherAnswerRadioRef.current) {
@@ -36,6 +37,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                 if (this.OtherAnswerInputRef.current) {
                     this.OtherAnswerInputRef.current.disabled = false;
                     this.OtherAnswerInputRef.current.value = otherOption.value;
+                    const answer = questionnaireResponseItem.answers[0];
                     answer.updateAnswer({ ...answer, value: otherOption.value })
                 }
             }
@@ -64,16 +66,18 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     }
 
     setOtherAnswer() {
-        const { answer, item } = this.props;
+        const { questionnaireResponseItem, item } = this.props;
         const otherOption = item.options[item.options.length - 1];
         if (this.OtherAnswerInputRef.current) {
             this.formApi.setValue('value', otherOption.id);
+            const answer = questionnaireResponseItem.answers[0];
             answer.updateAnswer({ ...answer, value: this.OtherAnswerInputRef.current.value });
         }
     }
 
     renderChoiceOptions() {
-        const { item, answer } = this.props;
+        const { item, questionnaireResponseItem } = this.props;
+        const answer = questionnaireResponseItem.answers[0];
         const otherOption = item.options[item.options.length - 1];
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <RadioGroup field="value" initialValue={item.initialValue}>
@@ -90,7 +94,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                 <input type="radio" name="value" className="form-check-input" id={`${otherOption.id}-${answer.id}`} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.OtherAnswerRadioRef} />
                 <label className="form-check-label" htmlFor={`${otherOption.id}-${answer.id}`}>Other</label>
             </div>
-            <input name="value" className="form-control" onBlur={this.setOtherAnswer.bind(this)} disabled={true} ref={this.OtherAnswerInputRef} />
+            <input autoComplete="off" name="value" className="form-control" onBlur={this.setOtherAnswer.bind(this)} disabled={true} ref={this.OtherAnswerInputRef} />
         </Form>
     }
 
