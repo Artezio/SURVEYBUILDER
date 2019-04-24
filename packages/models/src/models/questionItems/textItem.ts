@@ -8,7 +8,6 @@ import { QuestionItem } from "./questionItem";
 export class TextItem extends QuestionItem<string> implements ITextItem {
     type: TEXT = TEXT;
     regexp: RegExp = /[ \r\n\t\S]+/;
-    repeats: false = false;
 
     constructor(item: Partial<Omit<ITextItem, 'type'>> | undefined, parent?: IItemCollection<ITextItem>) {
         super(item, parent);

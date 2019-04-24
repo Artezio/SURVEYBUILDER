@@ -5,7 +5,6 @@ import { IItem } from '../IItem';
 export interface IQuestionItem<T> extends IItem {
     type: QUESTION_TYPE;
     initialValue?: T;
-    repeats: boolean;
 }
 
 

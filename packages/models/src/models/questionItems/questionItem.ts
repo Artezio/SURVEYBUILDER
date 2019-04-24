@@ -12,12 +12,6 @@ export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
     constructor(item: Partial<Omit<IQuestionItem<T>, 'type'>> | undefined, parent?: IItemCollection<IQuestionItem<T>>) {
         super(item, parent);
         this.initialValue = item && item.initialValue;
-        // this.repeats = !!(item && item.repeats);
-    }
-
-    updateItem(item: IItem) {
-        super.updateItem(item);
-        this.repeats = (item as IQuestionItem<T>).repeats;
     }
 }
 

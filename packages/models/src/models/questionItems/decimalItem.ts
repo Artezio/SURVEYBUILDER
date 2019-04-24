@@ -6,7 +6,6 @@ import { IItemCollection } from "../../interfaces/IItemCollection";
 export class DecimalItem extends QuestionItem<number> implements IDecimalItem {
     type: DECIMAL = DECIMAL;
     regexp: RegExp = /-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?/;
-    repeats: false = false;
 
     constructor(item: Partial<Omit<IDecimalItem, 'type'>> | undefined, parent?: IItemCollection<IDecimalItem>) {
         super(item, parent);

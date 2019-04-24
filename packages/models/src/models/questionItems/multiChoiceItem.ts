@@ -9,7 +9,6 @@ import { observable } from "../../decorators/temporaryObservable";
 export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceItem {
     type: MULTI_CHOICE = MULTI_CHOICE;
     options: IMultiChoiceOption[];
-    repeats: true = true;
 
     constructor(item: Partial<Omit<IMultiChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IMultiChoiceItem>) {
         super(item, parent);

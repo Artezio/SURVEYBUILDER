@@ -9,7 +9,6 @@ import ChoiceOptionFactory from '../../factories/choiceOptionFactory';
 export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem {
     type: OPEN_CHOICE = OPEN_CHOICE;
     options: IChoiceOption[] = [ChoiceOptionFactory.createChoiceOption()];
-    repeats: false = false;
 
     constructor(item: Partial<Omit<IOpenChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IOpenChoiceItem>) {
         super(item, parent);

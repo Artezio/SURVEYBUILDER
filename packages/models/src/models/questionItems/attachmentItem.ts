@@ -9,7 +9,6 @@ export class AttachmentItem extends QuestionItem<void> implements IAttachmentIte
 
     constructor(item: Partial<Omit<IAttachmentItem, 'type'>> | undefined, parent?: IItemCollection<IAttachmentItem>) {
         super(item, parent);
-        this.repeats = !!(item && item.repeats);
     }
 }
 
