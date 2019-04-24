@@ -6,7 +6,7 @@ import OpenChoiceItemProps from '../../interfaces/components/OpenChoiceItemProps
 
 
 export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
-    formApi!: FormApi<Models.IQuestionnaireResponseItem>;
+    formApi!: FormApi<Models.IAnswer<any>>;
     OtherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
     OtherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
     OtherAnswerOption: Models.IChoiceOption = Models.ChoiceOptionFactory.createChoiceOption();
@@ -16,23 +16,27 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.IQuestionnaireResponseItem>) {
+    getFormApi(formApi: FormApi<Models.IAnswer<any>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
-        const { answer } = this.props;
-        answer && answer.updateAnswer({ ...answer, ...values })
+    handleSubmit(values: Partial<Models.IAnswer<any>>) {
+        const { answer, item } = this.props;
+        const option = item.options.find(x => x.id === values.value);
+        const value = option && option.value;
+        answer.updateAnswer({ ...answer, value });
     }
 
     componentDidMount() {
-        const { item } = this.props;
+        const { item, answer } = this.props;
         const otherOption = item.options[item.options.length - 1];
         if (item.initialValue === otherOption.id) {
             if (this.OtherAnswerRadioRef.current) {
                 this.OtherAnswerRadioRef.current.checked = true;
                 if (this.OtherAnswerInputRef.current) {
                     this.OtherAnswerInputRef.current.disabled = false;
+                    this.OtherAnswerInputRef.current.value = otherOption.value;
+                    answer.updateAnswer({ ...answer, value: otherOption.value })
                 }
             }
         }
@@ -63,10 +67,8 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         const { answer, item } = this.props;
         const otherOption = item.options[item.options.length - 1];
         if (this.OtherAnswerInputRef.current) {
-            this.OtherAnswerOption.value = this.OtherAnswerInputRef.current.value;
-            this.formApi.setValue('value', this.OtherAnswerOption.id);
-            item.updateOption({ ...otherOption, value: this.OtherAnswerInputRef.current.value });
-            answer.updateAnswer({ ...answer, value: this.OtherAnswerOption.id });
+            this.formApi.setValue('value', otherOption.id);
+            answer.updateAnswer({ ...answer, value: this.OtherAnswerInputRef.current.value });
         }
     }
 

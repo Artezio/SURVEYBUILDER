@@ -6,7 +6,7 @@ import ChoiceItemProps from '../../interfaces/components/ChoiceItemProps';
 
 
 export class ChoiceItem extends React.Component<ChoiceItemProps> {
-    formApi!: FormApi<Models.IQuestionnaireResponseItem>;
+    formApi!: FormApi<Models.IAnswer<any>>;
 
     constructor(props: ChoiceItemProps) {
         super(props);
@@ -17,13 +17,15 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.IQuestionnaireResponseItem>) {
+    getFormApi(formApi: FormApi<Models.IAnswer<any>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
-        const { answer } = this.props;
-        answer && answer.updateAnswer({ ...answer, ...values })
+    handleSubmit(values: Partial<Models.IAnswer<any>>) {
+        const { answer, item } = this.props;
+        const option = item.options.find(x => x.id === values.value);
+        const value = option && option.value;
+        answer && answer.updateAnswer({ ...answer, value });
     }
 
     renderChoiceOptions() {
