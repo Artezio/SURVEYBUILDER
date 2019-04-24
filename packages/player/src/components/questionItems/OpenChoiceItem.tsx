@@ -90,7 +90,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                 <input type="radio" name="value" className="form-check-input" id={`${otherOption.id}-${answer.id}`} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.OtherAnswerRadioRef} />
                 <label className="form-check-label" htmlFor={`${otherOption.id}-${answer.id}`}>Other</label>
             </div>
-            <input name="value" className="form-control" defaultValue={otherOption.value} onBlur={this.setOtherAnswer.bind(this)} disabled={true} ref={this.OtherAnswerInputRef} />
+            <input name="value" className="form-control" onBlur={this.setOtherAnswer.bind(this)} disabled={true} ref={this.OtherAnswerInputRef} />
         </Form>
     }
 
