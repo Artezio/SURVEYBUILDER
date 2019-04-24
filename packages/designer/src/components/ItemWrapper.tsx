@@ -78,7 +78,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
             {item.type !== Models.GROUP && item.type !== Models.DISPLAY && <div>
                 {/* <Form getApi={this.getFormApi_2.bind(this)} key={item.id} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}> */}
                 <div className="custom-control">
-                    <Checkbox field="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} /*onChange={this.submitForm_2.bind(this)}*/ />
+                    <input name="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} /*onChange={this.submitForm_2.bind(this)}*/ />
                     <label className="custom-control-label" htmlFor={`${item.id}-required`}>Required</label>
                 </div>
                 {/* <div className="custom-control">
