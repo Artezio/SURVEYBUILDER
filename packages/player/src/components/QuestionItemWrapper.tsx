@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
-import QuestionItemWrapperProps from '../../interfaces/components/QuestionItemWrapperProps';
-import useObservableModel from '../../HOCs/useObservableModel';
-import QuestionItemProvider from '../QuestionItemProvider';
+import QuestionItemWrapperProps from '../interfaces/components/QuestionItemWrapperProps';
+import useObservableModel from '../HOCs/useObservableModel';
+import QuestionItemProvider from './QuestionItemProvider';
 
 
 export class QuestionItemWrapper extends React.Component<QuestionItemWrapperProps> {

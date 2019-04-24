@@ -6,7 +6,7 @@ import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
 
 
 export class TimeItem extends React.Component<QuestionItemProps<string>> {
-    formApi!: FormApi<Models.IQuestionnaireResponseItem>;
+    formApi!: FormApi<Models.IAnswer<string>>;
 
     constructor(props: QuestionItemProps<string>) {
         super(props);
@@ -17,11 +17,11 @@ export class TimeItem extends React.Component<QuestionItemProps<string>> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.IQuestionnaireResponseItem>) {
+    getFormApi(formApi: FormApi<Models.IAnswer<string>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
+    handleSubmit(values: Partial<Models.IAnswer<string>>) {
         const { questionnaireResponseItem } = this.props;
         const answer = questionnaireResponseItem.answers[0];
         answer && answer.updateAnswer({ ...answer, ...values })

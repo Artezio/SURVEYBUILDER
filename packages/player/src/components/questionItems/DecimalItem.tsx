@@ -6,7 +6,7 @@ import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
 
 
 export class DecimalItem extends React.Component<QuestionItemProps<number>> {
-    formApi!: FormApi<Models.IQuestionnaireResponseItem>;
+    formApi!: FormApi<Models.IAnswer<number>>;
 
     constructor(props: QuestionItemProps<number>) {
         super(props);
@@ -17,11 +17,11 @@ export class DecimalItem extends React.Component<QuestionItemProps<number>> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.IQuestionnaireResponseItem>) {
+    getFormApi(formApi: FormApi<Models.IAnswer<number>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
+    handleSubmit(values: Partial<Models.IAnswer<number>>) {
         const { questionnaireResponseItem } = this.props;
         const answer = questionnaireResponseItem.answers[0];
         answer && answer.updateAnswer({ ...answer, ...values })

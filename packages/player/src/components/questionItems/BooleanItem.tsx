@@ -6,7 +6,7 @@ import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
 
 
 export class BooleanItem extends React.Component<QuestionItemProps<boolean>> {
-    formApi!: FormApi<Models.IQuestionnaireResponseItem>;
+    formApi!: FormApi<Models.IAnswer<boolean>>;
 
     constructor(props: QuestionItemProps<boolean>) {
         super(props);
@@ -17,11 +17,11 @@ export class BooleanItem extends React.Component<QuestionItemProps<boolean>> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.IQuestionnaireResponseItem>) {
+    getFormApi(formApi: FormApi<Models.IAnswer<boolean>>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.IQuestionnaireResponseItem>) {
+    handleSubmit(values: Partial<Models.IAnswer<boolean>>) {
         const { questionnaireResponseItem } = this.props;
         const answer = questionnaireResponseItem.answers[0];
         answer && answer.updateAnswer({ ...answer, ...values })
