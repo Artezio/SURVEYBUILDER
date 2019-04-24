@@ -6,6 +6,7 @@ import { IItemCollection } from "../../interfaces/IItemCollection";
 export class BooleanItem extends QuestionItem<boolean> implements IBooleanItem {
     type: BOOLEAN = BOOLEAN;
     regexp: RegExp = /true|false/;
+    repeats: false = false;
 
     constructor(item: Partial<Omit<IBooleanItem, 'type'>> | undefined, parent?: IItemCollection<IBooleanItem>) {
         super(item, parent);

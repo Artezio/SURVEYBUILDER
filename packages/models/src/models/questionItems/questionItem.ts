@@ -7,12 +7,12 @@ import { IItem } from "../../interfaces/IItem";
 export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
     initialValue?: T;
     type!: QUESTION_TYPE;
-    repeats: boolean;
+    repeats: boolean = false;
 
     constructor(item: Partial<Omit<IQuestionItem<T>, 'type'>> | undefined, parent?: IItemCollection<IQuestionItem<T>>) {
         super(item, parent);
         this.initialValue = item && item.initialValue;
-        this.repeats = !!(item && item.repeats);
+        // this.repeats = !!(item && item.repeats);
     }
 
     updateItem(item: IItem) {

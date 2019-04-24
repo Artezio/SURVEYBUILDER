@@ -7,6 +7,7 @@ export interface IOpenChoiceItem extends IQuestionItem<any> {
     type: OPEN_CHOICE;
     options: IChoiceOption[];
     initialValue?: IChoiceOption;
+    repeats: false;
 }
 
 export default IOpenChoiceItem;

@@ -9,6 +9,7 @@ import { observable } from "../../decorators/temporaryObservable";
 export class StringItem extends QuestionItem<string> implements IStringItem {
     type: STRING = STRING;
     regexp: RegExp = /[ \r\n\t\S]+/;
+    repeats: false = false;
 
     constructor(item: Partial<Omit<IStringItem, 'type'>> | undefined, parent?: IItemCollection<IStringItem>) {
         super(item, parent);

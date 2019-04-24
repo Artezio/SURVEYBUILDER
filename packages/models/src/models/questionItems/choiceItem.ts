@@ -8,6 +8,7 @@ import IChoiceOption from "../../interfaces/IChoiceOption";
 export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
     type: CHOICE = CHOICE;
     options: IChoiceOption[];
+    repeats: false = false;
 
     constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IChoiceItem>) {
         super(item, parent);

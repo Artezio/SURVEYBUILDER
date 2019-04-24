@@ -7,6 +7,7 @@ import { DATE } from "../..";
 export class DateItem extends QuestionItem<string> implements IDateItem {
     type: DATE = DATE;
     regexp: RegExp = /([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?/;
+    repeats: false = false;
 
     constructor(item: Partial<Omit<IDateItem, 'type'>> | undefined, parent?: IItemCollection<IDateItem>) {
         super(item, parent);
