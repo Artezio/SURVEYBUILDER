@@ -1,9 +1,9 @@
 import * as Models from '@art-forms/models';
 
 
-export interface MenuProps {
+export interface ItemCollectionMenuProps {
     item: Models.GroupItem | Models.Questionnaire;
     title?: string;
 }
 
-export default MenuProps;
+export default ItemCollectionMenuProps;

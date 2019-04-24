@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { MenuProps } from '../interfaces/components/MenuProps';
+import { ItemCollectionMenuProps } from '../interfaces/components/MenuProps';
 import * as Models from '@art-forms/models';
 
 
-export class Menu extends React.Component<MenuProps> {
+export class ItemCollectionMenu extends React.Component<ItemCollectionMenuProps> {
     itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.item);
 
     addItem() {
@@ -32,4 +32,4 @@ export class Menu extends React.Component<MenuProps> {
     }
 }
 
-export default Menu;
+export default ItemCollectionMenu;

@@ -4,7 +4,7 @@ import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps'
 import { Form, Text, TextArea, FormApi } from 'informed';
 import { useObservableModel } from '../HOCs/useObservableModel';
 import ItemWrapper from './ItemWrapper';
-import Menu from './Menu';
+import ItemCollectionMenu from './ItemCollectionMenu';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
@@ -82,7 +82,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     renderMenu() {
         const { questionnaire } = this.props;
-        return <Menu item={questionnaire} />
+        return <ItemCollectionMenu item={questionnaire} />
     }
 
     render() {

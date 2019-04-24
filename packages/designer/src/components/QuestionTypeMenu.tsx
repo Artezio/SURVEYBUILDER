@@ -1,25 +1,26 @@
 import * as React from 'react';
-import SelectMenuProps, { SelectMenuOption } from '../interfaces/components/SelectMenuProps';
+import QuestionTypeMenuProps, { QuestionTypeMenuOption } from '../interfaces/components/SelectMenuProps';
 import * as Models from '@art-forms/models';
 
 
-export class SelectMenu extends React.Component<SelectMenuProps> {
+export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
     item: Models.Item;
     factory: Models.ItemFactory;
-    options: SelectMenuOption[] = [
+    options: QuestionTypeMenuOption[] = [
         { title: "String (one row)", value: Models.STRING },
         { title: "Text (several rows)", value: Models.TEXT },
-        { title: "Boolean question", value: Models.BOOLEAN },
-        { title: "Decimal question", value: Models.DECIMAL },
-        { title: "Time question", value: Models.TIME },
-        { title: "Date question", value: Models.DATE },
-        { title: "Date-time question", value: Models.DATE_TIME },
-        { title: "Choice question", value: Models.CHOICE },
-        { title: "Open-choice question", value: Models.OPEN_CHOICE },
-        { title: "Attachment question", value: Models.ATTACHMENT },
+        { title: "Boolean", value: Models.BOOLEAN },
+        { title: "Decimal", value: Models.DECIMAL },
+        { title: "Time", value: Models.TIME },
+        { title: "Date", value: Models.DATE },
+        { title: "Date-time", value: Models.DATE_TIME },
+        { title: "Choice", value: Models.CHOICE },
+        { title: "Open-choice", value: Models.OPEN_CHOICE },
+        { title: "Attachment", value: Models.ATTACHMENT },
+        { title: "MultiChoice", value: Models.MULTI_CHOICE }
     ];
 
-    constructor(props: SelectMenuProps) {
+    constructor(props: QuestionTypeMenuProps) {
         super(props);
         this.item = props.item;
         this.factory = new Models.ItemFactory(this.item.parent);
@@ -65,6 +66,10 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
             }
             case Models.ATTACHMENT: {
                 this.changeItemToAttachment();
+                break;
+            }
+            case Models.MULTI_CHOICE: {
+                this.changeItemToMultiChoice();
                 break;
             }
             default: return;
@@ -150,6 +155,22 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
         item.replace(newItem);
     }
 
+    changeItemToMultiChoice() {
+        const { item } = this.props;
+        let options;
+        if ((item as Models.OpenChoiceItem).options === undefined || (item as Models.OpenChoiceItem).options.length === 0) {
+            options = [Models.MultiChoiceOptionFactory.createMultiChoiceOption({ value: "Option 1" })];
+        }
+        else {
+            options = (item as Models.OpenChoiceItem).options;
+            if (item.type === Models.OPEN_CHOICE) {
+                options.pop();
+            }
+        }
+        const newItem = this.factory.createMultiChoiceItem({ text: item.text, options });
+        item.replace(newItem);
+    }
+
     render() {
         const { item, title } = this.props;
         return <div className="form-group">
@@ -163,4 +184,4 @@ export class SelectMenu extends React.Component<SelectMenuProps> {
     }
 }
 
-export default SelectMenu;
+export default QuestionTypeMenu;

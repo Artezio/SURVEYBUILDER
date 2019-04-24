@@ -3,9 +3,9 @@ import * as Models from '@art-forms/models';
 import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
 import useObservableModel from '../HOCs/useObservableModel';
 import ItemProvider from './ItemProvider';
-import Menu from './Menu';
+import ItemCollectionMenu from './ItemCollectionMenu';
 import { FormApi, Form, Text, Checkbox } from 'informed';
-import SelectMenu from './SelectMenu';
+import QuestionTypeMenu from './QuestionTypeMenu';
 
 
 export class ItemWrapper extends React.Component<ItemWrapperProps> {
@@ -48,7 +48,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         const { item } = this.props;
         if (item.type === Models.GROUP) {
             return <div className="d-flex justify-content-end">
-                {<Menu title="Context menu" item={item as Models.GroupItem} />}
+                {<ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
             </div>
         }
     }
@@ -66,7 +66,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
                     </Form>
                 </div>
                 <div className="col-md-4">
-                    <SelectMenu title="Question Type" item={item} />
+                    <QuestionTypeMenu title="Question Type" item={item} />
                 </div>
             </div>
         }
