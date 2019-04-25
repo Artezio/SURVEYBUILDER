@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form, FormApi, RadioGroup, Radio, Text } from 'informed';
+import { Form, FormApi, RadioGroup, Radio } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
 import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenChoiceItemProps';
@@ -9,7 +9,6 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     formApi!: FormApi<Models.IAnswer<any>>;
     OtherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
     OtherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
-    OtherAnswerOption: Models.IChoiceOption = Models.ChoiceOptionFactory.createChoiceOption();
 
     submitForm() {
         if (!this.formApi) return;

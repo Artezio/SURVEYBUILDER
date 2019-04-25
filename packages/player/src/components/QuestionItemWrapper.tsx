@@ -8,10 +8,6 @@ import QuestionItemProvider from './QuestionItemProvider';
 export class QuestionItemWrapper extends React.Component<QuestionItemWrapperProps> {
     answerFactory: Models.AnswerFactory = new Models.AnswerFactory(this.props.questionnaireResponseItem);
 
-    addAnswer() {
-
-    }
-
     render() {
         const { className = '', item, questionnaireResponseItem } = this.props;
         return <div className={`questionnaire-response-item ${className}`}>
