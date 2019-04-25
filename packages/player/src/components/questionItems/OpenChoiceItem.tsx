@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Form, FormApi, RadioGroup, Radio, Text } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
-import OpenChoiceItemProps from '../../interfaces/components/OpenChoiceItemProps';
+import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenChoiceItemProps';
 
 
 export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {

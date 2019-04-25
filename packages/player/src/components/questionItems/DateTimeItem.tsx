@@ -2,15 +2,11 @@ import * as React from 'react';
 import { Form, Text, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
-import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
+import DateTimeItemProps from '../../interfaces/components/questionItems/DateTimeItemProps';
 
 
-export class DateTimeItem extends React.Component<QuestionItemProps<string>> {
+export class DateTimeItem extends React.Component<DateTimeItemProps> {
     formApi!: FormApi<Models.IAnswer<string>>;
-
-    constructor(props: QuestionItemProps<string>) {
-        super(props);
-    }
 
     submitForm() {
         if (!this.formApi) return;
@@ -37,4 +33,4 @@ export class DateTimeItem extends React.Component<QuestionItemProps<string>> {
     }
 }
 
-export default useObservableModel<QuestionItemProps<string>>(DateTimeItem);
+export default useObservableModel<DateTimeItemProps>(DateTimeItem);

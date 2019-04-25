@@ -2,15 +2,11 @@ import * as React from 'react';
 import { Form, FormApi, RadioGroup, Radio } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
-import ChoiceItemProps from '../../interfaces/components/ChoiceItemProps';
+import ChoiceItemProps from '../../interfaces/components/questionItems/ChoiceItemProps';
 
 
 export class ChoiceItem extends React.Component<ChoiceItemProps> {
     formApi!: FormApi<Models.IAnswer<any>>;
-
-    constructor(props: ChoiceItemProps) {
-        super(props);
-    }
 
     submitForm() {
         if (!this.formApi) return;

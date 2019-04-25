@@ -2,15 +2,11 @@ import * as React from 'react';
 import { Form, RadioGroup, Radio, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
-import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
+import BooleanItemProps from '../../interfaces/components/questionItems/BooleanItemProps';
 
 
-export class BooleanItem extends React.Component<QuestionItemProps<boolean>> {
+export class BooleanItem extends React.Component<BooleanItemProps> {
     formApi!: FormApi<Models.IAnswer<boolean>>;
-
-    constructor(props: QuestionItemProps<boolean>) {
-        super(props);
-    }
 
     submitForm() {
         if (!this.formApi) return;
@@ -46,4 +42,4 @@ export class BooleanItem extends React.Component<QuestionItemProps<boolean>> {
     }
 }
 
-export default useObservableModel<QuestionItemProps<boolean>>(BooleanItem);
+export default useObservableModel<BooleanItemProps>(BooleanItem);

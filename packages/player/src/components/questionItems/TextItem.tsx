@@ -2,15 +2,11 @@ import * as React from 'react';
 import { Form, TextArea, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
 import useObservableModel from '../../HOCs/useObservableModel';
-import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
+import TextItemProps from '../../interfaces/components/questionItems/TextItemProps';
 
 
-export class TextItem extends React.Component<QuestionItemProps<string>> {
+export class TextItem extends React.Component<TextItemProps> {
     formApi!: FormApi<Models.IAnswer<string>>;
-
-    constructor(props: QuestionItemProps<string>) {
-        super(props);
-    }
 
     submitForm() {
         if (!this.formApi) return;
@@ -37,4 +33,4 @@ export class TextItem extends React.Component<QuestionItemProps<string>> {
     }
 }
 
-export default useObservableModel<QuestionItemProps<string>>(TextItem);
+export default useObservableModel<TextItemProps>(TextItem);

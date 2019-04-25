@@ -1,6 +1,6 @@
 import * as React from 'react';
 import useObservableModel from '../../HOCs/useObservableModel';
-import MultiChoiceItemProps from '../../interfaces/components/MultiChoiceItemProps';
+import MultiChoiceItemProps from '../../interfaces/components/questionItems/MultiChoiceItemProps';
 import MultiChoiceItemOption from '../MultiChoiceItemOption';
 
 
