@@ -30,7 +30,7 @@ export class DecimalItem extends React.Component<DecimalItemProps> {
     render() {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-            <div className="form-group">
+            <div>
                 <label htmlFor={`${item.id}-initial`}>Default answer</label>
                 <Text autoComplete="off" className="form-control" type="number" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
             </div>

@@ -32,7 +32,7 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
                     </div>
                 </div>
             </div>
-            <div className="form-group">
+            <div>
                 <div className="form-check">
                     <Checkbox className="form-check-input" field="multipleFiles" id={`${item.id}-multipleFiles`} onChange={this.submitForm.bind(this)} />
                     <label className="form-check-label" htmlFor={`${item.id}-multipleFiles`}>Allow multiple upload</label>

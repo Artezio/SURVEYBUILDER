@@ -38,7 +38,7 @@ export class BooleanItem extends React.Component<BooleanItemProps> {
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
             <label>Default answer</label>
             <RadioGroup field="initialValue">
-                <div className="form-group">
+                <div>
                     <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
                         Reset <i className="fas fa-undo"></i>
                     </button>

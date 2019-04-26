@@ -30,7 +30,7 @@ export class DateItem extends React.Component<DateItemProps> {
     render() {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-            <div className="form-group">
+            <div>
                 <label htmlFor={`${item.id}-initial`}>Default answer</label>
                 <Text autoComplete="off" className="form-control" type="date" field="initialValue" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
             </div>

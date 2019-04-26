@@ -23,7 +23,7 @@ export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
     render() {
         return <div>
             {this.renderChoiceOptions()}
-            <div className="form-group">
+            <div>
                 <button className="btn btn-outline-secondary form-control" onClick={this.addOption.bind(this)}>Add option</button>
             </div>
         </div>

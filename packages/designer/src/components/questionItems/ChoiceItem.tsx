@@ -54,10 +54,10 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
     render() {
         return <div>
             <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
-                Reset <i className="fas fa-undo"></i>
+                Reset <i className="fas fa-undo small"></i>
             </button>
             {this.renderChoiceOptions()}
-            <div className="form-group">
+            <div>
                 <button className="btn btn-outline-secondary form-control" onClick={this.addOption.bind(this)}>Add option</button>
             </div>
         </div>

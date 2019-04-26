@@ -31,7 +31,7 @@ export class Item extends React.Component<ItemProps> {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div className="card-body">
-                <div className="form-group">
+                <div>
                     <label htmlFor={item.id}>Text</label>
                     <TextArea autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
