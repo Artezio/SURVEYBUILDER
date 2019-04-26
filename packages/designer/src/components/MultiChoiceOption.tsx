@@ -1,6 +1,5 @@
 import * as React from 'react';
 import MultiChoiceOptionProps from '../interfaces/components/MultiChoiceOptionProps';
-import { Checkbox } from 'informed';
 
 export class MultiChoiceOption extends React.Component<MultiChoiceOptionProps> {
 

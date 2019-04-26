@@ -12,6 +12,8 @@ export interface LayoutActions {
 
 export interface LayoutState {
     application: Application;
+    questionnaire?: Models.Questionnaire;
+    questionnaireResponse?: Models.QuestionnaireResponse;
 }
 
 export type LayoutProps = LayoutState & AssignToActions<LayoutActions>;

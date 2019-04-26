@@ -7,8 +7,8 @@ import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenC
 
 export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     formApi!: FormApi<Models.IAnswer<any>>;
-    OtherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
-    OtherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
+    otherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
+    otherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
 
     submitForm() {
         if (!this.formApi) return;
@@ -31,11 +31,11 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         const { item, questionnaireResponseItem } = this.props;
         const otherOption = item.options[item.options.length - 1];
         if (item.initialValue === otherOption.id) {
-            if (this.OtherAnswerRadioRef.current) {
-                this.OtherAnswerRadioRef.current.checked = true;
-                if (this.OtherAnswerInputRef.current) {
-                    this.OtherAnswerInputRef.current.disabled = false;
-                    this.OtherAnswerInputRef.current.value = otherOption.value;
+            if (this.otherAnswerRadioRef.current) {
+                this.otherAnswerRadioRef.current.checked = true;
+                if (this.otherAnswerInputRef.current) {
+                    this.otherAnswerInputRef.current.disabled = false;
+                    this.otherAnswerInputRef.current.value = otherOption.value;
                     const answer = questionnaireResponseItem.answers[0];
                     answer.updateAnswer({ ...answer, value: otherOption.value })
                 }
@@ -45,21 +45,21 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
 
     toggleToOptions() {
         this.submitForm();
-        if (this.OtherAnswerRadioRef.current && this.OtherAnswerRadioRef.current.checked) {
-            this.OtherAnswerRadioRef.current.checked = false;
+        if (this.otherAnswerRadioRef.current && this.otherAnswerRadioRef.current.checked) {
+            this.otherAnswerRadioRef.current.checked = false;
         }
-        if (this.OtherAnswerInputRef.current) {
-            this.OtherAnswerInputRef.current.disabled = true;
+        if (this.otherAnswerInputRef.current) {
+            this.otherAnswerInputRef.current.disabled = true;
         }
     }
 
     toggleToOtherAnswer() {
-        if (!this.OtherAnswerRadioRef.current || !this.OtherAnswerRadioRef.current.checked) {
+        if (!this.otherAnswerRadioRef.current || !this.otherAnswerRadioRef.current.checked) {
             return;
         }
-        if (this.OtherAnswerInputRef.current) {
-            this.OtherAnswerInputRef.current.disabled = false;
-            this.OtherAnswerInputRef.current.focus();
+        if (this.otherAnswerInputRef.current) {
+            this.otherAnswerInputRef.current.disabled = false;
+            this.otherAnswerInputRef.current.focus();
             this.setOtherAnswer();
         }
     }
@@ -67,10 +67,10 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     setOtherAnswer() {
         const { questionnaireResponseItem, item } = this.props;
         const otherOption = item.options[item.options.length - 1];
-        if (this.OtherAnswerInputRef.current) {
+        if (this.otherAnswerInputRef.current) {
             this.formApi.setValue('value', otherOption.id);
             const answer = questionnaireResponseItem.answers[0];
-            answer.updateAnswer({ ...answer, value: this.OtherAnswerInputRef.current.value });
+            answer.updateAnswer({ ...answer, value: this.otherAnswerInputRef.current.value });
         }
     }
 
@@ -90,10 +90,10 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                 })}
             </RadioGroup>
             <div className="form-check">
-                <input type="radio" name="value" className="form-check-input" id={`${otherOption.id}-${answer.id}`} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.OtherAnswerRadioRef} />
+                <input type="radio" name="value" className="form-check-input" id={`${otherOption.id}-${answer.id}`} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.otherAnswerRadioRef} />
                 <label className="form-check-label" htmlFor={`${otherOption.id}-${answer.id}`}>Other</label>
             </div>
-            <input autoComplete="off" name="value" className="form-control" onBlur={this.setOtherAnswer.bind(this)} disabled={true} ref={this.OtherAnswerInputRef} />
+            <input autoComplete="off" name="value" className="form-control" onBlur={this.setOtherAnswer.bind(this)} disabled={true} ref={this.otherAnswerInputRef} />
         </Form>
     }
 

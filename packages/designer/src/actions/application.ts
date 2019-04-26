@@ -12,5 +12,3 @@ export const toggleModeToPlay = () => {
 export const toggleModeToDesign = () => {
     return createAction<SET_APP_MODE, APP_MODE>(SET_APP_MODE, DESIGN);
 };
-
-export const createQuestionnaireWithEmptyResponse = createActionCreator<CREATE_QUESTIONNAIRE_WITH_EMPTY_RESPONSE, void>(CREATE_QUESTIONNAIRE_WITH_EMPTY_RESPONSE);
