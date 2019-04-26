@@ -1,12 +1,13 @@
-.questionnaire-response-group-item{
-    padding-top: 25px;
-    padding-bottom: 25px;
+.questionnaire-response-group-item {
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
-p, label{
-    word-break: break-word;
+p,
+label {
+  word-break: break-word;
 }
 
-.questionnaire-response-item{
-    margin-bottom: 20px;
+.questionnaire-response-item {
+  margin-bottom: 20px;
 }
