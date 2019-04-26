@@ -19,7 +19,7 @@ export class DecimalItem extends React.Component<DecimalItemProps> {
 
     handleSubmit(values: Partial<Omit<Models.IDecimalItem, 'type'>>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        item.updateItem({ ...item, initialValue: values.initialValue });
     }
 
     componentDidUpdate() {

@@ -19,7 +19,7 @@ export class Item extends React.Component<ItemProps> {
 
     handleSubmit(values: Partial<Models.IItem>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        item.updateItem({ ...item, text: values.text });
     }
 
     componentDidUpdate() {

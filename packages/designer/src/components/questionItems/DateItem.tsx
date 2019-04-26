@@ -19,7 +19,7 @@ export class DateItem extends React.Component<DateItemProps> {
 
     handleSubmit(values: Partial<Models.IDateItem>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        item.updateItem({ ...item, initialValue: values.initialValue });
     }
 
     componentDidUpdate() {

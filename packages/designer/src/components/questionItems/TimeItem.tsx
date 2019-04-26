@@ -19,7 +19,7 @@ export class TimeItem extends React.Component<TimeItemProps> {
 
     handleSubmit(values: Partial<Models.ITimeItem>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        item.updateItem({ ...item, initialValue: values.initialValue });
     }
 
     componentDidUpdate() {

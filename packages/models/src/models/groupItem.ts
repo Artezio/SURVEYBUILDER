@@ -14,7 +14,6 @@ export class GroupItem extends Item implements IGroupItem {
     addItem(item: Item) {
         if (this.items.every(itm => itm.id !== item.id)) {
             this.items = [...this.items, item]
-            // this.items.push(item);
         }
     }
 
@@ -22,7 +21,7 @@ export class GroupItem extends Item implements IGroupItem {
         this.items = this.items.filter(x => x.id !== item.id);
     }
 
-    updateItem(item: GroupItem) {
+    updateItem(item: IGroupItem) {
         super.updateItem(item);
         if (!!item.items) {
             this.items = item.items;

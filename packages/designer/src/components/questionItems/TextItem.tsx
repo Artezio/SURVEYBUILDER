@@ -19,7 +19,7 @@ export class TextItem extends React.Component<TextItemProps> {
 
     handleSubmit(values: Partial<Omit<Models.ITextItem, 'type'>>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        item.updateItem({ ...item, initialValue: values.initialValue });
     }
 
     componentDidUpdate() {

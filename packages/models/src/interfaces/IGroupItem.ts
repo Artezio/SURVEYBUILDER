@@ -1,9 +1,10 @@
 import { GROUP } from '../constants/itemTypes';
 import { IItem } from './IItem';
+import { Item } from '..';
 
 
 export interface IGroupItem extends IItem {
-    items?: IItem[];
+    items?: Item[];
     type: GROUP;
 }
 

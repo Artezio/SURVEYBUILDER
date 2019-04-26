@@ -55,7 +55,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { questionnaire } = this.props;
-        questionnaire.updateQuestionnaire({ ...questionnaire, ...values });
+        questionnaire.updateQuestionnaire({ ...questionnaire, title: values.title, description: values.description });
     }
 
     submitForm() {

@@ -19,7 +19,7 @@ export class StringItem extends React.Component<StringItemProps> {
 
     handleSubmit(values: Partial<Omit<Models.IStringItem, 'type'>>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        item.updateItem({ ...item, initialValue: values.initialValue });
     }
 
     componentDidUpdate() {

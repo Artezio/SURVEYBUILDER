@@ -31,7 +31,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
     handleSubmit(values: Partial<Omit<Models.IItem, 'type'>>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        item.updateItem({ ...item, text: values.text });
     }
     // handleSubmit_2(values: Partial<Omit<Models.IQuestionItem<any>, 'type'>>) {
     //     const { item } = this.props;

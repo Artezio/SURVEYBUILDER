@@ -7,11 +7,11 @@ import ItemWrapper from './ItemWrapper';
 
 
 export class GroupItem extends React.Component<GroupItemProps> {
-    formApi!: FormApi<Partial<Models.GroupItem>>;
+    formApi!: FormApi<Partial<Models.IGroupItem>>;
 
-    handleSubmit(values: Partial<Models.GroupItem>) {
+    handleSubmit(values: Partial<Models.IGroupItem>) {
         const { item } = this.props;
-        item && item.updateItem({ ...item, ...values as any });
+        item.updateItem({ ...item, text: values.text });
     }
 
     submitForm() {
@@ -19,7 +19,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Partial<Models.GroupItem>>) {
+    getFormApi(formApi: FormApi<Partial<Models.IGroupItem>>) {
         this.formApi = formApi;
     }
 
