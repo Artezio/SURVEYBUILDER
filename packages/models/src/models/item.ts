@@ -13,6 +13,26 @@ export class Item implements IItem {
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
         Object.assign(this, { id: uuid() }, item);
         this.parent = parent;
+        Object.defineProperty((this as any).__proto__, 'position', {
+            enumerable: true,
+            configurable: true,
+            get() {
+                if (!this.parent) return;
+                let position;
+                this.parent.items.find((item: Item, index: number) => {
+                    if (item.id === this.id) {
+                        position = index;
+                        return true;
+                    }
+                    return false;
+                })
+                this.parent.items
+                return position;
+            },
+            set() {
+
+            }
+        })
     }
 
     updateItem(item: IItem) {
@@ -26,6 +46,10 @@ export class Item implements IItem {
 
     replace(newItem: Item) {
         this.parent && this.parent.replaceItem(this, newItem);
+    }
+
+    move(newPlace: number) {
+        this.parent && this.parent.moveItem(this, newPlace);
     }
 }
 

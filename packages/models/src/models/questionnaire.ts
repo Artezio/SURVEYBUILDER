@@ -37,6 +37,22 @@ export class Questionnaire implements IQuestionnaire {
         position !== undefined && this.items.splice(position, 1, newItem);
         this.items = [...this.items];
     }
+
+    moveItem(oldItem: Item, newPlace: number) {
+        if (newPlace >= this.items.length) return;
+        let position;
+        const item = this.items.find((item, index) => {
+            if (item.id === oldItem.id) {
+                position = index;
+                return true;
+            }
+            return false;
+        })
+        if (position === undefined || item === undefined || position === newPlace) return;
+        this.items.splice(position, 1);
+        this.items.splice(newPlace, 0, item);
+        this.items = [...this.items];
+    }
 }
 
 export default Questionnaire;
