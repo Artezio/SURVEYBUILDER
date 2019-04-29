@@ -12,6 +12,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     itemFactory: Models.ItemFactory;
     documentListener: EventListener;
     itemListener: EventListener;
+    nestingLevel: string = '0';
 
     constructor(props: QuestionnaireProps) {
         super(props);
@@ -74,10 +75,10 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     renderItemList() {
-        const { questionnaire } = this.props;
-        return (questionnaire && <div className="item-list">
+        const { questionnaire } = this.props;///                         transfer nestingLevel to list
+        return <div className="item-list">
             {questionnaire.items.map(item => <ItemWrapper item={item} key={item.id} />)}
-        </div>)
+        </div>
     }
 
     renderMenu() {

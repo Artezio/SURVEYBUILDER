@@ -25,6 +25,8 @@
     "popper.js": "^1.14.7",
     "react": "16.8.3",
     "react-app-rewired": "^2.1.0",
+    "react-dnd": "^7.4.5",
+    "react-dnd-html5-backend": "^7.4.4",
     "react-dom": "16.8.3",
     "react-redux": "6.0.0",
     "react-scripts": "2.1.5",

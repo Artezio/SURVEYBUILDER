@@ -6,6 +6,7 @@ import ItemProvider from './ItemProvider';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import { FormApi, Form, Text, Checkbox } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
+import { DragSource, DragSourceSpec, DragSourceCollector, DragSourceConnector, DropTarget } from 'react-dnd';
 
 
 export class ItemWrapper extends React.Component<ItemWrapperProps> {
@@ -92,13 +93,13 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
             </button>
         </div>
     }
-
+    
     render() {
-        const { item, className = '' } = this.props;
-        return <div className={`item card card-sm mb-3 ${className}`}>
-            <div className="card-header">
+        const { item, className = '', connectDropTarget, connectDragSource } = (this.props as any);
+        return connectDragSource(<div className={`item card card-sm mb-3 ${className}`}>
+            {connectDropTarget(<div className="card-header">
                 {this.renderHeader()}
-            </div>
+            </div>)}
             <div className="card-body">
                 {this.renderItemHeadLine()}
                 <ItemProvider item={item} key={item.id} />
@@ -106,8 +107,36 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
             <div className="card-footer">
                 {this.renderFooter()}
             </div>
-        </div>
+        </div>)
     }
 }
 
-export default useObservableModel<ItemWrapperProps>(ItemWrapper);
+const dragSource: DragSourceSpec<any, ItemWrapper> = {
+    beginDrag(props) {
+        console.log(props)
+        return { ...props.item, move: props.item.move.bind(props.item) };
+    }
+}
+
+const dragCollect = (connect: DragSourceConnector, monitor: any) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging(),
+})
+
+const dropSource = {
+    hover(props: any, monitor: any) {
+        if (props.isDragging) return;
+        console.log(props)
+        const item = monitor.getItem();
+        item.move(props.item.position);
+    }
+}
+
+const dropCollect = (connect: any, monitor: any) => {
+    return {
+        connectDropTarget: (connect.dropTarget()),
+        isOver: monitor.isOver(),
+
+    }
+}
+export default DragSource('bla', dragSource, dragCollect)(DropTarget(['bla'], dropSource, dropCollect)(useObservableModel<ItemWrapperProps>(ItemWrapper)));
