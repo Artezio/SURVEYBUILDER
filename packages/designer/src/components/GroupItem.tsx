@@ -3,11 +3,17 @@ import GroupItemProps from '../interfaces/components/GroupItemProps';
 import useObservableModel from '../HOCs/useObservableModel';
 import { FormApi, Form, Text } from 'informed';
 import * as Models from '@art-forms/models';
-import ItemWrapper from './ItemWrapper';
+import ItemList from './ItemList';
 
 
 export class GroupItem extends React.Component<GroupItemProps> {
     formApi!: FormApi<Partial<Models.IGroupItem>>;
+    nestingLevel: string;
+
+    constructor(props: GroupItemProps) {
+        super(props);
+        this.nestingLevel = props.nestingLevel;
+    }
 
     handleSubmit(values: Partial<Models.IGroupItem>) {
         const { item } = this.props;
@@ -25,9 +31,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     renderItemList() {
         const { item } = this.props;
-        return item && <div className="item-list">
-            {item.items.map(item => <ItemWrapper item={item} key={item.id} />)}
-        </div>
+        return <ItemList container={item} nestingLevel={this.nestingLevel} />
     }
 
     componentDidUpdate() {

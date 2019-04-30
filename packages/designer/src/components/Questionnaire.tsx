@@ -5,7 +5,9 @@ import { Form, Text, TextArea, FormApi } from 'informed';
 import { useObservableModel } from '../HOCs/useObservableModel';
 import ItemWrapper from './ItemWrapper';
 import ItemCollectionMenu from './ItemCollectionMenu';
-
+import { Droppable, Draggable, DragDropContext, DropResult } from 'react-beautiful-dnd';
+import ItemList from './ItemList';
+import _ from 'lodash';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.IQuestionnaire>;
@@ -71,14 +73,33 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     componentDidUpdate() {
         const { questionnaire } = this.props;
         this.formApi.setValues(questionnaire);
-        { this.highlightActiveItems() }
+        this.highlightActiveItems()
+    }
+
+    findNestedItemList(nesting: string[]) {
+        //toDO
+    }
+
+    onDragEnd(result: DropResult) {
+        const { questionnaire } = this.props;
+        if (result.reason !== "DROP" || result.destination === null) return;
+        const draggableIndex = result.source.index;
+        const droppableIndex = result.destination && result.destination.index;
+        const nesting = result.type.split(':');
+        if (nesting.length < 2) {
+            questionnaire.moveItem((droppableIndex as number), draggableIndex);
+        }
+        else {
+            // const currentItemList: Models.Questionnaire | Models.GroupItem = this.findNestedItemList(nesting);
+            // currentItemList.moveItem((droppableIndex as number), draggableIndex);
+        }
     }
 
     renderItemList() {
-        const { questionnaire } = this.props;///                         transfer nestingLevel to list
-        return <div className="item-list">
-            {questionnaire.items.map(item => <ItemWrapper item={item} key={item.id} />)}
-        </div>
+        const { questionnaire } = this.props;
+        return <DragDropContext onDragEnd={this.onDragEnd.bind(this)}>
+            <ItemList container={questionnaire} nestingLevel={this.nestingLevel} />
+        </DragDropContext>
     }
 
     renderMenu() {

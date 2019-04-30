@@ -4,15 +4,17 @@ import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
 import useObservableModel from '../HOCs/useObservableModel';
 import ItemProvider from './ItemProvider';
 import ItemCollectionMenu from './ItemCollectionMenu';
-import { FormApi, Form, Text, Checkbox } from 'informed';
+import { FormApi, Form, Text } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
-import { DragSource, DragSourceSpec, DragSourceCollector, DragSourceConnector, DropTarget } from 'react-dnd';
+import { Draggable } from 'react-beautiful-dnd';
+
 
 
 export class ItemWrapper extends React.Component<ItemWrapperProps> {
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     // formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
+    divRef: React.RefObject<any> = React.createRef();
 
     submitForm() {
         if (!this.formApi) return;
@@ -47,11 +49,9 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
     renderHeader() {
         const { item } = this.props;
-        if (item.type === Models.GROUP) {
-            return <div className="d-flex justify-content-end">
-                {<ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
-            </div>
-        }
+        return <div className="d-flex justify-content-end">
+            {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
+        </div>
     }
 
     renderItemHeadLine() {
@@ -93,50 +93,26 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
             </button>
         </div>
     }
-    
+
     render() {
-        const { item, className = '', connectDropTarget, connectDragSource } = (this.props as any);
-        return connectDragSource(<div className={`item card card-sm mb-3 ${className}`}>
-            {connectDropTarget(<div className="card-header">
-                {this.renderHeader()}
-            </div>)}
-            <div className="card-body">
-                {this.renderItemHeadLine()}
-                <ItemProvider item={item} key={item.id} />
-            </div>
-            <div className="card-footer">
-                {this.renderFooter()}
-            </div>
-        </div>)
+        const { item, nestingLevel, className = '' } = this.props;
+        return <Draggable draggableId={item.id} index={item.position}>
+            {provided => (
+                <div className={`item card card-sm mb-3 ${className}`} {...provided.draggableProps} ref={provided.innerRef} >
+                    <div className="card-header"  {...provided.dragHandleProps}>
+                        {this.renderHeader()}
+                    </div>
+                    <div className="card-body">
+                        {this.renderItemHeadLine()}
+                        <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} />
+                    </div>
+                    <div className="card-footer">
+                        {this.renderFooter()}
+                    </div>
+                </div>
+            )}
+        </Draggable>
     }
 }
 
-const dragSource: DragSourceSpec<any, ItemWrapper> = {
-    beginDrag(props) {
-        console.log(props)
-        return { ...props.item, move: props.item.move.bind(props.item) };
-    }
-}
-
-const dragCollect = (connect: DragSourceConnector, monitor: any) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-})
-
-const dropSource = {
-    hover(props: any, monitor: any) {
-        if (props.isDragging) return;
-        console.log(props)
-        const item = monitor.getItem();
-        item.move(props.item.position);
-    }
-}
-
-const dropCollect = (connect: any, monitor: any) => {
-    return {
-        connectDropTarget: (connect.dropTarget()),
-        isOver: monitor.isOver(),
-
-    }
-}
-export default DragSource('bla', dragSource, dragCollect)(DropTarget(['bla'], dropSource, dropCollect)(useObservableModel<ItemWrapperProps>(ItemWrapper)));
+export default useObservableModel<ItemWrapperProps>(ItemWrapper);
