@@ -39,15 +39,9 @@ export class GroupItem extends Item implements IGroupItem {
         this.items = [...this.items];
     }
 
-    moveItem(oldItem: Item, newPlace: number) {
-        let position;
-        const item = this.items.find((item, index) => {
-            if (item.id === oldItem.id) {
-                position = index;
-                return true;
-            }
-            return false;
-        })
+    moveItem(position: number, newPlace: number) {
+        if (newPlace >= this.items.length) return;
+        const item = this.items[position]
         if (position === undefined || item === undefined || position === newPlace) return;
         this.items.splice(position, 1);
         this.items.splice(newPlace, 0, item);

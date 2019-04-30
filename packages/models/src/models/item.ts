@@ -9,6 +9,7 @@ export class Item implements IItem {
     text?: string;
     type: ITEM_TYPE = DISPLAY;
     parent?: IItemCollection<IItem>;
+    position!: number;
 
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
         Object.assign(this, { id: uuid() }, item);
@@ -49,7 +50,7 @@ export class Item implements IItem {
     }
 
     move(newPlace: number) {
-        this.parent && this.parent.moveItem(this, newPlace);
+        this.parent && this.parent.moveItem(this.position, newPlace);
     }
 }
 
