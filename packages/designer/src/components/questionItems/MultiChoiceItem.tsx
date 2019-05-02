@@ -10,12 +10,12 @@ export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
     addOption() {
         const { item } = this.props;
         const option = Models.MultiChoiceOptionFactory.createMultiChoiceOption();
-        item && item.addOption(option);
+        item.addOption(option);
     }
 
     renderChoiceOptions() {
         const { item } = this.props;
-        return <div className="choice-options">
+        return <div className="option-list">
             {item.options.map(option => <MultiChoiceOption key={option.id} option={option} item={item} />)}
         </div>;
     }

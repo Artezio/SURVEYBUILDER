@@ -32,7 +32,7 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
     addOption() {
         const { item } = this.props;
         const option = Models.ChoiceOptionFactory.createChoiceOption();
-        item && item.addOption(option);
+        item.addOption(option);
     }
     
     componentDidUpdate() {
@@ -42,7 +42,7 @@ export class ChoiceItem extends React.Component<ChoiceItemProps> {
 
     renderChoiceOptions() {
         const { item } = this.props;
-        return <div className="choice-options">
+        return <div className="option-list">
             <Form getApi={this.getFormApi.bind(this)} onSubmit={this.handleSubmit.bind(this)}>
                 <RadioGroup field="initialValue" initialValue={item.initialValue}>
                     {item.options.map(option => <ChoiceOption key={option.id} option={option} item={item} submitForm={this.submitForm.bind(this)} reset={this.reset.bind(this)} />)}

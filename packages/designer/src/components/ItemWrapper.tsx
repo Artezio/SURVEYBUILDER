@@ -57,7 +57,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     renderItemHeadLine() {
         const { item } = this.props;
         if (item.type !== Models.GROUP && item.type !== Models.DISPLAY) {
-            return <div className="form-row">
+            return <div className="form-row headline">
                 <div className="col-md-8">
                     <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
@@ -98,7 +98,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         const { item, nestingLevel, className = '' } = this.props;
         return <Draggable draggableId={item.id} index={item.position}>
             {provided => (
-                <div className={`item card card-sm mb-3 ${className}`} {...provided.draggableProps} ref={provided.innerRef} >
+                <div className={`questionnaire-item card card-sm mb-3 ${className}`} {...provided.draggableProps} ref={provided.innerRef} >
                     <div className="card-header"  {...provided.dragHandleProps}>
                         {this.renderHeader()}
                     </div>

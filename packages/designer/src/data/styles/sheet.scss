@@ -26,3 +26,11 @@
     @extend .p-1;
   }
 }
+
+.isDraggingOver {
+  background-color: grey;
+}
+
+.questionnaire-item-list {
+  @extend .p-1;
+}

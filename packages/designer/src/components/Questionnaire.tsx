@@ -3,11 +3,9 @@ import * as Models from '@art-forms/models';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import { useObservableModel } from '../HOCs/useObservableModel';
-import ItemWrapper from './ItemWrapper';
 import ItemCollectionMenu from './ItemCollectionMenu';
-import { Droppable, Draggable, DragDropContext, DropResult } from 'react-beautiful-dnd';
-import ItemList from './ItemList';
-import _ from 'lodash';
+import { DragDropContext, DropResult, DragStart } from 'react-beautiful-dnd';
+import QuestionnaireItemList from './QuestionnaireItemList';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.IQuestionnaire>;
@@ -76,38 +74,35 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.highlightActiveItems()
     }
 
-    findNestedItemList(nesting: string[]): Models.GroupItem {
+    findNestedItemList(nesting: string[]): Models.Questionnaire | Models.GroupItem {
         const { questionnaire } = this.props;
-        nesting.shift();
-        let currentItemList: Models.GroupItem = questionnaire as any;
+        let currentItemList: Models.Questionnaire | Models.GroupItem = questionnaire;
+        if (nesting.length === 0) {
+            return currentItemList;
+        }
         nesting.forEach(index => {
             if (Array.isArray(currentItemList.items)) {
                 currentItemList = currentItemList.items[+index] as Models.GroupItem;
             }
         })
-        return (currentItemList as Models.GroupItem);
+        return currentItemList;
     }
 
     onDragEnd(result: DropResult) {
-        const { questionnaire } = this.props;
         if (result.reason !== "DROP" || result.destination === null || result.destination === undefined) return;
         const draggableIndex = result.source.index;
         const droppableIndex = result.destination.index;
         if (draggableIndex === droppableIndex) return;
         const nesting = result.type.split(':');
-        if (nesting.length === 1) {
-            questionnaire.moveItem(droppableIndex, draggableIndex);
-        }
-        else {
-            const currentItemList: Models.GroupItem = this.findNestedItemList(nesting);
-            currentItemList.moveItem((droppableIndex as number), draggableIndex);
-        }
+        nesting.shift();
+        const currentItemList: Models.Questionnaire | Models.GroupItem = this.findNestedItemList(nesting);
+        currentItemList.moveItem(droppableIndex, draggableIndex);
     }
 
     renderItemList() {
         const { questionnaire } = this.props;
         return <DragDropContext onDragEnd={this.onDragEnd.bind(this)}>
-            <ItemList container={questionnaire} nestingLevel={this.nestingLevel} />
+            <QuestionnaireItemList container={questionnaire} nestingLevel={this.nestingLevel} />
         </DragDropContext>
     }
 

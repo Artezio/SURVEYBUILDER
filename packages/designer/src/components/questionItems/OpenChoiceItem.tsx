@@ -32,7 +32,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     addOption() {
         const { item } = this.props;
         const option = Models.ChoiceOptionFactory.createChoiceOption();
-        item && item.addOption(option);
+        item.addOption(option);
     }
 
     componentDidUpdate() {
@@ -42,7 +42,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
 
     renderChoiceOptions() {
         const { item } = this.props;
-        return item && (<div className="choice-options">
+        return <div className="option-list">
             <Form getApi={this.getFormApi.bind(this)} onSubmit={this.handleSubmit.bind(this)}>
                 <RadioGroup field="initialValue" initialValue={item.initialValue}>
                     {item.options.map((option, i) => {
@@ -52,7 +52,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                     <ChoiceOption item={item} option={item.options[item.options.length - 1]} otherOption={true} submitForm={this.submitForm.bind(this)} reset={this.reset.bind(this)} />
                 </RadioGroup>
             </Form>
-        </div>);
+        </div>
     }
 
     render() {
