@@ -49,8 +49,14 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
     renderHeader() {
         const { item } = this.props;
-        return <div className="d-flex justify-content-end">
+        return <div className="row">
+            <div className="col-4"></div>
+            <div className="col-4 d-flex justify-content-center">
+            <i className="btn half-opacity fas fa-grip-horizontal"></i>
+            </div>
+            <div className="col-4 d-flex justify-content-end">
             {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
+            </div>
         </div>
     }
 
