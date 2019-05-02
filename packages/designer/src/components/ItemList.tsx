@@ -5,13 +5,6 @@ import { Droppable } from 'react-beautiful-dnd';
 
 
 export class ItemList extends React.Component<ItemListProps> {
-    nestingLevel: string;
-
-    constructor(props: ItemListProps) {
-        super(props);
-        this.nestingLevel = props.nestingLevel;
-    }
-
     render() {
         const { container, className = '', nestingLevel } = this.props;
         return <Droppable type={nestingLevel} droppableId={container.id}>

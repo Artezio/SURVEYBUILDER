@@ -8,12 +8,6 @@ import ItemList from './ItemList';
 
 export class GroupItem extends React.Component<GroupItemProps> {
     formApi!: FormApi<Partial<Models.IGroupItem>>;
-    nestingLevel: string;
-
-    constructor(props: GroupItemProps) {
-        super(props);
-        this.nestingLevel = props.nestingLevel;
-    }
 
     handleSubmit(values: Partial<Models.IGroupItem>) {
         const { item } = this.props;
@@ -30,8 +24,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
     }
 
     renderItemList() {
-        const { item } = this.props;
-        return <ItemList container={item} nestingLevel={this.nestingLevel} />
+        const { item, nestingLevel } = this.props;
+        return <ItemList container={item} nestingLevel={nestingLevel} />
     }
 
     componentDidUpdate() {

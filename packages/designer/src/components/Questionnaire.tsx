@@ -76,22 +76,31 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.highlightActiveItems()
     }
 
-    findNestedItemList(nesting: string[]) {
-        //toDO
+    findNestedItemList(nesting: string[]): Models.GroupItem {
+        const { questionnaire } = this.props;
+        nesting.shift();
+        let currentItemList: Models.GroupItem = questionnaire as any;
+        nesting.forEach(index => {
+            if (Array.isArray(currentItemList.items)) {
+                currentItemList = currentItemList.items[+index] as Models.GroupItem;
+            }
+        })
+        return (currentItemList as Models.GroupItem);
     }
 
     onDragEnd(result: DropResult) {
         const { questionnaire } = this.props;
-        if (result.reason !== "DROP" || result.destination === null) return;
+        if (result.reason !== "DROP" || result.destination === null || result.destination === undefined) return;
         const draggableIndex = result.source.index;
-        const droppableIndex = result.destination && result.destination.index;
+        const droppableIndex = result.destination.index;
+        if (draggableIndex === droppableIndex) return;
         const nesting = result.type.split(':');
-        if (nesting.length < 2) {
-            questionnaire.moveItem((droppableIndex as number), draggableIndex);
+        if (nesting.length === 1) {
+            questionnaire.moveItem(droppableIndex, draggableIndex);
         }
         else {
-            // const currentItemList: Models.Questionnaire | Models.GroupItem = this.findNestedItemList(nesting);
-            // currentItemList.moveItem((droppableIndex as number), draggableIndex);
+            const currentItemList: Models.GroupItem = this.findNestedItemList(nesting);
+            currentItemList.moveItem((droppableIndex as number), draggableIndex);
         }
     }
 
