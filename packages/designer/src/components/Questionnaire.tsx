@@ -48,7 +48,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     highlightActiveItems() {
-        document.querySelectorAll('.item').forEach(el => {
+        document.querySelectorAll('.questionnaire-item').forEach(el => {
             el.removeEventListener('click', this.itemListener);
             el.addEventListener('click', this.itemListener);
         })

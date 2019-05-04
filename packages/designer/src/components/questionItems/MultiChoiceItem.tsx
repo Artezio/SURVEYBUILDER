@@ -5,7 +5,7 @@ import useObservableModel from '../../HOCs/useObservableModel';
 import MultiChoiceOption from '../MultiChoiceOption';
 
 
-export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
+export class MultiChoiceItem extends React.PureComponent<MultiChoiceItemProps> {
 
     addOption() {
         const { item } = this.props;

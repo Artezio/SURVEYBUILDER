@@ -6,7 +6,7 @@ import ChoiceOption from '../ChoiceOption';
 import { Form, FormApi, RadioGroup } from 'informed';
 
 
-export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
+export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
     formApi!: FormApi<Models.IOpenChoiceItem>;
 
     submitForm() {

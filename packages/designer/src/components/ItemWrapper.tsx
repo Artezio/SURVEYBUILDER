@@ -52,10 +52,10 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         return <div className="row">
             <div className="col-4"></div>
             <div className="col-4 d-flex justify-content-center">
-            <i className="btn half-opacity fas fa-grip-horizontal"></i>
+                <i className="btn half-opacity fas fa-grip-horizontal"></i>
             </div>
             <div className="col-4 d-flex justify-content-end">
-            {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
+                {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
             </div>
         </div>
     }
@@ -103,7 +103,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     render() {
         const { item, nestingLevel, className = '' } = this.props;
         return <Draggable draggableId={item.id} index={item.position}>
-            {provided => (
+            {(provided, snapshot) => (
                 <div className={`questionnaire-item card card-sm mb-3 ${className}`} {...provided.draggableProps} ref={provided.innerRef} >
                     <div className="card-header"  {...provided.dragHandleProps}>
                         {this.renderHeader()}
