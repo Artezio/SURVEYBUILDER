@@ -12,8 +12,22 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     itemFactory: Models.ItemFactory;
     documentListener: EventListener;
     itemListener: EventListener;
+
     nestingLevel: string = '0';
+
     itemListsMap: Map<HTMLElement, Sortable> = new Map();
+    sortableOptions: Sortable.Options = {
+        group: 'nested',
+        animation: 350,
+        fallbackOnBody: true,
+        swapThreshold: 0.25,
+        handle: '.drag-handle',
+        dragClass: "sortable-drag",
+        onEnd: this.onDragEnd.bind(this),
+        setData: this.setDragData.bind(this),
+        forceFallback: true,
+    };
+
 
     constructor(props: QuestionnaireProps) {
         super(props);
@@ -86,49 +100,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         const itemLists = document.querySelectorAll('#drag-drop-nested .questionnaire-item-list') as NodeListOf<HTMLElement>;
         itemLists.forEach((itemList) => {
             if (this.itemListsMap.has(itemList)) return;
-            this.itemListsMap.set(itemList, new Sortable(itemList, {
-                group: 'nested',
-                animation: 350,
-                fallbackOnBody: true,
-                swapThreshold: 0.35,
-                handle: '.drag-handle',
-                dragClass: "sortable-drag",
-                onEnd: this.onDragEnd.bind(this),
-                onStart: this.onDragStart.bind(this),
-                scrollSensitivity: 200,
-                scrollSpeed: 20
-            }));
+            this.itemListsMap.set(itemList, new Sortable(itemList, this.sortableOptions));
         })
     }
 
-    onDragStart(e: SortableEvent) {
-        // const temporaryElement = e.item.cloneNode(true) as HTMLElement;
-        // function moveAt(e: any) {
-        //     temporaryElement.style.left = e.pageX - shiftX + 'px';
-        //     temporaryElement.style.top = e.pageY - shiftY + 'px';
-        // }
-        // function getCoords(elem: any) {
-        //     var box = elem.getBoundingClientRect();
-        //     return {
-        //         top: box.top + window.pageYOffset,
-        //         left: box.left + window.pageXOffset
-        //     };
-        // }
-        // const coords = getCoords(temporaryElement);
-        // const shiftX = - coords.left;
-        // const shiftY = - coords.top;
-        // temporaryElement.classList.add("isDragging");
-        // temporaryElement.classList.remove("sortable-ghost");
-        // // temporaryElement.style.height = '' + e.item.offsetHeight;
-        // // temporaryElement.style.width = '' + e.item.offsetWidth;
-        // // temporaryElement.style.zIndex = "1000";
-        // temporaryElement.setAttribute("style", `height: ${ e.item.offsetHeight}; width: ${e.item.offsetWidth}; zIndex: 1000`);
-        // document.onmousemove = function (e) {
-        //     moveAt(e);
-        // };
-
-        // document.body.appendChild(temporaryElement);
-        // return false;
+    setDragData(dataTransfer: DataTransfer, dragEl: HTMLElement) {
+        
     }
 
     onDragEnd(e: SortableEvent) {

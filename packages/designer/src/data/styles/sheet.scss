@@ -39,7 +39,8 @@
 //   border: 1px solid chocolate;
 //   @extend .p-1;
 // }
-.sortable-ghost {
+.sortable-ghost,
+.sortable-drag {
   .questionnaire-item-list {
     display: none;
     height: 0;
