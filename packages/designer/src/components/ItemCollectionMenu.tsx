@@ -24,12 +24,8 @@ export class ItemCollectionMenu extends React.Component<ItemCollectionMenuProps>
         item.addItem(newItem);
     }
 
-    onMouseDown(e: React.MouseEvent) {
-        e.preventDefault()
-    }
-
     render() {
-        return <div className="item-collection-menu btn-group" onMouseDown={this.onMouseDown.bind(this)}>
+        return <div className="item-collection-menu btn-group no-drag">
             <a className="btn btn-outline-secondary" title="Add text" href="javascript:void(0)" onClick={this.addItem.bind(this)}><i className="fas fa-align-left"></i></a>
             <a className="btn btn-outline-secondary" title="Add group" href="javascript:void(0)" onClick={this.addGroupItem.bind(this)}><i className="fas fa-layer-group"></i></a>
             <a className="btn btn-outline-secondary" title="Add question" href="javascript:void(0)" onClick={this.addChoiceItem.bind(this)}><i className="fas fa-plus"></i></a>

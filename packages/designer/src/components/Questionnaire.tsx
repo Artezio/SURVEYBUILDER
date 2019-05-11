@@ -20,12 +20,14 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         group: 'nested',
         animation: 350,
         fallbackOnBody: true,
-        swapThreshold: 0.25,
+        swapThreshold: 0.35,           //has no type definition in .d.ts
         handle: '.drag-handle',
         dragClass: "sortable-drag",
         onEnd: this.onDragEnd.bind(this),
         setData: this.setDragData.bind(this),
         forceFallback: true,
+        filter: '.no-drag',
+        emptyInsertThreshold: 30,          //has no type definition in .d.ts
     };
 
 
@@ -105,7 +107,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     setDragData(dataTransfer: DataTransfer, dragEl: HTMLElement) {
-        
+
     }
 
     onDragEnd(e: SortableEvent) {

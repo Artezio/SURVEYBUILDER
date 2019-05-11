@@ -108,37 +108,9 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         </div>
     }
 
-    onDragStart(e: React.DragEvent) {
-        // const ball = e.currentTarget.cloneNode(true) as HTMLElement;
-        // const oldStyle = getComputedStyle(e.currentTarget) as any;
-        // ball.setAttribute('style', `height: ${oldStyle.height}; width: ${oldStyle.width}; zIndex: 1000; opacity: 0.8`)
-        // document.body.appendChild(ball);
-        // ball.style.position = "absolute";
-        // const coords = getCoords(ball);
-        // const shiftX = e.pageX - coords.left;
-        // const shiftY = e.pageY - coords.top;
-        // function moveAt(e: any) {
-        //     ball.style.left = e.pageX - oldStyle.width / 2 + 'px';
-        //     ball.style.top = e.pageY + 'px';
-        // }
-        // function getCoords(elem: HTMLElement) {   // кроме IE8-
-        //     var box = elem.getBoundingClientRect();
-        //     console.log(box)
-        //     return {
-        //         top: box.top + pageYOffset,
-        //         left: box.left + pageXOffset
-        //     };
-        // }
-        // moveAt(e);
-        // document.addEventListener('mousemove', function (e) {
-        //     console.log(e)
-        //     moveAt(e);
-        // })
-    }
-
     render() {
         const { item, nestingLevel, className = '', subscribe } = this.props;
-        return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id} onDragStart={this.onDragStart.bind(this)}>
+        return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id}>
             <div className="card-header drag-handle">
                 {this.renderHeader()}
             </div>
