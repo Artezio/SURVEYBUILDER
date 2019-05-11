@@ -1,5 +1,6 @@
 import { BOOLEAN } from "../../constants/itemTypes";
-import { observable, QuestionItem, IBooleanItem } from "../..";
+import { QuestionItem, IBooleanItem } from "../..";
+import { observable, getObservable } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 
 @observable
@@ -12,10 +13,11 @@ export class BooleanItem extends QuestionItem<boolean> implements IBooleanItem {
     }
 
     updateItem(item: IBooleanItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
-        // if (item.initialValue !== undefined && this.regexp.test(item.initialValue + '')) {
-            this.initialValue = item.initialValue;
-        // }
+        this.initialValue = item.initialValue;
+        obs && obs.unmute;
     }
 }
 

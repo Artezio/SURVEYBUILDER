@@ -1,5 +1,5 @@
 import { IItem, ITEM_TYPE, DISPLAY } from "..";
-import { observable } from "../decorators/temporaryObservable";
+import { observable } from '@art-forms/observable';
 import uuid from "uuid/v1";
 import { IItemCollection } from "../interfaces/IItemCollection";
 

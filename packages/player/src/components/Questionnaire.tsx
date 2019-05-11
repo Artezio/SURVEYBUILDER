@@ -2,7 +2,7 @@ import * as React from 'react';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import * as Models from '@art-forms/models';
 import ItemProvider from './ItemProvider';
-import useObservableModel from '../HOCs/useObservableModel';
+import { useObservableModel } from '@art-forms/observable';
 
 
 const completeResponse = (questionnaire: Models.IQuestionnaire, response: Models.QuestionnaireResponse) => {

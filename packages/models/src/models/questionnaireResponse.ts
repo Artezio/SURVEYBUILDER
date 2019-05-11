@@ -1,11 +1,12 @@
 import { IQuestionnaireResponse } from "../interfaces/IQuestionnaireResponse";
 import uuid from 'uuid/v1';
-import { observable } from "..";
+import { observable, observableProperty } from '@art-forms/observable';
 import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
 
 @observable
 export class QuestionnaireResponse implements IQuestionnaireResponse {
     id!: string;
+    @observableProperty
     items!: QuestionnaireResponseItem[];
     questionnaireId!: string;
 
@@ -15,7 +16,7 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
         if (this.items.every(itm => itm.id !== item.id)) {
-            this.items = [...this.items, item];
+            this.items.push(item);
         }
     }
 

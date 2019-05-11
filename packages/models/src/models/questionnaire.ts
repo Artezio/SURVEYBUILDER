@@ -1,11 +1,12 @@
-import { IQuestionnaire, IItem, observable, Item } from "..";
+import { IQuestionnaire, IItem, Item } from "..";
 import uuid from 'uuid/v1';
-
+import { observable, observableProperty } from '@art-forms/observable';
 
 @observable
 export class Questionnaire implements IQuestionnaire {
     id!: string;
     description?: string;
+    @observableProperty
     items!: Item[];
     title?: string;
 
@@ -26,7 +27,6 @@ export class Questionnaire implements IQuestionnaire {
             else {
                 this.items.push(item);
             }
-            this.items = [...this.items]
         }
     }
 
@@ -42,7 +42,6 @@ export class Questionnaire implements IQuestionnaire {
             }
         })
         position !== undefined && this.items.splice(position, 1, newItem);
-        this.items = [...this.items];
     }
 }
 

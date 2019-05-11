@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
-import { useObservableModel } from '../HOCs/useObservableModel';
+import { useObservableModel, getObservable } from '@art-forms/observable';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
@@ -140,8 +140,11 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             if (oldItemList !== newItemList) {
                 e.from.appendChild(e.item);
             }
+            const obs = getObservable(item);
+            obs && obs.mute();
             item.remove();
             newItemList.addItem(item, e.newIndex);
+            obs && obs.unmute();
         }
     }
 

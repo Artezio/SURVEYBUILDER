@@ -1,8 +1,8 @@
-import { ITextItem, observable } from "../..";
+import { ITextItem } from "../..";
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { TEXT } from "../../constants/itemTypes";
 import { QuestionItem } from "./questionItem";
-
+import { observable, getObservable } from '@art-forms/observable';
 
 @observable
 export class TextItem extends QuestionItem<string> implements ITextItem {
@@ -14,10 +14,11 @@ export class TextItem extends QuestionItem<string> implements ITextItem {
     }
 
     updateItem(item: ITextItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
-        // if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
-            this.initialValue = item.initialValue;
-        // }
+        this.initialValue = item.initialValue;
+        obs && obs.unmute;
     }
 }
 

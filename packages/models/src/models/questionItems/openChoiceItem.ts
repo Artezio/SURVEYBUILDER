@@ -1,13 +1,15 @@
-import { observable, QuestionItem } from "../..";
+import { QuestionItem } from "../..";
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IOpenChoiceItem } from "../../interfaces/questionItems/IOpenChoiceItem";
 import { OPEN_CHOICE } from "../../constants/itemTypes";
 import IChoiceOption from "../../interfaces/IChoiceOption";
 import ChoiceOptionFactory from '../../factories/choiceOptionFactory';
+import { observable, observableProperty, getObservable } from '@art-forms/observable';
 
 @observable
 export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem {
     type: OPEN_CHOICE = OPEN_CHOICE;
+    @observableProperty
     options: IChoiceOption[] = [ChoiceOptionFactory.createChoiceOption()];
 
     constructor(item: Partial<Omit<IOpenChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IOpenChoiceItem>) {
@@ -20,7 +22,6 @@ export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem
     addOption(option: IChoiceOption) {
         if (this.options.every(anOption => anOption.id !== option.id)) {
             this.options.splice(this.options.length - 1, 0, option);
-            this.options = [...this.options];
         }
     }
 
@@ -39,9 +40,12 @@ export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem
     }
 
     updateItem(item: IOpenChoiceItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
         this.initialValue = item.initialValue;
         this.options = item.options;
+        obs && obs.unmute;
     }
 }
 

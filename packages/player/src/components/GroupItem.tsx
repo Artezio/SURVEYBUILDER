@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import GroupItemProps from '../interfaces/components/GroupItemProps';
 import ItemProvider from './ItemProvider';
-import useObservableModel from '../HOCs/useObservableModel';
+import { useObservableModel } from '@art-forms/observable';
 
 const completeResponse = (item: Models.GroupItem, response: Models.QuestionnaireResponseItem) => {
     item.items && item.items.forEach(item => {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DateItemProps } from '../../interfaces/components/questionItems/DateItemProps';
 import { Form, Text, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
-import useObservableModel from '../../HOCs/useObservableModel';
+import { useObservableModel } from '@art-forms/observable';
 
 
 export class DateItem extends React.Component<DateItemProps> {

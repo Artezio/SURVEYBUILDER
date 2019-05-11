@@ -1,6 +1,7 @@
 import * as React from 'react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
-import { isObservable, getObservable, IDisposable } from '..';
+import { isObservable, getObservable } from '..';
+import { IDisposable } from '../interfaces';
 
 
 export function useObservableModel<T>(WrappedComponent: any): React.ComponentType<T> {
@@ -22,6 +23,7 @@ export function useObservableModel<T>(WrappedComponent: any): React.ComponentTyp
 
         subscribeOnObservable() {
             Reflect.ownKeys(this.props).forEach((propertyName: string) => {
+                if (propertyName === 'key') return;
                 if (isObservable((this.props as any)[propertyName])) {
                     const observable = getObservable((this.props as any)[propertyName]);
                     observable && this.subscriptions.push(observable.subscribe((obj: any) => {

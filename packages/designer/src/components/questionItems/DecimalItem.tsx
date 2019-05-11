@@ -2,7 +2,7 @@ import * as React from 'react';
 import DecimalItemProps from '../../interfaces/components/questionItems/DecimalItemProps';
 import { FormApi, Form, Text } from 'informed';
 import * as Models from '@art-forms/models';
-import useObservableModel from '../../HOCs/useObservableModel';
+import { useObservableModel } from '@art-forms/observable';
 
 
 export class DecimalItem extends React.Component<DecimalItemProps> {

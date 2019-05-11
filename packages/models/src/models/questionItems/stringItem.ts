@@ -2,7 +2,7 @@ import { IStringItem } from "../../interfaces/questionItems/IStringItem";
 import { STRING } from "../../constants/itemTypes";
 import { QuestionItem } from "./questionItem";
 import { IItemCollection } from "../../interfaces/IItemCollection";
-import { observable } from "../../decorators/temporaryObservable";
+import { observable, getObservable } from '@art-forms/observable';
 
 
 @observable
@@ -15,10 +15,11 @@ export class StringItem extends QuestionItem<string> implements IStringItem {
     }
 
     updateItem(item: IStringItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
-        // if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
-            this.initialValue = item.initialValue;
-        // }
+        this.initialValue = item.initialValue;
+        obs && obs.unmute;
     }
 }
 

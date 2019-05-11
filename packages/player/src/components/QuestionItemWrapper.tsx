@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
 import QuestionItemWrapperProps from '../interfaces/components/QuestionItemWrapperProps';
-import useObservableModel from '../HOCs/useObservableModel';
+import { useObservableModel } from '@art-forms/observable';
 import QuestionItemProvider from './QuestionItemProvider';
 
 

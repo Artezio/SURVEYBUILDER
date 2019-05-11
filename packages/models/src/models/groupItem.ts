@@ -1,8 +1,11 @@
-import { IGroupItem, Item, observable, IItem, GROUP } from "..";
+import { IGroupItem, Item, IItem, GROUP } from "..";
 import { IItemCollection } from "../interfaces/IItemCollection";
+import { observable, observableProperty, getObservable } from '@art-forms/observable';
+
 
 @observable
 export class GroupItem extends Item implements IGroupItem {
+    @observableProperty
     items!: Item[];
     type: GROUP = GROUP;
 
@@ -20,7 +23,6 @@ export class GroupItem extends Item implements IGroupItem {
             else {
                 this.items.push(item);
             }
-            this.items = [...this.items]
         }
     }
 
@@ -29,10 +31,13 @@ export class GroupItem extends Item implements IGroupItem {
     }
 
     updateItem(item: IGroupItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
-        if (!!item.items) {
+        if (Array.isArray(item.items)) {
             this.items = item.items;
         }
+        obs && obs.unmute();
     }
 
     replaceItem(oldItem: Item, newItem: Item) {
@@ -43,7 +48,6 @@ export class GroupItem extends Item implements IGroupItem {
             }
         })
         position !== undefined && this.items.splice(position, 1, newItem);
-        this.items = [...this.items];
     }
 }
 

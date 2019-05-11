@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { IDisposable, IObservable } from '../interfaces';
 
 const subscribe = Symbol('subscribe');
 const emitChange = Symbol('emitChange');
@@ -8,16 +9,6 @@ const _isMuted = Symbol('isMuted');
 const mute = Symbol('mute');
 const unmute = Symbol('unmute');
 const observablePropertySym = Symbol('observableProperty');
-
-export interface IObservable {
-    subscribe(fn: Function): IDisposable;
-    emitChange(): void;
-    mute(): void;
-    unmute(): void;
-}
-export interface IDisposable {
-    dispose(): void;
-}
 
 const notEqualToSymbols = (key: Symbol) => {
     return key !== _subscribers && key !== subscribe && key !== emitChange && key !== _notify && key !== _isMuted && key !== mute && key !== unmute;

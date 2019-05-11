@@ -1,13 +1,14 @@
 import IAnswer from "../interfaces/IAnswer";
 import uuid from 'uuid/v1';
 import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
-import { observable } from "..";
+import { observable, observableProperty } from "@art-forms/observable";
 import IResponseItemCollection from "../interfaces/IResponseItemCollection";
 
 @observable
 export class Answer<T> implements IAnswer<T> {
     id!: string;
     value?: T;
+    @observableProperty
     items!: QuestionnaireResponseItem[];
     parent?: IResponseItemCollection<any>;
 
@@ -18,7 +19,7 @@ export class Answer<T> implements IAnswer<T> {
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
         if (item && this.items.every(itm => itm.id !== item.id)) {
-            this.items = [...this.items, item];
+            this.items.push(item);
         }
     }
 

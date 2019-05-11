@@ -1,5 +1,6 @@
 import { DECIMAL } from "../../constants/itemTypes";
-import { observable, QuestionItem, IDecimalItem } from "../..";
+import { QuestionItem, IDecimalItem } from "../..";
+import { observable, getObservable } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 
 @observable
@@ -12,10 +13,11 @@ export class DecimalItem extends QuestionItem<number> implements IDecimalItem {
     }
 
     updateItem(item: IDecimalItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
-        // if (item.initialValue === undefined || this.regexp.test(item.initialValue + '')) {
-            this.initialValue = item.initialValue;
-        // }
+        this.initialValue = item.initialValue;
+        obs && obs.unmute;
     }
 }
 

@@ -1,4 +1,5 @@
-import { observable, QuestionItem } from "../..";
+import { QuestionItem } from "../..";
+import { observable, getObservable } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IDateTimeItem } from "../../interfaces/questionItems/IDateTimeItem";
 import { DATE_TIME } from "../../constants/itemTypes";
@@ -13,10 +14,11 @@ export class DateTimeItem extends QuestionItem<string> implements IDateTimeItem 
     }
 
     updateItem(item: IDateTimeItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
-        // if (item.initialValue !== undefined && this.regexp.test(item.initialValue)) {
-            this.initialValue = item.initialValue;
-        // }
+        this.initialValue = item.initialValue;
+        obs && obs.unmute;
     }
 }
 

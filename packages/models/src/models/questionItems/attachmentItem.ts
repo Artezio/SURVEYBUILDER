@@ -1,5 +1,6 @@
 import { ATTACHMENT } from "../../constants/itemTypes";
-import { observable, QuestionItem } from "../..";
+import { QuestionItem } from "../..";
+import { observable, getObservable } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import IAttachmentItem from "../../interfaces/questionItems/IAttachmentItem";
 
@@ -14,8 +15,11 @@ export class AttachmentItem extends QuestionItem<void> implements IAttachmentIte
     }
 
     updateItem(item: IAttachmentItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
         this.multipleFiles = item.multipleFiles;
+        obs && obs.unmute;
     }
 }
 

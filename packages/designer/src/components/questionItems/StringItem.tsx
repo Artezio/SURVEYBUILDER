@@ -2,7 +2,7 @@ import * as React from 'react';
 import StringItemProps from '../../interfaces/components/questionItems/StringItemProps';
 import { FormApi, Form, Text } from 'informed';
 import * as Models from '@art-forms/models';
-import useObservableModel from '../../HOCs/useObservableModel';
+import { useObservableModel } from '@art-forms/observable';
 
 
 export class StringItem extends React.Component<StringItemProps> {

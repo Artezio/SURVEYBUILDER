@@ -1,4 +1,5 @@
-import { observable, QuestionItem } from "../..";
+import { QuestionItem } from "../..";
+import { observable, observableProperty, getObservable } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IChoiceItem } from "../../interfaces/questionItems/IChoiceItem";
 import { CHOICE } from "../..";
@@ -7,6 +8,7 @@ import IChoiceOption from "../../interfaces/IChoiceOption";
 @observable
 export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
     type: CHOICE = CHOICE;
+    @observableProperty
     options: IChoiceOption[];
 
     constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IChoiceItem>) {
@@ -16,7 +18,7 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
 
     addOption(option: IChoiceOption) {
         if (this.options.every(anOption => anOption.id !== option.id)) {
-            this.options = [...this.options, option];
+            this.options.push(option);
         }
     }
 
@@ -34,9 +36,12 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
     }
 
     updateItem(item: IChoiceItem) {
+        const obs = getObservable(item);
+        obs && obs.mute();
         super.updateItem(item);
         this.initialValue = item.initialValue;
         this.options = item.options;
+        obs && obs.unmute;
     }
 }
 
