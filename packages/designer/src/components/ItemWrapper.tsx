@@ -6,7 +6,6 @@ import ItemProvider from './ItemProvider';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import { FormApi, Form, Text } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
-import { Draggable } from 'react-beautiful-dnd';
 
 
 
@@ -14,7 +13,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     // formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
-    divRef: React.RefObject<any> = React.createRef();
+    inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
     submitForm() {
         if (!this.formApi) return;
@@ -40,6 +39,15 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     //     const { item } = this.props;
     //     item.updateItem({ ...item, ...values });
     // }
+
+    componentDidMount() {
+        if (this.inputRef.current) {
+            const x = window.pageXOffset;
+            const y = window.pageYOffset;
+            this.inputRef.current.focus();
+            window.scrollTo(x, y)
+        }
+    }
 
     componentDidUpdate() {
         const { item } = this.props;
@@ -68,7 +76,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
                     <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
                             <label htmlFor={`${item.id}-text`}>Question</label>
-                            <Text autoComplete="off" className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                            <Text forwardedRef={this.inputRef} autoComplete="off" className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" onBlur={this.submitForm.bind(this)} />
                         </div>
                     </Form>
                 </div>
@@ -100,24 +108,48 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         </div>
     }
 
+    onDragStart(e: React.DragEvent) {
+        // const ball = e.currentTarget.cloneNode(true) as HTMLElement;
+        // const oldStyle = getComputedStyle(e.currentTarget) as any;
+        // ball.setAttribute('style', `height: ${oldStyle.height}; width: ${oldStyle.width}; zIndex: 1000; opacity: 0.8`)
+        // document.body.appendChild(ball);
+        // ball.style.position = "absolute";
+        // const coords = getCoords(ball);
+        // const shiftX = e.pageX - coords.left;
+        // const shiftY = e.pageY - coords.top;
+        // function moveAt(e: any) {
+        //     ball.style.left = e.pageX - oldStyle.width / 2 + 'px';
+        //     ball.style.top = e.pageY + 'px';
+        // }
+        // function getCoords(elem: HTMLElement) {   // кроме IE8-
+        //     var box = elem.getBoundingClientRect();
+        //     console.log(box)
+        //     return {
+        //         top: box.top + pageYOffset,
+        //         left: box.left + pageXOffset
+        //     };
+        // }
+        // moveAt(e);
+        // document.addEventListener('mousemove', function (e) {
+        //     console.log(e)
+        //     moveAt(e);
+        // })
+    }
+
     render() {
-        const { item, nestingLevel, className = '' } = this.props;
-        return <Draggable draggableId={item.id} index={item.position}>
-            {(provided, snapshot) => (
-                <div className={`questionnaire-item card card-sm mb-3 ${className}`} {...provided.draggableProps} ref={provided.innerRef} >
-                    <div className="card-header"  {...provided.dragHandleProps}>
-                        {this.renderHeader()}
-                    </div>
-                    <div className="card-body">
-                        {this.renderItemHeadLine()}
-                        <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} />
-                    </div>
-                    <div className="card-footer">
-                        {this.renderFooter()}
-                    </div>
-                </div>
-            )}
-        </Draggable>
+        const { item, nestingLevel, className = '', subscribe } = this.props;
+        return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id} onDragStart={this.onDragStart.bind(this)}>
+            <div className="card-header drag-handle">
+                {this.renderHeader()}
+            </div>
+            <div className="card-body">
+                {this.renderItemHeadLine()}
+                <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
+            </div>
+            <div className="card-footer">
+                {this.renderFooter()}
+            </div>
+        </div>
     }
 }
 

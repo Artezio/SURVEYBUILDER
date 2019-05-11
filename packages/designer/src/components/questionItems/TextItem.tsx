@@ -32,7 +32,7 @@ export class TextItem extends React.Component<TextItemProps> {
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
             <div>
                 <label htmlFor={`${item.id}-initial`}>Default answer</label>
-                <TextArea autoComplete="off" className="form-control text-area" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
+                <TextArea autoComplete="off" className="form-control js-text-area" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
             </div>
         </Form>
     }

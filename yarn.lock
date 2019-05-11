@@ -1705,11 +1705,6 @@
   dependencies:
     "@types/sizzle" "*"
 
-"@types/lodash@^4.14.123":
-  version "4.14.123"
-  resolved "http://10.11.40.28:4873/@types%2flodash/-/lodash-4.14.123.tgz#39be5d211478c8dd3bdae98ee75bb7efe4abfe4d"
-  integrity sha512-pQvPkc4Nltyx7G1Ww45OjVqUsJP4UsZm+GWJpigXgkikZqJgRm4c48g027o6tdgubWHwFRF15iFd+Y4Pmqv6+Q==
-
 "@types/mocha@^5.2.6":
   version "5.2.6"
   resolved "http://10.11.40.28:4873/@types%2fmocha/-/mocha-5.2.6.tgz#b8622d50557dd155e9f2f634b7d68fd38de5e94b"
@@ -1785,6 +1780,11 @@
   version "2.3.2"
   resolved "http://10.11.40.28:4873/@types%2fsizzle/-/sizzle-2.3.2.tgz#a811b8c18e2babab7d542b3365887ae2e4d9de47"
   integrity sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
+
+"@types/sortablejs@^1.7.2":
+  version "1.7.2"
+  resolved "http://10.11.40.28:4873/@types%2fsortablejs/-/sortablejs-1.7.2.tgz#1e75a84ff3c60e6d44c43641f717a131b785982c"
+  integrity sha512-yIxpbtlfhaFi2QyuUK54XcmzDWZf5i11CgTrMO4Vh+sKKZthonizkTcqhADeHdngDNTDVUCYfIcfIvpZRAZY+A==
 
 "@types/tapable@1.0.2":
   version "1.0.2"
@@ -11033,6 +11033,11 @@ sort-keys@^2.0.0:
   integrity sha1-ZYU1WEhh7JfXMNbPQYIuH1ZoQSg=
   dependencies:
     is-plain-obj "^1.0.0"
+
+sortablejs@^1.9.0:
+  version "1.9.0"
+  resolved "http://10.11.40.28:4873/sortablejs/-/sortablejs-1.9.0.tgz#2d1e74ae6bac2cb4ad0622908f340848969eb88d"
+  integrity sha512-Ot6bYJ6PoqPmpsqQYXjn1+RKrY2NWQvQt/o4jfd/UYwVWndyO5EPO8YHbnm5HIykf8ENsm4JUrdAvolPT86yYA==
 
 source-list-map@^2.0.0:
   version "2.0.1"

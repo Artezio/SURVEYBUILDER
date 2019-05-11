@@ -25,12 +25,13 @@ export class GroupItem extends React.Component<GroupItemProps> {
 
     renderItemList() {
         const { item, nestingLevel } = this.props;
-        return <QuestionnaireItemList container={item} nestingLevel={nestingLevel} />
+        return <QuestionnaireItemList item={item} nestingLevel={nestingLevel} />
     }
 
     componentDidUpdate() {
-        const { item } = this.props;
+        const { item, subscribe } = this.props;
         this.formApi.setValues(item);
+        subscribe && subscribe();
     }
 
     render() {

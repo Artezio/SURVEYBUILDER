@@ -17,14 +17,19 @@ export class ItemCollectionMenu extends React.Component<ItemCollectionMenuProps>
         const newItem = this.itemFactory.createGroupItem();
         item.addItem(newItem);
     }
+
     addChoiceItem() {
         const { item } = this.props;
-        const newItem = this.itemFactory.createChoiceItem({ options: [Models.ChoiceOptionFactory.createChoiceOption({value: "Option 1"})] });
+        const newItem = this.itemFactory.createChoiceItem({ options: [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })] });
         item.addItem(newItem);
     }
 
+    onMouseDown(e: React.MouseEvent) {
+        e.preventDefault()
+    }
+
     render() {
-        return <div className="menu btn-group">
+        return <div className="item-collection-menu btn-group" onMouseDown={this.onMouseDown.bind(this)}>
             <a className="btn btn-outline-secondary" title="Add text" href="javascript:void(0)" onClick={this.addItem.bind(this)}><i className="fas fa-align-left"></i></a>
             <a className="btn btn-outline-secondary" title="Add group" href="javascript:void(0)" onClick={this.addGroupItem.bind(this)}><i className="fas fa-layer-group"></i></a>
             <a className="btn btn-outline-secondary" title="Add question" href="javascript:void(0)" onClick={this.addChoiceItem.bind(this)}><i className="fas fa-plus"></i></a>

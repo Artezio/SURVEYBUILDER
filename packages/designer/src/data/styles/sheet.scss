@@ -31,10 +31,44 @@
   background-color: grey;
 }
 
-.questionnaire-item-list {
-  @extend .p-1;
-}
-
 .half-opacity {
   opacity: 0.5;
+}
+
+// .questionnaire-item-list {
+//   border: 1px solid chocolate;
+//   @extend .p-1;
+// }
+.sortable-ghost {
+  .questionnaire-item-list {
+    display: none;
+    height: 0;
+  }
+  .option-list {
+    display: none;
+    height: 0;
+  }
+  .js-text-area {
+    max-height: 100px;
+  }
+}
+.sortable-ghost.questionnaire-item {
+  * {
+    opacity: 0;
+  }
+  background-color: rgb(197, 197, 197);
+}
+.isDragging {
+  opacity: 0.8;
+  .questionnaire-item-list {
+    display: none;
+    height: 0;
+  }
+  .option-list {
+    display: none;
+    height: 0;
+  }
+  .js-text-area {
+    max-height: 100px;
+  }
 }

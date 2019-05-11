@@ -4,8 +4,8 @@ import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps'
 import { Form, Text, TextArea, FormApi } from 'informed';
 import { useObservableModel } from '../HOCs/useObservableModel';
 import ItemCollectionMenu from './ItemCollectionMenu';
-import { DragDropContext, DropResult, DragStart } from 'react-beautiful-dnd';
 import QuestionnaireItemList from './QuestionnaireItemList';
+import Sortable, { SortableEvent } from 'sortablejs';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.IQuestionnaire>;
@@ -13,6 +13,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     documentListener: EventListener;
     itemListener: EventListener;
     nestingLevel: string = '0';
+    itemListsMap: Map<HTMLElement, Sortable> = new Map();
 
     constructor(props: QuestionnaireProps) {
         super(props);
@@ -21,7 +22,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             this.clearSelected();
         }
         this.itemListener = (e: Event) => {
-            const target = (e.currentTarget as Element);
+            const target = (e.currentTarget as HTMLElement);
             if (!target.classList.contains('card-active')) {
                 this.clearSelected();
                 target && target.classList.add('card-active');
@@ -31,8 +32,35 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.subscribeDocument();
     }
 
+    handleSubmit(values: Partial<Models.IQuestionnaire>) {
+        const { questionnaire } = this.props;
+        questionnaire.updateQuestionnaire({ ...questionnaire, title: values.title, description: values.description });
+    }
+    submitForm() {
+        if (!this.formApi) return;
+        this.formApi.submitForm();
+    }
+    getFormApi(formApi: FormApi<Models.IQuestionnaire>) {
+        this.formApi = formApi;
+    }
+
+    componentDidMount() {
+        this.makeItemsDraggable();
+    }
+    componentDidUpdate() {
+        const { questionnaire } = this.props;
+        this.formApi.setValues(questionnaire);
+        this.highlightActiveItems();
+        this.makeItemsDraggable();
+    }
+
     componentWillUnmount() {
         document.removeEventListener('click', this.documentListener, true);
+        this.clearSortables();
+    }
+
+    subscribeDocument() {
+        document.addEventListener('click', this.documentListener, true);
     }
 
     clearSelected() {
@@ -43,10 +71,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         })
     }
 
-    subscribeDocument() {
-        document.addEventListener('click', this.documentListener, true);
-    }
-
     highlightActiveItems() {
         document.querySelectorAll('.questionnaire-item').forEach(el => {
             el.removeEventListener('click', this.itemListener);
@@ -54,33 +78,83 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         })
     }
 
-    handleSubmit(values: Partial<Models.IQuestionnaire>) {
-        const { questionnaire } = this.props;
-        questionnaire.updateQuestionnaire({ ...questionnaire, title: values.title, description: values.description });
+    clearSortables() {
+        this.itemListsMap.forEach(sortable => sortable.destroy());
     }
 
-    submitForm() {
-        if (!this.formApi) return;
-        this.formApi.submitForm();
+    makeItemsDraggable() {
+        const itemLists = document.querySelectorAll('#drag-drop-nested .questionnaire-item-list') as NodeListOf<HTMLElement>;
+        itemLists.forEach((itemList) => {
+            if (this.itemListsMap.has(itemList)) return;
+            this.itemListsMap.set(itemList, new Sortable(itemList, {
+                group: 'nested',
+                animation: 350,
+                fallbackOnBody: true,
+                swapThreshold: 0.35,
+                handle: '.drag-handle',
+                dragClass: "sortable-drag",
+                onEnd: this.onDragEnd.bind(this),
+                onStart: this.onDragStart.bind(this),
+                scrollSensitivity: 200,
+                scrollSpeed: 20
+            }));
+        })
     }
 
-    getFormApi(formApi: FormApi<Models.IQuestionnaire>) {
-        this.formApi = formApi;
+    onDragStart(e: SortableEvent) {
+        // const temporaryElement = e.item.cloneNode(true) as HTMLElement;
+        // function moveAt(e: any) {
+        //     temporaryElement.style.left = e.pageX - shiftX + 'px';
+        //     temporaryElement.style.top = e.pageY - shiftY + 'px';
+        // }
+        // function getCoords(elem: any) {
+        //     var box = elem.getBoundingClientRect();
+        //     return {
+        //         top: box.top + window.pageYOffset,
+        //         left: box.left + window.pageXOffset
+        //     };
+        // }
+        // const coords = getCoords(temporaryElement);
+        // const shiftX = - coords.left;
+        // const shiftY = - coords.top;
+        // temporaryElement.classList.add("isDragging");
+        // temporaryElement.classList.remove("sortable-ghost");
+        // // temporaryElement.style.height = '' + e.item.offsetHeight;
+        // // temporaryElement.style.width = '' + e.item.offsetWidth;
+        // // temporaryElement.style.zIndex = "1000";
+        // temporaryElement.setAttribute("style", `height: ${ e.item.offsetHeight}; width: ${e.item.offsetWidth}; zIndex: 1000`);
+        // document.onmousemove = function (e) {
+        //     moveAt(e);
+        // };
+
+        // document.body.appendChild(temporaryElement);
+        // return false;
     }
 
-    componentDidUpdate() {
-        const { questionnaire } = this.props;
-        this.formApi.setValues(questionnaire);
-        this.highlightActiveItems()
+    onDragEnd(e: SortableEvent) {
+        const oldItemList = this.findNestedItemList(e.from.dataset['nestingLevel']);
+        const newItemList = this.findNestedItemList(e.to.dataset.nestingLevel);
+        if (oldItemList && newItemList) {
+            const item = oldItemList.items.find(x => x.id === e.item.dataset.id);
+            if (!item) return;
+            if (oldItemList !== newItemList) {
+                e.from.appendChild(e.item);
+            }
+            item.remove();
+            newItemList.addItem(item, e.newIndex);
+        }
     }
 
-    findNestedItemList(nesting: string[]): Models.Questionnaire | Models.GroupItem {
+    findNestedItemList(nesting?: string): Models.Questionnaire | Models.GroupItem | undefined {
+        if (nesting === undefined) return;
+        const nestingLevel = nesting.split(':');
+        nestingLevel.shift();
         const { questionnaire } = this.props;
         let currentItemList: Models.Questionnaire | Models.GroupItem = questionnaire;
         if (nesting.length === 0) {
             return currentItemList;
         }
-        nesting.forEach(index => {
+        nestingLevel.forEach(index => {
             if (Array.isArray(currentItemList.items)) {
                 currentItemList = currentItemList.items[+index] as Models.GroupItem;
             }
@@ -88,22 +162,11 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         return currentItemList;
     }
 
-    onDragEnd(result: DropResult) {
-        if (result.reason !== "DROP" || result.destination === null || result.destination === undefined) return;
-        const draggableIndex = result.source.index;
-        const droppableIndex = result.destination.index;
-        if (draggableIndex === droppableIndex) return;
-        const nesting = result.type.split(':');
-        nesting.shift();
-        const currentItemList: Models.Questionnaire | Models.GroupItem = this.findNestedItemList(nesting);
-        currentItemList.moveItem(droppableIndex, draggableIndex);
-    }
-
     renderItemList() {
         const { questionnaire } = this.props;
-        return <DragDropContext onDragEnd={this.onDragEnd.bind(this)}>
-            <QuestionnaireItemList container={questionnaire} nestingLevel={this.nestingLevel} />
-        </DragDropContext>
+        return <div id="drag-drop-nested">
+            <QuestionnaireItemList item={questionnaire} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} />
+        </div>
     }
 
     renderMenu() {

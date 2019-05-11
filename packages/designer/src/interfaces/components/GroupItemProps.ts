@@ -5,6 +5,7 @@ export interface GroupItemProps {
     item: Models.GroupItem;
     className?: string;
     nestingLevel: string;
+    subscribe?: () => void;
 }
 
 export default GroupItemProps;
