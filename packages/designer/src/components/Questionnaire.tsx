@@ -15,6 +15,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     nestingLevel: string = '0';
 
+    bodyHeight?: number;
     itemListsMap: Map<HTMLElement, Sortable> = new Map();
     sortableOptions: Sortable.Options = {
         group: 'nested',
@@ -23,8 +24,9 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         swapThreshold: 0.35,           //has no type definition in .d.ts
         handle: '.drag-handle',
         dragClass: "sortable-drag",
+        onChoose: this.onDragChoose.bind(this),
+        onUnchoose: this.onDragUnchoose.bind(this),
         onEnd: this.onDragEnd.bind(this),
-        setData: this.setDragData.bind(this),
         forceFallback: true,
         filter: '.no-drag',
         emptyInsertThreshold: 30,          //has no type definition in .d.ts
@@ -106,8 +108,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         })
     }
 
-    setDragData(dataTransfer: DataTransfer, dragEl: HTMLElement) {
+    onDragChoose(e: SortableEvent) {
+        document.body.style.height = `${document.body.clientHeight}px`;
+    }
 
+    onDragUnchoose(e: SortableEvent) {
+        document.body.style.height = "";
     }
 
     onDragEnd(e: SortableEvent) {
