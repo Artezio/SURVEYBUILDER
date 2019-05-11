@@ -48,10 +48,6 @@ export class Item implements IItem {
     replace(newItem: Item) {
         this.parent && this.parent.replaceItem(this, newItem);
     }
-
-    move(newPlace: number) {
-        this.parent && this.parent.moveItem(this.position, newPlace);
-    }
 }
 
 export default Item;

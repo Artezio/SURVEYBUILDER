@@ -11,9 +11,16 @@ export class GroupItem extends Item implements IGroupItem {
         Object.assign(this, { items: [] }, item);
     }
 
-    addItem(item: Item) {
-        if (this.items.every(itm => itm.id !== item.id)) {
-            this.items = [...this.items, item]
+    addItem(item: Item, index?: number) {
+        if (this.items.every((itm, i) => itm.id !== item.id || i !== index)) {
+            item.parent = this;
+            if (index !== undefined && typeof index === 'number') {
+                this.items.splice(index, 0, item);
+            }
+            else {
+                this.items.push(item);
+            }
+            this.items = [...this.items]
         }
     }
 
@@ -36,15 +43,6 @@ export class GroupItem extends Item implements IGroupItem {
             }
         })
         position !== undefined && this.items.splice(position, 1, newItem);
-        this.items = [...this.items];
-    }
-
-    moveItem(position: number, newPlace: number) {
-        if (newPlace >= this.items.length) return;
-        const item = this.items[position]
-        if (position === undefined || item === undefined || position === newPlace) return;
-        this.items.splice(position, 1);
-        this.items.splice(newPlace, 0, item);
         this.items = [...this.items];
     }
 }
