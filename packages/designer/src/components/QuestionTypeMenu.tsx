@@ -125,7 +125,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
             options = [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })];
         }
         else {
-            options = (item as Models.OpenChoiceItem).options;
+            options = (item as Models.OpenChoiceItem).options.slice();
             if (item.type === Models.OPEN_CHOICE) {
                 options.pop();
             }
@@ -143,7 +143,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         else {
             options = (item as Models.OpenChoiceItem).options.length === 0 ?
                 [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })] :
-                (item as Models.OpenChoiceItem).options;
+                (item as Models.OpenChoiceItem).options.slice();
         }
         const newItem = this.factory.createOpenChoiceItem({ text: item.text, options });
         item.replace(newItem);
@@ -162,7 +162,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
             options = [Models.MultiChoiceOptionFactory.createMultiChoiceOption({ value: "Option 1" })];
         }
         else {
-            options = (item as Models.OpenChoiceItem).options;
+            options = (item as Models.OpenChoiceItem).options.slice();
             if (item.type === Models.OPEN_CHOICE) {
                 options.pop();
             }

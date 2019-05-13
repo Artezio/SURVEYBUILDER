@@ -9,7 +9,7 @@ import QuestionTypeMenu from './QuestionTypeMenu';
 
 
 
-export class ItemWrapper extends React.Component<ItemWrapperProps> {
+export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     // formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);

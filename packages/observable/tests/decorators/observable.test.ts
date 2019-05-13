@@ -22,7 +22,6 @@ class Person {
 @observable
 class Animal {
     nickname: string;
-    @observableProperty
     limbs: string[];
 
     constructor(nickname: string, limbs?: string[]) {
@@ -139,6 +138,21 @@ describe("decorators/observable", () => {
                 newPerson.pets.push(animal_2);
             })
             person.pets.push(animal_1);
+        })
+        it("nested nonObservable array was not observed", (done) => {
+            const animal_1 = new Animal('animal_1');
+            const animal_2 = new Animal('animal_2');
+            const person = new Person('Name', 15, [animal_1]);
+            let i = 0;
+            const obs = getObservable(person);
+            obs && obs.subscribe(() => {
+                i++
+            })
+            person.pets[0].limbs.push(animal_2);
+            setTimeout(() => {
+                assert(i === 0)
+                done()
+            }, 50);
         })
         it("unsubscribe with primitive fields", (done) => {
             const person = new Person('Name', 15);
