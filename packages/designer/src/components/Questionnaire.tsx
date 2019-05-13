@@ -9,9 +9,7 @@ import Sortable, { SortableEvent } from 'sortablejs';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi!: FormApi<Models.IQuestionnaire>;
-    itemFactory: Models.ItemFactory;
-    documentListener: EventListener;
-    itemListener: EventListener;
+    itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.questionnaire);
 
     nestingLevel: string = '0';
 
@@ -29,26 +27,9 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         onEnd: this.onDragEnd.bind(this),
         forceFallback: true,
         filter: '.no-drag',
+        fallbackTolerance: 1,
         emptyInsertThreshold: 30,          //has no type definition in .d.ts
     };
-
-
-    constructor(props: QuestionnaireProps) {
-        super(props);
-        this.itemFactory = new Models.ItemFactory(this.props.questionnaire);
-        this.documentListener = (e: Event) => {
-            this.clearSelected();
-        }
-        this.itemListener = (e: Event) => {
-            const target = (e.currentTarget as HTMLElement);
-            if (!target.classList.contains('card-active')) {
-                this.clearSelected();
-                target && target.classList.add('card-active');
-                target && target.classList.add('shadow');
-            }
-        }
-        this.subscribeDocument();
-    }
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { questionnaire } = this.props;
@@ -63,6 +44,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     componentDidMount() {
+        this.subscribeDocument();
         this.makeItemsDraggable();
     }
     componentDidUpdate() {
@@ -73,12 +55,25 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.documentListener, true);
+        document.removeEventListener('click', this.documentListener.bind(this), true);
         this.clearSortables();
     }
 
+    documentListener(e: Event) {
+        this.clearSelected();
+    }
+
+    itemListener(e: Event) {
+        const target = (e.currentTarget as HTMLElement);
+        if (!target.classList.contains('card-active')) {
+            this.clearSelected();
+            target && target.classList.add('card-active');
+            target && target.classList.add('shadow');
+        }
+    }
+
     subscribeDocument() {
-        document.addEventListener('click', this.documentListener, true);
+        document.addEventListener('click', this.documentListener.bind(this), true);
     }
 
     clearSelected() {
@@ -91,8 +86,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     highlightActiveItems() {
         document.querySelectorAll('.questionnaire-item').forEach(el => {
-            el.removeEventListener('click', this.itemListener);
-            el.addEventListener('click', this.itemListener);
+            el.removeEventListener('click', this.itemListener.bind(this));
+            el.addEventListener('click', this.itemListener.bind(this));
         })
     }
 
@@ -119,18 +114,18 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     onDragEnd(e: SortableEvent) {
         const oldItemList = this.findNestedItemList(e.from.dataset['nestingLevel']);
         const newItemList = this.findNestedItemList(e.to.dataset.nestingLevel);
-        if (oldItemList && newItemList) {
-            const item = oldItemList.items.find(x => x.id === e.item.dataset.id);
-            if (!item) return;
-            if (oldItemList !== newItemList) {
-                e.from.appendChild(e.item);
-            }
-            const obs = getObservable(item);
-            obs && obs.mute();
-            item.remove();
-            newItemList.addItem(item, e.newIndex);
-            obs && obs.unmute();
+        if (oldItemList === newItemList && e.oldIndex === e.newIndex || oldItemList === undefined || newItemList === undefined) return;
+        const item = oldItemList.items.find(x => x.id === e.item.dataset.id);
+        if (!item) return;
+        if (oldItemList !== newItemList) {
+            e.item.classList.add('d-none');
+            e.from.appendChild(e.item);
         }
+        const obs = getObservable(item);
+        obs && obs.mute();
+        item.remove();
+        newItemList.addItem(item, e.newIndex);
+        obs && obs.unmute();
     }
 
     findNestedItemList(nesting?: string): Models.Questionnaire | Models.GroupItem | undefined {

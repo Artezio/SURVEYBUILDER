@@ -35,10 +35,6 @@
   opacity: 0.5;
 }
 
-// .questionnaire-item-list {
-//   border: 1px solid chocolate;
-//   @extend .p-1;
-// }
 .sortable-ghost,
 .sortable-drag {
   .questionnaire-item-list {
@@ -72,4 +68,8 @@
   .js-text-area {
     max-height: 100px;
   }
+}
+
+.drag-handle {
+  cursor: move;
 }
