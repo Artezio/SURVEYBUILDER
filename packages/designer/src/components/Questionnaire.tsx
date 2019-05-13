@@ -118,7 +118,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         const item = oldItemList.items.find(x => x.id === e.item.dataset.id);
         if (!item) return;
         if (oldItemList !== newItemList) {
-            e.item.classList.add('d-none');
             e.from.appendChild(e.item);
         }
         const obs = getObservable(item);
