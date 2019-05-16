@@ -8,6 +8,11 @@ import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
+
+    static defaultProps: Partial<QuestionnaireProps> = {
+        className: ''
+    }
+
     formApi!: FormApi<Models.IQuestionnaire>;
     itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.questionnaire);
 
@@ -157,7 +162,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     render() {
-        const { questionnaire, className = '' } = this.props;
+        const { questionnaire, className } = this.props;
         return <div className={`questionnaire ${className}`}>
             <div className="card card-sm mb-3">
                 <div className="card-header d-flex justify-content-end">

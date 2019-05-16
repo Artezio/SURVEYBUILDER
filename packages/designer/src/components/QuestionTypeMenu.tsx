@@ -121,7 +121,9 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
     changeItemToChoice() {
         const { item } = this.props;
         let options;
-        if ((item as Models.OpenChoiceItem).options === undefined || (item as Models.OpenChoiceItem).options.length === 0) {
+        if ((item as Models.OpenChoiceItem).options === undefined ||
+            (item as Models.OpenChoiceItem).options.length === 0 ||
+            (item.type === Models.OPEN_CHOICE && (item as Models.OpenChoiceItem).options.length === 1)) {
             options = [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })];
         }
         else {
@@ -158,7 +160,9 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
     changeItemToMultiChoice() {
         const { item } = this.props;
         let options;
-        if ((item as Models.OpenChoiceItem).options === undefined || (item as Models.OpenChoiceItem).options.length === 0) {
+        if ((item as Models.OpenChoiceItem).options === undefined ||
+            (item as Models.OpenChoiceItem).options.length === 0 ||
+            (item.type === Models.OPEN_CHOICE && (item as Models.OpenChoiceItem).options.length === 1)) {
             options = [Models.MultiChoiceOptionFactory.createMultiChoiceOption({ value: "Option 1" })];
         }
         else {

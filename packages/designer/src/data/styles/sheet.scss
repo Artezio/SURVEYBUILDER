@@ -55,20 +55,6 @@
   }
   background-color: rgb(197, 197, 197);
 }
-.isDragging {
-  opacity: 0.8;
-  .questionnaire-item-list {
-    display: none;
-    height: 0;
-  }
-  .option-list {
-    display: none;
-    height: 0;
-  }
-  .js-text-area {
-    max-height: 100px;
-  }
-}
 
 .drag-handle {
   cursor: move;

@@ -10,6 +10,11 @@ import QuestionTypeMenu from './QuestionTypeMenu';
 
 
 export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
+
+    static defaultProps: Partial<ItemWrapperProps> = {
+        className: ''
+    }
+    
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     // formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
@@ -109,7 +114,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 
     render() {
-        const { item, nestingLevel, className = '', subscribe } = this.props;
+        const { item, nestingLevel, className, subscribe } = this.props;
         return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id}>
             <div className="card-header drag-handle">
                 {this.renderHeader()}
