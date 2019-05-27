@@ -27,6 +27,10 @@ export class Answer<T> implements IAnswer<T> {
         Object.assign(this, answer);
     }
 
+    setValue(value: T) {
+        this.value = value;
+    }
+
     remove() {
         this.parent && this.parent.removeAnswer(this);
     }

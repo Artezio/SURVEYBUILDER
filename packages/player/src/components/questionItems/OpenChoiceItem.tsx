@@ -1,23 +1,14 @@
 import * as React from 'react';
-import { Form, FormApi, RadioGroup, Radio } from 'informed';
+import { Form, RadioGroup, Radio } from 'informed';
 import * as Models from '@art-forms/models';
 import { useObservableModel } from '@art-forms/observable';
 import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenChoiceItemProps';
+import QuestionItem from './QuestionItem';
 
 
-export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
-    formApi!: FormApi<Models.IAnswer<any>>;
+export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     otherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
     otherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
-
-    submitForm() {
-        if (!this.formApi) return;
-        this.formApi.submitForm();
-    }
-
-    getFormApi(formApi: FormApi<Models.IAnswer<any>>) {
-        this.formApi = formApi;
-    }
 
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
         const { questionnaireResponseItem, item } = this.props;
@@ -30,7 +21,7 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
     componentDidMount() {
         const { item, questionnaireResponseItem } = this.props;
         const otherOption = item.options[item.options.length - 1];
-        if (item.initialValue === otherOption.id) {
+        if (item.initialAnswers[0] && item.initialAnswers[0].value === otherOption.id) {
             if (this.otherAnswerRadioRef.current) {
                 this.otherAnswerRadioRef.current.checked = true;
                 if (this.otherAnswerInputRef.current) {
@@ -76,10 +67,11 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
 
     renderChoiceOptions() {
         const { item, questionnaireResponseItem } = this.props;
+        const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
         const answer = questionnaireResponseItem.answers[0];
         const otherOption = item.options[item.options.length - 1];
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-            <RadioGroup field="value" initialValue={item.initialValue}>
+            <RadioGroup field="value" initialValue={initialValue}>
                 {item.options.map((option, i) => {
                     if (i !== item.options.length - 1) {
                         return <div className="form-check" key={`${option.id}-${answer.id}`}>

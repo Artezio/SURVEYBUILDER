@@ -3,43 +3,24 @@ import { BooleanItemProps } from '../../interfaces/components/questionItems/Bool
 import { FormApi, Form, RadioGroup, Radio } from 'informed';
 import * as Models from '@art-forms/models';
 import { useObservableModel } from '@art-forms/observable';
+import QuestionItem from './QuestionItem';
 
 
-export class BooleanItem extends React.Component<BooleanItemProps> {
-    formApi!: FormApi<Omit<Models.IBooleanItem, 'type'>>;
-
-    submitForm() {
-        if (!this.formApi) return;
-        this.formApi.submitForm();
-    }
-
-    getFormApi(formApi: FormApi<Omit<Models.IBooleanItem, 'type'>>) {
-        this.formApi = formApi;
-    }
-
-    handleSubmit(values: Partial<Omit<Models.IBooleanItem, 'type'>>) {
-        const { item } = this.props;
-        item.updateItem({ ...item, ...values });
-    }
-
-    componentDidUpdate() {
-        const { item } = this.props;
-        this.formApi.setValues(item);
-    }
+export class BooleanItem extends QuestionItem<BooleanItemProps> {
 
     reset() {
         const { item } = this.props;
-        this.formApi && this.formApi.setValue('initialValue', undefined);
-        item.updateItem({ ...item, initialValue: undefined });
+        item.updateItem({ ...item, initialAnswers: [] });
     }
 
     render() {
         const { item } = this.props;
-        return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
+        const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
+        return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <label>Default answer</label>
-            <RadioGroup field="initialValue">
+            <RadioGroup initialValue={initialValue} field="value">
                 <div>
-                    <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
+                    <button type="button" className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
                         Reset <i className="fas fa-undo"></i>
                     </button>
                     <div className="form-check">

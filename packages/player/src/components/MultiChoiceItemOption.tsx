@@ -11,6 +11,7 @@ export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOption
     constructor(props: MultiChoiceItemOptionProps) {
         super(props);
         this.answerFactory = new Models.AnswerFactory(props.questionnaireResponseItem);
+        this.answer = props.questionnaireResponseItem.answers.find(answer => answer.id === props.option.id);
     }
 
     submitForm() {
@@ -25,11 +26,11 @@ export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOption
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
         const { option, questionnaireResponseItem } = this.props;
         if (values.value) {
-            this.answer = this.answerFactory.createAnswer({ value: option.value });
+            this.answer = this.answerFactory.createAnswer({ id: option.id, value: option.value });
             questionnaireResponseItem.addAnswer(this.answer);
         }
         else {
-            this.answer && this.answer.remove();
+            this.answer && questionnaireResponseItem.removeAnswer(this.answer);
         }
     }
 
@@ -37,7 +38,7 @@ export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOption
         const { option } = this.props;
         return <div className="form-check">
             <Form getApi={this.getFormApi.bind(this)} onSubmit={this.handleSubmit.bind(this)}>
-                <Checkbox className="form-check-input" field="value" id={`${option.id}-checkbox`} onChange={this.submitForm.bind(this)} />
+                <Checkbox className="form-check-input" field="value" id={`${option.id}-checkbox`} onChange={this.submitForm.bind(this)} initialValue={!!this.answer} />
                 <label htmlFor={`${option.id}-checkbox`}>{option.value}</label>
             </Form>
         </div>

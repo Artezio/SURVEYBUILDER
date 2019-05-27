@@ -17,9 +17,8 @@ export class AttachmentItem extends QuestionItem<void> implements IAttachmentIte
     updateItem(item: IAttachmentItem) {
         const obs = getObservable(item);
         obs && obs.mute();
-        super.updateItem(item);
         this.multipleFiles = item.multipleFiles;
-        obs && obs.unmute;
+        super.updateItem(item);
     }
 }
 

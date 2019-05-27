@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 
 
 export interface MultiChoiceItemOptionProps {
-    option: Models.IMultiChoiceOption;
+    option: Models.AnswerOption;
     questionnaireResponseItem: Models.QuestionnaireResponseItem;
 }
 

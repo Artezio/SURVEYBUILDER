@@ -120,11 +120,12 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
 
     changeItemToChoice() {
         const { item } = this.props;
+        const answerOptionFactory = new Models.AnswerOptionFactory();
         let options;
         if ((item as Models.OpenChoiceItem).options === undefined ||
             (item as Models.OpenChoiceItem).options.length === 0 ||
             (item.type === Models.OPEN_CHOICE && (item as Models.OpenChoiceItem).options.length === 1)) {
-            options = [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })];
+            options = [answerOptionFactory.createAnswerOption({ value: "Option 1" })];
         }
         else {
             options = (item as Models.OpenChoiceItem).options.slice();
@@ -133,37 +134,35 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
             }
         }
         const newItem = this.factory.createChoiceItem({ text: item.text, options });
+        newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
     }
 
     changeItemToOpenChoice() {
         const { item } = this.props;
+        const answerOptionFactory = new Models.AnswerOptionFactory();
         let options;
         if ((item as Models.OpenChoiceItem).options === undefined) {
-            options = [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })];
+            options = [answerOptionFactory.createAnswerOption({ value: "Option 1" })];
         }
         else {
             options = (item as Models.OpenChoiceItem).options.length === 0 ?
-                [Models.ChoiceOptionFactory.createChoiceOption({ value: "Option 1" })] :
+                [answerOptionFactory.createAnswerOption({ value: "Option 1" })] :
                 (item as Models.OpenChoiceItem).options.slice();
         }
         const newItem = this.factory.createOpenChoiceItem({ text: item.text, options });
-        item.replace(newItem);
-    }
-
-    changeItemToAttachment() {
-        const { item } = this.props;
-        const newItem = this.factory.createAttachmentItem({ text: item.text });
+        newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
     }
 
     changeItemToMultiChoice() {
         const { item } = this.props;
+        const answerOptionFactory = new Models.AnswerOptionFactory();
         let options;
         if ((item as Models.OpenChoiceItem).options === undefined ||
             (item as Models.OpenChoiceItem).options.length === 0 ||
             (item.type === Models.OPEN_CHOICE && (item as Models.OpenChoiceItem).options.length === 1)) {
-            options = [Models.MultiChoiceOptionFactory.createMultiChoiceOption({ value: "Option 1" })];
+            options = [answerOptionFactory.createAnswerOption({ value: "Option 1" })];
         }
         else {
             options = (item as Models.OpenChoiceItem).options.slice();
@@ -172,6 +171,13 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
             }
         }
         const newItem = this.factory.createMultiChoiceItem({ text: item.text, options });
+        newItem.options.forEach(option => { option.parent = newItem });
+        item.replace(newItem);
+    }
+
+    changeItemToAttachment() {
+        const { item } = this.props;
+        const newItem = this.factory.createAttachmentItem({ text: item.text });
         item.replace(newItem);
     }
 

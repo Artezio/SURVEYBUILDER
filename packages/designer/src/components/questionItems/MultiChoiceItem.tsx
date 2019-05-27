@@ -6,11 +6,11 @@ import MultiChoiceOption from '../MultiChoiceOption';
 
 
 export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
+    answerOptionFactory: Models.AnswerOptionFactory = new Models.AnswerOptionFactory(this.props.item);
 
     addOption() {
         const { item } = this.props;
-        const option = Models.MultiChoiceOptionFactory.createMultiChoiceOption();
-        item.addOption(option);
+        item.addOption(this.answerOptionFactory.createAnswerOption());
     }
 
     renderChoiceOptions() {

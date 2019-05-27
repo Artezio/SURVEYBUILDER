@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 
 
 export interface QuestionTypeMenuProps {
-    item: Models.Item;
+    item: Models.QuestionItem<any>;
     title: string;
 }
 

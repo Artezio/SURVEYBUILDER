@@ -51,6 +51,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     componentDidMount() {
         this.subscribeDocument();
         this.makeItemsDraggable();
+        this.highlightActiveItems();
     }
     componentDidUpdate() {
         const { questionnaire } = this.props;

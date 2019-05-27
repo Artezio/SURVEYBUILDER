@@ -3,36 +3,18 @@ import { DateTimeItemProps } from '../../interfaces/components/questionItems/Dat
 import { Form, Text, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
 import { useObservableModel } from '@art-forms/observable';
+import QuestionItem from './QuestionItem';
 
 
-export class DateTimeItem extends React.Component<DateTimeItemProps> {
-    formApi!: FormApi<Models.IDateTimeItem>;
-
-    submitForm() {
-        if (!this.formApi) return;
-        this.formApi.submitForm();
-    }
-
-    getFormApi(formApi: FormApi<Models.IDateTimeItem>) {
-        this.formApi = formApi;
-    }
-
-    handleSubmit(values: Partial<Models.IDateTimeItem>) {
-        const { item } = this.props;
-        item.updateItem({ ...item, initialValue: values.initialValue });
-    }
-
-    componentDidUpdate() {
-        const { item } = this.props;
-        this.formApi.setValues(item);
-    }
+export class DateTimeItem extends QuestionItem<DateTimeItemProps> {
 
     render() {
         const { item } = this.props;
-        return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+        const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
+        return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div>
                 <label htmlFor={`${item.id}-initial`}>Default answer</label>
-                <Text autoComplete="off" className="form-control" type="datetime-local" field="initialValue" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
+                <Text autoComplete="off" className="form-control" type="datetime-local" initialValue={initialValue} field="value" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
             </div>
         </Form>
     }

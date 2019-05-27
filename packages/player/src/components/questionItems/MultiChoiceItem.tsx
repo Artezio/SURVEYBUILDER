@@ -5,12 +5,6 @@ import MultiChoiceItemOption from '../MultiChoiceItemOption';
 
 
 export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
-
-    constructor(props: MultiChoiceItemProps) {
-        super(props);
-        props.questionnaireResponseItem.answers = [];
-    }
-
     render() {
         const { item, questionnaireResponseItem } = this.props;
         return <div className="form-group">

@@ -1,12 +1,11 @@
 import IQuestionItem from "./IQuestionItem";
 import { CHOICE } from "../../constants/itemTypes";
-import IChoiceOption from "../IChoiceOption";
+import IAnswerOption from "../IAnswerOption";
 
 
 export interface IChoiceItem extends IQuestionItem<any> {
     type: CHOICE;
-    options: IChoiceOption[];
-    initialValue?: IChoiceOption;
+    options: IAnswerOption[];
 }
 
 export default IChoiceItem;

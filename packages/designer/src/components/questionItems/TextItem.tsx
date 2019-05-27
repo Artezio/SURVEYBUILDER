@@ -3,36 +3,18 @@ import TextItemProps from '../../interfaces/components/questionItems/TextItemPro
 import { FormApi, Form, TextArea } from 'informed';
 import * as Models from '@art-forms/models';
 import { useObservableModel } from '@art-forms/observable';
+import QuestionItem from './QuestionItem';
 
 
-export class TextItem extends React.Component<TextItemProps> {
-    formApi!: FormApi<Omit<Models.ITextItem, 'type'>>;
-
-    submitForm() {
-        if (!this.formApi) return;
-        this.formApi.submitForm();
-    }
-
-    getFormApi(formApi: FormApi<Omit<Models.ITextItem, 'type'>>) {
-        this.formApi = formApi;
-    }
-
-    handleSubmit(values: Partial<Omit<Models.ITextItem, 'type'>>) {
-        const { item } = this.props;
-        item.updateItem({ ...item, initialValue: values.initialValue });
-    }
-
-    componentDidUpdate() {
-        const { item } = this.props;
-        this.formApi.setValues(item);
-    }
+export class TextItem extends QuestionItem<TextItemProps> {
 
     render() {
         const { item } = this.props;
-        return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
+        const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
+        return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div>
                 <label htmlFor={`${item.id}-initial`}>Default answer</label>
-                <TextArea autoComplete="off" className="form-control js-text-area" field="initialValue" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
+                <TextArea autoComplete="off" className="form-control js-text-area" initialValue={initialValue} field="value" id={`${item.id}-initial`} placeholder="Patient default answer" onBlur={this.submitForm.bind(this)} />
             </div>
         </Form>
     }

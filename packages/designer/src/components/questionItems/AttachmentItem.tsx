@@ -3,27 +3,29 @@ import * as Models from '@art-forms/models';
 import { AttachmentItemProps } from '../../interfaces/components/questionItems/AttachmentItemProps';
 import { useObservableModel } from '@art-forms/observable';
 import { FormApi, Form, Checkbox } from 'informed';
+import QuestionItem from './QuestionItem';
 
 
-export class AttachmentItem extends React.Component<AttachmentItemProps> {
-    formApi!: FormApi<Omit<Models.IAttachmentItem, 'type'>>;
+export class AttachmentItem extends QuestionItem<AttachmentItemProps> {
+    formApi?: any;
 
-    submitForm() {
-        if (!this.formApi) return;
-        this.formApi.submitForm();
-    }
-
-    getFormApi(formApi: FormApi<Omit<Models.IAttachmentItem, 'type'>>) {
+    getFormApi(formApi: any) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Omit<Models.IAttachmentItem, 'type'>>) {
+    handleSubmit(values: Partial<Omit<Models.IAttachmentItem, 'type' | 'initialAnswers'>>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        item.updateItem({ ...item, multipleFiles: !!values.multipleFiles });
     }
+
+    componentDidUpdate() {
+        const { item } = this.props;
+        this.formApi && this.formApi.setValue('multipleFiles', item.multipleFiles);
+    }
+
     render() {
         const { item } = this.props;
-        return <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
+        return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
                 <div className="input-group">
                     <div className="custom-file">
@@ -34,7 +36,7 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
             </div>
             <div>
                 <div className="form-check">
-                    <Checkbox className="form-check-input" field="multipleFiles" id={`${item.id}-multipleFiles`} onChange={this.submitForm.bind(this)} />
+                    <Checkbox className="form-check-input" initialValue={item.multipleFiles} field="multipleFiles" id={`${item.id}-multipleFiles`} onChange={this.submitForm.bind(this)} />
                     <label className="form-check-label" htmlFor={`${item.id}-multipleFiles`}>Allow multiple upload</label>
                 </div>
             </div>

@@ -14,7 +14,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     static defaultProps: Partial<ItemWrapperProps> = {
         className: ''
     }
-    
+
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     // formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
@@ -86,7 +86,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                     </Form>
                 </div>
                 <div className="col-md-4">
-                    <QuestionTypeMenu title="Question Type" item={item} />
+                    <QuestionTypeMenu title="Question Type" item={item as Models.QuestionItem<any>} />
                 </div>
             </div>
         }

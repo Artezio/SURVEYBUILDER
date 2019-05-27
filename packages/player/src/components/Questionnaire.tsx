@@ -1,25 +1,9 @@
 import * as React from 'react';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
-import * as Models from '@art-forms/models';
 import ItemProvider from './ItemProvider';
 import { useObservableModel } from '@art-forms/observable';
+import { completeResponse } from '../mappers/completeResponse';
 
-
-const completeResponse = (questionnaire: Models.IQuestionnaire, response: Models.QuestionnaireResponse) => {
-    questionnaire.items && questionnaire.items.forEach(item => {
-        let answers;
-        if (item.type !== Models.GROUP) {
-            const responseItem = response.items.find(responseItem => responseItem.id === item.id);
-            if (responseItem && responseItem.answers !== undefined && responseItem.answers.length !== 0) {
-                answers = responseItem.answers;
-            }
-            else {
-                answers = [new Models.Answer({ value: (item as Models.QuestionItem<any>).initialValue })];
-            }
-        }
-        response.addQuestionnaireResponseItem(new Models.QuestionnaireResponseItem({ id: item.id, text: item.text, answers }))
-    })
-}
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     constructor(props: QuestionnaireProps) {

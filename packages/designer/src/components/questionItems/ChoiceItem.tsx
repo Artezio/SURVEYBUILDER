@@ -3,52 +3,33 @@ import { ChoiceItemProps } from '../../interfaces/components/questionItems/Choic
 import * as Models from '@art-forms/models';
 import { useObservableModel } from '@art-forms/observable';
 import ChoiceOption from '../ChoiceOption';
-import { Form, RadioGroup, FormApi } from 'informed';
+import { Form, RadioGroup } from 'informed';
+import QuestionItem from './QuestionItem';
 
 
-export class ChoiceItem extends React.Component<ChoiceItemProps> {
-    formApi!: FormApi<Models.IChoiceItem>;
-
-    submitForm() {
-        if (!this.formApi) return;
-        this.formApi.submitForm();
-    }
-
-    getFormApi(formApi: FormApi<Models.IChoiceItem>) {
-        this.formApi = formApi;
-    }
-
-    handleSubmit(values: Partial<Models.IChoiceItem>) {
-        const { item } = this.props;
-        item.updateItem({ ...item, initialValue: values.initialValue })
-    }
+export class ChoiceItem extends QuestionItem<ChoiceItemProps> {
+    answerOptionFactory: Models.AnswerOptionFactory = new Models.AnswerOptionFactory(this.props.item);
 
     reset() {
         const { item } = this.props;
-        this.formApi && this.formApi.setValue('initialValue', undefined);
-        item.updateItem({ ...item, initialValue: undefined });
+        item.clearInitialAnswers();
     }
 
     addOption() {
         const { item } = this.props;
-        const option = Models.ChoiceOptionFactory.createChoiceOption();
-        item.addOption(option);
-    }
-    
-    componentDidUpdate() {
-        const { item } = this.props;
-        this.formApi.setValues(item);
+        item.addOption(this.answerOptionFactory.createAnswerOption());
     }
 
     renderChoiceOptions() {
         const { item } = this.props;
+        const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
         return <div className="option-list">
             <Form getApi={this.getFormApi.bind(this)} onSubmit={this.handleSubmit.bind(this)}>
-                <RadioGroup field="initialValue" initialValue={item.initialValue}>
-                    {item.options.map(option => <ChoiceOption key={option.id} option={option} item={item} submitForm={this.submitForm.bind(this)} reset={this.reset.bind(this)} />)}
+                <RadioGroup initialValue={initialValue} field="value">
+                    {item.options.map(option => <ChoiceOption key={option.id} option={option} />)}
                 </RadioGroup>
             </Form>
-        </div>;
+        </div>
     }
 
     render() {

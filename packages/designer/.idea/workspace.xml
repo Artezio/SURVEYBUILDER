@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="16da823a-1de2-4c69-b48a-cf17848e3bf6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/ChoiceOption.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChoiceOption.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/AttachmentItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/AttachmentItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/BooleanItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/BooleanItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/ChoiceItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/ChoiceItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/DateItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/DateItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/DateTimeItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/DateTimeItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/DecimalItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/DecimalItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/OpenChoiceItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/OpenChoiceItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/StringItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/StringItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/TextItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/TextItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/questionItems/TimeItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/questionItems/TimeItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/Uml-diagram-questionnaire.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../models/Uml-diagram-questionnaire.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/Uml-diagram-questionnaire.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../models/Uml-diagram-questionnaire.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/Uml-diagram-response.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../models/Uml-diagram-response.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/Uml-diagram-response.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../models/Uml-diagram-response.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/interfaces/questionItems/IChoiceItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/interfaces/questionItems/IChoiceItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/interfaces/questionItems/IOpenChoiceItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/interfaces/questionItems/IOpenChoiceItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/interfaces/questionItems/IQuestionItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/interfaces/questionItems/IQuestionItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/attachmentItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/attachmentItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/booleanItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/booleanItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/choiceItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/choiceItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/dateItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/dateItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/dateTimeItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/dateTimeItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/decimalItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/decimalItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/multiChoiceItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/multiChoiceItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/openChoiceItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/openChoiceItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/questionItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/questionItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/stringItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/stringItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/textItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/textItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/src/models/questionItems/timeItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/src/models/questionItems/timeItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/GroupItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/GroupItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/Questionnaire.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/Questionnaire.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/BooleanItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/BooleanItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/ChoiceItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/ChoiceItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/DateItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/DateItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/DateTimeItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/DateTimeItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/DecimalItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/DecimalItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/OpenChoiceItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/OpenChoiceItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/StringItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/StringItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/TextItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/TextItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../player/src/components/questionItems/TimeItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../player/src/components/questionItems/TimeItem.tsx" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/questionItems/QuestionItem.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="designer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="designer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="designer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="designer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="designer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="designer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="designer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="designer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="questionItems" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="16da823a-1de2-4c69-b48a-cf17848e3bf6" name="Default Changelist" comment="" />
+      <created>1558687834568</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558687834568</updated>
+      <workItem from="1558687837245" duration="52000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="52000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info id="npm" side_tool="true" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17913593" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="TypeScript" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="GraphQL" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/components/questionItems/QuestionItem.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
