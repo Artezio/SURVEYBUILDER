@@ -11,7 +11,7 @@ export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOption
     constructor(props: MultiChoiceItemOptionProps) {
         super(props);
         this.answerFactory = new Models.AnswerFactory(props.questionnaireResponseItem);
-        this.answer = props.questionnaireResponseItem.answers.find(answer => answer.id === props.option.id);
+        this.answer = props.questionnaireResponseItem.answers.find(answer => answer.value === props.option.id);
     }
 
     submitForm() {
@@ -26,7 +26,7 @@ export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOption
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
         const { option, questionnaireResponseItem } = this.props;
         if (values.value) {
-            this.answer = this.answerFactory.createAnswer({ id: option.id, value: option.value });
+            this.answer = this.answerFactory.createAnswer({ value: option.value });
             questionnaireResponseItem.addAnswer(this.answer);
         }
         else {

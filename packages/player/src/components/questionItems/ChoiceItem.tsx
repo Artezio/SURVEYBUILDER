@@ -7,13 +7,20 @@ import QuestionItem from './QuestionItem';
 
 
 export class ChoiceItem extends QuestionItem<ChoiceItemProps> {
+    answerFactory: Models.AnswerFactory;
+
+    constructor(props: ChoiceItemProps) {
+        super(props);
+        this.answerFactory = new Models.AnswerFactory(props.questionnaireResponseItem);
+        props.questionnaireResponseItem.answers.length === 0 && props.questionnaireResponseItem.answers.push(this.answerFactory.createAnswer());
+    }
 
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
         const { questionnaireResponseItem, item } = this.props;
         const option = item.options.find(x => x.id === values.value);
         const value = option && option.value;
         const answer = questionnaireResponseItem.answers[0];
-        answer && answer.updateAnswer({ ...answer, value });
+        answer && answer.setValue(value);
     }
 
     renderChoiceOptions() {

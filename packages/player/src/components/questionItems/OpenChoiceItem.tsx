@@ -14,7 +14,7 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     constructor(props: OpenChoiceItemProps) {
         super(props);
         this.answerFactory = new Models.AnswerFactory(props.questionnaireResponseItem);
-        props.questionnaireResponseItem.answers.length === 0 && props.questionnaireResponseItem.answers.push(this.answerFactory.createAnswer())
+        props.questionnaireResponseItem.answers.length === 0 && props.questionnaireResponseItem.answers.push(this.answerFactory.createAnswer());
     }
 
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
@@ -22,7 +22,7 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
         const option = item.options.find(x => x.id === values.value);
         const value = option && option.value;
         const answer = questionnaireResponseItem.answers[0];
-        answer.updateAnswer({ ...answer, value });
+        answer.setValue(value)
     }
 
     componentDidMount() {
@@ -35,7 +35,7 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
                     this.otherAnswerInputRef.current.disabled = false;
                     this.otherAnswerInputRef.current.value = otherOption.value;
                     const answer = questionnaireResponseItem.answers[0];
-                    answer.updateAnswer({ ...answer, value: otherOption.value })
+                    answer.setValue(otherOption.value);
                 }
             }
         }
@@ -68,7 +68,7 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
         if (this.otherAnswerInputRef.current) {
             this.formApi.setValue('value', otherOption.id);
             const answer = questionnaireResponseItem.answers[0];
-            answer.updateAnswer({ ...answer, value: this.otherAnswerInputRef.current.value });
+            answer.setValue(this.otherAnswerInputRef.current.value);
         }
     }
 
