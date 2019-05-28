@@ -18,7 +18,7 @@ export abstract class QuestionItem<T> extends React.Component<T> {
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
         const { questionnaireResponseItem } = this.props as any;
         const answer = questionnaireResponseItem.answers[0];
-        answer && answer.updateAnswer({ ...answer, ...values })
+        answer && answer.setValue(values.value);
     }
 }
 
