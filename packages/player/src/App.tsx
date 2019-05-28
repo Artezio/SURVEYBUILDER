@@ -15,7 +15,7 @@ questionnaire.addItem(factory.createTextItem({ text: 'Text', initialAnswers: [in
 questionnaire.addItem(factory.createGroupItem({
     text: 'group_1', items: [
         factory.createItem({ text: 'Text plain' }),
-        factory.createTextItem({ text: 'question_2' }),
+        factory.createTextItem({ id: 'bla-bla-moi-id', text: 'question_2' }),
         factory.createGroupItem({
             text: 'group_2',
             items: [

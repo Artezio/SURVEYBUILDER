@@ -1,7 +1,6 @@
 import * as React from 'react';
 import TextItemProps from '../../interfaces/components/questionItems/TextItemProps';
-import { FormApi, Form, TextArea } from 'informed';
-import * as Models from '@art-forms/models';
+import { Form, TextArea } from 'informed';
 import { useObservableModel } from '@art-forms/observable';
 import QuestionItem from './QuestionItem';
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { TimeItemProps } from '../../interfaces/components/questionItems/TimeItemProps';
-import { Form, Text, FormApi } from 'informed';
-import * as Models from '@art-forms/models';
+import { Form, Text } from 'informed';
 import { useObservableModel } from '@art-forms/observable';
 import QuestionItem from './QuestionItem';
 

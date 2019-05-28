@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
-import { Form, RadioGroup, Radio } from 'informed';
+import { Form, RadioGroup, Radio, FormApi } from 'informed';
 import { useObservableModel } from '@art-forms/observable';
 import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenChoiceItemProps';
 import QuestionItem from './QuestionItem';
@@ -10,6 +10,7 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     otherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
     otherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
     answerFactory: Models.AnswerFactory;
+    formApiOther?: FormApi<Models.IAnswer<any>>;
 
     constructor(props: OpenChoiceItemProps) {
         super(props);
@@ -17,12 +18,26 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
         props.questionnaireResponseItem.answers.length === 0 && props.questionnaireResponseItem.answers.push(this.answerFactory.createAnswer());
     }
 
+    submitFormOther() {
+        this.formApiOther && this.formApiOther.submitForm();
+    }
+
+    getFormApiOther(formApi: FormApi<Models.IAnswer<any>>) {
+        this.formApiOther = formApi;
+    }
+
+    handleSubmitOther(values: Partial<Models.IAnswer<any>>) {
+        const { questionnaireResponseItem, item } = this.props;
+        const option = item.options.find(x => x.id === values.value);
+        const value = option && option.value;
+        questionnaireResponseItem.reply(value);
+    }
+
     handleSubmit(values: Partial<Models.IAnswer<any>>) {
         const { questionnaireResponseItem, item } = this.props;
         const option = item.options.find(x => x.id === values.value);
         const value = option && option.value;
-        const answer = questionnaireResponseItem.answers[0];
-        answer.setValue(value)
+        questionnaireResponseItem.reply(value);
     }
 
     componentDidMount() {
@@ -42,6 +57,8 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     }
 
     toggleToOptions() {
+        const { questionnaireResponseItem } = this.props;
+        questionnaireResponseItem.setReplyStrategy(Models.choiceStrategy);
         this.submitForm();
         if (this.otherAnswerRadioRef.current && this.otherAnswerRadioRef.current.checked) {
             this.otherAnswerRadioRef.current.checked = false;
@@ -52,6 +69,8 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     }
 
     toggleToOtherAnswer() {
+        const { questionnaireResponseItem } = this.props;
+        questionnaireResponseItem.setReplyStrategy(Models.textInputStrategy);
         if (!this.otherAnswerRadioRef.current || !this.otherAnswerRadioRef.current.checked) {
             return;
         }
@@ -66,9 +85,9 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
         const { questionnaireResponseItem, item } = this.props;
         const otherOption = item.options[item.options.length - 1];
         if (this.otherAnswerInputRef.current) {
-            this.formApi.setValue('value', otherOption.id);
-            const answer = questionnaireResponseItem.answers[0];
-            answer.setValue(this.otherAnswerInputRef.current.value);
+            this.formApi && this.formApi.setValue('value', otherOption.id);
+            const value = this.otherAnswerInputRef.current.value;
+            questionnaireResponseItem.reply(value);
         }
     }
 

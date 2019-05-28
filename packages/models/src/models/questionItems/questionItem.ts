@@ -3,7 +3,6 @@ import { Item, InitialAnswer } from "../..";
 import { QUESTION_TYPE } from "../../constants/itemTypes";
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { getObservable, observableProperty } from "@art-forms/observable";
-import IInitialAnswer from "../../interfaces/IInitialAnswer";
 
 
 export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {

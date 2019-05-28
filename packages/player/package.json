@@ -19,6 +19,7 @@
     "@types/uuid": "^3.4.4",
     "hoist-non-react-statics": "^3.3.0",
     "informed": "2.1.9",
+    "json-logic-js": "^1.2.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-redux": "6.0.1",

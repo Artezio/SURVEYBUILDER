@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { AttachmentItemProps } from '../../interfaces/components/questionItems/AttachmentItemProps';
 import { useObservableModel } from '@art-forms/observable';
-import { FormApi, Form, Checkbox } from 'informed';
+import { Form, Checkbox } from 'informed';
 import QuestionItem from './QuestionItem';
 
 

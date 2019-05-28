@@ -2,18 +2,36 @@ import { observable, observableProperty } from '@art-forms/observable';
 import { IQuestionnaireResponseItem } from "../interfaces/IQuestionnaireResponseItem";
 import uuid from 'uuid/v1';
 import Answer from "./answer";
+import ReplyStrategy from '../interfaces/IReplyStrategy';
+import AnswerFactory from '../factories/answerFactory';
 
 @observable
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     id!: string;
     text?: string;
+    replyStrategy: ReplyStrategy;
     @observableProperty
     items!: QuestionnaireResponseItem[];
     @observableProperty
     answers!: Answer<any>[];
+    answerFactory: AnswerFactory;
 
-    constructor(item?: Partial<IQuestionnaireResponseItem>) {
+    constructor(item: Partial<IQuestionnaireResponseItem> | undefined, replyStrategy: ReplyStrategy) {
         Object.assign(this, { id: uuid(), items: [], answers: [] }, item);
+        this.replyStrategy = replyStrategy;
+        this.answerFactory = new AnswerFactory(this);
+    }
+
+    setReplyStrategy(replyStrategy: ReplyStrategy) {
+        this.replyStrategy = replyStrategy;
+    }
+
+    reply(value: any) {
+        this.replyStrategy(value, undefined, this, this.answerFactory);
+    }
+
+    cancelAnswer(answer: Answer<any>) {
+        this.removeAnswer(answer);
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
@@ -24,6 +42,10 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
 
     updateQuestionnaireResponseItem(item: IQuestionnaireResponseItem) {
         Object.assign(this, item);
+    }
+
+    setSingleAnswer(answer: Answer<any>) {
+        this.answers = [answer];
     }
 
     addAnswer(answer: Answer<any>, place?: number) {

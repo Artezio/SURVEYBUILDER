@@ -1,3 +1,6 @@
+export * from './constants/itemTypes';
+
+
 export * from './interfaces/IItem';
 export * from './interfaces/IGroupItem';
 
@@ -22,10 +25,6 @@ export * from './interfaces/IAnswer';
 export * from './interfaces/IInitialAnswer';
 export * from './interfaces/IAnswerOption';
 /// ---- INTERFACES
-
-export * from './constants/itemTypes';
-
-export * from './decorators/temporaryObservable';
 
 
 export * from './models/item';
@@ -61,4 +60,11 @@ export * from './factories/itemFactory';
 export * from './factories/answerFactory';
 export * from './factories/initialAnswerFactory';
 export * from './factories/answerOptionFactory';
+export * from './factories/questionResponseFactory';
+/// ----
+
+/// REPLY STRATEGIES
+export * from './replyStrategies/choiceStrategy';
+export * from './replyStrategies/multiChoiceStrategy';
+export * from './replyStrategies/textInputStrategy';
 /// ----

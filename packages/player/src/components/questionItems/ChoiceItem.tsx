@@ -19,8 +19,7 @@ export class ChoiceItem extends QuestionItem<ChoiceItemProps> {
         const { questionnaireResponseItem, item } = this.props;
         const option = item.options.find(x => x.id === values.value);
         const value = option && option.value;
-        const answer = questionnaireResponseItem.answers[0];
-        answer && answer.setValue(value);
+        questionnaireResponseItem.reply(value);
     }
 
     renderChoiceOptions() {

@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 
 
 export interface QuestionnaireProps {
-    questionnaire: Models.IQuestionnaire;
+    questionnaire: Models.Questionnaire;
     questionnaireResponse: Models.QuestionnaireResponse;
     className?: string;
 }

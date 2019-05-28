@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
-import ItemProvider from './ItemProvider';
 import { useObservableModel } from '@art-forms/observable';
 import { completeResponse } from '../mappers/completeResponse';
+import ItemWrapper from './ItemWrapper';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
@@ -14,7 +14,10 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     renderItemList() {
         const { questionnaire, questionnaireResponse } = this.props;
         return <div className="response-item-list">
-            {questionnaire.items && questionnaire.items.map(item => <ItemProvider key={item.id} item={item} questionnaireResponseItem={questionnaireResponse.items.find(responseItem => responseItem.id === item.id)} />)}
+            {questionnaire.items && questionnaire.items.map(item => {
+                const questionnaireResponseItem = questionnaireResponse.items.find(responseItem => responseItem.id === item.id);
+                return questionnaireResponseItem && <ItemWrapper key={item.id} item={item} questionnaireResponseItem={questionnaireResponseItem} />
+            })}
         </div>
     }
 

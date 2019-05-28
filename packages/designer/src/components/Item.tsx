@@ -2,7 +2,7 @@ import * as React from 'react';
 import ItemProps from '../interfaces/components/ItemProps';
 import { Form, TextArea, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
-import useObservableModel from '../HOCs/useObservableModel';
+import { useObservableModel } from '@art-forms/observable';
 
 
 export class Item extends React.Component<ItemProps> {

@@ -17,9 +17,6 @@
     },
     "exclude": [
         "node_modules",
-        "build",
-        "bower_components",
-        "jspm_packages",
-        "tests"
+        "build"
     ]
 }

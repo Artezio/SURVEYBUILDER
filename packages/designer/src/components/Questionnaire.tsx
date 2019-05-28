@@ -34,7 +34,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         filter: '.no-drag',
         fallbackTolerance: 1,
         emptyInsertThreshold: 30,          //has no type definition in .d.ts
-    };
+    } as any;
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { questionnaire } = this.props;

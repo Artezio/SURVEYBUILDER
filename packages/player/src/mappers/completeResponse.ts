@@ -1,6 +1,6 @@
 import * as Models from '@art-forms/models';
 
-export const completeResponse = (item: Models.IQuestionnaire | Models.GroupItem, response: Models.QuestionnaireResponse | Models.QuestionnaireResponseItem) => {
+export const completeResponse = (item: Models.Questionnaire | Models.GroupItem, response: Models.QuestionnaireResponse | Models.QuestionnaireResponseItem) => {
     item.items && item.items.forEach(item => {
         let answers;
         if (item.type !== Models.GROUP) {
@@ -14,6 +14,21 @@ export const completeResponse = (item: Models.IQuestionnaire | Models.GroupItem,
                     [];
             }
         }
-        response.addQuestionnaireResponseItem(new Models.QuestionnaireResponseItem({ id: item.id, text: item.text, answers }))
+        let responseItem: Models.QuestionnaireResponseItem;
+        switch (item.type) {
+            case Models.CHOICE: {
+                responseItem = Models.QuestionResponseFactory.createChoiceResponse({ id: item.id, text: item.text, answers });
+            }
+            case Models.OPEN_CHOICE: {
+                responseItem = Models.QuestionResponseFactory.createChoiceResponse({ id: item.id, text: item.text, answers });
+            }
+            case Models.MULTI_CHOICE: {
+                responseItem = Models.QuestionResponseFactory.createMultiChoiceResponse({ id: item.id, text: item.text, answers });
+            }
+            default: {
+                responseItem = Models.QuestionResponseFactory.createTextInputResponse({ id: item.id, text: item.text, answers });
+            }
+        }
+        response.addQuestionnaireResponseItem(responseItem);
     })
 }

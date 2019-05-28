@@ -1,7 +1,6 @@
 import * as React from 'react';
 import DecimalItemProps from '../../interfaces/components/questionItems/DecimalItemProps';
-import { FormApi, Form, Text } from 'informed';
-import * as Models from '@art-forms/models';
+import { Form, Text } from 'informed';
 import { useObservableModel } from '@art-forms/observable';
 import QuestionItem from './QuestionItem';
 
