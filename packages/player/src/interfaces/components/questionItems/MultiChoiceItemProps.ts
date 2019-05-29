@@ -1,4 +1,4 @@
-import QuestionItemProps from "../QuestionItemProps";
+import QuestionItemProps from "./QuestionItemProps";
 import * as Models from '@art-forms/models';
 
 

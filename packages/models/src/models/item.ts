@@ -10,6 +10,7 @@ export class Item implements IItem {
     type: ITEM_TYPE = DISPLAY;
     parent?: IItemCollection<IItem>;
     position!: number;
+    required?: boolean;
 
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
         Object.assign(this, { id: uuid() }, item);
@@ -39,6 +40,7 @@ export class Item implements IItem {
     updateItem(item: IItem) {
         this.id = item.id;
         this.text = item.text;
+        this.required = !!item.required;
     }
 
     remove() {

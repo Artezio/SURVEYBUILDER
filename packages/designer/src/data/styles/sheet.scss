@@ -1,5 +1,28 @@
 @import "../../../../../node_modules/bootstrap-scss/bootstrap.scss";
 
+.questionnaire-response-group-item {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.questionnaire-response-group-item > label {
+  @extend h5;
+}
+
+.required-symbol {
+  color: red;
+  @extend .ml-1;
+}
+
+p,
+label {
+  word-break: break-word;
+}
+
+.questionnaire-response-item {
+  margin-bottom: 20px;
+}
+
 .card-sm {
   .btn {
     @extend .btn-sm;

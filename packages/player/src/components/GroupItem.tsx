@@ -12,21 +12,13 @@ export class GroupItem extends React.Component<GroupItemProps> {
         completeResponse(props.item, props.questionnaireResponseItem);
     }
 
-    renderItemList() {
+    render() {
         const { item, questionnaireResponseItem } = this.props;
         return <div className="response-item-list">
             {item.items.map(item => {
                 const responseItem = questionnaireResponseItem.items.find(responseItem => responseItem.id === item.id);
                 return responseItem && <ItemWrapper key={item.id} item={item} questionnaireResponseItem={responseItem} />
             })}
-        </div>
-    }
-
-    render() {
-        const { item, className = '' } = this.props;
-        return <div className={`questionnaire-response-group-item ${className}`}>
-            <h5>{item.text}</h5>
-            {this.renderItemList()}
         </div>
     }
 }

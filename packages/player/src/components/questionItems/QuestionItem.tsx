@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { FormApi } from 'informed';
-import QuestionItemProps from '../../interfaces/components/QuestionItemProps';
+import QuestionItemProps from '../../interfaces/components/questionItems/QuestionItemProps';
 
 
 export abstract class QuestionItem<T extends QuestionItemProps<any>> extends React.Component<T> {

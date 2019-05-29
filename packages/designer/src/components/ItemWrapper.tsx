@@ -4,7 +4,7 @@ import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
 import { useObservableModel } from '@art-forms/observable';
 import ItemProvider from './ItemProvider';
 import ItemCollectionMenu from './ItemCollectionMenu';
-import { FormApi, Form, Text } from 'informed';
+import { FormApi, Form, Text, Checkbox } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
 
 
@@ -16,7 +16,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
-    // formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
+    formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
     inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
@@ -24,26 +24,26 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         if (!this.formApi) return;
         this.formApi.submitForm();
     }
-    // submitForm_2() {
-    //     if (!this.formApi_2) return;
-    //     this.formApi_2.submitForm();
-    // }
+    submitForm_2() {
+        if (!this.formApi_2) return;
+        this.formApi_2.submitForm();
+    }
 
     getFormApi(formApi: FormApi<Omit<Models.IItem, 'type'>>) {
         this.formApi = formApi;
     }
-    // getFormApi_2(formApi: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>) {
-    //     this.formApi_2 = formApi;
-    // }
+    getFormApi_2(formApi: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>) {
+        this.formApi_2 = formApi;
+    }
 
     handleSubmit(values: Partial<Omit<Models.IItem, 'type'>>) {
         const { item } = this.props;
         item.updateItem({ ...item, text: values.text });
     }
-    // handleSubmit_2(values: Partial<Omit<Models.IQuestionItem<any>, 'type'>>) {
-    //     const { item } = this.props;
-    //     item.updateItem({ ...item, ...values });
-    // }
+    handleSubmit_2(values: Partial<Omit<Models.IQuestionItem<any>, 'type'>>) {
+        const { item } = this.props;
+        item.updateItem({ ...item, ...values });
+    }
 
     componentDidMount() {
         if (this.inputRef.current) {
@@ -57,7 +57,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     componentDidUpdate() {
         const { item } = this.props;
         this.formApi && this.formApi.setValues(item);
-        // this.formApi_2 && this.formApi_2.setValues(item as Models.QuestionItem<any>);
+        this.formApi_2 && this.formApi_2.setValues(item);
     }
 
     renderHeader() {
@@ -96,16 +96,12 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         const { item } = this.props;
         return <div className="d-flex align-items-center">
             {item.type !== Models.GROUP && item.type !== Models.DISPLAY && <div>
-                {/* <Form getApi={this.getFormApi_2.bind(this)} key={item.id} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}> */}
-                <div className="custom-control">
-                    <input name="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} /*onChange={this.submitForm_2.bind(this)}*/ />
-                    <label className="custom-control-label" htmlFor={`${item.id}-required`}>Required</label>
-                </div>
-                {/* <div className="custom-control">
-                        <Checkbox field="repeats" type="checkbox" className="custom-control-input" id={`${item.id}-repeats`} onChange={this.submitForm_2.bind(this)} />
-                        <label className="custom-control-label" htmlFor={`${item.id}-repeats`}>Repeats</label>
-                    </div> */}
-                {/* </Form> */}
+                <Form getApi={this.getFormApi_2.bind(this)} key={item.id} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
+                    <div className="custom-control">
+                        <Checkbox field="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} onChange={this.submitForm_2.bind(this)} />
+                        <label className="custom-control-label" htmlFor={`${item.id}-required`}>Required</label>
+                    </div>
+                </Form>
             </div>}
             <button className="btn btn-outline-secondary ml-auto" onClick={item.remove.bind(item)}>
                 <i className="fas fa-trash"></i>

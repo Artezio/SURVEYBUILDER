@@ -7,6 +7,7 @@ export interface IItem {
     id: string;
     type: ITEM_TYPE;
     text?: string;
+    required?: boolean;
     enableWhen?: IEnableWhen[];
     enableBehavior?: EnableBehavior;
 }

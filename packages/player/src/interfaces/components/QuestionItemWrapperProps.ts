@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 
 
 export interface QuestionItemWrapperProps {
-    item: Models.QuestionItem<any>;
+    item: Models.Item;
     questionnaireResponseItem: Models.QuestionnaireResponseItem;
     className?: string;
 }
