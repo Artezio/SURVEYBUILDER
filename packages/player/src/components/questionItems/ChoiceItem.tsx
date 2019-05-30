@@ -23,10 +23,10 @@ export class ChoiceItem extends QuestionItem<ChoiceItemProps> {
     }
 
     renderChoiceOptions() {
-        const { item } = this.props;
-        const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
+        const { item, questionnaireResponseItem } = this.props;
+        const initialValue = questionnaireResponseItem.answers[0] && questionnaireResponseItem.answers[0].id;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-            <RadioGroup field="value" initialValue={initialValue}>
+            <RadioGroup field="id" initialValue={initialValue}>
                 {item.options.map(option => {
                     return <div className="form-check" key={option.id}>
                         <Radio className="form-check-input" id={option.id} value={option.id} onChange={this.submitForm.bind(this)} />

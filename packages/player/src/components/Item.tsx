@@ -4,8 +4,8 @@ import { ItemProps } from '../interfaces/components/ItemProps';
 
 export class Item extends React.Component<ItemProps> {
     render() {
-        const { item, className = '' } = this.props;
-        return <p className={className}>{item.text}</p>
+        const { item } = this.props;
+        return <p>{item.text}</p>
     }
 }
 

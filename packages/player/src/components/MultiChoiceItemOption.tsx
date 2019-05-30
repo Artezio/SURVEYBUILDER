@@ -5,14 +5,8 @@ import { Checkbox, FormApi, Form } from 'informed';
 
 export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOptionProps> {
     formApi!: FormApi<Models.IAnswer<any>>;
-    answerFactory: Models.AnswerFactory;
-    answer?: Models.Answer<any>;
-
-    constructor(props: MultiChoiceItemOptionProps) {
-        super(props);
-        this.answerFactory = new Models.AnswerFactory(props.questionnaireResponseItem);
-        this.answer = props.questionnaireResponseItem.answers.find(answer => answer.value === props.option.id);
-    }
+    answerFactory: Models.AnswerFactory = new Models.AnswerFactory(this.props.questionnaireResponseItem);
+    answer?: Models.Answer<any> = this.props.questionnaireResponseItem.answers.find(answer => answer.id === this.props.option.id);
 
     submitForm() {
         if (!this.formApi) return;

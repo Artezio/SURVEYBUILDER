@@ -35,9 +35,10 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     }
 
     componentDidMount() {
-        const { item } = this.props;
+        const { item, questionnaireResponseItem } = this.props;
         const otherOption = item.options[item.options.length - 1];
-        if (item.initialAnswers[0] && item.initialAnswers[0].value === otherOption.id && this.otherAnswerInputRef.current && this.otherAnswerRadioRef.current) {
+        const initialAnswer = questionnaireResponseItem.answers[0] && questionnaireResponseItem.answers[0].id;
+        if (initialAnswer === otherOption.id && this.otherAnswerInputRef.current && this.otherAnswerRadioRef.current) {
             this.formApiOther && this.formApiOther.setValue('value', otherOption.value);
             this.otherAnswerRadioRef.current.click();
         }
@@ -64,8 +65,8 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     }
 
     renderOptions() {
-        const { item } = this.props;
-        const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
+        const { item, questionnaireResponseItem } = this.props;
+        const initialValue = questionnaireResponseItem.answers[0] && questionnaireResponseItem.answers[0].id;
         return <Form getApi={this.getFormApi.bind(this)} key={`${item.id}-options`} onSubmit={this.handleSubmit.bind(this)}>
             <RadioGroup field="value" initialValue={initialValue}>
                 {item.options.map((option, i) => {
