@@ -4,6 +4,8 @@ import uuid from 'uuid/v1';
 import Answer from "./answer";
 import ReplyStrategy from '../interfaces/IReplyStrategy';
 import AnswerFactory from '../factories/answerFactory';
+import IValidator from '../interfaces/IValidator';
+
 
 @observable
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
@@ -15,9 +17,11 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     @observableProperty
     answers!: Answer<any>[];
     answerFactory: AnswerFactory;
+    validator: IValidator;
 
-    constructor(item: Partial<IQuestionnaireResponseItem> | undefined, replyStrategy: ReplyStrategy) {
+    constructor(item: Partial<IQuestionnaireResponseItem> | undefined, replyStrategy: ReplyStrategy, validator: IValidator) {
         Object.assign(this, { id: uuid(), items: [], answers: [] }, item);
+        this.validator = validator;
         this.replyStrategy = replyStrategy;
         this.answerFactory = new AnswerFactory(this);
     }
@@ -27,7 +31,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     reply(value: any) {
-        this.replyStrategy(value, undefined, this, this.answerFactory);
+        this.replyStrategy(value, this.validator, this, this.answerFactory);
     }
 
     cancelAnswer(answer: Answer<any>) {

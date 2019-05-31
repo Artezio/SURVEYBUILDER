@@ -30,9 +30,6 @@ export class Item implements IItem {
                 })
                 this.parent.items
                 return position;
-            },
-            set() {
-
             }
         })
     }

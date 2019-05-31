@@ -1,18 +1,15 @@
 import ReplyStrategy from "../interfaces/IReplyStrategy";
-import { QuestionnaireResponseItem } from "../models/questionnaireResponseItem";
-import AnswerFactory from "../factories/answerFactory";
-import QuestionItem from "../models/questionItems/questionItem";
 
-export const textInputStrategy: ReplyStrategy = (value: any, item: QuestionItem<any> | undefined, questionnaireResponseItem: QuestionnaireResponseItem, answerFactory: AnswerFactory) => {
+export const textInputStrategy: ReplyStrategy = (value, validator, questionnaireResponseItem, answerFactory) => {
     if (questionnaireResponseItem.answers[0]) {
         const answer = questionnaireResponseItem.answers[0];
-        if (true/* validation should be there */) {
-            answer.setValue(value);
+        if (value !== '' && value !== undefined) {
+            validator(value) && answer.setValue(value);
         } else {
             answer.remove();
         }
     } else {
-        if (true/* validation should be there */) {
+        if (validator(value)) {
             const answer = answerFactory.createAnswer({ value });
             questionnaireResponseItem.setSingleAnswer(answer);
         }
