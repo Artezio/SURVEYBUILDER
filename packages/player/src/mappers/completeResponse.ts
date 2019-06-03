@@ -24,6 +24,11 @@ export const completeResponse = (item: Models.Questionnaire | Models.GroupItem, 
             }
         }
         const responseItem = Models.questionResponseFactory.createResponseByType(item.type, { id: item.id, text: item.text, answers });
+        if (item.type === Models.GROUP) {
+            completeResponse(item as Models.GroupItem, responseItem)
+        }
         response.addQuestionnaireResponseItem(responseItem);
     })
 }
+
+export default completeResponse;

@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { useObservableModel } from '@art-forms/observable';
-import { completeResponse } from '../mappers/completeResponse';
+import completeResponse from '../mappers/completeResponse';
 import ItemWrapper from './ItemWrapper';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     constructor(props: QuestionnaireProps) {
         super(props);
-        completeResponse(props.questionnaire, props.questionnaireResponse);/// toDo
+        completeResponse(props.questionnaire, props.questionnaireResponse);
     }
 
     renderItemList() {
