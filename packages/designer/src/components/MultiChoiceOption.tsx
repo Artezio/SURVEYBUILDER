@@ -9,19 +9,19 @@ export class MultiChoiceOption extends QuestionItem<MultiChoiceOptionProps> {
     initialAnswer?: Models.InitialAnswer<any> = this.props.item.initialAnswers.find(itm => itm.value === this.props.option.id);
 
     handleSubmit(values: Partial<Models.InitialAnswer<any>>) {
-        const { item, option } = this.props as any;
-        if (values.value) {
-            this.initialAnswer = this.initialAnswerFactory.createInitialAnswer({ value: option.id });
-            item.addInitialAnswer(this.initialAnswer);
-        }
-        else if (this.initialAnswer) {
-            item.removeInitialAnswer(this.initialAnswer);
-            this.initialAnswer = undefined;
-        }
+        // const { item, option } = this.props as any;
+        // if (values.value) {
+        //     this.initialAnswer = this.initialAnswerFactory.createInitialAnswer({ value: option.id });
+        //     item.addInitialAnswer(this.initialAnswer);
+        // }
+        // else if (this.initialAnswer) {
+        //     item.removeInitialAnswer(this.initialAnswer);
+        //     this.initialAnswer = undefined;
+        // }
     }
 
     componentDidUpdate() {
-        this.formApi && this.formApi.setValue('value', this.initialAnswer);
+        // this.formApi && this.formApi.setValue('value', this.initialAnswer);
     }
 
     onBlur(e: any) {
@@ -37,8 +37,9 @@ export class MultiChoiceOption extends QuestionItem<MultiChoiceOptionProps> {
     renderCheckbox() {
         const { option } = this.props;
         return <div className="input-group-text">
-            <label className="mr-1" htmlFor={`${option.id}-checkbox`}>As default</label>
-            <Checkbox initialValue={!!this.initialAnswer} field="value" id={`${option.id}-checkbox`} onChange={this.submitForm.bind(this)} />
+            {/* <label className="mr-1" htmlFor={`${option.id}-checkbox`}>As default</label> */}
+            <input type="checkbox" disabled={true} />
+            {/* <Checkbox initialValue={!!this.initialAnswer} field="value" id={`${option.id}-checkbox`} onChange={this.submitForm.bind(this)} /> */}
         </div>
     }
 

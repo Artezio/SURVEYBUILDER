@@ -34,9 +34,9 @@ export class ChoiceItem extends QuestionItem<ChoiceItemProps> {
 
     render() {
         return <div>
-            <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
+            {/* <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
                 Reset <i className="fas fa-undo small"></i>
-            </button>
+            </button> */}
             {this.renderChoiceOptions()}
             <div>
                 <button className="btn btn-outline-secondary form-control" onClick={this.addOption.bind(this)}>Add option</button>

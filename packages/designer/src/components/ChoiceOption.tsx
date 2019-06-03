@@ -28,14 +28,15 @@ export class ChoiceOption extends React.Component<ChoiceOptionProps> {
                 <div className="input-group">
                     <div className="input-group-prepend">
                         <div className="input-group-text">
-                            <label htmlFor={`${option.id}-initial`} className="mr-1">As default</label>
-                            <Radio value={option.id} id={`${option.id}-initial`} onChange={this.onChange.bind(this)} forwardedRef={this.RadioRef} />
+                            {/* <label htmlFor={`${option.id}-initial`} className="mr-1">As default</label> */}
+                            <input type="radio" disabled={true} />
+                            {/* <Radio value={option.id} id={`${option.id}-initial`} onChange={this.onChange.bind(this)} forwardedRef={this.RadioRef} /> */}
                         </div>
                     </div>
                     <input autoComplete="off"
                         id={`${option.id}-option`}
                         className="form-control"
-                        disabled={disabledOption && !!this.RadioRef.current && !this.RadioRef.current.checked}
+                        disabled={disabledOption}
                         defaultValue={option.value}
                         onBlur={this.onBlur.bind(this)}
                     />
