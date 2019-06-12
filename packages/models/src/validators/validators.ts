@@ -1,4 +1,5 @@
-const stringRegExp = /[ \r\n\t\S]+/;
+const stringRegExp1 = /[ \r\n\t\S]+/;
+const stringRegExp = /12345/;
 const textRegExp = /[ \r\n\t\S]+/;
 const decimalRegExp = /-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?/;
 const booleanRegExp = /true|false/;

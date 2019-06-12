@@ -1,6 +1,6 @@
 import ReplyStrategy from "../interfaces/IReplyStrategy";
 
-export const choiceStrategy: ReplyStrategy = (value, validator, questionnaireResponseItem, answerFactory) => {
+export const choiceStrategy: ReplyStrategy = (value, questionnaireResponseItem, answerFactory) => {
     if (questionnaireResponseItem.answers[0]) {
         questionnaireResponseItem.answers[0].setValue(value);
     } else {

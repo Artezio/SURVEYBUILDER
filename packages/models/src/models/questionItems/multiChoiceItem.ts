@@ -41,6 +41,7 @@ export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceIt
         const obs = getObservable(item);
         obs && obs.mute();
         this.options = item.options;
+        obs && obs.unmute();
         super.updateItem(item);
     }
 }

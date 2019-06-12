@@ -38,6 +38,7 @@ export class GroupItem extends Item implements IGroupItem {
             this.items = item.items;
         }
         obs && obs.unmute();
+        obs && obs.emitChange();
     }
 
     replaceItem(oldItem: Item, newItem: Item) {

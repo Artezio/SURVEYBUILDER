@@ -41,6 +41,7 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
         const obs = getObservable(item);
         obs && obs.mute();
         this.options = item.options;
+        obs && obs.unmute();
         super.updateItem(item);
     }
 }

@@ -48,6 +48,7 @@ export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem
         const obs = getObservable(item);
         obs && obs.mute();
         this.options = item.options;
+        obs && obs.unmute();
         super.updateItem(item);
     }
 }

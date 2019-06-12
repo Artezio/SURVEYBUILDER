@@ -24,3 +24,5 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
         Object.assign(this, questionnaireResponse);
     }
 }
+
+export default QuestionnaireResponse;

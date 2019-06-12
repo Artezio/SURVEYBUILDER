@@ -1,37 +1,53 @@
-import { observable, observableProperty } from '@art-forms/observable';
+import { observable, observableProperty, getObservable } from '@art-forms/observable';
 import { IQuestionnaireResponseItem } from "../interfaces/IQuestionnaireResponseItem";
 import uuid from 'uuid/v1';
 import Answer from "./answer";
 import ReplyStrategy from '../interfaces/IReplyStrategy';
 import AnswerFactory from '../factories/answerFactory';
 import IValidator from '../interfaces/IValidator';
+import Item from './item';
 
 
 @observable
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     id!: string;
     text?: string;
-    replyStrategy: ReplyStrategy;
+    replyStrategy!: ReplyStrategy;
     @observableProperty
     items!: QuestionnaireResponseItem[];
     @observableProperty
     answers!: Answer<any>[];
     answerFactory: AnswerFactory;
     validator: IValidator;
+    questionItem: Item;
+    isValidByRequired!: boolean;
+    isValidByRegExp!: boolean;
 
-    constructor(item: Partial<IQuestionnaireResponseItem> | undefined, replyStrategy: ReplyStrategy, validator: IValidator) {
-        Object.assign(this, { id: uuid(), items: [], answers: [] }, item);
+    constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: Item, replyStrategy: ReplyStrategy, validator: IValidator) {
+        Object.assign(this, { id: uuid(), items: [], answers: [] }, responseItem);
         this.validator = validator;
-        this.replyStrategy = replyStrategy;
+        this.setReplyStrategy(replyStrategy);
+        this.questionItem = questionItem;
         this.answerFactory = new AnswerFactory(this);
+        this.validate();
     }
 
     setReplyStrategy(replyStrategy: ReplyStrategy) {
         this.replyStrategy = replyStrategy;
     }
 
+    validate() {
+        this.isValidByRegExp = this.answers.every(answer => this.validator(answer.value));
+        this.isValidByRequired = !this.questionItem.required || (!!this.answers.length && this.answers.every(answer => answer.value !== '' && answer.value !== undefined));
+    }
+
     reply(value: any) {
-        this.replyStrategy(value, this.validator, this, this.answerFactory);
+        const obs = getObservable(this);
+        obs && obs.mute();
+        this.replyStrategy(value, this, this.answerFactory);
+        this.validate();
+        obs && obs.unmute();
+        obs && obs.emitChange();
     }
 
     cancelAnswer(answer: Answer<any>) {
@@ -66,3 +82,5 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.answers = this.answers.filter(ans => ans.id !== answer.id);
     }
 }
+
+export default QuestionnaireResponseItem;

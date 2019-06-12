@@ -38,7 +38,8 @@ export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
         obs && obs.mute();
         super.updateItem(item);
         this.initialAnswers = item.initialAnswers as any || [];
-        obs && obs.unmute;
+        obs && obs.unmute();
+        obs && obs.emitChange();
     }
 }
 

@@ -1,6 +1,6 @@
 import ReplyStrategy from "../interfaces/IReplyStrategy";
 
-export const multiChoiceStrategy: ReplyStrategy = (value, validator, questionnaireResponseItem, answerFactory) => {
+export const multiChoiceStrategy: ReplyStrategy = (value, questionnaireResponseItem, answerFactory) => {
     questionnaireResponseItem.addAnswer(answerFactory.createAnswer({ value }));
 }
 
