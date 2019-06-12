@@ -131,6 +131,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         item.remove();
         newItemList.addItem(item, e.newIndex);
         obs && obs.unmute();
+        obs && obs.emitChange();
     }
 
     findNestedItemList(nesting?: string): Models.Questionnaire | Models.GroupItem | undefined {
