@@ -5,20 +5,10 @@ import AttachmentItemProps from '../../interfaces/components/questionItems/Attac
 
 
 export class AttachmentItem extends React.Component<AttachmentItemProps> {
-    answerFactory: Models.AnswerFactory;
     fileList: string[] = [];
     dataTransfer: DataTransfer = new DataTransfer();
     fileInputRef: React.RefObject<HTMLInputElement> = React.createRef();
-
-    constructor(props: AttachmentItemProps) {
-        super(props);
-        props.questionnaireResponseItem.answers = [];
-        this.answerFactory = new Models.AnswerFactory(props.questionnaireResponseItem);
-    }
-
-    handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-    }
+    answerFactory = new Models.AnswerFactory(this.props.questionnaireResponseItem);
 
     handleChange(e: any) {
         const { item, questionnaireResponseItem } = this.props;
@@ -74,17 +64,15 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
 
     render() {
         const { item } = this.props;
-        return <form onSubmit={this.handleSubmit.bind(this)} method="post" encType="multipart/form-data">
-            <div className="form-group">
-                <div className="input-group">
-                    <div className="custom-file">
-                        <input type="file" multiple={item.multipleFiles} name="value" className="custom-file-input" id={item.id} onChange={this.handleChange.bind(this)} ref={this.fileInputRef} />
-                        <label className="custom-file-label" htmlFor={item.id}>Chose file</label>
-                    </div>
+        return <div className="form-group">
+            <div className="input-group">
+                <div className="custom-file">
+                    <input type="file" multiple={item.multipleFiles} name="value" className="custom-file-input" id={item.id} onChange={this.handleChange.bind(this)} ref={this.fileInputRef} />
+                    <label className="custom-file-label" htmlFor={item.id}>Chose file</label>
                 </div>
-                {this.renderFileList()}
             </div>
-        </form>
+            {this.renderFileList()}
+        </div>
     }
 }
 

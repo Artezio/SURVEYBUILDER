@@ -26,7 +26,7 @@ questionnaire.addItem(factory.createGroupItem({
                 factory.createDateItem({ text: "date question" }),
                 factory.createDateTimeItem({ text: "date-time question", required: true }),
                 factory.createBooleanItem({ text: "boolean question", initialAnswers: [initialAnswerFactory.createInitialAnswer({ value: true })] }),
-                factory.createChoiceItem({ text: "choice question", options: [{ id: '1', value: 'one' }, { id: '2', value: 'two' }, { id: '3', value: 'three' }, { id: '4', value: 'four' }], initialAnswers: [initialAnswerFactory.createInitialAnswer({ id: '1213321', value: '4' })] }),
+                factory.createChoiceItem({ text: "choice question", options: [{ id: '1', value: 'one' }, { id: '2', value: 'two' }, { id: '3', value: 'three' }, { id: '4', value: 'four' }] }),
                 factory.createAttachmentItem({ text: "attachment question", multipleFiles: true }),
                 factory.createOpenChoiceItem({ text: "open-choice question", options: [{ id: '5', value: 'one' }, { id: '6', value: 'two' }, { id: '7', value: 'three' }, { id: '8', value: 'four' }] }),
                 // factory.createOpenChoiceItem({ text: "open-choice question", options: [{ id: '11', value: 'one' }, { id: '12', value: 'two' }, { id: '13', value: 'three' }, { id: '14', value: 'four' }] }),

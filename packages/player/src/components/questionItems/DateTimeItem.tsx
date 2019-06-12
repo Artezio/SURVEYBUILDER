@@ -1,20 +1,21 @@
 import * as React from 'react';
-import { Form, Text } from 'informed';
-import { useObservableModel } from '@art-forms/observable';
+import { Text, withFormApi, FormState } from 'informed';
 import DateTimeItemProps from '../../interfaces/components/questionItems/DateTimeItemProps';
-import QuestionItem from './QuestionItem';
 
 
-export class DateTimeItem extends QuestionItem<DateTimeItemProps> {
+export class DateTimeItem extends React.Component<DateTimeItemProps> {
+
+    onBlur() {
+        const { formApi, item, questionnaireResponseItem } = this.props;
+        questionnaireResponseItem.reply(formApi.getValue(item.id));
+    }
+
     render() {
         const { item } = this.props;
-        const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
-        return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-            <div className="form-group">
-                <Text autoComplete="off" id={item.id} type="datetime-local" className="form-control" field="value" initialValue={initialValue} onBlur={this.submitForm.bind(this)} />
-            </div>
-        </Form>
+        return <div className="form-group">
+            <Text autoComplete="off" id={item.id} type="datetime-local" className="form-control" field={item.id} onBlur={this.onBlur.bind(this)} />
+        </div>
     }
 }
 
-export default useObservableModel<DateTimeItemProps>(DateTimeItem);
+export default withFormApi<DateTimeItemProps, FormState>(DateTimeItem);
