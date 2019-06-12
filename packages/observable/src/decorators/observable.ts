@@ -12,16 +12,18 @@ const observablePropertySym = Symbol('observableProperty');
 
 const saveSymbolProperties = (newObj, oldObj) => {
     if (isObservable(oldObj)) {
-        newObj[_subscribers] = oldObj[_subscribers];
+        newObj[_subscribers] = oldObj[_subscribers].splice();
         newObj[_isMuted] = oldObj[_isMuted];
     }
 }
 
 const copyObservableObject = (obj) => {
     let newObj = { ...obj };
+    // console.log('Observable: newObj: ', newObj, 'oldObj: ', obj);
     Reflect.setPrototypeOf(newObj, obj.__proto__);
     newObj = toObservable(newObj);
     saveSymbolProperties(newObj, obj);
+    subscribeOnObservableProperties(newObj);
     return newObj;
 }
 
@@ -35,7 +37,7 @@ const _handler = {
             return true;
         }
         if (Reflect.getMetadata(observablePropertySym, target.__proto__, propertyName)) {
-            target[propertyName] = isObservable(value) ? value : toObservable(value);
+            target[propertyName] = toObservable(value);
             getObservable(target[propertyName]).subscribe(() => {
                 if (notEqualToSymbols(propertyName as any)) {
                     target[emitChange] && target[emitChange]();
@@ -83,6 +85,9 @@ export function getObservable(target: any): IObservable | undefined {
 export function proxify(target: any) {
     return new Proxy(target, _handler)
 }
+const simpleProxify = (target: any) => {
+    return new Proxy(target, {})
+}
 
 function _addMethods(target: any) {
     if (isObservable(target) || (typeof target === 'object' && !Reflect.isExtensible(target))) {
@@ -105,7 +110,8 @@ function _addMethods(target: any) {
     Reflect.defineProperty(target, _notify, {
         value: function (fn: Function) {
             setTimeout(() => {
-                fn(copyObservableObject(this));
+                // console.log('BEFORE APPLY', this)
+                fn(simpleProxify(this));
             })
         }
     })
@@ -127,7 +133,6 @@ function _addMethods(target: any) {
     Reflect.defineProperty(target, unmute, {
         value: function () {
             this[_isMuted] = false;
-            this[emitChange]();
         }
     })
 
@@ -139,20 +144,34 @@ export function toObservable(target: any) {
     return proxify(target);
 }
 
+const subscribeOnObservableProperties = (obj) => {
+    Reflect.ownKeys(obj)
+        .filter((key: string) => isObservable(obj[key]))
+        .forEach((key: string) => {
+            getObservable(obj[key]).subscribe(() => {
+                const obs = getObservable(obj);
+                if (notEqualToSymbols(key as any)) {
+                    obs && obs.emitChange();
+                }
+            })
+        })
+}
+
 export const observable = <T extends { new(...args: any[]): {} }>(ctor: T) => {
     return class Observable extends ctor {
         constructor(...args: any[]) {
             super(...args);
-            Reflect.ownKeys(this)
-                .filter((key: string) => isObservable(this[key]))
-                .forEach((key: string) => {
-                    getObservable(this[key]).subscribe(() => {
-                        const obs = getObservable(this);
-                        if (notEqualToSymbols(key as any)) {
-                            obs && obs.emitChange();
-                        }
-                    })
-                })
+            subscribeOnObservableProperties(this);
+            // Reflect.ownKeys(this)
+            //     .filter((key: string) => isObservable(this[key]))
+            //     .forEach((key: string) => {
+            //         getObservable(this[key]).subscribe(() => {
+            //             const obs = getObservable(this);
+            //             if (notEqualToSymbols(key as any)) {
+            //                 obs && obs.emitChange();
+            //             }
+            //         })
+            //     })
             return toObservable(this);
         }
     }
@@ -162,7 +181,7 @@ export const observableProperty = (target: any, propertyName: string) => {
     Reflect.defineProperty(target, propertyName, {
         set(value) {
             Reflect.defineProperty(this, propertyName, {
-                value: isObservable(value) ? value : toObservable(value),
+                value: toObservable(value),
                 enumerable: true,
                 writable: true,
                 configurable: true

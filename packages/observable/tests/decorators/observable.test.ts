@@ -125,16 +125,15 @@ describe("decorators/observable", () => {
             const animal_1 = new Animal('animal_1');
             const animal_2 = new Animal('animal_2');
             const person = new Person('Name', 15);
-            let newPerson;
             const obs = getObservable(person);
-            const dispose = obs && obs.subscribe((obj: any) => {
-                newPerson = obj;
+            const dispose = obs && obs.subscribe((obj) => {
+                const newPerson = obj;
                 const obs = getObservable(newPerson);
-                obs.subscribe(() => {
+                obs && obs.subscribe(() => {
                     assert(true);
                     done();
                 })
-                dispose.dispose();
+                dispose && dispose.dispose();
                 newPerson.pets.push(animal_2);
             })
             person.pets.push(animal_1);

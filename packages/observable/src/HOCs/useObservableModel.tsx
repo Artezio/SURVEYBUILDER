@@ -7,7 +7,7 @@ import { IDisposable } from '../interfaces';
 export function useObservableModel<T>(WrappedComponent: any): React.ComponentType<T> {
     class Enhance extends React.Component<T> {
         subscriptions: IDisposable[] = [];
-        wasNotUnmounted?: boolean = true;
+        wasNotUnmounted: boolean = true;
 
         constructor(props: T) {
             super(props);
