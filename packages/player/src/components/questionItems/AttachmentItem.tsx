@@ -3,7 +3,7 @@ import { useObservableModel } from '@art-forms/observable';
 import AttachmentItemProps from '../../interfaces/components/questionItems/AttachmentItemProps';
 
 
-export class AttachmentItem extends React.Component<AttachmentItemProps> {
+export class AttachmentItem extends React.PureComponent<AttachmentItemProps> {
     fileNameList: string[] = [];
     dataTransfer: DataTransfer = new DataTransfer();
     fileInputRef: React.RefObject<HTMLInputElement> = React.createRef();

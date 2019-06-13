@@ -4,7 +4,7 @@ import StringItemProps from '../../interfaces/components/questionItems/StringIte
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class StringItem extends React.Component<StringItemProps> {
+export class StringItem extends React.PureComponent<StringItemProps> {
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;
@@ -24,7 +24,6 @@ export class StringItem extends React.Component<StringItemProps> {
 
     render() {
         const { item } = this.props;
-        console.log('RENDERED', this.props)
         return <div className="form-group">
             <Text autoComplete="off"
                 id={item.id}

@@ -6,7 +6,7 @@ import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenC
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
+export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
     otherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
     otherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
 

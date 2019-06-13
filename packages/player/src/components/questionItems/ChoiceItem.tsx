@@ -4,7 +4,7 @@ import ChoiceItemProps from '../../interfaces/components/questionItems/ChoiceIte
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class ChoiceItem extends React.Component<ChoiceItemProps> {
+export class ChoiceItem extends React.PureComponent<ChoiceItemProps> {
 
     onChange() {
         const { questionnaireResponseItem, item, formApi } = this.props;

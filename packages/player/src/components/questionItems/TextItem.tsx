@@ -4,7 +4,7 @@ import TextItemProps from '../../interfaces/components/questionItems/TextItemPro
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class TextItem extends React.Component<TextItemProps> {
+export class TextItem extends React.PureComponent<TextItemProps> {
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;

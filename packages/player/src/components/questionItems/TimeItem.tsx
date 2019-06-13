@@ -4,7 +4,7 @@ import TimeItemProps from '../../interfaces/components/questionItems/TimeItemPro
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class TimeItem extends React.Component<TimeItemProps> {
+export class TimeItem extends React.PureComponent<TimeItemProps> {
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;

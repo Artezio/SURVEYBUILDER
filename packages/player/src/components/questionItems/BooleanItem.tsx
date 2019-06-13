@@ -4,7 +4,7 @@ import BooleanItemProps from '../../interfaces/components/questionItems/BooleanI
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class BooleanItem extends React.Component<BooleanItemProps> {
+export class BooleanItem extends React.PureComponent<BooleanItemProps> {
 
     onChange() {
         const { questionnaireResponseItem, item, formApi } = this.props;

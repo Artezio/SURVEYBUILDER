@@ -20,7 +20,6 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     }
 
     render() {
-        console.log("RENDERED_WRAPPER")
         const { className = '', item, questionnaireResponseItem, formApi } = this.props;
         const wrongValue = formApi.getTouched(item.id) && (!questionnaireResponseItem.isValidByRegExp || !questionnaireResponseItem.isValidByRequired);
         return <div className={`questionnaire-response${item.type === Models.GROUP ? '-group' : ''}-item${wrongValue ? ' error-item' : ''} ${className}`}>
@@ -31,4 +30,4 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     }
 }
 
-export default withFormApi<ItemWrapperProps, FormState>(useObservableModel(ItemWrapper));
+export default withFormApi<Omit<ItemWrapperProps, 'formApi'>, FormState>(useObservableModel(ItemWrapper));

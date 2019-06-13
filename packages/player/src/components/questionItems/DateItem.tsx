@@ -4,7 +4,7 @@ import DateItemProps from '../../interfaces/components/questionItems/DateItemPro
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class DateItem extends React.Component<DateItemProps> {
+export class DateItem extends React.PureComponent<DateItemProps> {
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;

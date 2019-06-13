@@ -4,7 +4,7 @@ import DateTimeItemProps from '../../interfaces/components/questionItems/DateTim
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class DateTimeItem extends React.Component<DateTimeItemProps> {
+export class DateTimeItem extends React.PureComponent<DateTimeItemProps> {
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;

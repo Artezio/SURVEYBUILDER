@@ -5,7 +5,7 @@ import MultiChoiceItemOption from '../MultiChoiceItemOption';
 import { Scope, withFormApi, FormState } from 'informed';
 
 
-export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
+export class MultiChoiceItem extends React.PureComponent<MultiChoiceItemProps> {
     render() {
         const { item, questionnaireResponseItem, formApi } = this.props;
         return <div className="form-group">

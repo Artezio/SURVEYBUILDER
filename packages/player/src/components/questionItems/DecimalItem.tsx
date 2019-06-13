@@ -4,7 +4,7 @@ import DecimalItemProps from '../../interfaces/components/questionItems/DecimalI
 import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
-export class DecimalItem extends React.Component<DecimalItemProps> {
+export class DecimalItem extends React.PureComponent<DecimalItemProps> {
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;
