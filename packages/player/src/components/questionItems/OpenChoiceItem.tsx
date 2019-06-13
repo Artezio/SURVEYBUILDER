@@ -58,7 +58,13 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                 <input type="radio" className="form-check-input" id={otherOption.id} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.otherAnswerRadioRef} />
                 <label className="form-check-label" htmlFor={otherOption.id}>Other</label>
             </div>
-            <Text autoComplete="off" field={`${item.id}-other`} className="form-control" onBlur={this.onBlurFromOtherOption.bind(this)} disabled={true} forwardedRef={this.otherAnswerInputRef} />
+            <Text autoComplete="off"
+                field={`${item.id}-other`}
+                className="form-control"
+                onBlur={this.onBlurFromOtherOption.bind(this)}
+                disabled={true}
+                forwardedRef={this.otherAnswerInputRef}
+            />
         </>
     }
 

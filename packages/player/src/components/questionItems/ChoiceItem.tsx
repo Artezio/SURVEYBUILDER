@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { RadioGroup, Radio, FormState, withFormApi } from 'informed';
-import * as Models from '@art-forms/models';
 import ChoiceItemProps from '../../interfaces/components/questionItems/ChoiceItemProps';
 
 
 export class ChoiceItem extends React.Component<ChoiceItemProps> {
-    answerFactory: Models.AnswerFactory = new Models.AnswerFactory(this.props.questionnaireResponseItem);
 
     onChange() {
         const { questionnaireResponseItem, item, formApi } = this.props;

@@ -7,8 +7,7 @@ import { FormState, withFormApi } from 'informed';
 import { ERROR_MESSAGES } from '../constants/errorMessages';
 
 
-export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
-    answerFactory: Models.AnswerFactory = new Models.AnswerFactory(this.props.questionnaireResponseItem);
+export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
     renderErrorMessage() {
         const { formApi, item, questionnaireResponseItem } = this.props;
@@ -21,6 +20,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 
     render() {
+        console.log("RENDERED_WRAPPER")
         const { className = '', item, questionnaireResponseItem, formApi } = this.props;
         const wrongValue = formApi.getTouched(item.id) && (!questionnaireResponseItem.isValidByRegExp || !questionnaireResponseItem.isValidByRequired);
         return <div className={`questionnaire-response${item.type === Models.GROUP ? '-group' : ''}-item${wrongValue ? ' error-item' : ''} ${className}`}>

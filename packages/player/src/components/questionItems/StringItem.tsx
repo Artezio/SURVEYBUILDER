@@ -13,6 +13,7 @@ export class StringItem extends React.Component<StringItemProps> {
 
     validate() {
         const { questionnaireResponseItem } = this.props;
+        questionnaireResponseItem.validate();
         if (!questionnaireResponseItem.isValidByRequired) {
             return ERROR_MESSAGES.IS_REQUIRED;
         }
@@ -25,7 +26,14 @@ export class StringItem extends React.Component<StringItemProps> {
         const { item } = this.props;
         console.log('RENDERED', this.props)
         return <div className="form-group">
-            <Text autoComplete="off" id={item.id} className="form-control" field={item.id} onBlur={this.onBlur.bind(this)} validateOnChange={true} validate={this.validate.bind(this)} />
+            <Text autoComplete="off"
+                id={item.id}
+                className="form-control"
+                field={item.id}
+                onBlur={this.onBlur.bind(this)}
+                validateOnChange={true}
+                validate={this.validate.bind(this)}
+            />
         </div>
     }
 }

@@ -25,3 +25,5 @@ export class InitialAnswer<T> implements IInitialAnswer<T>{
         this.parent && this.parent.removeInitialAnswer(this);
     }
 }
+
+export default IInitialAnswer;

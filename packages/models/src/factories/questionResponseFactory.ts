@@ -6,6 +6,7 @@ import multiChoiceStrategy from "../replyStrategies/multiChoiceStrategy";
 import { ATTACHMENT, BOOLEAN, CHOICE, DATE, TIME, DATE_TIME, TEXT, STRING, DECIMAL, OPEN_CHOICE, MULTI_CHOICE } from "../constants/itemTypes";
 import validators from "../validators/validators";
 import Item from "../models/item";
+import attachmentStrategy from "../replyStrategies/attachmentStrategy";
 
 const DEFAULT_VALIDATOR = () => true;
 
@@ -43,7 +44,7 @@ export const questionResponseFactory = {
                 return new QuestionnaireResponseItem(responseItem, item, multiChoiceStrategy, DEFAULT_VALIDATOR);
             }
             case ATTACHMENT: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, DEFAULT_VALIDATOR);
+                return new QuestionnaireResponseItem(responseItem, item, attachmentStrategy, DEFAULT_VALIDATOR);
             }
             default: {
                 return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, DEFAULT_VALIDATOR);

@@ -1,14 +1,12 @@
 import * as React from 'react';
-import * as Models from '@art-forms/models';
 import { useObservableModel } from '@art-forms/observable';
 import AttachmentItemProps from '../../interfaces/components/questionItems/AttachmentItemProps';
 
 
 export class AttachmentItem extends React.Component<AttachmentItemProps> {
-    fileList: string[] = [];
+    fileNameList: string[] = [];
     dataTransfer: DataTransfer = new DataTransfer();
     fileInputRef: React.RefObject<HTMLInputElement> = React.createRef();
-    answerFactory = new Models.AnswerFactory(this.props.questionnaireResponseItem);
 
     handleChange(e: any) {
         const { item, questionnaireResponseItem } = this.props;
@@ -16,15 +14,14 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
         const fileList = input.files;
         if (item.multipleFiles) {
             for (let file of fileList) {
-                if (this.fileList.indexOf(file.name) === -1) {
-                    questionnaireResponseItem.addAnswer(this.answerFactory.createAnswer({ value: file.name }));
-                    this.fileList.push(file.name);
+                if (this.fileNameList.indexOf(file.name) === -1) {
+                    this.fileNameList.push(file.name);
                     this.dataTransfer.items.add(file);
                 }
                 else {
-                    const index = this.fileList.indexOf(file.name);
-                    this.fileList.splice(index, 1);
-                    this.fileList.push(file.name);
+                    const index = this.fileNameList.indexOf(file.name);
+                    this.fileNameList.splice(index, 1);
+                    this.fileNameList.push(file.name);
                     this.dataTransfer.items.remove(index);
                     this.dataTransfer.items.add(file);
                     this.forceUpdate();
@@ -34,29 +31,31 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
         else {
             this.dataTransfer.items.clear();
             this.dataTransfer.items.add(fileList[0]);
-            this.fileList = [fileList[0].name];
-            questionnaireResponseItem.answers = [this.answerFactory.createAnswer({ value: fileList[0].name })];
+            this.fileNameList = [fileList[0].name];
         }
         input.files = this.dataTransfer.files;
+        questionnaireResponseItem.reply(this.fileNameList);
     }
 
     removeFile(fileName: string) {
         const { questionnaireResponseItem } = this.props;
-        const index = this.fileList.indexOf(fileName);
-        this.fileList.splice(index, 1);
+        const index = this.fileNameList.indexOf(fileName);
+        this.fileNameList.splice(index, 1);
         this.dataTransfer.items.remove(index);
         if (this.fileInputRef.current) {
             this.fileInputRef.current.files = this.dataTransfer.files;
         }
         const oldAnswer = questionnaireResponseItem.answers.find(answer => answer.value === fileName);
         oldAnswer && oldAnswer.remove();
+        questionnaireResponseItem.reply(this.fileNameList);
     }
 
     renderFileList() {
+        const { questionnaireResponseItem } = this.props;
         return <ul className="list-group list-group-flush">
-            {this.fileList.map(fileName => <li key={fileName} className="list-group-item d-flex align-items-center">
-                <button className="btn btn-outline-secondary mr-2" onClick={this.removeFile.bind(this, fileName)}><i className="fas fa-times"></i></button>
-                {fileName}
+            {questionnaireResponseItem.answers.map(answer => <li key={answer.value} className="list-group-item d-flex align-items-center">
+                <button className="btn btn-outline-secondary mr-2" onClick={this.removeFile.bind(this, answer.value)}><i className="fas fa-times"></i></button>
+                {answer.value}
             </li>
             )}
         </ul>
