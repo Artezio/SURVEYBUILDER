@@ -78,43 +78,43 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
 
     changeItemToString() {
         const { item } = this.props;
-        const newItem = this.factory.createStringItem({ text: item.text });
+        const newItem = this.factory.createStringItem({ text: item.text, required: item.required });
         item.replace(newItem);
     }
 
     changeItemToText() {
         const { item } = this.props;
-        const newItem = this.factory.createTextItem({ text: item.text });
+        const newItem = this.factory.createTextItem({ text: item.text, required: item.required });
         item.replace(newItem);
     }
 
     changeItemToBoolean() {
         const { item } = this.props;
-        const newItem = this.factory.createBooleanItem({ text: item.text });
+        const newItem = this.factory.createBooleanItem({ text: item.text, required: item.required });
         item.replace(newItem);
     }
 
     changeItemToDecimal() {
         const { item } = this.props;
-        const newItem = this.factory.createDecimalItem({ text: item.text });
+        const newItem = this.factory.createDecimalItem({ text: item.text, required: item.required });
         item.replace(newItem);
     }
 
     changeItemToTime() {
         const { item } = this.props;
-        const newItem = this.factory.createTimeItem({ text: item.text });
+        const newItem = this.factory.createTimeItem({ text: item.text, required: item.required });
         item.replace(newItem);
     }
 
     changeItemToDate() {
         const { item } = this.props;
-        const newItem = this.factory.createDateItem({ text: item.text });
+        const newItem = this.factory.createDateItem({ text: item.text, required: item.required });
         item.replace(newItem);
     }
 
     changeItemToDateTime() {
         const { item } = this.props;
-        const newItem = this.factory.createDateTimeItem({ text: item.text });
+        const newItem = this.factory.createDateTimeItem({ text: item.text, required: item.required });
         item.replace(newItem);
     }
 
@@ -133,7 +133,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
                 options.pop();
             }
         }
-        const newItem = this.factory.createChoiceItem({ text: item.text, options });
+        const newItem = this.factory.createChoiceItem({ text: item.text, options, required: item.required });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
     }
@@ -150,7 +150,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
                 [answerOptionFactory.createAnswerOption({ value: "Option 1" })] :
                 (item as Models.OpenChoiceItem).options.slice();
         }
-        const newItem = this.factory.createOpenChoiceItem({ text: item.text, options });
+        const newItem = this.factory.createOpenChoiceItem({ text: item.text, options, required: item.required });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
     }
@@ -170,14 +170,14 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
                 options.pop();
             }
         }
-        const newItem = this.factory.createMultiChoiceItem({ text: item.text, options });
+        const newItem = this.factory.createMultiChoiceItem({ text: item.text, options, required: item.required });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
     }
 
     changeItemToAttachment() {
         const { item } = this.props;
-        const newItem = this.factory.createAttachmentItem({ text: item.text });
+        const newItem = this.factory.createAttachmentItem({ text: item.text, required: item.required });
         item.replace(newItem);
     }
 

@@ -30,7 +30,7 @@ questionnaire.addItem(factory.createGroupItem({
                 factory.createAttachmentItem({ text: "attachment question", multipleFiles: true }),
                 factory.createOpenChoiceItem({ text: "open-choice question", options: [{ id: '5', value: 'one' }, { id: '6', value: 'two' }, { id: '7', value: 'three' }, { id: '8', value: 'four' }] }),
                 // factory.createOpenChoiceItem({ text: "open-choice question", options: [{ id: '11', value: 'one' }, { id: '12', value: 'two' }, { id: '13', value: 'three' }, { id: '14', value: 'four' }] }),
-                factory.createMultiChoiceItem({ text: "multi-choice question", options: [answerOptionFactory.createAnswerOption({ value: "one" }), answerOptionFactory.createAnswerOption({ value: "two" }), answerOptionFactory.createAnswerOption({ value: "three" }), answerOptionFactory.createAnswerOption({ value: "four" })] })
+                factory.createMultiChoiceItem({ required: true, text: "multi-choice question", options: [answerOptionFactory.createAnswerOption({ value: "one" }), answerOptionFactory.createAnswerOption({ value: "two" }), answerOptionFactory.createAnswerOption({ value: "three" }), answerOptionFactory.createAnswerOption({ value: "four" })] })
             ]
         }),
         factory.createItem({ text: 'end_2' })

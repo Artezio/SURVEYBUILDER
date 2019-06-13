@@ -3,6 +3,7 @@ import * as Models from '@art-forms/models';
 import { RadioGroup, Radio, Text, withFormApi, FormState } from 'informed';
 import { useObservableModel } from '@art-forms/observable';
 import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenChoiceItemProps';
+import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
@@ -36,9 +37,20 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
         questionnaireResponseItem.reply(value);
     }
 
+    validate() {
+        const { questionnaireResponseItem } = this.props;
+        questionnaireResponseItem.validate();
+        if (!questionnaireResponseItem.isValidByRequired) {
+            return ERROR_MESSAGES.IS_REQUIRED;
+        }
+        if (!questionnaireResponseItem.isValidByRegExp) {
+            return ERROR_MESSAGES.INVALID_INPUT;
+        }
+    }
+
     renderOptions() {
         const { item } = this.props;
-        return <RadioGroup field={item.id} onChange={this.toggleToOptions.bind(this)}>
+        return <RadioGroup field={item.id} onChange={this.toggleToOptions.bind(this)} validateOnChange={true} validate={this.validate.bind(this)}>
             {item.options.map((option, i) => {
                 if (i !== item.options.length - 1) {
                     return <div className="form-check" key={option.id}>
@@ -64,6 +76,8 @@ export class OpenChoiceItem extends React.Component<OpenChoiceItemProps> {
                 onBlur={this.onBlurFromOtherOption.bind(this)}
                 disabled={true}
                 forwardedRef={this.otherAnswerInputRef}
+                validateOnChange={true}
+                validate={this.validate.bind(this)}
             />
         </>
     }
