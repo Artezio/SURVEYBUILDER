@@ -117,6 +117,15 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     onDragUnchoose(e: SortableEvent) {
         document.body.style.height = "";
+        console.log(e.item)
+        const item = e.item;
+        this.highlightDraggedItem(item);
+    }
+
+    highlightDraggedItem(item: HTMLElement) {
+        this.clearSelected();
+        item && item.classList.add('card-active');
+        item && item.classList.add('shadow');
     }
 
     onDragEnd(e: SortableEvent) {
