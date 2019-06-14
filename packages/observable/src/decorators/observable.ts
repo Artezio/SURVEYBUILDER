@@ -111,7 +111,7 @@ function _addMethods(target: any) {
         value: function (fn: Function) {
             setTimeout(() => {
                 // console.log('BEFORE APPLY', this)
-                fn(simpleProxify(this));
+                fn(proxify(this));
             })
         }
     })

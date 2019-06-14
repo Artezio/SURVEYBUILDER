@@ -69,8 +69,16 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.clearSelected();
     }
 
+    clearSelected() {
+        const selectedItems = document.querySelectorAll('.card-active');
+        selectedItems.forEach(selectedItem => {
+            selectedItem && selectedItem.classList.remove('card-active');
+            selectedItem && selectedItem.classList.remove('shadow');
+        })
+    }
+
     itemListener(e: Event) {
-        const target = (e.currentTarget as HTMLElement);
+        const target = e.currentTarget as HTMLElement;
         if (!target.classList.contains('card-active')) {
             this.clearSelected();
             target && target.classList.add('card-active');
@@ -82,18 +90,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         document.addEventListener('click', this.documentListener.bind(this), true);
     }
 
-    clearSelected() {
-        const selectedItems = document.querySelectorAll('.card-active');
-        selectedItems.forEach(selectedItem => {
-            selectedItem && selectedItem.classList.remove('card-active');
-            selectedItem && selectedItem.classList.remove('shadow');
-        })
-    }
-
     highlightActiveItems() {
         document.querySelectorAll('.questionnaire-item').forEach(el => {
-            el.removeEventListener('click', this.itemListener.bind(this));
-            el.addEventListener('click', this.itemListener.bind(this));
+            el.removeEventListener('click', this.itemListener.bind(this), true);
+            el.removeEventListener('focus', this.itemListener.bind(this), true);
+            el.addEventListener('click', this.itemListener.bind(this), true);
+            el.addEventListener('focus', this.itemListener.bind(this), true);
         })
     }
 
@@ -126,12 +128,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         if (oldItemList !== newItemList) {
             e.from.appendChild(e.item);
         }
-        const obs = getObservable(item);
-        obs && obs.mute();
         item.remove();
         newItemList.addItem(item, e.newIndex);
-        obs && obs.unmute();
-        obs && obs.emitChange();
     }
 
     findNestedItemList(nesting?: string): Models.Questionnaire | Models.GroupItem | undefined {
