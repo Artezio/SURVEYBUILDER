@@ -54,7 +54,7 @@ export class AttachmentItem extends React.PureComponent<AttachmentItemProps> {
         const { questionnaireResponseItem } = this.props;
         return <ul className="list-group list-group-flush">
             {questionnaireResponseItem.answers.map(answer => <li key={answer.value} className="list-group-item d-flex align-items-center">
-                <button className="btn btn-outline-secondary mr-2" onClick={this.removeFile.bind(this, answer.value)}><i className="fas fa-times"></i></button>
+                <button type="button" className="btn btn-outline-secondary mr-2" onClick={this.removeFile.bind(this, answer.value)}><i className="fas fa-times"></i></button>
                 {answer.value}
             </li>
             )}
@@ -65,7 +65,7 @@ export class AttachmentItem extends React.PureComponent<AttachmentItemProps> {
         const { item } = this.props;
         return <div className="form-group">
             <div className="input-group">
-                <div className="custom-file">
+                <div className="custom-file attachment-item">
                     <input type="file" multiple={item.multipleFiles} name="value" className="custom-file-input" id={item.id} onChange={this.handleChange.bind(this)} ref={this.fileInputRef} />
                     <label className="custom-file-label" htmlFor={item.id}>Chose file</label>
                 </div>

@@ -11,6 +11,7 @@ import { provider } from '@art-forms/providers';
 export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi?: FormApi<IFormState>;
     initialFormState: IFormState = completeInitialFormState(this.props.questionnaireResponse);
+    // isFileDraggingOverDocument: boolean = false;
 
     getFormApi(formApi: FormApi<IFormState>) {
         this.formApi = formApi;
@@ -30,6 +31,40 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             firstIncorrectAnswer && firstIncorrectAnswer.scrollIntoView();
         })
     }
+
+    // componentDidMount() {
+    //     document.addEventListener('dragenter', this.documentListener);
+    //     document.addEventListener('dragleave', this.documentListenerOff);
+    // }
+
+    // componentWillUnmount() {
+    //     document.removeEventListener('dragenter', this.documentListener);
+    //     document.removeEventListener('dragleave', this.documentListenerOff);
+    // }
+
+    // documentListener(e: DragEvent) { /// think about name
+    //     if (e.dataTransfer) {
+    //         console.log(e.dataTransfer.getData('format'));
+    //     }
+    //     if (!this.isFileDraggingOverDocument) {
+    //         this.isFileDraggingOverDocument = true;
+    //         const attachmentDives = document.querySelectorAll('.attachment-item');
+    //         attachmentDives.forEach(element => {
+    //             element.classList.add('fileIsDraggingOverDocument');
+    //         })
+    //     }
+    // }
+
+    // documentListenerOff(e: DragEvent) { /// think about name
+    //     console.log('LEAVE')
+    //     if (!e.clientX && !e.clientY) {
+    //         this.isFileDraggingOverDocument = false;
+    //         const attachmentDives = document.querySelectorAll('.attachment-item');
+    //         attachmentDives.forEach(element => {
+    //             element.classList.remove('fileIsDraggingOverDocument');
+    //         })
+    //     }
+    // }
 
     renderItemList() {
         const { questionnaire, questionnaireResponse } = this.props;
