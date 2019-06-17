@@ -19,6 +19,44 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
     inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+    itemRef: React.RefObject<HTMLDivElement> = React.createRef();
+
+    clearSelected() {
+        const selectedItems = document.querySelectorAll('.card-active');
+        selectedItems.forEach(selectedItem => {
+            selectedItem && selectedItem.classList.remove('card-active');
+            selectedItem && selectedItem.classList.remove('shadow');
+        })
+    }
+
+    itemListener(e: Event) {
+        const target = e.currentTarget as HTMLElement;
+        if (!target.classList.contains('card-active')) {
+            this.clearSelected();
+            target && target.classList.add('card-active');
+            target && target.classList.add('shadow');
+        }
+    }
+
+    subscribeItem() {
+        const item = this.itemRef.current;
+        if (item) {
+            item.addEventListener('click', this.itemListener.bind(this), true);
+            item.addEventListener('focus', this.itemListener.bind(this), true);
+        }
+    }
+
+    unsubscribeItem() {
+        const item = this.itemRef.current;
+        if (item) {
+            item.removeEventListener('click', this.itemListener.bind(this), true);
+            item.removeEventListener('focus', this.itemListener.bind(this), true);
+        }
+    }
+
+    componentWillUnmount() {
+        this.unsubscribeItem();
+    }
 
     submitForm() {
         if (!this.formApi) return;
@@ -46,12 +84,14 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 
     componentDidMount() {
-        if (this.inputRef.current) {
+        const item = this.inputRef.current;
+        if (item) {
             const x = window.pageXOffset;
             const y = window.pageYOffset;
-            this.inputRef.current.focus();
+            item.focus();
             window.scrollTo(x, y)
         }
+        this.subscribeItem();
     }
 
     componentDidUpdate() {
@@ -61,7 +101,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 
     renderHeader() {
-        const { item } = this.props;
+        const { item, subscribe } = this.props;
         return <div className="row">
             <div className="col-4"></div>
             <div className="col-4 d-flex justify-content-center">
@@ -111,7 +151,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
 
     render() {
         const { item, nestingLevel, className, subscribe } = this.props;
-        return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id}>
+        return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id} ref={this.itemRef}>
             <div className="card-header drag-handle">
                 {this.renderHeader()}
             </div>

@@ -51,13 +51,10 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     componentDidMount() {
         this.subscribeDocument();
         this.makeItemsDraggable();
-        this.highlightActiveItems();
     }
     componentDidUpdate() {
         const { questionnaire } = this.props;
         this.formApi.setValues(questionnaire);
-        this.highlightActiveItems();
-        this.makeItemsDraggable();
     }
 
     componentWillUnmount() {
@@ -77,26 +74,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         })
     }
 
-    itemListener(e: Event) {
-        const target = e.currentTarget as HTMLElement;
-        if (!target.classList.contains('card-active')) {
-            this.clearSelected();
-            target && target.classList.add('card-active');
-            target && target.classList.add('shadow');
-        }
-    }
-
     subscribeDocument() {
         document.addEventListener('click', this.documentListener.bind(this), true);
-    }
-
-    highlightActiveItems() {
-        document.querySelectorAll('.questionnaire-item').forEach(el => {
-            el.removeEventListener('click', this.itemListener.bind(this), true);
-            el.removeEventListener('focus', this.itemListener.bind(this), true);
-            el.addEventListener('click', this.itemListener.bind(this), true);
-            el.addEventListener('focus', this.itemListener.bind(this), true);
-        })
     }
 
     clearSortables() {
@@ -117,7 +96,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     onDragUnchoose(e: SortableEvent) {
         document.body.style.height = "";
-        console.log(e.item)
         const item = e.item;
         this.highlightDraggedItem(item);
     }

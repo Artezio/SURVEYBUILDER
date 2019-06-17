@@ -25,8 +25,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
     }
 
     renderItemList() {
-        const { item, nestingLevel } = this.props;
-        return <QuestionnaireItemList item={item} nestingLevel={nestingLevel} />
+        const { item, nestingLevel, subscribe } = this.props;
+        return <QuestionnaireItemList item={item} nestingLevel={nestingLevel} subscribe={subscribe} />
     }
 
     componentDidMount() {
@@ -39,36 +39,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
     }
 
     componentDidUpdate() {
-        const { item, subscribe } = this.props;
+        const { item } = this.props;
         this.formApi.setValues(item);
-        subscribe && subscribe();
-        this.highlightActiveItems();
-    }
-
-    clearSelected() {
-        const selectedItems = document.querySelectorAll('.card-active');
-        selectedItems.forEach(selectedItem => {
-            selectedItem && selectedItem.classList.remove('card-active');
-            selectedItem && selectedItem.classList.remove('shadow');
-        })
-    }
-
-    itemListener(e: Event) {
-        const target = e.currentTarget as HTMLElement;
-        if (!target.classList.contains('card-active')) {
-            this.clearSelected();
-            target && target.classList.add('card-active');
-            target && target.classList.add('shadow');
-        }
-    }
-
-    highlightActiveItems() {
-        document.querySelectorAll('.questionnaire-item').forEach(el => {
-            el.removeEventListener('click', this.itemListener.bind(this), true);
-            el.removeEventListener('focus', this.itemListener.bind(this), true);
-            el.addEventListener('click', this.itemListener.bind(this), true);
-            el.addEventListener('focus', this.itemListener.bind(this), true);
-        })
     }
 
     render() {
