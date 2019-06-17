@@ -44,9 +44,11 @@ label {
   }
   .card-header {
     @extend .p-1;
+    @extend .px-2;
   }
   .card-footer {
     @extend .p-1;
+    @extend .px-2;
   }
 }
 

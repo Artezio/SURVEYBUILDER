@@ -134,18 +134,25 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
 
     renderFooter() {
         const { item } = this.props;
-        return <div className="d-flex align-items-center">
-            {item.type !== Models.GROUP && item.type !== Models.DISPLAY && <div>
-                <Form getApi={this.getFormApi_2.bind(this)} key={item.id} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
-                    <div className="custom-control">
-                        <Checkbox field="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} onChange={this.submitForm_2.bind(this)} />
-                        <label className="custom-control-label" htmlFor={`${item.id}-required`}>Required</label>
-                    </div>
-                </Form>
-            </div>}
-            <button className="btn btn-outline-secondary ml-auto" onClick={item.remove.bind(item)}>
-                <i className="fas fa-trash"></i>
-            </button>
+        return <div className="row align-items-center">
+            {item.type !== Models.GROUP && item.type !== Models.DISPLAY ?
+                <div className="col-4">
+                    <Form getApi={this.getFormApi_2.bind(this)} key={item.id} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
+                        <div className="custom-control">
+                            <Checkbox field="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} onChange={this.submitForm_2.bind(this)} />
+                            <label className="custom-control-label" htmlFor={`${item.id}-required`}>Required</label>
+                        </div>
+                    </Form>
+                </div> :
+                <div className="col-4"></div>}
+            <div className="col-4 d-flex justify-content-center">
+                <button className="btn btn-outline-warning">Enable when</button>
+            </div>
+            <div className="col-4 d-flex justify-content-end">
+                <button className="btn btn-outline-secondary ml-auto" onClick={item.remove.bind(item)}>
+                    <i className="fas fa-trash"></i>
+                </button>
+            </div>
         </div>
     }
 
