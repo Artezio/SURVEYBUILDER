@@ -101,7 +101,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 
     renderHeader() {
-        const { item, subscribe } = this.props;
+        const { item } = this.props;
         return <div className="row">
             <div className="col-4"></div>
             <div className="col-4 d-flex justify-content-center">
