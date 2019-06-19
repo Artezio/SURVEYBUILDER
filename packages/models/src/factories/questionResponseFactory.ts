@@ -8,46 +8,53 @@ import validators from "../validators/validators";
 import Item from "../models/item";
 import attachmentStrategy from "../replyStrategies/attachmentStrategy";
 
-const DEFAULT_VALIDATOR = () => true;
-
 export const questionResponseFactory = {
     createResponse: (item: Item, responseItem?: Partial<IQuestionnaireResponseItem>): QuestionnaireResponseItem => {
+        const validationRules = [];
+        item.required && validationRules.push(validators.required);
         switch (item.type) {
             case STRING: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validators.string);
+                validationRules.push(validators.stringRegExp);
+                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
             }
             case TEXT: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validators.text);
+                validationRules.push(validators.textRegExp)
+                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
             }
             case DECIMAL: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validators.decimal);
+                validationRules.push(validators.decimalRegExp)
+                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
             }
             case BOOLEAN: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validators.boolean);
+                validationRules.push(validators.booleanRegExp)
+                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
             }
             case DATE: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validators.date);
+                validationRules.push(validators.dateRegExp)
+                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
             }
             case TIME: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validators.time);
+                validationRules.push(validators.timeRegExp)
+                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
             }
             case DATE_TIME: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validators.dateTime);
+                validationRules.push(validators.dateTimeRegExp)
+                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
             }
             case CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, item, choiceStrategy, DEFAULT_VALIDATOR);
+                return new QuestionnaireResponseItem(responseItem, choiceStrategy, validationRules);
             }
             case OPEN_CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, item, choiceStrategy, DEFAULT_VALIDATOR);
+                return new QuestionnaireResponseItem(responseItem, choiceStrategy, validationRules);
             }
             case MULTI_CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, item, multiChoiceStrategy, DEFAULT_VALIDATOR);
+                return new QuestionnaireResponseItem(responseItem, multiChoiceStrategy, validationRules);
             }
             case ATTACHMENT: {
-                return new QuestionnaireResponseItem(responseItem, item, attachmentStrategy, DEFAULT_VALIDATOR);
+                return new QuestionnaireResponseItem(responseItem, attachmentStrategy, validationRules);
             }
             default: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, DEFAULT_VALIDATOR);
+                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
             }
         }
     }

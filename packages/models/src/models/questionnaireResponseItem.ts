@@ -5,7 +5,6 @@ import Answer from "./answer";
 import ReplyStrategy from '../interfaces/IReplyStrategy';
 import AnswerFactory from '../factories/answerFactory';
 import IValidator from '../interfaces/IValidator';
-import Item from './item';
 
 
 @observable
@@ -17,28 +16,34 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     items!: QuestionnaireResponseItem[];
     @observableProperty
     answers!: Answer<any>[];
-    answerFactory: AnswerFactory;
-    validator: IValidator;
-    questionItem: Item;
-    isValidByRequired!: boolean;
-    isValidByRegExp!: boolean;
+    answerFactory: AnswerFactory = new AnswerFactory(this);
+    validationRules: IValidator[];
+    @observableProperty
+    errorMessages: string[] = [];
 
-    constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: Item, replyStrategy: ReplyStrategy, validator: IValidator) {
+    constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, replyStrategy: ReplyStrategy, validationRules: IValidator[]) {
         Object.assign(this, { id: uuid(), items: [], answers: [] }, responseItem);
-        this.validator = validator;
+        this.validationRules = validationRules;
         this.setReplyStrategy(replyStrategy);
-        this.questionItem = questionItem;
-        this.answerFactory = new AnswerFactory(this);
         this.validate();
+        Object.defineProperty((this as any).__proto__, 'isValid', {
+            get() {
+                return this.errorMessages.length === 0;
+            }
+        })
     }
 
     setReplyStrategy(replyStrategy: ReplyStrategy) {
         this.replyStrategy = replyStrategy;
     }
 
-    validate() {
-        this.isValidByRegExp = this.answers.every(answer => this.validator(answer.value));
-        this.isValidByRequired = !this.questionItem.required || (!!this.answers.length && this.answers.every(answer => answer.value !== '' && answer.value !== undefined));
+    validate() { // to do
+        const newErrorMessages: string[] = [];
+        this.validationRules.forEach(validator => {
+            const message = validator(this.answers[0]);
+            message && newErrorMessages.push(message);
+        })
+        this.errorMessages = newErrorMessages;
     }
 
     reply(value: any) {

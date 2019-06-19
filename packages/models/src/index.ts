@@ -1,5 +1,9 @@
+///  CONSTANTS
 export * from './constants/itemTypes';
-
+export * from './constants/enableBehavior';
+export * from './constants/enableWhenOperators';
+export * from './constants/errorMessages';
+/// ----
 
 export * from './interfaces/IItem';
 export * from './interfaces/IGroupItem';
