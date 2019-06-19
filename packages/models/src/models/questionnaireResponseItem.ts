@@ -5,6 +5,7 @@ import Answer from "./answer";
 import ReplyStrategy from '../interfaces/IReplyStrategy';
 import AnswerFactory from '../factories/answerFactory';
 import IValidator from '../interfaces/IValidator';
+import { Item } from '..';
 
 
 @observable
@@ -18,16 +19,17 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     answers!: Answer<any>[];
     answerFactory: AnswerFactory = new AnswerFactory(this);
     validationRules: IValidator[];
-    @observableProperty
     errorMessages: string[] = [];
     isValid!: boolean;
+    questionItem: Item;
 
-    constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, replyStrategy: ReplyStrategy, validationRules: IValidator[]) {
+    constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: Item, replyStrategy: ReplyStrategy, validationRules: IValidator[]) {
         Object.assign(this, { id: uuid(), items: [], answers: [] }, responseItem);
         this.validationRules = validationRules;
         this.setReplyStrategy(replyStrategy);
+        this.questionItem = questionItem;
         this.validate();
-        Object.defineProperty((this as any).__proto__, 'isValid', {
+        Object.defineProperty(this, 'isValid', {
             get() {
                 return this.errorMessages.length === 0;
             }
@@ -41,7 +43,8 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     validate() { // to do
         const newErrorMessages: string[] = [];
         this.validationRules.forEach(validator => {
-            const message = validator(this.answers[0]);
+            const value = this.answers[0] && this.answers[0].value;
+            const message = validator(value);
             message && newErrorMessages.push(message);
         })
         this.errorMessages = newErrorMessages;
