@@ -20,6 +20,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     validationRules: IValidator[];
     @observableProperty
     errorMessages: string[] = [];
+    isValid!: boolean;
 
     constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, replyStrategy: ReplyStrategy, validationRules: IValidator[]) {
         Object.assign(this, { id: uuid(), items: [], answers: [] }, responseItem);
