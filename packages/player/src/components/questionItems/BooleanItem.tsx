@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { RadioGroup, Radio, FormState, withFormApi } from 'informed';
 import BooleanItemProps from '../../interfaces/components/questionItems/BooleanItemProps';
-import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class BooleanItem extends React.PureComponent<BooleanItemProps> {
@@ -14,12 +13,8 @@ export class BooleanItem extends React.PureComponent<BooleanItemProps> {
     validate() {
         const { questionnaireResponseItem } = this.props;
         questionnaireResponseItem.validate();
-        if (!questionnaireResponseItem.isValidByRequired) {
-            return ERROR_MESSAGES.IS_REQUIRED;
-        }
-        if (!questionnaireResponseItem.isValidByRegExp) {
-            return ERROR_MESSAGES.INVALID_INPUT;
-        }
+        const errorMessages = questionnaireResponseItem.errorMessages.join(' ');
+        return errorMessages === '' ? undefined : errorMessages;
     }
 
     render() {

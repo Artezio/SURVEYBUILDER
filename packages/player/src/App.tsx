@@ -19,7 +19,7 @@ questionnaire.addItem(factory.createGroupItem({
         factory.createGroupItem({
             text: 'group_2',
             items: [
-                factory.createTextItem({ text: 'text question' }),
+                factory.createTextItem({ text: 'text question', enableBehavior: Models.AND, enableWhen: [{ id: '123', questionId: '123413', operator: Models.EQUAL, answer: 4 }, { id: '124', questionId: '123113', operator: Models.EQUAL, answer: 5 }] }),
                 factory.createStringItem({ text: "string question", required: true }),
                 factory.createDecimalItem({ text: "decimal question" }),
                 factory.createTimeItem({ text: "time question", required: true }),

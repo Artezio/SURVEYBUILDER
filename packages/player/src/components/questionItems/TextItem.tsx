@@ -14,12 +14,8 @@ export class TextItem extends React.PureComponent<TextItemProps> {
     validate() {
         const { questionnaireResponseItem } = this.props;
         questionnaireResponseItem.validate();
-        if (!questionnaireResponseItem.isValidByRequired) {
-            return ERROR_MESSAGES.IS_REQUIRED;
-        }
-        if (!questionnaireResponseItem.isValidByRegExp) {
-            return ERROR_MESSAGES.INVALID_INPUT;
-        }
+        const errorMessages = questionnaireResponseItem.errorMessages.join(' ');
+        return errorMessages === '' ? undefined : errorMessages;
     }
 
     render() {
