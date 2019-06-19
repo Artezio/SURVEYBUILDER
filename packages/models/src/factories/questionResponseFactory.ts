@@ -15,46 +15,46 @@ export const questionResponseFactory = {
         switch (item.type) {
             case STRING: {
                 validationRules.push(validators.stringRegExp);
-                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
             }
             case TEXT: {
                 validationRules.push(validators.textRegExp)
-                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
             }
             case DECIMAL: {
                 validationRules.push(validators.decimalRegExp)
-                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
             }
             case BOOLEAN: {
                 validationRules.push(validators.booleanRegExp)
-                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
             }
             case DATE: {
                 validationRules.push(validators.dateRegExp)
-                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
             }
             case TIME: {
                 validationRules.push(validators.timeRegExp)
-                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
             }
             case DATE_TIME: {
                 validationRules.push(validators.dateTimeRegExp)
-                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
             }
             case CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, choiceStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, choiceStrategy, validationRules);
             }
             case OPEN_CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, choiceStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, choiceStrategy, validationRules);
             }
             case MULTI_CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, multiChoiceStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, multiChoiceStrategy, validationRules);
             }
             case ATTACHMENT: {
-                return new QuestionnaireResponseItem(responseItem, attachmentStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, attachmentStrategy, validationRules);
             }
             default: {
-                return new QuestionnaireResponseItem(responseItem, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
             }
         }
     }

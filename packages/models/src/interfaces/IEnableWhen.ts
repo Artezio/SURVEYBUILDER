@@ -1,7 +1,10 @@
+import { EnableWhenOperator } from "../constants/enableWhenOperators";
+
 export interface IEnableWhen {
+    id: string;
     questionId: string;
-    operator: string;
-    answer: any;
+    operator: EnableWhenOperator;
+    answer?: any;
 }
 
 export default IEnableWhen;

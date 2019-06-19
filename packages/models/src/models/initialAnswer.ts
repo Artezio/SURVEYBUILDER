@@ -1,4 +1,3 @@
-import * as Models from '@art-forms/models';
 import IInitialAnswer from '../interfaces/IInitialAnswer';
 import IInitialAnswerCollection from '../interfaces/IInitialAnswerCollection';
 import uuid from 'uuid/v1';

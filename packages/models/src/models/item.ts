@@ -2,6 +2,8 @@ import { IItem, ITEM_TYPE, DISPLAY } from "..";
 import { observable } from '@art-forms/observable';
 import uuid from "uuid/v1";
 import { IItemCollection } from "../interfaces/IItemCollection";
+import IEnableWhen from "../interfaces/IEnableWhen";
+import { EnableBehavior, AND } from "../constants/enableBehavior";
 
 @observable
 export class Item implements IItem {
@@ -11,6 +13,8 @@ export class Item implements IItem {
     parent?: IItemCollection<IItem>;
     position!: number;
     required?: boolean;
+    enableWhen: IEnableWhen[] = [];
+    enableBehavior: EnableBehavior = AND;
 
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
         Object.assign(this, { id: uuid() }, item);
