@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { TextArea, withFormApi, FormState } from 'informed';
 import TextItemProps from '../../interfaces/components/questionItems/TextItemProps';
-import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class TextItem extends React.PureComponent<TextItemProps> {
