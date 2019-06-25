@@ -1,6 +1,6 @@
 import ReplyStrategy from "../interfaces/IReplyStrategy";
 
-export const textInputStrategy: ReplyStrategy = (value, questionnaireResponseItem, answerFactory) => {
+export const textInputStrategy: ReplyStrategy = (value: string | number | boolean | undefined, questionnaireResponseItem, answerFactory) => {
     if (questionnaireResponseItem.answers[0]) {
         const answer = questionnaireResponseItem.answers[0];
         if (value !== '' && value !== undefined) {

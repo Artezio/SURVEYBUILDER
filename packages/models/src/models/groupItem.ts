@@ -26,8 +26,9 @@ export class GroupItem extends Item implements IGroupItem {
         }
     }
 
-    removeItem(item: IItem) {
-        this.items = this.items.filter(x => x.id !== item.id);
+    removeItem(item: Item) {
+        this.items.splice(item.position, 1);
+        // this.items = this.items.filter(x => x.id !== item.id);
     }
 
     updateItem(item: IGroupItem) {
@@ -43,9 +44,10 @@ export class GroupItem extends Item implements IGroupItem {
 
     replaceItem(oldItem: Item, newItem: Item) {
         let position;
-        this.items.forEach((item, index) => {
+        this.items.find((item, index) => {
             if (item.id === oldItem.id) {
                 position = index;
+                return true
             }
         })
         position !== undefined && this.items.splice(position, 1, newItem);

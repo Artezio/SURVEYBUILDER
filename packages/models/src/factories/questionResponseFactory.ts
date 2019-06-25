@@ -7,54 +7,55 @@ import { ATTACHMENT, BOOLEAN, CHOICE, DATE, TIME, DATE_TIME, TEXT, STRING, DECIM
 import validators from "../validators/validators";
 import Item from "../models/item";
 import attachmentStrategy from "../replyStrategies/attachmentStrategy";
+import AnswerCollection from "../models/answersCollection";
 
 export const questionResponseFactory = {
-    createResponse: (item: Item, responseItem?: Partial<IQuestionnaireResponseItem>): QuestionnaireResponseItem => {
+    createResponse: (questionItem: Item, answerCollection: AnswerCollection, responseItem?: Partial<IQuestionnaireResponseItem>): QuestionnaireResponseItem => {
         const validationRules = [];
-        item.required && validationRules.push(validators.required);
-        switch (item.type) {
+        questionItem.required && validationRules.push(validators.required);
+        switch (questionItem.type) {
             case STRING: {
                 validationRules.push(validators.stringRegExp);
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
             }
             case TEXT: {
                 validationRules.push(validators.textRegExp)
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
             }
             case DECIMAL: {
                 validationRules.push(validators.decimalRegExp)
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
             }
             case BOOLEAN: {
                 validationRules.push(validators.booleanRegExp)
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
             }
             case DATE: {
                 validationRules.push(validators.dateRegExp)
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
             }
             case TIME: {
                 validationRules.push(validators.timeRegExp)
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
             }
             case DATE_TIME: {
                 validationRules.push(validators.dateTimeRegExp)
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
             }
             case CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, item, choiceStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, choiceStrategy, validationRules, answerCollection);
             }
             case OPEN_CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, item, choiceStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, choiceStrategy, validationRules, answerCollection);
             }
             case MULTI_CHOICE: {
-                return new QuestionnaireResponseItem(responseItem, item, multiChoiceStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, multiChoiceStrategy, validationRules, answerCollection);
             }
             case ATTACHMENT: {
-                return new QuestionnaireResponseItem(responseItem, item, attachmentStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, attachmentStrategy, validationRules, answerCollection);
             }
             default: {
-                return new QuestionnaireResponseItem(responseItem, item, textInputStrategy, validationRules);
+                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
             }
         }
     }

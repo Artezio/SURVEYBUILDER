@@ -9,6 +9,7 @@ export class Questionnaire implements IQuestionnaire {
     @observableProperty
     items!: Item[];
     title?: string;
+    itemIdMap: Map<string, boolean> = new Map();
 
     constructor(questionnaire?: Partial<IQuestionnaire>) {
         Object.assign(this, { id: uuid(), items: [] }, questionnaire);
@@ -19,26 +20,22 @@ export class Questionnaire implements IQuestionnaire {
     }
 
     addItem(item: Item, index?: number) {
-        if (this.items.every((itm, i) => itm.id !== item.id || i !== index)) {
-            item.parent = this;
-            if (index !== undefined && typeof index === 'number') {
-                this.items.splice(index, 0, item);
-            }
-            else {
-                this.items.push(item);
-            }
-        }
+        item.parent = this;
+        index = index || this.items.length;
+        this.items.splice(index, 0, item);
     }
 
-    removeItem(item: IItem) {
-        this.items = this.items.filter(x => x.id !== item.id);
+    removeItem(item: Item) {
+        this.items.splice(item.position, 1);
+        // this.items = this.items.filter(x => x.id !== item.id);
     }
 
     replaceItem(oldItem: Item, newItem: Item) {
         let position;
-        this.items.forEach((item, index) => {
+        this.items.find((item, index) => {
             if (item.id === oldItem.id) {
                 position = index;
+                return true
             }
         })
         position !== undefined && this.items.splice(position, 1, newItem);

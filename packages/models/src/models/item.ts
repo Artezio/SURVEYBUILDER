@@ -30,9 +30,7 @@ export class Item implements IItem {
                         position = index;
                         return true;
                     }
-                    return false;
                 })
-                this.parent.items
                 return position;
             }
         })
