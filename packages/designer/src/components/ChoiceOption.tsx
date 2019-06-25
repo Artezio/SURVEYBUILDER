@@ -15,10 +15,10 @@ export class ChoiceOption extends React.Component<ChoiceOptionProps> {
         option.remove();
     }
 
-    onChange() {
-        const { option } = this.props;
-        option.asDefault();
-    }
+    // onChange() {
+    //     const { option } = this.props;
+    //     option.asDefault();
+    // }
 
     render() {
         const { option, disabledOption, customLabel } = this.props;
