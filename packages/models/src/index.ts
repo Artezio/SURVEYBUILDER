@@ -8,6 +8,8 @@ export * from './constants/errorMessages';
 export * from './interfaces/IItem';
 export * from './interfaces/IGroupItem';
 
+export * from './interfaces/IEnableWhen';
+
 export * from './interfaces/questionItems/IQuestionItem';
 export * from './interfaces/questionItems/IAttachmentItem';
 export * from './interfaces/questionItems/IBooleanItem';
@@ -65,6 +67,7 @@ export * from './factories/answerFactory';
 export * from './factories/initialAnswerFactory';
 export * from './factories/answerOptionFactory';
 export * from './factories/questionResponseFactory';
+export * from './factories/enableWhenFactory';
 /// ----
 
 /// REPLY STRATEGIES
