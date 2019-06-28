@@ -17,7 +17,7 @@ export class ChoiceItem extends QuestionItem<ChoiceItemProps> {
 
     addOption() {
         const { item } = this.props;
-        item.addOption(this.answerOptionFactory.createAnswerOption({ value: 'Option ' + (item.options.length + 1) }));
+        item.addOption(this.answerOptionFactory.createAnswerOption());
     }
 
     renderChoiceOptions() {
