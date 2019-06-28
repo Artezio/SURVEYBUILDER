@@ -92,3 +92,10 @@ label {
 .error-item {
   background-color: lightpink;
 }
+
+.enable-when {
+  .form-group {
+    @extend .mb-0;
+  }
+  border: dashed 1px crimson;
+}

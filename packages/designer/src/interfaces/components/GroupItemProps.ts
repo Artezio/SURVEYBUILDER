@@ -6,6 +6,7 @@ export interface GroupItemProps {
     className?: string;
     nestingLevel: string;
     subscribe?: () => void;
+    choseEnableWhenItem: (item: Models.Item) => void;
 }
 
 export default GroupItemProps;

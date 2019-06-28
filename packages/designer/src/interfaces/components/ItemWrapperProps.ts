@@ -6,6 +6,7 @@ export interface ItemWrapperProps {
     className?: string;
     nestingLevel: string;
     subscribe?: () => void;
+    choseEnableWhenItem: (item: Models.Item) => void;
 }
 
 export default ItemWrapperProps;

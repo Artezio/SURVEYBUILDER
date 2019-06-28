@@ -1,5 +1,5 @@
 import { IItem, ITEM_TYPE, DISPLAY } from "..";
-import { observable } from '@art-forms/observable';
+import { observable, observableProperty } from '@art-forms/observable';
 import uuid from "uuid/v1";
 import { IItemCollection } from "../interfaces/IItemCollection";
 import IEnableWhen from "../interfaces/IEnableWhen";
@@ -13,7 +13,9 @@ export class Item implements IItem {
     parent?: IItemCollection<IItem>;
     position!: number;
     required?: boolean;
+    @observableProperty
     enableWhen: IEnableWhen[] = [];
+    enableWhenIds: any = {};
     enableBehavior: EnableBehavior = AND;
 
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
@@ -34,6 +36,22 @@ export class Item implements IItem {
                 return position;
             }
         })
+    }
+
+    addEnableWhen(enableWhen: IEnableWhen) {
+        ///check existing logic to be implemented!!!
+        this.enableWhen.push(enableWhen);
+    }
+
+    removeEnableWhen(enableWhen: IEnableWhen) {
+        let position;
+        this.enableWhen.find((EW, i) => {
+            if (EW.id === enableWhen.id) {
+                position = i;
+                return true;
+            }
+        })
+        position !== undefined && this.enableWhen.splice(position, 1);
     }
 
     updateItem(item: IItem) {

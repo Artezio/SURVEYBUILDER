@@ -10,7 +10,7 @@ import { toggleModeToDesign, toggleModeToPlay } from '../actions/application';
 import { connect } from 'react-redux';
 import { provider } from '@art-forms/providers';
 import { Dispatch } from 'redux';
-import EnableWhen from './enableWhen/EnableWhen';
+import EnableConditions from './enableWhen/EnableConditions';
 
 const mapStateToProps = (store: Store): LayoutState => {
     return {
@@ -74,7 +74,7 @@ export class Layout extends React.Component<LayoutProps> {
                     </div>
                 </div>
             </div>
-            {questionnaire && questionnaire.items[0] && <EnableWhen questionnaire={questionnaire} item={questionnaire.items[0]} />}
+            {/* {questionnaire && questionnaire.items[0] && <EnableConditions questionnaire={questionnaire} item={questionnaire.items[0]} />} */}
             {questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={this.submitResponse.bind(this)}>To Console</button>}
         </div>
     }

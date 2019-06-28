@@ -6,6 +6,7 @@ export interface QuestionnaireItemListProps {
     className?: string;
     item: Models.Questionnaire | Models.GroupItem;
     subscribe?: () => void;
+    choseEnableWhenItem: (item: Models.Item) => void;
 }
 
 export default QuestionnaireItemListProps;

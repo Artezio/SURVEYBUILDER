@@ -132,6 +132,11 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         }
     }
 
+    choseEnableWhenItem() {
+        const { choseEnableWhenItem, item } = this.props;
+        choseEnableWhenItem(item);
+    }
+
     renderFooter() {
         const { item } = this.props;
         return <div className="row align-items-center">
@@ -145,8 +150,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                     </Form>
                 </div> :
                 <div className="col-4"></div>}
-            <div className="col-4 d-flex justify-content-center">
-                <button className="btn btn-outline-warning">Enable when</button>
+            <div className="col-4 d-flex justify-content-center align-items-center">
+                <button className="btn btn-outline-dark mr-2" onClick={this.choseEnableWhenItem.bind(this)}>Enable when</button>
+                <input type="checkbox" checked={!!item.enableWhen.length} disabled={true} />
             </div>
             <div className="col-4 d-flex justify-content-end">
                 <button className="btn btn-outline-secondary ml-auto" onClick={item.remove.bind(item)}>
@@ -157,14 +163,14 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 
     render() {
-        const { item, nestingLevel, className, subscribe } = this.props;
+        const { item, nestingLevel, className, subscribe, choseEnableWhenItem } = this.props;
         return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id} ref={this.itemRef}>
             <div className="card-header drag-handle">
                 {this.renderHeader()}
             </div>
             <div className="card-body">
                 {this.renderItemHeadLine()}
-                <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
+                <ItemProvider choseEnableWhenItem={choseEnableWhenItem} item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
             </div>
             <div className="card-footer">
                 {this.renderFooter()}

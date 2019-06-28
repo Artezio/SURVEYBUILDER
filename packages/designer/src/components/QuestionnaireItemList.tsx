@@ -11,9 +11,9 @@ export class QuestionnaireItemList extends React.Component<QuestionnaireItemList
     }
 
     render() {
-        const { item, className = '', nestingLevel, subscribe } = this.props;
+        const { item, className = '', nestingLevel, subscribe, choseEnableWhenItem } = this.props;
         return <div className={`questionnaire-item-list ${className}`} data-nesting-level={nestingLevel}>
-            {item.items.map((item, i) => <ItemWrapper item={item} key={item.id} nestingLevel={`${nestingLevel}:${i}`} subscribe={subscribe} />)}
+            {item.items.map((item, i) => <ItemWrapper item={item} key={item.id} nestingLevel={`${nestingLevel}:${i}`} subscribe={subscribe} choseEnableWhenItem={choseEnableWhenItem} />)}
         </div>
     }
 }
