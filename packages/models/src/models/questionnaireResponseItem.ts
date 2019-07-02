@@ -39,7 +39,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
             const obs = getObservable(this.answerCollection);
             obs && obs.subscribe(this.evaluateEnableWhen.bind(this));
             this.enableWhenQuestionIds = questionItem.enableWhen.reduce<any>((map, enableWhen) => {
-                if (!map[enableWhen.questionId]) {
+                if (enableWhen.questionId && !map[enableWhen.questionId]) {
                     map[enableWhen.questionId] = true;
                 }
                 return map;

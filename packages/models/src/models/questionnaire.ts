@@ -21,7 +21,7 @@ export class Questionnaire implements IQuestionnaire {
 
     addItem(item: Item, index?: number) {
         item.parent = this;
-        index = index || this.items.length;
+        index = index === undefined ? this.items.length : index;
         this.items.splice(index, 0, item);
     }
 
