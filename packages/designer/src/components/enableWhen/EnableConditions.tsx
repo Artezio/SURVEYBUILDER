@@ -21,7 +21,7 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
         source.items.forEach(item => {
             if (item.type === Models.GROUP) {
                 this.fillQuestionList(list, item as Models.GroupItem);
-            } else if (item.type !== Models.DISPLAY) {
+            } else if (item.type !== Models.DISPLAY && item.type !== Models.ATTACHMENT) {
                 list.push(item as Models.QuestionItem<any>);
             }
         })
@@ -36,7 +36,7 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
 
     addEnableWhen() {
         const { item } = this.props;
-        const enableWhen = Models.enableWhenFactory.createEnableWhen({ operator: Models.EQUAL, questionId: item.id })
+        const enableWhen = Models.enableWhenFactory.createEnableWhen({ operator: Models.EQUAL })
         item.addEnableWhen(enableWhen);
     }
 
@@ -55,51 +55,51 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
     render() {
         const { item, closeEnableWhenFrame } = this.props;
         const questionList = this.prepareQuestionList();
-        return <div className="enable-when">
-            <div className="d-flex justify-content-end"><button className="btn btn-outline-danger ml-auto" onClick={closeEnableWhenFrame}><i className="fas fa-times"></i></button></div>
-            <div className="main-section">
-                <Form initialValues={item} getApi={this.getFormApi.bind(this)}>
-                    <header>
-                        <h3>{item.text}</h3>
-                        <div>
-                            <b>Comparing type: </b>
-                            <RadioGroup field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
-                                <div>
-                                    <Radio value={Models.AND} id="enableWhenOperatorAnd" />
-                                    <label htmlFor="enableWhenOperatorAnd">And</label>
-                                </div>
-                                <div>
-                                    <Radio value={Models.OR} id="enableWhenOperatorOr" />
-                                    <label htmlFor="enableWhenOperatorOr">Or</label>
-                                </div>
-                            </RadioGroup>
-                        </div>
-                        <div>
-                            <button className="btn btn-outline-danger" onClick={this.removeAllEnableWhen.bind(this)}>Remove All</button>
-                        </div>
-                    </header>
-                    {!!item.enableWhen.length && <div className="row">
-                        <b className="col-3">Question</b>
-                        <b className="col-3">Operator</b>
-                        <b className="col-5">Answer</b>
-                        <div className="col-1"></div>
-                    </div>}
-                    <div className="enable-when-list">
-                        <Scope scope="enableWhen">
-                            {item.enableWhen.map((enableWhen, i) => {
-                                const filteredQuestionList = questionList.filter(question => question.id !== item.id);
-                                return <React.Fragment key={enableWhen.id}>
-                                    <EnableWhen questionList={filteredQuestionList} enableWhen={enableWhen} index={i} item={item} />
-                                    {item.enableWhen.length !== 0 && i !== item.enableWhen.length - 1 && <hr />}
-                                </React.Fragment>
-                            })}
-                        </Scope>
-                    </div>
-                    <div>
-                        <button className="btn btn-outline-secondary from-control" onClick={this.addEnableWhen.bind(this)}>Add EnableWhen</button>
-                    </div>
-                </Form>
+        return <div className="enable-when card card-sm">
+            <div className="card-header d-flex justify-content-between">
+                <h3>{item.text}</h3>
+                <button className="btn btn-outline-dark" onClick={closeEnableWhenFrame}><i className="fas fa-times"></i></button>
             </div>
+            <Form className="card-body" initialValues={item} getApi={this.getFormApi.bind(this)}>
+                <section>
+                    <div className="enable-when__row d-flex w-50 justify-content-between">
+                        <b>Comparing logic: </b>
+                        <RadioGroup field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
+                            <div>
+                                <Radio value={Models.AND} id="enableWhenOperatorAnd" />
+                                <label htmlFor="enableWhenOperatorAnd">And</label>
+                            </div>
+                            <div>
+                                <Radio value={Models.OR} id="enableWhenOperatorOr" />
+                                <label htmlFor="enableWhenOperatorOr">Or</label>
+                            </div>
+                        </RadioGroup>
+                    </div>
+                    <div className="enable-when__row d-flex justify-content-end">
+                        <button className="btn btn-outline-dark" onClick={this.removeAllEnableWhen.bind(this)}>Clear rules</button>
+                    </div>
+                </section>
+                {!!item.enableWhen.length && <div className="enable-when__row row">
+                    <b className="col-3">Question</b>
+                    <b className="col-3">Operator</b>
+                    <b className="col-5">Answer</b>
+                    <div className="col-1"></div>
+                </div>}
+                <div className="enable-when-list">
+                    <Scope scope="enableWhen">
+                        {item.enableWhen.map((enableWhen, i) => {
+                            const filteredQuestionList = questionList.filter(question => question.id !== item.id);
+                            return <React.Fragment key={enableWhen.id}>
+                                <EnableWhen questionList={filteredQuestionList} enableWhen={enableWhen} index={i} item={item} />
+                                {item.enableWhen.length !== 0 && i !== item.enableWhen.length - 1 && <hr />}
+                            </React.Fragment>
+                        })}
+                    </Scope>
+                </div>
+                <div className="enable-when__row d-flex justify-content-center">
+                    <button className="btn btn-outline-secondary w-100" onClick={this.addEnableWhen.bind(this)}>Add Rule</button>
+                </div>
+            </Form>
         </div>
     }
 }

@@ -11,7 +11,7 @@ export const Input = (props: InputProps) => {
         enableWhen.answer = answer;
     }
 
-    return <div className="form-group">
+    return <div>
         {type === 'textarea' ? <TextArea className="form-control" field={`${index}][answer`} id="enableWhenAnswer" onBlur={onBlur} /> :
             <Text type={type} className="form-control" field={`${index}][answer`} id="enableWhenAnswer" onBlur={onBlur} />}
     </div>

@@ -132,9 +132,10 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         }
     }
 
-    choseEnableWhenItem() {
+    onEnableWhenClick() {
         const { choseEnableWhenItem, item } = this.props;
         choseEnableWhenItem(item);
+        this.clearSelected();
     }
 
     renderFooter() {
@@ -151,8 +152,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                 </div> :
                 <div className="col-4"></div>}
             <div className="col-4 d-flex justify-content-center align-items-center">
-                <button className="btn btn-outline-dark mr-2" onClick={this.choseEnableWhenItem.bind(this)}>Enable when</button>
-                <input type="checkbox" checked={!!item.enableWhen.length} disabled={true} />
+                <button className={`btn btn-outline-dark mr-2${!!item.enableWhen.length ? ' active-enable-when' : ''}`} onClick={this.onEnableWhenClick.bind(this)}>Enable when</button>
             </div>
             <div className="col-4 d-flex justify-content-end">
                 <button className="btn btn-outline-secondary ml-auto" onClick={item.remove.bind(item)}>
