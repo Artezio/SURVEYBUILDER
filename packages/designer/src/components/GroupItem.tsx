@@ -25,8 +25,8 @@ export class GroupItem extends React.Component<GroupItemProps> {
     }
 
     renderItemList() {
-        const { item, nestingLevel, subscribe, choseEnableWhenItem } = this.props;
-        return <QuestionnaireItemList item={item} nestingLevel={nestingLevel} subscribe={subscribe} choseEnableWhenItem={choseEnableWhenItem} />
+        const { item, nestingLevel, subscribe } = this.props;
+        return <QuestionnaireItemList item={item} nestingLevel={nestingLevel} subscribe={subscribe} />
     }
 
     componentDidMount() {

@@ -6,6 +6,9 @@ import ItemProvider from './ItemProvider';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import { FormApi, Form, Text, Checkbox } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
+import { Store } from '../interfaces/Store';
+import { connect } from 'react-redux';
+import EnableConditions from './enableWhen/EnableConditions';
 
 
 
@@ -13,6 +16,10 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
 
     static defaultProps: Partial<ItemWrapperProps> = {
         className: ''
+    }
+
+    state: { areSettingsOpen: boolean } = {
+        areSettingsOpen: false
     }
 
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
@@ -132,45 +139,51 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         }
     }
 
-    onEnableWhenClick() {
-        const { choseEnableWhenItem, item } = this.props;
-        choseEnableWhenItem(item);
-        this.clearSelected();
+    toggleSettings() {
+        this.setState({
+            areSettingsOpen: !this.state.areSettingsOpen
+        })
     }
 
     renderFooter() {
-        const { item } = this.props;
-        return <div className="row align-items-center">
-            {item.type !== Models.GROUP && item.type !== Models.DISPLAY ?
-                <div className="col-4">
-                    <Form getApi={this.getFormApi_2.bind(this)} key={item.id} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
-                        <div className="custom-control">
-                            <Checkbox field="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} onChange={this.submitForm_2.bind(this)} />
-                            <label className="custom-control-label" htmlFor={`${item.id}-required`}>Required</label>
-                        </div>
-                    </Form>
-                </div> :
-                <div className="col-4"></div>}
-            <div className="col-4 d-flex justify-content-center align-items-center">
-                <button className={`btn btn-outline-dark mr-2${!!item.enableWhen.length ? ' active-enable-when' : ''}`} onClick={this.onEnableWhenClick.bind(this)}>Enable when</button>
+        const { item, questionnaire } = this.props;
+        return <div>
+            <div className="row align-items-center">
+                <div className="col-6 d-flex justify-content-start">
+                    {item.type !== Models.GROUP && item.type !== Models.DISPLAY &&
+                        <Form className="mr-3" getApi={this.getFormApi_2.bind(this)} key={item.id} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
+                            <div className="custom-control">
+                                <Checkbox field="required" type="checkbox" className="custom-control-input" id={`${item.id}-required`} onChange={this.submitForm_2.bind(this)} />
+                                <label className="custom-control-label" htmlFor={`${item.id}-required`}>Required</label>
+                            </div>
+                        </Form>}
+                    <div>
+                        {`Enable when: ${item.enableWhen.length ? 'On' : 'Off'}`}
+                    </div>
+                </div>
+                <div className="col-6 d-flex justify-content-end">
+                    <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}><i className="fas fa-cog"></i></button>
+                    <button className="btn btn-outline-secondary ml-3" onClick={item.remove.bind(item)}>
+                        <i className="fas fa-trash"></i>
+                    </button>
+                </div>
             </div>
-            <div className="col-4 d-flex justify-content-end">
-                <button className="btn btn-outline-secondary ml-auto" onClick={item.remove.bind(item)}>
-                    <i className="fas fa-trash"></i>
-                </button>
-            </div>
+            {this.state.areSettingsOpen && <div className="item-settings">
+                <hr />
+                <EnableConditions questionnaire={questionnaire} item={item} />
+            </div>}
         </div>
     }
 
     render() {
-        const { item, nestingLevel, className, subscribe, choseEnableWhenItem } = this.props;
+        const { item, nestingLevel, className, subscribe } = this.props;
         return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id} ref={this.itemRef}>
             <div className="card-header drag-handle">
                 {this.renderHeader()}
             </div>
             <div className="card-body">
                 {this.renderItemHeadLine()}
-                <ItemProvider choseEnableWhenItem={choseEnableWhenItem} item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
+                <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
             </div>
             <div className="card-footer">
                 {this.renderFooter()}
@@ -179,4 +192,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 }
 
-export default useObservableModel<ItemWrapperProps>(ItemWrapper);
+const mapStateToProps = (store: Store) => ({
+    questionnaire: store.questionnaire
+})
+
+export default connect(mapStateToProps)(useObservableModel<Omit<ItemWrapperProps, 'questionnaire'>>(ItemWrapper));

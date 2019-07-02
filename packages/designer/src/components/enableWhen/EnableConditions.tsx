@@ -53,23 +53,19 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
     }
 
     render() {
-        const { item, closeEnableWhenFrame } = this.props;
+        const { item } = this.props;
         const questionList = this.prepareQuestionList();
-        return <div className="enable-when card card-sm">
-            <div className="card-header d-flex justify-content-between">
-                <h3>{item.text}</h3>
-                <button className="btn btn-outline-dark" onClick={closeEnableWhenFrame}><i className="fas fa-times"></i></button>
-            </div>
+        return <div className="enable-when">
             <Form className="card-body" initialValues={item} getApi={this.getFormApi.bind(this)}>
                 <section>
-                    <div className="enable-when__row d-flex w-50 justify-content-between">
-                        <b>Comparing logic: </b>
+                    <div className="enable-when__row row">
+                        <div className="col-3">Comparing logic: </div>
                         <RadioGroup field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
-                            <div>
+                            <div className="col-2">
                                 <Radio value={Models.AND} id="enableWhenOperatorAnd" />
                                 <label htmlFor="enableWhenOperatorAnd">And</label>
                             </div>
-                            <div>
+                            <div className="col-2">
                                 <Radio value={Models.OR} id="enableWhenOperatorOr" />
                                 <label htmlFor="enableWhenOperatorOr">Or</label>
                             </div>
@@ -80,9 +76,9 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
                     </div>
                 </section>
                 {!!item.enableWhen.length && <div className="enable-when__row row">
-                    <b className="col-3">Question</b>
-                    <b className="col-3">Operator</b>
-                    <b className="col-5">Answer</b>
+                    <div className="col-3">Question</div>
+                    <div className="col-3">Operator</div>
+                    <div className="col-5">Answer</div>
                     <div className="col-1"></div>
                 </div>}
                 <div className="enable-when-list">

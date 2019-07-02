@@ -39,14 +39,14 @@ export class OpenChoice extends React.Component<OpenChoiceProps> {
     }
 
     toggleToOptions() {
-        if (this.otherAnswerInputRef.current && !this.otherAnswerInputRef.current.disabled) {
-            this.otherAnswerInputRef.current.disabled = true;
+        if (this.otherAnswerInputRef.current) {
+            this.otherAnswerInputRef.current.style.display = 'none';
         }
     }
 
     toggleToOtherOption() {
-        if (this.otherAnswerInputRef.current && this.otherAnswerInputRef.current.disabled) {
-            this.otherAnswerInputRef.current.disabled = false;
+        if (this.otherAnswerInputRef.current) {
+            this.otherAnswerInputRef.current.style.display = '';
         }
         this.onBlur();
     }
@@ -61,19 +61,19 @@ export class OpenChoice extends React.Component<OpenChoiceProps> {
     render() {
         const { item, index } = this.props;
         return <div className="row">
-            <div>
+            <div className="col-5">
                 <Select className="custom-select" field={`${index}][answer`} onChange={this.onChange.bind(this)}>
                     <Option value="" disabled={true}>Select answer</Option>
                     {item.options.map((option, i) => <Option key={i} value={option.id}>{i === item.options.length - 1 ? 'Other' : option.value}</Option>)}
                 </Select>
             </div>
-            <div>
+            <div className="col-7">
                 <Text field={`${index}][answer-other`}
                     className="form-control"
                     forwardedRef={this.otherAnswerInputRef}
-                    disabled={!this.initialOtherOptionValue}
                     onBlur={this.onBlur.bind(this)}
                     initialValue={this.initialOtherOptionValue}
+                    style={{ display: 'none' }}
                 />
             </div>
         </div>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
-import { useObservableModel, getObservable } from '@art-forms/observable';
+import { useObservableModel } from '@art-forms/observable';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
@@ -36,22 +36,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         fallbackTolerance: 1,
         emptyInsertThreshold: 30,          //has no type definition in .d.ts
     } as any;
-    ////   temporary
-    state: { enableWhenChosenItem?: Models.Item } = {};
 
-    closeEnableWhenFrame() {
-        this.setState({ enableWhenChosenItem: undefined })
-    }
-    choseEnableWhenItem(item: Models.Item) {
-        this.setState({ enableWhenChosenItem: item })
-    }
-
-    renderEnableWhen() {
-        const { enableWhenChosenItem } = this.state;
-        const { questionnaire } = this.props;
-        return enableWhenChosenItem && <EnableConditions key={enableWhenChosenItem.id} questionnaire={questionnaire} item={enableWhenChosenItem} closeEnableWhenFrame={this.closeEnableWhenFrame.bind(this)} />
-    }
-    //// ---- temporary
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
         const { questionnaire } = this.props;
         questionnaire.updateQuestionnaire({ ...questionnaire, title: values.title, description: values.description });
@@ -155,7 +140,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     renderItemList() {
         const { questionnaire } = this.props;
         return <div id="drag-drop-nested">
-            <QuestionnaireItemList item={questionnaire} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} choseEnableWhenItem={this.choseEnableWhenItem.bind(this)} />
+            <QuestionnaireItemList item={questionnaire} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} />
         </div>
     }
 
@@ -185,9 +170,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 </div>
             </div>
             {this.renderItemList()}
-            <div>
-                {this.renderEnableWhen()}
-            </div>
         </div>
     }
 }

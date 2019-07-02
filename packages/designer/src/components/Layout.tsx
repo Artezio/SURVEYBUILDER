@@ -10,7 +10,6 @@ import { toggleModeToDesign, toggleModeToPlay } from '../actions/application';
 import { connect } from 'react-redux';
 import { provider } from '@art-forms/providers';
 import { Dispatch } from 'redux';
-import EnableConditions from './enableWhen/EnableConditions';
 
 const mapStateToProps = (store: Store): LayoutState => {
     return {
