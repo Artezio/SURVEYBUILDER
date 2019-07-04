@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Text, FormState, withFormApi } from 'informed';
 import StringItemProps from '../../interfaces/components/questionItems/StringItemProps';
-import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class StringItem extends React.PureComponent<StringItemProps> {

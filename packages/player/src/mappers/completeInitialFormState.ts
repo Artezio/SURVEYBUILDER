@@ -6,20 +6,20 @@ const completeResponseItem = (initialFormState: IFormState, responseItem: Models
     const answers = responseItem.answers;
     const nestedItems = responseItem.items;
     const questionItem = responseItem.questionItem;
-    const type = responseItem.questionItem.type;
+    const type = questionItem.type;
     if (answers.length !== 0) {
         const answer = answers[0];
         switch (type) {
             case Models.CHOICE: {
-                initialFormState[responseItem.id] = answer.id;
+                initialFormState[responseItem.questionId] = answer.id;
                 break;
             }
             case Models.OPEN_CHOICE: {
                 if ((questionItem as Models.OpenChoiceItem).options.some(option => option.id === answer.id && option.value === answer.value)) {
-                    initialFormState[responseItem.id] = answer.id;
+                    initialFormState[responseItem.questionId] = answer.id;
                 }
                 else {
-                    initialFormState[responseItem.id + '-other'] = answer.value;
+                    initialFormState[responseItem.questionId + '-other'] = answer.value;
                 }
             }
             case Models.MULTI_CHOICE: {
@@ -27,11 +27,11 @@ const completeResponseItem = (initialFormState: IFormState, responseItem: Models
                 answers.forEach(answer => {
                     multipleAnswers[answer.id] = true;
                 })
-                initialFormState[responseItem.id] = multipleAnswers;
+                initialFormState[responseItem.questionId] = multipleAnswers;
                 break;
             }
             default: {
-                initialFormState[responseItem.id] = answer.value;
+                initialFormState[responseItem.questionId] = answer.value;
             }
         }
     }

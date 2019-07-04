@@ -9,7 +9,7 @@ export class GroupItem extends React.Component<GroupItemProps> {
         const { item, questionnaireResponseItem } = this.props;
         return <div className="response-item-list">
             {item.items.map(item => {
-                const responseItem = questionnaireResponseItem.items.find(responseItem => responseItem.id === item.id);
+                const responseItem = questionnaireResponseItem.items.find(responseItem => responseItem.questionId === item.id);
                 return responseItem && <ItemWrapper key={item.id} item={item} questionnaireResponseItem={responseItem} />
             })}
         </div>

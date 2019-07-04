@@ -13,6 +13,7 @@ import JL from 'json-logic-js';
 @observable
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     id!: string;
+    questionId: string;
     text?: string;
     replyStrategy!: ReplyStrategy;
     @observableProperty
@@ -31,8 +32,9 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: Item, replyStrategy: ReplyStrategy, validationRules: IValidator[], answerCollection: AnswerCollection) {
         Object.assign(this, { id: uuid(), items: [], answers: [] }, responseItem);
         this.validationRules = validationRules;
-        this.setReplyStrategy(replyStrategy);
+        this.replyStrategy = replyStrategy;
         this.questionItem = questionItem;
+        this.questionId = questionItem.id;
         this.validate();
         this.answerCollection = answerCollection;
         if (questionItem.enableWhen.length) {
@@ -92,7 +94,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.validate();
         obs && obs.unmute();
         obs && obs.emitChange();
-        this.answerCollection.updateResponseAnswers(this.id, this.answers.map(answer => answer.value));
+        this.answerCollection.updateResponseAnswers(this.questionId, this.answers.map(answer => answer.value));
     }
 
     cancelAnswer(answer: Answer<any>) {

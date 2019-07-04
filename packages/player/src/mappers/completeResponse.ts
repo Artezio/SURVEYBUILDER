@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 
 export const completeResponse = (item: Models.Questionnaire | Models.GroupItem, response: Models.QuestionnaireResponse | Models.QuestionnaireResponseItem) => {
     item.items && item.items.forEach(item => {
-        const responseItem = Models.questionResponseFactory.createResponse(item, response.answerCollection, { id: item.id, text: item.text });
+        const responseItem = Models.questionResponseFactory.createResponse(item, response.answerCollection, { text: item.text });
         const answerFactory = new Models.AnswerFactory(responseItem);
         if (item.type !== Models.GROUP) {
             const oldResponseItem = response.items.find(responseItem => responseItem.id === item.id);

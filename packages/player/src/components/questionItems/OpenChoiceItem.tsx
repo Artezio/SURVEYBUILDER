@@ -3,7 +3,6 @@ import * as Models from '@art-forms/models';
 import { RadioGroup, Radio, Text, withFormApi, FormState } from 'informed';
 import { useObservableModel } from '@art-forms/observable';
 import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenChoiceItemProps';
-import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {

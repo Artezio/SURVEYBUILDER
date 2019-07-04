@@ -76,7 +76,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 // preventEnter={true}     // has no type definition in .d.ts 
             >
                 {questionnaire.items && questionnaire.items.map(item => {
-                    const questionnaireResponseItem = questionnaireResponse.items.find(responseItem => responseItem.id === item.id);
+                    const questionnaireResponseItem = questionnaireResponse.items.find(responseItem => responseItem.questionId === item.id);
                     return questionnaireResponseItem && <ItemWrapper key={item.id} item={item} questionnaireResponseItem={questionnaireResponseItem} />
                 })}
             </Form>

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Text, FormState, withFormApi } from 'informed';
 import DateItemProps from '../../interfaces/components/questionItems/DateItemProps';
-import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class DateItem extends React.PureComponent<DateItemProps> {

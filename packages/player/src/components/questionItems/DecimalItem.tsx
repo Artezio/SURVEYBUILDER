@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Text, withFormApi, FormState } from 'informed';
 import DecimalItemProps from '../../interfaces/components/questionItems/DecimalItemProps';
-import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class DecimalItem extends React.PureComponent<DecimalItemProps> {

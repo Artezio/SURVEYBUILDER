@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Text, withFormApi, FormState } from 'informed';
 import DateTimeItemProps from '../../interfaces/components/questionItems/DateTimeItemProps';
-import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class DateTimeItem extends React.PureComponent<DateTimeItemProps> {

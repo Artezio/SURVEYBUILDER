@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { RadioGroup, Radio, FormState, withFormApi } from 'informed';
 import ChoiceItemProps from '../../interfaces/components/questionItems/ChoiceItemProps';
-import ERROR_MESSAGES from '../../constants/errorMessages';
 
 
 export class ChoiceItem extends React.PureComponent<ChoiceItemProps> {

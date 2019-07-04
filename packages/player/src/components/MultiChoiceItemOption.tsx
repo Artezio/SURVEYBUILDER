@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import MultiChoiceItemOptionProps from '../interfaces/components/MultiChoiceItemOptionProps';
 import { Checkbox } from 'informed';
-import ERROR_MESSAGES from '../constants/errorMessages';
 
 export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOptionProps> {
     answerFactory: Models.AnswerFactory = new Models.AnswerFactory(this.props.questionnaireResponseItem);
