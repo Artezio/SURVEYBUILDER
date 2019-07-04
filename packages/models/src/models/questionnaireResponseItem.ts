@@ -58,7 +58,10 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     evaluateEnableWhen(answerCollection: AnswerCollection) {
         const answers = answerCollection.answers;
         const interestingAnswer = answers.filter(answer => this.enableWhenQuestionIds[answer.parentId]);
-        const enableWhenConfigs = this.questionItem.enableWhen.reduce((arr: any[], enableWhen) => {
+        const enableWhenConfigs = this.questionItem.enableWhen.reduce((arr: boolean[], enableWhen) => {
+            if (!enableWhen.questionId || !enableWhen.operator || !enableWhen.answer) {
+                return arr.concat(true);
+            }
             return arr.concat(interestingAnswer
                 .filter(answer => answer.parentId === enableWhen.questionId)
                 .some(answer => {

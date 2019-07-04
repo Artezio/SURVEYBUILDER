@@ -148,6 +148,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
 
     renderFooter() {
         const { item, questionnaire } = this.props;
+        const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
         return <div>
             <div className="row align-items-center">
                 <div className="col-6 d-flex justify-content-start">
@@ -159,7 +160,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                             </div>
                         </Form>}
                     <div>
-                        {`Enable when: ${item.enableWhen.length ? 'On' : 'Off'}`}
+                        {`Enable when: ${correctEnableWhens.length ? 'On' : 'Off'}`}
                     </div>
                 </div>
                 <div className="col-6 d-flex justify-content-end">
