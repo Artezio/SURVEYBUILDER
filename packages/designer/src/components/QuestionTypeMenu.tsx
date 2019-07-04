@@ -1,7 +1,7 @@
 import * as React from 'react';
 import QuestionTypeMenuProps, { QuestionTypeMenuOption } from '../interfaces/components/SelectMenuProps';
 import * as Models from '@art-forms/models';
-
+import HumanReadableGuide from '../interfaseHelpers/humanReadableId';
 
 export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
     item: Models.Item;
@@ -19,7 +19,8 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         { title: "Attachment", value: Models.ATTACHMENT },
         { title: "MultiChoice", value: Models.MULTI_CHOICE }
     ];
-
+    humanReadableGuide: HumanReadableGuide = HumanReadableGuide.getHumanReadableGuid();
+    
     constructor(props: QuestionTypeMenuProps) {
         super(props);
         this.item = props.item;
@@ -80,42 +81,49 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         const { item } = this.props;
         const newItem = this.factory.createStringItem({ text: item.text, required: item.required });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToText() {
         const { item } = this.props;
         const newItem = this.factory.createTextItem({ text: item.text, required: item.required });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToBoolean() {
         const { item } = this.props;
         const newItem = this.factory.createBooleanItem({ text: item.text, required: item.required });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDecimal() {
         const { item } = this.props;
         const newItem = this.factory.createDecimalItem({ text: item.text, required: item.required });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToTime() {
         const { item } = this.props;
         const newItem = this.factory.createTimeItem({ text: item.text, required: item.required });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDate() {
         const { item } = this.props;
         const newItem = this.factory.createDateItem({ text: item.text, required: item.required });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDateTime() {
         const { item } = this.props;
         const newItem = this.factory.createDateTimeItem({ text: item.text, required: item.required });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToChoice() {
@@ -136,6 +144,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         const newItem = this.factory.createChoiceItem({ text: item.text, options, required: item.required });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToOpenChoice() {
@@ -153,6 +162,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         const newItem = this.factory.createOpenChoiceItem({ text: item.text, options, required: item.required });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToMultiChoice() {
@@ -173,12 +183,14 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         const newItem = this.factory.createMultiChoiceItem({ text: item.text, options, required: item.required });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToAttachment() {
         const { item } = this.props;
         const newItem = this.factory.createAttachmentItem({ text: item.text, required: item.required });
         item.replace(newItem);
+        this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     render() {

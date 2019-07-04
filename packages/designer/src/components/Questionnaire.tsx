@@ -6,7 +6,6 @@ import { useObservableModel } from '@art-forms/observable';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
-import EnableConditions from './enableWhen/EnableConditions';
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
 
@@ -144,17 +143,12 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         </div>
     }
 
-    renderMenu() {
-        const { questionnaire } = this.props;
-        return <ItemCollectionMenu item={questionnaire} />
-    }
-
     render() {
         const { questionnaire, className } = this.props;
         return <div className={`questionnaire ${className}`}>
             <div className="card card-sm mb-3">
                 <div className="card-header d-flex justify-content-end">
-                    {this.renderMenu()}
+                    <ItemCollectionMenu item={questionnaire} />
                 </div>
                 <div className="card-body">
                     <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >

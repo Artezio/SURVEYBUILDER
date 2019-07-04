@@ -4,6 +4,7 @@ import EnableWhenProps from '../../interfaces/components/enableWhen/EnableWhenPr
 import { Select, Option, withFormApi, FormState } from 'informed';
 import QuestionItemProvider from './QuestionItemProvider';
 import { useObservableModel } from '@art-forms/observable';
+import HumanReadableGuid from '../../interfaseHelpers/humanReadableId';
 
 type OperatorType = { value: Models.EnableWhenOperator, text: string };
 
@@ -18,6 +19,7 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
         { value: Models.MORE_OR_EQUAL, text: 'More or equal( >= )' },
         { value: Models.LESS_OR_EQUAL, text: 'Less or equal( <= )' }
     ];
+    humanReadableGuid: HumanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
 
     constructor(props: EnableWhenProps) {
         super(props);
@@ -46,7 +48,7 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
         return <Select className="custom-select" field={`${index}][questionId`} onChange={this.selectQuestion.bind(this)}>
             <Option value='' disabled={true}>Select question</Option>
             {questionList.map(question => <Option className="dropdown-item" key={`${question.id}-${'enableWhenQuestion'}`} value={question.id}>
-                {question.text}
+                {`#${this.humanReadableGuid.getHumanReadableId(question.id)} ${question.text === undefined ? '' : question.text}`}
             </Option>)}
         </Select>
     }

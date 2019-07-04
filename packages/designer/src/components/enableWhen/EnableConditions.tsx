@@ -59,17 +59,19 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
             <Form className="card-body" initialValues={item} getApi={this.getFormApi.bind(this)}>
                 <section>
                     <div className="enable-when__row row">
-                        <div className="col-3">Comparing logic: </div>
-                        <RadioGroup field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
-                            <div className="col-2">
-                                <Radio value={Models.AND} id="enableWhenOperatorAnd" />
-                                <label htmlFor="enableWhenOperatorAnd">And</label>
-                            </div>
-                            <div className="col-2">
-                                <Radio value={Models.OR} id="enableWhenOperatorOr" />
-                                <label htmlFor="enableWhenOperatorOr">Or</label>
-                            </div>
-                        </RadioGroup>
+                        <div className="col">Comparing logic: </div>
+                        <div className="col-9 d-flex">
+                            <RadioGroup field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
+                                <div className="mr-4">
+                                    <Radio value={Models.AND} id="enableWhenOperatorAnd" />
+                                    <label htmlFor="enableWhenOperatorAnd">And</label>
+                                </div>
+                                <div>
+                                    <Radio value={Models.OR} id="enableWhenOperatorOr" />
+                                    <label htmlFor="enableWhenOperatorOr">Or</label>
+                                </div>
+                            </RadioGroup>
+                        </div>
                     </div>
                     <div className="enable-when__row d-flex justify-content-end">
                         <button className="btn btn-outline-dark" onClick={this.removeAllEnableWhen.bind(this)}>Clear rules</button>

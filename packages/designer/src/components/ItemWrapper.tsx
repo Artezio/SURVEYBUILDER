@@ -9,6 +9,7 @@ import QuestionTypeMenu from './QuestionTypeMenu';
 import { Store } from '../interfaces/Store';
 import { connect } from 'react-redux';
 import EnableConditions from './enableWhen/EnableConditions';
+import HumanReadableGuid from '../interfaseHelpers/humanReadableId';
 
 
 
@@ -21,12 +22,12 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     state: { areSettingsOpen: boolean } = {
         areSettingsOpen: false
     }
-
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
     inputRef: React.RefObject<HTMLInputElement> = React.createRef();
     itemRef: React.RefObject<HTMLDivElement> = React.createRef();
+    humanReadableGuid: HumanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
 
     clearSelected() {
         const selectedItems = document.querySelectorAll('.card-active');
@@ -110,7 +111,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     renderHeader() {
         const { item } = this.props;
         return <div className="row">
-            <div className="col-4"></div>
+            <div className="col-4"><span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span></div>
             <div className="col-4 d-flex justify-content-center">
                 <i className="btn half-opacity fas fa-grip-horizontal"></i>
             </div>

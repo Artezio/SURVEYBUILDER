@@ -21,7 +21,7 @@ export class Item implements IItem {
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
         Object.assign(this, { id: uuid() }, item);
         this.parent = parent;
-        Object.defineProperty((this as any).__proto__, 'position', {
+        Object.defineProperty(Item.prototype, 'position', {
             enumerable: true,
             configurable: true,
             get() {
