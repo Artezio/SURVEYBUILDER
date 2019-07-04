@@ -1,5 +1,5 @@
 import { createActionCreator, createAction } from "./helpers";
-import { SET_APP_MODE, CREATE_QUESTIONNAIRE_WITH_EMPTY_RESPONSE } from "../constants/actions";
+import { SET_APP_MODE } from "../constants/actions";
 import { APP_MODE, DESIGN, PLAY } from "../constants/application";
 
 
