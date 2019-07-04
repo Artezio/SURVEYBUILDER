@@ -1,45 +1,33 @@
 import * as React from 'react';
+import * as Models from '@art-forms/models';
 import Questionnaire from './Questionnaire';
-import QuestionnaireProps from '../interfaces/components/QuestionnaireProps'
+import QuestionnairePlayerProps from '../interfaces/components/QuestionnairePlayerProps'
 import completeResponse from '../mappers/completeResponse';
 import { getObservable } from '@art-forms/observable';
 
 
-// export const QuestionnairePlayer = (props: QuestionnaireProps) => {
-//     const { questionnaire, questionnaireResponse } = props;
-//     const observableQuestionnaire = getObservable(questionnaire);
-//     const observableResponse = getObservable(questionnaireResponse);
-//     observableQuestionnaire && observableQuestionnaire.mute();
-//     observableResponse && observableResponse.mute();
-//     completeResponse(questionnaire, questionnaireResponse);
-//     observableQuestionnaire && observableQuestionnaire.unmute();
-//     observableResponse && observableResponse.unmute();
-//     return <Questionnaire {...props} />
-// }
+export class QuestionnairePlayer extends React.Component<QuestionnairePlayerProps> {
 
-export class QuestionnairePlayer extends React.Component<QuestionnaireProps> {
+    questionnaireResponse: Models.QuestionnaireResponse = new Models.QuestionnaireResponse(this.props.initialQuestionnaireResponse);
 
     componentWillMount() {
-        const { questionnaire, questionnaireResponse } = this.props;
+        const { questionnaire } = this.props;
         const observableQuestionnaire = getObservable(questionnaire);
-        const observableResponse = getObservable(questionnaireResponse);
         observableQuestionnaire && observableQuestionnaire.mute();
-        observableResponse && observableResponse.mute();
-        completeResponse(questionnaire, questionnaireResponse);
+        completeResponse(questionnaire, this.questionnaireResponse);
     }
 
     componentDidMount() {
-        const { questionnaire, questionnaireResponse } = this.props;
+        const { questionnaire } = this.props;
         const observableQuestionnaire = getObservable(questionnaire);
-        const observableResponse = getObservable(questionnaireResponse);
         setTimeout(() => {
             observableQuestionnaire && observableQuestionnaire.unmute();
-            observableResponse && observableResponse.unmute();
         });
     }
 
     render() {
-        return <Questionnaire {...this.props} />
+        const { questionnaire } = this.props;
+        return <Questionnaire questionnaireResponse={this.questionnaireResponse} questionnaire={questionnaire} />
     }
 }
 

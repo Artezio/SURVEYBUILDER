@@ -3,7 +3,7 @@ import IWithFormApi from '../IWithFormApi';
 
 
 export interface ItemWrapperProps extends IWithFormApi {
-    item: Models.Item;
+    item: Models.IItem;
     questionnaireResponseItem: Models.QuestionnaireResponseItem;
     className?: string;
 }

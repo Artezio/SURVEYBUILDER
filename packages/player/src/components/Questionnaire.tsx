@@ -73,7 +73,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 initialValues={this.initialFormState}
                 onSubmit={this.submitForm.bind(this)}
                 onSubmitFailure={this.onSubmitFailure.bind(this)}
-                // preventEnter={true}     // has no type definition in .d.ts 
+            // preventEnter={true}     // has no type definition in .d.ts 
             >
                 {questionnaire.items && questionnaire.items.map(item => {
                     const questionnaireResponseItem = questionnaireResponse.items.find(responseItem => responseItem.questionId === item.id);

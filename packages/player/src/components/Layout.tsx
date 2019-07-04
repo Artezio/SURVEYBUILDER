@@ -23,7 +23,7 @@ export class Layout extends React.Component<QuestionnaireProps> {
             <div className="container">
                 <div className="main-area row">
                     <div className="col-12">
-                        {questionnaire && <QuestionnairePlayer questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} className={className} />}
+                        {questionnaire && <QuestionnairePlayer questionnaire={questionnaire} initialQuestionnaireResponse={questionnaireResponse} className={className} />}
                     </div>
                 </div>
             </div>

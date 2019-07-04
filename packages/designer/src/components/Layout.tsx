@@ -68,7 +68,7 @@ export class Layout extends React.Component<LayoutProps> {
                     <div className="col-12">
                         {questionnaire && (application.mode === DESIGN ?
                             <QuestionnaireDesigner questionnaire={questionnaire} key={questionnaire.id} /> :
-                            questionnaireResponse && <QuestionnairePlayer questionnaire={questionnaire} questionnaireResponse={questionnaireResponse} key={questionnaire.id} />)
+                            questionnaireResponse && <QuestionnairePlayer questionnaire={questionnaire} initialQuestionnaireResponse={questionnaireResponse} key={questionnaire.id} />)
                         }
                     </div>
                 </div>

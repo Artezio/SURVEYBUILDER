@@ -5,7 +5,7 @@ import Answer from "./answer";
 import ReplyStrategy from '../interfaces/IReplyStrategy';
 import AnswerFactory from '../factories/answerFactory';
 import IValidator from '../interfaces/IValidator';
-import { Item } from '..';
+import { Item, IItem } from '..';
 import AnswerCollection from './answersCollection';
 import JL from 'json-logic-js';
 
@@ -24,12 +24,12 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     validationRules: IValidator[];
     errorMessages: string[] = [];
     isValid!: boolean;
-    questionItem: Item;
+    questionItem: IItem;
     isEnable!: boolean;
     answerCollection: AnswerCollection;
     enableWhenQuestionIds: any;
 
-    constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: Item, replyStrategy: ReplyStrategy, validationRules: IValidator[], answerCollection: AnswerCollection) {
+    constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: IItem, replyStrategy: ReplyStrategy, validationRules: IValidator[], answerCollection: AnswerCollection) {
         Object.assign(this, { id: uuid(), items: [], answers: [] }, responseItem);
         this.validationRules = validationRules;
         this.replyStrategy = replyStrategy;
@@ -37,7 +37,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.questionId = questionItem.id;
         this.validate();
         this.answerCollection = answerCollection;
-        if (questionItem.enableWhen.length) {
+        if (questionItem.enableWhen && questionItem.enableWhen.length) {
             const obs = getObservable(this.answerCollection);
             obs && obs.subscribe(this.evaluateEnableWhen.bind(this));
             this.enableWhenQuestionIds = questionItem.enableWhen.reduce<any>((map, enableWhen) => {
@@ -58,9 +58,10 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     evaluateEnableWhen(answerCollection: AnswerCollection) {
+        if (this.questionItem.enableBehavior === undefined) return;
         const answers = answerCollection.answers;
         const interestingAnswer = answers.filter(answer => this.enableWhenQuestionIds[answer.parentId]);
-        const enableWhenConfigs = this.questionItem.enableWhen.reduce((arr: boolean[], enableWhen) => {
+        const enableWhenConfigs = !this.questionItem.enableWhen ? [] : this.questionItem.enableWhen.reduce((arr: boolean[], enableWhen) => {
             if (!enableWhen.questionId || !enableWhen.operator || !enableWhen.answer) {
                 return arr.concat(true);
             }

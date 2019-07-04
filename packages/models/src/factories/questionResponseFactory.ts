@@ -1,16 +1,15 @@
 import { QuestionnaireResponseItem } from "../models/questionnaireResponseItem";
-import { IQuestionnaireResponseItem } from "..";
+import { IQuestionnaireResponseItem, IItem } from "..";
 import choiceStrategy from "../replyStrategies/choiceStrategy";
 import textInputStrategy from "../replyStrategies/textInputStrategy";
 import multiChoiceStrategy from "../replyStrategies/multiChoiceStrategy";
 import { ATTACHMENT, BOOLEAN, CHOICE, DATE, TIME, DATE_TIME, TEXT, STRING, DECIMAL, OPEN_CHOICE, MULTI_CHOICE } from "../constants/itemTypes";
 import validators from "../validators/validators";
-import Item from "../models/item";
 import attachmentStrategy from "../replyStrategies/attachmentStrategy";
 import AnswerCollection from "../models/answersCollection";
 
 export const questionResponseFactory = {
-    createResponse: (questionItem: Item, answerCollection: AnswerCollection, responseItem?: Partial<IQuestionnaireResponseItem>): QuestionnaireResponseItem => {
+    createResponse: (questionItem: IItem, answerCollection: AnswerCollection, responseItem?: Partial<IQuestionnaireResponseItem>): QuestionnaireResponseItem => {
         const validationRules = [];
         questionItem.required && validationRules.push(validators.required);
         switch (questionItem.type) {

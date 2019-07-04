@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 import QuestionItemProps from "./QuestionItemProps";
 
 export interface TextItemProps extends QuestionItemProps<string> {
-    item: Models.TextItem;
+    item: Models.ITextItem;
 }
 
 export default TextItemProps;

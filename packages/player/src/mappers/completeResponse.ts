@@ -1,6 +1,6 @@
 import * as Models from '@art-forms/models';
 
-export const completeResponse = (item: Models.Questionnaire | Models.GroupItem, response: Models.QuestionnaireResponse | Models.QuestionnaireResponseItem) => {
+export const completeResponse = (item: Models.IQuestionnaire | Models.IGroupItem, response: Models.QuestionnaireResponse | Models.QuestionnaireResponseItem) => {
     item.items && item.items.forEach(item => {
         const responseItem = Models.questionResponseFactory.createResponse(item, response.answerCollection, { text: item.text });
         const answerFactory = new Models.AnswerFactory(responseItem);
