@@ -8,7 +8,7 @@ export class ChoiceItem extends React.PureComponent<ChoiceItemProps> {
     onChange() {
         const { questionnaireResponseItem, item, formApi } = this.props;
         const option = item.options.find(x => x.id === formApi.getValue(item.id));
-        option && questionnaireResponseItem.reply(option);
+        option && questionnaireResponseItem.reply(option.id);
     }
 
     renderChoiceOptions() {

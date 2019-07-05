@@ -1,13 +1,14 @@
 import ReplyStrategy from "../interfaces/IReplyStrategy";
-import AnswerOption from "../models/answerOption";
+import MultiChoiceItem from "../models/questionItems/multiChoiceItem";
 
-export const multiChoiceStrategy: ReplyStrategy = (value: [boolean, AnswerOption], questionnaireResponseItem, answerFactory) => {
-    const [flag, option] = value;
-    if (flag) {
-        questionnaireResponseItem.addAnswer(answerFactory.createAnswer({ value: option.value, id: option.id }));
+export const multiChoiceStrategy: ReplyStrategy = (value, questionnaireResponseItem, answerFactory) => {
+    const option = (questionnaireResponseItem.questionItem as MultiChoiceItem).options.find(option => option.id === value);
+    if (!option) return;
+    const answer = questionnaireResponseItem.answers.find(answer => answer.id === option.id);
+    if (!answer) {
+        questionnaireResponseItem.addAnswer(answerFactory.createAnswer({ id: option.id, value: option.value }));
     } else {
-        const answer = questionnaireResponseItem.answers.find(answer => answer.id === option.id);
-        answer && questionnaireResponseItem.removeAnswer(answer);
+        answer.remove();
     }
 }
 

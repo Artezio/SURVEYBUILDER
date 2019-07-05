@@ -85,7 +85,10 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     setReplyStrategy(replyStrategy: ReplyStrategy) {
+        const obs = getObservable(this);
+        obs && obs.mute();
         this.replyStrategy = replyStrategy;
+        obs && obs.unmute();
     }
 
     validate() { // to do
@@ -98,7 +101,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.errorMessages = newErrorMessages;
     }
 
-    reply(value: any) {
+    reply(value?: string) {
         const obs = getObservable(this);
         obs && obs.mute();
         this.replyStrategy(value, this, this.answerFactory);
@@ -124,18 +127,21 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     setSingleAnswer(answer: Answer<any>) {
-        this.answers.splice(0, this.answers.length, answer)
+        this.answers.splice(0, this.answers.length, answer);
+        this.answerIdMap.clear();
+        this.answerIdMap.set(answer.id, true);
     }
 
     addAnswer(answer: Answer<any>, index?: number) {
         if (this.itemIdMap.has(answer.id)) return;
         index = index === undefined ? this.answers.length : index;
         this.answers.splice(index, 0, answer);
-        this.itemIdMap.set(answer.id, true);
+        this.answerIdMap.set(answer.id, true);
     }
 
     removeAnswer(answer: Answer<any>) {
         this.answers.splice(answer.position, 1);
+        this.answerIdMap.delete(answer.id);
     }
 }
 

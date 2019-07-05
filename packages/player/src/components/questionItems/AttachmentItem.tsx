@@ -11,30 +11,22 @@ export class AttachmentItem extends React.PureComponent<AttachmentItemProps> {
     handleChange(e: any) {
         const { item, questionnaireResponseItem } = this.props;
         const input = e.target;
-        const fileList = input.files;
+        const files = input.files;
         if (item.multipleFiles) {
-            for (let file of fileList) {
+            for (let file of files) {
                 if (this.fileNameList.indexOf(file.name) === -1) {
                     this.fileNameList.push(file.name);
                     this.dataTransfer.items.add(file);
-                }
-                else {
-                    const index = this.fileNameList.indexOf(file.name);
-                    this.fileNameList.splice(index, 1);
-                    this.fileNameList.push(file.name);
-                    this.dataTransfer.items.remove(index);
-                    this.dataTransfer.items.add(file);
-                    this.forceUpdate();
+                    questionnaireResponseItem.reply(file.name);
                 }
             }
-        }
-        else {
+        } else {
             this.dataTransfer.items.clear();
-            this.dataTransfer.items.add(fileList[0]);
-            this.fileNameList = [fileList[0].name];
+            this.dataTransfer.items.add(files[0]);
+            this.fileNameList = [files[0].name];
+            questionnaireResponseItem.reply(files[0].name);
         }
         input.files = this.dataTransfer.files;
-        questionnaireResponseItem.reply(this.fileNameList);
     }
 
     removeFile(fileName: string) {
@@ -45,9 +37,7 @@ export class AttachmentItem extends React.PureComponent<AttachmentItemProps> {
         if (this.fileInputRef.current) {
             this.fileInputRef.current.files = this.dataTransfer.files;
         }
-        const oldAnswer = questionnaireResponseItem.answers.find(answer => answer.value === fileName);
-        oldAnswer && oldAnswer.remove();
-        questionnaireResponseItem.reply(this.fileNameList);
+        questionnaireResponseItem.reply(fileName);
     }
 
     renderFileList() {

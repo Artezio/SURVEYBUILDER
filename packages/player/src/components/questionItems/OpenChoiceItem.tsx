@@ -27,12 +27,12 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
             this.otherAnswerInputRef.current.disabled = true;
         }
         const option = item.options.find(x => x.id === formApi.getValue(item.id));
-        option && questionnaireResponseItem.reply(option);
+        option && questionnaireResponseItem.reply(option.id);
     }
 
     onBlurFromOtherOption() {
         const { questionnaireResponseItem, formApi, item } = this.props;
-        const value = formApi.getValue(item.id + '-other');
+        const value = formApi.getValue(item.id + '-other') as string;
         questionnaireResponseItem.reply(value);
     }
 
