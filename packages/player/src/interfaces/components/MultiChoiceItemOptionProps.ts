@@ -3,7 +3,7 @@ import { FormApi, FormState } from 'informed';
 
 
 export interface MultiChoiceItemOptionProps {
-    option: Models.AnswerOption;
+    option: Models.IAnswerOption;
     questionnaireResponseItem: Models.QuestionnaireResponseItem;
     formApi: FormApi<FormState>;
     item: Models.IMultiChoiceItem;
