@@ -9,40 +9,25 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
     type: CHOICE = CHOICE;
     @observableProperty
     options!: AnswerOption[];
+    optionIdMap: Map<string, boolean> = new Map();
 
     constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IChoiceItem>) {
         super(item, parent);
         Object.assign(this, { options: [] }, item);
-    }
-
-    addOption(option: AnswerOption) {
-        if (this.options.every(anOption => anOption.id !== option.id)) {
-            this.options.push(option);
-        }
-    }
-
-    updateOption(option: AnswerOption) { // to be removed
-        this.options = this.options.map(anOption => {
-            if (anOption.id === option.id) {
-                return option;
-            }
-            return anOption;
+        this.options.forEach(option => {
+            this.optionIdMap.set(option.id, true);
         })
     }
 
-    removeAnswerOption(option: any) {
-        this.options = this.options.filter(x => x !== option);
-        if (this.initialAnswers[0] && this.initialAnswers[0].value === option.id) {
-            this.clearInitialAnswers();
-        }
+    addAnswerOption(option: AnswerOption) {
+        if (this.optionIdMap.has(option.id)) return;
+        this.options.push(option);
+        this.optionIdMap.set(option.id, true);
     }
 
-    updateItem(item: ChoiceItem) {
-        const obs = getObservable(item);
-        obs && obs.mute();
-        this.options = item.options;
-        obs && obs.unmute();
-        super.updateItem(item);
+    removeAnswerOption(option: AnswerOption) {
+        this.options.splice(option.position, 1);
+        this.optionIdMap.delete(option.id);
     }
 }
 

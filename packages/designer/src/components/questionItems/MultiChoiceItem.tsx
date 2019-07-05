@@ -10,7 +10,7 @@ export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
 
     addOption() {
         const { item } = this.props;
-        item.addOption(this.answerOptionFactory.createAnswerOption());
+        item.addAnswerOption(this.answerOptionFactory.createAnswerOption());
     }
 
     renderChoiceOptions() {

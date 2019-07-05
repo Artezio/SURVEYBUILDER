@@ -5,7 +5,7 @@ import Answer from "./answer";
 import ReplyStrategy from '../interfaces/IReplyStrategy';
 import AnswerFactory from '../factories/answerFactory';
 import IValidator from '../interfaces/IValidator';
-import { Item, IItem } from '..';
+import { IItem } from '..';
 import AnswerCollection from './answersCollection';
 import JL from 'json-logic-js';
 
@@ -25,9 +25,11 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     errorMessages: string[] = [];
     isValid!: boolean;
     questionItem: IItem;
-    isEnable!: boolean;
+    isEnable: boolean = true;
     answerCollection: AnswerCollection;
     enableWhenQuestionIds: any;
+    itemIdMap: Map<string, boolean> = new Map();
+    answerIdMap: Map<string, boolean> = new Map();
 
     constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: IItem, replyStrategy: ReplyStrategy, validationRules: IValidator[], answerCollection: AnswerCollection) {
         Object.assign(this, { id: uuid(), items: [], answers: [] }, responseItem);
@@ -35,26 +37,34 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.replyStrategy = replyStrategy;
         this.questionItem = questionItem;
         this.questionId = questionItem.id;
-        this.validate();
         this.answerCollection = answerCollection;
-        if (questionItem.enableWhen && questionItem.enableWhen.length) {
+        this.validate();
+        this.decideEnablingObservation();
+        this.defineOwnProperties();
+        this.items.forEach(item => this.itemIdMap.set(item.id, true));
+        this.answers.forEach(answer => this.answerIdMap.set(answer.id, true));
+    }
+
+    defineOwnProperties() {
+        Object.defineProperty(this, 'isValid', {
+            get() {
+                return this.errorMessages.length === 0;
+            }
+        })
+    }
+
+    decideEnablingObservation() {
+        if (this.questionItem.enableWhen && this.questionItem.enableWhen.length) {
             const obs = getObservable(this.answerCollection);
             obs && obs.subscribe(this.evaluateEnableWhen.bind(this));
-            this.enableWhenQuestionIds = questionItem.enableWhen.reduce<any>((map, enableWhen) => {
+            this.enableWhenQuestionIds = this.questionItem.enableWhen.reduce<any>((map, enableWhen) => {
                 if (enableWhen.questionId && !map[enableWhen.questionId]) {
                     map[enableWhen.questionId] = true;
                 }
                 return map;
             }, {})
             this.evaluateEnableWhen(this.answerCollection);
-        } else {
-            this.isEnable = true;
         }
-        Object.defineProperty(this, 'isValid', {
-            get() {
-                return this.errorMessages.length === 0;
-            }
-        })
     }
 
     evaluateEnableWhen(answerCollection: AnswerCollection) {
@@ -103,10 +113,10 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
-        if (this.items.every(itm => itm.id !== item.id) && this.answers.length === 0) {
-            item.answerCollection = this.answerCollection;
-            this.items.push(item);
-        }
+        if (this.itemIdMap.has(item.id)) return;
+        item.answerCollection = this.answerCollection;
+        this.items.push(item);
+        this.itemIdMap.set(item.id, true);
     }
 
     updateQuestionnaireResponseItem(item: IQuestionnaireResponseItem) {
@@ -114,63 +124,19 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     setSingleAnswer(answer: Answer<any>) {
-        this.answers = [answer];
+        this.answers.splice(0, this.answers.length, answer)
     }
 
-    addAnswer(answer: Answer<any>, place?: number) {
-        if (this.answers.every(ans => ans.id !== answer.id) && (!this.items || this.items.length === 0)) {
-            if (typeof place === 'number') {
-                this.answers.splice(place, 0, answer);
-                return;
-            }
-            this.answers.push(answer);
-        }
+    addAnswer(answer: Answer<any>, index?: number) {
+        if (this.itemIdMap.has(answer.id)) return;
+        index = index === undefined ? this.answers.length : index;
+        this.answers.splice(index, 0, answer);
+        this.itemIdMap.set(answer.id, true);
     }
 
     removeAnswer(answer: Answer<any>) {
-        this.answers = this.answers.filter(ans => ans.id !== answer.id);
+        this.answers.splice(answer.position, 1);
     }
 }
 
 export default QuestionnaireResponseItem;
-
-// type EnableWhenType = { id?: string, operator?: string, questionId: string, answer?: string | number }
-// const enableWhen: EnableWhenType[] = [
-//     { questionId: '1', answer: 1 },
-//     { questionId: '1', answer: 2 },
-//     { questionId: '3', answer: 2 }
-// ];
-
-// type AnswerType = { parentId: string, value: string | number }
-// const answers: AnswerType[] = [
-//     { parentId: '2', value: 2 },
-//     { parentId: '1', value: 1 },
-//     { parentId: '1', value: 1 },
-//     { parentId: '1', value: 1 },
-//     { parentId: '1', value: 1 },
-//     { parentId: '1', value: 1 },
-//     { parentId: '1', value: 1 },
-//     { parentId: '1', value: 1 },
-//     { parentId: '1', value: 1 },
-//     { parentId: '3', value: 2 },
-//     { parentId: '3', value: 1 }
-// ];
-
-
-
-// const questionIds = enableWhen.reduce<any>((map: any, element: EnableWhenType) => {
-//     if (!map[element.questionId]) {
-//         map[element.questionId] = true;
-//     }
-// }, {});
-
-
-// const evaluateEnableWhen = (answers: AnswerType[]) => {
-//     var filtered = answers.filter(x => questionIds[x.parentId]);
-
-// }
-
-
-// const evaluateRule = (operator: string, rule: EnableWhenType, answer: AnswerType) => {
-//     JL.apply({''})
-// }

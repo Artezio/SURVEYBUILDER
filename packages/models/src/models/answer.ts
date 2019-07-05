@@ -11,16 +11,33 @@ export class Answer<T> implements IAnswer<T> {
     @observableProperty
     items!: QuestionnaireResponseItem[];
     parent?: IResponseItemCollection<any>;
+    itemIdMap: Map<string, boolean> = new Map();
+    position!: number;
 
     constructor(answer: Partial<IAnswer<T>> | undefined, parent?: IResponseItemCollection<any>) {
         Object.assign(this, { id: uuid(), items: [] }, answer);
         this.parent = parent;
+        Object.defineProperty(Answer.prototype, 'position', {
+            enumerable: true,
+            configurable: true,
+            get() {
+                if (!this.parent) return;
+                let position;
+                this.parent.answers.find((option: Answer<T>, index: number) => {
+                    if (option.id === this.id) {
+                        position = index;
+                        return true;
+                    }
+                })
+                return position;
+            }
+        })
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
-        if (item && this.items.every(itm => itm.id !== item.id)) {
-            this.items.push(item);
-        }
+        if (this.itemIdMap.has(item.id)) return;
+        this.items.push(item);
+        this.itemIdMap.set(item.id, true);
     }
 
     updateAnswer(answer: IAnswer<any>) {

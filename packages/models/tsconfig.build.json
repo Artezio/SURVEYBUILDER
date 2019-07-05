@@ -13,7 +13,8 @@
         "jsx": "react",
         "moduleResolution": "node",
         "declaration": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "watch": true
     },
     "exclude": [
         "node_modules",

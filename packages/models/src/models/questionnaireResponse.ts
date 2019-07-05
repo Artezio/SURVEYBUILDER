@@ -11,16 +11,18 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
     items!: QuestionnaireResponseItem[];
     questionnaireId!: string;
     answerCollection: AnswerCollection = new AnswerCollection();
+    itemIdMap: Map<string, boolean> = new Map();
 
     constructor(questionnaireResponse?: Partial<IQuestionnaireResponse>) {
         Object.assign(this, { id: uuid(), items: [], questionnaireId: uuid() }, questionnaireResponse);
+        questionnaireResponse && questionnaireResponse.items && questionnaireResponse.items.forEach(item => this.itemIdMap.set(item.id, true));
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
-        if (this.items.every(itm => itm.id !== item.id)) {
-            item.answerCollection = this.answerCollection;
-            this.items.push(item);
-        }
+        if (this.itemIdMap.has(item.id)) return;
+        item.answerCollection = this.answerCollection;
+        this.items.push(item);
+        this.itemIdMap.set(item.id, true);
     }
 
     updateQuestionnaireResponse(questionnaireResponse: IQuestionnaireResponse) {

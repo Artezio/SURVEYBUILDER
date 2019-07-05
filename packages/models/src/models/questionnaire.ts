@@ -13,6 +13,7 @@ export class Questionnaire implements IQuestionnaire {
 
     constructor(questionnaire?: Partial<IQuestionnaire>) {
         Object.assign(this, { id: uuid(), items: [] }, questionnaire);
+        questionnaire && questionnaire.items && questionnaire.items.forEach(item => this.itemIdMap.set(item.id, true));
     }
 
     updateQuestionnaire(questionnaire: IQuestionnaire) {
@@ -20,25 +21,23 @@ export class Questionnaire implements IQuestionnaire {
     }
 
     addItem(item: Item, index?: number) {
+        if (this.itemIdMap.has(item.id)) return;
         item.parent = this;
         index = index === undefined ? this.items.length : index;
         this.items.splice(index, 0, item);
+        this.itemIdMap.set(item.id, true);
     }
 
     removeItem(item: Item) {
         this.items.splice(item.position, 1);
-        // this.items = this.items.filter(x => x.id !== item.id);
+        this.itemIdMap.delete(item.id);
     }
 
     replaceItem(oldItem: Item, newItem: Item) {
-        let position;
-        this.items.find((item, index) => {
-            if (item.id === oldItem.id) {
-                position = index;
-                return true
-            }
-        })
-        position !== undefined && this.items.splice(position, 1, newItem);
+        const position = oldItem.position;
+        this.items.splice(position, 1, newItem);
+        this.itemIdMap.delete(oldItem.id);
+        this.itemIdMap.set(newItem.id, true);
     }
 }
 

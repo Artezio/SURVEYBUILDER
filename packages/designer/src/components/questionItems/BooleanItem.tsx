@@ -9,7 +9,7 @@ export class BooleanItem extends QuestionItem<BooleanItemProps> {
 
     reset() {
         const { item } = this.props;
-        item.updateItem({ ...item, initialAnswers: [] });
+        item.removeInitialAnswer(item.initialAnswers[0]);
     }
 
     render() {

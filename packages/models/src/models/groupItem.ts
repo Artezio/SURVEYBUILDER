@@ -1,4 +1,4 @@
-import { IGroupItem, Item, IItem, GROUP } from "..";
+import { IGroupItem, Item, GROUP } from "..";
 import { IItemCollection } from "../interfaces/IItemCollection";
 import { observable, observableProperty, getObservable } from '@art-forms/observable';
 
@@ -8,6 +8,7 @@ export class GroupItem extends Item implements IGroupItem {
     @observableProperty
     items!: Item[];
     type: GROUP = GROUP;
+    itemIdMap: Map<string, boolean> = new Map();
 
     constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: IItemCollection<IGroupItem>) {
         super(item, parent);
@@ -15,42 +16,23 @@ export class GroupItem extends Item implements IGroupItem {
     }
 
     addItem(item: Item, index?: number) {
-        if (this.items.every((itm, i) => itm.id !== item.id || i !== index)) {
-            item.parent = this;
-            if (index !== undefined && typeof index === 'number') {
-                this.items.splice(index, 0, item);
-            }
-            else {
-                this.items.push(item);
-            }
-        }
+        if (this.itemIdMap.has(item.id)) return;
+        item.parent = this;
+        index = index === undefined ? this.items.length : index;
+        this.items.splice(index, 0, item);
+        this.itemIdMap.set(item.id, true);
     }
 
     removeItem(item: Item) {
         this.items.splice(item.position, 1);
-        // this.items = this.items.filter(x => x.id !== item.id);
-    }
-
-    updateItem(item: IGroupItem) {
-        const obs = getObservable(item);
-        obs && obs.mute();
-        super.updateItem(item);
-        if (Array.isArray(item.items)) {
-            this.items = item.items;
-        }
-        obs && obs.unmute();
-        obs && obs.emitChange();
+        this.itemIdMap.delete(item.id);
     }
 
     replaceItem(oldItem: Item, newItem: Item) {
-        let position;
-        this.items.find((item, index) => {
-            if (item.id === oldItem.id) {
-                position = index;
-                return true
-            }
-        })
-        position !== undefined && this.items.splice(position, 1, newItem);
+        const position = oldItem.position;
+        this.items.splice(position, 1, newItem);
+        this.itemIdMap.delete(oldItem.id);
+        this.itemIdMap.set(newItem.id, true);
     }
 }
 

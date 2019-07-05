@@ -22,7 +22,7 @@ export class ItemCollectionMenu extends React.Component<ItemCollectionMenuProps>
         const { item } = this.props;
         const newItem = this.itemFactory.createChoiceItem();
         const answerOptionFactory = new Models.AnswerOptionFactory(newItem);
-        newItem.addOption(answerOptionFactory.createAnswerOption({ value: 'Option 1' }));
+        newItem.addAnswerOption(answerOptionFactory.createAnswerOption({ value: 'Option 1' }));
         item.addItem(newItem);
     }
 
