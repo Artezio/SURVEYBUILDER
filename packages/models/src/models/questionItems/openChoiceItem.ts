@@ -21,7 +21,7 @@ export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem
 
     completeOptions(item?: Partial<Omit<IOpenChoiceItem, 'type'>>) {
         if (item && item.options) {
-            this.options = item.options.map(option => this.answerOptionFactory.createAnswerOption(option));
+            this.options = item.options.map(option => this.answerOptionFactory.createAnswerOption(option)).concat(this.answerOptionFactory.createAnswerOption());
         } else {
             this.options = [this.answerOptionFactory.createAnswerOption()];
         }
