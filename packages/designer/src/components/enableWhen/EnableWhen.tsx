@@ -43,6 +43,13 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
         item.removeEnableWhen(enableWhen);
     }
 
+    setOperator(e: React.ChangeEvent<HTMLInputElement>) {
+        const { enableWhen } = this.props;
+        const operator = e.target.value as Models.EnableWhenOperator;
+
+        enableWhen.operator = operator;
+    }
+
     renderQuestionSelect() {
         const { questionList, index } = this.props;
         return <Select className="custom-select" field={`${index}][questionId`} onChange={this.selectQuestion.bind(this)}>
@@ -51,13 +58,6 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
                 {`#${this.humanReadableGuid.getHumanReadableId(question.id)} ${question.text === undefined ? '' : question.text}`}
             </Option>)}
         </Select>
-    }
-
-    setOperator(e: React.ChangeEvent<HTMLInputElement>) {
-        const { enableWhen } = this.props;
-        const operator = e.target.value as Models.EnableWhenOperator;
-
-        enableWhen.operator = operator;
     }
 
     renderOperatorSelect() {

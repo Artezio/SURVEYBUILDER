@@ -32,6 +32,7 @@ export class Answer<T> implements IAnswer<T> {
                 return position;
             }
         })
+        this.items.forEach(item => this.itemIdMap.set(item.id, true));
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {

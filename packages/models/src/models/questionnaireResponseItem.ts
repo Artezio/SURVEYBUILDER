@@ -14,6 +14,7 @@ import JL from 'json-logic-js';
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     id!: string;
     questionId: string;
+    questionItem: IItem;
     text?: string;
     replyStrategy!: ReplyStrategy;
     @observableProperty
@@ -24,7 +25,6 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     validationRules: IValidator[];
     errorMessages: string[] = [];
     isValid!: boolean;
-    questionItem: IItem;
     isEnable: boolean = true;
     answerCollection: AnswerCollection;
     enableWhenQuestionIds: any;

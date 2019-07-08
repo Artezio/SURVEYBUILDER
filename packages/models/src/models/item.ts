@@ -15,16 +15,13 @@ export class Item implements IItem {
     required?: boolean;
     @observableProperty
     enableWhen: IEnableWhen[] = [];
-    enableWhenIds: any = {};
     enableBehavior: EnableBehavior = AND;
     enableWhenIdMap: Map<string, boolean> = new Map();
 
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
         Object.assign(this, { id: uuid() }, item);
         this.parent = parent;
-        item && item.enableWhen && item.enableWhen.forEach(enableWhen => {
-            this.enableWhenIdMap.set(enableWhen.id, true);
-        })
+        this.enableWhen.forEach(enableWhen => this.enableWhenIdMap.set(enableWhen.id, true));
         Object.defineProperty(Item.prototype, 'position', {
             enumerable: true,
             configurable: true,

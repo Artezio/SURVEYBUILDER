@@ -15,7 +15,7 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
 
     constructor(questionnaireResponse?: Partial<IQuestionnaireResponse>) {
         Object.assign(this, { id: uuid(), items: [], questionnaireId: uuid() }, questionnaireResponse);
-        questionnaireResponse && questionnaireResponse.items && questionnaireResponse.items.forEach(item => this.itemIdMap.set(item.id, true));
+        this.items.forEach(item => this.itemIdMap.set(item.id, true));
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {

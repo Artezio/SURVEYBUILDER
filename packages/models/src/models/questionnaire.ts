@@ -13,7 +13,7 @@ export class Questionnaire implements IQuestionnaire {
 
     constructor(questionnaire?: Partial<IQuestionnaire>) {
         Object.assign(this, { id: uuid(), items: [] }, questionnaire);
-        questionnaire && questionnaire.items && questionnaire.items.forEach(item => this.itemIdMap.set(item.id, true));
+        this.items.forEach(item => this.itemIdMap.set(item.id, true));
     }
 
     updateQuestionnaire(questionnaire: IQuestionnaire) {

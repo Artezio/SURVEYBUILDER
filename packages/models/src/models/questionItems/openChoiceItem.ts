@@ -18,9 +18,7 @@ export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem
         if (item && item.options && item.options.length > 0) {
             this.options.splice(0, 0, ...item.options as any);
         }
-        this.options.forEach(option => {
-            this.optionIdMap.set(option.id, true);
-        })
+        this.options.forEach(option => this.optionIdMap.set(option.id, true));
     }
 
     addAnswerOption(option: AnswerOption) {

@@ -1,6 +1,6 @@
 import { REQUIRED, REG_EXP } from "../constants/errorMessages";
 
-const stringRegExp = /12345/;
+const stringRegExp = /12345/; // for check
 const textRegExp = /[ \r\n\t\S]+/; // for text and string
 const decimalRegExp = /-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?/;
 const booleanRegExp = /true|false/;

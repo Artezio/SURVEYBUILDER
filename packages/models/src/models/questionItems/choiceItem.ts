@@ -14,9 +14,7 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
     constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IChoiceItem>) {
         super(item, parent);
         Object.assign(this, { options: [] }, item);
-        this.options.forEach(option => {
-            this.optionIdMap.set(option.id, true);
-        })
+        this.options.forEach(option => this.optionIdMap.set(option.id, true));
     }
 
     addAnswerOption(option: AnswerOption) {

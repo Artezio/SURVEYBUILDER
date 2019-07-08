@@ -13,6 +13,7 @@ export class GroupItem extends Item implements IGroupItem {
     constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: IItemCollection<IGroupItem>) {
         super(item, parent);
         Object.assign(this, { items: [] }, item);
+        this.items.forEach(item => this.itemIdMap.set(item.id, true));
     }
 
     addItem(item: Item, index?: number) {

@@ -14,9 +14,7 @@ export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
     constructor(item: Partial<Omit<IQuestionItem<T>, 'type'>> | undefined, parent?: IItemCollection<IQuestionItem<T>>) {
         super(item, parent);
         this.initialAnswers = item && item.initialAnswers as any || [];
-        item && item.initialAnswers && item.initialAnswers.forEach(initialAnswer => {
-            this.initialAnswerIdMap.set(initialAnswer.id, true);
-        })
+        this.initialAnswers.forEach(initialAnswer => this.initialAnswerIdMap.set(initialAnswer.id, true));
     }
 
     setSingleInitialAnswer(initialAnswer: InitialAnswer<T>) {

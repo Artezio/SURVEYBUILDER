@@ -38,7 +38,28 @@ questionnaire.addItem(factory.createGroupItem({
 }
 ));
 questionnaire.addItem(factory.createItem({ text: 'end_1' }));
-const questionnaireResponse = new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id })
+
+// const JSONQuestionnaireResponse = `{
+//     "items": [
+//       {
+//         "items": [],
+//         "id": "bla-bla-moi-id",
+//         "answers": [
+//           {
+//             "value": "bla-bla",
+//             "items": [],
+//             "id": "591abce0-9f2d-11e9-95a8-23e77bea1c6e"
+//           }
+//         ],
+//         "text": "question_2"
+//       }
+//     ],
+//     "id": "591bf560-9f2d-11e9-95a8-23e77bea1c6e",
+//     "questionnaireId": "${questionnaire.id}"
+//   }`
+
+// const questionnaireResponse = new Models.QuestionnaireResponse(JSON.parse(JSONQuestionnaireResponse))
+const questionnaireResponse = new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id });
 
 export const App = () => {
     return <>

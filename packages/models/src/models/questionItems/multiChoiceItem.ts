@@ -15,9 +15,7 @@ export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceIt
     constructor(item: Partial<Omit<IMultiChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IMultiChoiceItem>) {
         super(item, parent);
         Object.assign(this, { options: [] }, item);
-        this.options.forEach(option => {
-            this.optionIdMap.set(option.id, true);
-        })
+        this.options.forEach(option => this.optionIdMap.set(option.id, true));
     }
 
     addAnswerOption(option: AnswerOption) {
