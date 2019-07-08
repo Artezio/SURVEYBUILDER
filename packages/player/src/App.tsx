@@ -9,7 +9,7 @@ import * as Models from '@art-forms/models';
 
 const questionnaire = new Models.Questionnaire({ title: 'Title', description: 'descriptionsdddddddddddddddddddddddddddddddddddsfasfkkkkkkkkkkkkkkkkkkkaaaaaaaaaa' });
 const factory = new Models.ItemFactory(questionnaire);
-const initialAnswerFactory = new Models.initialAnswerFactory();
+const initialAnswerFactory = new Models.InitialAnswerFactory();
 const answerOptionFactory = new Models.AnswerOptionFactory();
 questionnaire.addItem(factory.createTextItem({ text: 'Text', initialAnswers: [initialAnswerFactory.createInitialAnswer({ value: 'init Answer' })] }));
 questionnaire.addItem(factory.createGroupItem({
