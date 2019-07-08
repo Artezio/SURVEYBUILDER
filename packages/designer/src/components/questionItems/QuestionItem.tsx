@@ -6,7 +6,7 @@ import QuestionItemProps from '../../interfaces/components/questionItems/Questio
 
 export abstract class QuestionItem<T extends QuestionItemProps<any>> extends React.Component<T> {
     formApi?: FormApi<Models.IInitialAnswer<T>>;
-    initialAnswerFactory: Models.initialAnswerFactory = new Models.initialAnswerFactory(this.props.item);
+    initialAnswerFactory: Models.InitialAnswerFactory = new Models.InitialAnswerFactory(this.props.item);
 
     submitForm() {
         if (!this.formApi) return;

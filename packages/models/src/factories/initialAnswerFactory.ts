@@ -2,7 +2,7 @@ import IInitialAnswer from "../interfaces/IInitialAnswer";
 import IInitialAnswerCollection from "../interfaces/IInitialAnswerCollection";
 import { InitialAnswer } from "../models/initialAnswer";
 
-export class initialAnswerFactory {
+export class InitialAnswerFactory {
     parent?: IInitialAnswerCollection;
 
     constructor(parent?: IInitialAnswerCollection) {
@@ -14,4 +14,4 @@ export class initialAnswerFactory {
     }
 }
 
-export default initialAnswerFactory
+export default InitialAnswerFactory

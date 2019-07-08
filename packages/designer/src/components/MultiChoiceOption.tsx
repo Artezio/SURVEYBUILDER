@@ -5,7 +5,7 @@ import { Form, Checkbox } from 'informed';
 import QuestionItem from './questionItems/QuestionItem';
 
 export class MultiChoiceOption extends QuestionItem<MultiChoiceOptionProps> {
-    initialAnswerFactory: Models.initialAnswerFactory = new Models.initialAnswerFactory(this.props.item);
+    initialAnswerFactory: Models.InitialAnswerFactory = new Models.InitialAnswerFactory(this.props.item);
     initialAnswer?: Models.InitialAnswer<any> = this.props.item.initialAnswers.find(itm => itm.value === this.props.option.id);
 
     handleSubmit(values: Partial<Models.InitialAnswer<any>>) {
