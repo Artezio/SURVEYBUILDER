@@ -1,4 +1,4 @@
-import { QuestionItem, AnswerOption } from "../..";
+import { QuestionItem, AnswerOption, AnswerOptionFactory } from "../..";
 import { observable, observableProperty, getObservable } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IChoiceItem } from "../../interfaces/questionItems/IChoiceItem";
@@ -10,11 +10,20 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
     @observableProperty
     options!: AnswerOption[];
     optionIdMap: Map<string, boolean> = new Map();
+    answerOptionFactory: AnswerOptionFactory = new AnswerOptionFactory(this);
 
     constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IChoiceItem>) {
         super(item, parent);
-        Object.assign(this, { options: [] }, item);
+        this.completeOptions(item);
         this.options.forEach(option => this.optionIdMap.set(option.id, true));
+    }
+
+    completeOptions(item?: Partial<Omit<IChoiceItem, 'type'>>) {
+        if (item && item.options) {
+            this.options = item.options.map(option => this.answerOptionFactory.createAnswerOption(option));
+        } else {
+            this.options = [];
+        }
     }
 
     addAnswerOption(option: AnswerOption) {

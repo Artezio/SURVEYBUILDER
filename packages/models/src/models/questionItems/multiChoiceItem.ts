@@ -3,7 +3,7 @@ import IMultiChoiceItem from "../../interfaces/questionItems/IMultiChoiceItem";
 import { MULTI_CHOICE } from "../../constants/itemTypes";
 import IItemCollection from "../../interfaces/IItemCollection";
 import { observable, observableProperty } from '@art-forms/observable';
-import { AnswerOption } from "../..";
+import { AnswerOption, AnswerOptionFactory } from "../..";
 
 @observable
 export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceItem {
@@ -11,11 +11,20 @@ export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceIt
     @observableProperty
     options!: AnswerOption[];
     optionIdMap: Map<string, boolean> = new Map();
+    answerOptionFactory: AnswerOptionFactory = new AnswerOptionFactory(this);
 
     constructor(item: Partial<Omit<IMultiChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IMultiChoiceItem>) {
         super(item, parent);
-        Object.assign(this, { options: [] }, item);
+        this.completeOptions(item);
         this.options.forEach(option => this.optionIdMap.set(option.id, true));
+    }
+
+    completeOptions(item?: Partial<Omit<IMultiChoiceItem, 'type'>>) {
+        if (item && item.options) {
+            this.options = item.options.map(option => this.answerOptionFactory.createAnswerOption(option));
+        } else {
+            this.options = [];
+        }
     }
 
     addAnswerOption(option: AnswerOption) {

@@ -1,5 +1,5 @@
 import IQuestionItem from "../../interfaces/questionItems/IQuestionItem";
-import { Item, InitialAnswer } from "../..";
+import { Item, InitialAnswer, InitialAnswerFactory } from "../..";
 import { QUESTION_TYPE } from "../../constants/itemTypes";
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { observableProperty } from "@art-forms/observable";
@@ -7,14 +7,23 @@ import { observableProperty } from "@art-forms/observable";
 
 export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
     @observableProperty
-    initialAnswers: InitialAnswer<T>[];
+    initialAnswers!: InitialAnswer<T>[];
     type!: QUESTION_TYPE;
     initialAnswerIdMap: Map<string, boolean> = new Map();
+    initialAnswersFactory: InitialAnswerFactory = new InitialAnswerFactory(this);
 
     constructor(item: Partial<Omit<IQuestionItem<T>, 'type'>> | undefined, parent?: IItemCollection<IQuestionItem<T>>) {
         super(item, parent);
-        this.initialAnswers = item && item.initialAnswers as any || [];
+        this.completeInitialAnswers(item);
         this.initialAnswers.forEach(initialAnswer => this.initialAnswerIdMap.set(initialAnswer.id, true));
+    }
+
+    completeInitialAnswers(item?: Partial<Omit<IQuestionItem<T>, 'type'>>) {
+        if (item && item.initialAnswers) {
+            this.initialAnswers = item.initialAnswers.map(initialAnswer => this.initialAnswersFactory.createInitialAnswer(initialAnswer));
+        } else {
+            this.initialAnswers = [];
+        }
     }
 
     setSingleInitialAnswer(initialAnswer: InitialAnswer<T>) {

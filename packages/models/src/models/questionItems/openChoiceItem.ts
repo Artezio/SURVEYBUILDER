@@ -9,16 +9,22 @@ import AnswerOptionFactory from "../../factories/answerOptionFactory";
 export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem {
     type: OPEN_CHOICE = OPEN_CHOICE;
     @observableProperty
-    options: AnswerOption[];
+    options!: AnswerOption[];
     optionIdMap: Map<string, boolean> = new Map();
+    answerOptionFactory: AnswerOptionFactory = new AnswerOptionFactory(this);
 
     constructor(item: Partial<Omit<IOpenChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IOpenChoiceItem>) {
         super(item, parent);
-        this.options = [new AnswerOptionFactory(this).createAnswerOption()];
-        if (item && item.options && item.options.length > 0) {
-            this.options.splice(0, 0, ...item.options as any);
-        }
+        this.completeOptions(item);
         this.options.forEach(option => this.optionIdMap.set(option.id, true));
+    }
+
+    completeOptions(item?: Partial<Omit<IOpenChoiceItem, 'type'>>) {
+        if (item && item.options) {
+            this.options = item.options.map(option => this.answerOptionFactory.createAnswerOption(option));
+        } else {
+            this.options = [this.answerOptionFactory.createAnswerOption()];
+        }
     }
 
     addAnswerOption(option: AnswerOption) {

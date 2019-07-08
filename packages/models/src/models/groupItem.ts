@@ -1,6 +1,7 @@
 import { IGroupItem, Item, GROUP } from "..";
 import { IItemCollection } from "../interfaces/IItemCollection";
 import { observable, observableProperty, getObservable } from '@art-forms/observable';
+import ItemByTypeFactory from "../factories/itemByTypeFactory";
 
 
 @observable
@@ -9,11 +10,20 @@ export class GroupItem extends Item implements IGroupItem {
     items!: Item[];
     type: GROUP = GROUP;
     itemIdMap: Map<string, boolean> = new Map();
+    itemByTypeFactory: ItemByTypeFactory = new ItemByTypeFactory(this);
 
     constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: IItemCollection<IGroupItem>) {
         super(item, parent);
-        Object.assign(this, { items: [] }, item);
+        this.completeItems(item);
         this.items.forEach(item => this.itemIdMap.set(item.id, true));
+    }
+
+    completeItems(item?: Partial<Omit<IGroupItem, 'type'>>) {
+        if (item && item.items) {
+            this.items = item.items.map(item => this.itemByTypeFactory.createItem(item));
+        } else {
+            this.items = [];
+        }
     }
 
     addItem(item: Item, index?: number) {
