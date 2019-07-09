@@ -14,14 +14,22 @@ export class Item implements IItem {
     position!: number;
     required?: boolean;
     @observableProperty
-    enableWhen: IEnableWhen[] = [];
-    enableBehavior: EnableBehavior = AND;
+    enableWhen: IEnableWhen[];
+    enableBehavior: EnableBehavior;
     enableWhenIdMap: Map<string, boolean> = new Map();
 
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
-        Object.assign(this, { id: uuid() }, item);
+        this.id = item && item.id || uuid();
+        this.required = !!item && !!item.required;
+        this.text = item && item.text;
+        this.enableWhen = (item && item.enableWhen) ? item.enableWhen : [];
+        this.enableBehavior = (item && item.enableBehavior) ? item.enableBehavior : AND;
         this.parent = parent;
         this.enableWhen.forEach(enableWhen => this.enableWhenIdMap.set(enableWhen.id, true));
+        this.definePrototypeProperties();
+    }
+
+    definePrototypeProperties() {
         Object.defineProperty(Item.prototype, 'position', {
             enumerable: true,
             configurable: true,

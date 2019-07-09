@@ -2,6 +2,7 @@ import { IQuestionnaire, Item } from "..";
 import uuid from 'uuid/v1';
 import { observable, observableProperty } from '@art-forms/observable';
 import ItemByTypeFactory from "../factories/itemByTypeFactory";
+import { getObservable } from "@art-forms/observable/src";
 
 @observable
 export class Questionnaire implements IQuestionnaire {
@@ -30,7 +31,13 @@ export class Questionnaire implements IQuestionnaire {
     }
 
     updateQuestionnaire(questionnaire: IQuestionnaire) {
-        Object.assign(this, questionnaire);
+        const obs = getObservable(this);
+        obs && obs.mute();
+        this.description = questionnaire.description;
+        this.title = questionnaire.title;
+        this.id = questionnaire.id;
+        obs && obs.unmute();
+        obs && obs.emitChange();
     }
 
     addItem(item: Item, index?: number) {

@@ -9,7 +9,8 @@ export class AnswerOption implements IAnswerOption {
     position!: number;
 
     constructor(option?: Partial<IAnswerOption>, parent?: IAnswerOptionCollection) {
-        Object.assign(this, { id: uuid() }, option);
+        this.id = option && option.id || uuid();
+        this.value = option && option.value;
         this.parent = parent;
         Object.defineProperty(AnswerOption.prototype, 'position', {
             enumerable: true,
@@ -28,8 +29,9 @@ export class AnswerOption implements IAnswerOption {
         })
     }
 
-    updateAnswerOption(answerOption: IAnswerOption) {
-        Object.assign(this, answerOption);
+    updateAnswerOption(option: IAnswerOption) {
+        this.id = option.id;
+        this.value = option.value;
     }
 
     setValue(value: any) {

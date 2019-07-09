@@ -9,7 +9,8 @@ export class InitialAnswer<T> implements IInitialAnswer<T>{
     position!: number;
 
     constructor(initialAnswer?: Partial<IInitialAnswer<T>>, parent?: IInitialAnswerCollection) {
-        Object.assign(this, { id: uuid() }, initialAnswer);
+        this.id = initialAnswer && initialAnswer.id || uuid();
+        this.value = initialAnswer && initialAnswer.value;
         this.parent = parent;
         Object.defineProperty(InitialAnswer.prototype, 'position', {
             enumerable: true,
@@ -28,8 +29,9 @@ export class InitialAnswer<T> implements IInitialAnswer<T>{
         })
     }
 
-    updateInitialAnswer(answerOption: IInitialAnswer<T>) {
-        Object.assign(this, answerOption);
+    updateInitialAnswer(initialAnswer: IInitialAnswer<T>) {
+        this.id = initialAnswer.id;
+        this.value = initialAnswer.value;
     }
 
     setValue(value: any) {
