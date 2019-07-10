@@ -2,6 +2,7 @@
   "name": "@art-forms/player",
   "version": "0.1.2",
   "registry": "http://10.11.40.28:4873/",
+  "license": "MIT",
   "publishConfig": {
     "registry": "http://10.11.40.28:4873/"
   },
