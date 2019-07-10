@@ -10,7 +10,7 @@ export const mapOperatorFromModel = (operator: Models.EnableWhenOperator): FHIRE
         case Models.MORE: return FHIREnableWhenOperator.MORE;
         case Models.MORE_OR_EQUAL: return FHIREnableWhenOperator.MORE_OR_EQUAL;
         case Models.NOT_EQUAL: return FHIREnableWhenOperator.NOT_EQUAL;
-        default: return FHIREnableWhenOperator.EXISTS;
+        default: return FHIREnableWhenOperator.EQUAL;
     }
 }
 

@@ -1,10 +1,9 @@
 import * as Models from '@art-forms/models';
-import FHIRInitialAnswer from '../../interfaces/FHIRModels/InitialAnswer';
 
-export const mapInitialAnswerToModel = (initialAnswer: FHIRInitialAnswer): Models.IInitialAnswer<any> => {
+export const mapInitialAnswerToModel = (initialAnswer: any): Models.IInitialAnswer<any> => {
     const newInitialAnswer: Models.IInitialAnswer<any> = {
         id: initialAnswer.id,
-        value: initialAnswer.value
+        value: initialAnswer.valueBoolean || initialAnswer.valueDecimal || initialAnswer.valueInteger || initialAnswer.valueDate || initialAnswer.valueDateTime || initialAnswer.valueTime
     }
     return newInitialAnswer;
 }
