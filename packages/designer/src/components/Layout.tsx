@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Models from '@art-forms/models';
 import { Store } from '../interfaces/Store';
 import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/components/LayoutProps';
 import { DESIGN, PLAY } from '../constants/application';
@@ -10,6 +11,7 @@ import { toggleModeToDesign, toggleModeToPlay } from '../actions/application';
 import { connect } from 'react-redux';
 import { provider } from '@art-forms/providers';
 import { Dispatch } from 'redux';
+import { modelsService } from '@art-forms/providers';
 
 const mapStateToProps = (store: Store): LayoutState => {
     return {
@@ -20,8 +22,8 @@ const mapStateToProps = (store: Store): LayoutState => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    createQuestionnaireWithEmptyResponse: () => {
-        dispatch(createQuestionnaire());
+    createQuestionnaireWithEmptyResponse: (questionnaire: Models.IQuestionnaire) => {
+        dispatch(createQuestionnaire(questionnaire));
         dispatch(createQuestionnaireResponse());
     },
     toggleModeToDesign: () => {
@@ -39,6 +41,15 @@ export class Layout extends React.Component<LayoutProps> {
     createQuestionnaireAndResponse() {
         const { actions } = this.props;
         actions.createQuestionnaireWithEmptyResponse();
+    }
+
+    loadQuestionnaireAndCreateResponse() {
+        const { actions } = this.props;
+        modelsService.getMockQuestionnaireModel()
+            .then(questionnaireModel => {
+                actions.createQuestionnaireWithEmptyResponse(questionnaireModel);
+            })
+            .catch(err => console.log('LOAD_ERROR', err))
     }
 
     submitResponse() {
@@ -60,7 +71,19 @@ export class Layout extends React.Component<LayoutProps> {
                             <a className={`nav-link ${!questionnaire ? "disabled" : ""}`} href="javascript:void(0)" onClick={actions.toggleModeToPlay}>Try in action</a>
                         </li>
                     </ul>
-                    {application.mode === DESIGN && <a className="nav-link btn btn-outline-secondary ml-auto" href="javascript:void(0)" onClick={this.createQuestionnaireAndResponse.bind(this)}>Create Questionnaire</a>}
+                    {application.mode === DESIGN && <div className="ml-auto btn-group">
+                        <a className="nav-link btn btn-outline-secondary"
+                            href="javascript:void(0)"
+                            onClick={this.loadQuestionnaireAndCreateResponse.bind(this)}>
+                            Load Questionnaire
+                        </a>
+                        <a className="nav-link btn btn-outline-secondary ml-auto"
+                            href="javascript:void(0)"
+                            onClick={this.createQuestionnaireAndResponse.bind(this)}
+                        >
+                            Create Questionnaire
+                        </a>
+                    </div>}
                 </div>
             </nav>
             <div className="container">
@@ -68,12 +91,14 @@ export class Layout extends React.Component<LayoutProps> {
                     <div className="col-12">
                         {questionnaire && (application.mode === DESIGN ?
                             <QuestionnaireDesigner questionnaire={questionnaire} key={questionnaire.id} /> :
-                            questionnaireResponse && <QuestionnairePlayer questionnaire={questionnaire} initialQuestionnaireResponse={questionnaireResponse} key={questionnaire.id} />)
+                            questionnaireResponse && <QuestionnairePlayer questionnaire={questionnaire}
+                                initialQuestionnaireResponse={questionnaireResponse}
+                                key={questionnaire.id}
+                            />)
                         }
                     </div>
                 </div>
             </div>
-            {/* {questionnaire && questionnaire.items[0] && <EnableConditions questionnaire={questionnaire} item={questionnaire.items[0]} />} */}
             {questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={this.submitResponse.bind(this)}>To Console</button>}
         </div>
     }
