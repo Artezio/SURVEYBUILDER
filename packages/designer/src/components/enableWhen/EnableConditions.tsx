@@ -7,6 +7,12 @@ import { useObservableModel } from '@art-forms/observable';
 
 export class EnableConditions extends React.Component<EnableConditionsProps> {
     formApi?: FormApi<Pick<Models.Item, 'enableWhen' | 'enableBehavior'>>;
+    enableWhenFactory: Models.EnableWhenFactory;
+
+    constructor(props: EnableConditionsProps) {
+        super(props);
+        this.enableWhenFactory = new Models.EnableWhenFactory(props.item);
+    }
 
     getFormApi(formApi: FormApi<Pick<Models.Item, 'enableWhen' | 'enableBehavior'>>) {
         this.formApi = formApi;
@@ -36,7 +42,7 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
 
     addEnableWhen() {
         const { item } = this.props;
-        const enableWhen = Models.enableWhenFactory.createEnableWhen({ operator: Models.EQUAL })
+        const enableWhen = this.enableWhenFactory.createEnableWhen({ operator: Models.EQUAL })
         item.addEnableWhen(enableWhen);
     }
 
@@ -88,7 +94,7 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
                         {item.enableWhen.map((enableWhen, i) => {
                             const filteredQuestionList = questionList.filter(question => question.id !== item.id);
                             return <React.Fragment key={enableWhen.id}>
-                                <EnableWhen questionList={filteredQuestionList} enableWhen={enableWhen} index={i} item={item} />
+                                <EnableWhen questionList={filteredQuestionList} enableWhen={enableWhen} index={i} />
                                 {item.enableWhen.length !== 0 && i !== item.enableWhen.length - 1 && <hr />}
                             </React.Fragment>
                         })}

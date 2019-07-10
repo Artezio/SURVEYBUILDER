@@ -1,10 +1,18 @@
 import IEnableWhen from "../interfaces/IEnableWhen";
-import uuid from 'uuid/v1';
+import EnableWhen from "../models/enableWhen";
+import IEnableWhenCollection from "../interfaces/IEnableWhenCollection";
 
-export const enableWhenFactory = {
-    createEnableWhen(enableWhen?: Omit<IEnableWhen, 'id'>): IEnableWhen {
-        return Object.assign({ id: uuid() }, enableWhen);
+
+export class EnableWhenFactory {
+    parent?: IEnableWhenCollection;
+
+    constructor(parent?: IEnableWhenCollection) {
+        this.parent = parent;
+    }
+
+    createEnableWhen(enableWhen: Partial<IEnableWhen>) {
+        return new EnableWhen(enableWhen, this.parent);
     }
 }
 
-export default enableWhenFactory;
+export default EnableWhenFactory;

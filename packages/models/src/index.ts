@@ -30,6 +30,7 @@ export * from './interfaces/IQuestionnaireResponseItem';
 export * from './interfaces/IAnswer';
 export * from './interfaces/IInitialAnswer';
 export * from './interfaces/IAnswerOption';
+export * from './models/enableWhen';
 /// ---- INTERFACES
 
 

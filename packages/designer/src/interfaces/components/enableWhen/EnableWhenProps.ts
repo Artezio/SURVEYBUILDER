@@ -3,9 +3,8 @@ import { FormApi, FormState } from 'informed';
 
 export interface EnableWhenProps {
     questionList: Models.QuestionItem<any>[];
-    enableWhen: Models.IEnableWhen;
+    enableWhen: Models.EnableWhen;
     index: number;
-    item: Models.Item;
     formApi: FormApi<FormState>;
 }
 

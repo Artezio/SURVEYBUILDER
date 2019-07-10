@@ -1,9 +1,10 @@
-import { IItem, ITEM_TYPE, DISPLAY } from "..";
+import { IItem, ITEM_TYPE, DISPLAY, EnableWhen } from "..";
 import { observable, observableProperty, getObservable } from '@art-forms/observable';
 import uuid from "uuid/v1";
 import { IItemCollection } from "../interfaces/IItemCollection";
 import IEnableWhen from "../interfaces/IEnableWhen";
 import { EnableBehavior, AND } from "../constants/enableBehavior";
+import EnableWhenFactory from '../factories/enableWhenFactory';
 
 @observable
 export class Item implements IItem {
@@ -14,15 +15,16 @@ export class Item implements IItem {
     position!: number;
     required?: boolean;
     @observableProperty
-    enableWhen: IEnableWhen[];
+    enableWhen: EnableWhen[];
     enableBehavior: EnableBehavior;
     enableWhenIdMap: Map<string, boolean> = new Map();
+    enableWhenFactory: EnableWhenFactory = new EnableWhenFactory(this);
 
     constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
         this.id = item && item.id || uuid();
         this.required = !!item && !!item.required;
         this.text = item && item.text;
-        this.enableWhen = (item && item.enableWhen) ? item.enableWhen : [];
+        this.enableWhen = (item && item.enableWhen) ? item.enableWhen.map(enableWhen => this.enableWhenFactory.createEnableWhen(enableWhen)) : [];
         this.enableBehavior = (item && item.enableBehavior) ? item.enableBehavior : AND;
         this.parent = parent;
         this.enableWhen.forEach(enableWhen => this.enableWhenIdMap.set(enableWhen.id, true));
@@ -47,13 +49,13 @@ export class Item implements IItem {
         })
     }
 
-    addEnableWhen(enableWhen: IEnableWhen) {
+    addEnableWhen(enableWhen: EnableWhen) {
         if (this.enableWhenIdMap.has(enableWhen.id)) return;
         this.enableWhen.push(enableWhen);
         this.enableWhenIdMap.set(enableWhen.id, true);
     }
 
-    removeEnableWhen(enableWhen: IEnableWhen) {
+    removeEnableWhen(enableWhen: EnableWhen) {
         let position;
         this.enableWhen.find((EW, i) => {
             if (EW.id === enableWhen.id) {

@@ -39,8 +39,8 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
     }
 
     removeEnableWhen() {
-        const { enableWhen, item } = this.props;
-        item.removeEnableWhen(enableWhen);
+        const { enableWhen } = this.props;
+        enableWhen.remove();
     }
 
     setOperator(e: React.ChangeEvent<HTMLInputElement>) {
