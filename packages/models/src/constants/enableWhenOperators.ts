@@ -1,5 +1,5 @@
-export const EXIST = 'EXIST';
-export type EXIST = typeof EXIST;
+export const EXISTS = 'EXISTS';
+export type EXISTS = typeof EXISTS;
 
 export const EQUAL = '==';
 export type EQUAL = typeof EQUAL;
@@ -19,4 +19,4 @@ export type MORE_OR_EQUAL = typeof MORE_OR_EQUAL;
 export const LESS_OR_EQUAL = '<=';
 export type LESS_OR_EQUAL = typeof LESS_OR_EQUAL;
 
-export type EnableWhenOperator = EXIST | EQUAL | NOT_EQUAL | MORE | LESS | MORE_OR_EQUAL | LESS_OR_EQUAL;
+export type EnableWhenOperator = EXISTS | EQUAL | NOT_EQUAL | MORE | LESS | MORE_OR_EQUAL | LESS_OR_EQUAL;
