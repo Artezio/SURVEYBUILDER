@@ -13,7 +13,7 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
     operators: OperatorType[] = [
         { value: Models.EQUAL, text: 'Equal( == )' },
         { value: Models.NOT_EQUAL, text: 'Not equal( != )' },
-        { value: Models.EXIST, text: 'Exist( not null )' },
+        { value: Models.EXISTS, text: 'Exists( not null )' },
         { value: Models.MORE, text: 'More( > )' },
         { value: Models.LESS, text: 'Less( < )' },
         { value: Models.MORE_OR_EQUAL, text: 'More or equal( >= )' },
