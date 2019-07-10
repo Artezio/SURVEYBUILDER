@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { provider } from '@art-forms/providers';
 import { Dispatch } from 'redux';
 import { modelsService } from '@art-forms/providers';
+import { questionnaireMapper } from '@art-forms/fhir-converter';
 
 const mapStateToProps = (store: Store): LayoutState => {
     return {
@@ -46,10 +47,11 @@ export class Layout extends React.Component<LayoutProps> {
     loadQuestionnaireAndCreateResponse() {
         const { actions } = this.props;
         modelsService.getMockQuestionnaireModel()
-            .then(questionnaireModel => {
+            .then((fhirModel: any) => questionnaireMapper.toModel(fhirModel))
+            .then((questionnaireModel: Models.IQuestionnaire) => {
                 actions.createQuestionnaireWithEmptyResponse(questionnaireModel);
             })
-            .catch(err => console.log('LOAD_ERROR', err))
+            .catch((err: any) => console.log('LOAD_ERROR', err))
     }
 
     submitResponse() {
