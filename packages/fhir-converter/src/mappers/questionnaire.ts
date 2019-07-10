@@ -13,9 +13,15 @@ export const questionnaireMapper = {
         }
         return mappedQuestionnaire;
     },
-    // fromModel(questionnaire: Models.IQuestionnaire): FHIRQuestionnaire {
-
-    // }
+    fromModel(questionnaire: Models.IQuestionnaire): FHIRQuestionnaire {
+        const newQuestionnaire: FHIRQuestionnaire = {
+            id: questionnaire.id,
+            description: questionnaire.description,
+            title: questionnaire.title,
+            item: questionnaire.items && questionnaire.items.map(item => itemMapper.fromModel(item))
+        }
+        return newQuestionnaire;
+    }
 }
 
 export default questionnaireMapper;
