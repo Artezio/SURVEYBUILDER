@@ -22,16 +22,17 @@ const mapStateToProps = (store: Store): LayoutState => {
     };
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    createQuestionnaireWithEmptyResponse: (questionnaire: Models.IQuestionnaire) => {
+const mapDispatchToProps = (dispatch: Dispatch): LayoutActions => ({
+    createQuestionnaire(questionnaire?: Partial<Models.IQuestionnaire>) {
         dispatch(createQuestionnaire(questionnaire));
-        dispatch(createQuestionnaireResponse());
     },
     toggleModeToDesign: () => {
         dispatch(toggleModeToDesign());
-        dispatch(createQuestionnaireResponse());
     },
-    toggleModeToPlay: () => dispatch(toggleModeToPlay())
+    toggleModeToPlay: (questionnaire: Models.IQuestionnaire) => {
+        dispatch(createQuestionnaireResponse(questionnaire))
+        dispatch(toggleModeToPlay());
+    }
 })
 
 const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownProps: any): LayoutProps =>
@@ -39,9 +40,9 @@ const mergeProps = (stateProps: LayoutState, dispatchProps: LayoutActions, ownPr
 
 export class Layout extends React.Component<LayoutProps> {
 
-    createQuestionnaireAndResponse() {
+    createQuestionnaire() {
         const { actions } = this.props;
-        actions.createQuestionnaireWithEmptyResponse();
+        actions.createQuestionnaire();
     }
 
     loadQuestionnaireAndCreateResponse() {
@@ -49,7 +50,7 @@ export class Layout extends React.Component<LayoutProps> {
         modelsService.getMockQuestionnaireModel()
             .then((fhirModel: any) => questionnaireMapper.toModel(fhirModel))
             .then((questionnaireModel: Models.IQuestionnaire) => {
-                actions.createQuestionnaireWithEmptyResponse(questionnaireModel);
+                actions.createQuestionnaire(questionnaireModel);
             })
             .catch((err: any) => console.log('LOAD_ERROR', err))
     }
@@ -57,6 +58,11 @@ export class Layout extends React.Component<LayoutProps> {
     submitResponse() {
         const { questionnaireResponse } = this.props;
         provider.putQuestionnaireResponse(questionnaireResponse);
+    }
+
+    toggleModeToPlay() {
+        const { actions, questionnaire } = this.props;
+        questionnaire && actions.toggleModeToPlay(questionnaire);
     }
 
     render() {
@@ -70,7 +76,7 @@ export class Layout extends React.Component<LayoutProps> {
                             <a className="nav-link" href="javascript:void(0)" onClick={actions.toggleModeToDesign}>Design mode</a>
                         </li>
                         <li className={`nav-item ${application.mode === 'PLAY' ? "active" : ""}`}>
-                            <a className={`nav-link ${!questionnaire ? "disabled" : ""}`} href="javascript:void(0)" onClick={actions.toggleModeToPlay}>Try in action</a>
+                            <a className={`nav-link ${!questionnaire ? "disabled" : ""}`} href="javascript:void(0)" onClick={this.toggleModeToPlay.bind(this)}>Try in action</a>
                         </li>
                     </ul>
                     {application.mode === DESIGN && <div className="ml-auto btn-group">
@@ -81,7 +87,7 @@ export class Layout extends React.Component<LayoutProps> {
                         </a>
                         <a className="nav-link btn btn-outline-secondary ml-auto"
                             href="javascript:void(0)"
-                            onClick={this.createQuestionnaireAndResponse.bind(this)}
+                            onClick={this.createQuestionnaire.bind(this)}
                         >
                             Create Questionnaire
                         </a>

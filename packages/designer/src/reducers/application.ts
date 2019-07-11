@@ -20,7 +20,7 @@ export const application = (state: Application = INITIAL_STATE, action: Action<A
             return {
                 ...state,
                 questionnaire,
-                questionnaireResponse: new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id })
+                questionnaireResponse: new Models.QuestionnaireResponse(questionnaire)
             }
         }
         default: {

@@ -3,7 +3,7 @@ import { IQuestionnaireResponseItem, IItem } from "..";
 import choiceStrategy from "../replyStrategies/choiceStrategy";
 import textInputStrategy from "../replyStrategies/textInputStrategy";
 import multiChoiceStrategy from "../replyStrategies/multiChoiceStrategy";
-import { ATTACHMENT, BOOLEAN, CHOICE, DATE, TIME, DATE_TIME, TEXT, STRING, DECIMAL, OPEN_CHOICE, MULTI_CHOICE } from "../constants/itemTypes";
+import { ATTACHMENT, BOOLEAN, CHOICE, DATE, TIME, DATE_TIME, TEXT, STRING, DECIMAL, OPEN_CHOICE, MULTI_CHOICE, GROUP, DISPLAY } from "../constants/itemTypes";
 import validators from "../validators/validators";
 import attachmentStrategy from "../replyStrategies/attachmentStrategy";
 import AnswerCollection from "../models/answersCollection";
@@ -54,7 +54,7 @@ export const questionResponseFactory = {
                 return new QuestionnaireResponseItem(responseItem, questionItem, attachmentStrategy, validationRules, answerCollection);
             }
             default: {
-                return new QuestionnaireResponseItem(responseItem, questionItem, textInputStrategy, validationRules, answerCollection);
+                return new QuestionnaireResponseItem(responseItem, questionItem, undefined, validationRules, answerCollection);
             }
         }
     }

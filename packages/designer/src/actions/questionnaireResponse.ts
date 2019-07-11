@@ -3,6 +3,6 @@ import { createAction } from './helpers';
 import * as Models from '@art-forms/models';
 
 
-export const createQuestionnaireResponse = (questionnaireResponse?: Partial<Models.IQuestionnaireResponse>) => {
-    return createAction<CREATE_QUESTIONNAIRE_RESPONSE, Partial<Models.IQuestionnaireResponse> | undefined>(CREATE_QUESTIONNAIRE_RESPONSE, questionnaireResponse);
+export const createQuestionnaireResponse = (questionnaire: Models.IQuestionnaire) => {
+    return createAction<CREATE_QUESTIONNAIRE_RESPONSE, Models.IQuestionnaire | undefined>(CREATE_QUESTIONNAIRE_RESPONSE, questionnaire);
 };

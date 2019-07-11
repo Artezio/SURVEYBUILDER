@@ -4,10 +4,8 @@ import { Application } from "../Application";
 
 export interface LayoutActions {
     createQuestionnaire(questionnaire?: Partial<Models.IQuestionnaire>): void;
-    toggleModeToPlay(): void;
+    toggleModeToPlay(questionnaire: Models.IQuestionnaire): void;
     toggleModeToDesign(): void;
-    createQuestionnaireResponse(questionnaireResponse: Models.IQuestionnaireResponse): void;
-    createQuestionnaireWithEmptyResponse(questionnaire?: Partial<Models.IQuestionnaire>): void;
 }
 
 export interface LayoutState {

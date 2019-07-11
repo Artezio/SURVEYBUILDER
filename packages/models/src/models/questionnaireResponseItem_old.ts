@@ -5,22 +5,22 @@ import Answer from "./answer";
 import ReplyStrategy from '../interfaces/IReplyStrategy';
 import AnswerFactory from '../factories/answerFactory';
 import IValidator from '../interfaces/IValidator';
-import { IItem, IGroupItem, questionResponseFactory, IQuestionItem } from '..';
+import { IItem } from '..';
 import AnswerCollection from './answersCollection';
 import JL from 'json-logic-js';
 
 
 @observable
 export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
-    id: string;
+    id!: string;
     questionId: string;
     questionItem: IItem;
     text?: string;
-    replyStrategy?: ReplyStrategy;
+    replyStrategy!: ReplyStrategy;
     @observableProperty
-    items: QuestionnaireResponseItem[];
+    items!: QuestionnaireResponseItem[];
     @observableProperty
-    answers: Answer<any>[];
+    answers!: Answer<any>[];
     answerFactory: AnswerFactory = new AnswerFactory(this);
     validationRules: IValidator[];
     errorMessages: string[] = [];
@@ -31,38 +31,18 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     itemIdMap: Map<string, boolean> = new Map();
     answerIdMap: Map<string, boolean> = new Map();
 
-    constructor(initialResponseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: IItem, replyStrategy: ReplyStrategy | undefined, validationRules: IValidator[], answerCollection: AnswerCollection) {
-        this.id = initialResponseItem && initialResponseItem.id || uuid();
-        this.questionId = questionItem.id;
-        this.text = questionItem.text;
-        this.answerCollection = answerCollection;
-        if (initialResponseItem && initialResponseItem.answers) {
-            this.answers = initialResponseItem.answers.map(answer => this.answerFactory.createAnswer(answer))
-        } else {
-            const initialAnswers = (questionItem as IQuestionItem<any>).initialAnswers;
-            if (initialAnswers) {
-                this.answers = initialAnswers.map(initialAnswer => this.answerFactory.createAnswer(initialAnswer))
-            } else {
-                this.answers = [];
-            }
-        }
-        if ((questionItem as IGroupItem).items) {
-            this.items = ((questionItem as IGroupItem).items as IItem[]).map(item => {
-                const existingResponseItem = initialResponseItem && initialResponseItem.items && initialResponseItem.items.find(itm => itm.questionId === item.id);
-                return questionResponseFactory.createResponse(item, this.answerCollection, existingResponseItem);
-            })
-        } else {
-            this.items = [];
-        }
+    constructor(responseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem: IItem, replyStrategy: ReplyStrategy, validationRules: IValidator[], answerCollection: AnswerCollection) {
+        Object.assign(this, { id: uuid(), items: [], answers: [] }, responseItem);
         this.validationRules = validationRules;
         this.replyStrategy = replyStrategy;
         this.questionItem = questionItem;
+        this.questionId = questionItem.id;
+        this.answerCollection = answerCollection;
         this.validate();
         this.decideEnablingObservation();
         this.defineOwnProperties();
         this.items.forEach(item => this.itemIdMap.set(item.id, true));
         this.answers.forEach(answer => this.answerIdMap.set(answer.id, true));
-        this.answerCollection.updateResponseAnswers(this.id, this.answers);
     }
 
     defineOwnProperties() {
@@ -122,7 +102,6 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     }
 
     reply(value?: string) {
-        if (!this.replyStrategy) return;
         const obs = getObservable(this);
         obs && obs.mute();
         this.replyStrategy(value, this, this.answerFactory);

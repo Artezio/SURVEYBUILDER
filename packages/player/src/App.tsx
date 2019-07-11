@@ -12,10 +12,10 @@ const factory = new Models.ItemFactory(questionnaire);
 const initialAnswerFactory = new Models.InitialAnswerFactory();
 const answerOptionFactory = new Models.AnswerOptionFactory();
 questionnaire.addItem(factory.createTextItem({ text: 'Text', initialAnswers: [initialAnswerFactory.createInitialAnswer({ value: 'init Answer' })] }));
+questionnaire.addItem(factory.createTextItem({ id: 'bla-bla-moi-id', text: 'question_2' }));
 questionnaire.addItem(factory.createGroupItem({
     text: 'group_1', items: [
         factory.createItem({ text: 'Text plain' }),
-        factory.createTextItem({ id: 'bla-bla-moi-id', text: 'question_2' }),
         factory.createGroupItem({
             text: 'group_2',
             items: [
@@ -39,27 +39,25 @@ questionnaire.addItem(factory.createGroupItem({
 ));
 questionnaire.addItem(factory.createItem({ text: 'end_1' }));
 
-// const JSONQuestionnaireResponse = `{
-//     "items": [
-//       {
-//         "items": [],
-//         "id": "bla-bla-moi-id",
-//         "answers": [
-//           {
-//             "value": "bla-bla",
-//             "items": [],
-//             "id": "591abce0-9f2d-11e9-95a8-23e77bea1c6e"
-//           }
-//         ],
-//         "text": "question_2"
-//       }
-//     ],
-//     "id": "591bf560-9f2d-11e9-95a8-23e77bea1c6e",
-//     "questionnaireId": "${questionnaire.id}"
-//   }`
+const JSONQuestionnaireResponse = `{
+    "items": [
+      {
+        "items": [],
+        "questionId": "bla-bla-moi-id",
+        "answers": [
+          {
+            "value": "bla-bla",
+            "items": [],
+            "id": "591abce0-9f2d-11e9-95a8-23e77bea1c6e"
+          }
+        ],
+        "text": "question_2"
+      }
+    ]
+  }`
 
 // const questionnaireResponse = new Models.QuestionnaireResponse(JSON.parse(JSONQuestionnaireResponse))
-const questionnaireResponse = new Models.QuestionnaireResponse({ questionnaireId: questionnaire.id });
+const questionnaireResponse = new Models.QuestionnaireResponse(questionnaire, JSON.parse(JSONQuestionnaireResponse));
 
 export const App = () => {
     return <>
