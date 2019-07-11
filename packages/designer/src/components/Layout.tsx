@@ -56,8 +56,8 @@ export class Layout extends React.Component<LayoutProps> {
     }
 
     submitResponse() {
-        const { questionnaireResponse } = this.props;
-        provider.putQuestionnaireResponse(questionnaireResponse);
+        const { questionnaire } = this.props;
+        questionnaire && provider.putQuestionnaire(questionnaireMapper.fromModel(questionnaire));
     }
 
     toggleModeToPlay() {
@@ -100,7 +100,7 @@ export class Layout extends React.Component<LayoutProps> {
                         {questionnaire && (application.mode === DESIGN ?
                             <QuestionnaireDesigner questionnaire={questionnaire} key={questionnaire.id} /> :
                             questionnaireResponse && <QuestionnairePlayer questionnaire={questionnaire}
-                            questionnaireResponse={questionnaireResponse}
+                                questionnaireResponse={questionnaireResponse}
                                 key={questionnaire.id}
                             />)
                         }
