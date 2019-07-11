@@ -7,7 +7,7 @@ import ItemCollectionMenu from './ItemCollectionMenu';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
 
-export class Questionnaire extends React.Component<QuestionnaireProps> {
+export class QuestionnaireDesigner extends React.Component<QuestionnaireProps> {
 
     static defaultProps: Partial<QuestionnaireProps> = {
         className: ''
@@ -168,4 +168,4 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 }
 
-export default useObservableModel<QuestionnaireProps>(Questionnaire);
+export default useObservableModel<QuestionnaireProps>(QuestionnaireDesigner);

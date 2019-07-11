@@ -100,7 +100,7 @@ export class Layout extends React.Component<LayoutProps> {
                         {questionnaire && (application.mode === DESIGN ?
                             <QuestionnaireDesigner questionnaire={questionnaire} key={questionnaire.id} /> :
                             questionnaireResponse && <QuestionnairePlayer questionnaire={questionnaire}
-                                initialQuestionnaireResponse={questionnaireResponse}
+                            questionnaireResponse={questionnaireResponse}
                                 key={questionnaire.id}
                             />)
                         }
