@@ -38,7 +38,7 @@ export const itemMapper = {
             item: item.items && item.items.map(item => itemMapper.fromModel(item)),
             enableWhen: item.enableWhen && item.enableWhen.map(enableWhen => mapEnableWhenFromModel(enableWhen)),
             enableBehavior: mapEnableBehaviorFromModel(item.enableBehavior),
-            initial: item.initialAnswers && item.initialAnswers.map(initialAnswer => mapInitialAnswerFromModel(initialAnswer)),
+            initial: item.initialAnswers && item.initialAnswers.map(initialAnswer => mapInitialAnswerFromModel(initialAnswer, item.type)),
             option: item.options && item.options.map(option => mapAnswerOptionFromModel(option))
         }
         return newItem;

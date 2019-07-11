@@ -1,12 +1,11 @@
 import * as Models from '@art-forms/models';
-import { FHIREnableWhen } from '../../interfaces/FHIRModels/EnableWhen';
 import mapOperatorFromModel from './operatorConverter';
 
-export const mapEnableWhenFromModel = (enableWhen: Models.IEnableWhen): FHIREnableWhen => {
-    const mappedEnableWhen: FHIREnableWhen = {
+export const mapEnableWhenFromModel = (enableWhen: Models.IEnableWhen): any => {
+    const mappedEnableWhen: any = {
         id: enableWhen.id,
         question: enableWhen.questionId,
-        answer: enableWhen.answer,
+        answerString: enableWhen.answer,
         operator: mapOperatorFromModel(enableWhen.operator)
     }
     return mappedEnableWhen;
