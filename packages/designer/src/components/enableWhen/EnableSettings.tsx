@@ -5,7 +5,7 @@ import { RadioGroup, Radio, Form, Scope, FormApi } from 'informed';
 import EnableWhen from './EnableWhen';
 import { useObservableModel } from '@art-forms/observable';
 
-export class EnableConditions extends React.Component<EnableConditionsProps> {
+export class EnableSettings extends React.Component<EnableConditionsProps> {
     formApi?: FormApi<Pick<Models.Item, 'enableWhen' | 'enableBehavior'>>;
     enableWhenFactory: Models.EnableWhenFactory;
 
@@ -108,4 +108,4 @@ export class EnableConditions extends React.Component<EnableConditionsProps> {
     }
 }
 
-export default useObservableModel<EnableConditionsProps>(EnableConditions);
+export default useObservableModel<EnableConditionsProps>(EnableSettings);

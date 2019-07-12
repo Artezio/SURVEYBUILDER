@@ -20,7 +20,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         { title: "MultiChoice", value: Models.MULTI_CHOICE }
     ];
     humanReadableGuide: HumanReadableGuide = HumanReadableGuide.getHumanReadableGuid();
-    
+
     constructor(props: QuestionTypeMenuProps) {
         super(props);
         this.item = props.item;
@@ -79,49 +79,49 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
 
     changeItemToString() {
         const { item } = this.props;
-        const newItem = this.factory.createStringItem({ text: item.text, required: item.required });
+        const newItem = this.factory.createStringItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToText() {
         const { item } = this.props;
-        const newItem = this.factory.createTextItem({ text: item.text, required: item.required });
+        const newItem = this.factory.createTextItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToBoolean() {
         const { item } = this.props;
-        const newItem = this.factory.createBooleanItem({ text: item.text, required: item.required });
+        const newItem = this.factory.createBooleanItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDecimal() {
         const { item } = this.props;
-        const newItem = this.factory.createDecimalItem({ text: item.text, required: item.required });
+        const newItem = this.factory.createDecimalItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToTime() {
         const { item } = this.props;
-        const newItem = this.factory.createTimeItem({ text: item.text, required: item.required });
+        const newItem = this.factory.createTimeItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDate() {
         const { item } = this.props;
-        const newItem = this.factory.createDateItem({ text: item.text, required: item.required });
+        const newItem = this.factory.createDateItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDateTime() {
         const { item } = this.props;
-        const newItem = this.factory.createDateTimeItem({ text: item.text, required: item.required });
+        const newItem = this.factory.createDateTimeItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
@@ -141,7 +141,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
                 options.pop();
             }
         }
-        const newItem = this.factory.createChoiceItem({ text: item.text, options, required: item.required });
+        const newItem = this.factory.createChoiceItem({ text: item.text, options, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
@@ -159,7 +159,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
                 [answerOptionFactory.createAnswerOption({ value: "Option 1" })] :
                 (item as Models.OpenChoiceItem).options.slice();
         }
-        const newItem = this.factory.createOpenChoiceItem({ text: item.text, options, required: item.required });
+        const newItem = this.factory.createOpenChoiceItem({ text: item.text, options, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
@@ -180,7 +180,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
                 options.pop();
             }
         }
-        const newItem = this.factory.createMultiChoiceItem({ text: item.text, options, required: item.required });
+        const newItem = this.factory.createMultiChoiceItem({ text: item.text, options, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
@@ -188,7 +188,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
 
     changeItemToAttachment() {
         const { item } = this.props;
-        const newItem = this.factory.createAttachmentItem({ text: item.text, required: item.required });
+        const newItem = this.factory.createAttachmentItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }

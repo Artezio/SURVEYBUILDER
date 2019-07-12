@@ -8,7 +8,7 @@ import { FormApi, Form, Text, Checkbox } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
 import { Store } from '../interfaces/Store';
 import { connect } from 'react-redux';
-import EnableConditions from './enableWhen/EnableConditions';
+import EnableSettings from './enableWhen/EnableSettings';
 import HumanReadableGuid from '../interfaseHelpers/humanReadableId';
 
 
@@ -172,7 +172,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
             </div>
             {this.state.areSettingsOpen && <div className="item-settings">
                 <hr />
-                <EnableConditions questionnaire={questionnaire} item={item} />
+                <EnableSettings questionnaire={questionnaire} item={item} />
             </div>}
         </div>
     }
