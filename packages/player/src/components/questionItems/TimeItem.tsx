@@ -4,6 +4,7 @@ import TimeItemProps from '../../interfaces/components/questionItems/TimeItemPro
 
 
 export class TimeItem extends React.PureComponent<TimeItemProps> {
+    initialValue?: any = this.props.questionnaireResponseItem.answers && this.props.questionnaireResponseItem.answers[0] && this.props.questionnaireResponseItem.answers[0].value;
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;
@@ -22,7 +23,16 @@ export class TimeItem extends React.PureComponent<TimeItemProps> {
     render() {
         const { item } = this.props;
         return <div className="form-group">
-            <Text autoComplete="off" id={item.id} type="time" className="form-control" field={item.id} onBlur={this.onBlur.bind(this)} validateOnChange={true} validate={this.validate.bind(this)} />
+            <Text autoComplete="off"
+                id={item.id}
+                type="time"
+                className="form-control"
+                field={item.id}
+                onBlur={this.onBlur.bind(this)}
+                validateOnChange={true}
+                validate={this.validate.bind(this)}
+                initialValue={this.initialValue}
+            />
         </div>
     }
 }

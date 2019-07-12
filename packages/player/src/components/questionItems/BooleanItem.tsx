@@ -4,6 +4,7 @@ import BooleanItemProps from '../../interfaces/components/questionItems/BooleanI
 
 
 export class BooleanItem extends React.PureComponent<BooleanItemProps> {
+    initialValue?: any = this.props.questionnaireResponseItem.answers && this.props.questionnaireResponseItem.answers[0] && this.props.questionnaireResponseItem.answers[0].value;
 
     onChange() {
         const { questionnaireResponseItem, item, formApi } = this.props;
@@ -19,7 +20,7 @@ export class BooleanItem extends React.PureComponent<BooleanItemProps> {
 
     render() {
         const { item } = this.props;
-        return <RadioGroup field={item.id} validateOnChange={true} validate={this.validate.bind(this)}>
+        return <RadioGroup field={item.id} validateOnChange={true} validate={this.validate.bind(this)} initialValue={this.initialValue}>
             <div className="form-group">
                 <div className="form-check">
                     <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.onChange.bind(this)} />

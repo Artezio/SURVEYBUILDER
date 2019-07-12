@@ -4,6 +4,7 @@ import TextItemProps from '../../interfaces/components/questionItems/TextItemPro
 
 
 export class TextItem extends React.PureComponent<TextItemProps> {
+    initialValue?: any = this.props.questionnaireResponseItem.answers && this.props.questionnaireResponseItem.answers[0] && this.props.questionnaireResponseItem.answers[0].value;
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;
@@ -20,7 +21,15 @@ export class TextItem extends React.PureComponent<TextItemProps> {
     render() {
         const { item } = this.props;
         return <div className="form-group">
-            <TextArea autoComplete="off" id={item.id} className="form-control" field={item.id} onBlur={this.onBlur.bind(this)}  validateOnChange={true} validate={this.validate.bind(this)}/>
+            <TextArea autoComplete="off"
+                id={item.id}
+                className="form-control"
+                field={item.id}
+                onBlur={this.onBlur.bind(this)}
+                validateOnChange={true}
+                validate={this.validate.bind(this)}
+                initialValue={this.initialValue}
+            />
         </div>
     }
 }

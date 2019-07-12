@@ -3,14 +3,12 @@ import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps'
 import { useObservableModel, getObservable } from '@art-forms/observable';
 import ItemWrapper from './ItemWrapper';
 import { Form, FormApi } from 'informed';
-import { completeInitialFormState } from '../mappers/completeInitialFormState';
 import IFormState from '../interfaces/IFormState';
 import { provider } from '@art-forms/providers';
 
 
 export class QuestionnairePlayer extends React.Component<QuestionnaireProps> {
     formApi?: FormApi<IFormState>;
-    initialFormState: IFormState = completeInitialFormState(this.props.questionnaireResponse);
     // isFileDraggingOverDocument: boolean = false;
 
     getFormApi(formApi: FormApi<IFormState>) {
@@ -70,7 +68,6 @@ export class QuestionnairePlayer extends React.Component<QuestionnaireProps> {
         const { questionnaire, questionnaireResponse } = this.props;
         return <div className="response-item-list">
             <Form getApi={this.getFormApi.bind(this)}
-                initialValues={this.initialFormState}
                 onSubmit={this.submitForm.bind(this)}
                 onSubmitFailure={this.onSubmitFailure.bind(this)}
             // preventEnter={true}     // has no type definition in .d.ts 

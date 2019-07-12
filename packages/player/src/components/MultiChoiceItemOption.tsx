@@ -3,6 +3,19 @@ import MultiChoiceItemOptionProps from '../interfaces/components/MultiChoiceItem
 import { Checkbox } from 'informed';
 
 export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOptionProps> {
+    initialChecked?: boolean;
+
+    constructor(props: MultiChoiceItemOptionProps) {
+        super(props);
+        props.questionnaireResponseItem.answers.find(answer => {
+            if (answer.id === props.option.id) {
+                this.initialChecked = true;
+                return true;
+            }
+            return false;
+        })
+
+    }
 
     onChange() {
         const { option, questionnaireResponseItem } = this.props;
@@ -25,6 +38,7 @@ export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOption
                 onChange={this.onChange.bind(this)}
                 validateOnChange={true}
                 validate={this.validate.bind(this)}
+                initialValue={this.initialChecked}
             />
             <label htmlFor={`${option.id}-checkbox`}>{option.value}</label>
         </div>

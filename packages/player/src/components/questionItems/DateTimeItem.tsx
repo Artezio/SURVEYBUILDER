@@ -4,6 +4,7 @@ import DateTimeItemProps from '../../interfaces/components/questionItems/DateTim
 
 
 export class DateTimeItem extends React.PureComponent<DateTimeItemProps> {
+    initialValue?: any = this.props.questionnaireResponseItem.answers && this.props.questionnaireResponseItem.answers[0] && this.props.questionnaireResponseItem.answers[0].value;
 
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;
@@ -28,6 +29,7 @@ export class DateTimeItem extends React.PureComponent<DateTimeItemProps> {
                 onBlur={this.onBlur.bind(this)}
                 validateOnChange={true}
                 validate={this.validate.bind(this)}
+                initialValue={this.initialValue}
             />
         </div>
     }

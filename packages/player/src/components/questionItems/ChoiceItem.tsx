@@ -4,6 +4,7 @@ import ChoiceItemProps from '../../interfaces/components/questionItems/ChoiceIte
 
 
 export class ChoiceItem extends React.PureComponent<ChoiceItemProps> {
+    initialValue?: any = this.props.questionnaireResponseItem.answers && this.props.questionnaireResponseItem.answers[0] && this.props.questionnaireResponseItem.answers[0].id;
 
     onChange() {
         const { questionnaireResponseItem, item, formApi } = this.props;
@@ -13,7 +14,7 @@ export class ChoiceItem extends React.PureComponent<ChoiceItemProps> {
 
     renderChoiceOptions() {
         const { item } = this.props;
-        return <RadioGroup field={item.id} validateOnChange={true} validate={this.validate.bind(this)}>
+        return <RadioGroup field={item.id} validateOnChange={true} validate={this.validate.bind(this)} initialValue={this.initialValue}>
             {item.options.map(option => {
                 return <div className="form-check" key={option.id}>
                     <Radio className="form-check-input" id={option.id} value={option.id} onChange={this.onChange.bind(this)} />

@@ -8,6 +8,21 @@ import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenC
 export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
     otherAnswerInputRef: React.RefObject<HTMLInputElement> = React.createRef();
     otherAnswerRadioRef: React.RefObject<HTMLInputElement> = React.createRef();
+    initialOption?: Models.IAnswerOption;
+    initialValue?: string;
+
+    constructor(props: OpenChoiceItemProps) {
+        super(props);
+        const initialValue = props.questionnaireResponseItem.answers && props.questionnaireResponseItem.answers[0] && props.questionnaireResponseItem.answers[0].value;
+        if (initialValue) {
+            const initialOption = props.item.options.find(option => option.value === initialValue);
+            if (initialOption) {
+                this.initialOption = initialOption;
+            } else {
+                this.initialValue = initialValue;
+            }
+        }
+    }
 
     toggleToOtherAnswer() {
         const { formApi, item, questionnaireResponseItem } = this.props;
@@ -45,7 +60,7 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
 
     renderOptions() {
         const { item } = this.props;
-        return <RadioGroup field={item.id} onChange={this.toggleToOptions.bind(this)} validateOnChange={true} validate={this.validate.bind(this)}>
+        return <RadioGroup field={item.id} onChange={this.toggleToOptions.bind(this)} validateOnChange={true} validate={this.validate.bind(this)} initialValue={this.initialOption && this.initialOption.id}>
             {item.options.map((option, i) => {
                 if (i !== item.options.length - 1) {
                     return <div className="form-check" key={option.id}>
@@ -62,17 +77,18 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
         const otherOption = item.options[item.options.length - 1];
         return <>
             <div className="form-check">
-                <input type="radio" className="form-check-input" id={otherOption.id} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.otherAnswerRadioRef} />
+                <input type="radio" className="form-check-input" id={otherOption.id} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.otherAnswerRadioRef} defaultChecked={!!this.initialValue} />
                 <label className="form-check-label" htmlFor={otherOption.id}>Other</label>
             </div>
             <Text autoComplete="off"
                 field={`${item.id}-other`}
                 className="form-control"
                 onBlur={this.onBlurFromOtherOption.bind(this)}
-                disabled={true}
+                disabled={!this.initialValue}
                 forwardedRef={this.otherAnswerInputRef}
                 validateOnChange={true}
                 validate={this.validate.bind(this)}
+                initialValue={this.initialValue}
             />
         </>
     }
