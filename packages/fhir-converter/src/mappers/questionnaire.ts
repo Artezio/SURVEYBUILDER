@@ -15,6 +15,7 @@ export const questionnaireMapper = {
     },
     fromModel(questionnaire: Models.IQuestionnaire): FHIRQuestionnaire {
         const newQuestionnaire: FHIRQuestionnaire = {
+            resourceType: "Questionnaire",
             id: questionnaire.id,
             description: questionnaire.description,
             title: questionnaire.title,
