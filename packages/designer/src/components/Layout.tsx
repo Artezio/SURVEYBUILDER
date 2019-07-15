@@ -55,14 +55,18 @@ export class Layout extends React.Component<LayoutProps> {
             .catch((err: any) => console.log('LOAD_ERROR', err))
     }
 
-    submitResponse() {
-        const { questionnaire } = this.props;
-        questionnaire && provider.putQuestionnaire(questionnaireMapper.fromModel(questionnaire));
-    }
-
     toggleModeToPlay() {
         const { actions, questionnaire } = this.props;
         questionnaire && actions.toggleModeToPlay(questionnaire);
+    }
+
+    saveQuestionnaireToServer() {
+        const { questionnaire } = this.props;
+        if (questionnaire) {
+            console.log('Mapped model: ', questionnaireMapper.fromModel(questionnaire));
+            modelsService.postQuestionnaire(questionnaireMapper.fromModel(questionnaire))
+                .then(response => console.log('\nStatus: ', response.status, '\nResponse: ', response))
+        }
     }
 
     render() {
@@ -105,9 +109,11 @@ export class Layout extends React.Component<LayoutProps> {
                             />)
                         }
                     </div>
+                    {questionnaire && application.mode === DESIGN && <div className="col">
+                        <button className="btn btn-primary" onClick={this.saveQuestionnaireToServer.bind(this)}>Save to server</button>
+                    </div>}
                 </div>
             </div>
-            {questionnaire && (application.mode === PLAY) && <button className="btn btn-primary mt-5 ml-auto" onClick={this.submitResponse.bind(this)}>To Console</button>}
         </div>
     }
 }
