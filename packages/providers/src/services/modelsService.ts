@@ -5,6 +5,9 @@ export const modelsService = {
         const path: string = '1718106/_history/2'; // 'devdays-q-1/_history/2';
         return hapiFhirProvider.getQuestionnaireByPass(path)
             .then(questionnaireFhir => questionnaireFhir);
+    },
+    postQuestionnaire(questionnaireFhir: any) {
+        return hapiFhirProvider.postNewQuestionnaire(questionnaireFhir);
     }
 }
 
