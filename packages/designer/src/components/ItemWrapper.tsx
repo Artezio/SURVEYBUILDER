@@ -27,7 +27,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
     inputRef: React.RefObject<HTMLInputElement> = React.createRef();
     itemRef: React.RefObject<HTMLDivElement> = React.createRef();
-    humanReadableGuid: HumanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
+    humanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
 
     clearSelected() {
         const selectedItems = document.querySelectorAll('.card-active');

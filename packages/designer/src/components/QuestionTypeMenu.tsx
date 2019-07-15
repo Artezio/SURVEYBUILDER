@@ -19,7 +19,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         { title: "Attachment", value: Models.ATTACHMENT },
         { title: "MultiChoice", value: Models.MULTI_CHOICE }
     ];
-    humanReadableGuide: HumanReadableGuide = HumanReadableGuide.getHumanReadableGuid();
+    humanReadableGuide = HumanReadableGuide.getHumanReadableGuid();
 
     constructor(props: QuestionTypeMenuProps) {
         super(props);

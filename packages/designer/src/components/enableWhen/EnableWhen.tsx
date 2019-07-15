@@ -19,7 +19,7 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
         { value: Models.MORE_OR_EQUAL, text: 'More or equal( >= )' },
         { value: Models.LESS_OR_EQUAL, text: 'Less or equal( <= )' }
     ];
-    humanReadableGuid: HumanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
+    humanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
 
     constructor(props: EnableWhenProps) {
         super(props);

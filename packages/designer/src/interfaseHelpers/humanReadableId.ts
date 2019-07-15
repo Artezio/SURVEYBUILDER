@@ -7,36 +7,45 @@ const pad = (number: number | undefined, length: number) => {
     return str;
 }
 
-export class HumanReadableGuid {
-    private counter: number;
-    private itemsMap: Map<string, number>;
-
-    private constructor(initialCounter: number, itemsMap?: Map<string, number>) {
-        this.counter = initialCounter;
-        this.itemsMap = itemsMap || new Map();
-    }
-
-    private static instance?: HumanReadableGuid;
-    static getHumanReadableGuid(initialCounter: number | undefined = 0, itemsMap?: Map<string, number>): HumanReadableGuid {
-        if (!HumanReadableGuid.instance) {
-            HumanReadableGuid.instance = new HumanReadableGuid(initialCounter, itemsMap);
-        }
-        return HumanReadableGuid.instance;
-    }
-
-    public getHumanReadableId(key: string): string {
-        if (!this.itemsMap.has(key)) {
-            this.itemsMap.set(key, ++this.counter)
-        }
-        return pad(this.itemsMap.get(key), 3) || '';
-    }
-
-    public updateKey(oldKey: string, newKey: string) {
-        if (!this.itemsMap.has(oldKey)) return;
-        const counter = this.itemsMap.get(oldKey);
-        this.itemsMap.set(newKey, counter as number);
-        this.itemsMap.delete(oldKey);
-    }
+interface IHumanReadableGuid {
+    getHumanReadableId(key: string): string;
+    updateKey(oldKey: string, newKey: string): void;
 }
+
+export const HumanReadableGuid = (function () {
+    let instance: IHumanReadableGuid;
+    const init = (): IHumanReadableGuid => {
+        let counter: number = 1;
+        const itemsMap: Map<string, number> = new Map<string, number>();;
+        const _getHumanReadableId = (key: string): string => {
+            if (!itemsMap.has(key)) {
+                itemsMap.set(key, counter++)
+            }
+            return pad(itemsMap.get(key), 3) || '';
+        }
+        const _updateKey = (oldKey: string, newKey: string): void => {
+            if (!itemsMap.has(oldKey)) return;
+            const counter = itemsMap.get(oldKey);
+            itemsMap.set(newKey, counter as number);
+            itemsMap.delete(oldKey);
+        }
+        return {
+            getHumanReadableId(key: string): string {
+                return _getHumanReadableId(key);
+            },
+            updateKey(oldKey: string, newKey: string): void {
+                _updateKey(oldKey, newKey);
+            }
+        };
+    }
+    return {
+        getHumanReadableGuid() {
+            if (!instance) {
+                instance = init();
+            }
+            return instance;
+        }
+    }
+})()
 
 export default HumanReadableGuid;
