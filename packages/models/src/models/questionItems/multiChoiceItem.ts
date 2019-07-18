@@ -4,9 +4,10 @@ import { MULTI_CHOICE } from "../../constants/itemTypes";
 import IItemCollection from "../../interfaces/IItemCollection";
 import { observable, observableProperty } from '@art-forms/observable';
 import { AnswerOption, AnswerOptionFactory } from "../..";
+import IAnswerOptionCollection from "../../interfaces/IAnswerOptionCollection";
 
 @observable
-export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceItem {
+export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceItem, IAnswerOptionCollection {
     type: MULTI_CHOICE = MULTI_CHOICE;
     @observableProperty
     options!: AnswerOption[];
@@ -17,6 +18,20 @@ export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceIt
         super(item, parent);
         this.completeOptions(item);
         this.options.forEach(option => this.optionIdMap.set(option.id, true));
+    }
+
+    selectDefaultOption(answerOption: AnswerOption) {
+        const option = this.options.find(option => option.id === answerOption.id);
+        if (option) {
+            option.defaultSelected = true;
+        }
+    }
+
+    unselectDefaultOption(answerOption: AnswerOption) {
+        const option = this.options.find(option => option.id === answerOption.id);
+        if (option) {
+            option.defaultSelected = false;
+        }
     }
 
     completeOptions(item?: Partial<Omit<IMultiChoiceItem, 'type'>>) {

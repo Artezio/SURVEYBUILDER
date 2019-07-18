@@ -8,6 +8,7 @@ import IValidator from '../interfaces/IValidator';
 import { IItem, IGroupItem, questionResponseFactory, IQuestionItem } from '..';
 import AnswerCollection from './answersCollection';
 import JL from 'json-logic-js';
+import IChoiceItem from '../interfaces/questionItems/IChoiceItem';
 
 
 @observable
@@ -43,7 +44,15 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
             if (initialAnswers) {
                 this.answers = initialAnswers.map(initialAnswer => this.answerFactory.createAnswer(initialAnswer))
             } else {
-                this.answers = [];
+                if ((questionItem as IChoiceItem).options) {
+                    this.answers = (questionItem as IChoiceItem).options
+                        .filter(option => {
+                            return option.defaultSelected && option
+                        })
+                        .map(option => this.answerFactory.createAnswer(option))
+                } else {
+                    this.answers = [];
+                }
             }
         }
         if ((questionItem as IGroupItem).items) {

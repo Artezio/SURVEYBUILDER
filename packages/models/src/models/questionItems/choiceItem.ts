@@ -1,16 +1,18 @@
 import { QuestionItem, AnswerOption, AnswerOptionFactory } from "../..";
-import { observable, observableProperty, getObservable } from '@art-forms/observable';
+import { observable, observableProperty } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IChoiceItem } from "../../interfaces/questionItems/IChoiceItem";
 import { CHOICE } from "../..";
+import IAnswerOptionCollection from "../../interfaces/IAnswerOptionCollection";
 
 @observable
-export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
+export class ChoiceItem extends QuestionItem<any> implements IChoiceItem, IAnswerOptionCollection {
     type: CHOICE = CHOICE;
     @observableProperty
     options!: AnswerOption[];
     optionIdMap: Map<string, boolean> = new Map();
     answerOptionFactory: AnswerOptionFactory = new AnswerOptionFactory(this);
+    defaultOption?: AnswerOption;
 
     constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IChoiceItem>) {
         super(item, parent);
@@ -23,6 +25,24 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem {
             this.options = item.options.map(option => this.answerOptionFactory.createAnswerOption(option));
         } else {
             this.options = [];
+        }
+    }
+
+    selectDefaultOption(answerOption: AnswerOption) {
+        const option = this.options.find(option => option.id === answerOption.id);
+        if (!option) return;
+        if (this.defaultOption) {
+            this.defaultOption.defaultSelected = false;
+        }
+        this.defaultOption = option;
+        this.defaultOption.defaultSelected = true;
+    }
+
+    unselectDefaultOption(answerOption: AnswerOption) {
+        const option = this.options.find(option => option.id === answerOption.id);
+        if (option) {
+            option.defaultSelected = false;
+            this.defaultOption = undefined;
         }
     }
 

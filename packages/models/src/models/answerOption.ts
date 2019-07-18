@@ -7,11 +7,13 @@ export class AnswerOption implements IAnswerOption {
     value?: any;
     parent?: IAnswerOptionCollection;
     position!: number;
+    defaultSelected: boolean;
 
     constructor(option?: Partial<IAnswerOption>, parent?: IAnswerOptionCollection) {
         this.id = option && option.id || uuid();
         this.value = option && option.value;
         this.parent = parent;
+        this.defaultSelected = !!option && !!option.defaultSelected;
         Object.defineProperty(AnswerOption.prototype, 'position', {
             enumerable: true,
             configurable: true,
@@ -27,6 +29,14 @@ export class AnswerOption implements IAnswerOption {
                 return position;
             }
         })
+    }
+
+    selectAsDefault() {
+        this.parent && this.parent.selectDefaultOption(this);
+    }
+
+    unselectAsDefault() {
+        this.parent && this.parent.unselectDefaultOption(this);
     }
 
     updateAnswerOption(option: IAnswerOption) {
