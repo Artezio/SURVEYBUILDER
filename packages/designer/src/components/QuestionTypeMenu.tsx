@@ -1,7 +1,7 @@
 import * as React from 'react';
 import QuestionTypeMenuProps, { QuestionTypeMenuOption } from '../interfaces/components/SelectMenuProps';
 import * as Models from '@art-forms/models';
-import HumanReadableGuide from '../interfaseHelpers/humanReadableId';
+import HumanReadableGuide from '../helpers/humanReadableId';
 
 export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
     item: Models.Item;

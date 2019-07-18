@@ -23,8 +23,8 @@ export class EnableSettings extends React.Component<EnableConditionsProps> {
         this.formApi && this.formApi.setValues(item);
     }
 
-    fillQuestionList(list: Models.QuestionItem<any>[], source: Models.GroupItem | Models.Questionnaire) {
-        source.items.forEach(item => {
+    fillQuestionList(list: Models.IQuestionItem<any>[], source: Models.IGroupItem | Models.IQuestionnaire) {
+        source.items && source.items.forEach(item => {
             if (item.type === Models.GROUP) {
                 this.fillQuestionList(list, item as Models.GroupItem);
             } else if (item.type !== Models.DISPLAY && item.type !== Models.ATTACHMENT) {

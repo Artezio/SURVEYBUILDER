@@ -1,7 +1,7 @@
 import * as Models from '@art-forms/models';
 
 export interface ChoiceProps {
-    item: Models.ChoiceItem | Models.MultiChoiceItem;
+    item: Models.IChoiceItem | Models.IMultiChoiceItem;
     index: number;
     enableWhen: Models.IEnableWhen;
 }

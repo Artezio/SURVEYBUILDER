@@ -6,6 +6,7 @@ import { useObservableModel } from '@art-forms/observable';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
+import QuestionnaireContext from '../helpers/questionnaireContext';
 
 export class QuestionnaireDesigner extends React.Component<QuestionnaireProps> {
 
@@ -139,7 +140,9 @@ export class QuestionnaireDesigner extends React.Component<QuestionnaireProps> {
     renderItemList() {
         const { questionnaire } = this.props;
         return <div id="drag-drop-nested">
-            <QuestionnaireItemList item={questionnaire} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} />
+            <QuestionnaireContext.Provider value={{ questionnaire }}>
+                <QuestionnaireItemList itemList={questionnaire.items} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} />
+            </QuestionnaireContext.Provider>
         </div>
     }
 

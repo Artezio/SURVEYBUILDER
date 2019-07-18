@@ -4,12 +4,12 @@ import EnableWhenProps from '../../interfaces/components/enableWhen/EnableWhenPr
 import { Select, Option, withFormApi, FormState } from 'informed';
 import QuestionItemProvider from './QuestionItemProvider';
 import { useObservableModel } from '@art-forms/observable';
-import HumanReadableGuid from '../../interfaseHelpers/humanReadableId';
+import HumanReadableGuid from '../../helpers/humanReadableId';
 
 type OperatorType = { value: Models.EnableWhenOperator, text: string };
 
 export class EnableWhen extends React.Component<EnableWhenProps> {
-    state: { selectedQuestion?: Models.QuestionItem<any> } = {};
+    state: { selectedQuestion?: Models.IQuestionItem<any> } = {};
     operators: OperatorType[] = [
         { value: Models.EQUAL, text: 'Equal( == )' },
         { value: Models.NOT_EQUAL, text: 'Not equal( != )' },

@@ -4,7 +4,7 @@ import * as Models from '@art-forms/models';
 export interface QuestionnaireItemListProps {
     nestingLevel: string;
     className?: string;
-    item: Models.Questionnaire | Models.GroupItem;
+    itemList: Models.Item[];
     subscribe?: () => void;
 }
 

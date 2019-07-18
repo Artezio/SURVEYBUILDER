@@ -1,7 +1,7 @@
 import * as Models from '@art-forms/models';
 
 export interface EnableConditionsProps {
-    questionnaire: Models.Questionnaire;
+    questionnaire: Models.IQuestionnaire;
     item: Models.Item;
 }
 

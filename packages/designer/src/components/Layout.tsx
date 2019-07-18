@@ -9,7 +9,6 @@ import { createQuestionnaire } from '../actions/questionnaire';
 import { createQuestionnaireResponse } from '../actions/questionnaireResponse';
 import { toggleModeToDesign, toggleModeToPlay } from '../actions/application';
 import { connect } from 'react-redux';
-import { provider } from '@art-forms/providers';
 import { Dispatch } from 'redux';
 import { modelsService } from '@art-forms/providers';
 import { questionnaireMapper } from '@art-forms/fhir-converter';

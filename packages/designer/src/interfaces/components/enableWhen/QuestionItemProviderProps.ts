@@ -1,7 +1,7 @@
 import * as Models from '@art-forms/models';
 
 export interface QuestionItemProviderProps {
-    item: Models.QuestionItem<any>;
+    item: Models.IQuestionItem<any>;
     index: number;
     enableWhen: Models.IEnableWhen;
 }

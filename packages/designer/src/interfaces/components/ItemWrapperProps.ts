@@ -6,7 +6,6 @@ export interface ItemWrapperProps {
     className?: string;
     nestingLevel: string;
     subscribe?: () => void;
-    questionnaire: Models.Questionnaire;
 }
 
 export default ItemWrapperProps;

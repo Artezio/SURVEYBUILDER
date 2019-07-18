@@ -6,11 +6,9 @@ import ItemProvider from './ItemProvider';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import { FormApi, Form, Text, Checkbox } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
-import { Store } from '../interfaces/Store';
-import { connect } from 'react-redux';
 import EnableSettings from './enableWhen/EnableSettings';
-import HumanReadableGuid from '../interfaseHelpers/humanReadableId';
-
+import HumanReadableGuid from '../helpers/humanReadableId';
+import QuestionnaireContext from '../helpers/questionnaireContext';
 
 
 export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
@@ -146,8 +144,20 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         })
     }
 
+    renderEnableSettings() {
+        const { item } = this.props;
+        return this.state.areSettingsOpen && <div className="item-settings">
+            <hr />
+            <QuestionnaireContext.Consumer>
+                {({ questionnaire }) => {
+                    return questionnaire && <EnableSettings questionnaire={questionnaire} item={item} />
+                }}
+            </QuestionnaireContext.Consumer>
+        </div>
+    }
+
     renderFooter() {
-        const { item, questionnaire } = this.props;
+        const { item } = this.props;
         const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
         return <div>
             <div className="row align-items-center">
@@ -170,10 +180,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                     </button>
                 </div>
             </div>
-            {this.state.areSettingsOpen && <div className="item-settings">
-                <hr />
-                <EnableSettings questionnaire={questionnaire} item={item} />
-            </div>}
+            {this.renderEnableSettings()}
         </div>
     }
 
@@ -194,8 +201,4 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
 }
 
-const mapStateToProps = (store: Store) => ({
-    questionnaire: store.questionnaire
-})
-
-export default connect(mapStateToProps)(useObservableModel<Omit<ItemWrapperProps, 'questionnaire'>>(ItemWrapper));
+export default useObservableModel<ItemWrapperProps>(ItemWrapper);
