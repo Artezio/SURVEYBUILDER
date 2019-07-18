@@ -1,7 +1,9 @@
 import IAnswerOption from "../interfaces/IAnswerOption";
 import uuid from 'uuid/v1';
 import IAnswerOptionCollection from "../interfaces/IAnswerOptionCollection";
+import { observable } from "@art-forms/observable";
 
+@observable
 export class AnswerOption implements IAnswerOption {
     id!: string;
     value?: any;
