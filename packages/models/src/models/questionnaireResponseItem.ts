@@ -41,7 +41,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
             this.answers = initialResponseItem.answers.map(answer => this.answerFactory.createAnswer(answer))
         } else {
             const initialAnswers = (questionItem as IQuestionItem<any>).initialAnswers;
-            if (initialAnswers) {
+            if (initialAnswers && initialAnswers.length) {
                 this.answers = initialAnswers.map(initialAnswer => this.answerFactory.createAnswer(initialAnswer))
             } else {
                 if ((questionItem as IChoiceItem).options) {
