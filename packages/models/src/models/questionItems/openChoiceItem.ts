@@ -21,6 +21,12 @@ export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem
         this.options.forEach(option => this.optionIdMap.set(option.id, true));
     }
 
+    clearInitialAnswers() {
+        if (this.defaultOption) {
+            this.defaultOption.defaultSelected = false;
+        }
+    }
+
     selectDefaultOption(answerOption: AnswerOption) {
         const option = this.options.find(option => option.id === answerOption.id);
         if (!option) return;

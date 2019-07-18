@@ -20,6 +20,12 @@ export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceIt
         this.options.forEach(option => this.optionIdMap.set(option.id, true));
     }
 
+    clearInitialAnswers() {
+        this.options.forEach(option => {
+            option.defaultSelected = false;
+        })
+    }
+
     selectDefaultOption(answerOption: AnswerOption) {
         const option = this.options.find(option => option.id === answerOption.id);
         if (option) {
