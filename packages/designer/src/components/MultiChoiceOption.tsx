@@ -1,28 +1,10 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
 import MultiChoiceOptionProps from '../interfaces/components/MultiChoiceOptionProps';
-import { Form, Checkbox } from 'informed';
 import QuestionItem from './questionItems/QuestionItem';
+import { useObservableModel } from '@art-forms/observable';
 
 export class MultiChoiceOption extends QuestionItem<MultiChoiceOptionProps> {
-    initialAnswerFactory: Models.InitialAnswerFactory = new Models.InitialAnswerFactory(this.props.item);
-    initialAnswer?: Models.InitialAnswer<any> = this.props.item.initialAnswers.find(itm => itm.value === this.props.option.id);
-
-    handleSubmit(values: Partial<Models.InitialAnswer<any>>) {
-        // const { item, option } = this.props as any;
-        // if (values.value) {
-        //     this.initialAnswer = this.initialAnswerFactory.createInitialAnswer({ value: option.id });
-        //     item.addInitialAnswer(this.initialAnswer);
-        // }
-        // else if (this.initialAnswer) {
-        //     item.removeInitialAnswer(this.initialAnswer);
-        //     this.initialAnswer = undefined;
-        // }
-    }
-
-    componentDidUpdate() {
-        // this.formApi && this.formApi.setValue('value', this.initialAnswer);
-    }
 
     onBlur(e: any) {
         const { option } = this.props;
@@ -34,33 +16,39 @@ export class MultiChoiceOption extends QuestionItem<MultiChoiceOptionProps> {
         option.remove();
     }
 
+    onChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const { option } = this.props;
+        if (e.target.checked) {
+            option.selectAsDefault();
+        } else {
+            option.unselectAsDefault();
+        }
+    }
+
     renderCheckbox() {
         const { option } = this.props;
         return <div className="input-group-text">
-            {/* <label className="mr-1" htmlFor={`${option.id}-checkbox`}>As default</label> */}
-            <input type="checkbox" disabled={true} />
-            {/* <Checkbox initialValue={!!this.initialAnswer} field="value" id={`${option.id}-checkbox`} onChange={this.submitForm.bind(this)} /> */}
+            <label className="mr-1" htmlFor={`${option.id}-checkbox`}>As default</label>
+            <input id={`${option.id}-checkbox`} type="checkbox" checked={option.defaultSelected} onChange={this.onChange.bind(this)} />
         </div>
     }
 
     render() {
         const { option } = this.props;
-        return <Form getApi={this.getFormApi.bind(this) as any} onSubmit={this.handleSubmit.bind(this)}>
-            <div className="form-group">
-                <div className="input-group">
-                    <div className="input-group-prepend">
-                        {this.renderCheckbox()}
-                    </div>
-                    <input autoComplete="off" className="form-control" defaultValue={option.value} onBlur={this.onBlur.bind(this)} />
-                    <div className="input-group-append">
-                        <button type="button" className="btn btn-outline-secondary" onClick={this.remove.bind(this)} >
-                            <i className="fas fa-trash"></i>
-                        </button>
-                    </div>
+        return <div className="form-group">
+            <div className="input-group">
+                <div className="input-group-prepend">
+                    {this.renderCheckbox()}
                 </div>
-            </div >
-        </Form>
+                <input autoComplete="off" className="form-control" defaultValue={option.value} onBlur={this.onBlur.bind(this)} />
+                <div className="input-group-append">
+                    <button type="button" className="btn btn-outline-secondary" onClick={this.remove.bind(this)} >
+                        <i className="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div >
     }
 }
 
-export default MultiChoiceOption;
+export default useObservableModel<MultiChoiceOptionProps>(MultiChoiceOption);

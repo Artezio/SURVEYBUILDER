@@ -15,11 +15,19 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
         super(props);
         const initialValue = props.questionnaireResponseItem.answers && props.questionnaireResponseItem.answers[0] && props.questionnaireResponseItem.answers[0].value;
         if (initialValue) {
-            const initialOption = props.item.options.find(option => option.value === initialValue);
+            let index;
+            const initialOption = props.item.options.find((option, i) => {
+                if (option.value === initialValue) {
+                    index = i;
+                    return true;
+                }
+            });
             if (initialOption) {
-                this.initialOption = initialOption;
-            } else {
-                this.initialValue = initialValue;
+                if (index === props.item.options.length - 1) {
+                    this.initialValue = initialOption.value;
+                } else {
+                    this.initialOption = initialOption;
+                }
             }
         }
     }

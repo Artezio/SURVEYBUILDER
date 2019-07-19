@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ChoiceOptionProps from '../interfaces/components/ChoiceOptionProps';
-import { Radio } from 'informed';
+import { useObservableModel } from '@art-forms/observable';
 
 export class ChoiceOption extends React.Component<ChoiceOptionProps> {
     RadioRef: React.RefObject<HTMLInputElement> = React.createRef();
@@ -15,28 +15,32 @@ export class ChoiceOption extends React.Component<ChoiceOptionProps> {
         option.remove();
     }
 
-    // onChange() {
-    //     const { option } = this.props;
-    //     option.asDefault();
-    // }
+    onChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const { option } = this.props;
+        if (e.target.checked) {
+            option.selectAsDefault();
+        } else {
+            option.unselectAsDefault();
+        }
+    }
 
     render() {
         const { option, disabledOption, customLabel } = this.props;
-        return <>
+        const disabled = disabledOption && !option.defaultSelected;
+        return <div>
             {customLabel && <label htmlFor={`${option.id}-option`}>{customLabel}</label>}
             <div className="form-group">
                 <div className="input-group">
                     <div className="input-group-prepend">
                         <div className="input-group-text">
-                            {/* <label htmlFor={`${option.id}-initial`} className="mr-1">As default</label> */}
-                            <input type="radio" disabled={true} />
-                            {/* <Radio value={option.id} id={`${option.id}-initial`} onChange={this.onChange.bind(this)} forwardedRef={this.RadioRef} /> */}
+                            <label htmlFor={`${option.id}-initial`} className="mr-1">As default</label>
+                            <input checked={option.defaultSelected} id={`${option.id}-initial`} type="radio" onChange={this.onChange.bind(this)} />
                         </div>
                     </div>
                     <input autoComplete="off"
                         id={`${option.id}-option`}
                         className="form-control"
-                        disabled={disabledOption}
+                        disabled={disabled}
                         defaultValue={option.value}
                         onBlur={this.onBlur.bind(this)}
                     />
@@ -47,8 +51,8 @@ export class ChoiceOption extends React.Component<ChoiceOptionProps> {
                     </div>
                 </div>
             </div >
-        </>
+        </div>
     }
 }
 
-export default ChoiceOption;
+export default useObservableModel<ChoiceOptionProps>(ChoiceOption);
