@@ -21,6 +21,7 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
                     index = i;
                     return true;
                 }
+                return false;
             });
             if (initialOption) {
                 if (index === props.item.options.length - 1) {
