@@ -38,7 +38,7 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     render() {
         return <div>
             <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
-                Reset <i className="fas fa-undo small"></i>
+                Reset <i className="fas fa-undo"></i>
             </button>
             {this.renderChoiceOptions()}
             <div>

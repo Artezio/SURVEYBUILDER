@@ -109,11 +109,11 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     renderHeader() {
         const { item } = this.props;
         return <div className="row">
-            <div className="col-4"><span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span></div>
-            <div className="col-4 d-flex justify-content-center">
-                <i className="btn half-opacity fas fa-grip-horizontal"></i>
+            <div className="col-4 d-flex align-items-center"><span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span></div>
+            <div className="col-4 d-flex justify-content-center align-items-center">
+                <i className="fas fa-grip-horizontal text-muted"></i>
             </div>
-            <div className="col-4 d-flex justify-content-end">
+            <div className="col-4 d-flex justify-content-end align-items-center">
                 {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
             </div>
         </div>

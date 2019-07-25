@@ -33,7 +33,7 @@ export class ChoiceOption extends React.Component<ChoiceOptionProps> {
                 <div className="input-group">
                     <div className="input-group-prepend">
                         <div className="input-group-text">
-                            <label htmlFor={`${option.id}-initial`} className="mr-1">As default</label>
+                            <label htmlFor={`${option.id}-initial`} className="mr-1 mb-0">As default</label>
                             <input checked={option.defaultSelected} id={`${option.id}-initial`} type="radio" onChange={this.onChange.bind(this)} />
                         </div>
                     </div>

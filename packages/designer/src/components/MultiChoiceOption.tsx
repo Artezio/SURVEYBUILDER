@@ -28,7 +28,7 @@ export class MultiChoiceOption extends QuestionItem<MultiChoiceOptionProps> {
     renderCheckbox() {
         const { option } = this.props;
         return <div className="input-group-text">
-            <label className="mr-1" htmlFor={`${option.id}-checkbox`}>As default</label>
+            <label className="mr-1 mb-0" htmlFor={`${option.id}-checkbox`}>As default</label>
             <input id={`${option.id}-checkbox`} type="checkbox" checked={option.defaultSelected} onChange={this.onChange.bind(this)} />
         </div>
     }
