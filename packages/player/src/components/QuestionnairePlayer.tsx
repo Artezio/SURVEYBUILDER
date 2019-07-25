@@ -7,7 +7,7 @@ import IFormState from '../interfaces/IFormState';
 import { provider } from '@art-forms/providers';
 
 
-export class QuestionnairePlayer extends React.Component<QuestionnaireProps> {
+export class Questionnaire extends React.Component<QuestionnaireProps> {
     formApi?: FormApi<IFormState>;
     // isFileDraggingOverDocument: boolean = false;
 
@@ -93,4 +93,7 @@ export class QuestionnairePlayer extends React.Component<QuestionnaireProps> {
     }
 }
 
-export default useObservableModel<QuestionnaireProps>(QuestionnairePlayer);
+
+const QuestionnairePlayer = useObservableModel<QuestionnaireProps>(Questionnaire);
+export { QuestionnairePlayer }
+export default QuestionnairePlayer;

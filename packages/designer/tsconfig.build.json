@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "build",
-    "module": "commonjs",
+    "module": "es6",
     "target": "es5",
     "lib": [
       "es5",
@@ -21,5 +21,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "declaration": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }

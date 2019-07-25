@@ -8,7 +8,7 @@ import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
 import QuestionnaireContext from '../helpers/questionnaireContext';
 
-export class QuestionnaireDesigner extends React.Component<QuestionnaireProps> {
+export class Questionnaire extends React.Component<QuestionnaireProps> {
 
     static defaultProps: Partial<QuestionnaireProps> = {
         className: ''
@@ -171,4 +171,6 @@ export class QuestionnaireDesigner extends React.Component<QuestionnaireProps> {
     }
 }
 
-export default useObservableModel<QuestionnaireProps>(QuestionnaireDesigner);
+const QuestionnaireDesigner = useObservableModel<QuestionnaireProps>(Questionnaire);
+export { QuestionnaireDesigner }
+export default QuestionnaireDesigner;
