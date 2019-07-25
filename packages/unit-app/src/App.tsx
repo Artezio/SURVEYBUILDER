@@ -1,26 +1,21 @@
 import * as React from 'react';
-import * as Models from '@art-forms/models';
 import 'bootstrap-scss';
-// import './data/styles/sheet.scss';
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'bootstrap';
-import { QuestionnaireDesigner } from '@art-forms/designer';
-import { QuestionnairePlayer } from '@art-forms/player';
 
 export class App extends React.Component {
-    questionnaire: any;
-    questionnaireResponse: any;
-
-    constructor(props: any) {
-        super(props);
-        this.questionnaire = new Models.Questionnaire();
-        this.questionnaireResponse = new Models.QuestionnaireResponse(this.questionnaire);
-    }
 
     render() {
-        return <div>
-            <QuestionnaireDesigner questionnaire={this.questionnaire} />
-            {/* <QuestionnairePlayer questionnaire={this.questionnaire} questionnaireResponse={this.questionnaireResponse} /> */}
+        return <div className="main">
+            <section className="p-3 bg-secondary">
+                <div className="form-group row mb-0 d-flex justify-content-around">
+                    <input value="https://fhirtest.uhn.ca/search" type="text" className="form-control col-10" disabled />
+                    <button className="btn btn-light col-1">Search</button>
+                </div>
+            </section>
+            <section className="p-3">
+                {/* Controller */}
+            </section>
         </div>
     }
 }
