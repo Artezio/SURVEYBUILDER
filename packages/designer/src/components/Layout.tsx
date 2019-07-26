@@ -109,7 +109,7 @@ export class Layout extends React.Component<LayoutProps> {
                         }
                     </div>
                     {questionnaire && application.mode === DESIGN && <div className="col">
-                        <button disabled={true} className="btn btn-primary" onClick={this.saveQuestionnaireToServer.bind(this)}>Save to server</button>
+                        <button disabled={false} className="btn btn-primary" onClick={this.saveQuestionnaireToServer.bind(this)}>Save to server</button>
                     </div>}
                 </div>
             </div>
