@@ -5,19 +5,19 @@ export class HapiFhirQuestionnaireProvider {
         this.mainPath = mainPath;
     }
     getResource(path: string) {
-        return axios.get(`${mainPath}${path}`);
+        return axios.get(`${this.mainPath}${path}`);
     }
 
     deleteResource(path: string) {
-        return axios.delete(`${mainPath}${path}`);
+        return axios.delete(`${this.mainPath}${path}`);
     }
 
     updateResource(path: string, data) {
-        return axios.put(`${mainPath}${path}`, data);
+        return axios.put(`${this.mainPath}${path}`, data);
     }
 
     postResource(path: string, data) {
-        return axios.post(`${mainPath}${path}`, data);
+        return axios.post(`${this.mainPath}${path}`, data);
     }
 }
 
