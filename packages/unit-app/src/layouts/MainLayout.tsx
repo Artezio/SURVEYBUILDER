@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import QuestionnaireListPage from '../pages/QuestionnaireListPage';
 import QuestionnaireEditor from '../pages/QuestionnaireEditor';
 import ResponseList from '../pages/ResponseList';
@@ -20,6 +20,7 @@ export class MainLayout extends React.Component {
                 <Router>
                     <Switch>
                         <Route exact={true} path="/" component={QuestionnaireListPage} />
+                        <Route exact={true} path="/questionnaire" component={QuestionnaireEditor} />
                         <Route path="/questionnaire/:questionnaireId" component={QuestionnaireEditor} />
                         <Route path="/responses/:questionnaireId" component={ResponseList} />
                         <Route path="/response/questionnaireId" component={ResponseEditor} />

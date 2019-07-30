@@ -1,28 +1,30 @@
 import { HapiFhirService } from './hapiFhirService';
 
 
+
 export class QuestionnaireService {
-    constructor(private service: HapiFhirService) {
+    constructor(private service: HapiFhirService, public resource: string) {
         this.service = service;
+        this.resource = resource;
     }
 
     getQuestionnaireList(options: any) {
-        return this.service.getResource('/', { params: { '_count': options && options.limit } });
+        return this.service.getResource(this.resource + '/', { params: { '_count': options && options.limit } });
     }
 
     getQuestionnaireById(id: string) {
-        return this.service.getResource('/' + id);
+        return this.service.getResource(this.resource + '/' + id);
     }
 
     putQuestionnaire(data: any) {
-        return this.service.postResource('/', data);
+        return this.service.postResource(this.resource + '/', data);
     }
 
     updateQuestionnaireById(id: string, data: any) {
-        return this.service.updateResource('/' + id, data);
+        return this.service.updateResource(this.resource + '/' + id, data);
     }
 
     deleteQuestionnaireById(id: string) {
-        return this.service.deleteResource('/' + id);
+        return this.service.deleteResource(this.resource + '/' + id);
     }
 }

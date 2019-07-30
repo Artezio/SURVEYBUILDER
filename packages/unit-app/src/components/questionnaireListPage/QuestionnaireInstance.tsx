@@ -1,15 +1,22 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { questionnaireListPageActions } from '../../redux/actions/questionnaireListPageActions';
 
 export const QuestionnaireInstance = (props: any) => {
     const { questionnaire } = props;
+    const dispatch = useDispatch();
+    const deleteQuestionnaire = () => {
+        dispatch(questionnaireListPageActions.deleteQuestionnaire(questionnaire.id));
+    }
+
     return <li className="list-group-item">
         <div className="row">
             <div className="col-4">
                 <Link to={`/questionnaire/${questionnaire.id}`}>{questionnaire.title || 'Untitled Questionnaire'}</Link>
             </div>
             <div className="col-2">
-                <button className="btn btn-outline-danger"><i className="fas fa-trash"></i></button>
+                <button className="btn btn-outline-danger" onClick={deleteQuestionnaire}><i className="fas fa-trash"></i></button>
             </div>
             <div className="col-4">
                 <Link to={`/responses/${questionnaire.id}`}>Responses</Link>

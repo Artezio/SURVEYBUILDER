@@ -1,4 +1,11 @@
+import * as Models from '@art-forms/models';
+
+type QuestionnaireListStatus = {
+    loading?: string;
+    deleting?: string;
+}
+
 export interface QuestionnaireListStore {
-    status: string;
-    questionnaireList?: any[];
+    status: QuestionnaireListStatus;
+    questionnaireList?: Models.IQuestionnaire[];
 }

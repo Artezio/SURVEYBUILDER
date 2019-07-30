@@ -1,11 +1,19 @@
 export enum ACTIONS {
     LOAD_QUESTIONNAIRE_LIST_FETCHING = 'LOAD_QUESTIONNAIRE_LIST_FETCHING',
     LOAD_QUESTIONNAIRE_LIST_LOADED = 'LOAD_QUESTIONNAIRE_LIST_LOADED',
-    LOAD_QUESTIONNAIRE_LIST_ERROR = 'LOAD_QUESTIONNAIRE_LIST_ERROR'
+    LOAD_QUESTIONNAIRE_LIST_ERROR = 'LOAD_QUESTIONNAIRE_LIST_ERROR',
+    DELETE_QUESTIONNAIRE_DELETING = 'DELETE_QUESTIONNAIRE_DELETING',
+    DELETE_QUESTIONNAIRE_DELETED = 'DELETE_QUESTIONNAIRE_DELETED',
+    DELETE_QUESTIONNAIRE_ERROR = 'DELETE_QUESTIONNAIRE_ERROR'
 }
 
-export enum STATUS {
-    fetchingQuestionnaireList = 'fetching',
-    loadedQuestionnaireList = 'loaded',
-    errorQuestionnaireList = 'error'
+export enum STATUS_LOADING {
+    fetching = 'fetching',
+    loaded = 'loaded',
+    error = 'error'
+}
+
+export enum STATUS_DELETING {
+    deleting = 'deleting',
+    deletingEnded = 'deletingEnded'
 }
