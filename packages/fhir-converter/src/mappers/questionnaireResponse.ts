@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 import QuestionnaireResponse from "../interfaces/FHIRModels/QuestionnaireResponse";
 import responseItem from './ResponseItem';
 
-export const questionnaireResponse = {
+export const questionnaireResponseMapper = {
     toModel(questionnaireResponse: QuestionnaireResponse): Models.IQuestionnaireResponse {
         const newQuestionnaireResponse: Models.IQuestionnaireResponse = {
             id: questionnaireResponse.id,
@@ -24,4 +24,4 @@ export const questionnaireResponse = {
     }
 }
 
-export default questionnaireResponse;
+export default questionnaireResponseMapper;
