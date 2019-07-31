@@ -16,7 +16,7 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
         const initialValue = props.questionnaireResponseItem.answers && props.questionnaireResponseItem.answers[0] && props.questionnaireResponseItem.answers[0].value;
         if (initialValue) {
             let index;
-            const initialOption = props.item.options.find((option, i) => {
+            const initialOption = props.item.options && props.item.options.find((option, i) => {
                 if (option.value === initialValue) {
                     index = i;
                     return true;
@@ -24,7 +24,7 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
                 return false;
             });
             if (initialOption) {
-                if (index === props.item.options.length - 1) {
+                if (index === (props.item.options as Models.IAnswerOption[]).length - 1) {
                     this.initialValue = initialOption.value;
                 } else {
                     this.initialOption = initialOption;
@@ -50,7 +50,7 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
             this.otherAnswerRadioRef.current.checked = false;
             this.otherAnswerInputRef.current.disabled = true;
         }
-        const option = item.options.find(x => x.id === formApi.getValue(item.id));
+        const option = item.options && item.options.find(x => x.id === formApi.getValue(item.id));
         option && questionnaireResponseItem.reply(option.id);
     }
 
@@ -70,8 +70,8 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
     renderOptions() {
         const { item } = this.props;
         return <RadioGroup field={item.id} onChange={this.toggleToOptions.bind(this)} validateOnChange={true} validate={this.validate.bind(this)} initialValue={this.initialOption && this.initialOption.id}>
-            {item.options.map((option, i) => {
-                if (i !== item.options.length - 1) {
+            {item.options && item.options.map((option, i) => {
+                if (i !== (item.options as Models.IAnswerOption[]).length - 1) {
                     return <div className="form-check" key={option.id}>
                         <Radio className="form-check-input" id={option.id} value={option.id} />
                         <label className="form-check-label" htmlFor={option.id}>{option.value}</label>
@@ -82,8 +82,14 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
     }
 
     renderOtherOption() {
-        const { item } = this.props;
-        const otherOption = item.options[item.options.length - 1];
+        const { item, questionnaireResponseItem } = this.props;
+        let otherOption: Models.IAnswerOption;
+        if (item.options) {
+            otherOption = item.options[item.options.length - 1];
+        } else {
+            const answerOptionFactory = new Models.AnswerOptionFactory();
+            otherOption = answerOptionFactory.createAnswerOption();
+        }
         return <>
             <div className="form-check">
                 <input type="radio" className="form-check-input" id={otherOption.id} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.otherAnswerRadioRef} defaultChecked={!!this.initialValue} />

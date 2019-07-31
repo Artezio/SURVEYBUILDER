@@ -10,7 +10,7 @@ export class MultiChoiceItem extends React.PureComponent<MultiChoiceItemProps> {
         const { item, questionnaireResponseItem, formApi } = this.props;
         return <div className="form-group">
             <Scope scope={item.id}>
-                {item.options.map(option => <MultiChoiceItemOption
+                {item.options && item.options.map(option => <MultiChoiceItemOption
                     key={option.id}
                     item={item}
                     formApi={formApi}

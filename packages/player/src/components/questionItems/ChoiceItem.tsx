@@ -8,14 +8,14 @@ export class ChoiceItem extends React.PureComponent<ChoiceItemProps> {
 
     onChange() {
         const { questionnaireResponseItem, item, formApi } = this.props;
-        const option = item.options.find(x => x.id === formApi.getValue(item.id));
+        const option = item.options && item.options.find(x => x.id === formApi.getValue(item.id));
         option && questionnaireResponseItem.reply(option.id);
     }
 
     renderChoiceOptions() {
         const { item } = this.props;
         return <RadioGroup field={item.id} validateOnChange={true} validate={this.validate.bind(this)} initialValue={this.initialValue}>
-            {item.options.map(option => {
+            {item.options && item.options.map(option => {
                 return <div className="form-check" key={option.id}>
                     <Radio className="form-check-input" id={option.id} value={option.id} onChange={this.onChange.bind(this)} />
                     <label className="form-check-label" htmlFor={option.id}>{option.value}</label>

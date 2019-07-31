@@ -4,7 +4,6 @@ import { useObservableModel, getObservable } from '@art-forms/observable';
 import ItemWrapper from './ItemWrapper';
 import { Form, FormApi } from 'informed';
 import IFormState from '../interfaces/IFormState';
-import { provider } from '@art-forms/providers';
 
 
 export class Questionnaire extends React.Component<QuestionnaireProps> {
@@ -16,8 +15,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     submitForm() {
-        const { questionnaireResponse } = this.props;
-        provider.putQuestionnaireResponse(questionnaireResponse);
+        const { questionnaireResponse, provider } = this.props;
+        provider && provider.putQuestionnaireResponse(questionnaireResponse);
     }
 
     onSubmitFailure() {
@@ -77,7 +76,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                     return questionnaireResponseItem && <ItemWrapper key={item.id} item={item} questionnaireResponseItem={questionnaireResponseItem} />
                 })}
             </Form>
-            <button type="btn" className="btn btn-primary" onClick={() => { this.formApi && this.formApi.submitForm() }}>Submit</button>
         </div >
     }
 
@@ -89,6 +87,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
                 <p>{questionnaire && questionnaire.description}</p>
             </div>
             {this.renderItemList()}
+            <button type="btn" className="btn btn-primary" onClick={() => { this.formApi && this.formApi.submitForm() }}>Submit</button>
         </div>
     }
 }

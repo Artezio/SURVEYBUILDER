@@ -5,6 +5,9 @@ export interface QuestionnaireProps {
     questionnaire: Models.IQuestionnaire;
     questionnaireResponse: Models.QuestionnaireResponse;
     className?: string;
+    provider?: {
+        putQuestionnaireResponse(questionnaireResponse: Models.IQuestionnaireResponse): void
+    }
 }
 
 export default QuestionnaireProps;
