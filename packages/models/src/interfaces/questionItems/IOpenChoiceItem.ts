@@ -5,7 +5,7 @@ import IAnswerOption from "../IAnswerOption";
 
 export interface IOpenChoiceItem extends IQuestionItem<any> {
     type: OPEN_CHOICE;
-    options: IAnswerOption[];
+    options?: IAnswerOption[];
 }
 
 export default IOpenChoiceItem;

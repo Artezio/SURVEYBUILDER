@@ -5,7 +5,7 @@ import IAnswerOption from "../IAnswerOption";
 
 export interface IChoiceItem extends IQuestionItem<any> {
     type: CHOICE;
-    options: IAnswerOption[];
+    options?: IAnswerOption[];
 }
 
 export default IChoiceItem;

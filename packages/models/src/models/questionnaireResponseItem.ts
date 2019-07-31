@@ -9,6 +9,7 @@ import { IItem, IGroupItem, questionResponseFactory, IQuestionItem } from '..';
 import AnswerCollection from './answersCollection';
 import JL from 'json-logic-js';
 import IChoiceItem from '../interfaces/questionItems/IChoiceItem';
+import IAnswerOption from '../interfaces/IAnswerOption';
 
 
 @observable
@@ -45,7 +46,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
                 this.answers = initialAnswers.map(initialAnswer => this.answerFactory.createAnswer(initialAnswer))
             } else {
                 if ((questionItem as IChoiceItem).options) {
-                    this.answers = (questionItem as IChoiceItem).options
+                    this.answers = ((questionItem as IChoiceItem).options as IAnswerOption[])
                         .filter(option => {
                             return option.defaultSelected && option
                         })
