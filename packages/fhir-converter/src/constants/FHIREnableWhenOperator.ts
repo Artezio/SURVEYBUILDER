@@ -1,7 +1,7 @@
 export const EXISTS = 'exists';
 export type EXISTS = typeof EXISTS;
 
-export const EQUAL = '==';
+export const EQUAL = '=';
 export type EQUAL = typeof EQUAL;
 
 export const NOT_EQUAL = '!=';

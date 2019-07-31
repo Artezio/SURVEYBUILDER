@@ -1,6 +1,6 @@
 import * as Models from '@art-forms/models';
 import QuestionnaireResponse from "../interfaces/FHIRModels/QuestionnaireResponse";
-import responseItem from './ResponseItem';
+import { responseItem } from './responseItem';
 
 export const questionnaireResponseMapper = {
     toModel(questionnaireResponse: QuestionnaireResponse): Models.IQuestionnaireResponse {

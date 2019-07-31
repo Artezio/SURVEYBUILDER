@@ -1,2 +1,2 @@
 export * from './mappers/questionnaire';
-//export * from './mappers/questionnaireResponse';
+export * from './mappers/questionnaireResponse';
