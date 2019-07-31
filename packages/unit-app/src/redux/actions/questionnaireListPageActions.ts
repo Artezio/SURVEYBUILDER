@@ -1,4 +1,3 @@
-import * as Models from '@art-forms/models';
 import { createActionAsync } from './actionCreators';
 import { ACTIONS } from '../../constants/questionnaireListPage';
 import { questionnaireProvider } from '../../providers/questionnaireProvider';

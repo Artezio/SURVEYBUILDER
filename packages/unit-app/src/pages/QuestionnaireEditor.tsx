@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { STATUS_LOADING, MODE, STATUS_SAVING } from '../constants/questionnaireEditorPage';
 import { Spinner } from '../components/Spinner';
 import { QuestionnaireEditorProps } from '../interface/questionnaireEditorPage/QuestionnaireEditorProps';
-import { QuestionnaireLoadError } from '../components/questionnaireEditPage/questionnaireLoadError';
+import { QuestionnaireLoadError } from '../components/questionnaireEditPage/QuestionnaireLoadError';
 import { questionnaireMapper } from '@art-forms/fhir-converter';
 
 

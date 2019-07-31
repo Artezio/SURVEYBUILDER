@@ -1,5 +1,3 @@
-import * as Models from '@art-forms/models';
-import { } from '@art-forms/fhir-converter';
 import HapiFhirService from "./services/hapiFhirService";
 import { ResponseService } from "./services/responseService";
 
@@ -8,6 +6,15 @@ class ResponseProvider {
         this.service = service;
     }
 
+    getQuestionnaireListByQuestionnaireId(id: string) {
+        return this.service.getResponseListByQuestionnaireId(id, { limit: 10 })
+            .then(responseData => responseData.entry)
+            .then(entries => entries.map((entry: any) => entry.resource))
+    }
+
+    getResponseById(id: string) {
+        return this.service.getResponseById(id);
+    }
 
 }
 

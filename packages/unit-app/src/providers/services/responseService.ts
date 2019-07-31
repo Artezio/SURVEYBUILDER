@@ -7,7 +7,7 @@ export class ResponseService {
         this.resource = resource;
     }
 
-    getResponseListByQuestionnaireId(id: string, options: any) {
+    getResponseListByQuestionnaireId(id: string, options?: any) {
         return this.service.getResource(this.resource + '/', {
             params: {
                 '_include': 'QuestionnaireResponse:questionnaire',

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-export class ResponseList extends React.Component {
+export class ResponseEditorPage extends React.Component {
     render() {
         return <div>
-            Hello response list!!!
+            hello ResponseEditor
             <ul>
                 <li>
                     <Link to="/">Home</Link>
@@ -13,11 +13,11 @@ export class ResponseList extends React.Component {
                     <Link to="/questionnaireId">Exact Questionnaire</Link>
                 </li>
                 <li>
-                    <Link to="/response/questionnaireId">Exact Response</Link>
+                    <Link to="/responses">Responses</Link>
                 </li>
             </ul>
         </div>
     }
 }
 
-export default ResponseList;
+export default ResponseEditorPage;

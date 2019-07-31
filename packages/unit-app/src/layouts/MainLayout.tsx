@@ -2,8 +2,8 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import QuestionnaireListPage from '../pages/QuestionnaireListPage';
 import QuestionnaireEditor from '../pages/QuestionnaireEditor';
-import ResponseList from '../pages/ResponseList';
-import ResponseEditor from '../pages/ResponseEditor';
+import ResponseListPage from '../pages/ResponseListPage';
+import ResponseEditorPage from '../pages/ResponseEditorPage';
 import PageNotFound from '../pages/PageNotFound';
 
 export class MainLayout extends React.Component {
@@ -22,8 +22,8 @@ export class MainLayout extends React.Component {
                         <Route exact={true} path="/" component={QuestionnaireListPage} />
                         <Route exact={true} path="/questionnaire" component={QuestionnaireEditor} />
                         <Route path="/questionnaire/:questionnaireId" component={QuestionnaireEditor} />
-                        <Route path="/responses/:questionnaireId" component={ResponseList} />
-                        <Route path="/response/questionnaireId" component={ResponseEditor} />
+                        <Route path="/responses/:questionnaireId" component={ResponseListPage} />
+                        <Route path="/response/questionnaireId" component={ResponseEditorPage} />
                         <Route component={PageNotFound} />
                     </Switch>
                 </Router>
