@@ -21,9 +21,10 @@ export class MainLayout extends React.Component {
                     <Switch>
                         <Route exact={true} path="/" component={QuestionnaireListPage} />
                         <Route exact={true} path="/questionnaire" component={QuestionnaireEditor} />
-                        <Route path="/questionnaire/:questionnaireId" component={QuestionnaireEditor} />
+                        <Route exact={true} path="/questionnaire/:questionnaireId" component={QuestionnaireEditor} />
                         <Route path="/responses/:questionnaireId" component={ResponseListPage} />
-                        <Route path="/response/questionnaireId" component={ResponseEditorPage} />
+                        <Route exact={true} path="/questionnaire/:questionnaireId/response" component={ResponseEditorPage} />
+                        <Route path="/questionnaire/:questionnaireId/response/:responseId" component={ResponseEditorPage} />
                         <Route component={PageNotFound} />
                     </Switch>
                 </Router>

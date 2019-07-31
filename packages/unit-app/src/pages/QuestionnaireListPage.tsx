@@ -5,8 +5,9 @@ import { questionnaireListPageActions } from '../redux/actions/questionnaireList
 import { QuestionnaireList } from '../components/questionnaireListPage/QuestionnaireList';
 import { STATUS_LOADING, STATUS_DELETING } from '../constants/questionnaireListPage';
 import { Spinner } from '../components/Spinner';
+import { QuestionnaireListProps } from '../interface/questionnaireListPage/QuestionnaireListProps';
 
-class QuestionnaireListPageClass extends React.Component<any> {
+class QuestionnaireListPageClass extends React.Component<QuestionnaireListProps> {
 
     componentWillMount() {
         const { dispatch } = this.props;
@@ -22,7 +23,7 @@ class QuestionnaireListPageClass extends React.Component<any> {
 
     componentDidUpdate() {  ///// КОСТЫЛЬ MUST TO BE REMOVED!!!!
         const { dispatch, status, questionnaireList } = this.props;
-        if (status.loading !== STATUS_LOADING.fetching && status.deleting === STATUS_DELETING.deletingEnded && questionnaireList.length !== 10) {
+        if (status.loading !== STATUS_LOADING.fetching && status.deleting === STATUS_DELETING.deletingEnded && questionnaireList && questionnaireList.length !== 10) {
             dispatch(questionnaireListPageActions.loadQuestionnaireList());
         }
     }

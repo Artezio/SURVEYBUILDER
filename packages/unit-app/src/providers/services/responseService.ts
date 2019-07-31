@@ -11,7 +11,7 @@ export class ResponseService {
         return this.service.getResource(this.resource + '/', {
             params: {
                 '_include': 'QuestionnaireResponse:questionnaire',
-                'questionnaire': id,
+                'questionnaire': `${this.service.baseUrl}/Questionnaire/${id}`,
                 '_count': options && options.limit
             }
         });
@@ -22,11 +22,11 @@ export class ResponseService {
     }
 
     putResponse(data: any) {
-        // this.service.postResource(`/`)
+        return this.service.postResource(`${this.resource}/`, data);
     }
 
     updateResponseById(id: string, data: any) {
-        // this.service.updateResource(`/`)
+        return this.service.updateResource(`${this.resource}/${id}`, data);
     }
 }
 

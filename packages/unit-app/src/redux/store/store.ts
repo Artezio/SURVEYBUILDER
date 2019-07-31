@@ -4,12 +4,14 @@ import thunk from 'redux-thunk';
 import { questionnaireListPage } from '../reducers/questionnaireListPage';
 import { questionnaireEditorPage } from '../reducers/questionnaireEditorPage';
 import { responseListPage } from '../reducers/responseListPage';
+import { responseEditorPage } from '../reducers/responseEditorPage';
 
 export const createStore = (initialState?: any) => redux.createStore(
     redux.combineReducers({
         questionnaireListPage,
         questionnaireEditorPage,
-        responseListPage
+        responseListPage,
+        responseEditorPage
     }),
     initialState,
     redux.applyMiddleware(logger, thunk),

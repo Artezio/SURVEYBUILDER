@@ -6,7 +6,7 @@ class ResponseProvider {
         this.service = service;
     }
 
-    getQuestionnaireListByQuestionnaireId(id: string) {
+    getResponseListByQuestionnaireId(id: string) {
         return this.service.getResponseListByQuestionnaireId(id, { limit: 10 })
             .then(responseData => responseData.entry)
             .then(entries => entries.map((entry: any) => entry.resource))
@@ -14,6 +14,14 @@ class ResponseProvider {
 
     getResponseById(id: string) {
         return this.service.getResponseById(id);
+    }
+
+    putResponse(response: any) {
+        return this.service.putResponse(response);
+    }
+
+    updateResponseById(id: string, response: any) {
+        return this.service.updateResponseById(id, response);
     }
 
 }

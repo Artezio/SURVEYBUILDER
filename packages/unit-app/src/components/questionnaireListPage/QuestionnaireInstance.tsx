@@ -22,7 +22,7 @@ export const QuestionnaireInstance = (props: any) => {
                 <Link to={`/responses/${questionnaire.id}`}>Responses</Link>
             </div>
             <div className="col-2">
-                <button className="btn btn-outline-success"><i className="fas fa-play"></i></button>
+                <Link to={`questionnaire/${questionnaire.id}/response`} className="btn btn-outline-success"><i className="fas fa-play"></i></Link>
             </div>
         </div>
     </li>
