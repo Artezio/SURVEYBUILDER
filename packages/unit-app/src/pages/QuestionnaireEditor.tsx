@@ -26,7 +26,7 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
     }
 
     setQuestionnaire(questionnaire?: any) {
-        if (!this.questionnaire && questionnaire) {
+        if (questionnaire && (!this.questionnaire || questionnaire.id !== this.questionnaire.id)) {
             const mappedQuestionnaire = questionnaireMapper.toModel(questionnaire);
             this.questionnaire = new Models.Questionnaire(mappedQuestionnaire);
             this.forceUpdate();
@@ -41,6 +41,10 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
     componentDidUpdate() {
         const { questionnaire } = this.props;
         this.setQuestionnaire(questionnaire);
+    }
+
+    componentWillUnmount() {
+        this.questionnaire = undefined;
     }
 
     renderSpinner() {
