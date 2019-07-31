@@ -66,11 +66,14 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
 
     onClick() {
         const { mode, dispatch } = this.props;
-        if (mode === MODE.creating) {
-            dispatch(questionnaireEditorPageActions.saveNewQuestionnaire(this.questionnaire))
-        }
-        if (mode === MODE.updating && this.questionnaire) {
-            dispatch(questionnaireEditorPageActions.updateQuestionnaireById(this.questionnaire.id, this.questionnaire))
+        if (this.questionnaire) {
+            const mappedQuestionnaire = questionnaireMapper.fromModel(this.questionnaire);
+            if (mode === MODE.creating) {
+                dispatch(questionnaireEditorPageActions.saveNewQuestionnaire(mappedQuestionnaire))
+            }
+            if (mode === MODE.updating && this.questionnaire) {
+                dispatch(questionnaireEditorPageActions.updateQuestionnaireById(this.questionnaire.id, mappedQuestionnaire))
+            }
         }
     }
 
