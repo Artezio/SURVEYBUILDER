@@ -89,8 +89,9 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
                 ...state,
                 status: {
                     ...state.status,
-                    saving: STATUS_SAVING.saved
-                }
+                    saving: STATUS_SAVING.saved,
+                },
+                questionnaire: { ...state.questionnaire, id: action.payload.id }
             }
         }
         case ACTIONS.SAVE_NEW_QUESTIONNAIRE_ERROR: {
