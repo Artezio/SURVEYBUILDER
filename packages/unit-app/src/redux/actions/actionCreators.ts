@@ -5,7 +5,9 @@ export const createActionAsync = ([pending, success, failed]: string[], fn: Func
     try {
         const data = await fn.apply(null, args);
         dispatch(createAction(success)(data))
+        return { data: data };
     } catch (error) {
         dispatch(createAction(failed)(error))
+        return { error: error };
     }
 }
