@@ -9,7 +9,7 @@ export class QuestionnaireService {
     }
 
     getQuestionnaireList(options: any) {
-        return this.service.getResource(this.resource + '/', { params: { '_count': options && options.limit } });
+        return this.service.getResource(this.resource + '/', { params: { '_count': options && options.limit, 'title': '@artezio' } });
     }
 
     getQuestionnaireById(id: string) {

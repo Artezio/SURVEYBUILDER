@@ -13,7 +13,7 @@ export interface FHIRItem {
     enableBehavior?: FHIREnableBehavior;
     initial?: FHIRInitialAnswer[];
     repeats?: boolean;
-    option?: any[];
+    answerOption?: any[];
 }
 
 export default FHIRItem;

@@ -5,9 +5,12 @@ import { questionnaireListPageActions } from '../../redux/actions/questionnaireL
 
 export const QuestionnaireInstance = (props: any) => {
     const { questionnaire } = props;
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as any;
     const deleteQuestionnaire = () => {
-        dispatch(questionnaireListPageActions.deleteQuestionnaire(questionnaire.id));
+        dispatch(questionnaireListPageActions.deleteQuestionnaire(questionnaire.id))
+            .then(() => {
+                dispatch(questionnaireListPageActions.loadQuestionnaireList())
+            })
     }
 
     return <li className="list-group-item">
@@ -17,9 +20,6 @@ export const QuestionnaireInstance = (props: any) => {
             </div>
             <div className="col-2">
                 <button className="btn btn-outline-danger" onClick={deleteQuestionnaire}><i className="fas fa-trash"></i></button>
-            </div>
-            <div className="col-4">
-                <Link to={`/responses/${questionnaire.id}`}>Responses</Link>
             </div>
             <div className="col-2">
                 <Link to={`questionnaire/${questionnaire.id}/response`} className="btn btn-outline-success"><i className="fas fa-play"></i></Link>

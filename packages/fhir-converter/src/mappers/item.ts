@@ -24,7 +24,7 @@ export const itemMapper = {
             enableWhen: item.enableWhen && item.enableWhen.map(enableWhen => mapEnableWhenToModel(enableWhen)),
             enableBehavior: mapEnableBehaviorToModel(item.enableBehavior),
             initialAnswers: item.initial && item.initial.map(initial => mapInitialAnswerToModel(initial)),
-            options: item.option && item.option.map(answerOption => mapAnswerOptionToModel(answerOption))
+            options: item.answerOption && item.answerOption.map(answerOption => mapAnswerOptionToModel(answerOption))
         }
         return newItem;
     },
@@ -39,7 +39,7 @@ export const itemMapper = {
             enableWhen: item.enableWhen && item.enableWhen.map(enableWhen => mapEnableWhenFromModel(enableWhen)),
             enableBehavior: mapEnableBehaviorFromModel(item.enableBehavior),
             initial: item.initialAnswers && item.initialAnswers.map(initialAnswer => mapInitialAnswerFromModel(initialAnswer, item.type)),
-            option: item.options && item.options.map(option => mapAnswerOptionFromModel(option))
+            answerOption: item.options && item.options.map(option => mapAnswerOptionFromModel(option))
         }
         return newItem;
     }

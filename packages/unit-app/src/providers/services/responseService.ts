@@ -11,7 +11,7 @@ export class ResponseService {
         return this.service.getResource(this.resource + '/', {
             params: {
                 '_include': 'QuestionnaireResponse:questionnaire',
-                'questionnaire': `${this.service.baseUrl}/Questionnaire/${id}`,
+                'questionnaire': `http://example.com/Questionnaire/${id}`,
                 '_count': options && options.limit
             }
         });

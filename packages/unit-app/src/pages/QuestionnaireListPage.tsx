@@ -21,12 +21,12 @@ class QuestionnaireListPageClass extends React.Component<QuestionnaireListProps>
         }
     }
 
-    componentDidUpdate() {  ///// КОСТЫЛЬ MUST TO BE REMOVED!!!!
-        const { dispatch, status, questionnaireList } = this.props;
-        if (status.loading !== STATUS_LOADING.fetching && status.deleting === STATUS_DELETING.deletingEnded && questionnaireList && questionnaireList.length !== 10) {
-            dispatch(questionnaireListPageActions.loadQuestionnaireList());
-        }
-    }
+    // componentDidUpdate() {  ///// КОСТЫЛЬ MUST TO BE REMOVED!!!!
+    //     const { dispatch, status, questionnaireList } = this.props;
+    //     if (status.loading !== STATUS_LOADING.fetching && status.deleting === STATUS_DELETING.deletingEnded && questionnaireList && questionnaireList.length !== 10) {
+    //         dispatch(questionnaireListPageActions.loadQuestionnaireList());
+    //     }
+    // }
 
     renderQuestionnaireList() {
         const { status, questionnaireList } = this.props;

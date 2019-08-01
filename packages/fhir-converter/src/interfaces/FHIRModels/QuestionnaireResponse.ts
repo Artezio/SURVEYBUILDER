@@ -4,9 +4,7 @@ export interface QuestionnaireResponse {
     resourceType: string;
     id: string;
     item: ResponseItem[];
-    questionnaire: {
-        reference: string;
-    }
+    questionnaire: string;
 }
 
 export default QuestionnaireResponse;
