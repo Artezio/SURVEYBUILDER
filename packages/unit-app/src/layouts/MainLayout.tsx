@@ -14,7 +14,7 @@ export class MainLayout extends React.Component {
                 <section className="p-3 bg-secondary">
                     <div className="form-group row mb-0 d-flex justify-content-around">
                         <Link to="/" className="btn btn-light col-1">Home</Link>
-                        <input value=" http://hapi.fhir.org/baseR4/Questionaire" type="text" className="form-control col-10" disabled />
+                        <input value="http://hapi.fhir.org/baseR4" type="text" className="form-control col-10" disabled />
                     </div>
                 </section>
                 <section className="p-3">

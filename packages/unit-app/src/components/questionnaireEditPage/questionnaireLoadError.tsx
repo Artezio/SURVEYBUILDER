@@ -10,7 +10,7 @@ export const QuestionnaireLoadError = () => {
     }
 
     return <div>
-        <p></p>
+        <p className="text-center">This Questionnaire doesn't exist any more</p>
         <div className="row justify-content-center">
             <div className="col-6 d-flex justify-content-around">
                 <Link to="/" className="btn btn-outline-dark">Back</Link>

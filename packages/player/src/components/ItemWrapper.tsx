@@ -9,7 +9,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
     renderErrorMessage() {
         const { formApi, item, questionnaireResponseItem } = this.props;
-        if (formApi.getTouched(item.id)) {
+        if (formApi.getTouched(item.id) && questionnaireResponseItem.errorMessages.length) {
             return <ul className={`${questionnaireResponseItem.errorMessages.length ? "alert alert-danger" : ''}`}>
                 {questionnaireResponseItem.errorMessages.map((errorMessage, i) => <li key={i}>{errorMessage}</li>)}
             </ul>
