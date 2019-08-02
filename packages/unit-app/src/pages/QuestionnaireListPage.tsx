@@ -21,13 +21,6 @@ class QuestionnaireListPageClass extends React.Component<QuestionnaireListProps>
         }
     }
 
-    // componentDidUpdate() {  ///// КОСТЫЛЬ MUST TO BE REMOVED!!!!
-    //     const { dispatch, status, questionnaireList } = this.props;
-    //     if (status.loading !== STATUS_LOADING.fetching && status.deleting === STATUS_DELETING.deletingEnded && questionnaireList && questionnaireList.length !== 10) {
-    //         dispatch(questionnaireListPageActions.loadQuestionnaireList());
-    //     }
-    // }
-
     renderQuestionnaireList() {
         const { status, questionnaireList } = this.props;
         if (status.loading === STATUS_LOADING.loaded) {
@@ -36,12 +29,18 @@ class QuestionnaireListPageClass extends React.Component<QuestionnaireListProps>
     }
 
     render() {
-        return <div>
+        return <div className="container">
             {this.renderSpinner()}
-            <div className="d-flex justify-content-end mb-1">
-                <Link to="/questionnaire" className="btn btn-outline-secondary">Create new Questionnaire</Link>
+            <div className="row justify-content-start mb-3">
+                <div className="col">
+                    <Link to="/questionnaire" className="btn btn-outline-secondary">Create new Questionnaire</Link>
+                </div>
             </div>
-            {this.renderQuestionnaireList()}
+            <div className="row">
+                <div className="col">
+                    {this.renderQuestionnaireList()}
+                </div>
+            </div>
         </div>
     }
 }

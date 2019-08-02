@@ -62,10 +62,10 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
     renderQuestionnaireDesigner() {
         const { status } = this.props;
         if (status.saving === STATUS_SAVING.saved) {
-            return <QuestionnaireSavedPage />
+            return <QuestionnaireSavedPage questionnaire={this.questionnaire} />
         }
         if (status.updating === STATUS_UPDATING.updated) {
-            return <QuestionnaireUpdatedPage />
+            return <QuestionnaireUpdatedPage questionnaire={this.questionnaire} />
         }
         if (status.loading === STATUS_LOADING.loaded) {
             return this.questionnaire && <QuestionnaireDesigner key={this.questionnaire.id} questionnaire={this.questionnaire} />
@@ -100,7 +100,7 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
     }
 
     render() {
-        return <div>
+        return <div className="container">
             {this.renderSpinner()}
             {this.renderQuestionnaireDesigner()}
             {this.renderButtons()}

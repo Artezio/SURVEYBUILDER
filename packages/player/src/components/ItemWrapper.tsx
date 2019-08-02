@@ -22,8 +22,8 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         const invalidAnswer = formApi.getTouched(item.id) && questionnaireResponseItem.errorMessages.length;
         return questionnaireResponseItem.isEnable && <div className={`questionnaire-response${item.type === Models.GROUP ? '-group' : ''}-item${wrongValue ? ' error-item' : ''} ${className}`}>
             {item.type !== Models.DISPLAY && <label htmlFor={item.id}><b className={`${invalidAnswer ? 'text-danger' : ''}`}>{item.text}{item.required && <span className="text-danger">*</span>}</b></label>}
-            <ItemProvider item={item} questionnaireResponseItem={questionnaireResponseItem} />
             {this.renderErrorMessage()}
+            <ItemProvider item={item} questionnaireResponseItem={questionnaireResponseItem} />
         </div>
     }
 }

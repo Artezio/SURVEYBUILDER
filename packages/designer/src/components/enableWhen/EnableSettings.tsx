@@ -89,7 +89,7 @@ export class EnableSettings extends React.Component<EnableConditionsProps> {
                     <div className="col-5">Answer</div>
                     <div className="col-1"></div>
                 </div>}
-                <div className="enable-when-list">
+                <div className="enable-when-list mb-2">
                     <Scope scope="enableWhen">
                         {item.enableWhen.map((enableWhen, i) => {
                             const filteredQuestionList = questionList.filter(question => question.id !== item.id);

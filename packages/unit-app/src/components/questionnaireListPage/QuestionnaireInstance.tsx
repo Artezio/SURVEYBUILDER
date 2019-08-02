@@ -14,14 +14,12 @@ export const QuestionnaireInstance = (props: any) => {
     }
 
     return <li className="list-group-item">
-        <div className="row">
-            <div className="col-4">
-                <Link to={`/questionnaire/${questionnaire.id}`}>{questionnaire.title || 'Untitled Questionnaire'}</Link>
+        <div className="row justify-content-between">
+            <div className="col">
+                <Link className="btn btn-link" to={`/questionnaire/${questionnaire.id}`}>{questionnaire.title || 'Untitled Questionnaire'}</Link>
             </div>
-            <div className="col-2">
+            <div className="col-2 d-flex justify-content-around">
                 <button className="btn btn-outline-danger" onClick={deleteQuestionnaire}><i className="fas fa-trash"></i></button>
-            </div>
-            <div className="col-2">
                 <Link to={`questionnaire/${questionnaire.id}/response`} className="btn btn-outline-success"><i className="fas fa-play"></i></Link>
             </div>
         </div>
