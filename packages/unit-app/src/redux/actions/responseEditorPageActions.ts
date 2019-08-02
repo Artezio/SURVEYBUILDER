@@ -20,5 +20,6 @@ export const responseEditorPageActions = {
         [ACTIONS.SAVE_RESPONSE_SAVING, ACTIONS.SAVE_RESPONSE_SAVED, ACTIONS.SAVE_RESPONSE_ERROR],
         (response: any) => responseProvider.putResponse(response)
     ),
-    resetSavingStatus: createAction(ACTIONS.RESET_SAVING_STATUS)
+    resetSavingStatus: createAction(ACTIONS.RESET_SAVING_STATUS),
+    resetResources: createAction(ACTIONS.RESET_RESOURCES)
 }

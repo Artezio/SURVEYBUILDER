@@ -112,6 +112,13 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
                 }
             }
         }
+        case ACTIONS.RESET_RESOURCES: {
+            return {
+                ...state,
+                questionnaire: undefined,
+                response: undefined
+            }
+        }
         default: return state;
     }
 }

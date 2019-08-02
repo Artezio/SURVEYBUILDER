@@ -40,6 +40,7 @@ export class ResponseEditorPageClass extends React.Component<ResponseEditorPageP
     componentWillUnmount() {
         const { dispatch } = this.props;
         dispatch(responseEditorPageActions.resetSavingStatus())
+        dispatch(responseEditorPageActions.resetResources())
     }
 
     componentDidUpdate() {
