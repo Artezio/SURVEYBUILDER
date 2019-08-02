@@ -103,6 +103,24 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
                 }
             }
         }
+        case ACTIONS.RESET_SAVING_STATUS: {
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    saving: undefined
+                }
+            }
+        }
+        case ACTIONS.RESET_UPDATING_STATUS: {
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    updating: undefined
+                }
+            }
+        }
         default: return state;
     }
 }

@@ -2,11 +2,12 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { ResponseEditorPageProps } from '../interface/responseERditorPage/ResponseEditorPageProps';
 import { Spinner } from '../components/Spinner';
-import { STATUS_QUESTIONNAIRE_LOADING, STATUS_RESPONSE_LOADING, MODE } from '../constants/responseEditorPage';
+import { STATUS_QUESTIONNAIRE_LOADING, STATUS_RESPONSE_LOADING, MODE, STATUS_SAVING_RESPONSE } from '../constants/responseEditorPage';
 import { QuestionnairePlayer } from '@art-forms/player';
 import { connect } from 'react-redux';
 import { responseEditorPageActions } from '../redux/actions/responseEditorPageActions';
 import { questionnaireMapper, questionnaireResponseMapper } from '@art-forms/fhir-converter';
+import { ResponseSavedPage } from '../components/responseListPage/ResponseSavedPage';
 
 export class ResponseEditorPageClass extends React.Component<ResponseEditorPageProps> {
     questionnaireResponse?: Models.QuestionnaireResponse;
@@ -34,6 +35,11 @@ export class ResponseEditorPageClass extends React.Component<ResponseEditorPageP
         const { questionnaire, response } = this.props;
         this.setQuestionnaire(questionnaire);
         this.setResponse(response);
+    }
+
+    componentWillUnmount() {
+        const { dispatch } = this.props;
+        dispatch(responseEditorPageActions.resetSavingStatus())
     }
 
     componentDidUpdate() {
@@ -65,7 +71,9 @@ export class ResponseEditorPageClass extends React.Component<ResponseEditorPageP
 
     renderSpinner() {
         const { status } = this.props;
-        if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.fetching || status.loadingResponse === STATUS_RESPONSE_LOADING.fetching) {
+        if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.fetching ||
+            status.loadingResponse === STATUS_RESPONSE_LOADING.fetching ||
+            status.savingResponse === STATUS_SAVING_RESPONSE.saving) {
             return <Spinner />
         }
     }
@@ -79,6 +87,9 @@ export class ResponseEditorPageClass extends React.Component<ResponseEditorPageP
     renderQuestionnairePlayer() {
         const { mode, status } = this.props;
         if (mode === MODE.creating) {
+            if (status.savingResponse === STATUS_SAVING_RESPONSE.saved) {
+                return <ResponseSavedPage />;
+            }
             if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
                 return this.questionnaireResponse && this.questionnaire && <QuestionnairePlayer provider={{ putQuestionnaireResponse: this.putQuestionnaireResponse.bind(this) }} questionnaire={this.questionnaire} questionnaireResponse={this.questionnaireResponse} />
             }

@@ -10,7 +10,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     renderErrorMessage() {
         const { formApi, item, questionnaireResponseItem } = this.props;
         if (formApi.getTouched(item.id)) {
-            return <ul>
+            return <ul className={`${questionnaireResponseItem.errorMessages.length ? "alert alert-danger" : ''}`}>
                 {questionnaireResponseItem.errorMessages.map((errorMessage, i) => <li key={i}>{errorMessage}</li>)}
             </ul>
         }
@@ -19,8 +19,9 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     render() {
         const { className = '', item, questionnaireResponseItem, formApi } = this.props;
         const wrongValue = formApi.getTouched(item.id) && !questionnaireResponseItem.isValid;
+        const invalidAnswer = formApi.getTouched(item.id) && questionnaireResponseItem.errorMessages.length;
         return questionnaireResponseItem.isEnable && <div className={`questionnaire-response${item.type === Models.GROUP ? '-group' : ''}-item${wrongValue ? ' error-item' : ''} ${className}`}>
-            {item.type !== Models.DISPLAY && <label htmlFor={item.id}><b>{item.text}{item.required && <span className="required-symbol">*</span>}</b></label>}
+            {item.type !== Models.DISPLAY && <label htmlFor={item.id}><b className={`${invalidAnswer ? 'text-danger' : ''}`}>{item.text}{item.required && <span className="text-danger">*</span>}</b></label>}
             <ItemProvider item={item} questionnaireResponseItem={questionnaireResponseItem} />
             {this.renderErrorMessage()}
         </div>

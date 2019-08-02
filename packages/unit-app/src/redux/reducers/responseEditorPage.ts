@@ -103,6 +103,15 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
                 }
             }
         }
+        case ACTIONS.RESET_SAVING_STATUS: {
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    savingResponse: undefined
+                }
+            }
+        }
         default: return state;
     }
 }

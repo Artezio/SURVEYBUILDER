@@ -16,5 +16,7 @@ export const questionnaireEditorPageActions = {
     updateQuestionnaireById: createActionAsync(
         [ACTIONS.UPDATE_QUESTIONNAIRE_UPDATING, ACTIONS.UPDATE_QUESTIONNAIRE_UPDATED, ACTIONS.UPDATE_QUESTIONNAIRE_ERROR],
         (id: string, questionnaire: any) => questionnaireProvider.updateQuestionnaireById(id, questionnaire)
-    )
+    ),
+    resetSavingStatus: createAction(ACTIONS.RESET_SAVING_STATUS),
+    resetUpdatingStatus: createAction(ACTIONS.RESET_UPDATING_STATUS),
 }

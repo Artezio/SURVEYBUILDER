@@ -68,11 +68,11 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.replyStrategy = replyStrategy;
         this.questionItem = questionItem;
         this.validate();
+        this.answerCollection.updateResponseAnswers(this.id, this.answers);
         this.decideEnablingObservation();
         this.defineOwnProperties();
         this.items.forEach(item => this.itemIdMap.set(item.id, true));
         this.answers.forEach(answer => this.answerIdMap.set(answer.id, true));
-        this.answerCollection.updateResponseAnswers(this.id, this.answers);
     }
 
     defineOwnProperties() {
@@ -108,7 +108,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
             return arr.concat(interestingAnswer
                 .filter(answer => answer.parentId === enableWhen.questionId)
                 .some(answer => {
-                    return (JL.apply({ [enableWhen.operator]: [answer.value, enableWhen.answer] }));
+                    return (JL.apply({ [enableWhen.operator]: [''+answer.value, ''+enableWhen.answer] }));
                 }));
         }, []);
         this.isEnable = JL.apply({ [this.questionItem.enableBehavior]: enableWhenConfigs });

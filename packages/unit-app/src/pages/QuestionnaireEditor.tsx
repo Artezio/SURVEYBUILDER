@@ -4,11 +4,13 @@ import { QuestionnaireDesigner } from '@art-forms/designer';
 import { Link } from 'react-router-dom';
 import { questionnaireEditorPageActions } from '../redux/actions/questionnaireEditorPageActions';
 import { connect } from 'react-redux';
-import { STATUS_LOADING, MODE, STATUS_SAVING } from '../constants/questionnaireEditorPage';
+import { STATUS_LOADING, MODE, STATUS_SAVING, STATUS_UPDATING } from '../constants/questionnaireEditorPage';
 import { Spinner } from '../components/Spinner';
 import { QuestionnaireEditorProps } from '../interface/questionnaireEditorPage/QuestionnaireEditorProps';
 import { QuestionnaireLoadError } from '../components/questionnaireEditPage/QuestionnaireLoadError';
 import { questionnaireMapper } from '@art-forms/fhir-converter';
+import { QuestionnaireSavedPage } from '../components/questionnaireEditPage/QuestionnaireSavedPage';
+import { QuestionnaireUpdatedPage } from '../components/questionnaireEditPage/QuestionnaireUpadatedPage';
 
 
 class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps> {
@@ -44,18 +46,27 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
     }
 
     componentWillUnmount() {
+        const { dispatch } = this.props;
         this.questionnaire = undefined;
+        dispatch(questionnaireEditorPageActions.resetSavingStatus());
+        dispatch(questionnaireEditorPageActions.resetUpdatingStatus());
     }
 
     renderSpinner() {
         const { status } = this.props;
-        if (status.loading === STATUS_LOADING.fetching, status.saving === STATUS_SAVING.saving) {
+        if (status.loading === STATUS_LOADING.fetching || status.saving === STATUS_SAVING.saving || status.updating === STATUS_UPDATING.updating) {
             return <Spinner />
         }
     }
 
     renderQuestionnaireDesigner() {
         const { status } = this.props;
+        if (status.saving === STATUS_SAVING.saved) {
+            return <QuestionnaireSavedPage />
+        }
+        if (status.updating === STATUS_UPDATING.updated) {
+            return <QuestionnaireUpdatedPage />
+        }
         if (status.loading === STATUS_LOADING.loaded) {
             return this.questionnaire && <QuestionnaireDesigner key={this.questionnaire.id} questionnaire={this.questionnaire} />
         }
@@ -80,7 +91,7 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
     renderButtons() {
         const { status, mode } = this.props;
         const primaryButtonText = mode === MODE.creating ? 'Save' : 'Update and Save';
-        if (status.loading === STATUS_LOADING.loaded) {
+        if (status.loading === STATUS_LOADING.loaded && status.saving !== STATUS_SAVING.saved && status.updating !== STATUS_UPDATING.updated) {
             return <div className="d-flex justify-content-between">
                 <Link to="/" className="btn btn-outline-danger">Cancel</Link>
                 <button onClick={this.onClick.bind(this)} className="btn btn-outline-primary">{primaryButtonText}</button>

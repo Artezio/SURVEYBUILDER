@@ -12,7 +12,7 @@ const testByRegExp = (value: any, regExp: RegExp) => (regExp.test('' + value) ||
 const testByRequired = (value: any) => (value !== undefined && value !== '') ? undefined : REQUIRED;
 export const validators = {
     stringRegExp(value: string) {
-        return testByRegExp(value, stringRegExp);
+        return testByRegExp(value, textRegExp);
     },
     textRegExp(value: string) {
         return testByRegExp(value, textRegExp);
