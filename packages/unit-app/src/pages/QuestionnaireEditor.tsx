@@ -42,11 +42,13 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
         if (status.loading === STATUS_LOADING.error) {
             return <QuestionnaireLoadError />
         }
-        if (status.saving === STATUS_SAVING.saved) {
-            return <QuestionnaireSavedPage questionnaire={questionnaireModel} />
-        }
-        if (status.updating === STATUS_UPDATING.updated) {
-            return <QuestionnaireUpdatedPage questionnaire={questionnaireModel} />
+        if (!status.loading) {
+            if (status.saving === STATUS_SAVING.saved) {
+                return <QuestionnaireSavedPage questionnaire={questionnaireModel} />
+            }
+            if (status.updating === STATUS_UPDATING.updated) {
+                return <QuestionnaireUpdatedPage questionnaire={questionnaireModel} />
+            }
         }
     }
 
@@ -66,7 +68,7 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
     renderButtons() {
         const { status, mode } = this.props;
         const primaryButtonText = mode === MODE.creating ? 'Save' : 'Update and Save';
-        if (status.loading === STATUS_LOADING.loaded && status.saving !== STATUS_SAVING.saved && status.updating !== STATUS_UPDATING.updated) {
+        if (status.loading === STATUS_LOADING.loaded) {
             return <div className="d-flex justify-content-between">
                 <Link to="/" className="btn btn-outline-danger">Cancel</Link>
                 <button onClick={this.onClick.bind(this)} className="btn btn-outline-primary">{primaryButtonText}</button>

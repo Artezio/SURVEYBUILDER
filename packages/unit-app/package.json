@@ -30,7 +30,8 @@
   "proxy": "http://hapi.fhir.org/baseR4",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"
