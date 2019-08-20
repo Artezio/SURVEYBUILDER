@@ -9,7 +9,7 @@ export class OpenChoice extends React.Component<OpenChoiceProps> {
 
     constructor(props: OpenChoiceProps) {
         super(props);
-        if (props.item.options.every(option => option.value !== props.enableWhen.answer) && props.item.options.length !== 0) {
+        if (props.item.options && props.item.options.every(option => option.value !== props.enableWhen.answer) && props.item.options.length !== 0) {
             this.initialOtherOptionValue = props.enableWhen.answer;
             this.toggleToOtherOption();
         }
@@ -19,9 +19,9 @@ export class OpenChoice extends React.Component<OpenChoiceProps> {
         const { enableWhen, formApi, index, item } = this.props;
         let isOtherOptionSelected: boolean = false;
         const optionId = formApi.getValue(`${index}][answer`);
-        const option = item.options.find((option, i) => {
+        const option = item.options && item.options.find((option, i) => {
             if (option.id === optionId) {
-                if (i === item.options.length - 1) {
+                if (item.options && i === item.options.length - 1) {
                     isOtherOptionSelected = true;
                 }
                 return true;
@@ -64,7 +64,7 @@ export class OpenChoice extends React.Component<OpenChoiceProps> {
             <div className="col-5">
                 <Select className="custom-select" field={`${index}][answer`} onChange={this.onChange.bind(this)}>
                     <Option value="" disabled={true}>Select answer</Option>
-                    {item.options.map((option, i) => <Option key={i} value={option.id}>{i === item.options.length - 1 ? 'Other' : option.value}</Option>)}
+                    {item.options && item.options.map((option, i) => <Option key={i} value={option.id}>{(item.options && i === item.options.length - 1) ? 'Other' : option.value}</Option>)}
                 </Select>
             </div>
             <div className="col-7">

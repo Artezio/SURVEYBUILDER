@@ -9,7 +9,7 @@ export const Choice = (props: ChoiceProps) => {
 
     const onChange = () => {
         const optionId = formApi.getValue(`${index}][answer`);
-        const option = item.options.find(option => option.id === optionId);
+        const option = item.options && item.options.find(option => option.id === optionId);
         if (option) {
             enableWhen.answer = option.value;
         }
@@ -17,7 +17,7 @@ export const Choice = (props: ChoiceProps) => {
 
     return <Select className="custom-select" field={`${index}][answer`} onChange={onChange}>
         <Option value="" disabled={true}>Select answer</Option>
-        {item.options.map((option, i) => <Option key={i} value={option.id}>{option.value}</Option>)}
+        {item.options && item.options.map((option, i) => <Option key={i} value={option.id}>{option.value}</Option>)}
     </Select>
 }
 

@@ -106,6 +106,12 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         this.formApi_2 && this.formApi_2.setValues(item);
     }
 
+    toggleSettings() {
+        this.setState({
+            areSettingsOpen: !this.state.areSettingsOpen
+        })
+    }
+
     renderHeader() {
         const { item } = this.props;
         return <div className="row">
@@ -136,12 +142,6 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                 </div>
             </div>
         }
-    }
-
-    toggleSettings() {
-        this.setState({
-            areSettingsOpen: !this.state.areSettingsOpen
-        })
     }
 
     renderEnableSettings() {
