@@ -2,6 +2,7 @@ import * as Models from '@art-forms/models';
 import { ACTIONS, STATUS_LOADING, MODE, STATUS_UPDATING, STATUS_SAVING } from '../../constants/questionnaireEditorPage';
 import { QuestionnaireEditorStore } from '../../interface/questionnaireEditorPage/QuestionnaireEditorStore';
 import { Action } from '../../interface/Action';
+import { questionnaireMapper } from '@art-forms/fhir-converter';
 
 const INITIAL_STATE: QuestionnaireEditorStore = { status: {} };
 
@@ -18,6 +19,8 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
             }
         }
         case ACTIONS.LOAD_QUESTIONNAIRE_LOADED: {
+            const questionnaire = questionnaireMapper.toModel(action.payload);
+            const questionnaireModel = new Models.Questionnaire(questionnaire);
             return {
                 ...state,
                 mode: MODE.updating,
@@ -25,7 +28,8 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
                     ...state.status,
                     loading: STATUS_LOADING.loaded
                 },
-                questionnaire: action.payload
+                questionnaire: action.payload,
+                questionnaireModel: questionnaireModel
             }
         }
         case ACTIONS.LOAD_QUESTIONNAIRE_ERROR: {
@@ -38,6 +42,7 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
             }
         }
         case ACTIONS.CREATE_NEW_QUESTIONNAIRE: {
+            const questionnaireModel = new Models.Questionnaire();
             return {
                 ...state,
                 mode: MODE.creating,
@@ -45,7 +50,8 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
                     ...state.status,
                     loading: STATUS_LOADING.loaded
                 },
-                questionnaire: new Models.Questionnaire()
+                questionnaire: undefined,
+                questionnaireModel: questionnaireModel
             }
         }
         case ACTIONS.UPDATE_QUESTIONNAIRE_UPDATING: {
@@ -61,7 +67,6 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
             return {
                 ...state,
                 status: {
-                    ...state.status,
                     updating: STATUS_UPDATING.updated
                 }
             }
@@ -85,13 +90,14 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
             }
         }
         case ACTIONS.SAVE_NEW_QUESTIONNAIRE_SAVED: {
+            const questionnaire = questionnaireMapper.toModel(action.payload);
+            const questionnaireModel = new Models.Questionnaire(questionnaire);
             return {
                 ...state,
                 status: {
-                    ...state.status,
                     saving: STATUS_SAVING.saved,
                 },
-                questionnaire: { ...state.questionnaire, id: action.payload.id }
+                questionnaireModel: questionnaireModel
             }
         }
         case ACTIONS.SAVE_NEW_QUESTIONNAIRE_ERROR: {
@@ -100,24 +106,6 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
                 status: {
                     ...state.status,
                     saving: STATUS_SAVING.error
-                }
-            }
-        }
-        case ACTIONS.RESET_SAVING_STATUS: {
-            return {
-                ...state,
-                status: {
-                    ...state.status,
-                    saving: undefined
-                }
-            }
-        }
-        case ACTIONS.RESET_UPDATING_STATUS: {
-            return {
-                ...state,
-                status: {
-                    ...state.status,
-                    updating: undefined
                 }
             }
         }

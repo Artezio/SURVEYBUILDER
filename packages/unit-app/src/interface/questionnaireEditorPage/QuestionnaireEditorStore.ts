@@ -9,5 +9,6 @@ type QuestionnaireEditorStatus = {
 export interface QuestionnaireEditorStore {
     mode?: string;
     status: QuestionnaireEditorStatus;
-    questionnaire?: Models.IQuestionnaire;
+    questionnaire?: any;
+    questionnaireModel?: Models.Questionnaire;
 }

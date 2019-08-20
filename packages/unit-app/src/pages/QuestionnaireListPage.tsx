@@ -6,6 +6,7 @@ import { QuestionnaireList } from '../components/questionnaireListPage/Questionn
 import { STATUS_LOADING, STATUS_DELETING } from '../constants/questionnaireListPage';
 import { Spinner } from '../components/Spinner';
 import { QuestionnaireListProps } from '../interface/questionnaireListPage/QuestionnaireListProps';
+import LoadQuestionnaireListError from '../components/questionnaireListPage/LoadQuestionnaireListError';
 
 class QuestionnaireListPageClass extends React.Component<QuestionnaireListProps> {
 
@@ -16,22 +17,28 @@ class QuestionnaireListPageClass extends React.Component<QuestionnaireListProps>
 
     renderSpinner() {
         const { status } = this.props;
-        if (status.loading === STATUS_LOADING.fetching || status.deleting === STATUS_DELETING.deleting) {
+        if (status.loadingQuestionnaireList === STATUS_LOADING.fetching || status.deletingQuestionnaire === STATUS_DELETING.deleting) {
             return <Spinner />
         }
     }
 
     renderQuestionnaireList() {
         const { status, questionnaireList } = this.props;
-        if (status.loading === STATUS_LOADING.loaded) {
-            return questionnaireList && <QuestionnaireList questionnaireList={questionnaireList} />
+        switch (status.loadingQuestionnaireList) {
+            case STATUS_LOADING.loaded: {
+                return questionnaireList && <QuestionnaireList questionnaireList={questionnaireList} />
+            }
+            case STATUS_LOADING.error: {
+                return <LoadQuestionnaireListError />
+            }
+            default: return null;
         }
     }
 
     render() {
         return <div className="container">
             {this.renderSpinner()}
-            <div className="row justify-content-start mb-3">
+            <div className="row justify-content-end mb-3">
                 <div className="col">
                     <Link to="/questionnaire" className="btn btn-outline-secondary">Create new Questionnaire</Link>
                 </div>

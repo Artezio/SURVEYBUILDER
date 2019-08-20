@@ -1,8 +1,8 @@
 import * as Models from '@art-forms/models';
 
 type QuestionnaireListStatus = {
-    loading?: string;
-    deleting?: string;
+    loadingQuestionnaireList?: string;
+    deletingQuestionnaire?: string;
 }
 
 export interface QuestionnaireListStore {

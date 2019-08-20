@@ -14,8 +14,6 @@ import { QuestionnaireUpdatedPage } from '../components/questionnaireEditPage/Qu
 
 
 class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps> {
-    mode?: string;
-    questionnaire?: Models.Questionnaire;
 
     componentWillMount() {
         const { match, dispatch } = this.props;
@@ -27,63 +25,40 @@ class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps>
         }
     }
 
-    setQuestionnaire(questionnaire?: any) {
-        if (questionnaire && (!this.questionnaire || questionnaire.id !== this.questionnaire.id)) {
-            const mappedQuestionnaire = questionnaireMapper.toModel(questionnaire);
-            this.questionnaire = new Models.Questionnaire(mappedQuestionnaire);
-            this.forceUpdate();
-        }
-    }
-
-    componentDidMount() {
-        const { questionnaire } = this.props;
-        this.setQuestionnaire(questionnaire);
-    }
-
-    componentDidUpdate() {
-        const { questionnaire } = this.props;
-        this.setQuestionnaire(questionnaire);
-    }
-
-    componentWillUnmount() {
-        const { dispatch } = this.props;
-        this.questionnaire = undefined;
-        dispatch(questionnaireEditorPageActions.resetSavingStatus());
-        dispatch(questionnaireEditorPageActions.resetUpdatingStatus());
-    }
-
     renderSpinner() {
         const { status } = this.props;
-        if (status.loading === STATUS_LOADING.fetching || status.saving === STATUS_SAVING.saving || status.updating === STATUS_UPDATING.updating) {
+        if (status.loading === STATUS_LOADING.fetching ||
+            status.saving === STATUS_SAVING.saving ||
+            status.updating === STATUS_UPDATING.updating) {
             return <Spinner />
         }
     }
 
     renderQuestionnaireDesigner() {
-        const { status } = this.props;
-        if (status.saving === STATUS_SAVING.saved) {
-            return <QuestionnaireSavedPage questionnaire={this.questionnaire} />
-        }
-        if (status.updating === STATUS_UPDATING.updated) {
-            return <QuestionnaireUpdatedPage questionnaire={this.questionnaire} />
-        }
+        const { status, questionnaireModel } = this.props;
         if (status.loading === STATUS_LOADING.loaded) {
-            return this.questionnaire && <QuestionnaireDesigner key={this.questionnaire.id} questionnaire={this.questionnaire} />
+            return questionnaireModel && <QuestionnaireDesigner key={questionnaireModel.id} questionnaire={questionnaireModel} />
         }
         if (status.loading === STATUS_LOADING.error) {
             return <QuestionnaireLoadError />
         }
+        if (status.saving === STATUS_SAVING.saved) {
+            return <QuestionnaireSavedPage questionnaire={questionnaireModel} />
+        }
+        if (status.updating === STATUS_UPDATING.updated) {
+            return <QuestionnaireUpdatedPage questionnaire={questionnaireModel} />
+        }
     }
 
     onClick() {
-        const { mode, dispatch } = this.props;
-        if (this.questionnaire) {
-            const mappedQuestionnaire = questionnaireMapper.fromModel(this.questionnaire);
+        const { mode, dispatch, questionnaireModel } = this.props;
+        if (questionnaireModel) {
+            const mappedQuestionnaire = questionnaireMapper.fromModel(questionnaireModel);
             if (mode === MODE.creating) {
                 dispatch(questionnaireEditorPageActions.saveNewQuestionnaire(mappedQuestionnaire))
             }
-            if (mode === MODE.updating && this.questionnaire) {
-                dispatch(questionnaireEditorPageActions.updateQuestionnaireById(this.questionnaire.id, mappedQuestionnaire))
+            if (mode === MODE.updating && questionnaireModel) {
+                dispatch(questionnaireEditorPageActions.updateQuestionnaireById(questionnaireModel.id, mappedQuestionnaire))
             }
         }
     }

@@ -12,7 +12,7 @@ export const questionnaireListPage = (state: QuestionnaireListStore = INITIAL_ST
                 ...state,
                 status: {
                     ...state.status,
-                    loading: STATUS_LOADING.fetching
+                    loadingQuestionnaireList: STATUS_LOADING.fetching
                 }
             }
         }
@@ -21,7 +21,7 @@ export const questionnaireListPage = (state: QuestionnaireListStore = INITIAL_ST
                 ...state,
                 status: {
                     ...state.status,
-                    loading: STATUS_LOADING.loaded
+                    loadingQuestionnaireList: STATUS_LOADING.loaded
                 },
                 questionnaireList: action.payload
             }
@@ -31,7 +31,7 @@ export const questionnaireListPage = (state: QuestionnaireListStore = INITIAL_ST
                 ...state,
                 status: {
                     ...state.status,
-                    loading: STATUS_LOADING.error
+                    loadingQuestionnaireList: STATUS_LOADING.error
                 }
             }
         }
@@ -40,7 +40,7 @@ export const questionnaireListPage = (state: QuestionnaireListStore = INITIAL_ST
                 ...state,
                 status: {
                     ...state.status,
-                    deleting: STATUS_DELETING.deleting
+                    deletingQuestionnaire: STATUS_DELETING.deleting
                 }
             }
         }
@@ -49,7 +49,7 @@ export const questionnaireListPage = (state: QuestionnaireListStore = INITIAL_ST
                 ...state,
                 status: {
                     ...state.status,
-                    deleting: STATUS_DELETING.deletingEnded
+                    deletingQuestionnaire: STATUS_DELETING.deletingEnded
                 },
                 questionnaireList: state.questionnaireList && state.questionnaireList.filter(q => q.id !== action.payload)
             }
