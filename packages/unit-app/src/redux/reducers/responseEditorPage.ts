@@ -97,6 +97,18 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
                 }
             }
         }
+        case ACTIONS.CREATE_NEW_RESPONSE: {
+            const responseModel = state.questionnaire && new Models.QuestionnaireResponse(state.questionnaire);
+            return {
+                ...state,
+                mode: MODE.creating,
+                status: {
+                    ...state.status,
+                    loadingResponse: STATUS_QUESTIONNAIRE_LOADING.loaded
+                },
+                responseModel: responseModel
+            }
+        }
         default: return state;
     }
 }
