@@ -8,7 +8,7 @@ import { Spinner } from '../components/Spinner';
 import { QuestionnaireListProps } from '../interface/questionnaireListPage/QuestionnaireListProps';
 import LoadQuestionnaireListError from '../components/questionnaireListPage/LoadQuestionnaireListError';
 
-class QuestionnaireListPageClass extends React.Component<QuestionnaireListProps> {
+export class QuestionnaireListPage extends React.Component<QuestionnaireListProps> {
 
     componentWillMount() {
         const { dispatch } = this.props;
@@ -56,6 +56,6 @@ const mapStateToProps = (state: any) => {
     return { ...state.questionnaireListPage };
 }
 
-const QuestionnaireListPage = connect(mapStateToProps)(QuestionnaireListPageClass);
-export { QuestionnaireListPage };
-export default QuestionnaireListPage;
+// const QuestionnaireListPage = connect(mapStateToProps)(QuestionnaireListPageClass);
+// export { QuestionnaireListPage };
+export default connect(mapStateToProps)(QuestionnaireListPage);

@@ -18,7 +18,8 @@ export const QuestionnaireInstance = (props: any) => {
             <div className="col">
                 <Link className="btn btn-link" to={`/questionnaire/${questionnaire.id}`}>{questionnaire.title || 'Untitled Questionnaire'}</Link>
             </div>
-            <div className="col-2 d-flex justify-content-around">
+            <div className="col d-flex justify-content-around">
+                <Link to={`/responses/${questionnaire.id}`} className="btn btn-link">Responses</Link>
                 <button className="btn btn-outline-danger" onClick={deleteQuestionnaire}><i className="fas fa-trash"></i></button>
                 <Link to={`questionnaire/${questionnaire.id}/response`} className="btn btn-outline-success"><i className="fas fa-play"></i></Link>
             </div>

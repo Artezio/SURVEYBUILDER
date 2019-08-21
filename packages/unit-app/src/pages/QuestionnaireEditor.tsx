@@ -13,7 +13,7 @@ import { QuestionnaireSavedPage } from '../components/questionnaireEditPage/Ques
 import { QuestionnaireUpdatedPage } from '../components/questionnaireEditPage/QuestionnaireUpadatedPage';
 
 
-class QuestionnaireEditorClass extends React.Component<QuestionnaireEditorProps> {
+export class QuestionnaireEditor extends React.Component<QuestionnaireEditorProps> {
 
     componentWillMount() {
         const { match, dispatch } = this.props;
@@ -89,6 +89,6 @@ const mapStateToProps = (state: any) => {
     return { ...state.questionnaireEditorPage };
 }
 
-const QuestionnaireEditor = connect(mapStateToProps)(QuestionnaireEditorClass);
-export { QuestionnaireEditor };
-export default QuestionnaireEditor;
+// const QuestionnaireEditor = connect(mapStateToProps)(QuestionnaireEditorClass);
+// export { QuestionnaireEditor };
+export default connect(mapStateToProps)(QuestionnaireEditor);

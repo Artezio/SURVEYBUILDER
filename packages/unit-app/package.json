@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
+    "@types/jsdom": "^12.2.4",
     "@types/react": "^16.8.3",
     "@types/react-dom": "^16.8.1",
     "@types/react-redux": "^7.1.1",
@@ -14,7 +15,10 @@
     "babel-jest": "^24.8.0",
     "bootstrap": "^4.3.1",
     "bootstrap-scss": "4.3.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "http-proxy-middleware": "^0.19.1",
+    "jsdom": "^15.1.1",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-redux": "^7.1.0",

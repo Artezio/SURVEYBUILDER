@@ -1,6 +1,8 @@
+import * as Models from '@art-forms/models';
 import { Action } from "../../interface/Action";
 import { ACTIONS, STATUS_QUESTIONNAIRE_LOADING, STATUS_RESPONSE_LOADING, MODE, STATUS_SAVING_RESPONSE } from '../../constants/responseEditorPage';
 import { ResponseEditorPageStore } from "../../interface/responseERditorPage/ResponseEditorPageStore";
+import { questionnaireResponseMapper, questionnaireMapper } from '@art-forms/fhir-converter';
 
 const INITIAL_STATE: ResponseEditorPageStore = { status: {} };
 
@@ -16,13 +18,14 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
             }
         }
         case ACTIONS.LOAD_QUESTIONNAIRE_LOADED: {
+            const questionnaire = questionnaireMapper.toModel(action.payload);
             return {
                 ...state,
                 status: {
                     ...state.status,
                     loadingQuestionnaire: STATUS_QUESTIONNAIRE_LOADING.loaded
                 },
-                questionnaire: action.payload
+                questionnaire: questionnaire
             }
         }
         case ACTIONS.LOAD_QUESTIONNAIRE_ERROR: {
@@ -37,6 +40,7 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
         case ACTIONS.LOAD_RESPONSE_FETCHING: {
             return {
                 ...state,
+                mode: MODE.updating,
                 status: {
                     ...state.status,
                     loadingResponse: STATUS_RESPONSE_LOADING.fetching
@@ -44,34 +48,27 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
             }
         }
         case ACTIONS.LOAD_RESPONSE_LOADED: {
+            const response = questionnaireResponseMapper.toModel(action.payload);
+            const responseModel = state.questionnaire && new Models.QuestionnaireResponse(state.questionnaire, response);
             return {
                 ...state,
+                mode: MODE.updating,
                 status: {
                     ...state.status,
                     loadingResponse: STATUS_RESPONSE_LOADING.loaded
                 },
-                response: action.payload
+                response: action.payload,
+                responseModel: responseModel
             }
         }
         case ACTIONS.LOAD_RESPONSE_ERROR: {
             return {
                 ...state,
+                mode: MODE.updating,
                 status: {
                     ...state.status,
                     loadingResponse: STATUS_RESPONSE_LOADING.error
                 }
-            }
-        }
-        case ACTIONS.SET_MODE_TO_CREATING: {
-            return {
-                ...state,
-                mode: MODE.creating
-            }
-        }
-        case ACTIONS.SET_MODE_TO_UPDATING: {
-            return {
-                ...state,
-                mode: MODE.updating
             }
         }
         case ACTIONS.SAVE_RESPONSE_SAVING: {
@@ -87,11 +84,8 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
             return {
                 ...state,
                 status: {
-                    ...state.status,
                     savingResponse: STATUS_SAVING_RESPONSE.saved,
-                },
-                // mode: MODE.updating,
-                // response: action.payload
+                }
             }
         }
         case ACTIONS.SAVE_RESPONSE_ERROR: {
@@ -101,22 +95,6 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
                     ...state.status,
                     savingResponse: STATUS_SAVING_RESPONSE.error
                 }
-            }
-        }
-        case ACTIONS.RESET_SAVING_STATUS: {
-            return {
-                ...state,
-                status: {
-                    ...state.status,
-                    savingResponse: undefined
-                }
-            }
-        }
-        case ACTIONS.RESET_RESOURCES: {
-            return {
-                ...state,
-                questionnaire: undefined,
-                response: undefined
             }
         }
         default: return state;

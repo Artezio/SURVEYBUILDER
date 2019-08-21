@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import { responseListPageActions } from '../redux/actions/responseListPageActions';
 import { Spinner } from '../components/Spinner';
 import { ResponseListLoadError } from '../components/responseListPage/ResponseListLoadError';
+import LoadingQuestionnaireError from '../components/responseListPage/LoadingQuestionnaireError';
 
-export class ResponseListPageClass extends React.Component<ResponseListPageProps> {
+export class ResponseListPage extends React.Component<ResponseListPageProps> {
     questionnaire: any;
 
     componentWillMount() {
@@ -29,6 +30,9 @@ export class ResponseListPageClass extends React.Component<ResponseListPageProps
 
     renderResponseList() {
         const { status, responseList } = this.props;
+
+        if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) return;
+
         if (status.loadingResponseList === STATUS_RESPONSE_LIST_LOADING.error) {
             return <ResponseListLoadError />
         }
@@ -43,13 +47,13 @@ export class ResponseListPageClass extends React.Component<ResponseListPageProps
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
             return questionnaire && <div className="row">
                 <h1 className="col-6">{questionnaire.title || 'Untitled Questionnaire'}</h1>
-                <Link to={`/questionnaire/${questionnaireId}/response`} className="btn btn-outline-success"><i className="fas fa-play"></i></Link>
+                <div className="col d-flex align-items-center">
+                    <Link to={`/questionnaire/${questionnaireId}/response`} className="btn btn-outline-success"><i className="fas fa-play"></i></Link>
+                </div>
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) {
-            return <div>
-
-            </div>
+            return <LoadingQuestionnaireError />
         }
     }
 
@@ -66,6 +70,6 @@ const mapStateToProps = (state: any) => {
     return { ...state.responseListPage, questionnaireList: state.questionnaireListPage.questionnaireList }
 }
 
-const ResponseListPage = connect(mapStateToProps)(ResponseListPageClass);
-export { ResponseListPage };
-export default ResponseListPage;
+// const ResponseListPage = connect(mapStateToProps)(ResponseListPageClass);
+// export { ResponseListPage };
+export default connect(mapStateToProps)(ResponseListPage);

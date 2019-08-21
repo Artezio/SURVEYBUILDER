@@ -2,101 +2,57 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { ResponseEditorPageProps } from '../interface/responseERditorPage/ResponseEditorPageProps';
 import { Spinner } from '../components/Spinner';
-import { STATUS_QUESTIONNAIRE_LOADING, STATUS_RESPONSE_LOADING, MODE, STATUS_SAVING_RESPONSE } from '../constants/responseEditorPage';
+import { STATUS_QUESTIONNAIRE_LOADING, STATUS_RESPONSE_LOADING, STATUS_SAVING_RESPONSE, STATUS_UPDATING_RESPONSE } from '../constants/responseEditorPage';
 import { QuestionnairePlayer } from '@art-forms/player';
 import { connect } from 'react-redux';
 import { responseEditorPageActions } from '../redux/actions/responseEditorPageActions';
-import { questionnaireMapper, questionnaireResponseMapper } from '@art-forms/fhir-converter';
+
 import { ResponseSavedPage } from '../components/responseListPage/ResponseSavedPage';
 
-export class ResponseEditorPageClass extends React.Component<ResponseEditorPageProps> {
-    questionnaireResponse?: Models.QuestionnaireResponse;
-    questionnaire?: Models.IQuestionnaire;
+export class ResponseEditorPage extends React.Component<ResponseEditorPageProps> {
 
     componentWillMount() {
         const { match, dispatch } = this.props;
         const questionnaireId = match && match.params.questionnaireId;
         const responseId = match && match.params.responseId;
-        if (responseId) {
-            dispatch(responseEditorPageActions.setModeToUpdating())
-        }
-        else {
-            dispatch(responseEditorPageActions.setModeToCreating())
-        }
-        if (questionnaireId) {
-            dispatch(responseEditorPageActions.loadQuestionnaireById(questionnaireId))
-        }
-        if (responseId) {
-            dispatch(responseEditorPageActions.loadResponseId(responseId))
-        }
-    }
-
-    componentDidMount() {
-        const { questionnaire, response } = this.props;
-        this.setQuestionnaire(questionnaire);
-        this.setResponse(response);
-    }
-
-    componentWillUnmount() {
-        const { dispatch } = this.props;
-        dispatch(responseEditorPageActions.resetSavingStatus())
-        dispatch(responseEditorPageActions.resetResources())
-    }
-
-    componentDidUpdate() {
-        const { questionnaire, response } = this.props;
-        this.setQuestionnaire(questionnaire);
-        this.setResponse(response);
-    }
-
-    setQuestionnaire(questionnaire: any) {
-        if (questionnaire && (!this.questionnaire || this.questionnaire.id !== questionnaire.id)) {
-            const mappedQuestionnaire = questionnaireMapper.toModel(questionnaire);
-            this.questionnaire = mappedQuestionnaire;
-            this.forceUpdate();
-        }
-    }
-
-    setResponse(response: any) {
-        const { mode } = this.props;
-        if (mode === MODE.creating) {
-            if (this.questionnaire && !this.questionnaireResponse) {
-                this.questionnaireResponse = new Models.QuestionnaireResponse(this.questionnaire);
-                this.forceUpdate();
-            }
-        }
-        if (mode === MODE.updating) {
-
-        }
+        if (!questionnaireId) return;
+        dispatch(responseEditorPageActions.loadQuestionnaireById(questionnaireId))
+            .then(() => {
+                if (responseId) {
+                    dispatch(responseEditorPageActions.loadResponseById(responseId))
+                } else {
+                    dispatch(responseEditorPageActions.createNewResponse())
+                }
+            })
     }
 
     renderSpinner() {
         const { status } = this.props;
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.fetching ||
             status.loadingResponse === STATUS_RESPONSE_LOADING.fetching ||
-            status.savingResponse === STATUS_SAVING_RESPONSE.saving) {
+            status.savingResponse === STATUS_SAVING_RESPONSE.saving ||
+            status.updatingResponse === STATUS_UPDATING_RESPONSE.updating) {
             return <Spinner />
         }
     }
 
     putQuestionnaireResponse(questionnaireResponse: Models.IQuestionnaireResponse) {
         const { dispatch } = this.props;
-        const mappedResponse = questionnaireResponseMapper.fromModel(questionnaireResponse);
-        dispatch(responseEditorPageActions.saveResponse(mappedResponse));
+        dispatch(responseEditorPageActions.saveResponse(questionnaireResponse));
     }
 
     renderQuestionnairePlayer() {
-        const { mode, status } = this.props;
-        if (mode === MODE.creating) {
-            if (status.savingResponse === STATUS_SAVING_RESPONSE.saved) {
-                return <ResponseSavedPage />;
-            }
-            if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
-                return this.questionnaireResponse && this.questionnaire && <QuestionnairePlayer provider={{ putQuestionnaireResponse: this.putQuestionnaireResponse.bind(this) }} questionnaire={this.questionnaire} questionnaireResponse={this.questionnaireResponse} />
-            }
+        const { status, questionnaire, responseModel } = this.props;
+        if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) {
+            return <div>
+                <span className="text-danger">This Questionnaire does not exist any more</span>
+            </div>
         }
-        if (mode === MODE.updating) {
-
+        if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
+            return responseModel && questionnaire && <QuestionnairePlayer provider={{ putQuestionnaireResponse: this.putQuestionnaireResponse.bind(this) }} questionnaire={questionnaire} questionnaireResponse={responseModel} />
+        }
+        if (status.savingResponse === STATUS_SAVING_RESPONSE.saved) {
+            return <ResponseSavedPage />;
         }
     }
 
@@ -112,6 +68,6 @@ const mapStateToProps = (state: any) => {
     return { ...state.responseEditorPage }
 }
 
-const ResponseEditorPage = connect(mapStateToProps)(ResponseEditorPageClass);
-export { ResponseEditorPage };
-export default ResponseEditorPage;
+// const ResponseEditorPage = connect(mapStateToProps)(ResponseEditorPageClass);
+// export { ResponseEditorPage };
+export default connect(mapStateToProps)(ResponseEditorPage);
