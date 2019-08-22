@@ -2,9 +2,20 @@ import * as React from 'react';
 import { RadioGroup, Radio, FormState, withFormApi } from 'informed';
 import BooleanItemProps from '../../interfaces/components/questionItems/BooleanItemProps';
 
+const stringToBoolean = (value?: string | boolean) => { /// hot fix type
+    if (typeof value === 'boolean') {
+        return value;
+    } else {
+        if (value === 'false') {
+            return false;
+        } else if (value === 'true') {
+            return true;
+        }
+    }
+}
 
 export class BooleanItem extends React.PureComponent<BooleanItemProps> {
-    initialValue?: any = this.props.questionnaireResponseItem.answers && this.props.questionnaireResponseItem.answers[0] && this.props.questionnaireResponseItem.answers[0].value;
+    initialValue?: any = this.props.questionnaireResponseItem.answers && this.props.questionnaireResponseItem.answers[0] && stringToBoolean(this.props.questionnaireResponseItem.answers[0].value);
 
     onChange() {
         const { questionnaireResponseItem, item, formApi } = this.props;
