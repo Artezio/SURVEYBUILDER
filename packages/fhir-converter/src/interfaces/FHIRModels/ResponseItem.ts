@@ -1,6 +1,6 @@
 export interface ResponseItem {
     id: string;
-    linkedId: string;
+    linkId: string;
     text: string;
     answer: any[];
     item?: ResponseItem[];

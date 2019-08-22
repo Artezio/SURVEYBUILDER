@@ -8,7 +8,7 @@ export const responseItem = {
         const newQuestionnaireResponseItem: Models.IQuestionnaireResponseItem = {
             id: item.id,
             text: item.text,
-            questionId: item.linkedId,
+            questionId: item.linkId,
             items: item.item && item.item.map(itm => responseItem.toModel(itm)),
             answers: item.answer && item.answer.map(answer => mapAnswerToModel(answer))
         }
@@ -17,7 +17,7 @@ export const responseItem = {
     fromModel(item: Models.IQuestionnaireResponseItem): ResponseItem {
         const newQuestionnaireResponseItem: ResponseItem = {
             id: item.id,
-            linkedId: item.questionId,
+            linkId: item.questionId,
             text: item.text,
             answer: item.answers && item.answers.map(answer => mapAnswerFromModel(answer)),
             item: item.items && item.items.map(item => responseItem.fromModel(item))
