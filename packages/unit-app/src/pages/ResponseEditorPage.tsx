@@ -6,7 +6,6 @@ import { STATUS_QUESTIONNAIRE_LOADING, STATUS_RESPONSE_LOADING, STATUS_SAVING_RE
 import { QuestionnairePlayer } from '@art-forms/player';
 import { connect } from 'react-redux';
 import { responseEditorPageActions } from '../redux/actions/responseEditorPageActions';
-
 import { ResponseSavedPage } from '../components/responseListPage/ResponseSavedPage';
 
 export class ResponseEditorPage extends React.Component<ResponseEditorPageProps> {
@@ -49,7 +48,7 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
-            return responseModel && questionnaire && <QuestionnairePlayer provider={{ putQuestionnaireResponse: this.putQuestionnaireResponse.bind(this) }} questionnaire={questionnaire} questionnaireResponse={responseModel} />
+            return responseModel && questionnaire && <QuestionnairePlayer key={responseModel.id} provider={{ putQuestionnaireResponse: this.putQuestionnaireResponse.bind(this) }} questionnaire={questionnaire} questionnaireResponse={responseModel} />
         }
         if (status.savingResponse === STATUS_SAVING_RESPONSE.saved) {
             return <ResponseSavedPage />;
