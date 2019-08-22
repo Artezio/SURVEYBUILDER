@@ -6,17 +6,19 @@ import IResponseItemCollection from "../interfaces/IResponseItemCollection";
 
 @observable
 export class Answer<T> implements IAnswer<T> {
-    id!: string;
+    id: string;
     value?: T;
     @observableProperty
-    items!: QuestionnaireResponseItem[];
+    items: QuestionnaireResponseItem[];
     parent?: IResponseItemCollection<any>;
     itemIdMap: Map<string, boolean> = new Map();
     position!: number;
 
     constructor(answer: Partial<IAnswer<T>> | undefined, parent?: IResponseItemCollection<any>) {
-        Object.assign(this, { id: uuid(), items: [] }, answer);
+        this.id = answer && answer.id || uuid();
         this.parent = parent;
+        this.items = []; /// to be changed if needed!!!
+        this.value = answer && answer.value;
         Object.defineProperty(Answer.prototype, 'position', {
             enumerable: true,
             configurable: true,
