@@ -14,7 +14,7 @@ export const questionnaireResponseMapper = {
     fromModel(questionnaireResponse: Models.IQuestionnaireResponse): QuestionnaireResponse {
         const newQuestionnaireResponse: QuestionnaireResponse = {
             id: questionnaireResponse.id,
-            questionnaire: `http://example.com/Questionnaire/${questionnaireResponse.questionnaireId}`,
+            questionnaire: `Questionnaire/${questionnaireResponse.questionnaireId}`,
             resourceType: 'QuestionnaireResponse',
             item: questionnaireResponse.items && questionnaireResponse.items.map(item => responseItem.fromModel(item))
         }
