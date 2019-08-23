@@ -1,11 +1,10 @@
-import { assert } from 'chai';
-import { QuestionnaireResponseItem } from '../../src/models/questionnaireResponseItem';
+const expect = require('expect');
 
 
 describe('questionnaire response item', () => {
     describe('first', () => {
         it('one', () => {
-            assert(true)
+            expect(1).toBe(1);
         })
     })
 })

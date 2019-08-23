@@ -1,6 +1,6 @@
-import { assert } from 'chai';
-import ItemFactory from '../../src/factories/itemFactory';
-import { AnswerOptionFactory } from '../../src/factories/answerOptionFactory';
+const { ItemFactory } = require('../../src/factories/itemFactory');
+const { AnswerOptionFactory } = require('../../src/factories/answerOptionFactory');
+const expect = require('expect');
 
 describe('answer options default selected', () => {
     describe('choice item', () => {
@@ -11,7 +11,7 @@ describe('answer options default selected', () => {
             const option = optFactory.createAnswerOption();
             choiceItem.addAnswerOption(option);
             option.selectAsDefault();
-            assert(option.defaultSelected);
+            expect(option.defaultSelected).toBe(true);
         })
         it('selecting one opt unselects another', () => {
             const itemFactory = new ItemFactory();
@@ -23,7 +23,7 @@ describe('answer options default selected', () => {
             choiceItem.addAnswerOption(option2);
             option1.selectAsDefault();
             option2.selectAsDefault();
-            assert(!option1.defaultSelected && option2.defaultSelected);
+            expect(!option1.defaultSelected && option2.defaultSelected).toBe(true);
         })
     })
 })
