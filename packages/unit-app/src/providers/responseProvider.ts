@@ -1,5 +1,6 @@
 import HapiFhirService from "./services/hapiFhirService";
 import { ResponseService } from "./services/responseService";
+import { mockResponseListService } from "./services/mockResponseListService";
 
 class ResponseProvider {
     constructor(private service: ResponseService) {
@@ -7,9 +8,10 @@ class ResponseProvider {
     }
 
     getResponseListByQuestionnaireId(id: string) {
-        return this.service.getResponseListByQuestionnaireId(id, { limit: 10 })
-            .then(responseData => responseData.entry)
-            .then(entries => entries.map((entry: any) => entry.resource))
+        return mockResponseListService.getResponseListByQuestionnaireId();
+        // return this.service.getResponseListByQuestionnaireId(id, { limit: 10 })
+        //     .then(responseData => responseData.entry)
+        //     .then(entries => entries.map((entry: any) => entry.resource))
     }
 
     getResponseById(id: string) {

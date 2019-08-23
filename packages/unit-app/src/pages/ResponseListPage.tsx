@@ -9,10 +9,6 @@ import { Spinner } from '../components/Spinner';
 import { ResponseListLoadError } from '../components/responseListPage/ResponseListLoadError';
 import LoadingQuestionnaireError from '../components/responseListPage/LoadingQuestionnaireError';
 
-// const mockList: any[] = [
-//     {id: 144963, authored: '2018-10-09T20:36:42+02:00'},
-//     {id: 144962, authored: '2019-10-21T04:12:00'}
-// ]
 
 export class ResponseListPage extends React.Component<ResponseListPageProps> {
     questionnaire: any;
@@ -35,7 +31,6 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
 
     renderResponseList() {
         const { status, responseList } = this.props;
-        // return <ResponseList responseList={mockList} />
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) return;
 
         if (status.loadingResponseList === STATUS_RESPONSE_LIST_LOADING.error) {
