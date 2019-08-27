@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../../observableConnector/useObservableModel';
 import AttachmentItemProps from '../../interfaces/components/questionItems/AttachmentItemProps';
 
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../../observableConnector/useObservableModel';
 import MultiChoiceItemProps from '../../interfaces/components/questionItems/MultiChoiceItemProps';
 import MultiChoiceItemOption from '../MultiChoiceItemOption';
 import { Scope, withFormApi, FormState } from 'informed';

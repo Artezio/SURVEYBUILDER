@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
-import { useObservableModel, getObservable } from '@art-forms/observable';
+import { useObservableModel } from '../observableConnector/useObservableModel';
 import ItemWrapper from './ItemWrapper';
 import { Form, FormApi } from 'informed';
 import IFormState from '../interfaces/IFormState';
@@ -20,9 +20,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     onSubmitFailure() {
-        const { questionnaireResponse } = this.props;
-        const obs = getObservable(questionnaireResponse);
-        obs && obs.emitChange();
+        this.forceUpdate();
         setTimeout(() => {
             const firstIncorrectAnswer = document.querySelector('.error-item');
             firstIncorrectAnswer && firstIncorrectAnswer.scrollIntoView();

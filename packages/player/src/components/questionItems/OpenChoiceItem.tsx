@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { RadioGroup, Radio, Text, withFormApi, FormState } from 'informed';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../../observableConnector/useObservableModel';
 import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenChoiceItemProps';
 
 
