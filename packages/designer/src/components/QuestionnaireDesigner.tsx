@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../observableConnector/useObservableModel';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';

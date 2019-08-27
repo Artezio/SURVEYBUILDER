@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ChoiceItemProps } from '../../interfaces/components/questionItems/ChoiceItemProps';
 import * as Models from '@art-forms/models';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../../observableConnector/useObservableModel';
 import ChoiceOption from '../ChoiceOption';
 import { Form, RadioGroup } from 'informed';
 import QuestionItem from './QuestionItem';
@@ -33,6 +33,7 @@ export class ChoiceItem extends QuestionItem<ChoiceItemProps> {
     }
 
     render() {
+        console.log('ChoiceItem RENDER!!');
         return <div>
             <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
                 Reset <i className="fas fa-undo"></i>

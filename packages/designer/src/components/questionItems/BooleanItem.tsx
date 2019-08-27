@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BooleanItemProps } from '../../interfaces/components/questionItems/BooleanItemProps';
 import { Form, RadioGroup, Radio } from 'informed';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../../observableConnector/useObservableModel';
 import QuestionItem from './QuestionItem';
 
 

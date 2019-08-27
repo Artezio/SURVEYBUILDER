@@ -1,7 +1,7 @@
 import * as React from 'react';
 import StringItemProps from '../../interfaces/components/questionItems/StringItemProps';
 import { Form, Text } from 'informed';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../../observableConnector/useObservableModel';
 import QuestionItem from './QuestionItem';
 
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DecimalItemProps from '../../interfaces/components/questionItems/DecimalItemProps';
 import { Form, Text } from 'informed';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../../observableConnector/useObservableModel';
 import QuestionItem from './QuestionItem';
 
 

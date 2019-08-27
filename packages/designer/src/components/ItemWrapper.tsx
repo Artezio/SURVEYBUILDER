@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
 import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
-import { useObservableModel } from '@art-forms/observable';
+import { useObservableModel } from '../observableConnector/useObservableModel';
 import ItemProvider from './ItemProvider';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import { FormApi, Form, Text, Checkbox } from 'informed';
