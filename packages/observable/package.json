@@ -1,6 +1,7 @@
 {
   "name": "@art-forms/observable",
   "version": "1.0.0",
+  "author": "ddanteyakov",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "license": "MIT",
@@ -16,13 +17,11 @@
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
-    "ts-mocha": "^6.0.2",
+    "ts-mocha": "^6.0.0",
+    "typescript": "^3.4.1",
     "ts-node": "^8.0.3"
   },
   "dependencies": {
-    "@types/hoist-non-react-statics": "^3.3.1",
-    "hoist-non-react-statics": "^3.3.0",
-    "reflect-metadata": "^0.1.13",
-    "typescript": "^3.4.1"
+    "reflect-metadata": "^0.1.13"
   }
 }

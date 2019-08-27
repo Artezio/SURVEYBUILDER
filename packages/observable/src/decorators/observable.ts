@@ -75,7 +75,7 @@ export function toObservable(target: any) {
 const _handler = {
     set(target: any, propertyName: string, value: any) {
         if (Reflect.getMetadata(observablePropertySym, target.__proto__, propertyName)) {
-            target[propertyName] = toObservable(value);
+            target[propertyName] = isObservable(value) ? value : toObservable(value);
             getObservable(target[propertyName]).subscribe(() => {
                 target[emitChange] && target[emitChange]();
             })

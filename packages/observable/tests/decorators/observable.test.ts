@@ -37,6 +37,14 @@ class Player {
     names?: string[];
 }
 
+@observable
+class Student {
+    @observableProperty
+    group: { name: string, amountOfStudents: number };
+    constructor() {
+        this.group = { name: '522402', amountOfStudents: 30 };
+    }
+}
 
 
 describe("decorators/observable", () => {
@@ -57,6 +65,16 @@ describe("decorators/observable", () => {
                 done();
             })
             player.names = [];
+        })
+        it("observableProperty as object was observed", (done) => {
+            const student = new Student();
+            const obs = getObservable(student);
+            const newGroupName = '522401';
+            obs && obs.subscribe(std => {
+                assert.equal(std.group.name, newGroupName);
+                done();
+            })
+            student.group.name = newGroupName;
         })
         it("plain object is observable", () => {
             const obj = toObservable({});

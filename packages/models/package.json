@@ -17,16 +17,16 @@
     "./Uml-diagram-models.xml"
   ],
   "dependencies": {
-    "@types/expect": "^1.20.4",
-    "@types/mocha": "^5.2.7",
-    "@types/uuid": "^3.4.4",
-    "expect": "^24.9.0",
     "json-logic-js": "^1.2.2",
-    "ts-mocha": "^6.0.0",
-    "ts-node": "^8.3.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@types/expect": "^1.20.4",
+    "@types/mocha": "^5.2.7",
+    "@types/uuid": "^3.4.4",
+    "ts-mocha": "^6.0.0",
+    "ts-node": "^8.3.0",
+    "expect": "^24.9.0",
     "typescript": "^3.3.4000"
   }
 }
