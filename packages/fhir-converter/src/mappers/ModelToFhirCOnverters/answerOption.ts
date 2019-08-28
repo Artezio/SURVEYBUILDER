@@ -1,6 +1,6 @@
 import * as Models from '@art-forms/models';
 
-export const mapAnswerOptionFromModel = (answerOption: Models.IAnswerOption): any => {
+export const answerOptionFromModelConverter = (answerOption: Models.IAnswerOption): any => {
     const newAnswerOption: any = {
         id: answerOption.id,
         valueString: answerOption.value,
@@ -9,4 +9,4 @@ export const mapAnswerOptionFromModel = (answerOption: Models.IAnswerOption): an
     return newAnswerOption;
 }
 
-export default mapAnswerOptionFromModel;
+export default answerOptionFromModelConverter;

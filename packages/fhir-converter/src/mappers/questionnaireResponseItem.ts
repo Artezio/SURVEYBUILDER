@@ -1,16 +1,16 @@
 import * as Models from '@art-forms/models';
 import ResponseItem from '../interfaces/FHIRModels/ResponseItem';
-import mapAnswerToModel from './FhirToModelConverters/answerConverter';
-import mapAnswerFromModel from './ModelToFhirCOnverters/answerConverter';
+import answerToModelConverter from './FhirToModelConverters/answer';
+import answerFromModelConverter from './ModelToFhirCOnverters/answer';
 
-export const responseItem = {
+export const questionnaireResponseItemConverter = {
     toModel(item: ResponseItem): Models.IQuestionnaireResponseItem {
         const newQuestionnaireResponseItem: Models.IQuestionnaireResponseItem = {
             id: item.id,
             text: item.text,
             questionId: item.linkId,
-            items: item.item && item.item.map(itm => responseItem.toModel(itm)),
-            answers: item.answer && item.answer.map(answer => mapAnswerToModel(answer))
+            items: item.item && item.item.map(itm => questionnaireResponseItemConverter.toModel(itm)),
+            answers: item.answer && item.answer.map(answer => answerToModelConverter(answer))
         }
         return newQuestionnaireResponseItem;
     },
@@ -19,11 +19,11 @@ export const responseItem = {
             id: item.id,
             linkId: item.questionId,
             text: item.text,
-            answer: item.answers && item.answers.map(answer => mapAnswerFromModel(answer)),
-            item: item.items && item.items.map(item => responseItem.fromModel(item))
+            answer: item.answers && item.answers.map(answer => answerFromModelConverter(answer)),
+            item: item.items && item.items.map(item => questionnaireResponseItemConverter.fromModel(item))
         }
         return newQuestionnaireResponseItem;
     }
 }
 
-export default responseItem;
+export default questionnaireResponseItemConverter;

@@ -1,7 +1,7 @@
 import * as Models from '@art-forms/models';
 import * as FHIREnableWhenOperator from '../../constants/FHIREnableWhenOperator';
 
-export const mapOperatorFromModel = (operator: Models.EnableWhenOperator): FHIREnableWhenOperator.FHIREnableWhenOperator => {
+export const operatorFromModelConverter = (operator: Models.EnableWhenOperator): FHIREnableWhenOperator.FHIREnableWhenOperator => {
     switch (operator) {
         case Models.EXISTS: return FHIREnableWhenOperator.EXISTS;
         case Models.EQUAL: return FHIREnableWhenOperator.EQUAL;
@@ -14,4 +14,4 @@ export const mapOperatorFromModel = (operator: Models.EnableWhenOperator): FHIRE
     }
 }
 
-export default mapOperatorFromModel;
+export default operatorFromModelConverter;

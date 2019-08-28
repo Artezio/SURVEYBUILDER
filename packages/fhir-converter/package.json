@@ -9,9 +9,10 @@
     "registry": "http://10.11.40.28:4873/"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json"
+    "build": "tsc -p tsconfig.build.json",
+    "test": "ts-mocha tests/**/*.test.ts"
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/expect": "^1.20.4",
     "@types/mocha": "^5.2.7",
     "expect": "^24.9.0",

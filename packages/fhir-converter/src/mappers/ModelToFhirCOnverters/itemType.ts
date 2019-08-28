@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 import * as FHIRItemType from "../../constants/FHIRItemType";
 
 
-export const mapItemTypeFromModel = (type: Models.ITEM_TYPE): FHIRItemType.FHIRItemType => {
+export const itemTypeFromModelConverter = (type: Models.ITEM_TYPE): FHIRItemType.FHIRItemType => {
     switch (type) {
         case Models.GROUP: return FHIRItemType.GROUP;
         case Models.DISPLAY: return FHIRItemType.DISPLAY;
@@ -21,4 +21,4 @@ export const mapItemTypeFromModel = (type: Models.ITEM_TYPE): FHIRItemType.FHIRI
     }
 }
 
-export default mapItemTypeFromModel;
+export default itemTypeFromModelConverter;

@@ -1,6 +1,6 @@
 import * as Models from '@art-forms/models';
 
-export const mapInitialAnswerFromModel = (initialAnswer: Models.IInitialAnswer<any>, questionType: Models.ITEM_TYPE): any => {
+export const initialAnswerFromModelConverter = (initialAnswer: Models.IInitialAnswer<any>, questionType: Models.ITEM_TYPE): any => {
     let keyName;
     switch (questionType) {
         case Models.TEXT: {
@@ -46,4 +46,4 @@ export const mapInitialAnswerFromModel = (initialAnswer: Models.IInitialAnswer<a
     return newInitialAnswer;
 }
 
-export default mapInitialAnswerFromModel;
+export default initialAnswerFromModelConverter;

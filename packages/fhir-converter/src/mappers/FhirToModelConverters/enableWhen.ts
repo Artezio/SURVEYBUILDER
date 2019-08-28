@@ -1,7 +1,7 @@
 import * as Models from '@art-forms/models';
-import mapOperatorToModel from './operatorConverter';
+import mapOperatorToModel from './operator';
 
-export const mapEnableWhenToModel = (enableWhen: any): Models.IEnableWhen => {
+export const enableWhenToModelConverter = (enableWhen: any): Models.IEnableWhen => {
     const mappedEnableWhen: Models.IEnableWhen = {
         id: enableWhen.id,
         questionId: enableWhen.question,
@@ -11,4 +11,4 @@ export const mapEnableWhenToModel = (enableWhen: any): Models.IEnableWhen => {
     return mappedEnableWhen;
 }
 
-export default mapEnableWhenToModel;
+export default enableWhenToModelConverter;

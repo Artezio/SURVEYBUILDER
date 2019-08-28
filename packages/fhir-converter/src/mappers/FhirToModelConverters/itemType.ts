@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 import * as FHIRItemType from "../../constants/FHIRItemType";
 
 
-export const mapItemTypeToModel = (type: FHIRItemType.FHIRItemType, multipleAnswers?: boolean): Models.ITEM_TYPE => {
+export const itemTypeToModelConverter = (type: FHIRItemType.FHIRItemType, multipleAnswers?: boolean): Models.ITEM_TYPE => {
     if (type === FHIRItemType.CHOICE && multipleAnswers) {
         return Models.MULTI_CHOICE;
     }
@@ -23,4 +23,4 @@ export const mapItemTypeToModel = (type: FHIRItemType.FHIRItemType, multipleAnsw
     }
 }
 
-export default mapItemTypeToModel;
+export default itemTypeToModelConverter;
