@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Models from '@art-forms/models';
 import { Store } from '../interfaces/Store';
 import LayoutProps, { LayoutState, LayoutActions } from '../interfaces/components/LayoutProps';
-import { DESIGN, PLAY } from '../constants/application';
+import { DESIGN } from '../constants/application';
 import { QuestionnairePlayer } from '@art-forms/player';
 import QuestionnaireDesigner from './QuestionnaireDesigner';
 import { createQuestionnaire } from '../actions/questionnaire';
