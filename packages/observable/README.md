@@ -55,6 +55,16 @@ getObservable(myObject).subscribe(obj => {
     console.log("My object has changed, now it:", obj);
 })
 ```
+> NOTICE! getObservable() returns object with methods OR undefined. If you are not sure that object is observable, check the result:
+
+```typescript
+const observableMethods = getObservable(someObject);
+if(observableMethods) {
+    observableMethods.subscribe(...)
+}
+```
+> There is another way to check out if the object is observable, by using the isObservable function. It will be explained later
+
 
 To fire event immediately do following:
 ```typescript

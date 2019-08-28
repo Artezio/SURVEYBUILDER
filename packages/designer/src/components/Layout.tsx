@@ -11,7 +11,7 @@ import { toggleModeToDesign, toggleModeToPlay } from '../actions/application';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { modelsService } from '@art-forms/providers';
-import { questionnaireMapper } from '@art-forms/fhir-converter';
+import { questionnaireConverter } from '@art-forms/fhir-converter';
 
 const mapStateToProps = (store: Store): LayoutState => {
     return {
@@ -47,7 +47,7 @@ export class Layout extends React.Component<LayoutProps> {
     loadQuestionnaireAndCreateResponse() {
         const { actions } = this.props;
         modelsService.getMockQuestionnaireModel()
-            .then((fhirModel: any) => questionnaireMapper.toModel(fhirModel))
+            .then((fhirModel: any) => questionnaireConverter.toModel(fhirModel))
             .then((questionnaireModel: Models.IQuestionnaire) => {
                 actions.createQuestionnaire(questionnaireModel);
             })
@@ -62,8 +62,8 @@ export class Layout extends React.Component<LayoutProps> {
     saveQuestionnaireToServer() {
         const { questionnaire } = this.props;
         if (questionnaire) {
-            console.log('Mapped model: ', questionnaireMapper.fromModel(questionnaire));
-            modelsService.postQuestionnaire(questionnaireMapper.fromModel(questionnaire))
+            console.log('Mapped model: ', questionnaireConverter.fromModel(questionnaire));
+            modelsService.postQuestionnaire(questionnaireConverter.fromModel(questionnaire))
                 .then(response => console.log('\nStatus: ', response.status, '\nResponse: ', response))
         }
     }

@@ -2,7 +2,7 @@ import * as Models from '@art-forms/models';
 import { ACTIONS, STATUS_LOADING, MODE, STATUS_UPDATING, STATUS_SAVING } from '../../constants/questionnaireEditorPage';
 import { QuestionnaireEditorStore } from '../../interface/questionnaireEditorPage/QuestionnaireEditorStore';
 import { Action } from '../../interface/Action';
-import { questionnaireMapper } from '@art-forms/fhir-converter';
+import { questionnaireConverter } from '@art-forms/fhir-converter';
 
 const INITIAL_STATE: QuestionnaireEditorStore = { status: {} };
 
@@ -19,7 +19,7 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
             }
         }
         case ACTIONS.LOAD_QUESTIONNAIRE_LOADED: {
-            const questionnaire = questionnaireMapper.toModel(action.payload);
+            const questionnaire = questionnaireConverter.toModel(action.payload);
             const questionnaireModel = new Models.Questionnaire(questionnaire);
             return {
                 ...state,
@@ -90,7 +90,7 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
             }
         }
         case ACTIONS.SAVE_NEW_QUESTIONNAIRE_SAVED: {
-            const questionnaire = questionnaireMapper.toModel(action.payload);
+            const questionnaire = questionnaireConverter.toModel(action.payload);
             const questionnaireModel = new Models.Questionnaire(questionnaire);
             return {
                 ...state,

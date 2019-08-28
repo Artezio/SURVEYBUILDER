@@ -27,7 +27,7 @@ import { Questionnaire, QuestionnaireResponse } from '@art-form/models';
 const questionnaire = new Questionnaire(/*initial questionnaire in JSON format, if needed*/);
 const questionnaireResponse = new QuestionnaireResponse(questionnaire, /*initial questionnaireResponse in JSON format, if needed*/);
 ```
-Then you should pass them straight to QuestionnaireDesigner and Questionnaire Player components.
+Then you should pass them straight to QuestionnaireDesigner and QuestionnairePlayer components.
 ## _API_
 
 Will be provided later.
