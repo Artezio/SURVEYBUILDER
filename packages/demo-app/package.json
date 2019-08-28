@@ -1,5 +1,5 @@
 {
-  "name": "@art-forms/unit-app",
+  "name": "@art-forms/demo-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

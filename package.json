@@ -1,5 +1,6 @@
 {
   "name": "art-forms",
+  "private": true,
   "description": "",
   "main": "index.js",
   "version": "1.0.1",

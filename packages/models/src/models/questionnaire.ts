@@ -18,11 +18,11 @@ export class Questionnaire implements IQuestionnaire {
         this.id = questionnaire && questionnaire.id || uuid();
         this.description = questionnaire && questionnaire.description;
         this.title = questionnaire && questionnaire.title;
-        this.completeItems(questionnaire);
+        this._completeItems(questionnaire);
         this.items.forEach(item => this.itemIdMap.set(item.id, true));
     }
 
-    completeItems(questionnaire?: Partial<IQuestionnaire>) {
+    private _completeItems(questionnaire?: Partial<IQuestionnaire>) {
         if (questionnaire && questionnaire.items) {
             this.items = questionnaire.items.map(item => this.itemByTypeFactory.createItem(item));
         } else {

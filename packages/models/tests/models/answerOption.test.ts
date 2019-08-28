@@ -1,6 +1,6 @@
-const { ItemFactory } = require('../../src/factories/itemFactory');
-const { AnswerOptionFactory } = require('../../src/factories/answerOptionFactory');
-const expect = require('expect');
+import { ItemFactory } from '../../src/factories/itemFactory';
+import { AnswerOptionFactory } from '../../src/factories/answerOptionFactory';
+import expect from 'expect';
 
 describe('answer options default selected', () => {
     describe('choice item', () => {

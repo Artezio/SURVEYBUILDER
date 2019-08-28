@@ -108,7 +108,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
             return arr.concat(interestingAnswer
                 .filter(answer => answer.parentId === enableWhen.questionId)
                 .some(answer => {
-                    return (JL.apply({ [enableWhen.operator]: [''+answer.value, ''+enableWhen.answer] }));
+                    return (JL.apply({ [enableWhen.operator]: ['' + answer.value, '' + enableWhen.answer] }));
                 }));
         }, []);
         this.isEnable = JL.apply({ [this.questionItem.enableBehavior]: enableWhenConfigs });
