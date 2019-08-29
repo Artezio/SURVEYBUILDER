@@ -1,22 +1,24 @@
 import * as React from 'react';
-import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
+import { QuestionnairePlayerProps } from '../interfaces/components/QuestionnairePlayerProps';
 import { useObservableModel } from '../observableConnector/useObservableModel';
 import ItemWrapper from './ItemWrapper';
 import { Form, FormApi } from 'informed';
 import IFormState from '../interfaces/IFormState';
 
 
-export class Questionnaire extends React.Component<QuestionnaireProps> {
+export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
     formApi?: FormApi<IFormState>;
-    // isFileDraggingOverDocument: boolean = false;
+    static defaultProps = {
+        submitButtonText: 'Submit'
+    }
 
     getFormApi(formApi: FormApi<IFormState>) {
         this.formApi = formApi;
     }
 
     submitForm() {
-        const { questionnaireResponse, provider } = this.props;
-        provider && provider.putQuestionnaireResponse(questionnaireResponse);
+        const { questionnaireResponseModel, provider } = this.props;
+        provider && provider.putQuestionnaireResponse(questionnaireResponseModel);
     }
 
     onSubmitFailure() {
@@ -27,42 +29,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         })
     }
 
-    // componentDidMount() {
-    //     document.addEventListener('dragenter', this.documentListener);
-    //     document.addEventListener('dragleave', this.documentListenerOff);
-    // }
-
-    // componentWillUnmount() {
-    //     document.removeEventListener('dragenter', this.documentListener);
-    //     document.removeEventListener('dragleave', this.documentListenerOff);
-    // }
-
-    // documentListener(e: DragEvent) { /// think about name
-    //     if (e.dataTransfer) {
-    //         console.log(e.dataTransfer.getData('format'));
-    //     }
-    //     if (!this.isFileDraggingOverDocument) {
-    //         this.isFileDraggingOverDocument = true;
-    //         const attachmentDives = document.querySelectorAll('.attachment-item');
-    //         attachmentDives.forEach(element => {
-    //             element.classList.add('fileIsDraggingOverDocument');
-    //         })
-    //     }
-    // }
-
-    // documentListenerOff(e: DragEvent) { /// think about name
-    //     console.log('LEAVE')
-    //     if (!e.clientX && !e.clientY) {
-    //         this.isFileDraggingOverDocument = false;
-    //         const attachmentDives = document.querySelectorAll('.attachment-item');
-    //         attachmentDives.forEach(element => {
-    //             element.classList.remove('fileIsDraggingOverDocument');
-    //         })
-    //     }
-    // }
-
     renderItemList() {
-        const { questionnaire, questionnaireResponse } = this.props;
+        const { questionnaire, questionnaireResponseModel } = this.props;
         return <div className="response-item-list">
             <Form getApi={this.getFormApi.bind(this)}
                 onSubmit={this.submitForm.bind(this)}
@@ -70,7 +38,7 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
             // preventEnter={true}     // has no type definition in .d.ts 
             >
                 {questionnaire.items && questionnaire.items.map(item => {
-                    const questionnaireResponseItem = questionnaireResponse.items.find(responseItem => responseItem.questionId === item.id);
+                    const questionnaireResponseItem = questionnaireResponseModel.items.find(responseItem => responseItem.questionId === item.id);
                     return questionnaireResponseItem && <ItemWrapper key={item.id} item={item} questionnaireResponseItem={questionnaireResponseItem} />
                 })}
             </Form>
@@ -78,19 +46,19 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     render() {
-        const { questionnaire, className = '' } = this.props;
+        const { questionnaire, className = '', submitButtonText } = this.props;
         return <div className={`questionnaire-response ${className}`}>
             <div className="header">
                 <h3>{questionnaire && questionnaire.title}</h3>
                 <p>{questionnaire && questionnaire.description}</p>
             </div>
             {this.renderItemList()}
-            <button type="btn" className="btn btn-primary" onClick={() => { this.formApi && this.formApi.submitForm() }}>Submit</button>
+            <button type="button" className="btn btn-primary submit-button" onClick={() => { this.formApi && this.formApi.submitForm() }}>{submitButtonText}</button>
         </div>
     }
 }
 
 
-const QuestionnairePlayer = useObservableModel<QuestionnaireProps>(Questionnaire);
+const QuestionnairePlayer = useObservableModel<QuestionnairePlayerProps>(Questionnaire);
 export { QuestionnairePlayer }
 export default QuestionnairePlayer;

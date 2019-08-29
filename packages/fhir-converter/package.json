@@ -12,6 +12,9 @@
     "build": "tsc -p tsconfig.build.json",
     "test": "ts-mocha tests/**/*.test.ts"
   },
+  "dependencies": {
+    "@art-forms/models": "^0.1.6"
+  },
   "devDependencies": {
     "@types/expect": "^1.20.4",
     "@types/mocha": "^5.2.7",

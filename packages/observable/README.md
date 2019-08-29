@@ -1,20 +1,20 @@
-# @art-forms/observable
+# **@art-forms/observable**
 Typescript library helps you to observe models changes. Library is written with es7 decorators. The decorator listens for any changes in the observable object thanks to the proxy and generates an event.
-***
-## _Installation_
-with npm
+
+# Installation
+Using npm:
 >$ npm install -D @art-forms/observable
 
-with yarn
+Using yarn:
 >$ yarn add -D @art-forms/observable
 
-***
-## _Example_
+&nbsp;
+# Example
 
 Use observable decorator to make all instances observable. To understand that changes have been made we compare old value with new, so to catch changes in complex types like array you should mark array property with "observableProperty" decorator.
 
 ```typescript
-import { observable, observableProperty, getObservable } from 'art-forms/models';
+import { observable, observableProperty, getObservable } from 'art-forms/observable';
 
 @observable
 class Person {
@@ -38,19 +38,19 @@ observableMethods && observableMethods.subscribe(person => {
 })
 person.addPet('Cat');/// will log "updated Person: Person {name: "Name", pets: Array(1)}"
 ```
-
-## _API_
+&nbsp;
+# API
 
 To make you object observable simply run this:
 ```typescript
-import { toObservable } from 'art-forms/models';
+import { toObservable } from 'art-forms/observable';
 var myObject = {...};
 myObject = toObservable(myObject);
 ```
 Now your object is observable and you can subscribe on its changes, to do it you should get method subscribe:
 
 ```typescript
-import { getObservable } from 'art-forms/models';
+import { getObservable } from 'art-forms/observable';
 getObservable(myObject).subscribe(obj => {
     console.log("My object has changed, now it:", obj);
 })

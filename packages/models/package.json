@@ -17,6 +17,7 @@
     "./Uml-diagram-models.xml"
   ],
   "dependencies": {
+    "@art-forms/observable": "^1.0.0",
     "json-logic-js": "^1.2.2",
     "uuid": "^3.3.2"
   },

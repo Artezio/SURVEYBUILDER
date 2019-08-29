@@ -3,7 +3,7 @@ import { questionnaireProvider } from '../../providers/questionnaireProvider'
 import { createActionAsync } from "./actionCreators";
 import { ACTIONS } from "../../constants/responseEditorPage";
 import { createAction } from "redux-actions";
-import { questionnaireResponseMapper } from '@art-forms/fhir-converter';
+import { questionnaireResponseConverter } from '@art-forms/fhir-converter';
 
 export const responseEditorPageActions = {
     loadResponseById: createActionAsync(
@@ -17,7 +17,7 @@ export const responseEditorPageActions = {
     saveResponse: createActionAsync(
         [ACTIONS.SAVE_RESPONSE_SAVING, ACTIONS.SAVE_RESPONSE_SAVED, ACTIONS.SAVE_RESPONSE_ERROR],
         (response: any) => {
-            const mappedResponse = questionnaireResponseMapper.fromModel(response);
+            const mappedResponse = questionnaireResponseConverter.fromModel(response);
             return responseProvider.putResponse(mappedResponse)
         }
     ),

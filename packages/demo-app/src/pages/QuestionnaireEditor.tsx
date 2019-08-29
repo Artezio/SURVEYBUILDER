@@ -8,7 +8,7 @@ import { STATUS_LOADING, MODE, STATUS_SAVING, STATUS_UPDATING } from '../constan
 import { Spinner } from '../components/Spinner';
 import { QuestionnaireEditorProps } from '../interface/questionnaireEditorPage/QuestionnaireEditorProps';
 import { QuestionnaireLoadError } from '../components/questionnaireEditPage/QuestionnaireLoadError';
-import { questionnaireMapper } from '@art-forms/fhir-converter';
+import { questionnaireConverter } from '@art-forms/fhir-converter';
 import { QuestionnaireSavedPage } from '../components/questionnaireEditPage/QuestionnaireSavedPage';
 import { QuestionnaireUpdatedPage } from '../components/questionnaireEditPage/QuestionnaireUpadatedPage';
 
@@ -37,7 +37,7 @@ export class QuestionnaireEditor extends React.Component<QuestionnaireEditorProp
     renderQuestionnaireDesigner() {
         const { status, questionnaireModel } = this.props;
         if (status.loading === STATUS_LOADING.loaded) {
-            return questionnaireModel && <QuestionnaireDesigner key={questionnaireModel.id} questionnaire={questionnaireModel} />
+            return questionnaireModel && <QuestionnaireDesigner key={questionnaireModel.id} questionnaireModel={questionnaireModel} />
         }
         if (status.loading === STATUS_LOADING.error) {
             return <QuestionnaireLoadError />
@@ -55,7 +55,7 @@ export class QuestionnaireEditor extends React.Component<QuestionnaireEditorProp
     onClick() {
         const { mode, dispatch, questionnaireModel } = this.props;
         if (questionnaireModel) {
-            const mappedQuestionnaire = questionnaireMapper.fromModel(questionnaireModel);
+            const mappedQuestionnaire = questionnaireConverter.fromModel(questionnaireModel);
             if (mode === MODE.creating) {
                 dispatch(questionnaireEditorPageActions.saveNewQuestionnaire(mappedQuestionnaire))
             }

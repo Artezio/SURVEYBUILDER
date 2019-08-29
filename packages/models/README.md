@@ -1,24 +1,24 @@
-# @art-form/models
+# **@art-form/models**
 FHIR compatible observable models.
 
-***
-## _Installation_
-with npm
+# Installation
+Using npm:
 >$ npm install -D @art-form/models
 
-with yarn
+Using yarn:
 >$ yarn add -D @art-form/models
-***
-## _UML diagrams_
 
-### Questionnaire
+&nbsp;
+# UML diagrams
+
+## Questionnaire
 ![uml diagram](./Uml-diagram-questionnaire.jpg)
 
-### QuestionnaireResponse
+## QuestionnaireResponse
 ![uml diagram](./Uml-diagram-response.jpg)
 
-***
-## _Example_
+&nbsp;
+# Example
 
 This models are mostly used with [designer](http://blabla "@art-forms/designer package") and [player](http://blabla "@art-forms/player package") so it's enough to use it like this:
 ```JSX
@@ -28,6 +28,8 @@ const questionnaire = new Questionnaire(/*initial questionnaire in JSON format, 
 const questionnaireResponse = new QuestionnaireResponse(questionnaire, /*initial questionnaireResponse in JSON format, if needed*/);
 ```
 Then you should pass them straight to QuestionnaireDesigner and QuestionnairePlayer components.
-## _API_
+
+&nbsp;
+# API
 
 Will be provided later.

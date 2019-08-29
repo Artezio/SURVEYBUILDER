@@ -48,7 +48,7 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
-            return responseModel && questionnaire && <QuestionnairePlayer key={responseModel.id} provider={{ putQuestionnaireResponse: this.putQuestionnaireResponse.bind(this) }} questionnaire={questionnaire} questionnaireResponse={responseModel} />
+            return responseModel && questionnaire && <QuestionnairePlayer key={responseModel.id} provider={{ putQuestionnaireResponse: this.putQuestionnaireResponse.bind(this) }} questionnaire={questionnaire} questionnaireResponseModel={responseModel} />
         }
         if (status.savingResponse === STATUS_SAVING_RESPONSE.saved) {
             return <ResponseSavedPage />;

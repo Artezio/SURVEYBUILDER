@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
-import { QuestionnaireProps } from '../interfaces/components/QuestionnaireProps';
+import { QuestionnaireDesignerProps } from '../interfaces/components/QuestionnaireDesignerProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import { useObservableModel } from '../observableConnector/useObservableModel';
 import ItemCollectionMenu from './ItemCollectionMenu';
@@ -8,14 +8,14 @@ import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
 import QuestionnaireContext from '../helpers/questionnaireContext';
 
-export class Questionnaire extends React.Component<QuestionnaireProps> {
+export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
 
-    static defaultProps: Partial<QuestionnaireProps> = {
+    static defaultProps: Partial<QuestionnaireDesignerProps> = {
         className: ''
     }
 
     formApi!: FormApi<Models.IQuestionnaire>;
-    itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.questionnaire);
+    itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.questionnaireModel);
 
     nestingLevel: string = '0';
 
@@ -38,8 +38,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     } as any;
 
     handleSubmit(values: Partial<Models.IQuestionnaire>) {
-        const { questionnaire } = this.props;
-        questionnaire.updateQuestionnaire({ ...questionnaire, title: values.title, description: values.description });
+        const { questionnaireModel } = this.props;
+        questionnaireModel.updateQuestionnaire({ ...questionnaireModel, title: values.title, description: values.description });
     }
     submitForm() {
         if (!this.formApi) return;
@@ -54,8 +54,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         this.makeItemsDraggable();
     }
     componentDidUpdate() {
-        const { questionnaire } = this.props;
-        this.formApi.setValues(questionnaire);
+        const { questionnaireModel } = this.props;
+        this.formApi.setValues(questionnaireModel);
     }
 
     componentWillUnmount() {
@@ -124,8 +124,8 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
         if (nesting === undefined) return;
         const nestingLevel = nesting.split(':');
         nestingLevel.shift();
-        const { questionnaire } = this.props;
-        let currentItemList: Models.Questionnaire | Models.GroupItem = questionnaire;
+        const { questionnaireModel } = this.props;
+        let currentItemList: Models.Questionnaire | Models.GroupItem = questionnaireModel;
         if (nesting.length === 0) {
             return currentItemList;
         }
@@ -138,30 +138,30 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 
     renderItemList() {
-        const { questionnaire } = this.props;
+        const { questionnaireModel } = this.props;
         return <div id="drag-drop-nested">
-            <QuestionnaireContext.Provider value={{ questionnaire }}>
-                <QuestionnaireItemList itemList={questionnaire.items} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} />
+            <QuestionnaireContext.Provider value={{ questionnaire: questionnaireModel }}>
+                <QuestionnaireItemList itemList={questionnaireModel.items} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} />
             </QuestionnaireContext.Provider>
         </div>
     }
 
     render() {
-        const { questionnaire, className } = this.props;
+        const { questionnaireModel, className } = this.props;
         return <div className={`questionnaire ${className}`}>
             <div className="card card-sm mb-3">
                 <div className="card-header d-flex justify-content-end">
-                    <ItemCollectionMenu item={questionnaire} />
+                    <ItemCollectionMenu item={questionnaireModel} />
                 </div>
                 <div className="card-body">
-                    <Form getApi={this.getFormApi.bind(this)} key={questionnaire.id} initialValues={questionnaire} onSubmit={this.handleSubmit.bind(this)} >
+                    <Form getApi={this.getFormApi.bind(this)} key={questionnaireModel.id} initialValues={questionnaireModel} onSubmit={this.handleSubmit.bind(this)} >
                         <div className="form-group">
-                            <label htmlFor={`${questionnaire.id}-title`}>Questionnaire Title</label>
-                            <Text autoComplete="off" className="form-control" id={`${questionnaire.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                            <label htmlFor={`${questionnaireModel.id}-title`}>Questionnaire Title</label>
+                            <Text autoComplete="off" className="form-control" id={`${questionnaireModel.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                         </div>
                         <div>
-                            <label htmlFor={`${questionnaire.id}-description`}>Questionnaire Description</label>
-                            <TextArea autoComplete="off" className="form-control" id={`${questionnaire.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                            <label htmlFor={`${questionnaireModel.id}-description`}>Questionnaire Description</label>
+                            <TextArea autoComplete="off" className="form-control" id={`${questionnaireModel.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
                         </div>
                     </Form>
                 </div>
@@ -171,6 +171,6 @@ export class Questionnaire extends React.Component<QuestionnaireProps> {
     }
 }
 
-const QuestionnaireDesigner = useObservableModel<QuestionnaireProps>(Questionnaire);
+const QuestionnaireDesigner = useObservableModel<QuestionnaireDesignerProps>(Questionnaire);
 export { QuestionnaireDesigner }
 export default QuestionnaireDesigner;
