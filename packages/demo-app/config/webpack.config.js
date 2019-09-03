@@ -294,7 +294,13 @@ module.exports = function (webpackEnv) {
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
         {
-          test: /\.(js|mjs|jsx)$/,
+          test: /@art-forms/,
+          enforce: 'pre',
+          use: ['ts-loader'],
+        },
+
+        {
+          test: /(\.(js|mjs|jsx|ts|tsx)$)|(pack_[12])/,
           enforce: 'pre',
           use: [
             {
@@ -327,7 +333,7 @@ module.exports = function (webpackEnv) {
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
-              test: /\.(js|mjs|jsx|ts|tsx)$/,
+              test: /(\.(js|mjs|jsx|ts|tsx)$)|(@art-forms)/,
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
