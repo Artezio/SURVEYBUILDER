@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@art-forms/designer": "^1.0.0",
+    "@art-forms/designer": "^0.1.7",
     "@art-forms/fhir-converter": "^1.0.0",
     "@art-forms/models": "^0.1.6",
-    "@art-forms/player": "^1.0.0",
+    "@art-forms/player": "^0.1.2",
     "@babel/core": "7.2.2",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@fortawesome/fontawesome-free": "^5.9.0",

@@ -2,34 +2,6 @@
 # yarn lockfile v1
 
 
-"@art-forms/designer@^1.0.0":
-  version "0.1.7"
-  dependencies:
-    "@art-forms/models" "^0.1.6"
-    "@art-forms/observable" "^1.0.0"
-    "@fortawesome/fontawesome-free" "^5.8.1"
-    bootstrap "^4.3.1"
-    bootstrap-scss "4.3.1"
-    hoist-non-react-statics "^3.3.0"
-    http-proxy-middleware "^0.19.1"
-    informed "2.1.9"
-    jquery "^3.3.1"
-    node-sass "^4.12.0"
-    popper.js "^1.14.7"
-    react "16.8.3"
-    sortablejs "^1.9.0"
-    uuid "3.3.2"
-
-"@art-forms/player@^1.0.0":
-  version "0.1.2"
-  dependencies:
-    "@art-forms/models" "^0.1.6"
-    "@art-forms/observable" "^1.0.0"
-    "@fortawesome/fontawesome-free" "^5.8.1"
-    hoist-non-react-statics "^3.3.0"
-    informed "2.1.9"
-    react "16.8.3"
-
 "@babel/code-frame@7.0.0", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.0.0-beta.35":
   version "7.0.0"
   resolved "http://10.11.40.28:4873/@babel%2fcode-frame/-/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"
