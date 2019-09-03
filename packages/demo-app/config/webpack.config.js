@@ -300,7 +300,7 @@ module.exports = function (webpackEnv) {
         },
 
         {
-          test: /(\.(js|mjs|jsx|ts|tsx)$)|(pack_[12])/,
+          test: /(\.(js|mjs|jsx|ts|tsx)$)|(@art-forms)/,
           enforce: 'pre',
           use: [
             {
