@@ -6,7 +6,8 @@
   "publishConfig": {
     "registry": "http://10.11.40.28:4873/"
   },
-  "main": "./src/index.ts",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "dependencies": {
     "@art-forms/observable": "^1.0.0",
     "@art-forms/models": "^0.1.6",

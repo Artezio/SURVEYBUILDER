@@ -5,7 +5,7 @@ import { createStore } from './redux/store/store';
 import App from './App';
 
 render(
-    <Provider store={createStore()}>
+    <Provider store={createStore() as any}>
         <App />
     </Provider>,
     document.getElementById('root')
