@@ -1,5 +1,5 @@
 # **@art-forms/designer**
-Designer is a react component with which you can build or update questionnaire. This component requires a questionnaire model from [@art-forms/models](http://blabla "@art-forms/models") to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
+Designer is a react component with which you can build or update questionnaire. This component requires a questionnaire model from [@art-forms/models](https://github.com/Artezio/ART-FORMS/blob/master/packages/models/README.md "@art-forms/models") to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
 
 # Installation
 

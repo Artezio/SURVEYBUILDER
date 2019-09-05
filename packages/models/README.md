@@ -20,7 +20,7 @@ Using yarn:
 &nbsp;
 # Example
 
-This models are mostly used with [designer](http://blabla "@art-forms/designer package") and [player](http://blabla "@art-forms/player package") so it's enough to use it like this:
+This models are mostly used with [designer](https://github.com/Artezio/ART-FORMS/blob/master/packages/designer/README.md "@art-forms/designer package") and [player](https://github.com/Artezio/ART-FORMS/blob/master/packages/player/README.md "@art-forms/player package") so it's enough to use it like this:
 ```JSX
 import { Questionnaire, QuestionnaireResponse } from '@art-form/models';
 

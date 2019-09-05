@@ -1,6 +1,6 @@
 # **@art-forms/player**
 
-QuestionnairePlayer is a react component with which you can complete or update questionnaire response. This component requires questionnaire model converted to the right format, questionnaireResponse model from [@art-forms/models](http://blabla "@art-forms/models"), provider object with single method putQuestionnaireResponse and optional text for submit button to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
+QuestionnairePlayer is a react component with which you can complete or update questionnaire response. This component requires questionnaire model converted to the right format, questionnaireResponse model from [@art-forms/models](https://github.com/Artezio/ART-FORMS/blob/master/packages/models/README.md "@art-forms/models"), provider object with single method putQuestionnaireResponse and optional text for submit button to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
 
 # Installation
 

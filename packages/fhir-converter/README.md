@@ -1,6 +1,6 @@
 # **art-forms/fhir-converter**
 
-It's a mapper designed to convert json models from fhire format to [@art-forms/models](http://blabla "@art-forms/models") and back.
+It's a mapper designed to convert json models from fhire format to [@art-forms/models](https://github.com/Artezio/ART-FORMS/blob/master/packages/models/README.md "@art-forms/models") and back.
 
 
 # Installation
