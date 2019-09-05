@@ -1,6 +1,6 @@
 # **art-forms/fhir-converter**
 
-It's a mapper designed to convert json models from fhire format to [@art-forms/models](https://github.com/Artezio/ART-FORMS/blob/master/packages/models/README.md "@art-forms/models") and back.
+It's a mapper designed to convert json models from fhire format to [@art-forms/models](./../models/README.md "@art-forms/models") and back.
 
 
 # Installation
@@ -21,7 +21,7 @@ const myFHIRModel = service.getQuestionnaire();// fetching fhir model in json
 
 const myQuestionnaireModel = questionnaireConverter.toModel(myFHIRModel);//json object
 ```
-You can put myQuestionnaireModel to Questionnaire constructor from [@art-forms/models](http://blabla "@art-forms/models") to make a model;
+You can put myQuestionnaireModel to Questionnaire constructor from [@art-forms/models](./../models/README.md "@art-forms/models") to make a model;
 
 Then you can do manipulations with model in your code and convert it back:
 ```typescript

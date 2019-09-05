@@ -9,11 +9,12 @@ Art-forms is a set of typescript packages designed for creating and completing  
 ![uml diagram](./Uml-diagram-modules.jpg)
 
 ## _Learn more about packages_
-* [designer](https://github.com/Artezio/ART-FORMS/blob/master/packages/designer/README.md "@art-forms/designer package")
-* [player](https://github.com/Artezio/ART-FORMS/blob/master/packages/player/README.md "@art-forms/player package")
-* [models](https://github.com/Artezio/ART-FORMS/blob/master/packages/models/README.md "@art-forms/models package")
-* [fhir-converter](https://github.com/Artezio/ART-FORMS/blob/master/packages/fhir-converter/README.md "@art-forms/fhir-converter package")
-* [observable](https://github.com/Artezio/ART-FORMS/blob/master/packages/observable/README.md "@art-forms/observable package")
+* [designer](./packages/designer/README.md "@art-forms/designer package")
+* [player](./packages/player/README.md "@art-forms/player package")
+* [models](./packages/models/README.md "@art-forms/models package")
+* [fhir-converter](./packages/fhir-converter/README.md "@art-forms/fhir-converter package")
+* [observable](./packages/observable/README.md "@art-forms/observable package")
+* [demo-app](./packages/demo-app/README.md "@art-forms/demo-app")
 
 
 &nbsp;

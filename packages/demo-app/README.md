@@ -1,6 +1,6 @@
 # **About**
 
-This app was designed to show how components, models, and converters work together. If you don't know about art-forms check it [README.md](http://blabla, "@art-forms").
+This app was designed to show how components, models, and converters work together. If you don't know about art-forms check it [README.md](./../../README.md "@art-forms").
 ***
 ### **This application has 4 pages:**
 * Questionnaire list
@@ -9,7 +9,7 @@ A main page provides a list of already existing questionnaires. Click on the nam
 
 * Questionnaire editor
 
-Page contains [questionnaire designer](https://github.com/Artezio/ART-FORMS/blob/master/packages/designer/README.md "@art-forms/designer") which works in two modes: creating and updating. See [Routes section](#Routes) below to distinguish them.
+Page contains [questionnaire designer](./../designer/README.md "@art-forms/designer") which works in two modes: creating and updating. See [Routes section](#Routes) below to distinguish them.
 
 * Response List
 
@@ -17,7 +17,7 @@ Page with list of responses(if exists) for concrete questionnaire. You can give 
 
 * Response editor
 
-Page contains [questionnaire player](https://github.com/Artezio/ART-FORMS/blob/master/packages/player/README.md "@art-forms/player") which works in two modes: creating and updating. See [Routes section](#Routes) below to distinguish them.
+Page contains [questionnaire player](./../player/README.md "@art-forms/player") which works in two modes: creating and updating. See [Routes section](#Routes) below to distinguish them.
 
 &nbsp;
 # Routes
