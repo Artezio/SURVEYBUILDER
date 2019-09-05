@@ -29,11 +29,20 @@ Page contains [questionnaire player](http://blabla "@art-forms/player") which wo
 * Questionnaire player(new response) - "/questionnaire/:questionnaireId/response"
 * Questionnaire player(update existing response) - "/questionnaire/:questionnaireId/response/responseId"
 
+&nbsp;
+# Prerequisites
+To run demo app, you need the following prerequisites:
+* Node 10.16.3 or greater.
+* Yarn 1.13.0 or greater.
+* Git 2.18.0 or greater.
+
 
 &nbsp;
 # Usage
 
-**!!!_BEWARE._ Before you run the app make sure that you have built all packages!**
+```
+!!!BEWARE Before you run the app make sure that you have built all packages!
+```
 
 To build all packages, go to the packages root dir(art-forms/) and run:
 > $ yarn build
