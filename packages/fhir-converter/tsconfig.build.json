@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "outDir": "build",
+        "module": "es6",
+        "target": "es5",
+        "lib": [
+            "es5",
+            "es6",
+            "dom"
+        ],
+        "sourceMap": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "declaration": true,
+        "experimentalDecorators": true
+    },
+    "exclude": [
+        "node_modules",
+        "build",
+        "bower_components",
+        "jspm_packages",
+        "tests"
+    ]
+}

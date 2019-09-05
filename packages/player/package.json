@@ -1,0 +1,41 @@
+{
+  "name": "@art-forms/player",
+  "version": "0.1.2",
+  "license": "MIT",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "dependencies": {
+    "@art-forms/observable": "^1.0.0",
+    "@art-forms/models": "^0.1.6",
+    "@fortawesome/fontawesome-free": "^5.8.1",
+    "hoist-non-react-statics": "^3.3.0",
+    "informed": "2.1.9",
+    "react": "16.8.3"
+  },
+  "devDependencies": {
+    "@types/hoist-non-react-statics": "^3.3.0",
+    "@types/jest": "24.0.9",
+    "@types/node": "11.9.6",
+    "@types/react": "16.8.6",
+    "@types/react-dom": "16.8.2",
+    "@types/react-redux": "^7.0.1",
+    "@types/redux-logger": "^3.0.7",
+    "@types/uuid": "^3.4.4",
+    "typescript": "^3.6.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

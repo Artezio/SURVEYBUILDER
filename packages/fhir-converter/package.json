@@ -1,0 +1,21 @@
+{
+  "name": "@art-forms/fhir-converter",
+  "version": "1.0.0",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "ts-mocha tests/**/*.test.ts"
+  },
+  "dependencies": {
+    "@art-forms/models": "^0.1.6"
+  },
+  "devDependencies": {
+    "@types/expect": "^1.20.4",
+    "@types/mocha": "^5.2.7",
+    "expect": "^24.9.0",
+    "ts-mocha": "^6.0.0",
+    "ts-node": "^8.3.0"
+  }
+}

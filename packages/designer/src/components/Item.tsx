@@ -1,48 +1,43 @@
-import React from 'react';
-import DropdownMenu from './DropdownMenu';
+import * as React from 'react';
 import ItemProps from '../interfaces/components/ItemProps';
 import { Form, TextArea, FormApi } from 'informed';
 import * as Models from '@art-forms/models';
+import { useObservableModel } from '../observableConnector/useObservableModel';
 
 
 export class Item extends React.Component<ItemProps> {
-    formApi!: FormApi<Models.Item>;
-
-    removeItem = () => {
-        const { item, actions } = this.props;
-        actions.removeItem(item);
-    }
+    formApi!: FormApi<Models.IItem>;
 
     submitForm() {
         if (!this.formApi) return;
         this.formApi.submitForm();
     }
 
-    getFormApi(formApi: FormApi<Models.Item>) {
+    getFormApi(formApi: FormApi<Models.IItem>) {
         this.formApi = formApi;
     }
 
-    handleSubmit(values: Partial<Models.Item>) {
-        const { actions, item } = this.props;
-        actions.updateItem({ ...item, ...values });
+    handleSubmit(values: Partial<Models.IItem>) {
+        const { item } = this.props;
+        item.updateItem({ ...item, text: values.text });
+    }
+
+    componentDidUpdate() {
+        const { item } = this.props;
+        this.formApi.setValues(item);
     }
 
     render() {
         const { item } = this.props;
-        return <div className="col-11 item border border-success my-1">
-            <div className="d-flex justify-content-end m-1">
-                <DropdownMenu title="Context menu" items={[
-                    { title: 'Remove item', action: this.removeItem }
-                ]} />
-            </div>
-            <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-                <div className="form-group">
-                    <label htmlFor="item-text">Text</label>
-                    <TextArea className="form-control" id="item-text" field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+        return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+            <div className="card-body">
+                <div>
+                    <label htmlFor={item.id}>Text</label>
+                    <TextArea autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                 </div>
-            </Form>
-        </div>
+            </div>
+        </Form>
     }
 }
 
-export default Item;
+export default useObservableModel<ItemProps>(Item);

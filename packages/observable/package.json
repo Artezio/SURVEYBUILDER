@@ -1,0 +1,23 @@
+{
+  "name": "@art-forms/observable",
+  "version": "1.0.0",
+  "author": "ddanteyakov",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "ts-mocha tests/**/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "ts-mocha": "^6.0.0",
+    "typescript": "^3.4.1",
+    "ts-node": "^8.0.3"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
+}

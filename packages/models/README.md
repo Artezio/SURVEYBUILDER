@@ -1,23 +1,35 @@
-# @art-form/models
-Typescript library contains interfaces and constant variables. 
+# **@art-form/models**
+FHIR compatible observable models.
 
-***
-## _Installation_
+# Installation
+Using npm:
+>$ npm install -D @art-form/models
 
->$ npm i @art-form/models -D
+Using yarn:
+>$ yarn add -D @art-form/models
 
-or
->$yarn add @art-form/models -D
+&nbsp;
+# UML diagrams
 
-***
-## _UML_
-![uml diagram](./Uml-diagram-models.jpg)
-[XML file](./Uml-diagram-models.xml "Link for xml file")
+## Questionnaire
+![uml diagram](./Uml-diagram-questionnaire.jpg)
 
-***
-## _Example_
+## QuestionnaireResponse
+![uml diagram](./Uml-diagram-response.jpg)
 
-```shell
-import { Questionnaire } from '@art-form/models';
-class QuestionnaireModel implements Questionnaire {...};
+&nbsp;
+# Example
+
+This models are mostly used with [designer](http://blabla "@art-forms/designer package") and [player](http://blabla "@art-forms/player package") so it's enough to use it like this:
+```JSX
+import { Questionnaire, QuestionnaireResponse } from '@art-form/models';
+
+const questionnaire = new Questionnaire(/*initial questionnaire in JSON format, if needed*/);
+const questionnaireResponse = new QuestionnaireResponse(questionnaire, /*initial questionnaireResponse in JSON format, if needed*/);
 ```
+Then you should pass them straight to QuestionnaireDesigner and QuestionnairePlayer components.
+
+&nbsp;
+# API
+
+Will be provided later.

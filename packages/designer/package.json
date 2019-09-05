@@ -1,31 +1,47 @@
 {
   "name": "@art-forms/designer",
-  "version": "0.1.5",
-  "registry": "http://10.11.40.28:4873/",
+  "version": "0.1.7",
+  "license": "MIT",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "dependencies": {
-    "@art-forms/models": "^0.1.5",
-    "@types/jest": "^24.0.4",
+    "@art-forms/observable": "^1.0.0",
+    "@art-forms/models": "^0.1.6",
+    "@fortawesome/fontawesome-free": "^5.8.1",
+    "bootstrap": "^4.3.1",
+    "bootstrap-scss": "4.3.1",
+    "hoist-non-react-statics": "^3.3.0",
+    "http-proxy-middleware": "^0.19.1",
+    "informed": "2.1.9",
+    "jquery": "^3.3.1",
+    "node-sass": "^4.12.0",
+    "popper.js": "^1.14.7",
+    "react": "16.8.3",
+    "sortablejs": "^1.9.0",
+    "uuid": "3.3.2"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "@types/hoist-non-react-statics": "^3.3.0",
     "@types/jquery": "^3.3.29",
     "@types/node": "^11.9.3",
     "@types/react": "^16.8.3",
     "@types/react-dom": "^16.8.1",
     "@types/react-redux": "^7.0.1",
+    "@types/redux-logger": "^3.0.7",
+    "@types/sortablejs": "^1.7.2",
     "@types/uuid": "^3.4.4",
-    "bootstrap": "^4.3.1",
-    "informed": "^2.1.6",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.7",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "react-redux": "^6.0.0",
-    "react-scripts": "2.1.5",
-    "redux": "^4.0.1",
-    "typescript": "^3.3.3",
-    "uuid": "^3.3.2"
+    "awesome-typescript-loader": "^5.2.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "redux-logger": "^3.0.6",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.6.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "webpack build",
+    "build": "tsc -p tsconfig.build.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,13 +53,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "@types/redux-logger": "^3.0.7",
-    "awesome-typescript-loader": "^5.2.1",
-    "redux-logger": "^3.0.6"
-  },
-  "publishConfig": {
-    "registry": "http://10.11.40.28:4873/"
-  }
+  ]
 }

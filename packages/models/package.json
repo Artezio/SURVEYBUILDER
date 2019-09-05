@@ -1,14 +1,30 @@
 {
   "name": "@art-forms/models",
-  "version": "0.1.5",
-  "main": "./src/index.ts",
+  "version": "0.1.6",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "license": "MIT",
-  "registry": "http://10.11.40.28:4873/",
-  "publishConfig": {
-    "registry": "http://10.11.40.28:4873/"
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "ts-mocha tests/**/*.test.ts"
   },
   "files": [
     "./Uml-diagram-models.JPG",
     "./Uml-diagram-models.xml"
-  ]
+  ],
+  "dependencies": {
+    "@art-forms/observable": "^1.0.0",
+    "json-logic-js": "^1.2.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/expect": "^1.20.4",
+    "@types/mocha": "^5.2.7",
+    "@types/uuid": "^3.4.4",
+    "mocha": "^6.2.0",
+    "ts-mocha": "6.0.0",
+    "expect": "^24.9.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.3.4000"
+  }
 }
