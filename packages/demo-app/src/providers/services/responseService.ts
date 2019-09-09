@@ -1,32 +1,44 @@
-import { HapiFhirService } from './hapiFhirService';
+import axios from 'axios';
 
+
+interface ResponseServiceOptions {
+    fieldToBeIncluded?: string;
+    entriesLimit?: number;
+}
 
 export class ResponseService {
-    constructor(private service: HapiFhirService, public resource: string) {
-        this.service = service;
-        this.resource = resource;
+    resource: string;
+
+    constructor() {
+        this.resource = '/QuestionnaireResponse'; // empty space before questionnaireResponse because of proxy by webpack dev server!
     }
 
-    getResponseListByQuestionnaireId(id: string, options?: any) {
-        return this.service.getResource(this.resource + '/', {
+    getResponseListByQuestionnaireId(id: string, options?: ResponseServiceOptions) {
+        return axios.get(`${this.resource}/`, {
             params: {
-                '_include': 'QuestionnaireResponse:questionnaire',
-                'questionnaire': `http://example.com/Questionnaire/${id}`,
-                '_count': options && options.limit
+                '_include': options && options.fieldToBeIncluded,
+                'questionnaire': `Questionnaire/${id}`,
+                '_count': options && options.entriesLimit
             }
-        });
+        })
+            .then(x => x.data)
+            .then(responseData => responseData.entry)
+            .then(entries => entries.map((entry: any) => entry.resource))
     }
 
     getResponseById(id: string) {
-        return this.service.getResource(`${this.resource}/${id}`);
+        return axios.get(`${this.resource}/${id}`)
+            .then(x => x.data)
     }
 
     putResponse(data: any) {
-        return this.service.postResource(`${this.resource}/`, data);
+        return axios.post(`${this.resource}/`, data)
+            .then(x => x.data)
     }
 
     updateResponseById(id: string, data: any) {
-        return this.service.updateResource(`${this.resource}/${id}`, data);
+        return axios.put(`${this.resource}/${id}`, data)
+            .then(x => x.data)
     }
 }
 

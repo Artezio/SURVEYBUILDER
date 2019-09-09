@@ -1,16 +1,13 @@
 import * as Models from '@art-forms/models';
-import { QuestionnaireService } from "./services/questionnaireService";
-import HapiFhirService from "./services/hapiFhirService";
+import { QuestionnaireHapiFhirService } from "./services/questionnaireService";
 
 class QuestionnaireProvider {
-    constructor(private service: QuestionnaireService) {
+    constructor(private service: QuestionnaireHapiFhirService) {
         this.service = service;
     }
 
     getQuestionnaireList(): Promise<Models.IQuestionnaire[]> {
-        return this.service.getQuestionnaireList({ limit: 10 })
-            .then(responseData => responseData.entry)
-            .then(entries => entries.map((entry: any) => entry.resource))
+        return this.service.getQuestionnaireList({ limit: 10, titleMatch: '@artezio' })
     }
 
     getQuestionnaireById(id: string) {
@@ -34,10 +31,8 @@ class QuestionnaireProvider {
 
 
 
-export const QUESTIONNAIRE_BASE_URL = '/Questionnaire';
 export const questionnaireProvider = (function () {
-    const hapiFhirService = new HapiFhirService('');///proxy by devServer;
-    const questionnaireService = new QuestionnaireService(hapiFhirService, QUESTIONNAIRE_BASE_URL);
+    const questionnaireService = new QuestionnaireHapiFhirService();
     return new QuestionnaireProvider(questionnaireService);
 })();
 

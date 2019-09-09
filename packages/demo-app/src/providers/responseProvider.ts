@@ -1,4 +1,3 @@
-import HapiFhirService from "./services/hapiFhirService";
 import { ResponseService } from "./services/responseService";
 import { mockResponseListService } from "./services/mockResponseListService";
 
@@ -9,9 +8,7 @@ class ResponseProvider {
 
     getResponseListByQuestionnaireId(id: string) {
         return mockResponseListService.getResponseListByQuestionnaireId();
-        // return this.service.getResponseListByQuestionnaireId(id, { limit: 10 })
-        //     .then(responseData => responseData.entry)
-        //     .then(entries => entries.map((entry: any) => entry.resource))
+        // return this.service.getResponseListByQuestionnaireId(id, { entriesLimit: 10, fieldToBeIncluded: 'QuestionnaireResponse: questionnaire' })
     }
 
     getResponseById(id: string) {
@@ -28,9 +25,7 @@ class ResponseProvider {
 
 }
 
-export const RESPONSE_BASE_URL = '/QuestionnaireResponse';
 export const responseProvider = (function () {
-    const hapiFhirService = new HapiFhirService(''); /// proxy by devServer
-    const responseService = new ResponseService(hapiFhirService, RESPONSE_BASE_URL);
+    const responseService = new ResponseService();
     return new ResponseProvider(responseService);
 })();
