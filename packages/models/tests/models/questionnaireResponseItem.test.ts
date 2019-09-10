@@ -1,6 +1,5 @@
-import { Questionnaire, BOOLEAN, IQuestionItem, CHOICE, AND, EQUAL, QuestionnaireResponse, IBooleanItem, QuestionnaireResponseItem, ChoiceItem, IChoiceItem } from '../../src/index';
+import { Questionnaire, choiceStrategy, BOOLEAN, IQuestionItem, CHOICE, AND, EQUAL, QuestionnaireResponse, IBooleanItem, QuestionnaireResponseItem, ChoiceItem, IChoiceItem } from '../../src/index';
 import { assert, expect } from 'chai';
-import { choiceStrategy } from '../../src/replyStrategies/choiceStrategy';
 import AnswerCollection from '../../src/models/answersCollection';
 
 describe('questionnaire response item', () => {

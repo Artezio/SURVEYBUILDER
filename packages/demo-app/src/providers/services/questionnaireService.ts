@@ -1,9 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import IQuestionnaireService, { QuestionnaireServiceOptions } from '../../interface/providers/IQuestionnaireService';
 
-interface QuestionnaireServiceOptions {
-    limit?: number;
-    titleMatch?: string;
-}
 
 const optionsToConfig = (opt?: QuestionnaireServiceOptions): AxiosRequestConfig | undefined => {
     return opt && {
@@ -13,7 +10,7 @@ const optionsToConfig = (opt?: QuestionnaireServiceOptions): AxiosRequestConfig 
         }
     }
 }
-export class QuestionnaireHapiFhirService {
+export class QuestionnaireHapiFhirService implements IQuestionnaireService {
     resource: string;
 
     constructor() {

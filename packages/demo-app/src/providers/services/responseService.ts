@@ -1,12 +1,9 @@
 import axios from 'axios';
+import IResponseService, { ResponseServiceOptions } from '../../interface/providers/IResponseService';
 
 
-interface ResponseServiceOptions {
-    fieldToBeIncluded?: string;
-    entriesLimit?: number;
-}
 
-export class ResponseService {
+export class ResponseService implements IResponseService {
     resource: string;
 
     constructor() {

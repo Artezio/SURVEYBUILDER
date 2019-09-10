@@ -1,7 +1,8 @@
 import * as Models from '@art-forms/models';
 import { QuestionnaireHapiFhirService } from "./services/questionnaireService";
+import { IQuestionnaireProvider } from '../interface/providers/IQuestionnaireProvider';
 
-class QuestionnaireProvider {
+class QuestionnaireProvider implements IQuestionnaireProvider {
     constructor(private service: QuestionnaireHapiFhirService) {
         this.service = service;
     }

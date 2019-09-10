@@ -1,9 +1,10 @@
 import { ResponseService } from "./services/responseService";
 import { mockResponseListService } from "./services/mockResponseListService";
+import IResponseProvider from "../interface/providers/IResponseProvider";
 
 const responseService = new ResponseService();
 
-class ResponseProvider {
+class ResponseProvider implements IResponseProvider {
     service: any;
 
     constructor() {

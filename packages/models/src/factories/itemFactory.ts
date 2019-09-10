@@ -24,7 +24,6 @@ import IChoiceItem from "../interfaces/questionItems/IChoiceItem";
 import ChoiceItem from "../models/questionItems/choiceItem";
 import IOpenChoiceItem from "../interfaces/questionItems/IOpenChoiceItem";
 
-
 export class ItemFactory {
     parent?: IItemCollection<IItem>;
 
