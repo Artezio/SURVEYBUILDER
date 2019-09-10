@@ -12,7 +12,7 @@ export class Questionnaire implements IQuestionnaire {
     items!: Item[];
     title?: string;
     itemIdMap: Map<string, boolean> = new Map();
-    itemByTypeFactory: ItemByTypeFactory = new ItemByTypeFactory(this);
+    itemByTypeFactory = new ItemByTypeFactory(this);
 
     constructor(questionnaire?: Partial<IQuestionnaire>) {
         this.id = questionnaire && questionnaire.id || uuid();

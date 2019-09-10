@@ -1,12 +1,13 @@
 import { ItemFactory } from '../../src/factories/itemFactory';
 import { AnswerOptionFactory } from '../../src/factories/answerOptionFactory';
 import expect from 'expect';
+import { ChoiceItem } from '../../src/models/questionItems/choiceItem';
 
 describe('answer options default selected', () => {
     describe('choice item', () => {
         it('option is selected', () => {
-            const itemFactory = new ItemFactory();
-            const choiceItem = itemFactory.createChoiceItem();
+            // const itemFactory = new ItemFactory();
+            const choiceItem = new ChoiceItem();
             const optFactory = new AnswerOptionFactory(choiceItem)
             const option = optFactory.createAnswerOption();
             choiceItem.addAnswerOption(option);
@@ -15,8 +16,9 @@ describe('answer options default selected', () => {
         })
         it('selecting one opt unselects another', () => {
             const itemFactory = new ItemFactory();
-            const choiceItem = itemFactory.createChoiceItem();
-            const optFactory = new AnswerOptionFactory(choiceItem)
+            // const choiceItem = itemFactory.createChoiceItem();
+            const choiceItem = new ChoiceItem();
+            const optFactory = new AnswerOptionFactory(choiceItem);
             const option1 = optFactory.createAnswerOption();
             const option2 = optFactory.createAnswerOption();
             choiceItem.addAnswerOption(option1);

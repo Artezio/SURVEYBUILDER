@@ -1,4 +1,4 @@
-import { QuestionItem, AnswerOption, AnswerOptionFactory } from "../..";
+import { QuestionItem, AnswerOption, AnswerOptionFactory, InitialAnswer } from "../..";
 import { observable, observableProperty } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IChoiceItem } from "../../interfaces/questionItems/IChoiceItem";
@@ -14,7 +14,7 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem, IAnswe
     answerOptionFactory: AnswerOptionFactory = new AnswerOptionFactory(this);
     defaultOption?: AnswerOption;
 
-    constructor(item: Partial<Omit<IChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IChoiceItem>) {
+    constructor(item?: Partial<Omit<IChoiceItem, 'type'>>, parent?: IItemCollection<IChoiceItem>) {
         super(item, parent);
         this.completeOptions(item);
         this.options.forEach(option => this.optionIdMap.set(option.id, true));
@@ -26,6 +26,12 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem, IAnswe
         } else {
             this.options = [];
         }
+    }
+
+    setSingleInitialAnswer(initialAnswer: InitialAnswer<any>) {
+    }
+
+    addInitialAnswer(initialAnswer: InitialAnswer<any>) {
     }
 
     clearInitialAnswers() {

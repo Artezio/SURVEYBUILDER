@@ -10,6 +10,7 @@ import AnswerCollection from './answersCollection';
 import JL from 'json-logic-js';
 import IChoiceItem from '../interfaces/questionItems/IChoiceItem';
 import IAnswerOption from '../interfaces/IAnswerOption';
+import IInitialAnswer from '../interfaces/IInitialAnswer';
 
 
 @observable
@@ -38,10 +39,24 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.questionId = questionItem.id;
         this.text = questionItem.text;
         this.answerCollection = answerCollection;
+        this._fillAnswers(initialResponseItem, questionItem);
+        this._fillItems(initialResponseItem, questionItem);
+        this.validationRules = validationRules;
+        this.replyStrategy = replyStrategy;
+        this.questionItem = questionItem;
+        this.validate();
+        this.decideEnablingObservation();
+        this.answerCollection.updateResponseAnswers(this.questionId, this.answers);
+        this._defineOwnProperties();
+        this.items.forEach(item => this.itemIdMap.set(item.id, true));
+        this.answers.forEach(answer => this.answerIdMap.set(answer.id, true));
+    }
+
+    _fillAnswers(initialResponseItem: Partial<IQuestionnaireResponseItem>, questionItem) {
         if (initialResponseItem && initialResponseItem.answers) {
             this.answers = initialResponseItem.answers.map(answer => this.answerFactory.createAnswer(answer))
         } else {
-            const initialAnswers = (questionItem as IQuestionItem<any>).initialAnswers;
+            const initialAnswers = questionItem.initialAnswers as IInitialAnswer<any>[] | undefined;
             if (initialAnswers && initialAnswers.length) {
                 this.answers = initialAnswers.map(initialAnswer => this.answerFactory.createAnswer(initialAnswer))
             } else {
@@ -56,6 +71,9 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
                 }
             }
         }
+    }
+
+    _fillItems(initialResponseItem, questionItem) {
         if ((questionItem as IGroupItem).items) {
             this.items = ((questionItem as IGroupItem).items as IItem[]).map(item => {
                 const existingResponseItem = initialResponseItem && initialResponseItem.items && initialResponseItem.items.find(itm => itm.questionId === item.id);
@@ -64,18 +82,9 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         } else {
             this.items = [];
         }
-        this.validationRules = validationRules;
-        this.replyStrategy = replyStrategy;
-        this.questionItem = questionItem;
-        this.validate();
-        this.answerCollection.updateResponseAnswers(this.id, this.answers);
-        this.decideEnablingObservation();
-        this.defineOwnProperties();
-        this.items.forEach(item => this.itemIdMap.set(item.id, true));
-        this.answers.forEach(answer => this.answerIdMap.set(answer.id, true));
     }
 
-    defineOwnProperties() {
+    _defineOwnProperties() {
         Object.defineProperty(this, 'isValid', {
             get() {
                 return this.errorMessages.length === 0;
@@ -88,12 +97,11 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
             const obs = getObservable(this.answerCollection);
             obs && obs.subscribe(this.evaluateEnableWhen.bind(this));
             this.enableWhenQuestionIds = this.questionItem.enableWhen.reduce<any>((map, enableWhen) => {
-                if (enableWhen.questionId && !map[enableWhen.questionId]) {
+                if (enableWhen.questionId && enableWhen.operator && enableWhen.answer !== undefined && !map[enableWhen.questionId]) {
                     map[enableWhen.questionId] = true;
                 }
                 return map;
             }, {})
-            this.evaluateEnableWhen(this.answerCollection);
         }
     }
 
@@ -139,7 +147,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.validate();
         obs && obs.unmute();
         obs && obs.emitChange();
-        this.answerCollection.updateResponseAnswers(this.questionId, this.answers.map(answer => answer.value));
+        this.answerCollection.updateResponseAnswers(this.questionId, this.answers);
     }
 
     cancelAnswer(answer: Answer<any>) {

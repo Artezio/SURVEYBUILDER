@@ -1,6 +1,6 @@
 import { IQuestionnaireResponse } from "../interfaces/IQuestionnaireResponse";
 import uuid from 'uuid/v1';
-import { observable, observableProperty } from '@art-forms/observable';
+import { observable, observableProperty, getObservable } from '@art-forms/observable';
 import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
 import AnswerCollection from "./answersCollection";
 import { IQuestionnaire } from "..";
@@ -13,7 +13,7 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
     items: QuestionnaireResponseItem[];
     questionnaireId: string;
     answerCollection: AnswerCollection = new AnswerCollection();
-    itemIdMap: Map<string, boolean> = new Map();
+    itemIdMap: Map<string, boolean> = new Map();  //it's needed when adding new items
 
     constructor(questionnaire: IQuestionnaire, initialQuestionnaireResponse?: Partial<IQuestionnaireResponse>) {
         this.id = initialQuestionnaireResponse && initialQuestionnaireResponse.id || uuid();

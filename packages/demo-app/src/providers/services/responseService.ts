@@ -41,4 +41,3 @@ export class ResponseService {
             .then(x => x.data)
     }
 }
-

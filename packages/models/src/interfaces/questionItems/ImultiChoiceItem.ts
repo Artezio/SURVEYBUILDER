@@ -1,4 +1,4 @@
-import IQuestionItem from "./IQuestionItem";
+import { IQuestionItem } from "./IQuestionItem";
 import { MULTI_CHOICE } from "../..";
 import IAnswerOption from "../IAnswerOption";
 

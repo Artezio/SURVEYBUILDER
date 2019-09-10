@@ -1,14 +1,18 @@
 import { ResponseService } from "./services/responseService";
 import { mockResponseListService } from "./services/mockResponseListService";
 
+const responseService = new ResponseService();
+
 class ResponseProvider {
-    constructor(private service: ResponseService) {
-        this.service = service;
+    service: any;
+
+    constructor() {
+        this.service = responseService;
     }
 
     getResponseListByQuestionnaireId(id: string) {
         return mockResponseListService.getResponseListByQuestionnaireId();
-        // return this.service.getResponseListByQuestionnaireId(id, { entriesLimit: 10, fieldToBeIncluded: 'QuestionnaireResponse: questionnaire' })
+        return this.service.getResponseListByQuestionnaireId(id, { entriesLimit: 10, fieldToBeIncluded: 'QuestionnaireResponse: questionnaire' })
     }
 
     getResponseById(id: string) {
@@ -26,6 +30,5 @@ class ResponseProvider {
 }
 
 export const responseProvider = (function () {
-    const responseService = new ResponseService();
-    return new ResponseProvider(responseService);
+    return new ResponseProvider();
 })();

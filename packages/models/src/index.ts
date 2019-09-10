@@ -30,9 +30,9 @@ export * from './interfaces/IQuestionnaireResponseItem';
 export * from './interfaces/IAnswer';
 export * from './interfaces/IInitialAnswer';
 export * from './interfaces/IAnswerOption';
-export * from './models/enableWhen';
 /// ---- INTERFACES
 
+export * from './models/enableWhen';
 
 export * from './models/item';
 export * from './models/groupItem';
@@ -69,6 +69,7 @@ export * from './factories/initialAnswerFactory';
 export * from './factories/answerOptionFactory';
 export * from './factories/questionResponseFactory';
 export * from './factories/enableWhenFactory';
+// export * from './factories/itemByTypeFactory';
 /// ----
 
 /// REPLY STRATEGIES
