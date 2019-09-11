@@ -21,7 +21,8 @@
     "emitDecoratorMetadata": true
   },
   "exclude": [
-    "tests"
+    "tests",
+    "build"
   ],
   "include": [
     "src"

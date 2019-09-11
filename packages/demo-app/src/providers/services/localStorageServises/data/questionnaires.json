@@ -1,0 +1,468 @@
+{
+    "resourceType": "Bundle",
+    "id": "8fd57e18-2b05-4e68-b1d2-15a34e0c0453",
+    "meta": {
+      "lastUpdated": "2019-09-11T15:42:09.131+00:00"
+    },
+    "type": "searchset",
+    "total": 12,
+    "link": [
+      {
+        "relation": "self",
+        "url": "http://hapi.fhir.org/baseR4/Questionnaire/?_count=10&title=%40artezio"
+      },
+      {
+        "relation": "next",
+        "url": "http://hapi.fhir.org/baseR4?_getpages=8fd57e18-2b05-4e68-b1d2-15a34e0c0453&_getpagesoffset=10&_count=10&_pretty=true&_bundletype=searchset"
+      }
+    ],
+    "entry": [
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/105985",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "105985",
+          "meta": {
+            "versionId": "13",
+            "lastUpdated": "2019-08-22T07:37:31.301+00:00",
+            "source": "#7cc99539df718a11"
+          },
+          "title": "@artezio Астма",
+          "item": [
+            {
+              "linkId": "4c66f560-b475-11e9-9525-0fe2e730c629",
+              "text": "Были ли у вас приступы астмы?",
+              "type": "boolean",
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false
+            },
+            {
+              "linkId": "38713f70-b475-11e9-9525-0fe2e730c629",
+              "type": "decimal",
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false,
+              "initial": [
+                {
+                  "id": "c5f3e9d0-b518-11e9-9d34-371ce0913e68"
+                }
+              ]
+            },
+            {
+              "linkId": "020ef9e0-b475-11e9-9525-0fe2e730c629",
+              "text": "Курите?",
+              "type": "boolean",
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false
+            },
+            {
+              "linkId": "22cf6020-b475-11e9-9525-0fe2e730c629",
+              "text": "Как часто?",
+              "type": "open-choice",
+              "enableWhen": [
+                {
+                  "id": "25c21340-b475-11e9-9525-0fe2e730c629",
+                  "question": "020ef9e0-b475-11e9-9525-0fe2e730c629",
+                  "operator": "=",
+                  "answerString": "true"
+                }
+              ],
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false,
+              "answerOption": [
+                {
+                  "id": "040e9a70-b475-11e9-9525-0fe2e730c629",
+                  "valueString": "Несколько раз в день",
+                  "initialSelected": false
+                },
+                {
+                  "id": "1767c240-b475-11e9-9525-0fe2e730c629",
+                  "valueString": "Пачку в день",
+                  "initialSelected": false
+                },
+                {
+                  "id": "cc4a6690-b506-11e9-9df6-d3695a5c5c9f",
+                  "valueString": "default",
+                  "initialSelected": false
+                }
+              ],
+              "initial": [
+                {
+                  "id": "cf991c60-b506-11e9-9df6-d3695a5c5c9f"
+                }
+              ]
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/105986",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "105986",
+          "meta": {
+            "versionId": "3",
+            "lastUpdated": "2019-08-02T11:07:48.966+00:00"
+          },
+          "title": "@artezio Физкульт проверка",
+          "item": [
+            {
+              "linkId": "70191270-b477-11e9-b455-c3ae7711429b",
+              "text": "Сколько раз отожметесь",
+              "type": "decimal",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false,
+              "initial": [
+                {
+                  "id": "70c07600-b477-11e9-b455-c3ae7711429b"
+                }
+              ]
+            },
+            {
+              "linkId": "73b8ce70-b477-11e9-b455-c3ae7711429b",
+              "text": "Молодец!",
+              "type": "display",
+              "enableWhen": [
+                {
+                  "id": "785efdf0-b477-11e9-b455-c3ae7711429b",
+                  "question": "70191270-b477-11e9-b455-c3ae7711429b",
+                  "operator": ">=",
+                  "answerString": "20"
+                }
+              ],
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106145",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "106145",
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2019-08-02T08:10:12.844+00:00"
+          },
+          "title": "@artezio How are you today",
+          "item": [
+            {
+              "linkId": "6c577520-b4fc-11e9-b17a-e547f24094fd",
+              "text": "How many cups of coffe did you drink this morning?",
+              "type": "decimal",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "a24d8b60-b4fc-11e9-b17a-e547f24094fd",
+              "text": "What exersizes did you do this morning?",
+              "type": "choice",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": true,
+              "answerOption": [
+                {
+                  "id": "6ad6efa1-b4fc-11e9-b17a-e547f24094fd",
+                  "valueString": "push ups"
+                },
+                {
+                  "id": "a316ced0-b4fc-11e9-b17a-e547f24094fd",
+                  "valueString": "squats"
+                },
+                {
+                  "id": "a37b0ee0-b4fc-11e9-b17a-e547f24094fd",
+                  "valueString": " pull-ups"
+                },
+                {
+                  "id": "a3dc8fd0-b4fc-11e9-b17a-e547f24094fd",
+                  "valueString": "watching TV"
+                }
+              ]
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106146",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "106146",
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2019-08-02T08:24:58.905+00:00"
+          },
+          "title": "@artezio thyroid cancer",
+          "item": [
+            {
+              "linkId": "d7e0a4a0-b4fd-11e9-bd1c-b97979800e8c",
+              "text": "When where you diagnosted with cancer",
+              "type": "dateTime",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "fec1d700-b4fe-11e9-bd1c-b97979800e8c",
+              "text": "What is you name?",
+              "type": "string",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106227",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "106227",
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2019-08-02T08:37:28.824+00:00"
+          },
+          "title": "@artezio Subscribe on hospital news",
+          "item": [
+            {
+              "linkId": "bee35df0-b500-11e9-8b87-bdd5e6360072",
+              "text": "Yor name",
+              "type": "string",
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false
+            },
+            {
+              "linkId": "ab82bc10-b500-11e9-8b87-bdd5e6360072",
+              "text": "Magazin \"Myrzilka\"",
+              "type": "boolean",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "b7a2ad70-b500-11e9-8b87-bdd5e6360072",
+              "text": "Magazin \"Hostital news\"",
+              "type": "boolean",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106230",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "106230",
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2019-08-02T09:52:35.050+00:00"
+          },
+          "title": "@artezio Заявка на отпуск",
+          "item": [
+            {
+              "linkId": "2f254470-b50b-11e9-8a53-5d37edebf687",
+              "text": "Дата начала",
+              "type": "date",
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false
+            },
+            {
+              "linkId": "336203c0-b50b-11e9-8a53-5d37edebf687",
+              "text": "Дата окончания",
+              "type": "date",
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false
+            },
+            {
+              "linkId": "39aae6c0-b50b-11e9-8a53-5d37edebf687",
+              "text": "Комментарий",
+              "type": "text",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106431",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "106431",
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2019-08-02T12:14:55.795+00:00"
+          },
+          "title": "@artezio Прием на работу",
+          "item": [
+            {
+              "linkId": "d22139f0-b51e-11e9-afe4-77e122a993cc",
+              "type": "group",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false,
+              "item": [
+                {
+                  "linkId": "19a44381-b51f-11e9-afe4-77e122a993cc",
+                  "type": "choice",
+                  "enableBehavior": "all",
+                  "required": false,
+                  "repeats": false,
+                  "answerOption": [
+                    {
+                      "id": "19a44380-b51f-11e9-afe4-77e122a993cc",
+                      "valueString": "Option 1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/141442",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "141442",
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2019-08-20T09:31:02.408+00:00"
+          },
+          "title": "@artezio-blabla"
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/141918",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "141918",
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2019-08-20T12:04:24.508+00:00"
+          },
+          "title": "@artezio-blabla",
+          "description": "hello",
+          "item": [
+            {
+              "linkId": "a51f98c0-c342-11e9-8f1f-798c2efaa6d5",
+              "text": "qqqqq",
+              "type": "string",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false,
+              "initial": [
+                {
+                  "id": "a61b5de0-c342-11e9-8f1f-798c2efaa6d5",
+                  "valueString": "asfd"
+                }
+              ]
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      },
+      {
+        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/144141",
+        "resource": {
+          "resourceType": "Questionnaire",
+          "id": "144141",
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2019-08-21T14:54:17.187+00:00"
+          },
+          "title": "@artezio-bla",
+          "description": "desc",
+          "item": [
+            {
+              "linkId": "711a76d0-c423-11e9-a4cf-3307285212d6",
+              "text": "qqqqq",
+              "type": "choice",
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false,
+              "answerOption": [
+                {
+                  "id": "711ac4f0-c423-11e9-a4cf-3307285212d6",
+                  "valueString": "Option 1",
+                  "initialSelected": false
+                },
+                {
+                  "id": "726b12b0-c423-11e9-a4cf-3307285212d6",
+                  "valueString": "opt2",
+                  "initialSelected": false
+                },
+                {
+                  "id": "7652ad20-c423-11e9-a4cf-3307285212d6",
+                  "valueString": "opt3",
+                  "initialSelected": true
+                }
+              ]
+            },
+            {
+              "linkId": "7c5d4ea0-c423-11e9-a4cf-3307285212d6",
+              "text": "qqqq2",
+              "type": "boolean",
+              "enableBehavior": "all",
+              "required": true,
+              "repeats": false
+            },
+            {
+              "linkId": "7eb1ed00-c423-11e9-a4cf-3307285212d6",
+              "text": "qqqq3",
+              "type": "time",
+              "enableBehavior": "all",
+              "required": false,
+              "repeats": false,
+              "initial": [
+                {
+                  "id": "820de940-c423-11e9-a4cf-3307285212d6",
+                  "valueTime": "00:00"
+                }
+              ]
+            }
+          ]
+        },
+        "search": {
+          "mode": "match"
+        }
+      }
+    ]
+  }

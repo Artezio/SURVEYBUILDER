@@ -1,14 +1,13 @@
 import { ResponseService } from "./services/responseService";
 import { mockResponseListService } from "./services/mockResponseListService";
 import IResponseProvider from "../interface/providers/IResponseProvider";
+import { IResponseService } from '../interface/providers/IResponseService';
 
-const responseService = new ResponseService();
 
-class ResponseProvider implements IResponseProvider {
-    service: any;
 
-    constructor() {
-        this.service = responseService;
+export class ResponseProvider implements IResponseProvider {
+    constructor(public service: IResponseService) {
+
     }
 
     getResponseListByQuestionnaireId(id: string) {
@@ -31,5 +30,6 @@ class ResponseProvider implements IResponseProvider {
 }
 
 export const responseProvider = (function () {
-    return new ResponseProvider();
+    const responseService = new ResponseService();
+    return new ResponseProvider(responseService);
 })();

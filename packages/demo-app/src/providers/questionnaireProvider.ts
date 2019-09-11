@@ -1,9 +1,11 @@
 import * as Models from '@art-forms/models';
 import { QuestionnaireHapiFhirService } from "./services/questionnaireService";
 import { IQuestionnaireProvider } from '../interface/providers/IQuestionnaireProvider';
+import { QuestionnaireLocalStorageService } from './services/localStorageServises/questionnaire';
+import { IQuestionnaireService } from '../interface/providers/IQuestionnaireService';
 
 class QuestionnaireProvider implements IQuestionnaireProvider {
-    constructor(private service: QuestionnaireHapiFhirService) {
+    constructor(private service: IQuestionnaireService) {
         this.service = service;
     }
 

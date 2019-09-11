@@ -1925,6 +1925,11 @@
   resolved "http://10.11.40.28:4873/@types%2fchai/-/chai-4.2.1.tgz#de162553aceca778d989929d821c5d4942921ebc"
   integrity sha512-LDKlQW/V8bQr5p9aoHye9p7x9faxq0GVeWAkn/Zgyyn848LIAzuR1sHQjGmUBFUpINuGWDG2NTM/ofA2aLMIew==
 
+"@types/chai@^4.2.2":
+  version "4.2.2"
+  resolved "http://10.11.40.28:4873/@types%2fchai/-/chai-4.2.2.tgz#6b825013863d04868c15624ec8b7fdced88a47c6"
+  integrity sha512-8V2aCcPM3WLuJvJpF6N60uUvdZb7NHjpjQlLk1QmZbTP4XZET/FX0c3TJ3K7qt4L98FS1Pifa8BVofTVuJFWVA==
+
 "@types/cheerio@*":
   version "0.22.13"
   resolved "http://10.11.40.28:4873/@types%2fcheerio/-/cheerio-0.22.13.tgz#5eecda091a24514185dcba99eda77e62bf6523e6"
@@ -1949,6 +1954,13 @@
   version "1.20.4"
   resolved "http://10.11.40.28:4873/@types%2fexpect/-/expect-1.20.4.tgz#8288e51737bf7e3ab5d7c77bfa695883745264e5"
   integrity sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==
+
+"@types/fs-extra@^8.0.0":
+  version "8.0.0"
+  resolved "http://10.11.40.28:4873/@types%2ffs-extra/-/fs-extra-8.0.0.tgz#d3e2c313ca29f95059f198dd60d1f774642d4b25"
+  integrity sha512-bCtL5v9zdbQW86yexOlXWTEGvLNqWxMFyi7gQA7Gcthbezr2cPSOb8SkESVKA937QD5cIwOFLDFt0MQoXOEr9Q==
+  dependencies:
+    "@types/node" "*"
 
 "@types/glob@^7.1.1":
   version "7.1.1"
