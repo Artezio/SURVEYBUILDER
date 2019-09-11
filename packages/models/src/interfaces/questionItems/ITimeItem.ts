@@ -1,5 +1,5 @@
 import IQuestionItem from './IQuestionItem';
-import { TIME } from '../..';
+import { TIME } from '../../constants/itemTypes';
 
 
 export interface ITimeItem extends IQuestionItem<string> {

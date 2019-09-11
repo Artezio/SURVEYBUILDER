@@ -1,5 +1,4 @@
 import { QuestionnaireResponseItem } from "../models/questionnaireResponseItem";
-import { IQuestionnaireResponseItem, IItem } from "..";
 import choiceStrategy from "../replyStrategies/choiceStrategy";
 import textInputStrategy from "../replyStrategies/textInputStrategy";
 import multiChoiceStrategy from "../replyStrategies/multiChoiceStrategy";
@@ -7,6 +6,8 @@ import { ATTACHMENT, BOOLEAN, CHOICE, DATE, TIME, DATE_TIME, TEXT, STRING, DECIM
 import validators from "../validators/validators";
 import attachmentStrategy from "../replyStrategies/attachmentStrategy";
 import AnswerCollection from "../models/answersCollection";
+import IItem from "../interfaces/IItem";
+import IQuestionnaireResponseItem from "../interfaces/IQuestionnaireResponseItem";
 
 export const questionResponseFactory = {
     createResponse: (questionItem: IItem, answerCollection: AnswerCollection, responseItem?: Partial<IQuestionnaireResponseItem>): QuestionnaireResponseItem => {

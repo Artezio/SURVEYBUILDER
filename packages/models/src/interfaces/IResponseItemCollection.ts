@@ -1,4 +1,4 @@
-import { Answer } from "..";
+import Answer from "../models/answer";
 
 export interface IResponseItemCollection<T> {
     removeAnswer(answer: Answer<T>): void;

@@ -1,4 +1,4 @@
-import { Item } from "..";
+import Item from "../models/item";
 
 export interface IItemCollection<T> {
     removeItem(item: T): void;

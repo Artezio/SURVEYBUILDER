@@ -1,5 +1,6 @@
 import IResponseItemCollection from "../interfaces/IResponseItemCollection";
-import { Answer, IAnswer } from "..";
+import { IAnswer } from "../interfaces/IAnswer";
+import { Answer } from "../models/answer";
 
 export class AnswerFactory {
     parent?: IResponseItemCollection<any>;

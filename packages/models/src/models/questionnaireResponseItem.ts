@@ -5,12 +5,14 @@ import Answer from "./answer";
 import ReplyStrategy from '../interfaces/IReplyStrategy';
 import AnswerFactory from '../factories/answerFactory';
 import IValidator from '../interfaces/IValidator';
-import { IItem, IGroupItem, questionResponseFactory, IQuestionItem } from '..';
 import AnswerCollection from './answersCollection';
 import JL from 'json-logic-js';
 import IChoiceItem from '../interfaces/questionItems/IChoiceItem';
 import IAnswerOption from '../interfaces/IAnswerOption';
 import IInitialAnswer from '../interfaces/IInitialAnswer';
+import IItem from '../interfaces/IItem';
+import IGroupItem from '../interfaces/IGroupItem';
+import questionResponseFactory from '../factories/questionResponseFactory';
 
 
 @observable

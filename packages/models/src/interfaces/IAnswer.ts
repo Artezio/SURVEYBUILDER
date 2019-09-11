@@ -1,4 +1,4 @@
-import { IQuestionnaireResponseItem } from "..";
+import IQuestionnaireResponseItem from "./IQuestionnaireResponseItem";
 
 export interface IAnswer<T> {
     id: string;

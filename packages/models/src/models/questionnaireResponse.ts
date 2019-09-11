@@ -1,10 +1,10 @@
 import { IQuestionnaireResponse } from "../interfaces/IQuestionnaireResponse";
 import uuid from 'uuid/v1';
-import { observable, observableProperty, getObservable } from '@art-forms/observable';
+import { observable, observableProperty } from '@art-forms/observable';
 import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
 import AnswerCollection from "./answersCollection";
-import { IQuestionnaire } from "..";
 import questionResponseFactory from '../factories/questionResponseFactory';
+import { IQuestionnaire } from "../interfaces/IQuestionnaire";
 
 @observable
 export class QuestionnaireResponse implements IQuestionnaireResponse {

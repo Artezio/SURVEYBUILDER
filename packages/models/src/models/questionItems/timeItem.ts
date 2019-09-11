@@ -1,7 +1,7 @@
-import { QuestionItem } from "../..";
-import { TIME } from "../..";
 import { ITimeItem } from "../../interfaces/questionItems/ITimeItem";
 import { observable } from '@art-forms/observable';
+import QuestionItem from "./questionItem";
+import { TIME } from "../../constants/itemTypes";
 
 @observable
 export class TimeItem extends QuestionItem<string> implements ITimeItem {

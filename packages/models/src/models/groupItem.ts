@@ -1,7 +1,9 @@
-import { IGroupItem, Item, GROUP } from "..";
 import { IItemCollection } from "../interfaces/IItemCollection";
 import { observable, observableProperty } from '@art-forms/observable';
 import ItemByTypeFactory from "../factories/itemByTypeFactory";
+import Item from "./item";
+import IGroupItem from "../interfaces/IGroupItem";
+import { GROUP } from "../constants/itemTypes";
 
 
 @observable

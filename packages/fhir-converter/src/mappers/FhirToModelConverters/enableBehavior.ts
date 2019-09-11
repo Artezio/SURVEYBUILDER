@@ -1,10 +1,10 @@
 import * as Models from '@art-forms/models';
-import * as FHIREnableBehavior from '../../constants/FHIREnableBehavior';
+import { FHIREnableBehavior, ALL, ANY } from '../../constants/FHIREnableBehavior';
 
-export const enableBehaviorToModelConverter = (enableBehavior: FHIREnableBehavior.FHIREnableBehavior): Models.EnableBehavior => {
+export const enableBehaviorToModelConverter = (enableBehavior: FHIREnableBehavior): Models.EnableBehavior => {
     switch (enableBehavior) {
-        case FHIREnableBehavior.ALL: return Models.AND;
-        case FHIREnableBehavior.ANY: return Models.OR;
+        case ALL: return Models.AND;
+        case ANY: return Models.OR;
         default: return Models.AND;
     }
 }

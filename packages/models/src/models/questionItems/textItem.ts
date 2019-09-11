@@ -1,7 +1,7 @@
-import { ITextItem } from "../..";
 import { TEXT } from "../../constants/itemTypes";
 import { QuestionItem } from "./questionItem";
 import { observable } from '@art-forms/observable';
+import ITextItem from "../../interfaces/questionItems/ITextItem";
 
 @observable
 export class TextItem extends QuestionItem<string> implements ITextItem {

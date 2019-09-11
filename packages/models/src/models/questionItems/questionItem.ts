@@ -1,8 +1,10 @@
 import IQuestionItem from "../../interfaces/questionItems/IQuestionItem";
-import { Item, InitialAnswer, InitialAnswerFactory } from "../..";
 import { QUESTION_TYPE } from "../../constants/itemTypes";
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { observableProperty } from "@art-forms/observable";
+import Item from "../item";
+import InitialAnswerFactory from "../../factories/initialAnswerFactory";
+import { InitialAnswer } from "../initialAnswer";
 
 
 export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {

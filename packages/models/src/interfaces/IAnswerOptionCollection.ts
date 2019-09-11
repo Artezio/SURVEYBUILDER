@@ -1,6 +1,6 @@
 import IAnswerOption from "./IAnswerOption";
 import IInitialAnswerCollection from "./IInitialAnswerCollection";
-import { AnswerOption } from "..";
+import AnswerOption from "../models/answerOption";
 
 export interface IAnswerOptionCollection extends IInitialAnswerCollection {
     removeAnswerOption(answerOption: IAnswerOption): void;

@@ -1,5 +1,5 @@
 import ReplyStrategy from "../interfaces/IReplyStrategy";
-import { ChoiceItem } from "..";
+import ChoiceItem from "../models/questionItems/choiceItem";
 
 export const choiceStrategy: ReplyStrategy = (value, questionnaireResponseItem, answerFactory) => {
     const answer = questionnaireResponseItem.answers[0] || answerFactory.createAnswer();

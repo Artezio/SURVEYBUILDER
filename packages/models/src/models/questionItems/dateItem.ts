@@ -1,7 +1,7 @@
-import { QuestionItem } from "../..";
 import { observable } from '@art-forms/observable';
 import { IDateItem } from "../../interfaces/questionItems/IDateItem";
-import { DATE } from "../..";
+import QuestionItem from './questionItem';
+import { DATE } from '../../constants/itemTypes';
 
 @observable
 export class DateItem extends QuestionItem<string> implements IDateItem {

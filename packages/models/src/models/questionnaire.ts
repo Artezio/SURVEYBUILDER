@@ -1,8 +1,9 @@
-import { IQuestionnaire, Item } from "..";
 import uuid from 'uuid/v1';
 import { observable, observableProperty } from '@art-forms/observable';
 import ItemByTypeFactory from "../factories/itemByTypeFactory";
 import { getObservable } from "@art-forms/observable";
+import IQuestionnaire from '../interfaces/IQuestionnaire';
+import Item from './item';
 
 @observable
 export class Questionnaire implements IQuestionnaire {

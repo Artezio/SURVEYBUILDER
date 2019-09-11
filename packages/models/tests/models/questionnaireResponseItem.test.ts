@@ -1,6 +1,15 @@
-import { Questionnaire, choiceStrategy, BOOLEAN, IQuestionItem, CHOICE, AND, EQUAL, QuestionnaireResponse, IBooleanItem, QuestionnaireResponseItem, ChoiceItem, IChoiceItem } from '../../src/index';
 import { assert, expect } from 'chai';
 import AnswerCollection from '../../src/models/answersCollection';
+import { Questionnaire } from '../../src/models/questionnaire';
+import { BOOLEAN, CHOICE } from '../../src/constants/itemTypes';
+import { AND } from '../../src/constants/enableBehavior';
+import { EQUAL } from '../../src/constants/enableWhenOperators';
+import IQuestionItem from '../../src/interfaces/questionItems/IQuestionItem';
+import QuestionnaireResponse from '../../src/models/questionnaireResponse';
+import IBooleanItem from '../../src/interfaces/questionItems/IBooleanItem';
+import choiceStrategy from '../../src/replyStrategies/choiceStrategy';
+import QuestionnaireResponseItem from '../../src/models/questionnaireResponseItem';
+import IChoiceItem from '../../src/interfaces/questionItems/IChoiceItem';
 
 describe('questionnaire response item', () => {
     it('question become enable after answering on depended question', (done) => {

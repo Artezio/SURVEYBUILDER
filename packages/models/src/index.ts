@@ -69,7 +69,7 @@ export * from './factories/initialAnswerFactory';
 export * from './factories/answerOptionFactory';
 export * from './factories/questionResponseFactory';
 export * from './factories/enableWhenFactory';
-// export * from './factories/itemByTypeFactory';
+export * from './factories/itemByTypeFactory';
 /// ----
 
 /// REPLY STRATEGIES

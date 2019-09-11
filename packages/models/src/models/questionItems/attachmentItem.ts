@@ -1,8 +1,8 @@
 import { ATTACHMENT } from "../../constants/itemTypes";
-import { QuestionItem } from "../..";
 import { observable, getObservable } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import IAttachmentItem from "../../interfaces/questionItems/IAttachmentItem";
+import QuestionItem from "./questionItem";
 
 @observable
 export class AttachmentItem extends QuestionItem<void> implements IAttachmentItem {

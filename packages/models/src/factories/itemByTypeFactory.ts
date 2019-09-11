@@ -1,6 +1,8 @@
 import IItemCollection from "../interfaces/IItemCollection";
-import { IItem, ItemFactory, ATTACHMENT, BOOLEAN, CHOICE, DATE, DATE_TIME, DECIMAL, DISPLAY, GROUP, MULTI_CHOICE, OPEN_CHOICE, STRING, TEXT, TIME, Item } from "..";
-// import { ItemFactory } from './itemFactory';
+import { ItemFactory } from './itemFactory';
+import IItem from "../interfaces/IItem";
+import Item from "../models/item";
+import { ATTACHMENT, BOOLEAN, CHOICE, DATE, DATE_TIME, DECIMAL, DISPLAY, GROUP, MULTI_CHOICE, OPEN_CHOICE, STRING, TEXT, TIME } from "../constants/itemTypes";
 
 export class ItemByTypeFactory {
     itemFactory: ItemFactory;

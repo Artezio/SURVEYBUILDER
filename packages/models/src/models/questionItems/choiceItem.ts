@@ -1,9 +1,12 @@
-import { QuestionItem, AnswerOption, AnswerOptionFactory, InitialAnswer } from "../..";
 import { observable, observableProperty } from '@art-forms/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IChoiceItem } from "../../interfaces/questionItems/IChoiceItem";
-import { CHOICE } from "../..";
 import IAnswerOptionCollection from "../../interfaces/IAnswerOptionCollection";
+import QuestionItem from './questionItem';
+import { CHOICE } from '../../constants/itemTypes';
+import AnswerOption from '../answerOption';
+import AnswerOptionFactory from '../../factories/answerOptionFactory';
+import { InitialAnswer } from '../initialAnswer';
 
 @observable
 export class ChoiceItem extends QuestionItem<any> implements IChoiceItem, IAnswerOptionCollection {

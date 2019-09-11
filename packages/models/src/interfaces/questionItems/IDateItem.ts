@@ -1,5 +1,5 @@
 import IQuestionItem from "./IQuestionItem";
-import { DATE } from "../..";
+import { DATE } from "../../constants/itemTypes";
 
 
 export interface IDateItem extends IQuestionItem<string> {

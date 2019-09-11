@@ -1,4 +1,3 @@
-import { IItem, IMultiChoiceItem, MultiChoiceItem } from "..";
 import TextItem from "../models/questionItems/textItem";
 import BooleanItem from "../models/questionItems/booleanItem";
 import Item from "../models/item";
@@ -23,6 +22,9 @@ import OpenChoiceItem from "../models/questionItems/openChoiceItem";
 import IChoiceItem from "../interfaces/questionItems/IChoiceItem";
 import ChoiceItem from "../models/questionItems/choiceItem";
 import IOpenChoiceItem from "../interfaces/questionItems/IOpenChoiceItem";
+import IItem from "../interfaces/IItem";
+import IMultiChoiceItem from "../interfaces/questionItems/IMultiChoiceItem";
+import MultiChoiceItem from "../models/questionItems/multiChoiceItem";
 
 export class ItemFactory {
     parent?: IItemCollection<IItem>;

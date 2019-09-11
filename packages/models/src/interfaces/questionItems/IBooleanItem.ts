@@ -1,5 +1,5 @@
 import IQuestionItem from "./IQuestionItem";
-import { BOOLEAN } from "../..";
+import { BOOLEAN } from "../../constants/itemTypes";
 
 
 export interface IBooleanItem extends IQuestionItem<boolean> {

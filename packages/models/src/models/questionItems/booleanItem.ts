@@ -1,6 +1,7 @@
 import { BOOLEAN } from "../../constants/itemTypes";
-import { QuestionItem, IBooleanItem } from "../..";
 import { observable } from '@art-forms/observable';
+import QuestionItem from "./questionItem";
+import { IBooleanItem } from "../../interfaces/questionItems/IBooleanItem";
 
 @observable
 export class BooleanItem extends QuestionItem<boolean> implements IBooleanItem {

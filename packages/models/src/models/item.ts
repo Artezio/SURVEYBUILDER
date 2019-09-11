@@ -1,10 +1,11 @@
-import { IItem, ITEM_TYPE, DISPLAY, EnableWhen } from "..";
 import { observable, observableProperty, getObservable } from '@art-forms/observable';
 import uuid from "uuid/v1";
 import { IItemCollection } from "../interfaces/IItemCollection";
-import IEnableWhen from "../interfaces/IEnableWhen";
 import { EnableBehavior, AND } from "../constants/enableBehavior";
 import EnableWhenFactory from '../factories/enableWhenFactory';
+import IItem from '../interfaces/IItem';
+import { ITEM_TYPE, DISPLAY } from '../constants/itemTypes';
+import EnableWhen from './enableWhen';
 
 @observable
 export class Item implements IItem {

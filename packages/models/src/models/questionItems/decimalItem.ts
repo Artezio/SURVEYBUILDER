@@ -1,6 +1,7 @@
 import { DECIMAL } from "../../constants/itemTypes";
-import { QuestionItem, IDecimalItem } from "../..";
 import { observable } from '@art-forms/observable';
+import IDecimalItem from "../../interfaces/questionItems/IDecimalItem";
+import QuestionItem from "./questionItem";
 
 @observable
 export class DecimalItem extends QuestionItem<number> implements IDecimalItem {
