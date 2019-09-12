@@ -7,6 +7,16 @@ import { useObservableModel } from '../observableConnector/useObservableModel';
 
 export class Item extends React.Component<ItemProps> {
     formApi!: FormApi<Models.IItem>;
+    inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+
+    componentDidMount() {
+        if (this.inputRef.current) {
+            const x = window.pageXOffset;
+            const y = window.pageYOffset;
+            this.inputRef.current.focus();
+            window.scrollTo(x, y)
+        }
+    }
 
     submitForm() {
         if (!this.formApi) return;
@@ -33,7 +43,7 @@ export class Item extends React.Component<ItemProps> {
             <div className="card-body">
                 <div>
                     <label htmlFor={item.id}>Text</label>
-                    <TextArea autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                    <TextArea forwardedRef={this.inputRef} autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" onBlur={this.submitForm.bind(this)} />
                 </div>
             </div>
         </Form>
