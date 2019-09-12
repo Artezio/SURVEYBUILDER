@@ -34,8 +34,8 @@ export class QuestionnaireHapiFhirService implements IQuestionnaireService {
             .then(x => x.data);
     }
 
-    updateQuestionnaireById(id: string, data: any) {
-        return axios.put(`${this.resource}/${id}`, data)
+    updateQuestionnaire(questionnaire: any) {
+        return axios.put(`${this.resource}/${questionnaire.id}`, questionnaire)
             .then(x => x.data);
     }
 

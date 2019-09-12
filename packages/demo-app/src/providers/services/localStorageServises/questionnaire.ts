@@ -33,8 +33,8 @@ export class QuestionnaireLocalStorageService implements IQuestionnaireService {
         return this.questionnaireList.find(questionnaire => questionnaire.id === id);
     }
 
-    async updateQuestionnaireById(id: string, questionnaire: any) {
-        let index = this.questionnaireList.findIndex(questionnaire => questionnaire.id === id);
+    async updateQuestionnaire(questionnaire: any) {
+        const index = this.questionnaireList.findIndex(concreteQuestionnaire => concreteQuestionnaire.id === questionnaire.id);
         if (index === -1) return;
         this.questionnaireList[index] = questionnaire;
         this.save();
@@ -47,7 +47,7 @@ export class QuestionnaireLocalStorageService implements IQuestionnaireService {
     }
 
     async deleteQuestionnaireById(id: string) {
-        let index = this.questionnaireList.findIndex(questionnaire => questionnaire.id === id);
+        const index = this.questionnaireList.findIndex(questionnaire => questionnaire.id === id);
         if (index === -1) return;
         this.questionnaireList.splice(index, 1);
         this.save();

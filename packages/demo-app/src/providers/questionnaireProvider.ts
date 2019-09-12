@@ -4,7 +4,7 @@ import { IQuestionnaireProvider } from '../interface/providers/IQuestionnairePro
 import { QuestionnaireLocalStorageService } from './services/localStorageServises/questionnaire';
 import { IQuestionnaireService } from '../interface/providers/IQuestionnaireService';
 
-class QuestionnaireProvider implements IQuestionnaireProvider {
+export class QuestionnaireProvider implements IQuestionnaireProvider {
     constructor(private service: IQuestionnaireService) {
         this.service = service;
     }
@@ -26,8 +26,8 @@ class QuestionnaireProvider implements IQuestionnaireProvider {
         return this.service.putQuestionnaire(data);
     }
 
-    updateQuestionnaireById(id: string, data: any) {
-        return this.service.updateQuestionnaireById(id, data)
+    updateQuestionnaire(questionnaire: any) {
+        return this.service.updateQuestionnaire(questionnaire);
     }
 
 }

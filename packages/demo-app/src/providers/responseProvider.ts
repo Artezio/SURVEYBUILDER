@@ -12,7 +12,7 @@ export class ResponseProvider implements IResponseProvider {
 
     getResponseListByQuestionnaireId(id: string) {
         return mockResponseListService.getResponseListByQuestionnaireId();
-        return this.service.getResponseListByQuestionnaireId(id, { entriesLimit: 10, fieldToBeIncluded: 'QuestionnaireResponse: questionnaire' })
+        return this.service.getResponseListByQuestionnaireId(id, { constantPrefix: 'Questionnaire/', entriesLimit: 10, fieldToBeIncluded: 'QuestionnaireResponse: questionnaire' })
     }
 
     getResponseById(id: string) {
@@ -23,8 +23,8 @@ export class ResponseProvider implements IResponseProvider {
         return this.service.putResponse(response);
     }
 
-    updateResponseById(id: string, response: any) {
-        return this.service.updateResponseById(id, response);
+    updateResponse(response: any) {
+        return this.service.updateResponse(response);
     }
 
 }

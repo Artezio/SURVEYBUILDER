@@ -10,11 +10,11 @@ export class ResponseService implements IResponseService {
         this.resource = '/QuestionnaireResponse'; // empty space before questionnaireResponse because of proxy by webpack dev server!
     }
 
-    getResponseListByQuestionnaireId(id: string, options?: ResponseServiceOptions) {
+    getResponseListByQuestionnaireId(id: string, options: ResponseServiceOptions) {
         return axios.get(`${this.resource}/`, {
             params: {
                 '_include': options && options.fieldToBeIncluded,
-                'questionnaire': `Questionnaire/${id}`,
+                'questionnaire': `${options.constantPrefix}${id}`,
                 '_count': options && options.entriesLimit
             }
         })
@@ -33,8 +33,8 @@ export class ResponseService implements IResponseService {
             .then(x => x.data)
     }
 
-    updateResponseById(id: string, data: any) {
-        return axios.put(`${this.resource}/${id}`, data)
+    updateResponse(response: any) {
+        return axios.put(`${this.resource}/${response.id}`, response)
             .then(x => x.data)
     }
 }
