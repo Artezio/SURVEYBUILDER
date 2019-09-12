@@ -150,7 +150,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
     changeItemToOpenChoice() {
         const { item } = this.props;
         const answerOptionFactory = new Models.AnswerOptionFactory();
-        let options;
+        let options: Models.AnswerOption[];
         if ((item as Models.OpenChoiceItem).options === undefined) {
             options = [answerOptionFactory.createAnswerOption({ value: "Option 1" })];
         }
@@ -159,6 +159,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
                 [answerOptionFactory.createAnswerOption({ value: "Option 1" })] :
                 (item as Models.OpenChoiceItem).options.slice();
         }
+        options.push(answerOptionFactory.createAnswerOption());
         const newItem = this.factory.createOpenChoiceItem({ text: item.text, options, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
