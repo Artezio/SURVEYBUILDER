@@ -13,7 +13,7 @@ export const ResponseInstance = (props: ResponseInstanceProps) => {
             </div>
             <div className="col">
                 <div className="d-flex justify-content-end">
-                    <Link to={`/questionnaire/105985/response/${response.id}`} className="btn btn-outline-success">
+                    <Link to={`/questionnaire/${response.questionnaire.slice(14)}/response/${response.id}`} className="btn btn-outline-success">
                         <i className="fas fa-play"></i>
                     </Link>
                 </div>

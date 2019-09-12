@@ -1,7 +1,6 @@
-import { ResponseService } from "./services/responseService";
-import { mockResponseListService } from "./services/mockResponseListService";
 import IResponseProvider from "../interface/providers/IResponseProvider";
 import { IResponseService } from '../interface/providers/IResponseService';
+import { ResponseLocalStorageService } from './services/localStorageServises/response';
 
 
 
@@ -11,8 +10,7 @@ export class ResponseProvider implements IResponseProvider {
     }
 
     getResponseListByQuestionnaireId(id: string) {
-        return mockResponseListService.getResponseListByQuestionnaireId();
-        return this.service.getResponseListByQuestionnaireId(id, { constantPrefix: 'Questionnaire/', entriesLimit: 10, fieldToBeIncluded: 'QuestionnaireResponse: questionnaire' })
+        return this.service.getResponseListByQuestionnaireId(id)
     }
 
     getResponseById(id: string) {
@@ -30,6 +28,6 @@ export class ResponseProvider implements IResponseProvider {
 }
 
 export const responseProvider = (function () {
-    const responseService = new ResponseService();
+    const responseService = new ResponseLocalStorageService();
     return new ResponseProvider(responseService);
 })();

@@ -1,15 +1,6 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import IQuestionnaireService, { QuestionnaireServiceOptions } from '../../interface/providers/IQuestionnaireService';
+import axios from 'axios';
+import IQuestionnaireService from '../../interface/providers/IQuestionnaireService';
 
-
-const optionsToConfig = (opt?: QuestionnaireServiceOptions): AxiosRequestConfig | undefined => {
-    return opt && {
-        params: {
-            '_count': opt.limit,
-            'title': opt.titleMatch
-        }
-    }
-}
 export class QuestionnaireHapiFhirService implements IQuestionnaireService {
     resource: string;
 
@@ -17,8 +8,8 @@ export class QuestionnaireHapiFhirService implements IQuestionnaireService {
         this.resource = '/Questionnaire'; // empty space before questionnaire because of proxy by webpack dev server!
     }
 
-    getQuestionnaireList(options?: QuestionnaireServiceOptions) {
-        return axios.get(`${this.resource}/`, optionsToConfig(options))
+    getQuestionnaireList() {
+        return axios.get(`${this.resource}/`, { params: { '_count': 10, 'title': '@artezio' } })
             .then(x => x.data)
             .then(responseData => responseData.entry)
             .then(entries => entries.map((entry: any) => entry.resource))

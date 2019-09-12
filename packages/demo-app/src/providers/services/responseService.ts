@@ -1,5 +1,5 @@
 import axios from 'axios';
-import IResponseService, { ResponseServiceOptions } from '../../interface/providers/IResponseService';
+import IResponseService from '../../interface/providers/IResponseService';
 
 
 
@@ -10,12 +10,12 @@ export class ResponseService implements IResponseService {
         this.resource = '/QuestionnaireResponse'; // empty space before questionnaireResponse because of proxy by webpack dev server!
     }
 
-    getResponseListByQuestionnaireId(id: string, options: ResponseServiceOptions) {
+    getResponseListByQuestionnaireId(id: string) {
         return axios.get(`${this.resource}/`, {
             params: {
-                '_include': options && options.fieldToBeIncluded,
-                'questionnaire': `${options.constantPrefix}${id}`,
-                '_count': options && options.entriesLimit
+                '_include': 'questionnaire',
+                'questionnaire': `Questionnaire/${id}`,
+                '_count': 10
             }
         })
             .then(x => x.data)

@@ -1,10 +1,5 @@
-export interface QuestionnaireServiceOptions {
-    limit?: number;
-    titleMatch?: string;
-}
-
 export interface IQuestionnaireService {
-    getQuestionnaireList(options?: QuestionnaireServiceOptions): Promise<any>;
+    getQuestionnaireList(): Promise<any>;
     getQuestionnaireById(id: string): Promise<any>;
     putQuestionnaire(data: any): Promise<any>;
     updateQuestionnaire(questionnaire: any): Promise<any>;

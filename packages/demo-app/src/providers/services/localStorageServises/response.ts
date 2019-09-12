@@ -1,31 +1,29 @@
-import { IResponseService, ResponseServiceOptions } from '../../../interface/providers/IResponseService';
+import { IResponseService } from '../../../interface/providers/IResponseService';
 import { LocalStorageHelper } from './localStorageHelper';
 import packageJSON from '../../../../package.json';
 import responses from './data/responses.json';
 
+const localStorageKey = `responses@${packageJSON.version}`;
 
-export class ResponseLocalStorageProvider implements IResponseService {
+export class ResponseLocalStorageService implements IResponseService {
     responseList: any[];
-    private localStorageKey: string;
 
     constructor() {
-        this.localStorageKey = `responses@${packageJSON.version}`;
-        const responseList = LocalStorageHelper.get(this.localStorageKey);
+        const responseList = LocalStorageHelper.get(localStorageKey);
         if (Array.isArray(responseList) && responseList.length !== 0) {
             this.responseList = responseList;
         } else {
-            let responseList = JSON.parse(JSON.stringify(responses));
-            this.responseList = responseList;
+            this.responseList = responses;
             this.save();
         }
     }
 
     private save() {
-        LocalStorageHelper.save(this.localStorageKey, this.responseList);
+        LocalStorageHelper.save(localStorageKey, this.responseList);
     }
 
-    async getResponseListByQuestionnaireId(questionnaireId: string, options: ResponseServiceOptions) {
-        return this.responseList.filter(response => response.questionnaire.slice(options.constantPrefix.length) === questionnaireId);
+    async getResponseListByQuestionnaireId(questionnaireId: string) {
+        return this.responseList.filter(response => response.questionnaire.slice(14) === questionnaireId);
     }
 
     async getResponseById(id: string) {
@@ -33,8 +31,8 @@ export class ResponseLocalStorageProvider implements IResponseService {
     }
 
     async putResponse(response: any) {
+        if (this.responseList.some(concreteResponse => concreteResponse.id === response.id)) return;
         const index = this.responseList.findIndex(concreteResponse => concreteResponse.id === response.id);
-        if (index === -1) return;
         this.responseList.push(response);
         this.save();
     }
@@ -47,4 +45,4 @@ export class ResponseLocalStorageProvider implements IResponseService {
     }
 }
 
-export default ResponseLocalStorageProvider;
+export default ResponseLocalStorageService;

@@ -1,5 +1,3 @@
-import * as Models from '@art-forms/models';
-import { QuestionnaireHapiFhirService } from "./services/questionnaireService";
 import { IQuestionnaireProvider } from '../interface/providers/IQuestionnaireProvider';
 import { QuestionnaireLocalStorageService } from './services/localStorageServises/questionnaire';
 import { IQuestionnaireService } from '../interface/providers/IQuestionnaireService';
@@ -9,8 +7,8 @@ export class QuestionnaireProvider implements IQuestionnaireProvider {
         this.service = service;
     }
 
-    getQuestionnaireList(): Promise<Models.IQuestionnaire[]> {
-        return this.service.getQuestionnaireList({ limit: 10, titleMatch: '@artezio' })
+    getQuestionnaireList(): Promise<any> {
+        return this.service.getQuestionnaireList()
     }
 
     getQuestionnaireById(id: string) {
@@ -35,7 +33,7 @@ export class QuestionnaireProvider implements IQuestionnaireProvider {
 
 
 export const questionnaireProvider = (function () {
-    const questionnaireService = new QuestionnaireHapiFhirService();
+    const questionnaireService = new QuestionnaireLocalStorageService();
     return new QuestionnaireProvider(questionnaireService);
 })();
 

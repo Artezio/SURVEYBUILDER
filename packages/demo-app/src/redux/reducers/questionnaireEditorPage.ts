@@ -90,14 +90,11 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIA
             }
         }
         case ACTIONS.SAVE_NEW_QUESTIONNAIRE_SAVED: {
-            const questionnaire = questionnaireConverter.toModel(action.payload);
-            const questionnaireModel = new Models.Questionnaire(questionnaire);
             return {
                 ...state,
                 status: {
                     saving: STATUS_SAVING.saved,
-                },
-                questionnaireModel: questionnaireModel
+                }
             }
         }
         case ACTIONS.SAVE_NEW_QUESTIONNAIRE_ERROR: {

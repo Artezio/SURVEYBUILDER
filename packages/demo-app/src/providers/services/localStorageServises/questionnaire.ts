@@ -3,26 +3,23 @@ import { LocalStorageHelper } from './localStorageHelper';
 import packageJSON from '../../../../package.json';
 import questionnaires from './data/questionnaires.json';
 
+const localStorageKey = `questionnaires@${packageJSON.version}`;
 
 export class QuestionnaireLocalStorageService implements IQuestionnaireService {
     questionnaireList: any[];
-    private localStorageKey: string;
 
     constructor() {
-        this.localStorageKey = `questionnaires@${packageJSON.version}`;
-        const questionnaireList = LocalStorageHelper.get(this.localStorageKey);
+        const questionnaireList = LocalStorageHelper.get(localStorageKey);
         if (Array.isArray(questionnaireList) && questionnaireList.length !== 0) {
             this.questionnaireList = questionnaireList;
         } else {
-            let questionnaireList = JSON.parse(JSON.stringify(questionnaires.entry));
-            questionnaireList = questionnaireList.map((entry: any) => entry.resource);/// because of json structure
-            this.questionnaireList = questionnaireList;
+            this.questionnaireList = questionnaires;
             this.save();
         }
     }
 
     private save() {
-        LocalStorageHelper.save(this.localStorageKey, this.questionnaireList);
+        LocalStorageHelper.save(localStorageKey, this.questionnaireList);
     }
 
     async getQuestionnaireList() {
