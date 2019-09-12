@@ -1,468 +1,1036 @@
-{
-    "resourceType": "Bundle",
-    "id": "8fd57e18-2b05-4e68-b1d2-15a34e0c0453",
-    "meta": {
-      "lastUpdated": "2019-09-11T15:42:09.131+00:00"
-    },
-    "type": "searchset",
-    "total": 12,
-    "link": [
+[
+  {
+    "resourceType": "Questionnaire",
+    "id": "6c8e4e40-d556-11e9-8e60-37442f196308",
+    "description": "This questionnaire is used to  identify the appropriate anesthetic techniques to be used. Please fill it out as completely as possible.",
+    "title": "Pre-Anesthesia Questionnaire",
+    "item": [
       {
-        "relation": "self",
-        "url": "http://hapi.fhir.org/baseR4/Questionnaire/?_count=10&title=%40artezio"
+        "linkId": "0dd73730-d557-11e9-8e60-37442f196308",
+        "required": false,
+        "text": "General Information",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "4280b4f0-d572-11e9-b6ee-732b8cd43dfe",
+            "required": true,
+            "text": "Date",
+            "type": "dateTime",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "740f1f90-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Patient Name",
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "7c2c9b80-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Date of Birth",
+            "type": "date",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "1a170ca0-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Gender",
+            "type": "choice",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "1a170ca1-d557-11e9-8e60-37442f196308",
+                "valueString": "Female",
+                "initialSelected": false
+              },
+              {
+                "id": "866640b0-d557-11e9-8e60-37442f196308",
+                "valueString": "Male",
+                "initialSelected": false
+              }
+            ]
+          },
+          {
+            "linkId": "8f861170-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Height",
+            "type": "decimal",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "945e4d70-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Weight",
+            "type": "decimal",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "9eb4c970-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Do you smoke?",
+            "type": "boolean",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "a58db770-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Packs/day",
+            "type": "decimal",
+            "enableWhen": [
+              {
+                "id": "a89922b0-d557-11e9-8e60-37442f196308",
+                "question": "9eb4c970-d557-11e9-8e60-37442f196308",
+                "answerString": true,
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": [
+              {
+                "id": "e764ed10-d572-11e9-b28f-bde88825ac49",
+                "valueDecimal": 1
+              }
+            ]
+          },
+          {
+            "linkId": "b1ec3870-d557-11e9-8e60-37442f196308",
+            "required": false,
+            "text": "Number of years",
+            "type": "decimal",
+            "enableWhen": [
+              {
+                "id": "b4233cb0-d557-11e9-8e60-37442f196308",
+                "question": "9eb4c970-d557-11e9-8e60-37442f196308",
+                "answerString": true,
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "c893a0e0-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Have you had problems with drug/alcohol addiction or withdrawals?",
+            "type": "boolean",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          }
+        ],
+        "enableWhen": [],
+        "enableBehavior": "all"
       },
       {
-        "relation": "next",
-        "url": "http://hapi.fhir.org/baseR4?_getpages=8fd57e18-2b05-4e68-b1d2-15a34e0c0453&_getpagesoffset=10&_count=10&_pretty=true&_bundletype=searchset"
+        "linkId": "16a95d20-d557-11e9-8e60-37442f196308",
+        "required": false,
+        "text": "Medical History",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "179fcb10-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Do you have any allergies ?",
+            "type": "choice",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "17a01930-d557-11e9-8e60-37442f196308",
+                "valueString": "Yes",
+                "initialSelected": false
+              },
+              {
+                "id": "dd4aab00-d557-11e9-8e60-37442f196308",
+                "valueString": "No",
+                "initialSelected": false
+              },
+              {
+                "id": "dd9f0c90-d557-11e9-8e60-37442f196308",
+                "valueString": "Maybe",
+                "initialSelected": false
+              }
+            ]
+          },
+          {
+            "linkId": "e962ad20-d557-11e9-8e60-37442f196308",
+            "required": false,
+            "text": "Allergies (Include medications, food, tape, iodine, latex)",
+            "type": "text",
+            "enableWhen": [
+              {
+                "id": "efb490d0-d557-11e9-8e60-37442f196308",
+                "question": "179fcb10-d557-11e9-8e60-37442f196308",
+                "answerString": "Yes",
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "fa8a7600-d557-11e9-8e60-37442f196308",
+            "required": true,
+            "text": "Have you ever had anesthesia?",
+            "type": "boolean",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "02b0cb90-d558-11e9-8e60-37442f196308",
+            "required": false,
+            "text": "Surgeries and dates",
+            "type": "text",
+            "enableWhen": [
+              {
+                "id": "05019960-d558-11e9-8e60-37442f196308",
+                "question": "fa8a7600-d557-11e9-8e60-37442f196308",
+                "answerString": true,
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "11cf7e00-d558-11e9-8e60-37442f196308",
+            "required": false,
+            "text": "Medical History (check if you have or have ever had any of the following)",
+            "type": "choice",
+            "repeats": true,
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "1830e781-d557-11e9-8e60-37442f196308",
+                "valueString": "Diabetes",
+                "initialSelected": false
+              },
+              {
+                "id": "9f72ccd0-d558-11e9-8e60-37442f196308",
+                "valueString": "Heart problems of any kind",
+                "initialSelected": false
+              },
+              {
+                "id": "9fbddf90-d558-11e9-8e60-37442f196308",
+                "valueString": "Bleeding problem",
+                "initialSelected": false
+              },
+              {
+                "id": "a00a2ad0-d558-11e9-8e60-37442f196308",
+                "valueString": "Lung problem",
+                "initialSelected": false
+              },
+              {
+                "id": "a340ebd0-d558-11e9-8e60-37442f196308",
+                "valueString": "Cancer",
+                "initialSelected": false
+              },
+              {
+                "id": "a398f6e0-d558-11e9-8e60-37442f196308",
+                "valueString": "Chest pain",
+                "initialSelected": false
+              }
+            ]
+          },
+          {
+            "linkId": "3bf51c40-d575-11e9-9c9d-c772f9c7e1e6",
+            "required": false,
+            "text": "List of the medications that you take",
+            "type": "group",
+            "item": [
+              {
+                "linkId": "4ce5a880-d575-11e9-9c9d-c772f9c7e1e6",
+                "required": false,
+                "type": "string",
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              },
+              {
+                "linkId": "4bd91a80-d575-11e9-9c9d-c772f9c7e1e6",
+                "required": false,
+                "type": "string",
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              },
+              {
+                "linkId": "4a3ef280-d575-11e9-9c9d-c772f9c7e1e6",
+                "required": false,
+                "type": "string",
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              },
+              {
+                "linkId": "61a7af20-d575-11e9-9c9d-c772f9c7e1e6",
+                "required": false,
+                "type": "string",
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              },
+              {
+                "linkId": "60d6f1a0-d575-11e9-9c9d-c772f9c7e1e6",
+                "required": false,
+                "type": "string",
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              },
+              {
+                "linkId": "5fe565b0-d575-11e9-9c9d-c772f9c7e1e6",
+                "required": false,
+                "type": "string",
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              },
+              {
+                "linkId": "5f0e66a0-d575-11e9-9c9d-c772f9c7e1e6",
+                "required": false,
+                "type": "string",
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              },
+              {
+                "linkId": "5dec06b0-d575-11e9-9c9d-c772f9c7e1e6",
+                "required": false,
+                "type": "string",
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              },
+              {
+                "linkId": "1e5d76a0-d55c-11e9-95b0-63475177d318",
+                "required": false,
+                "text": "Attach list if necessary",
+                "type": "attachment",
+                "repeats": true,
+                "enableWhen": [],
+                "enableBehavior": "all",
+                "initial": []
+              }
+            ],
+            "enableWhen": [],
+            "enableBehavior": "all"
+          }
+        ],
+        "enableWhen": [],
+        "enableBehavior": "all"
+      },
+      {
+        "linkId": "425c9480-d559-11e9-8e60-37442f196308",
+        "required": false,
+        "text": "Thank you!",
+        "type": "display",
+        "enableWhen": [],
+        "enableBehavior": "all"
       }
-    ],
-    "entry": [
+    ]
+  },
+  {
+    "resourceType": "Questionnaire",
+    "id": "188c83f0-d576-11e9-800f-bdc882ee6063",
+    "description": "Please carefully complete this Questionnaire in full. A complete, accurate record is important in learning about your allergy problem",
+    "title": "Allergy Questionnaire",
+    "item": [
       {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/105985",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "105985",
-          "meta": {
-            "versionId": "13",
-            "lastUpdated": "2019-08-22T07:37:31.301+00:00",
-            "source": "#7cc99539df718a11"
+        "linkId": "24b1a570-d576-11e9-800f-bdc882ee6063",
+        "required": false,
+        "text": "General Information",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "3271b240-d576-11e9-800f-bdc882ee6063",
+            "required": true,
+            "text": "Date",
+            "type": "date",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
           },
-          "title": "@artezio Астма",
-          "item": [
-            {
-              "linkId": "4c66f560-b475-11e9-9525-0fe2e730c629",
-              "text": "Были ли у вас приступы астмы?",
-              "type": "boolean",
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false
-            },
-            {
-              "linkId": "38713f70-b475-11e9-9525-0fe2e730c629",
-              "type": "decimal",
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false,
-              "initial": [
-                {
-                  "id": "c5f3e9d0-b518-11e9-9d34-371ce0913e68"
-                }
-              ]
-            },
-            {
-              "linkId": "020ef9e0-b475-11e9-9525-0fe2e730c629",
-              "text": "Курите?",
-              "type": "boolean",
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false
-            },
-            {
-              "linkId": "22cf6020-b475-11e9-9525-0fe2e730c629",
-              "text": "Как часто?",
-              "type": "open-choice",
-              "enableWhen": [
-                {
-                  "id": "25c21340-b475-11e9-9525-0fe2e730c629",
-                  "question": "020ef9e0-b475-11e9-9525-0fe2e730c629",
-                  "operator": "=",
-                  "answerString": "true"
-                }
-              ],
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false,
-              "answerOption": [
-                {
-                  "id": "040e9a70-b475-11e9-9525-0fe2e730c629",
-                  "valueString": "Несколько раз в день",
-                  "initialSelected": false
-                },
-                {
-                  "id": "1767c240-b475-11e9-9525-0fe2e730c629",
-                  "valueString": "Пачку в день",
-                  "initialSelected": false
-                },
-                {
-                  "id": "cc4a6690-b506-11e9-9df6-d3695a5c5c9f",
-                  "valueString": "default",
-                  "initialSelected": false
-                }
-              ],
-              "initial": [
-                {
-                  "id": "cf991c60-b506-11e9-9df6-d3695a5c5c9f"
-                }
-              ]
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
+          {
+            "linkId": "341e77e0-d576-11e9-800f-bdc882ee6063",
+            "required": true,
+            "text": "Time",
+            "type": "time",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "3856a350-d576-11e9-800f-bdc882ee6063",
+            "required": true,
+            "text": "Patient Name",
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "3faeac60-d576-11e9-800f-bdc882ee6063",
+            "required": true,
+            "text": "Date of Birth",
+            "type": "date",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          }
+        ],
+        "enableWhen": [],
+        "enableBehavior": "all"
       },
       {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/105986",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "105986",
-          "meta": {
-            "versionId": "3",
-            "lastUpdated": "2019-08-02T11:07:48.966+00:00"
+        "linkId": "5201d5e0-d576-11e9-800f-bdc882ee6063",
+        "required": false,
+        "type": "group",
+        "item": [
+          {
+            "linkId": "58946c10-d576-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Do you have any of these symptoms?",
+            "type": "choice",
+            "repeats": true,
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "545a6be1-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Cough",
+                "initialSelected": false
+              },
+              {
+                "id": "5bffaa90-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Runny Nose",
+                "initialSelected": false
+              },
+              {
+                "id": "5e07af90-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Sneezing",
+                "initialSelected": false
+              },
+              {
+                "id": "5e695790-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Itchy Nose",
+                "initialSelected": false
+              },
+              {
+                "id": "5ecfba80-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Itchy Eyes",
+                "initialSelected": false
+              },
+              {
+                "id": "5f1eebf0-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Wheezing",
+                "initialSelected": false
+              },
+              {
+                "id": "5f59d210-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Skin problems",
+                "initialSelected": false
+              },
+              {
+                "id": "5f904b60-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Other",
+                "initialSelected": false
+              }
+            ]
           },
-          "title": "@artezio Физкульт проверка",
-          "item": [
-            {
-              "linkId": "70191270-b477-11e9-b455-c3ae7711429b",
-              "text": "Сколько раз отожметесь",
-              "type": "decimal",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false,
-              "initial": [
-                {
-                  "id": "70c07600-b477-11e9-b455-c3ae7711429b"
-                }
-              ]
-            },
-            {
-              "linkId": "73b8ce70-b477-11e9-b455-c3ae7711429b",
-              "text": "Молодец!",
-              "type": "display",
-              "enableWhen": [
-                {
-                  "id": "785efdf0-b477-11e9-b455-c3ae7711429b",
-                  "question": "70191270-b477-11e9-b455-c3ae7711429b",
-                  "operator": ">=",
-                  "answerString": "20"
-                }
-              ],
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
+          {
+            "linkId": "773fd500-d576-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "What other symptoms do you have?",
+            "type": "text",
+            "enableWhen": [
+              {
+                "id": "7cf9be70-d576-11e9-800f-bdc882ee6063",
+                "question": "58946c10-d576-11e9-800f-bdc882ee6063",
+                "answerString": "Other",
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "8a1770c0-d576-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Which of the following seems to trigger the above symptoms?",
+            "type": "choice",
+            "repeats": true,
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "54aecd71-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Dogs",
+                "initialSelected": false
+              },
+              {
+                "id": "8af1cb30-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Cats",
+                "initialSelected": false
+              },
+              {
+                "id": "8c0cd820-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Grass",
+                "initialSelected": false
+              },
+              {
+                "id": "8c661bb0-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Dust",
+                "initialSelected": false
+              },
+              {
+                "id": "8cc6b240-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Smoke",
+                "initialSelected": false
+              },
+              {
+                "id": "8d1d36b0-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Food",
+                "initialSelected": false
+              },
+              {
+                "id": "8d78c430-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Drugs",
+                "initialSelected": false
+              },
+              {
+                "id": "8dcde910-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Other",
+                "initialSelected": false
+              }
+            ]
+          },
+          {
+            "linkId": "a029c520-d576-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "What other triggers could you name?",
+            "type": "text",
+            "enableWhen": [
+              {
+                "id": "a490c8c0-d576-11e9-800f-bdc882ee6063",
+                "question": "8a1770c0-d576-11e9-800f-bdc882ee6063",
+                "answerString": "Other",
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "b00beea0-d576-11e9-800f-bdc882ee6063",
+            "required": true,
+            "text": "Do you symptoms vary with the seasons?",
+            "type": "boolean",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "d6080da0-d576-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "When are symptoms more severe?",
+            "type": "choice",
+            "repeats": true,
+            "enableWhen": [
+              {
+                "id": "c05da2d0-d576-11e9-800f-bdc882ee6063",
+                "question": "b00beea0-d576-11e9-800f-bdc882ee6063",
+                "answerString": true,
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "55576980-d576-11e9-800f-bdc882ee6063",
+                "valueString": "January",
+                "initialSelected": false
+              },
+              {
+                "id": "b5643010-d576-11e9-800f-bdc882ee6063",
+                "valueString": "February",
+                "initialSelected": false
+              },
+              {
+                "id": "b5cd2b10-d576-11e9-800f-bdc882ee6063",
+                "valueString": "March",
+                "initialSelected": false
+              },
+              {
+                "id": "b6161af0-d576-11e9-800f-bdc882ee6063",
+                "valueString": "April",
+                "initialSelected": false
+              },
+              {
+                "id": "b9dff430-d576-11e9-800f-bdc882ee6063",
+                "valueString": "May",
+                "initialSelected": false
+              },
+              {
+                "id": "ba4fa5f0-d576-11e9-800f-bdc882ee6063",
+                "valueString": "June",
+                "initialSelected": false
+              },
+              {
+                "id": "bb7d5080-d576-11e9-800f-bdc882ee6063",
+                "valueString": "July",
+                "initialSelected": false
+              },
+              {
+                "id": "bb9d3490-d576-11e9-800f-bdc882ee6063",
+                "valueString": "August",
+                "initialSelected": false
+              },
+              {
+                "id": "bbc07400-d576-11e9-800f-bdc882ee6063",
+                "valueString": "September",
+                "initialSelected": false
+              },
+              {
+                "id": "bbe3b370-d576-11e9-800f-bdc882ee6063",
+                "valueString": "October",
+                "initialSelected": false
+              },
+              {
+                "id": "bc0aea80-d576-11e9-800f-bdc882ee6063",
+                "valueString": "November",
+                "initialSelected": false
+              },
+              {
+                "id": "bc366750-d576-11e9-800f-bdc882ee6063",
+                "valueString": "December",
+                "initialSelected": false
+              }
+            ]
+          }
+        ],
+        "enableWhen": [],
+        "enableBehavior": "all"
       },
       {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106145",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "106145",
-          "meta": {
-            "versionId": "1",
-            "lastUpdated": "2019-08-02T08:10:12.844+00:00"
+        "linkId": "dc76c820-d576-11e9-800f-bdc882ee6063",
+        "required": false,
+        "text": "Medical History",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "e792b700-d576-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Have you ever had any of the following?",
+            "type": "choice",
+            "repeats": true,
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "e0215990-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Frequent headaches",
+                "initialSelected": false
+              },
+              {
+                "id": "e8774aa0-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Hearing problems",
+                "initialSelected": false
+              },
+              {
+                "id": "e8b90e90-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Glaucoma",
+                "initialSelected": false
+              },
+              {
+                "id": "e98c1600-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Cancer",
+                "initialSelected": false
+              },
+              {
+                "id": "e9e29a70-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Asthma",
+                "initialSelected": false
+              },
+              {
+                "id": "ea1988f0-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Diabetes",
+                "initialSelected": false
+              },
+              {
+                "id": "ea5a6280-d576-11e9-800f-bdc882ee6063",
+                "valueString": "Arthritis",
+                "initialSelected": false
+              }
+            ]
           },
-          "title": "@artezio How are you today",
-          "item": [
-            {
-              "linkId": "6c577520-b4fc-11e9-b17a-e547f24094fd",
-              "text": "How many cups of coffe did you drink this morning?",
-              "type": "decimal",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false
-            },
-            {
-              "linkId": "a24d8b60-b4fc-11e9-b17a-e547f24094fd",
-              "text": "What exersizes did you do this morning?",
-              "type": "choice",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": true,
-              "answerOption": [
-                {
-                  "id": "6ad6efa1-b4fc-11e9-b17a-e547f24094fd",
-                  "valueString": "push ups"
-                },
-                {
-                  "id": "a316ced0-b4fc-11e9-b17a-e547f24094fd",
-                  "valueString": "squats"
-                },
-                {
-                  "id": "a37b0ee0-b4fc-11e9-b17a-e547f24094fd",
-                  "valueString": " pull-ups"
-                },
-                {
-                  "id": "a3dc8fd0-b4fc-11e9-b17a-e547f24094fd",
-                  "valueString": "watching TV"
-                }
-              ]
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
+          {
+            "linkId": "01096c10-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Other medical problems",
+            "type": "text",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          }
+        ],
+        "enableWhen": [],
+        "enableBehavior": "all"
       },
       {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106146",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "106146",
-          "meta": {
-            "versionId": "1",
-            "lastUpdated": "2019-08-02T08:24:58.905+00:00"
+        "linkId": "096a0b80-d577-11e9-800f-bdc882ee6063",
+        "required": false,
+        "text": "List of the medications that you take",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "1912fc90-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
           },
-          "title": "@artezio thyroid cancer",
-          "item": [
-            {
-              "linkId": "d7e0a4a0-b4fd-11e9-bd1c-b97979800e8c",
-              "text": "When where you diagnosted with cancer",
-              "type": "dateTime",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false
-            },
-            {
-              "linkId": "fec1d700-b4fe-11e9-bd1c-b97979800e8c",
-              "text": "What is you name?",
-              "type": "string",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
+          {
+            "linkId": "19f85380-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "1ab0a700-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "1b83d580-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "1c3c2900-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "1cf82600-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "1db2ea80-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "1f2f9f70-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "21b6bf80-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Attach list if necessary",
+            "type": "attachment",
+            "repeats": false,
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          }
+        ],
+        "enableWhen": [],
+        "enableBehavior": "all"
       },
       {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106227",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "106227",
-          "meta": {
-            "versionId": "1",
-            "lastUpdated": "2019-08-02T08:37:28.824+00:00"
-          },
-          "title": "@artezio Subscribe on hospital news",
-          "item": [
-            {
-              "linkId": "bee35df0-b500-11e9-8b87-bdd5e6360072",
-              "text": "Yor name",
-              "type": "string",
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false
-            },
-            {
-              "linkId": "ab82bc10-b500-11e9-8b87-bdd5e6360072",
-              "text": "Magazin \"Myrzilka\"",
-              "type": "boolean",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false
-            },
-            {
-              "linkId": "b7a2ad70-b500-11e9-8b87-bdd5e6360072",
-              "text": "Magazin \"Hostital news\"",
-              "type": "boolean",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
+        "linkId": "0a6b9d00-d577-11e9-800f-bdc882ee6063",
+        "required": false,
+        "text": "Family history",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "3f412810-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Do any of your family members (parents, siblings, children, grandparents) have the following problems?",
+            "type": "choice",
+            "repeats": true,
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "3bca29c0-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Asthma",
+                "initialSelected": false
+              },
+              {
+                "id": "3fe29830-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Emphysema",
+                "initialSelected": false
+              },
+              {
+                "id": "41209670-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Eczema",
+                "initialSelected": false
+              },
+              {
+                "id": "416f2ba0-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Migraine",
+                "initialSelected": false
+              },
+              {
+                "id": "41a41e50-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Food Allergies",
+                "initialSelected": false
+              },
+              {
+                "id": "41cba380-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Drug Allergies",
+                "initialSelected": false
+              }
+            ]
+          }
+        ],
+        "enableWhen": [],
+        "enableBehavior": "all"
       },
       {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106230",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "106230",
-          "meta": {
-            "versionId": "1",
-            "lastUpdated": "2019-08-02T09:52:35.050+00:00"
+        "linkId": "51b1ebb0-d577-11e9-800f-bdc882ee6063",
+        "required": false,
+        "text": "Environmental Survey",
+        "type": "group",
+        "item": [
+          {
+            "linkId": "5cb96830-d577-11e9-800f-bdc882ee6063",
+            "required": true,
+            "text": "How long have you lived in your house/apartments?",
+            "type": "string",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
           },
-          "title": "@artezio Заявка на отпуск",
-          "item": [
-            {
-              "linkId": "2f254470-b50b-11e9-8a53-5d37edebf687",
-              "text": "Дата начала",
-              "type": "date",
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false
-            },
-            {
-              "linkId": "336203c0-b50b-11e9-8a53-5d37edebf687",
-              "text": "Дата окончания",
-              "type": "date",
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false
-            },
-            {
-              "linkId": "39aae6c0-b50b-11e9-8a53-5d37edebf687",
-              "text": "Комментарий",
-              "type": "text",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
-      },
-      {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/106431",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "106431",
-          "meta": {
-            "versionId": "1",
-            "lastUpdated": "2019-08-02T12:14:55.795+00:00"
+          {
+            "linkId": "8cf45c80-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Age of House",
+            "type": "decimal",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
           },
-          "title": "@artezio Прием на работу",
-          "item": [
-            {
-              "linkId": "d22139f0-b51e-11e9-afe4-77e122a993cc",
-              "type": "group",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false,
-              "item": [
-                {
-                  "linkId": "19a44381-b51f-11e9-afe4-77e122a993cc",
-                  "type": "choice",
-                  "enableBehavior": "all",
-                  "required": false,
-                  "repeats": false,
-                  "answerOption": [
-                    {
-                      "id": "19a44380-b51f-11e9-afe4-77e122a993cc",
-                      "valueString": "Option 1"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
-      },
-      {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/141442",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "141442",
-          "meta": {
-            "versionId": "1",
-            "lastUpdated": "2019-08-20T09:31:02.408+00:00"
+          {
+            "linkId": "5a3666d0-d577-11e9-800f-bdc882ee6063",
+            "required": true,
+            "text": "Do you live in",
+            "type": "choice",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "5a3666d1-d577-11e9-800f-bdc882ee6063",
+                "valueString": "City",
+                "initialSelected": false
+              },
+              {
+                "id": "6de96e70-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Suburbs",
+                "initialSelected": false
+              },
+              {
+                "id": "6ead0c90-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Rural area",
+                "initialSelected": false
+              }
+            ]
           },
-          "title": "@artezio-blabla"
-        },
-        "search": {
-          "mode": "match"
-        }
-      },
-      {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/141918",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "141918",
-          "meta": {
-            "versionId": "1",
-            "lastUpdated": "2019-08-20T12:04:24.508+00:00"
+          {
+            "linkId": "994792e0-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Type of home",
+            "type": "open-choice",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "5a60f941-d577-11e9-800f-bdc882ee6063",
+                "valueString": "House",
+                "initialSelected": false
+              },
+              {
+                "id": "95ddb3f0-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Apartments/condo",
+                "initialSelected": false
+              },
+              {
+                "id": "9689ab60-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Houseboat",
+                "initialSelected": false
+              },
+              {
+                "id": "99cb8ff0-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Mobile home",
+                "initialSelected": false
+              },
+              {
+                "id": "97879360-d577-11e9-800f-bdc882ee6063",
+                "initialSelected": false
+              }
+            ]
           },
-          "title": "@artezio-blabla",
-          "description": "hello",
-          "item": [
-            {
-              "linkId": "a51f98c0-c342-11e9-8f1f-798c2efaa6d5",
-              "text": "qqqqq",
-              "type": "string",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false,
-              "initial": [
-                {
-                  "id": "a61b5de0-c342-11e9-8f1f-798c2efaa6d5",
-                  "valueString": "asfd"
-                }
-              ]
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
-      },
-      {
-        "fullUrl": "http://hapi.fhir.org/baseR4/Questionnaire/144141",
-        "resource": {
-          "resourceType": "Questionnaire",
-          "id": "144141",
-          "meta": {
-            "versionId": "1",
-            "lastUpdated": "2019-08-21T14:54:17.187+00:00"
+          {
+            "linkId": "a95168a0-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Type of heating",
+            "type": "open-choice",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "aa5962c0-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Radiant",
+                "initialSelected": false
+              },
+              {
+                "id": "aaab0530-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Forced air",
+                "initialSelected": false
+              },
+              {
+                "id": "aac4a7b0-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Heat pump",
+                "initialSelected": false
+              },
+              {
+                "id": "5a8bb2c0-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Option 1",
+                "initialSelected": false
+              }
+            ]
           },
-          "title": "@artezio-bla",
-          "description": "desc",
-          "item": [
-            {
-              "linkId": "711a76d0-c423-11e9-a4cf-3307285212d6",
-              "text": "qqqqq",
-              "type": "choice",
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false,
-              "answerOption": [
-                {
-                  "id": "711ac4f0-c423-11e9-a4cf-3307285212d6",
-                  "valueString": "Option 1",
-                  "initialSelected": false
-                },
-                {
-                  "id": "726b12b0-c423-11e9-a4cf-3307285212d6",
-                  "valueString": "opt2",
-                  "initialSelected": false
-                },
-                {
-                  "id": "7652ad20-c423-11e9-a4cf-3307285212d6",
-                  "valueString": "opt3",
-                  "initialSelected": true
-                }
-              ]
-            },
-            {
-              "linkId": "7c5d4ea0-c423-11e9-a4cf-3307285212d6",
-              "text": "qqqq2",
-              "type": "boolean",
-              "enableBehavior": "all",
-              "required": true,
-              "repeats": false
-            },
-            {
-              "linkId": "7eb1ed00-c423-11e9-a4cf-3307285212d6",
-              "text": "qqqq3",
-              "type": "time",
-              "enableBehavior": "all",
-              "required": false,
-              "repeats": false,
-              "initial": [
-                {
-                  "id": "820de940-c423-11e9-a4cf-3307285212d6",
-                  "valueTime": "00:00"
-                }
-              ]
-            }
-          ]
-        },
-        "search": {
-          "mode": "match"
-        }
+          {
+            "linkId": "b7d40220-d577-11e9-800f-bdc882ee6063",
+            "required": true,
+            "text": "Do you have pets?",
+            "type": "boolean",
+            "enableWhen": [],
+            "enableBehavior": "all",
+            "initial": []
+          },
+          {
+            "linkId": "c91a2870-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "Check all that apply",
+            "type": "choice",
+            "repeats": true,
+            "enableWhen": [
+              {
+                "id": "da8f9c20-d577-11e9-800f-bdc882ee6063",
+                "question": "b7d40220-d577-11e9-800f-bdc882ee6063",
+                "answerString": true,
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": [],
+            "answerOption": [
+              {
+                "id": "5add7c40-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Cat(s)",
+                "initialSelected": false
+              },
+              {
+                "id": "ca021770-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Dog(s)",
+                "initialSelected": false
+              },
+              {
+                "id": "cab45070-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Bird(s)",
+                "initialSelected": false
+              },
+              {
+                "id": "cb00e9d0-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Rabbit(s)",
+                "initialSelected": false
+              },
+              {
+                "id": "cc865150-d577-11e9-800f-bdc882ee6063",
+                "valueString": "Other",
+                "initialSelected": false
+              }
+            ]
+          },
+          {
+            "linkId": "d71c6e60-d577-11e9-800f-bdc882ee6063",
+            "required": false,
+            "text": "What pet(s) do you have?",
+            "type": "text",
+            "enableWhen": [
+              {
+                "id": "e0ba6fd0-d577-11e9-800f-bdc882ee6063",
+                "question": "b7d40220-d577-11e9-800f-bdc882ee6063",
+                "answerString": true,
+                "operator": "="
+              },
+              {
+                "id": "e45dfc60-d577-11e9-800f-bdc882ee6063",
+                "question": "c91a2870-d577-11e9-800f-bdc882ee6063",
+                "answerString": "Other",
+                "operator": "="
+              }
+            ],
+            "enableBehavior": "all",
+            "initial": []
+          }
+        ],
+        "enableWhen": [],
+        "enableBehavior": "all"
       }
     ]
   }
+]
