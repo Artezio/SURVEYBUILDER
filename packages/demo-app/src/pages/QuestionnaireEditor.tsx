@@ -66,12 +66,11 @@ export class QuestionnaireEditor extends React.Component<QuestionnaireEditorProp
     }
 
     renderButtons() {
-        const { status, mode } = this.props;
-        const primaryButtonText = mode === MODE.creating ? 'Save' : 'Update and Save';
+        const { status } = this.props;
         if (status.loading === STATUS_LOADING.loaded) {
             return <div className="d-flex justify-content-between">
                 <Link to="/" className="btn btn-outline-danger">Cancel</Link>
-                <button onClick={this.onClick.bind(this)} className="btn btn-outline-primary">{primaryButtonText}</button>
+                <button onClick={this.onClick.bind(this)} className="btn btn-outline-primary">Save</button>
             </div>
         }
     }

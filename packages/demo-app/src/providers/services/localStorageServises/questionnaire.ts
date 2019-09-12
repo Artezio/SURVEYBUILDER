@@ -15,7 +15,7 @@ export class QuestionnaireLocalStorageService implements IQuestionnaireService {
             this.questionnaireList = questionnaireList;
         } else {
             let questionnaireList = JSON.parse(JSON.stringify(questionnaires.entry));
-            questionnaireList = questionnaireList.map((entry: any) => entry.resource);
+            questionnaireList = questionnaireList.map((entry: any) => entry.resource);/// because of json structure
             this.questionnaireList = questionnaireList;
             this.save();
         }
