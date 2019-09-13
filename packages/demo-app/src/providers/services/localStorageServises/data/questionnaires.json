@@ -8,7 +8,7 @@
       {
         "linkId": "0dd73730-d557-11e9-8e60-37442f196308",
         "required": false,
-        "text": "General Information",
+        "text": "General Information:",
         "type": "group",
         "item": [
           {
@@ -139,7 +139,7 @@
       {
         "linkId": "16a95d20-d557-11e9-8e60-37442f196308",
         "required": false,
-        "text": "Medical History",
+        "text": "Medical History:",
         "type": "group",
         "item": [
           {
@@ -254,68 +254,13 @@
           {
             "linkId": "3bf51c40-d575-11e9-9c9d-c772f9c7e1e6",
             "required": false,
-            "text": "List of the medications that you take",
+            "text": "Medications:",
             "type": "group",
             "item": [
               {
-                "linkId": "4ce5a880-d575-11e9-9c9d-c772f9c7e1e6",
-                "required": false,
-                "type": "string",
-                "enableWhen": [],
-                "enableBehavior": "all",
-                "initial": []
-              },
-              {
-                "linkId": "4bd91a80-d575-11e9-9c9d-c772f9c7e1e6",
-                "required": false,
-                "type": "string",
-                "enableWhen": [],
-                "enableBehavior": "all",
-                "initial": []
-              },
-              {
-                "linkId": "4a3ef280-d575-11e9-9c9d-c772f9c7e1e6",
-                "required": false,
-                "type": "string",
-                "enableWhen": [],
-                "enableBehavior": "all",
-                "initial": []
-              },
-              {
-                "linkId": "61a7af20-d575-11e9-9c9d-c772f9c7e1e6",
-                "required": false,
-                "type": "string",
-                "enableWhen": [],
-                "enableBehavior": "all",
-                "initial": []
-              },
-              {
-                "linkId": "60d6f1a0-d575-11e9-9c9d-c772f9c7e1e6",
-                "required": false,
-                "type": "string",
-                "enableWhen": [],
-                "enableBehavior": "all",
-                "initial": []
-              },
-              {
-                "linkId": "5fe565b0-d575-11e9-9c9d-c772f9c7e1e6",
-                "required": false,
-                "type": "string",
-                "enableWhen": [],
-                "enableBehavior": "all",
-                "initial": []
-              },
-              {
-                "linkId": "5f0e66a0-d575-11e9-9c9d-c772f9c7e1e6",
-                "required": false,
-                "type": "string",
-                "enableWhen": [],
-                "enableBehavior": "all",
-                "initial": []
-              },
-              {
                 "linkId": "5dec06b0-d575-11e9-9c9d-c772f9c7e1e6",
                 "required": false,
+                "text": "List of the medications that you take",
                 "type": "string",
                 "enableWhen": [],
                 "enableBehavior": "all",
@@ -358,7 +303,7 @@
       {
         "linkId": "24b1a570-d576-11e9-800f-bdc882ee6063",
         "required": false,
-        "text": "General Information",
+        "text": "General Information:",
         "type": "group",
         "item": [
           {
@@ -404,6 +349,7 @@
       {
         "linkId": "5201d5e0-d576-11e9-800f-bdc882ee6063",
         "required": false,
+        "text": "Symptoms:",
         "type": "group",
         "item": [
           {
@@ -637,7 +583,7 @@
       {
         "linkId": "dc76c820-d576-11e9-800f-bdc882ee6063",
         "required": false,
-        "text": "Medical History",
+        "text": "Medical History:",
         "type": "group",
         "item": [
           {
@@ -703,69 +649,14 @@
       {
         "linkId": "096a0b80-d577-11e9-800f-bdc882ee6063",
         "required": false,
-        "text": "List of the medications that you take",
+        "text": "Medications:",
         "type": "group",
         "item": [
           {
-            "linkId": "1912fc90-d577-11e9-800f-bdc882ee6063",
+            "linkId": "4b4dd3c0-d620-11e9-9927-b5e6b8b9ec87",
             "required": false,
-            "type": "string",
-            "enableWhen": [],
-            "enableBehavior": "all",
-            "initial": []
-          },
-          {
-            "linkId": "19f85380-d577-11e9-800f-bdc882ee6063",
-            "required": false,
-            "type": "string",
-            "enableWhen": [],
-            "enableBehavior": "all",
-            "initial": []
-          },
-          {
-            "linkId": "1ab0a700-d577-11e9-800f-bdc882ee6063",
-            "required": false,
-            "type": "string",
-            "enableWhen": [],
-            "enableBehavior": "all",
-            "initial": []
-          },
-          {
-            "linkId": "1b83d580-d577-11e9-800f-bdc882ee6063",
-            "required": false,
-            "type": "string",
-            "enableWhen": [],
-            "enableBehavior": "all",
-            "initial": []
-          },
-          {
-            "linkId": "1c3c2900-d577-11e9-800f-bdc882ee6063",
-            "required": false,
-            "type": "string",
-            "enableWhen": [],
-            "enableBehavior": "all",
-            "initial": []
-          },
-          {
-            "linkId": "1cf82600-d577-11e9-800f-bdc882ee6063",
-            "required": false,
-            "type": "string",
-            "enableWhen": [],
-            "enableBehavior": "all",
-            "initial": []
-          },
-          {
-            "linkId": "1db2ea80-d577-11e9-800f-bdc882ee6063",
-            "required": false,
-            "type": "string",
-            "enableWhen": [],
-            "enableBehavior": "all",
-            "initial": []
-          },
-          {
-            "linkId": "1f2f9f70-d577-11e9-800f-bdc882ee6063",
-            "required": false,
-            "type": "string",
+            "text": "List of the medications that you take",
+            "type": "text",
             "enableWhen": [],
             "enableBehavior": "all",
             "initial": []
@@ -787,7 +678,7 @@
       {
         "linkId": "0a6b9d00-d577-11e9-800f-bdc882ee6063",
         "required": false,
-        "text": "Family history",
+        "text": "Family history:",
         "type": "group",
         "item": [
           {
@@ -839,7 +730,7 @@
       {
         "linkId": "51b1ebb0-d577-11e9-800f-bdc882ee6063",
         "required": false,
-        "text": "Environmental Survey",
+        "text": "Environmental Survey:",
         "type": "group",
         "item": [
           {

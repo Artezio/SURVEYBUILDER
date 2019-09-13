@@ -22,6 +22,6 @@
     "emitDecoratorMetadata": true
   },
   "include": [
-    "src",
+    "src"
   ]
 }
