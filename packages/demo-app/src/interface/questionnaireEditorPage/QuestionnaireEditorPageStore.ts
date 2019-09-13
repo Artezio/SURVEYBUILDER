@@ -1,14 +1,14 @@
 import * as Models from '@art-forms/models';
 
-type QuestionnaireEditorStatus = {
+type QuestionnaireEditorPageStatus = {
     loading?: string;
     saving?: string;
     updating?: string;
 }
 
-export interface QuestionnaireEditorStore {
+export interface QuestionnaireEditorPageStore {
     mode?: string;
-    status: QuestionnaireEditorStatus;
+    status: QuestionnaireEditorPageStatus;
     questionnaire?: any;
     questionnaireModel?: Models.Questionnaire;
 }

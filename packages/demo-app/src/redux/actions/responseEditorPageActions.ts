@@ -4,6 +4,8 @@ import { createActionAsync } from "./actionCreators";
 import { ACTIONS } from "../../constants/responseEditorPage";
 import { createAction } from "redux-actions";
 import { questionnaireResponseConverter } from '@art-forms/fhir-converter';
+import { Store } from '../../interface/Store';
+import { MODE } from '../../constants/responseEditorPage';
 
 export const responseEditorPageActions = {
     loadResponseById: createActionAsync(
@@ -16,9 +18,16 @@ export const responseEditorPageActions = {
     ),
     saveResponse: createActionAsync(
         [ACTIONS.SAVE_RESPONSE_SAVING, ACTIONS.SAVE_RESPONSE_SAVED, ACTIONS.SAVE_RESPONSE_ERROR],
-        (response: any) => {
+        (response: any, getState: () => Store) => {
             const mappedResponse = questionnaireResponseConverter.fromModel(response);
-            return responseProvider.putResponse(mappedResponse)
+            const { responseEditorPage } = getState();
+            console.log('LOG', getState());
+            if (responseEditorPage.mode === MODE.creating) {
+                return responseProvider.putResponse(mappedResponse)
+            }
+            if (responseEditorPage.mode === MODE.updating) {
+                return responseProvider.updateResponse(mappedResponse)
+            }
         }
     ),
     resetSavingStatus: createAction(ACTIONS.RESET_SAVING_STATUS),

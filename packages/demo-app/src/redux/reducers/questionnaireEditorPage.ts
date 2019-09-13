@@ -1,12 +1,12 @@
 import * as Models from '@art-forms/models';
 import { ACTIONS, STATUS_LOADING, MODE, STATUS_UPDATING, STATUS_SAVING } from '../../constants/questionnaireEditorPage';
-import { QuestionnaireEditorStore } from '../../interface/questionnaireEditorPage/QuestionnaireEditorStore';
+import { QuestionnaireEditorPageStore } from '../../interface/questionnaireEditorPage/QuestionnaireEditorPageStore';
 import { Action } from '../../interface/Action';
 import { questionnaireConverter } from '@art-forms/fhir-converter';
 
-const INITIAL_STATE: QuestionnaireEditorStore = { status: {} };
+const INITIAL_STATE: QuestionnaireEditorPageStore = { status: {} };
 
-export const questionnaireEditorPage = (state: QuestionnaireEditorStore = INITIAL_STATE, action: Action<ACTIONS, any>): QuestionnaireEditorStore => {
+export const questionnaireEditorPage = (state: QuestionnaireEditorPageStore = INITIAL_STATE, action: Action<ACTIONS, any>): QuestionnaireEditorPageStore => {
     switch (action.type) {
         case ACTIONS.LOAD_QUESTIONNAIRE_FETCHING: {
             return {

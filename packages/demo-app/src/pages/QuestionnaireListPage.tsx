@@ -5,10 +5,10 @@ import { questionnaireListPageActions } from '../redux/actions/questionnaireList
 import { QuestionnaireList } from '../components/questionnaireListPage/QuestionnaireList';
 import { STATUS_LOADING, STATUS_DELETING } from '../constants/questionnaireListPage';
 import { Spinner } from '../components/Spinner';
-import { QuestionnaireListProps } from '../interface/questionnaireListPage/QuestionnaireListProps';
+import { QuestionnaireListPageProps } from '../interface/questionnaireListPage/QuestionnaireListPageProps';
 import LoadQuestionnaireListError from '../components/questionnaireListPage/LoadQuestionnaireListError';
 
-export class QuestionnaireListPage extends React.Component<QuestionnaireListProps> {
+export class QuestionnaireListPage extends React.Component<QuestionnaireListPageProps> {
 
     componentWillMount() {
         const { dispatch } = this.props;

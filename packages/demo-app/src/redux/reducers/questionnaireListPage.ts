@@ -1,11 +1,11 @@
 import { ACTIONS, STATUS_LOADING } from '../../constants/questionnaireListPage';
-import { QuestionnaireListStore } from '../../interface/questionnaireListPage/QuestionnaireListStore';
+import { QuestionnaireListPageStore } from '../../interface/questionnaireListPage/QuestionnaireListPageStore';
 import { Action } from '../../interface/Action';
 import { STATUS_DELETING } from '../../constants/questionnaireListPage';
 
-const INITIAL_STATE: QuestionnaireListStore = { status: {} };
+const INITIAL_STATE: QuestionnaireListPageStore = { status: {} };
 
-export const questionnaireListPage = (state: QuestionnaireListStore = INITIAL_STATE, action: Action<ACTIONS, any>): QuestionnaireListStore => {
+export const questionnaireListPage = (state: QuestionnaireListPageStore = INITIAL_STATE, action: Action<ACTIONS, any>): QuestionnaireListPageStore => {
     switch (action.type) {
         case ACTIONS.LOAD_QUESTIONNAIRE_LIST_FETCHING: {
             return {

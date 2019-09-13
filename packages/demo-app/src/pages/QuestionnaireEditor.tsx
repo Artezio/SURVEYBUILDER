@@ -1,19 +1,18 @@
 import * as React from 'react';
-import * as Models from '@art-forms/models';
 import { QuestionnaireDesigner } from '@art-forms/designer';
 import { Link } from 'react-router-dom';
 import { questionnaireEditorPageActions } from '../redux/actions/questionnaireEditorPageActions';
 import { connect } from 'react-redux';
 import { STATUS_LOADING, MODE, STATUS_SAVING, STATUS_UPDATING } from '../constants/questionnaireEditorPage';
 import { Spinner } from '../components/Spinner';
-import { QuestionnaireEditorProps } from '../interface/questionnaireEditorPage/QuestionnaireEditorProps';
+import { QuestionnaireEditorPageProps } from '../interface/questionnaireEditorPage/QuestionnaireEditorPageProps';
 import { QuestionnaireLoadError } from '../components/questionnaireEditPage/QuestionnaireLoadError';
 import { questionnaireConverter } from '@art-forms/fhir-converter';
 import { QuestionnaireSavedPage } from '../components/questionnaireEditPage/QuestionnaireSavedPage';
 import { QuestionnaireUpdatedPage } from '../components/questionnaireEditPage/QuestionnaireUpadatedPage';
 
 
-export class QuestionnaireEditor extends React.Component<QuestionnaireEditorProps> {
+export class QuestionnaireEditor extends React.Component<QuestionnaireEditorPageProps> {
 
     componentWillMount() {
         const { match, dispatch } = this.props;

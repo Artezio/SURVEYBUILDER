@@ -1,8 +1,12 @@
-import { QuestionnaireListStore } from './questionnaireListPage/QuestionnaireListStore';
-import { QuestionnaireEditorStore } from './questionnaireEditorPage/QuestionnaireEditorStore';
+import { QuestionnaireListPageStore } from './questionnaireListPage/QuestionnaireListPageStore';
+import { QuestionnaireEditorPageStore } from './questionnaireEditorPage/QuestionnaireEditorPageStore';
+import { ResponseEditorPageStore } from './responseERditorPage/ResponseEditorPageStore';
+import { ResponseListPageStore } from './reponseListPage/ResponseListPageStore';
 
 
 export interface Store {
-    questionnaireList: QuestionnaireListStore;
-    questionnaireEditor: QuestionnaireEditorStore;
+    questionnaireListPage: QuestionnaireListPageStore;
+    questionnaireEditorPage: QuestionnaireEditorPageStore;
+    responseEditorPage: ResponseEditorPageStore;
+    responseListPage: ResponseListPageStore;
 }

@@ -7,7 +7,7 @@
             {
                 "id": "8f6631c0-d575-11e9-a346-ed8aafeddd8d",
                 "linkId": "0dd73730-d557-11e9-8e60-37442f196308",
-                "text": "General Information",
+                "text": "General Information:",
                 "answer": [],
                 "item": [
                     {
@@ -127,7 +127,7 @@
             {
                 "id": "8f66f511-d575-11e9-a346-ed8aafeddd8d",
                 "linkId": "16a95d20-d557-11e9-8e60-37442f196308",
-                "text": "Medical History",
+                "text": "Medical History:",
                 "answer": [],
                 "item": [
                     {
@@ -168,54 +168,13 @@
                     {
                         "id": "8f676a40-d575-11e9-a346-ed8aafeddd8d",
                         "linkId": "3bf51c40-d575-11e9-9c9d-c772f9c7e1e6",
-                        "text": "List of the medications that you take",
+                        "text": "Medications:",
                         "answer": [],
                         "item": [
                             {
-                                "id": "8f676a41-d575-11e9-a346-ed8aafeddd8d",
-                                "linkId": "4ce5a880-d575-11e9-9c9d-c772f9c7e1e6",
-                                "answer": [],
-                                "item": []
-                            },
-                            {
-                                "id": "8f679150-d575-11e9-a346-ed8aafeddd8d",
-                                "linkId": "4bd91a80-d575-11e9-9c9d-c772f9c7e1e6",
-                                "answer": [],
-                                "item": []
-                            },
-                            {
-                                "id": "8f67b860-d575-11e9-a346-ed8aafeddd8d",
-                                "linkId": "4a3ef280-d575-11e9-9c9d-c772f9c7e1e6",
-                                "answer": [],
-                                "item": []
-                            },
-                            {
-                                "id": "8f67b861-d575-11e9-a346-ed8aafeddd8d",
-                                "linkId": "61a7af20-d575-11e9-9c9d-c772f9c7e1e6",
-                                "answer": [],
-                                "item": []
-                            },
-                            {
-                                "id": "8f67df70-d575-11e9-a346-ed8aafeddd8d",
-                                "linkId": "60d6f1a0-d575-11e9-9c9d-c772f9c7e1e6",
-                                "answer": [],
-                                "item": []
-                            },
-                            {
-                                "id": "8f680680-d575-11e9-a346-ed8aafeddd8d",
-                                "linkId": "5fe565b0-d575-11e9-9c9d-c772f9c7e1e6",
-                                "answer": [],
-                                "item": []
-                            },
-                            {
-                                "id": "8f682d90-d575-11e9-a346-ed8aafeddd8d",
-                                "linkId": "5f0e66a0-d575-11e9-9c9d-c772f9c7e1e6",
-                                "answer": [],
-                                "item": []
-                            },
-                            {
                                 "id": "8f6854a0-d575-11e9-a346-ed8aafeddd8d",
                                 "linkId": "5dec06b0-d575-11e9-9c9d-c772f9c7e1e6",
+                                "text": "List of the medications that you take",
                                 "answer": [],
                                 "item": []
                             },
