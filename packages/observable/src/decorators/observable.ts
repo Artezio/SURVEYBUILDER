@@ -1,4 +1,4 @@
-import 'reflect-metadata';
+import * as reflectMetadata from 'reflect-metadata';
 import { IDisposable, IObservable } from '../interfaces';
 
 const subscribe = Symbol('subscribe');

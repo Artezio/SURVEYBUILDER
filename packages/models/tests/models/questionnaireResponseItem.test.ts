@@ -67,7 +67,4 @@ describe('questionnaire response item', () => {
         expect(responseItem.answers[0].id).to.be.equal("two_opt");
         expect(responseItem.answers[0].value).to.be.equal("blabla");
     })
-    it("answers from existing response passed", () => {
-
-    })
 })
