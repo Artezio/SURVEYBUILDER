@@ -6,4 +6,5 @@ export interface IMultiChoiceItem extends IQuestionItem<any> {
     type: MULTI_CHOICE;
     options?: IAnswerOption[];
 }
+
 export default IMultiChoiceItem;
