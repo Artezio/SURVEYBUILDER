@@ -15,5 +15,10 @@
     "jsx": "react",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  }
+  },
+  "exclude": [
+    "tests",
+    "build",
+    "bundle"
+  ]
 }

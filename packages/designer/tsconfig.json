@@ -18,7 +18,8 @@
     "experimentalDecorators": true
   },
   "exclude": [
-    "test",
-    "build"
+    "tests",
+    "build",
+    "bundle"
   ]
 }

@@ -1,10 +1,11 @@
 const path = require('path');
+const pathToSrc = path.resolve(__dirname, "./src");
 
 module.exports = {
-    mode: 'production',
+    mode: "development",
     entry: './src/index.ts',
     resolve: {
-        extensions: [".ts"]
+        extensions: [".ts", ".js"]
     },
     output: {
         path: path.resolve(__dirname, './bundle'),
@@ -13,24 +14,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/, use: [
-                    // {
-                    //     loader: 'babel-loader',
-                    //     options: {
-                    //         presets: [
-                    //             // '@babel/preset-env',
-                    //             '@babel/preset-typescript'
-                    //         ],
-                    //         plugins: [
-                    //             ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                    //             ["@babel/plugin-proposal-class-properties", { "loose": true }]
-                    //         ]
-                    //     }
-                    // },
-                    {
-                        loader: 'ts-loader'
-                    }
-                ]
+                test: /\.ts$/,
+                loader: 'ts-loader',
+                include: pathToSrc,
+                options: {
+                    transpileOnly: true
+                }
             }
         ]
     },

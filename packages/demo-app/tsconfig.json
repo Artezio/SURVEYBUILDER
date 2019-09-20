@@ -20,11 +20,9 @@
   },
   "exclude": [
     "tests",
-    "build"
-  ],
-  "include": [
-    "src",
-    "node_modules/@art-forms/**/*.ts",
-    "node_modules/@art-forms/**/*.tsx"
+    "build",
+    "config",
+    "public",
+    "scripts"
   ]
 }

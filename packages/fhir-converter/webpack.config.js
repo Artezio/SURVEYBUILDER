@@ -1,10 +1,13 @@
 const path = require('path');
+const pathToArtForms = path.resolve(__dirname, "./../../node_modules/@art-forms");
+const pathToSrc = path.resolve(__dirname, "./src");
 
 module.exports = {
-    mode: 'production',
+    mode: "development",
     entry: './src/index.ts',
     resolve: {
-        extensions: [".ts", ".js"]
+        extensions: [".ts", ".tsx", ".js", ".jsx"],
+        symlinks: false
     },
     output: {
         path: path.resolve(__dirname, './bundle'),
@@ -13,24 +16,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/, use: [
-                    // {
-                    //     loader: 'babel-loader',
-                    //     options: {
-                    //         presets: [
-                    //             // '@babel/preset-env',
-                    //             '@babel/preset-typescript'
-                    //         ],
-                    //         plugins: [
-                    //             ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                    //             ["@babel/plugin-proposal-class-properties", { "loose": true }]
-                    //         ]
-                    //     }
-                    // },
-                    {
-                        loader: 'ts-loader'
-                    }
-                ]
+                test: /\.ts$/,
+                loader: 'ts-loader',
+                include: [pathToArtForms, pathToSrc],
+                options: {
+                    transpileOnly: true
+                }
             }
         ]
     },

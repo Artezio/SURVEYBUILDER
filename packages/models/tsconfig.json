@@ -17,5 +17,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noEmit": true
-  }
+  },
+  "exclude": [
+    "tests",
+    "build",
+    "bundle"
+  ]
 }
