@@ -10,13 +10,11 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "preserve",
-    "noEmit": true,
+    "jsx": "react",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
@@ -25,6 +23,8 @@
     "build"
   ],
   "include": [
-    "src"
+    "src",
+    "node_modules/@art-forms/**/*.ts",
+    "node_modules/@art-forms/**/*.tsx"
   ]
 }

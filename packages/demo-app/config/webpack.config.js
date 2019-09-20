@@ -252,6 +252,7 @@ module.exports = function (webpackEnv) {
         // It is guaranteed to exist because we tweak it in `env.js`
         process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
       ),
+      symlinks: false,
       // These are the reasonable defaults supported by the Node ecosystem.
       // We also include JSX as a common component filename extension to support
       // some tools, although we do not recommend using it, see:
@@ -329,32 +330,36 @@ module.exports = function (webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: paths.appSrc,
-              loader: require.resolve('babel-loader'),
+              include: [paths.appSrc, path.resolve(__dirname, "./../../../node_modules/@art-forms")],
+              loader: require.resolve('ts-loader'),
               options: {
-                customize: require.resolve(
-                  'babel-preset-react-app/webpack-overrides'
-                ),
+                transpileOnly: true
+              }
+              //   loader: require.resolve('babel-loader'),
+              //   options: {
+              //     customize: require.resolve(
+              //       'babel-preset-react-app/webpack-overrides'
+              //     ),
 
-                plugins: [
-                  [
-                    require.resolve('babel-plugin-named-asset-import'),
-                    {
-                      loaderMap: {
-                        svg: {
-                          ReactComponent: '@svgr/webpack?-svgo![path]',
-                        },
-                      },
-                    },
-                  ],
-                ],
-                // This is a feature of `babel-loader` for webpack (not Babel itself).
-                // It enables caching results in ./node_modules/.cache/babel-loader/
-                // directory for faster rebuilds.
-                cacheDirectory: true,
-                cacheCompression: isEnvProduction,
-                compact: isEnvProduction,
-              },
+              //     plugins: [
+              //       [
+              //         require.resolve('babel-plugin-named-asset-import'),
+              //         {
+              //           loaderMap: {
+              //             svg: {
+              //               ReactComponent: '@svgr/webpack?-svgo![path]',
+              //             },
+              //           },
+              //         },
+              //       ],
+              //     ],
+              //     // This is a feature of `babel-loader` for webpack (not Babel itself).
+              //     // It enables caching results in ./node_modules/.cache/babel-loader/
+              //     // directory for faster rebuilds.
+              //     cacheDirectory: true,
+              //     cacheCompression: isEnvProduction,
+              //     compact: isEnvProduction,
+              //   },
             },
             // Process any JS outside of the app with Babel.
             // Unlike the application JS, we only compile the standard ES features.

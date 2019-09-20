@@ -14,7 +14,6 @@
     "moduleResolution": "node",
     "jsx": "react",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noEmit": true
+    "emitDecoratorMetadata": true
   }
 }

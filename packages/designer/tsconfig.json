@@ -13,12 +13,12 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "preserve",
-    "noEmit": true,
+    "jsx": "react",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
   "exclude": [
-    "test"
+    "test",
+    "build"
   ]
 }

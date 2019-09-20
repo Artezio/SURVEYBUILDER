@@ -2,11 +2,10 @@
   "name": "@art-forms/designer",
   "version": "0.1.7",
   "license": "MIT",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./src/index.ts",
   "dependencies": {
-    "@art-forms/observable": "^1.0.0",
     "@art-forms/models": "^0.1.6",
+    "@art-forms/observable": "^1.0.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "bootstrap": "^4.3.1",
     "bootstrap-scss": "4.3.1",
@@ -18,7 +17,11 @@
     "popper.js": "^1.14.7",
     "react": "16.8.3",
     "sortablejs": "^1.9.0",
-    "uuid": "3.3.2"
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.1.0",
+    "uuid": "3.3.2",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.3",
@@ -41,7 +44,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "tsc -p tsconfig.build.json",
+    "transform": "tsc -p tsconfig.build.json",
+    "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -1,15 +1,18 @@
 {
   "name": "@art-forms/fhir-converter",
   "version": "1.0.0",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "transform": "tsc -p tsconfig.build.json",
+    "build": "webpack",
     "test": "ts-mocha tests/**/*.test.ts"
   },
   "dependencies": {
-    "@art-forms/models": "^0.1.6"
+    "@art-forms/models": "^0.1.6",
+    "ts-loader": "^6.1.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
   },
   "devDependencies": {
     "@types/expect": "^1.20.4",

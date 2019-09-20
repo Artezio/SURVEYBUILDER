@@ -1,12 +1,12 @@
 {
   "name": "@art-forms/models",
   "version": "0.1.6",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "test": "ts-mocha tests/**/*.test.ts"
+    "build": "webpack",
+    "transform": "tsc -p tsconfig.build.json",
+    "test": "ts-mocha --project ./tsconfig.json  tests/**/*.test.ts"
   },
   "files": [
     "./Uml-diagram-models.JPG",
@@ -15,7 +15,10 @@
   "dependencies": {
     "@art-forms/observable": "^1.0.0",
     "json-logic-js": "^1.2.2",
-    "uuid": "^3.3.2"
+    "ts-loader": "^6.1.0",
+    "uuid": "^3.3.2",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
   },
   "devDependencies": {
     "@types/expect": "^1.20.4",

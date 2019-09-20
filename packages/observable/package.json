@@ -2,11 +2,11 @@
   "name": "@art-forms/observable",
   "version": "1.0.0",
   "author": "ddanteyakov",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "./src/index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "webpack",
+    "transform": "tsc -p tsconfig.build.json",
     "test": "ts-mocha tests/**/*.test.ts"
   },
   "devDependencies": {
@@ -14,10 +14,19 @@
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "ts-mocha": "^6.0.0",
+    "ts-node": "^8.0.3",
     "typescript": "^3.4.1",
-    "ts-node": "^8.0.3"
+    "webpack-cli": "^3.3.8"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.13"
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-typescript": "^7.6.0",
+    "babel-loader": "^8.0.6",
+    "reflect-metadata": "^0.1.13",
+    "ts-loader": "^6.1.0",
+    "webpack": "^4.40.1"
   }
 }

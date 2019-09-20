@@ -1,18 +1,18 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
         "module": "commonjs",
         "target": "es6",
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "moduleResolution": "node",
-        "jsx": "react",
         "lib": [
             "es6",
             "dom",
             "es2015"
         ],
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "jsx": "react",
+        "experimentalDecorators": true,
         "emitDecoratorMetadata": true
     }
 }

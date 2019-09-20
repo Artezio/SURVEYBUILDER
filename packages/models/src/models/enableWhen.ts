@@ -1,6 +1,6 @@
 import IEnableWhen from "../interfaces/IEnableWhen";
 import { EnableWhenOperator, EQUAL } from "../constants/enableWhenOperators";
-import uuid from 'uuid/v1';
+import uuid from 'uuid/v1.js';
 import IEnableWhenCollection from "../interfaces/IEnableWhenCollection";
 
 export class EnableWhen implements IEnableWhen {
