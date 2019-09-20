@@ -23,15 +23,4 @@ We created demo app to show you how our components can be used. To see how it wo
 
 > $ yarn
 
-Demo app uses all packages, they are linked with relative paths.
-
-```
-!!!BEWARE You have to build all packages before launching the demo app!
-```
-
-To build all packages run following command in the root dir(art-forms/):
-> $ yarn build
-
-&nbsp;
-# More details about demo-app
-[README.md](https://github.com/Artezio/ART-FORMS/blob/master/packages/demo-app/README.md "@art-forms/demo-app")
+To know how to run it follow the link [README.md](https://github.com/Artezio/ART-FORMS/blob/master/packages/demo-app/README.md "@art-forms/demo-app").

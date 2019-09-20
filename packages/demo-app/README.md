@@ -40,18 +40,7 @@ To run demo app, you need the following prerequisites:
 &nbsp;
 # Usage
 
-```
-!!!BEWARE Before you run the app make sure that you have built all packages!
-```
-
-To build all packages, go to the packages root dir(art-forms/) and run:
-> $ yarn build
-
-## Run app
 To run app type following in the root directory(art-forms/packages/demo-app/):
 >$ yarn start
 
-## Port
-After you run app, webpack devServer will be launched on 3000 port.
-
-http://localhost:3000/
+After you run app, webpack devServer will be launched on 3000 port http://localhost:3000/.
