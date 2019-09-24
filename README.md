@@ -19,7 +19,11 @@ Art-forms is a set of typescript packages designed for creating and completing  
 
 &nbsp;
 # What does it look like
-We created demo app to show you how our components can be used. To see how it works first of all clone the repository. Then you have to download all dependencies, to do it run following command in the root dir(art-forms/): 
+We created demo app to show you how our components can be used.
+## Demo in sandbox
+https://codesandbox.io/s/infallible-banach-kkvdj
+## Launch on your computer
+First clone the repository. Then you are to download all dependencies, to do it run following command in the root dir(art-forms/): 
 
 > $ yarn
 
