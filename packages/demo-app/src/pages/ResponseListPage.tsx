@@ -45,10 +45,12 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
         const { match, status, questionnaire } = this.props;
         const questionnaireId = match && match.params.questionnaireId;
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
-            return questionnaire && <div className="row">
-                <h1 className="col-6">{questionnaire.title || 'Untitled Questionnaire'}</h1>
-                <div className="col d-flex align-items-center">
-                    <Link to={`/questionnaire/${questionnaireId}/response`} className="btn btn-outline-success"><i className="fas fa-play"></i></Link>
+            return questionnaire && <div>
+                <h2>{questionnaire.title || 'Untitled Questionnaire'}</h2>
+                <div className="d-flex justify-content-center">
+                    <Link className="btn btn-outline-secondary" to={`/questionnaire/${questionnaireId}/response`} title="Start questionnaire">
+                        <i className="fas fa-play"></i>
+                        </Link>
                 </div>
             </div>
         }
@@ -58,7 +60,9 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
     }
 
     render() {
-        return <div>
+        return <div className="container">
+            <h1>List of responses</h1>
+            <hr />
             {this.renderSpinner()}
             {this.renderHeadLine()}
             {this.renderResponseList()}

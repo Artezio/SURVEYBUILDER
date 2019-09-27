@@ -5,18 +5,18 @@ import { Link } from 'react-router-dom';
 export const ResponseInstance = (props: ResponseInstanceProps) => {
     const { response } = props;
     let date = response.meta && response.meta.lastUpdated;
-    date = new Date(date).toLocaleString();
+    date = date ? new Date(date).toLocaleString() : 'Response time not set';
     return <li className="list-group-item">
-        <div className="row">
-            <div className="col-4 d-flex align-items-center">
-                <span>{date}</span>
+        <div className="d-flex justify-content-between">
+            <div className="d-flex align-items-center">
+                <h5><span className="font-italic">Answered at: </span>{date}</h5>
             </div>
-            <div className="col">
-                <div className="d-flex justify-content-end">
-                    <Link to={`/questionnaire/${response.questionnaire.slice(14)}/response/${response.id}`} className="btn btn-outline-success">
-                        <i className="fas fa-play"></i>
-                    </Link>
-                </div>
+            <div className="d-flex justify-content-end">
+                <Link className="btn btn-outline-secondary"
+                    to={`/questionnaire/${response.questionnaire.slice(14)}/response/${response.id}`}
+                    title="Edit response">
+                    <i className="fas fa-pencil-alt"></i>
+                </Link>
             </div>
         </div>
     </li>

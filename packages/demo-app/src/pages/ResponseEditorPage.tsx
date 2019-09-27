@@ -57,6 +57,8 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
 
     render() {
         return <div className="container">
+            <h1>Questionnaire Player</h1>
+            <hr/>
             {this.renderSpinner()}
             {this.renderQuestionnairePlayer()}
         </div>

@@ -13,15 +13,20 @@ export const QuestionnaireInstance = (props: any) => {
             })
     }
 
+    const buttonClass = 'btn btn-outline-secondary';
+
     return <li className="list-group-item">
-        <div className="row justify-content-between">
-            <div className="col">
-                <Link className="btn btn-link" to={`/questionnaire/${questionnaire.id}`}>{questionnaire.title || 'Untitled Questionnaire'}</Link>
-            </div>
-            <div className="col d-flex justify-content-around">
-                <Link to={`/responses/${questionnaire.id}`} className="btn btn-link">Responses</Link>
-                <button className="btn btn-outline-danger" onClick={deleteQuestionnaire}><i className="fas fa-trash"></i></button>
-                <Link to={`questionnaire/${questionnaire.id}/response`} className="btn btn-outline-success"><i className="fas fa-play"></i></Link>
+        <div className="d-flex justify-content-between">
+            <h4>{questionnaire.title || 'Untitled Questionnaire'}</h4>
+            <div className="btn-toolbar">
+                <div className="btn-group mr-2">
+                    <Link className={buttonClass} to={`/responses/${questionnaire.id}`}>Responses</Link>
+                </div>
+                <div className="btn-group">
+                    <button className={buttonClass} onClick={deleteQuestionnaire}><i className="fas fa-trash"></i></button>
+                    <Link className={buttonClass} to={`/questionnaire/${questionnaire.id}`}><i className="fas fa-pencil-alt"></i></Link>
+                    <Link className={buttonClass} to={`questionnaire/${questionnaire.id}/response`}><i className="fas fa-play"></i></Link>
+                </div>
             </div>
         </div>
     </li>

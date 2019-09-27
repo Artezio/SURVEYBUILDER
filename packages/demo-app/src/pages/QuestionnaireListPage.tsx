@@ -38,15 +38,13 @@ export class QuestionnaireListPage extends React.Component<QuestionnaireListPage
     render() {
         return <div className="container">
             {this.renderSpinner()}
-            <div className="row justify-content-end mb-3">
-                <div className="col">
-                    <Link to="/questionnaire" className="btn btn-outline-secondary">Create new Questionnaire</Link>
-                </div>
+            <h1>Questionnaire List</h1>
+            <hr/>
+            <div className="d-flex justify-content-start mb-3">
+                <Link to="/questionnaire" className="btn btn-outline-secondary">Create new Questionnaire</Link>
             </div>
-            <div className="row">
-                <div className="col">
-                    {this.renderQuestionnaireList()}
-                </div>
+            <div>
+                {this.renderQuestionnaireList()}
             </div>
         </div>
     }

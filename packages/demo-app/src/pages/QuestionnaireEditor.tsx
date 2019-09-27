@@ -76,6 +76,8 @@ export class QuestionnaireEditor extends React.Component<QuestionnaireEditorPage
 
     render() {
         return <div className="container">
+            <h1>Questionnaire Designer</h1>
+            <hr />
             {this.renderSpinner()}
             {this.renderQuestionnaireDesigner()}
             {this.renderButtons()}

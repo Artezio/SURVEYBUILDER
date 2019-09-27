@@ -6,48 +6,74 @@ import ResponseListPage from '../pages/ResponseListPage';
 import ResponseEditorPage from '../pages/ResponseEditorPage';
 import PageNotFound from '../pages/PageNotFound';
 
-export class MainLayout extends React.Component {
-    darkThemeLink: HTMLLinkElement;
+type Theme = { id: number, node: HTMLLinkElement, name: string };
+interface Props {
+    themes?: { href: string, name: string }[];
+}
+export class MainLayout extends React.Component<Props> {
+    themes: Theme[];
+    currentThemeLink?: HTMLLinkElement;
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
-        this.darkThemeLink = document.createElement('link');
-        this.darkThemeLink.setAttribute('rel', 'stylesheet');
-        this.darkThemeLink.setAttribute('type', 'text/css');
-        this.darkThemeLink.setAttribute('href', 'https://bootswatch.com/4/cyborg/bootstrap.css');
-    }
-
-    toggleTheme(e: React.ChangeEvent<HTMLInputElement>) {
-        if (e.target.checked) {
-            this.addDarkTheme();
+        this.themes;
+        if (Array.isArray(props.themes)) {
+            this.themes = props.themes.map((theme, i) => this.prepareLinkForTheme(theme.href, i + 1, theme.name));
         } else {
-            this.removeDarkTheme();
+            this.themes = [];
         }
     }
 
-    addDarkTheme() {
-        document.body.appendChild(this.darkThemeLink);
+    prepareLinkForTheme(href: string, index, name): Theme {
+        const link = document.createElement('link');
+        link.setAttribute('type', 'text/css');
+        link.setAttribute('rel', 'stylesheet');
+        link.setAttribute('href', href);
+        return { id: index, node: link, name: name };
     }
 
-    removeDarkTheme() {
-        document.body.removeChild(this.darkThemeLink);
+    renderThemeList() {
+        return this.themes.map(theme => <option value={theme.id}>{theme.name}</option>)
+    }
+
+    onChange(e) {
+        const index = +e.target.value;
+        if (index === 0) {
+            this.removeCurrentTheme();
+        } else {
+            this.setTheme(index);
+        }
+    }
+
+    setTheme(id: number) {
+        const theme = this.themes.find(theme => theme.id === id);
+        if (!theme) return;
+        this.removeCurrentTheme(theme.node);
+        document.body.appendChild(theme.node);
+    }
+
+    removeCurrentTheme(newTheme?: HTMLLinkElement) {
+        this.currentThemeLink && document.body.removeChild(this.currentThemeLink);
+        this.currentThemeLink = newTheme;
     }
 
     render() {
         return <div className="main">
             <Router>
                 <section className="p-3 bg-secondary">
-                    <div className="form-group row mb-0 d-flex justify-content-around">
-                        <div className="col-1">
+                    <div className="form-group mb-0 d-flex justify-content-between">
+                        <div>
                             <Link to="/" className="btn btn-light">Home</Link>
                         </div>
-                        <div className="col">
-                            <input value="http://hapi.fhir.org/baseR4" type="text" className="form-control" disabled />
-                        </div>
-                        <div className="col d-flex justify-content-end align-items-center">
-                            <div className="custom-control custom-checkbox">
-                                <input id="themeTrigger" type="checkbox" className="custom-control-input" onChange={this.toggleTheme.bind(this)} />
-                                <label htmlFor="themeTrigger" className="custom-control-label text-light">Dark theme</label>
+                        <div className="d-flex justify-content-end align-items-center">
+                            <div className="input-group">
+                                <div className="input-group-prepend">
+                                    <label className="input-group-text" htmlFor="bootstrapThemesToggler">Choose bootstrap theme: </label>
+                                </div>
+                                <select id="bootstrapThemesToggler" className="custom-select" onChange={this.onChange.bind(this)}>
+                                    <option value={0}>Without theme</option>
+                                    {this.renderThemeList()}
+                                </select>
                             </div>
                         </div>
                     </div>
