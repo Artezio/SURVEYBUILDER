@@ -7,7 +7,7 @@ import { Scope, withFormApi, FormState } from 'informed';
 
 export class MultiChoiceItem extends React.PureComponent<MultiChoiceItemProps> {
     render() {
-        const { item, questionnaireResponseItem, formApi } = this.props;
+        const { item, questionnaireResponseItem, formApi, validationStatus } = this.props;
         return <div className="form-group">
             <Scope scope={item.id}>
                 {item.options && item.options.map(option => <MultiChoiceItemOption
@@ -16,6 +16,7 @@ export class MultiChoiceItem extends React.PureComponent<MultiChoiceItemProps> {
                     formApi={formApi}
                     option={option}
                     questionnaireResponseItem={questionnaireResponseItem}
+                    validationStatus={validationStatus}
                 />
                 )}
             </Scope>

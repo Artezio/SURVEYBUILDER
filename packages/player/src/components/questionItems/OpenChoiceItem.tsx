@@ -68,12 +68,12 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
     }
 
     renderOptions() {
-        const { item } = this.props;
+        const { item, validationStatus } = this.props;
         return <RadioGroup field={item.id} onChange={this.toggleToOptions.bind(this)} validateOnChange={true} validate={this.validate.bind(this)} initialValue={this.initialOption && this.initialOption.id}>
             {item.options && item.options.map((option, i) => {
                 if (i !== (item.options as Models.IAnswerOption[]).length - 1) {
                     return <div className="form-check" key={option.id}>
-                        <Radio className="form-check-input" id={option.id} value={option.id} />
+                        <Radio className={`form-check-input ${validationStatus}`} id={option.id} value={option.id} />
                         <label className="form-check-label" htmlFor={option.id}>{option.value}</label>
                     </div>
                 }
@@ -82,7 +82,7 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
     }
 
     renderOtherOption() {
-        const { item, questionnaireResponseItem } = this.props;
+        const { item, validationStatus } = this.props;
         let otherOption: Models.IAnswerOption;
         if (item.options) {
             otherOption = item.options[item.options.length - 1];
@@ -90,14 +90,19 @@ export class OpenChoiceItem extends React.PureComponent<OpenChoiceItemProps> {
             const answerOptionFactory = new Models.AnswerOptionFactory();
             otherOption = answerOptionFactory.createAnswerOption();
         }
+        const validationStatusLabel = validationStatus
+            ? validationStatus === 'is-valid'
+                ? 'text-success'
+                : 'text-danger'
+            : '';
         return <>
             <div className="form-check">
                 <input type="radio" className="form-check-input" id={otherOption.id} onChange={this.toggleToOtherAnswer.bind(this)} ref={this.otherAnswerRadioRef} defaultChecked={!!this.initialValue} />
-                <label className="form-check-label" htmlFor={otherOption.id}>Other</label>
+                <label className={`form-check-label ${validationStatusLabel}`} htmlFor={otherOption.id}>Other</label>
             </div>
             <Text autoComplete="off"
                 field={`${item.id}-other`}
-                className="form-control"
+                className={`form-control ${validationStatus}`}
                 onBlur={this.onBlurFromOtherOption.bind(this)}
                 disabled={!this.initialValue}
                 forwardedRef={this.otherAnswerInputRef}

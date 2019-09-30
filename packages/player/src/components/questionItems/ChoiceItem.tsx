@@ -13,11 +13,11 @@ export class ChoiceItem extends React.PureComponent<ChoiceItemProps> {
     }
 
     renderChoiceOptions() {
-        const { item } = this.props;
+        const { item, validationStatus } = this.props;
         return <RadioGroup field={item.id} validateOnChange={true} validate={this.validate.bind(this)} initialValue={this.initialValue}>
             {item.options && item.options.map(option => {
                 return <div className="form-check" key={option.id}>
-                    <Radio className="form-check-input" id={option.id} value={option.id} onChange={this.onChange.bind(this)} />
+                    <Radio className={`form-check-input ${validationStatus}`} id={option.id} value={option.id} onChange={this.onChange.bind(this)} />
                     <label className="form-check-label" htmlFor={option.id}>{option.value}</label>
                 </div>
             })}

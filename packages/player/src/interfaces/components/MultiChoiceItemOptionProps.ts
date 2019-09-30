@@ -7,6 +7,7 @@ export interface MultiChoiceItemOptionProps {
     questionnaireResponseItem: Models.QuestionnaireResponseItem;
     formApi: FormApi<FormState>;
     item: Models.IMultiChoiceItem;
+    validationStatus?: string;
 }
 
 export default MultiChoiceItemOptionProps;

@@ -30,9 +30,9 @@ export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOption
     }
 
     render() {
-        const { option } = this.props;
+        const { option, validationStatus } = this.props;
         return <div className="form-check">
-            <Checkbox className="form-check-input"
+            <Checkbox className={`form-check-input ${validationStatus}`}
                 field={option.id}
                 id={`${option.id}-checkbox`}
                 onChange={this.onChange.bind(this)}
@@ -40,7 +40,7 @@ export class MultiChoiceItemOption extends React.Component<MultiChoiceItemOption
                 validate={this.validate.bind(this)}
                 initialValue={this.initialChecked}
             />
-            <label htmlFor={`${option.id}-checkbox`}>{option.value}</label>
+            <label className="form-check-label" htmlFor={`${option.id}-checkbox`}>{option.value}</label>
         </div>
     }
 }

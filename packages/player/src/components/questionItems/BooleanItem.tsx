@@ -30,15 +30,15 @@ export class BooleanItem extends React.PureComponent<BooleanItemProps> {
     }
 
     render() {
-        const { item } = this.props;
+        const { item, validationStatus } = this.props;
         return <RadioGroup field={item.id} validateOnChange={true} validate={this.validate.bind(this)} initialValue={this.initialValue}>
             <div className="form-group">
                 <div className="form-check">
-                    <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.onChange.bind(this)} />
+                    <Radio className={`form-check-input ${validationStatus}`} id={`${item.id}-true`} value={true} onChange={this.onChange.bind(this)} />
                     <label className="form-check-label" htmlFor={`${item.id}-true`}>Yes</label>
                 </div>
                 <div className="form-check">
-                    <Radio className="form-check-input" id={`${item.id}-false`} value={false} onChange={this.onChange.bind(this)} />
+                    <Radio className={`form-check-input ${validationStatus}`} id={`${item.id}-false`} value={false} onChange={this.onChange.bind(this)} />
                     <label className="form-check-label" htmlFor={`${item.id}-false`}>No</label>
                 </div>
             </div>

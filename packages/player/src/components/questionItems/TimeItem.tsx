@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { Text, withFormApi, FormState } from 'informed';
 import TimeItemProps from '../../interfaces/components/questionItems/TimeItemProps';
+import InputLikeComponent from './InputLikeComponent';
 
 
-export class TimeItem extends React.PureComponent<TimeItemProps> {
-    initialValue?: any = this.props.questionnaireResponseItem.answers && this.props.questionnaireResponseItem.answers[0] && this.props.questionnaireResponseItem.answers[0].value;
-
+export class TimeItem extends InputLikeComponent<TimeItemProps> {
     onBlur() {
         const { formApi, item, questionnaireResponseItem } = this.props;
         let value = formApi.getValue(item.id) as string | undefined;
@@ -13,20 +12,13 @@ export class TimeItem extends React.PureComponent<TimeItemProps> {
         questionnaireResponseItem.reply(value);
     }
 
-    validate() {
-        const { questionnaireResponseItem } = this.props;
-        questionnaireResponseItem.validate();
-        const errorMessages = questionnaireResponseItem.errorMessages.join(' ');
-        return errorMessages === '' ? undefined : errorMessages;
-    }
-
     render() {
-        const { item } = this.props;
+        const { item, validationStatus } = this.props;
         return <div className="form-group">
             <Text autoComplete="off"
                 id={item.id}
                 type="time"
-                className="form-control"
+                className={`form-control ${validationStatus}`}
                 field={item.id}
                 onBlur={this.onBlur.bind(this)}
                 validateOnChange={true}

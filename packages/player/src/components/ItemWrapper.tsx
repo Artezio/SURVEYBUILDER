@@ -7,23 +7,25 @@ import { FormState, withFormApi } from 'informed';
 
 export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
+    static defaultProps: Partial<ItemWrapperProps> = {
+        className: ''
+    }
+
     renderErrorMessage() {
         const { formApi, item, questionnaireResponseItem } = this.props;
-        if (formApi.getTouched(item.id) && questionnaireResponseItem.errorMessages.length) {
-            return <ul className={`${questionnaireResponseItem.errorMessages.length ? "alert alert-danger" : ''}`}>
-                {questionnaireResponseItem.errorMessages.map((errorMessage, i) => <li key={i}>{errorMessage}</li>)}
-            </ul>
+        const errorMessage = questionnaireResponseItem.errorMessages[0];
+        if (formApi.getTouched(item.id) && errorMessage !== undefined) {
+            return <span className="d-block mt-n2 text-danger">{errorMessage}</span>
         }
     }
 
     renderQuestionText() {
-        const { item, questionnaireResponseItem, formApi } = this.props;
-        const invalidAnswer = formApi.getTouched(item.id) && questionnaireResponseItem.errorMessages.length;
+        const { item } = this.props;
         if (item.type === Models.GROUP) {
             return <h4>{item.text}</h4>
         }
         if (item.type !== Models.DISPLAY) {
-            return <label htmlFor={item.id} className={`font-weight-bold ${invalidAnswer ? 'text-danger' : ''}`}>
+            return <label htmlFor={item.id} className="font-weight-bold">
                 {item.text}
                 {item.required && <span className="text-danger">*</span>}
             </label>
@@ -31,12 +33,16 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     }
 
     render() {
-        const { className = '', item, questionnaireResponseItem, formApi } = this.props;
-        const wrongValue = formApi.getTouched(item.id) && !questionnaireResponseItem.isValid;
-        return questionnaireResponseItem.isEnable && <div className={`questionnaire-response${item.type === Models.GROUP ? '-group' : ''}-item${wrongValue ? ' error-item' : ''} ${className}`}>
+        const { className, item, questionnaireResponseItem, formApi } = this.props;
+        const validationStatus = formApi.getTouched(item.id)
+            ? questionnaireResponseItem.isValid
+                ? 'is-valid'
+                : 'is-invalid'
+            : '';
+        return questionnaireResponseItem.isEnable && <div className={className}>
             {this.renderQuestionText()}
             {this.renderErrorMessage()}
-            <ItemProvider item={item} questionnaireResponseItem={questionnaireResponseItem} />
+            <ItemProvider item={item} questionnaireResponseItem={questionnaireResponseItem} validationStatus={validationStatus} />
         </div>
     }
 }
