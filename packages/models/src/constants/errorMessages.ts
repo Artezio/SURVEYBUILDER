@@ -1,4 +1,4 @@
-export const REQUIRED = 'Question is required';
+export const REQUIRED = 'Field is required';
 export type REQUIRED = typeof REQUIRED;
 
 export const REG_EXP = 'Invalid input';

@@ -1,6 +1,27 @@
 # **@art-forms/player**
 
-QuestionnairePlayer is a react component with which you can complete or update questionnaire response. This component requires questionnaire model converted to the right format, questionnaireResponse model from [@art-forms/models](./../models/README.md "@art-forms/models"), provider object with single method putQuestionnaireResponse and optional text for submit button to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
+QuestionnairePlayer is a react component, use it to pass the questionnaire. It requires two properties to be rendered: questionnaire and questionnaireResponse model made with [@art-forms/models](./../models/README.md "@art-forms/models").
+Component has 3 more properties: onSubmit, onError, forwardRef. Use them to handle submit, handle error, initiate submit.
+
+* onSubmit - A function that gets called when form is submitted successfully. The function receives the questionnaireResponse as a parameter.
+* onError - A function that gets called when submission fails due to errors. Function will receive the errors.
+* forwardRef - React ref that is attached to form.
+### Example of using ref:
+```TSX
+const MyComponent = () => {
+const formRef = React.createRef();
+const onClick = () => {
+    const form = formRef.current;
+    if(form) {
+        form.formApi.submitForm();
+    }
+}
+return (<>
+    <QuestionnairePlayer ref={formRef} ... />
+    <button onClick={onClick}>Submit</button>
+    </>)
+}
+```
 
 # Installation
 
@@ -16,18 +37,29 @@ Using yarn:
 ```TSX
 import React from 'react';
 import { render } from 'react-dom';
-import { QuestionnaireDesigner } from '@art-forms/designer';
 import { QuestionnaireResponse } from '@art-forms/models';
 import axios from 'axios';// for example
 
-const questionnaire = /* {...object with questions in right format} */;
-const questionnaireResponse = new QuestionnaireResponse(questionnaire);
-const provider = {
-    putQuestionnaireResponse(questionnaireResponse) {
+export class MyComponent extends React.Component {
+    formRef = React.createRef();
+
+    onSubmit(questionnaireResponse) {
         axios.post('http://example.com', questionnaireResponse);
     }
-}
 
-render(<QuestionnairePlayer questionnaire={questionnaire} questionnaireResponseModel={questionnaireResponse} provider={provider} />, document.getElementById('root'));
+    onClick() {
+        const form = this.formRef.current;
+        if(form) {
+            form.formApi.submitForm();
+        }
+    }
+
+    render() {
+        const {questionnaire, questionnaireResponse} = this.props;
+        return (<>
+            <QuestionnairePlayer questionnaire={questionnaire} questionnaireResponseModel={questionnaireResponse} onSubmit={this.onSubmit.bind(this)} forwardRef={this.formRef} />
+            <button onclick={this.onClick.bind(this)}>Submit</button>
+        </>)
+    }
+}
 ```
-Click on Submit button will call putQuestionnaireResponse method with current questionnaireResponse model.

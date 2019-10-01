@@ -9,6 +9,7 @@ import { responseEditorPageActions } from '../redux/actions/responseEditorPageAc
 import { ResponseSavedPage } from '../components/responseListPage/ResponseSavedPage';
 
 export class ResponseEditorPage extends React.Component<ResponseEditorPageProps> {
+    formRef = React.createRef<{ formApi: { submitForm(): void } }>()
 
     componentWillMount() {
         const { match, dispatch } = this.props;
@@ -35,7 +36,7 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
         }
     }
 
-    putQuestionnaireResponse(questionnaireResponse: Models.IQuestionnaireResponse) {
+    onSubmit(questionnaireResponse: Models.IQuestionnaireResponse) {
         const { dispatch } = this.props;
         dispatch(responseEditorPageActions.saveResponse(questionnaireResponse));
     }
@@ -48,19 +49,29 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
-            return responseModel && questionnaire && <QuestionnairePlayer key={responseModel.id} provider={{ putQuestionnaireResponse: this.putQuestionnaireResponse.bind(this) }} questionnaire={questionnaire} questionnaireResponseModel={responseModel} />
+            return responseModel && questionnaire && <QuestionnairePlayer forwardRef={this.formRef} key={responseModel.id} onSubmit={this.onSubmit.bind(this)} questionnaire={questionnaire} questionnaireResponseModel={responseModel} />
         }
         if (status.savingResponse === STATUS_SAVING_RESPONSE.saved) {
             return <ResponseSavedPage />;
         }
     }
 
+    onClick() {
+        const form = this.formRef.current;
+        if (form) {
+            form.formApi.submitForm();
+        }
+    }
+
     render() {
         return <div className="container">
             <h1>Questionnaire Player</h1>
-            <hr/>
+            <hr />
             {this.renderSpinner()}
             {this.renderQuestionnairePlayer()}
+            <div className="d-flex justify-content-end">
+                <button className="btn btn-outline-primary" onClick={this.onClick.bind(this)}>Submit</button>
+            </div>
         </div>
     }
 }

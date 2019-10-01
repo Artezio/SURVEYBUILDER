@@ -17,22 +17,25 @@ export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
     }
 
     submitForm() {
-        const { questionnaireResponseModel, provider } = this.props;
-        provider && provider.putQuestionnaireResponse(questionnaireResponseModel);
+        const { questionnaireResponseModel, onSubmit } = this.props;
+        onSubmit && onSubmit(questionnaireResponseModel);
     }
 
-    onSubmitFailure() {
+    onSubmitFailure(e) {
+        const { onError } = this.props;
         this.forceUpdate();
         setTimeout(() => {
             const firstIncorrectAnswer = document.querySelector('.error-item');
             firstIncorrectAnswer && firstIncorrectAnswer.scrollIntoView();
         })
+        onError && onError(e);
     }
 
     renderItemList() {
-        const { questionnaire, questionnaireResponseModel } = this.props;
+        const { questionnaire, questionnaireResponseModel, forwardRef } = this.props;
         return <div className="response-item-list">
-            <Form getApi={this.getFormApi.bind(this)}
+            <Form ref={forwardRef}
+                getApi={this.getFormApi.bind(this)}
                 onSubmit={this.submitForm.bind(this)}
                 onSubmitFailure={this.onSubmitFailure.bind(this)}
             // preventEnter={true}     // has no type definition in .d.ts 
@@ -46,14 +49,13 @@ export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
     }
 
     render() {
-        const { questionnaire, className = '', submitButtonText } = this.props;
+        const { questionnaire, className = '' } = this.props;
         return <div className={`questionnaire-response ${className}`}>
             <div className="header">
                 <h3>{questionnaire && questionnaire.title}</h3>
                 <p>{questionnaire && questionnaire.description}</p>
             </div>
             {this.renderItemList()}
-            <button type="button" className="btn btn-primary submit-button" onClick={() => { this.formApi && this.formApi.submitForm() }}>{submitButtonText}</button>
         </div>
     }
 }

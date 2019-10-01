@@ -36,7 +36,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         const { className, item, questionnaireResponseItem, formApi } = this.props;
         const validationStatus = formApi.getTouched(item.id)
             ? questionnaireResponseItem.isValid
-                ? 'is-valid'
+                ? ''
                 : 'is-invalid'
             : '';
         return questionnaireResponseItem.isEnable && <div className={className}>

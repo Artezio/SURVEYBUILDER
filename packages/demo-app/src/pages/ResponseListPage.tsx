@@ -48,10 +48,11 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
             return questionnaire && <div>
                 <h2>{questionnaire.title || 'Untitled Questionnaire'}</h2>
                 <div className="d-flex justify-content-center">
-                    <Link className="btn btn-outline-secondary" to={`/questionnaire/${questionnaireId}/response`} title="Start questionnaire">
+                    <Link className="btn btn-outline-secondary btn-block" to={`/questionnaire/${questionnaireId}/response`} title="Start questionnaire">
                         <i className="fas fa-play"></i>
-                        </Link>
+                    </Link>
                 </div>
+                <hr />
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) {
