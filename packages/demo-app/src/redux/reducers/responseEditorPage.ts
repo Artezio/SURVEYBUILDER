@@ -23,7 +23,8 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
                 ...state,
                 status: {
                     ...state.status,
-                    loadingQuestionnaire: STATUS_QUESTIONNAIRE_LOADING.loaded
+                    loadingQuestionnaire: STATUS_QUESTIONNAIRE_LOADING.loaded,
+                    savingResponse: undefined
                 },
                 questionnaire: questionnaire
             }

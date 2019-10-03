@@ -64,14 +64,15 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
     }
 
     render() {
+        const { status } = this.props;
         return <div className="container">
             <h1>Questionnaire Player</h1>
             <hr />
             {this.renderSpinner()}
             {this.renderQuestionnairePlayer()}
-            <div className="d-flex justify-content-end">
+            {status.savingResponse !== STATUS_SAVING_RESPONSE.saved && <div className="d-flex justify-content-end">
                 <button className="btn btn-outline-primary" onClick={this.onClick.bind(this)}>Submit</button>
-            </div>
+            </div>}
         </div>
     }
 }
