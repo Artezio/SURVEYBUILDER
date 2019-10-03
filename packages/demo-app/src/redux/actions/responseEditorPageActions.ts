@@ -21,7 +21,6 @@ export const responseEditorPageActions = {
         (response: any, getState: () => Store) => {
             const mappedResponse = questionnaireResponseConverter.fromModel(response);
             const { responseEditorPage } = getState();
-            console.log('LOG', getState());
             if (responseEditorPage.mode === MODE.creating) {
                 return responseProvider.putResponse(mappedResponse)
             }

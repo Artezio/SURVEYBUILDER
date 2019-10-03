@@ -8,9 +8,6 @@ import IFormState from '../interfaces/IFormState';
 
 export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
     formApi?: FormApi<IFormState>;
-    static defaultProps = {
-        submitButtonText: 'Submit'
-    }
 
     getFormApi(formApi: FormApi<IFormState>) {
         this.formApi = formApi;

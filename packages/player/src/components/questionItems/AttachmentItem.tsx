@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useObservableModel } from '../../observableConnector/useObservableModel';
 import AttachmentItemProps from '../../interfaces/components/questionItems/AttachmentItemProps';
+import { FileInput } from '../informedCustomInputs/FileInput';
 
 
-export class AttachmentItem extends React.PureComponent<AttachmentItemProps> {
+export class AttachmentItem extends React.Component<AttachmentItemProps> {
     fileNameList: string[] = [];
     dataTransfer: DataTransfer = new DataTransfer();
     fileInputRef: React.RefObject<HTMLInputElement> = React.createRef();
@@ -40,6 +41,13 @@ export class AttachmentItem extends React.PureComponent<AttachmentItemProps> {
         questionnaireResponseItem.reply(fileName);
     }
 
+    validate() {
+        const { questionnaireResponseItem } = this.props;
+        questionnaireResponseItem.validate();
+        const errorMessages = questionnaireResponseItem.errorMessages.join(' ');
+        return errorMessages === '' ? undefined : errorMessages;
+    }
+
     renderFileList() {
         const { questionnaireResponseItem } = this.props;
         return <ul className="list-group list-group-flush">
@@ -52,11 +60,19 @@ export class AttachmentItem extends React.PureComponent<AttachmentItemProps> {
     }
 
     render() {
-        const { item } = this.props;
+        const { item, validationStatus } = this.props;
         return <div className="form-group">
             <div className="input-group">
                 <div className="custom-file attachment-item">
-                    <input type="file" multiple={item.multipleFiles} name="value" className="custom-file-input" id={item.id} onChange={this.handleChange.bind(this)} ref={this.fileInputRef} />
+                    <FileInput
+                        validate={this.validate.bind(this)}
+                        multiple={item.multipleFiles}
+                        field={item.id}
+                        className={`custom-file-input ${validationStatus}`}
+                        id={item.id}
+                        onChange={this.handleChange.bind(this)}
+                        forwardedRef={this.fileInputRef}
+                    />
                     <label className="custom-file-label" htmlFor={item.id}>Chose file</label>
                 </div>
             </div>
