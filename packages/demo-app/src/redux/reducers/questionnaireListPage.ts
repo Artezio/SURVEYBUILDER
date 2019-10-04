@@ -49,9 +49,18 @@ export const questionnaireListPage = (state: QuestionnaireListPageStore = INITIA
                 ...state,
                 status: {
                     ...state.status,
-                    deletingQuestionnaire: STATUS_DELETING.deletingEnded
+                    deletingQuestionnaire: STATUS_DELETING.deleted
                 },
                 questionnaireList: state.questionnaireList && state.questionnaireList.filter(q => q.id !== action.payload)
+            }
+        }
+        case ACTIONS.DELETE_QUESTIONNAIRE_ERROR: {
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    deletingQuestionnaire: STATUS_DELETING.error
+                }
             }
         }
         default: return state;

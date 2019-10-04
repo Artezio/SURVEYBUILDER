@@ -1,5 +1,6 @@
 [
   {
+    "immortal": true,
     "resourceType": "Questionnaire",
     "id": "6c8e4e40-d556-11e9-8e60-37442f196308",
     "description": "This questionnaire is used to  identify the appropriate anesthetic techniques to be used. Please fill it out as completely as possible.",
@@ -295,6 +296,7 @@
     ]
   },
   {
+    "immortal": true,
     "resourceType": "Questionnaire",
     "id": "188c83f0-d576-11e9-800f-bdc882ee6063",
     "description": "Please carefully complete this Questionnaire in full. A complete, accurate record is important in learning about your allergy problem",

@@ -15,5 +15,6 @@ export enum STATUS_LOADING {
 
 export enum STATUS_DELETING {
     deleting = 'deleting',
-    deletingEnded = 'deletingEnded'
+    deleted = 'deleted',
+    error = 'error'
 }

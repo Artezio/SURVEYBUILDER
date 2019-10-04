@@ -1,5 +1,5 @@
 import * as Models from '@art-forms/models';
-import { ACTIONS, STATUS_LOADING, MODE, STATUS_UPDATING, STATUS_SAVING } from '../../constants/questionnaireEditorPage';
+import { ACTIONS, STATUS_LOADING, MODE, STATUS_SAVING } from '../../constants/questionnaireEditorPage';
 import { QuestionnaireEditorPageStore } from '../../interface/questionnaireEditorPage/QuestionnaireEditorPageStore';
 import { Action } from '../../interface/Action';
 import { questionnaireConverter } from '@art-forms/fhir-converter';
@@ -52,32 +52,6 @@ export const questionnaireEditorPage = (state: QuestionnaireEditorPageStore = IN
                 },
                 questionnaire: undefined,
                 questionnaireModel: questionnaireModel
-            }
-        }
-        case ACTIONS.UPDATE_QUESTIONNAIRE_UPDATING: {
-            return {
-                ...state,
-                status: {
-                    ...state.status,
-                    updating: STATUS_UPDATING.updating
-                }
-            }
-        }
-        case ACTIONS.UPDATE_QUESTIONNAIRE_UPDATED: {
-            return {
-                ...state,
-                status: {
-                    updating: STATUS_UPDATING.updated
-                }
-            }
-        }
-        case ACTIONS.UPDATE_QUESTIONNAIRE_ERROR: {
-            return {
-                ...state,
-                status: {
-                    ...state.status,
-                    updating: STATUS_UPDATING.error
-                }
             }
         }
         case ACTIONS.SAVE_NEW_QUESTIONNAIRE_SAVING: {

@@ -7,10 +7,20 @@ export const QuestionnaireInstance = (props: any) => {
     const { questionnaire } = props;
     const dispatch = useDispatch() as any;
     const deleteQuestionnaire = () => {
-        dispatch(questionnaireListPageActions.deleteQuestionnaire(questionnaire.id))
-            .then(() => {
-                dispatch(questionnaireListPageActions.loadQuestionnaireList())
-            })
+        if (questionnaire.immortal) {
+            alert('Impossible to delete this questionnaire!');
+            return;
+        }
+        if (confirm('Are you sure you want to delete this questionnaire?')) {
+            dispatch(questionnaireListPageActions.deleteQuestionnaire(questionnaire.id))
+                .then(({ data, error }) => {
+                    if (error) {
+                        alert(error.message)
+                    } else {
+                        dispatch(questionnaireListPageActions.loadQuestionnaireList())
+                    }
+                })
+        }
     }
 
     const buttonClass = 'btn btn-outline-secondary';
