@@ -105,7 +105,7 @@ export const responseEditorPage = (state: ResponseEditorPageStore = INITIAL_STAT
                 mode: MODE.creating,
                 status: {
                     ...state.status,
-                    loadingResponse: STATUS_QUESTIONNAIRE_LOADING.loaded
+                    loadingResponse: STATUS_RESPONSE_LOADING.loaded
                 },
                 responseModel: responseModel
             }

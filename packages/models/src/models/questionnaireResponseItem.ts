@@ -54,7 +54,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.answers.forEach(answer => this.answerIdMap.set(answer.id, true));
     }
 
-    _fillAnswers(initialResponseItem: Partial<IQuestionnaireResponseItem>, questionItem) {
+    _fillAnswers(initialResponseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem) {
         if (initialResponseItem && initialResponseItem.answers) {
             this.answers = initialResponseItem.answers.map(answer => this.answerFactory.createAnswer(answer))
         } else {

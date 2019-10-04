@@ -48,7 +48,7 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
                 <span className="text-danger">This Questionnaire does not exist any more</span>
             </div>
         }
-        if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
+        if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded && status.loadingResponse === STATUS_RESPONSE_LOADING.loaded) {
             return responseModel && questionnaire && <QuestionnairePlayer forwardRef={this.formRef} key={responseModel.id} onSubmit={this.onSubmit.bind(this)} questionnaire={questionnaire} questionnaireResponseModel={responseModel} />
         }
         if (status.savingResponse === STATUS_SAVING_RESPONSE.saved) {
