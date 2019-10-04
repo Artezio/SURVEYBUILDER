@@ -73,7 +73,7 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
                         onChange={this.handleChange.bind(this)}
                         forwardedRef={this.fileInputRef}
                     />
-                    <label className="custom-file-label" htmlFor={item.id}>Chose file</label>
+                    <label className="custom-file-label" htmlFor={item.id}>Choose file...</label>
                 </div>
             </div>
             {this.renderFileList()}
