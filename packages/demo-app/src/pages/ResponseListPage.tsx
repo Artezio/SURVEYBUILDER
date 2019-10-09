@@ -46,13 +46,13 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
         const questionnaireId = match && match.params.questionnaireId;
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
             return questionnaire && <div>
-                <h2>{questionnaire.title || 'Untitled Questionnaire'}</h2>
-                <div className="d-flex justify-content-center">
-                    <Link className="btn btn-outline-secondary btn-block" to={`/questionnaire/${questionnaireId}/response`} title="Start questionnaire">
-                        <i className="fas fa-play"></i>
+                <div className="d-flex align-items-center justify-content-between">
+                    <h1>{questionnaire && questionnaire.title || 'Untitled Questionnaire'}</h1>
+                    <Link className="btn btn-outline-secondary" to={`/questionnaire/${questionnaireId}/response`} title="Start questionnaire">
+                        Respond questionnaire
                     </Link>
                 </div>
-                <hr />
+                <h2>Responses:</h2>
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) {
@@ -62,8 +62,6 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
 
     render() {
         return <div className="container">
-            <h1>List of responses</h1>
-            <hr />
             {this.renderSpinner()}
             {this.renderHeadLine()}
             {this.renderResponseList()}
@@ -75,6 +73,4 @@ const mapStateToProps = (state: any) => {
     return { ...state.responseListPage, questionnaireList: state.questionnaireListPage.questionnaireList }
 }
 
-// const ResponseListPage = connect(mapStateToProps)(ResponseListPageClass);
-// export { ResponseListPage };
 export default connect(mapStateToProps)(ResponseListPage);

@@ -3,7 +3,7 @@ import { QuestionnaireDesigner } from '@art-forms/designer';
 import { Link } from 'react-router-dom';
 import { questionnaireEditorPageActions } from '../redux/actions/questionnaireEditorPageActions';
 import { connect } from 'react-redux';
-import { STATUS_LOADING, MODE, STATUS_SAVING } from '../constants/questionnaireEditorPage';
+import { STATUS_LOADING, STATUS_SAVING } from '../constants/questionnaireEditorPage';
 import { Spinner } from '../components/Spinner';
 import { QuestionnaireEditorPageProps } from '../interface/questionnaireEditorPage/QuestionnaireEditorPageProps';
 import { QuestionnaireLoadError } from '../components/questionnaireEditPage/QuestionnaireLoadError';
@@ -53,8 +53,8 @@ export class QuestionnaireEditor extends React.Component<QuestionnaireEditorPage
     renderButtons() {
         const { status } = this.props;
         if (status.loading === STATUS_LOADING.loaded) {
-            return <div className="d-flex justify-content-between">
-                <Link to="/" className="btn btn-outline-danger">Cancel</Link>
+            return <div className="d-flex justify-content-start">
+                <button onClick={() => { history.back() }} className="btn btn-outline-danger mr-2">Cancel</button>
                 <button onClick={this.onClick.bind(this)} className="btn btn-outline-primary">Save</button>
             </div>
         }
@@ -63,7 +63,6 @@ export class QuestionnaireEditor extends React.Component<QuestionnaireEditorPage
     render() {
         return <div className="container">
             <h1>Questionnaire Designer</h1>
-            <hr />
             {this.renderSpinner()}
             {this.renderQuestionnaireDesigner()}
             {this.renderButtons()}

@@ -15,6 +15,14 @@ export class LocalStorageHelper {
 
         }
     }
+
+    static remove(key: string) {
+        try {
+            localStorage.removeItem(key);
+        } catch {
+
+        }
+    }
 }
 
 export default LocalStorageHelper;

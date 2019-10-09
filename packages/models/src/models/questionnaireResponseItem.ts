@@ -152,10 +152,6 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.answerCollection.updateResponseAnswers(this.questionId, this.answers);
     }
 
-    cancelAnswer(answer: Answer<any>) {
-        this.removeAnswer(answer);
-    }
-
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
         if (this.itemIdMap.has(item.id)) return;
         item.answerCollection = this.answerCollection;

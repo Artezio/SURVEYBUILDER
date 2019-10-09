@@ -38,11 +38,10 @@ export class QuestionnaireListPage extends React.Component<QuestionnaireListPage
     render() {
         return <div className="container">
             {this.renderSpinner()}
-            <h1>Questionnaire List</h1>
-            <hr/>
-            <div className="d-flex justify-content-start mb-3">
+            <header className="d-flex justify-content-between align-items-center">
+                <h1>Questionnaire List</h1>
                 <Link to="/questionnaire" className="btn btn-outline-secondary">Create new Questionnaire</Link>
-            </div>
+            </header>
             <div>
                 {this.renderQuestionnaireList()}
             </div>

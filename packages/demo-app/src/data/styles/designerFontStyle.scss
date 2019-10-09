@@ -1,0 +1,7 @@
+@import "../../../../../node_modules/bootstrap-scss/bootstrap.scss";
+
+.questionnaire-item {
+    form + label {
+        @extend .font-weight-bold;
+    }
+}

@@ -1,0 +1,30 @@
+@import "../../../../../node_modules/bootstrap-scss/bootstrap.scss";
+
+.sortable-ghost,
+.sortable-drag {
+  .questionnaire-item-list {
+    display: none;
+    height: 0;
+  }
+  .option-list {
+    display: none;
+    height: 0;
+  }
+  .item-settings {
+    display: none;
+    height: 0;
+  }
+  .js-text-area {
+    max-height: 100px;
+  }
+}
+.sortable-ghost.questionnaire-item {
+  * {
+    opacity: 0;
+  }
+  @extend .bg-secondary;
+}
+
+.drag-handle {
+  cursor: move;
+}

@@ -49,7 +49,7 @@ export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
         const { questionnaire, className = '' } = this.props;
         return <div className={`questionnaire-response ${className}`}>
             <div className="header">
-                <h3>{questionnaire && questionnaire.title}</h3>
+                <h1>{questionnaire && questionnaire.title}</h1>
                 <p>{questionnaire && questionnaire.description}</p>
             </div>
             {this.renderItemList()}

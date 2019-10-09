@@ -1,0 +1,34 @@
+@import "../../../../../node_modules/bootstrap-scss/bootstrap.scss";
+
+.card-sm {
+  .btn {
+    @extend .btn-sm;
+  }
+  .form-control {
+    @extend .form-control-sm;
+  }
+  label {
+    @extend .mb-0;
+  }
+  .input-group {
+    @extend .input-group-sm;
+  }
+  .form-group {
+    @extend .mb-2;
+  }
+  .card-body {
+    @extend .p-2;
+  }
+  .card-header {
+    @extend .p-1;
+  }
+  .card-footer {
+    @extend .p-1;
+  }
+  .custom-select {
+    @extend .custom-select-sm;
+  }
+  hr {
+    @extend .my-1;
+  }
+}

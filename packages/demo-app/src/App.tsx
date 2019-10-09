@@ -1,13 +1,14 @@
 import * as React from 'react';
 import 'bootstrap-scss';
 import '@fortawesome/fontawesome-free/css/all.css';
-import 'bootstrap';
+import 'bootstrap/dist/js/bootstrap';
+import './data/styles/artezioBootstrapTheme.scss';
 import MainLayout from './layouts/MainLayout';
+import { Theme } from './interface/layouts/MainLayoutProps';
 
-
-const themes = [
+const themes: Theme[] = [
     {
-        name: 'Dark theme',
+        title: 'Dark theme',
         href: 'https://bootswatch.com/4/cyborg/bootstrap.css'
     }
 ]

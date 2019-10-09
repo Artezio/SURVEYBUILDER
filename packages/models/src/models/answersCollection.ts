@@ -1,10 +1,9 @@
-import { observable, getObservable, observableProperty } from "@art-forms/observable";
+import { observable, getObservable } from "@art-forms/observable";
 import IEnableWhenAnswer from "../interfaces/IEnableWhenAnswer";
 import IAnswer from "../interfaces/IAnswer";
 
 @observable
 export class AnswerCollection {
-    @observableProperty
     answers: IEnableWhenAnswer[];
 
     constructor(answers?: IEnableWhenAnswer[]) {

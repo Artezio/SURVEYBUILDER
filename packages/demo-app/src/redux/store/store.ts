@@ -5,13 +5,15 @@ import { questionnaireListPage } from '../reducers/questionnaireListPage';
 import { questionnaireEditorPage } from '../reducers/questionnaireEditorPage';
 import { responseListPage } from '../reducers/responseListPage';
 import { responseEditorPage } from '../reducers/responseEditorPage';
+import { mainLayout } from '../reducers/mainLayout';
 
 export const createStore = (initialState?: any) => redux.createStore(
     redux.combineReducers({
         questionnaireListPage,
         questionnaireEditorPage,
         responseListPage,
-        responseEditorPage
+        responseEditorPage,
+        mainLayout
     }),
     initialState,
     redux.applyMiddleware(logger, thunk),

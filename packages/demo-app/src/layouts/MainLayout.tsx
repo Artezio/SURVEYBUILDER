@@ -1,83 +1,104 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, NavLink } from 'react-router-dom';
 import QuestionnaireListPage from '../pages/QuestionnaireListPage';
 import QuestionnaireEditor from '../pages/QuestionnaireEditor';
 import ResponseListPage from '../pages/ResponseListPage';
 import ResponseEditorPage from '../pages/ResponseEditorPage';
 import PageNotFound from '../pages/PageNotFound';
+import { MainLayoutProps, Theme, MainLayoutStore, MainLayoutOwnProps } from '../interface/layouts/MainLayoutProps';
+import { Store } from '../interface/Store';
+import { connect } from 'react-redux';
+import { mainLayoutActions } from '../redux/actions/mainLayoutActions';
+import { bootstrapCurrentThemeService } from '../providers/services/localStorageServises/bootstrapThemesService';
 
-type Theme = { id: number, node: HTMLLinkElement, name: string };
-interface Props {
-    themes?: { href: string, name: string }[];
-}
-export class MainLayout extends React.Component<Props> {
-    themes: Theme[];
-    currentThemeLink?: HTMLLinkElement;
+const nativeTheme: Theme = { title: 'Native bootstrap', href: '' };
 
-    constructor(props: Props) {
+export class MainLayout extends React.Component<MainLayoutProps> {
+    currentThemeNode?: HTMLLinkElement;
+
+    constructor(props: MainLayoutProps) {
         super(props);
-        this.themes;
-        if (Array.isArray(props.themes)) {
-            this.themes = props.themes.map((theme, i) => this.prepareLinkForTheme(theme.href, i + 1, theme.name));
-        } else {
-            this.themes = [];
-        }
-    }
-
-    prepareLinkForTheme(href: string, index, name): Theme {
-        const link = document.createElement('link');
-        link.setAttribute('type', 'text/css');
-        link.setAttribute('rel', 'stylesheet');
-        link.setAttribute('href', href);
-        return { id: index, node: link, name: name };
+        const themes = [nativeTheme].concat(props.themes);
+        const currentTheme = bootstrapCurrentThemeService.getCurrentTheme() || nativeTheme;
+        props.dispatch(mainLayoutActions.setBootstrapThemes(themes))
+        props.dispatch(mainLayoutActions.setCurrentBootstrapTheme(nativeTheme))
+        this.changeTheme(currentTheme);
     }
 
     renderThemeList() {
-        return this.themes.map(theme => <option value={theme.id}>{theme.name}</option>)
+        const { currentTheme, bootstrapThemes } = this.props;
+        return bootstrapThemes && bootstrapThemes.map(theme => <a
+            onClick={this.onClick.bind(this, theme.href)}
+            href="javascript:void(0)"
+            key={theme.href}
+            className={`dropdown-item ${currentTheme.href === theme.href ? 'active' : ''}`}
+        >
+            {theme.title}
+        </a>)
+        // return bootstrapThemes && bootstrapThemes.reduce((themes, theme) => {
+        //     if (!currentTheme || theme.href !== currentTheme.href) {
+        //         themes.push(<a onClick={this.onClick.bind(this, theme.href)} key={theme.href} href="javascript:void(0)" className="dropdown-item">{theme.title}</a>)
+        //     }
+        //     return themes;
+        // }, [])
     }
 
-    onChange(e) {
-        const index = +e.target.value;
-        if (index === 0) {
-            this.removeCurrentTheme();
+    onClick(href: string) {
+        const { bootstrapThemes, currentTheme } = this.props;
+        if (currentTheme && currentTheme.href === href) return;
+        const theme = bootstrapThemes && bootstrapThemes.find(theme => theme.href === href);
+        theme && this.changeTheme(theme);
+    }
+
+    changeTheme(newTheme: Theme) {
+        const { dispatch } = this.props;
+        this.currentThemeNode && this.currentThemeNode.remove();
+        const newThemeNode = this.createThemeNode(newTheme);
+        this.currentThemeNode = newThemeNode;
+        document.head.append(newThemeNode);
+        if (newTheme.href === nativeTheme.href) {
+            bootstrapCurrentThemeService.removeCurrentTheme();
         } else {
-            this.setTheme(index);
+            bootstrapCurrentThemeService.setCurrentTheme(newTheme);
         }
+        dispatch(mainLayoutActions.setCurrentBootstrapTheme(newTheme));
     }
 
-    setTheme(id: number) {
-        const theme = this.themes.find(theme => theme.id === id);
-        if (!theme) return;
-        this.removeCurrentTheme(theme.node);
-        document.body.appendChild(theme.node);
+    createThemeNode(theme: Theme) {
+        const link = document.createElement('link');
+        link.setAttribute('type', 'text/css');
+        link.setAttribute('rel', 'stylesheet');
+        link.setAttribute('href', theme.href);
+        return link;
     }
 
-    removeCurrentTheme(newTheme?: HTMLLinkElement) {
-        this.currentThemeLink && document.body.removeChild(this.currentThemeLink);
-        this.currentThemeLink = newTheme;
+    renderHeader() {
+        const { currentTheme } = this.props;
+        return <nav className="navbar navbar-expand navbar-dark bg-secondary">
+            <Link to="/" className="navbar-brand">Artezio</Link>
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <NavLink to="/" exact={true} className="nav-link" activeClassName="active">Questionnaires</NavLink>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="https://github.com/Artezio/ART-FORMS" target="_blank">Documentation</a>
+                </li>
+            </ul>
+            <ul className="navbar-nav">
+                <li className="nav-item dropdown">
+                    <a href="javascript:void(0)" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{currentTheme && currentTheme.title}</a>
+                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        {this.renderThemeList()}
+                    </div>
+                </li>
+            </ul>
+        </nav>
     }
 
     render() {
         return <div className="main">
             <Router>
-                <section className="p-3 bg-secondary">
-                    <div className="form-group mb-0 d-flex justify-content-between">
-                        <div>
-                            <Link to="/" className="btn btn-light">Home</Link>
-                        </div>
-                        <div className="d-flex justify-content-end align-items-center">
-                            <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <label className="input-group-text" htmlFor="bootstrapThemesToggler">Choose bootstrap theme: </label>
-                                </div>
-                                <select id="bootstrapThemesToggler" className="custom-select" onChange={this.onChange.bind(this)}>
-                                    <option value={0}>Without theme</option>
-                                    {this.renderThemeList()}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                {this.renderHeader()}
                 <section className="p-3">
                     <Switch>
                         <Route exact={true} path="/" component={QuestionnaireListPage} />
@@ -94,4 +115,6 @@ export class MainLayout extends React.Component<Props> {
     }
 }
 
-export default MainLayout;
+const mapStateToProps = (state: Store) => state.mainLayout;
+
+export default connect<MainLayoutStore, undefined, MainLayoutOwnProps>(mapStateToProps)(MainLayout);

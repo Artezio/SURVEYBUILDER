@@ -50,31 +50,34 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
 
     renderFileList() {
         const { questionnaireResponseItem } = this.props;
-        return <ul className="list-group list-group-flush">
-            {questionnaireResponseItem.answers.map(answer => <li key={answer.value} className="list-group-item d-flex align-items-center">
-                <button type="button" className="btn btn-outline-secondary mr-2" onClick={this.removeFile.bind(this, answer.value)}><i className="fas fa-times"></i></button>
-                {answer.value}
-            </li>
-            )}
-        </ul>
+        return questionnaireResponseItem.answers.length > 0 && <div className="form-group">
+            <ul className="list-group list-group-flush">
+                {questionnaireResponseItem.answers.map(answer => {
+                    return <li key={answer.value} className="list-group-item">
+                        <div className="d-flex justify-content-between align-items-center">
+                            <span>{answer.value}</span>
+                            <button className="btn btn-outline-secondary" onClick={this.removeFile.bind(this, answer.value)}><i className="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                }
+                )}
+            </ul>
+        </div>
     }
 
     render() {
         const { item, validationStatus } = this.props;
-        return <div className="form-group">
-            <div className="input-group">
-                <div className="custom-file attachment-item">
-                    <FileInput
-                        validate={this.validate.bind(this)}
-                        multiple={item.multipleFiles}
-                        field={item.id}
-                        className={`custom-file-input ${validationStatus}`}
-                        id={item.id}
-                        onChange={this.handleChange.bind(this)}
-                        forwardedRef={this.fileInputRef}
-                    />
-                    <label className="custom-file-label" htmlFor={item.id}>Choose file...</label>
-                </div>
+        return <div>
+            <div className="form-group">
+                <FileInput
+                    validate={this.validate.bind(this)}
+                    multiple={item.multipleFiles}
+                    field={item.id}
+                    className={`form-control-file ${validationStatus}`}
+                    id={item.id}
+                    onChange={this.handleChange.bind(this)}
+                    forwardedRef={this.fileInputRef}
+                />
             </div>
             {this.renderFileList()}
         </div>

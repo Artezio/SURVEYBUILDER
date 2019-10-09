@@ -22,10 +22,10 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
     renderQuestionText() {
         const { item } = this.props;
         if (item.type === Models.GROUP) {
-            return <h4>{item.text}</h4>
+            return <h2>{item.text}</h2>
         }
         if (item.type !== Models.DISPLAY) {
-            return <label htmlFor={item.id} className="font-weight-bold">
+            return <label htmlFor={item.id}>
                 {item.text}
                 {item.required && <span className="text-danger">*</span>}
             </label>
@@ -39,7 +39,15 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
                 ? ''
                 : 'is-invalid'
             : '';
-        return questionnaireResponseItem.isEnable && <div className={className}>
+        let specificClassName;
+        if (item.type === Models.GROUP) {
+            specificClassName = 'response-group-item';
+        } else if (item.type === Models.DISPLAY) {
+            specificClassName = 'response-display-item';
+        } else {
+            specificClassName = 'response-item';
+        }
+        return questionnaireResponseItem.isEnable && <div className={`${specificClassName} ${className}`}>
             {this.renderQuestionText()}
             {this.renderErrorMessage()}
             <ItemProvider item={item} questionnaireResponseItem={questionnaireResponseItem} validationStatus={validationStatus} />

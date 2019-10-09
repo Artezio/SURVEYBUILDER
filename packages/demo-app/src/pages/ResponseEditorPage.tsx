@@ -7,6 +7,7 @@ import { QuestionnairePlayer } from '@art-forms/player';
 import { connect } from 'react-redux';
 import { responseEditorPageActions } from '../redux/actions/responseEditorPageActions';
 import { ResponseSavedPage } from '../components/responseListPage/ResponseSavedPage';
+import { Link } from 'react-router-dom';
 
 export class ResponseEditorPage extends React.Component<ResponseEditorPageProps> {
     formRef = React.createRef<{ formApi: { submitForm(): void } }>()
@@ -66,11 +67,10 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
     render() {
         const { status } = this.props;
         return <div className="container">
-            <h1>Questionnaire Player</h1>
-            <hr />
             {this.renderSpinner()}
             {this.renderQuestionnairePlayer()}
-            {status.savingResponse !== STATUS_SAVING_RESPONSE.saved && <div className="d-flex justify-content-end">
+            {status.savingResponse !== STATUS_SAVING_RESPONSE.saved && <div className="d-flex justify-content-start">
+                <button onClick={() => { history.back() }} className="btn btn-outline-danger mr-2">Cancel</button>
                 <button className="btn btn-outline-primary" onClick={this.onClick.bind(this)}>Submit</button>
             </div>}
         </div>

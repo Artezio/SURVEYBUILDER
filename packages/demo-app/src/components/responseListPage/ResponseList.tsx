@@ -8,7 +8,7 @@ export const ResponseList = (props: ResponseListProps) => {
     const { responseList } = props;
     return <div>
         <ul className="list-group list-group-flush">
-            {responseList.map(response => <ResponseInstance key={response.id} response={response} />)}
+            {responseList.map((response, i) => <ResponseInstance orderIndex={i + 1} key={response.id} response={response} />)}
         </ul>
     </div>
 } 

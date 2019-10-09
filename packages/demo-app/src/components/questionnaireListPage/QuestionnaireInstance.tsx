@@ -26,7 +26,7 @@ export const QuestionnaireInstance = (props: any) => {
     const buttonClass = 'btn btn-outline-secondary';
 
     return <li className="list-group-item">
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between align-items-center">
             <h4>{questionnaire.title || 'Untitled Questionnaire'}</h4>
             <div className="btn-toolbar">
                 <div className="btn-group mr-2">
