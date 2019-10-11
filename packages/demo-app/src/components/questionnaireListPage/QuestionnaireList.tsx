@@ -8,7 +8,7 @@ export class QuestionnaireList extends React.Component<QuestionnaireListProps> {
     render() {
         const { questionnaireList } = this.props;
         return <div>
-            <ul className="list-group list-group-flush">
+            <ul className="list-group list-group-flush questionnaires">
                 {questionnaireList.map(questionnaire => <QuestionnaireInstance key={questionnaire.id} questionnaire={questionnaire} />)}
             </ul>
         </div>

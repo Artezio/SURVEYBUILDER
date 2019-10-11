@@ -35,12 +35,6 @@ export class MainLayout extends React.Component<MainLayoutProps> {
         >
             {theme.title}
         </a>)
-        // return bootstrapThemes && bootstrapThemes.reduce((themes, theme) => {
-        //     if (!currentTheme || theme.href !== currentTheme.href) {
-        //         themes.push(<a onClick={this.onClick.bind(this, theme.href)} key={theme.href} href="javascript:void(0)" className="dropdown-item">{theme.title}</a>)
-        //     }
-        //     return themes;
-        // }, [])
     }
 
     onClick(href: string) {
@@ -73,9 +67,8 @@ export class MainLayout extends React.Component<MainLayoutProps> {
     }
 
     renderHeader() {
-        const { currentTheme } = this.props;
-        return <nav className="navbar navbar-expand navbar-dark bg-secondary">
-            <Link to="/" className="navbar-brand">Artezio</Link>
+        return <nav className="navbar navbar-expand shadow-sm navbar-light bg-light border-bottom">
+            <Link to="/" className="navbar-brand"><img width="36px" src="../data/images/logo.svg" alt=""/></Link>
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <NavLink to="/" exact={true} className="nav-link" activeClassName="active">Questionnaires</NavLink>
@@ -86,7 +79,16 @@ export class MainLayout extends React.Component<MainLayoutProps> {
             </ul>
             <ul className="navbar-nav">
                 <li className="nav-item dropdown">
-                    <a href="javascript:void(0)" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{currentTheme && currentTheme.title}</a>
+                    <a href="javascript:void(0)"
+                        className="nav-link dropdown-toggle"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        Theme
+                    </a>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         {this.renderThemeList()}
                     </div>

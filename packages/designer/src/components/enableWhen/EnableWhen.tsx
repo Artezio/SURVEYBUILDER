@@ -73,18 +73,20 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
     render() {
         const { index, enableWhen } = this.props;
         const { selectedQuestion } = this.state;
-        return <div className="enable-when__row row align-items-center">
-            <div className="col-3">
-                {this.renderQuestionSelect()}
-            </div>
-            <div className="col-3">
-                {this.renderOperatorSelect()}
-            </div>
-            <div className="col-5">
-                {selectedQuestion && <QuestionItemProvider key={selectedQuestion.id} item={selectedQuestion} index={index} enableWhen={enableWhen} />}
-            </div>
-            <div className="col-1">
-                <button className="btn btn-outline-secondary" onClick={this.removeEnableWhen.bind(this)}><i className="fas fa-trash"></i></button>
+        return <div className="list-group-item">
+            <div className="row align-items-center">
+                <div className="col-3">
+                    {this.renderQuestionSelect()}
+                </div>
+                <div className="col-3">
+                    {this.renderOperatorSelect()}
+                </div>
+                <div className="col-5">
+                    <QuestionItemProvider item={selectedQuestion} index={index} enableWhen={enableWhen} />
+                </div>
+                <div className="col-1 d-flex justify-content-end">
+                    <button className="btn btn-outline-secondary" onClick={this.removeEnableWhen.bind(this)}><i className="fas fa-trash"></i></button>
+                </div>
             </div>
         </div>
     }

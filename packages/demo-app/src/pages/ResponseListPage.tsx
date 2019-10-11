@@ -49,10 +49,10 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
                 <div className="d-flex align-items-center justify-content-between">
                     <h1>{questionnaire && questionnaire.title || 'Untitled Questionnaire'}</h1>
                     <Link className="btn btn-outline-secondary" to={`/questionnaire/${questionnaireId}/response`} title="Start questionnaire">
-                        Respond questionnaire
+                        Add response
                     </Link>
                 </div>
-                <h2>Responses:</h2>
+                <h5>The list of responses:</h5>
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) {

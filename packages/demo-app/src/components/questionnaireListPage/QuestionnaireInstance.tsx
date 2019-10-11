@@ -25,9 +25,11 @@ export const QuestionnaireInstance = (props: any) => {
 
     const buttonClass = 'btn btn-outline-secondary';
 
-    return <li className="list-group-item">
+    return <li className="list-group-item questionnaires__questionnaire">
         <div className="d-flex justify-content-between align-items-center">
-            <h4>{questionnaire.title || 'Untitled Questionnaire'}</h4>
+            <Link to={`/responses/${questionnaire.id}`} className="text-body">
+                <span className="h4">{questionnaire.title || 'Untitled Questionnaire'}</span>
+            </Link>
             <div className="btn-toolbar">
                 <div className="btn-group mr-2">
                     <Link className={buttonClass} to={`/responses/${questionnaire.id}`}>Responses</Link>

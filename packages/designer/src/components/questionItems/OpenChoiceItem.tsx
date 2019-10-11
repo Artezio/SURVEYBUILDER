@@ -5,6 +5,7 @@ import { useObservableModel } from '../../observableConnector/useObservableModel
 import ChoiceOption from '../ChoiceOption';
 import { Form, RadioGroup } from 'informed';
 import QuestionItem from './QuestionItem';
+import { ChoiceOptionOther } from '../ChoiceOptionOther';
 
 
 export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
@@ -26,10 +27,12 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
         return <div className="option-list">
             <Form getApi={this.getFormApi.bind(this)} onSubmit={this.handleSubmit.bind(this)}>
                 <RadioGroup initialValue={initialValue} field="value">
-                    {item.options.map((option, i) => <ChoiceOption key={option.id} option={option}
-                        disabledOption={i === (item.options.length - 1) ? true : false}
-                        customLabel={i === (item.options.length - 1) ? 'Other' : undefined}
-                    />)}
+                    {item.options.map((option, i) => {
+                        if (i === (item.options.length - 1)) {
+                            return <ChoiceOptionOther key={option.id} option={option} />
+                        }
+                        return <ChoiceOption key={option.id} option={option} />
+                    })}
                 </RadioGroup>
             </Form>
         </div>
@@ -38,11 +41,11 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     render() {
         return <div>
             <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
-                Reset <i className="fas fa-undo"></i>
+                Clean <i className="fas fa-undo"></i>
             </button>
             {this.renderChoiceOptions()}
             <div>
-                <button className="btn btn-outline-secondary form-control" onClick={this.addOption.bind(this)}>Add option</button>
+                <button className="btn btn-outline-secondary btn-block" onClick={this.addOption.bind(this)}>Add option</button>
             </div>
         </div>
     }

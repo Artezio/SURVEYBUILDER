@@ -159,7 +159,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
                             <label htmlFor={`${questionnaireModel.id}-title`}>Questionnaire Title</label>
                             <Text autoComplete="off" className="form-control" id={`${questionnaireModel.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label htmlFor={`${questionnaireModel.id}-description`}>Questionnaire Description</label>
                             <TextArea autoComplete="off" className="form-control" id={`${questionnaireModel.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
                         </div>

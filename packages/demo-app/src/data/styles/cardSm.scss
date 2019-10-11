@@ -1,5 +1,3 @@
-@import "../../../../../node_modules/bootstrap-scss/bootstrap.scss";
-
 .card-sm {
   .btn {
     @extend .btn-sm;
@@ -7,28 +5,48 @@
   .form-control {
     @extend .form-control-sm;
   }
-  label {
-    @extend .mb-0;
+  textarea.form-control {
+    height: auto;
   }
+  // label {
+  //   @extend .mb-0;
+  // }
   .input-group {
     @extend .input-group-sm;
+    .form-control:not(:last-child) {
+      border-radius: 0 !important;
+    }
+    .input-group-append {
+      .input-group-text,
+      .btn {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+      }
+    }
+    .input-group-prepend {
+      .input-group-text,
+      .btn {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+      }
+    }
   }
-  .form-group {
-    @extend .mb-2;
-  }
-  .card-body {
-    @extend .p-2;
-  }
-  .card-header {
-    @extend .p-1;
-  }
-  .card-footer {
-    @extend .p-1;
-  }
-  .custom-select {
-    @extend .custom-select-sm;
-  }
-  hr {
-    @extend .my-1;
-  }
+  // .form-group {
+  //   @extend .mb-2;
+  // }
+  // .card-body {
+  //   @extend .p-2;
+  // }
+  // .card-header {
+  //   @extend .p-2;
+  // }
+  // .card-footer {
+  //   @extend .p-2;
+  // }
+  // hr {
+  //   @extend .my-1;
+  // }
+  // .list-group-item {
+  //   @extend .py-1;
+  // }
 }

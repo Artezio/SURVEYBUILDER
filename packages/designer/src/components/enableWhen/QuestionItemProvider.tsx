@@ -5,9 +5,10 @@ import QuestionItemProviderProps from '../../interfaces/components/enableWhen/Qu
 import Choice from './Choice';
 import OpenChoice from './OpenChoice';
 import Boolean from './Boolean';
+import DefaultAnswerInput from './defaultAnswerInput';
 
 export const QuestionItemProvider = (props: QuestionItemProviderProps) => {
-    const { item, index, enableWhen } = props;
+    const { item = {} as { type: Models.QUESTION_TYPE }, index, enableWhen } = props;
     switch (item.type) {
         case Models.STRING: {
             return <Input enableWhen={enableWhen} index={index} type="text" />
@@ -38,7 +39,7 @@ export const QuestionItemProvider = (props: QuestionItemProviderProps) => {
             return <Boolean enableWhen={enableWhen} index={index} />
         }
         default: {
-            return null
+            return <DefaultAnswerInput />
         }
     }
 }

@@ -1,0 +1,12 @@
+.response-group-item {
+  .response-group-item {
+    h2 {
+      @extend .h3;
+    }
+    .response-group-item {
+      h2 {
+        @extend .h4;
+      }
+    }
+  }
+}

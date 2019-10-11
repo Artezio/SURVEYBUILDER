@@ -6,6 +6,7 @@ import EnableWhenFactory from '../factories/enableWhenFactory';
 import IItem from '../interfaces/IItem';
 import { ITEM_TYPE, DISPLAY } from '../constants/itemTypes';
 import EnableWhen from './enableWhen';
+import 'reflect-metadata';
 
 @observable
 export class Item implements IItem {

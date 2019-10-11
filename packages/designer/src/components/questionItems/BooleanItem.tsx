@@ -20,7 +20,7 @@ export class BooleanItem extends QuestionItem<BooleanItemProps> {
             <RadioGroup initialValue={initialValue} field="value">
                 <div>
                     <button type="button" className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
-                        Reset <i className="fas fa-undo"></i>
+                        Clean <i className="fas fa-undo"></i>
                     </button>
                     <div className="form-check">
                         <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.submitForm.bind(this)} />
