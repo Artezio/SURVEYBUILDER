@@ -15,7 +15,9 @@ export const questionnaireEditorPageActions = {
         [ACTIONS.SAVE_NEW_QUESTIONNAIRE_SAVING, ACTIONS.SAVE_NEW_QUESTIONNAIRE_SAVED, ACTIONS.SAVE_NEW_QUESTIONNAIRE_ERROR],
         (getState: () => Store) => {
             const { questionnaireEditorPage } = getState();
-            const mappedQuestionnaire = questionnaireConverter.fromModel(questionnaireEditorPage.questionnaireModel);
+            const mappedQuestionnaire = questionnaireConverter.fromModel(questionnaireEditorPage.questionnaireModel) as any;
+            mappedQuestionnaire.date = new Date().toISOString();
+            mappedQuestionnaire.publisher = "LLC Artezio";
             if (questionnaireEditorPage.mode === MODE.creating) {
                 return questionnaireProvider.putQuestionnaire(mappedQuestionnaire);
             }

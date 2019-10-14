@@ -9,7 +9,11 @@ export const ResponseInstance = (props: ResponseInstanceProps) => {
         <div className="d-flex justify-content-between align-items-center">
             <div>
                 <h4>№{orderIndex}</h4>
-                <span>{date ? `Last update: ${date}` : ''}</span>
+                {date && <div>
+                    <span className="font-weight-bold">Last update: </span>
+                    <span>{date}</span>
+                </div>
+                }
             </div>
             <div className="d-flex justify-content-end">
                 <Link className="btn btn-outline-secondary"

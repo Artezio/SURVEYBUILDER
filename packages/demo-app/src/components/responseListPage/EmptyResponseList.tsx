@@ -11,10 +11,10 @@ export const EmptyResponseList = (props: EmptyResponseListProps) => {
 
     return <div className="text-center">
         <p className="text-muted">There are no responses yet</p>
-        <div className="text-center">
+        {/* <div className="text-center">
             <Link to="/" className="btn btn-secondary mr-2" onClick={onClick}>Back</Link>
             <Link className="btn btn-outline-secondary" to={`/questionnaire/${questionnaire.id}/response`}>Add response</Link>
-        </div>
+        </div> */}
     </div>
 };
 

@@ -44,16 +44,32 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
     renderHeadLine() {
         const { match, status, questionnaire } = this.props;
         const questionnaireId = match && match.params.questionnaireId;
+        const publisher = questionnaire && questionnaire.publisher;
+        const date = questionnaire && questionnaire.date && new Date(questionnaire.date).toLocaleString();
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded) {
             return questionnaire && <div>
-                <div className="d-flex align-items-center justify-content-between">
-                    <h1>{questionnaire && questionnaire.title || 'Untitled Questionnaire'}</h1>
+                <div className="d-flex align-items-baseline justify-content-between mb-3">
+                    <div>
+                        <h1>{questionnaire && questionnaire.title || 'Untitled Questionnaire'}</h1>
+                        <div className="d-flex align-items-center justify-content-between">
+                            {(!!publisher || !!date) && <div className="mr-3">
+                                {!!publisher && <div><span className="font-weight-bold">Publisher:</span> <span>{publisher}</span></div>}
+                                {!!date && <div><span className="font-weight-bold">Last updated:</span> <span>{date}</span></div>}
+                            </div>}
+                            <div>
+                                <Link to={`/questionnaire/${questionnaire.id}`} className="btn btn-outline-secondary">
+                                    Edit questionnaire
+                                    {/* <i className="fas fa-pencil-alt"></i> */}
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                     <Link className="btn btn-outline-secondary" to={`/questionnaire/${questionnaireId}/response`} title="Start questionnaire">
                         Add response
                     </Link>
                 </div>
                 <h5>The list of responses:</h5>
-                <hr/>
+                <hr />
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) {
