@@ -74,8 +74,8 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
             {this.renderSpinner()}
             {this.renderQuestionnairePlayer()}
             {status.savingResponse !== STATUS_SAVING_RESPONSE.saved && <div className="d-flex justify-content-start">
-                <button onClick={this.backByHistory.bind(this)} className="btn btn-outline-danger mr-2">Cancel</button>
-                <button className="btn btn-outline-primary" onClick={this.onClick.bind(this)}>Submit</button>
+                <button className="btn btn-outline-danger mr-2" onClick={this.backByHistory.bind(this)} title="Cancel form filling">Cancel</button>
+                <button className="btn btn-outline-primary" onClick={this.onClick.bind(this)} title="Save form">Submit</button>
             </div>}
         </div>
     }

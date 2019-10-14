@@ -27,13 +27,19 @@ export const QuestionnaireInstance = (props: any) => {
 
     return <li className="list-group-item questionnaires__questionnaire">
         <div className="d-flex justify-content-between align-items-center">
-            <Link to={`/responses/${questionnaire.id}`} className="text-body">
+            <Link to={`/responses/${questionnaire.id}`} className="text-body" title="Questionnaire details">
                 <span className="h4">{questionnaire.title || 'Untitled Questionnaire'}</span>
             </Link>
             <div className="btn-group">
-                <button className={buttonClass} onClick={deleteQuestionnaire}><i className="fas fa-trash"></i></button>
-                <Link className={buttonClass} to={`/questionnaire/${questionnaire.id}`}><i className="fas fa-pencil-alt"></i></Link>
-                <Link className={buttonClass} to={`questionnaire/${questionnaire.id}/response`}><i className="fas fa-play"></i></Link>
+                <button className={buttonClass} onClick={deleteQuestionnaire} title="Delete questionnaire">
+                    <i className="fas fa-trash"></i>
+                </button>
+                <Link className={buttonClass} to={`/questionnaire/${questionnaire.id}`} title="Edit questionnaire">
+                    <i className="fas fa-pencil-alt"></i>
+                </Link>
+                <Link className={buttonClass} to={`questionnaire/${questionnaire.id}/response`} title="Pass questionnaire">
+                    <i className="fas fa-play"></i>
+                </Link>
             </div>
         </div>
     </li>

@@ -79,7 +79,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
             </ul>
             <ul className="navbar-nav">
                 <li className="nav-item dropdown">
-                    <a href="javascript:void(0)"
+                    <a href={location.href}
                         className="nav-link dropdown-toggle"
                         id="navbarDropdown"
                         role="button"
@@ -98,7 +98,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
     }
 
     renderFooter() {
-        return <span>&#169; Artezio, LLC. All rights reserved</span>
+        return <small>&#169; Artezio, LLC. All rights reserved</small>
     }
 
     render() {

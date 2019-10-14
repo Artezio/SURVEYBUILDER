@@ -8,7 +8,7 @@ export const ResponseSavedPage = () => {
         <p>{`Your response was saved`}</p>
         <hr />
         <div className="d-flex justify-content-center align-items-center">
-            <Link className="btn btn-primary" to="/">Home</Link>
+            <Link className="btn btn-primary" to="/" title="Back to home page">Home</Link>
         </div>
     </div>
 }

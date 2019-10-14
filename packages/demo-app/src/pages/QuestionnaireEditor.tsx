@@ -54,8 +54,8 @@ export class QuestionnaireEditor extends React.Component<QuestionnaireEditorPage
         const { status } = this.props;
         if (status.loading === STATUS_LOADING.loaded) {
             return <div className="d-flex justify-content-start">
-                <button onClick={() => { history.back() }} className="btn btn-outline-danger mr-2">Cancel</button>
-                <button onClick={this.onClick.bind(this)} className="btn btn-outline-primary">Save</button>
+                <button onClick={() => { history.back() }} className="btn btn-outline-danger mr-2" title="Cancel changes">Cancel</button>
+                <button onClick={this.onClick.bind(this)} className="btn btn-outline-primary" title="Save changes">Save</button>
             </div>
         }
     }

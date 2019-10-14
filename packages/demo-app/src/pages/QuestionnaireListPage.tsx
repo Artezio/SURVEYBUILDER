@@ -40,7 +40,7 @@ export class QuestionnaireListPage extends React.Component<QuestionnaireListPage
             {this.renderSpinner()}
             <header className="d-flex justify-content-between align-items-center">
                 <h1>Questionnaire List</h1>
-                <Link to="/questionnaire" className="btn btn-outline-secondary">Create new Questionnaire</Link>
+                <Link to="/questionnaire" className="btn btn-outline-secondary" title="Create new questionnaire">Create new Questionnaire</Link>
             </header>
             <div>
                 {this.renderQuestionnaireList()}

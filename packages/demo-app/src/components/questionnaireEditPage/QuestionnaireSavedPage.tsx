@@ -9,7 +9,7 @@ export const QuestionnaireSavedPage = ({ questionnaire }: any) => {
         <p>Questionnaire {} was successfully saved</p>
         <hr />
         <div className="d-flex justify-content-center align-items-center">
-            <Link className="btn btn-primary mx-3" to="/">Home</Link>
+            <Link className="btn btn-primary mx-3" to="/" title="Return to home page">Home</Link>
             {questionnaire && <Link to={`/questionnaire/${questionnaire.id}/response`} className="btn btn-warning mx-3"><i className="fas fa-play"></i></Link>}
         </div>
     </div>
