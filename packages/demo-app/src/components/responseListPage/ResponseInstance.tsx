@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 
 export const ResponseInstance = (props: ResponseInstanceProps) => {
     const { response, orderIndex } = props;
-    let date = response.meta && response.meta.lastUpdated;
-    date = date ? new Date(date).toLocaleString() : 'Response time not set';
+    const date = !!response.authored && new Date(response.authored).toLocaleString();
     return <li className="list-group-item">
         <div className="d-flex justify-content-between align-items-center">
-            <h4>№{orderIndex}</h4>
+            <div>
+                <h4>№{orderIndex}</h4>
+                <span>{date ? `Last update: ${date}` : ''}</span>
+            </div>
             <div className="d-flex justify-content-end">
                 <Link className="btn btn-outline-secondary"
                     to={`/questionnaire/${response.questionnaire.slice(14)}/response/${response.id}`}

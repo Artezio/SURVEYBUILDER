@@ -1,3 +1,4 @@
 export interface ResponseListProps {
-    responseList: any[];
+    responseList?: any[];
+    questionnaire: any;
 }

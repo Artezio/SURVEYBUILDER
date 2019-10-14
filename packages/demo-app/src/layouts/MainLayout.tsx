@@ -68,7 +68,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
 
     renderHeader() {
         return <nav className="navbar navbar-expand shadow-sm navbar-light bg-light border-bottom">
-            <Link to="/" className="navbar-brand"><img width="36px" src="../data/images/logo.svg" alt=""/></Link>
+            <Link to="/" className="navbar-brand"><img width="36px" src="../data/images/logo.svg" alt="" /></Link>
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <NavLink to="/" exact={true} className="nav-link" activeClassName="active">Questionnaires</NavLink>
@@ -97,11 +97,17 @@ export class MainLayout extends React.Component<MainLayoutProps> {
         </nav>
     }
 
+    renderFooter() {
+        return <span>&#169; Artezio, LLC. All rights reserved</span>
+    }
+
     render() {
-        return <div className="main">
+        return <div className="wrapper">
             <Router>
-                {this.renderHeader()}
-                <section className="p-3">
+                <header className="header">
+                    {this.renderHeader()}
+                </header>
+                <section className="main-content p-3" style={{ minHeight: `calc(100% - 86px)` }}>
                     <Switch>
                         <Route exact={true} path="/" component={QuestionnaireListPage} />
                         <Route exact={true} path="/questionnaire" component={QuestionnaireEditor} />
@@ -113,6 +119,9 @@ export class MainLayout extends React.Component<MainLayoutProps> {
                     </Switch>
                 </section>
             </Router>
+            <footer className="footer text-center bg-secondary">
+                {this.renderFooter()}
+            </footer>
         </div>
     }
 }

@@ -30,14 +30,14 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
     }
 
     renderResponseList() {
-        const { status, responseList } = this.props;
+        const { status, responseList, questionnaire } = this.props;
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) return;
 
         if (status.loadingResponseList === STATUS_RESPONSE_LIST_LOADING.error) {
             return <ResponseListLoadError />
         }
         if (status.loadingResponseList === STATUS_RESPONSE_LIST_LOADING.loaded) {
-            return responseList && <ResponseList responseList={responseList} />
+            return <ResponseList responseList={responseList} questionnaire={questionnaire} />
         }
     }
 
@@ -53,6 +53,7 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
                     </Link>
                 </div>
                 <h5>The list of responses:</h5>
+                <hr/>
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.error) {

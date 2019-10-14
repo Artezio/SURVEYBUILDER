@@ -64,13 +64,17 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
         }
     }
 
+    backByHistory() {
+        history.back();
+    }
+
     render() {
         const { status } = this.props;
         return <div className="container">
             {this.renderSpinner()}
             {this.renderQuestionnairePlayer()}
             {status.savingResponse !== STATUS_SAVING_RESPONSE.saved && <div className="d-flex justify-content-start">
-                <button onClick={() => { history.back() }} className="btn btn-outline-danger mr-2">Cancel</button>
+                <button onClick={this.backByHistory.bind(this)} className="btn btn-outline-danger mr-2">Cancel</button>
                 <button className="btn btn-outline-primary" onClick={this.onClick.bind(this)}>Submit</button>
             </div>}
         </div>

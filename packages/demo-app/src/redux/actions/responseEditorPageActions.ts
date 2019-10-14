@@ -19,7 +19,8 @@ export const responseEditorPageActions = {
     saveResponse: createActionAsync(
         [ACTIONS.SAVE_RESPONSE_SAVING, ACTIONS.SAVE_RESPONSE_SAVED, ACTIONS.SAVE_RESPONSE_ERROR],
         (response: any, getState: () => Store) => {
-            const mappedResponse = questionnaireResponseConverter.fromModel(response);
+            const mappedResponse = questionnaireResponseConverter.fromModel(response) as any;
+            mappedResponse.authored = new Date(Date.now()).toISOString();
             const { responseEditorPage } = getState();
             if (responseEditorPage.mode === MODE.creating) {
                 return responseProvider.putResponse(mappedResponse)

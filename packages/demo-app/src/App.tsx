@@ -3,6 +3,7 @@ import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap-scss';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './data/styles/artezioBootstrapTheme.scss';
+import './data/styles/layoutContent.scss';
 import MainLayout from './layouts/MainLayout';
 import { Theme } from './interface/layouts/MainLayoutProps';
 
