@@ -8,7 +8,8 @@ import { responseListPageActions } from '../redux/actions/responseListPageAction
 import { Spinner } from '../components/Spinner';
 import { ResponseListLoadError } from '../components/responseListPage/ResponseListLoadError';
 import LoadingQuestionnaireError from '../components/responseListPage/LoadingQuestionnaireError';
-
+import { questionnaireListPageActions } from '../redux/actions/questionnaireListPageActions';
+import { withRouter } from 'react-router-dom';
 
 export class ResponseListPage extends React.Component<ResponseListPageProps> {
     questionnaire: any;
@@ -19,6 +20,24 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
         if (questionnaireId) {
             dispatch(responseListPageActions.loadQuestionnaireById(questionnaireId))
             dispatch(responseListPageActions.loadResponseListByQuestionnaireId(questionnaireId))
+        }
+    }
+
+    onClick() {
+        const { dispatch, questionnaire, history } = this.props;
+        if (questionnaire.immortal) {
+            alert('Impossible to delete this questionnaire!');
+            return;
+        }
+        if (confirm('Are you sure you want to delete this questionnaire?')) {
+            dispatch(questionnaireListPageActions.deleteQuestionnaire(questionnaire.id))
+                .then(({ data, error }) => {
+                    if (error) {
+                        alert(error.message);
+                    } else {
+                        history.push('/');
+                    }
+                })
         }
     }
 
@@ -41,6 +60,7 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
         }
     }
 
+
     renderHeadLine() {
         const { match, status, questionnaire } = this.props;
         const questionnaireId = match && match.params.questionnaireId;
@@ -56,9 +76,14 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
                             {!!date && <div><span className="font-weight-bold">Last updated:</span> <span>{date}</span></div>}
                         </div>}
                     </div>
-                    <Link to={`/questionnaire/${questionnaire.id}`} className="btn btn-outline-secondary" title="Edit questionnaire">
-                        Edit questionnaire
-                    </Link>
+                    <div>
+                        <button className="btn btn-outline-secondary mr-2" onClick={this.onClick.bind(this)}>
+                            <i className="fas fa-trash"></i>
+                        </button>
+                        <Link to={`/questionnaire/${questionnaire.id}`} className="btn btn-outline-secondary" title="Edit questionnaire">
+                            <i className="fas fa-pencil-alt" />
+                        </Link>
+                    </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
                     <h5>The list of responses:</h5>
@@ -87,4 +112,4 @@ const mapStateToProps = (state: any) => {
     return { ...state.responseListPage, questionnaireList: state.questionnaireListPage.questionnaireList }
 }
 
-export default connect(mapStateToProps)(ResponseListPage);
+export default connect(mapStateToProps)(withRouter(ResponseListPage));

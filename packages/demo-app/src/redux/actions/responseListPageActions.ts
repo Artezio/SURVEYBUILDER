@@ -12,5 +12,9 @@ export const responseListPageActions = {
     loadQuestionnaireById: createActionAsync(
         [ACTIONS.LOAD_QUESTIONNAIRE_FETCHING, ACTIONS.LOAD_QUESTIONNAIRE_LOADED, ACTIONS.LOAD_QUESTIONNAIRE_ERROR],
         (id: string) => questionnaireProvider.getQuestionnaireById(id)
+    ),
+    deleteQuestionnaireById: createActionAsync(
+        [ACTIONS.DELETE_QUESTIONNAIRE_DELETING, ACTIONS.DELETE_QUESTIONNAIRE_DELETED, ACTIONS.DELETE_QUESTIONNAIRE_ERROR],
+        (id: string) => questionnaireProvider.deleteQuestionnaireById(id)
     )
 }

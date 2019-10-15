@@ -1,6 +1,6 @@
 import { ResponseListPageStore } from "../../interface/reponseListPage/ResponseListPageStore";
 import { Action } from "../../interface/Action";
-import { ACTIONS, STATUS_RESPONSE_LIST_LOADING, STATUS_QUESTIONNAIRE_LOADING } from "../../constants/responseListPage";
+import { ACTIONS, STATUS_RESPONSE_LIST_LOADING, STATUS_QUESTIONNAIRE_LOADING, STATUS_QUESTIONNAIRE_DELETING } from "../../constants/responseListPage";
 
 const INITIAL_STATE: ResponseListPageStore = { status: {} };
 
@@ -59,6 +59,30 @@ export const responseListPage = (state: ResponseListPageStore = INITIAL_STATE, a
                 status: {
                     ...state.status,
                     loadingQuestionnaire: STATUS_QUESTIONNAIRE_LOADING.error
+                }
+            }
+        }
+        case ACTIONS.DELETE_QUESTIONNAIRE_DELETING: {
+            return {
+                ...state,
+                status: {
+                    deletingQuestionnaire: STATUS_QUESTIONNAIRE_DELETING.deleting
+                }
+            }
+        }
+        case ACTIONS.DELETE_QUESTIONNAIRE_DELETED: {
+            return {
+                ...state,
+                status: {
+                    deletingQuestionnaire: STATUS_QUESTIONNAIRE_DELETING.deleted
+                }
+            }
+        }
+        case ACTIONS.DELETE_QUESTIONNAIRE_ERROR: {
+            return {
+                ...state,
+                status: {
+                    deletingQuestionnaire: STATUS_QUESTIONNAIRE_DELETING.error
                 }
             }
         }
