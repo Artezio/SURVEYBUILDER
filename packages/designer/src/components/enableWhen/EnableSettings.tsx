@@ -64,7 +64,7 @@ export class EnableSettings extends React.Component<EnableConditionsProps> {
         return <div className="enable-when">
             <Form initialValues={item} getApi={this.getFormApi.bind(this)}>
                 <div className="form-group">
-                    <label htmlFor={`enableWhenBehavior-${item.id}`}>Comparing logic: </label>
+                    <label htmlFor={`enableWhenBehavior-${item.id}`}>Logic operator: </label>
                     <Select id={`enableWhenBehavior-${item.id}`} className="form-control" field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
                         <Option value={Models.AND}>All</Option>
                         <Option value={Models.OR}>Or</Option>
@@ -75,7 +75,7 @@ export class EnableSettings extends React.Component<EnableConditionsProps> {
                         {!!item.enableWhen.length && <div className="list-group-item">
                             <div className="row">
                                 <div className="col-3">Question</div>
-                                <div className="col-3">Operator</div>
+                                <div className="col-3">Comparison operator</div>
                                 <div className="col-5">Answer</div>
                                 <div className="col-1"></div>
                             </div>

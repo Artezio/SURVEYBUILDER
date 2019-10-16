@@ -34,8 +34,8 @@ export class ChoiceItem extends QuestionItem<ChoiceItemProps> {
 
     render() {
         return <div>
-            <button className="btn btn-link text-secondary" onClick={this.reset.bind(this)}>
-                Clean <i className="fas fa-undo"></i>
+            <button className="btn btn-link text-secondary pl-0" onClick={this.reset.bind(this)}>
+                Remove default value <i className="fas fa-undo"></i>
             </button>
             {this.renderChoiceOptions()}
             <div>
