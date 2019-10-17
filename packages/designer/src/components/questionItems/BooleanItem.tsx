@@ -16,12 +16,14 @@ export class BooleanItem extends QuestionItem<BooleanItemProps> {
         const { item } = this.props;
         const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-            <label className="question-item-label">Default answer</label>
+            <div className="d-flex align-items-baseline">
+                <label className="question-item-label mr-3 mb-0">Default answer</label>
+                {item.initialAnswers.length > 0 && <button type="button" className="btn btn-link text-secondary p-0" onClick={this.reset.bind(this)}>
+                    Remove default value
+                    </button>}
+            </div>
             <RadioGroup initialValue={initialValue} field="value">
                 <div>
-                    <button type="button" className="btn btn-link text-secondary pl-0" onClick={this.reset.bind(this)}>
-                        Remove default value <i className="fas fa-undo"></i>
-                    </button>
                     <div className="form-check">
                         <Radio className="form-check-input" id={`${item.id}-true`} value={true} onChange={this.submitForm.bind(this)} />
                         <label className="form-check-label" htmlFor={`${item.id}-true`}>Yes</label>
