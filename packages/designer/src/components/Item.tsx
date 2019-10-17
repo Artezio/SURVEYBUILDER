@@ -40,11 +40,9 @@ export class Item extends React.Component<ItemProps> {
     render() {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-            <div className="card-body">
-                <div>
-                    <label htmlFor={item.id}>Text</label>
-                    <TextArea forwardedRef={this.inputRef} autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" onBlur={this.submitForm.bind(this)} />
-                </div>
+            <div>
+                <label htmlFor={item.id}>Text</label>
+                <TextArea forwardedRef={this.inputRef} autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" onBlur={this.submitForm.bind(this)} />
             </div>
         </Form>
     }

@@ -10,10 +10,8 @@ export class TimeItem extends QuestionItem<TimeItemProps> {
         const { item } = this.props;
         const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-            <div>
-                <label htmlFor={`${item.id}-initial`} className="question-item-label">Default answer</label>
-                <Text autoComplete="off" className="form-control" type="time" initialValue={initialValue} field="value" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
-            </div>
+            <label htmlFor={`${item.id}-initial`} className="question-item-label">Default answer</label>
+            <Text autoComplete="off" className="form-control" type="time" initialValue={initialValue} field="value" id={`${item.id}-initial`} onBlur={this.submitForm.bind(this)} />
         </Form>
     }
 }
