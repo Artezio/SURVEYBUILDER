@@ -7,6 +7,7 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".js"]
     },
+
     output: {
         path: path.resolve(__dirname, './bundle'),
         filename: 'index.js'
@@ -15,11 +16,10 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                loader: 'ts-loader',
-                include: pathToSrc,
-                options: {
-                    transpileOnly: true
-                }
+                use: [
+                    // {},
+                    { loader: 'ts-loader' }
+                ]
             }
         ]
     },

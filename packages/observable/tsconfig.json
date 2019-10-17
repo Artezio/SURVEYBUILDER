@@ -1,18 +1,23 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
+        "module": "esnext",
+        "target": "es5",
         "lib": [
             "es6",
             "dom",
             "es2015"
         ],
+        "allowJs": true,
         "moduleResolution": "node",
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
         "jsx": "react",
+        "isolatedModules": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
-    }
+    },
+    "exclude": [
+        "tests",
+        "bundle"
+    ]
 }
