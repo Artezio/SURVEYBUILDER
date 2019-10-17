@@ -170,7 +170,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                             </div>
                         </Form>}
                     <div>
-                        {`Enable when: ${correctEnableWhens.length ? 'On' : 'Off'}`}
+                        {`Dependent: ${correctEnableWhens.length ? 'On' : 'Off'}`}
                     </div>
                 </div>
                 <div className="col-6 d-flex justify-content-end">
