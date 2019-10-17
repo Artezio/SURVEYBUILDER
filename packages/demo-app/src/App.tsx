@@ -8,86 +8,86 @@ import MainLayout from './layouts/MainLayout';
 import { Theme } from './interface/layouts/MainLayoutProps';
 
 const themes: Theme[] = [
+    // {
+    //     title: 'Darkly theme',
+    //     href: '/bootstrapThemes/darkly.css'
+    // },
+    // {
+    //     title: 'Sketchy',
+    //     href: '/bootstrapThemes/sketchy.css'
+    // },
     {
-        title: 'Darkly theme',
-        href: '/bootstrapThemes/darkly.css'
-    },
-    {
-        title: 'Sketchy',
-        href: '/bootstrapThemes/sketchy.css'
-    },
-    {
-        title: 'Minty',
+        title: 'Minty(+)',
         href: '/bootstrapThemes/minty.css'
     },
+    // {
+    //     title: 'Simplex',
+    //     href: '/bootstrapThemes/simplex.css'
+    // },
+    // {
+    //     title: 'Solar',
+    //     href: '/bootstrapThemes/solar.css'
+    // },
+    // {
+    //     title: 'United',
+    //     href: '/bootstrapThemes/united.css'
+    // },
+    // {
+    //     title: 'Yeti',
+    //     href: '/bootstrapThemes/yeti.css'
+    // },
+    // {
+    //     title: 'Superhero',
+    //     href: '/bootstrapThemes/superhero.css'
+    // },
     {
-        title: 'Simplex',
-        href: '/bootstrapThemes/simplex.css'
-    },
-    {
-        title: 'Solar',
-        href: '/bootstrapThemes/solar.css'
-    },
-    {
-        title: 'United',
-        href: '/bootstrapThemes/united.css'
-    },
-    {
-        title: 'Yeti',
-        href: '/bootstrapThemes/yeti.css'
-    },
-    {
-        title: 'Superhero',
-        href: '/bootstrapThemes/superhero.css'
-    },
-    {
-        title: 'Stale',
+        title: 'Stale(+)',
         href: '/bootstrapThemes/stale.css'
     },
     {
-        title: 'Sandstone',
+        title: 'Sandstone(+)',
         href: '/bootstrapThemes/sandstone.css'
     },
+    // {
+    //     title: 'Pulse',
+    //     href: '/bootstrapThemes/pulse.css'
+    // },
+    // {
+    //     title: 'Materia',
+    //     href: '/bootstrapThemes/materia.css'
+    // },
+    // {
+    //     title: 'Lux',
+    //     href: '/bootstrapThemes/lux.css'
+    // },
+    // {
+    //     title: 'Lumen',
+    //     href: '/bootstrapThemes/lumen.css'
+    // },
     {
-        title: 'Pulse',
-        href: '/bootstrapThemes/pulse.css'
-    },
-    {
-        title: 'Materia',
-        href: '/bootstrapThemes/materia.css'
-    },
-    {
-        title: 'Lux',
-        href: '/bootstrapThemes/lux.css'
-    },
-    {
-        title: 'Lumen',
-        href: '/bootstrapThemes/lumen.css'
-    },
-    {
-        title: 'Litera',
+        title: 'Litera(+)',
         href: '/bootstrapThemes/litera.css'
     },
     {
-        title: 'Journal',
+        title: 'Journal(+)',
         href: '/bootstrapThemes/journal.css'
     },
-    {
-        title: 'Flatly',
-        href: '/bootstrapThemes/flatly.css'
-    },
-    {
-        title: 'Cyborg',
-        href: '/bootstrapThemes/cyborg.css'
-    },
-    {
-        title: 'Cosmo',
-        href: '/bootstrapThemes/cosmo.css'
-    },
-    {
-        title: 'Cerulean',
-        href: '/bootstrapThemes/cerulean.css'
-    }
+    // {
+    //     title: 'Flatly',
+    //     href: '/bootstrapThemes/flatly.css'
+    // },
+    // {
+    //     title: 'Cyborg',
+    //     href: '/bootstrapThemes/cyborg.css'
+    // },
+    // {
+    //     title: 'Cosmo',
+    //     href: '/bootstrapThemes/cosmo.css'
+    // },
+    // {
+    //     title: 'Cerulean',
+    //     href: '/bootstrapThemes/cerulean.css'
+    // }
 ]
 
 export const App = () => <MainLayout themes={themes} />;

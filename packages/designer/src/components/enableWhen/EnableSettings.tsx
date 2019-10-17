@@ -72,7 +72,7 @@ export class EnableSettings extends React.Component<EnableConditionsProps> {
                 </div>
                 <div>
                     <div className="list-group list-group-flush form-group">
-                        {!!item.enableWhen.length && <div className="list-group-item">
+                        {!!item.enableWhen.length && <div className="list-group-item list-group-item-action">
                             <div className="row">
                                 <div className="col-3">Question</div>
                                 <div className="col-3">Comparison operator</div>

@@ -73,7 +73,7 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
     render() {
         const { index, enableWhen } = this.props;
         const { selectedQuestion } = this.state;
-        return <div className="list-group-item">
+        return <div className="list-group-item list-group-item-action">
             <div className="row align-items-center">
                 <div className="col-3">
                     {this.renderQuestionSelect()}

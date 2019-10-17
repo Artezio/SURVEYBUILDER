@@ -53,7 +53,7 @@ export class AttachmentItem extends React.Component<AttachmentItemProps> {
         return questionnaireResponseItem.answers.length > 0 && <div className="form-group">
             <ul className="list-group list-group-flush">
                 {questionnaireResponseItem.answers.map(answer => {
-                    return <li key={answer.value} className="list-group-item">
+                    return <li key={answer.value} className="list-group-item list-group-item-action">
                         <div className="d-flex justify-content-between align-items-center">
                             <span>{answer.value}</span>
                             <button className="btn btn-outline-secondary" onClick={this.removeFile.bind(this, answer.value)}><i className="fas fa-trash"></i></button>
