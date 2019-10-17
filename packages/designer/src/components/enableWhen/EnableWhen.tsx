@@ -52,7 +52,7 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
 
     renderQuestionSelect() {
         const { questionList, index } = this.props;
-        return <Select className="custom-select" field={`${index}][questionId`} onChange={this.selectQuestion.bind(this)}>
+        return <Select className="form-control" field={`${index}][questionId`} onChange={this.selectQuestion.bind(this)}>
             <Option value='' disabled={true}>Select question</Option>
             {questionList.map(question => <Option key={`${question.id}-${'enableWhenQuestion'}`} value={question.id}>
                 {`#${this.humanReadableGuid.getHumanReadableId(question.id)} ${question.text === undefined ? '' : question.text}`}
@@ -62,7 +62,7 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
 
     renderOperatorSelect() {
         const { index } = this.props;
-        return <Select className="custom-select" field={`${index}][operator`} onChange={this.setOperator.bind(this)}>
+        return <Select className="form-control" field={`${index}][operator`} onChange={this.setOperator.bind(this)}>
             <Option value='' disabled={true}>Select operator</Option>
             {this.operators.map((operator, i) => <Option key={i} value={operator.value}>
                 {operator.text}
