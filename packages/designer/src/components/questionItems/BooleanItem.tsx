@@ -16,7 +16,7 @@ export class BooleanItem extends QuestionItem<BooleanItemProps> {
         const { item } = this.props;
         const initialValue = item.initialAnswers[0] && item.initialAnswers[0].value;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
-            <label>Default answer</label>
+            <label className="question-item-label">Default answer</label>
             <RadioGroup initialValue={initialValue} field="value">
                 <div>
                     <button type="button" className="btn btn-link text-secondary pl-0" onClick={this.reset.bind(this)}>

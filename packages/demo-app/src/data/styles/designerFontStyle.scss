@@ -1,5 +1,15 @@
-.questionnaire-item {
-    form + label {
-        @extend .font-weight-bold;
-    }
+.questionnaire-item__headline {
+  label {
+    @extend .font-weight-bold;
+  }
+}
+
+.questionnaire-group-item__headline {
+  label {
+    @extend .h4;
+  }
+}
+
+.question-item-label {
+  @extend .font-weight-bold;
 }

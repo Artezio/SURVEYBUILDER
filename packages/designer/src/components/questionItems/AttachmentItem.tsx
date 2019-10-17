@@ -27,12 +27,7 @@ export class AttachmentItem extends QuestionItem<AttachmentItemProps> {
         const { item } = this.props;
         return <Form getApi={this.getFormApi.bind(this)} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
-                <div className="input-group">
-                    <div className="custom-file">
-                        <input type="file" className="custom-file-input" id={`${item.id}-initial`} disabled={true} />
-                        <label className="custom-file-label" htmlFor={`${item.id}-initial`}>Choose file</label>
-                    </div>
-                </div>
+                <input type="file" className="form-control-file" id={`${item.id}-initial`} disabled={true} />
             </div>
             <div>
                 <div className="form-check">

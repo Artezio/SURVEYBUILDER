@@ -128,7 +128,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     renderItemHeadLine() {
         const { item } = this.props;
         if (item.type !== Models.GROUP && item.type !== Models.DISPLAY) {
-            return <div className="form-row headline">
+            return <div className="form-row questionnaire-item__headline">
                 <div className="col-md-8">
                     <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
@@ -184,9 +184,20 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         </div>
     }
 
+    getClassNameIdentifier() {
+        const { item } = this.props;
+        if (item.type === Models.GROUP) {
+            return 'questionnaire-item questionnaire-group-item';
+        } else if (item.type === Models.DISPLAY) {
+            return 'questionnaire-item questionnaire-display-item';
+        }
+        return 'questionnaire-item';
+    }
+
     render() {
         const { item, nestingLevel, className, subscribe } = this.props;
-        return <div className={`questionnaire-item card card-sm mb-3 ${className}`} data-id={item.id} ref={this.itemRef}>
+        const classNameIdentifier = this.getClassNameIdentifier();
+        return <div className={`${classNameIdentifier} card card-sm mb-3 ${className}`} data-id={item.id} ref={this.itemRef}>
             <div className="card-header drag-handle">
                 {this.renderHeader()}
             </div>
