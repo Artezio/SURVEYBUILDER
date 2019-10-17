@@ -8,10 +8,10 @@ export const ResponseInstance = (props: ResponseInstanceProps) => {
     return <li className="list-group-item">
         <div className="d-flex justify-content-between align-items-center">
             <div>
-                <h4>№{orderIndex}</h4>
+                <h4 className="mb-0">№{orderIndex}</h4>
                 {date && <div>
-                    <span className="font-weight-bold">Last update: </span>
-                    <span>{date}</span>
+                    <small>Last update: </small>
+                    <small>{date}</small>
                 </div>
                 }
             </div>
