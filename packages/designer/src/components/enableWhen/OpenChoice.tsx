@@ -62,7 +62,7 @@ export class OpenChoice extends React.Component<OpenChoiceProps> {
         const { item, index } = this.props;
         return <div className="row">
             <div className="col-5">
-                <Select className="custom-select" field={`${index}][answer`} onChange={this.onChange.bind(this)}>
+                <Select className="form-control" field={`${index}][answer`} onChange={this.onChange.bind(this)}>
                     <Option value="" disabled={true}>Select answer</Option>
                     {item.options && item.options.map((option, i) => <Option key={i} value={option.id}>{(item.options && i === item.options.length - 1) ? 'Other' : option.value}</Option>)}
                 </Select>

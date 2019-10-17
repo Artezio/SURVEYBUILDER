@@ -15,7 +15,7 @@ export const Choice = (props: ChoiceProps) => {
         }
     }
 
-    return <Select className="custom-select" field={`${index}][answer`} onChange={onChange}>
+    return <Select className="form-control" field={`${index}][answer`} onChange={onChange}>
         <Option value="" disabled={true}>Select answer</Option>
         {item.options && item.options.map((option, i) => <Option key={i} value={option.id}>{option.value}</Option>)}
     </Select>
