@@ -68,7 +68,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
 
     renderHeader() {
         return <nav className="navbar navbar-expand shadow-sm navbar-light bg-light border-bottom">
-            <Link to="/" className="navbar-brand"><img width="36px" src="../data/images/logo.svg" alt="" /></Link>
+            <Link to="/" className="navbar-brand"><img width="36px" src="/data/images/logo.svg" alt="" /></Link>
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <NavLink to="/" exact={true} className="nav-link" activeClassName="active">Questionnaires</NavLink>

@@ -9,8 +9,84 @@ import { Theme } from './interface/layouts/MainLayoutProps';
 
 const themes: Theme[] = [
     {
-        title: 'Dark theme',
-        href: 'https://bootswatch.com/4/cyborg/bootstrap.css'
+        title: 'Darkly theme',
+        href: '/bootstrapThemes/darkly.css'
+    },
+    {
+        title: 'Sketchy',
+        href: '/bootstrapThemes/sketchy.css'
+    },
+    {
+        title: 'Minty',
+        href: '/bootstrapThemes/minty.css'
+    },
+    {
+        title: 'Simplex',
+        href: '/bootstrapThemes/simplex.css'
+    },
+    {
+        title: 'Solar',
+        href: '/bootstrapThemes/solar.css'
+    },
+    {
+        title: 'United',
+        href: '/bootstrapThemes/united.css'
+    },
+    {
+        title: 'Yeti',
+        href: '/bootstrapThemes/yeti.css'
+    },
+    {
+        title: 'Superhero',
+        href: '/bootstrapThemes/superhero.css'
+    },
+    {
+        title: 'Stale',
+        href: '/bootstrapThemes/stale.css'
+    },
+    {
+        title: 'Sandstone',
+        href: '/bootstrapThemes/sandstone.css'
+    },
+    {
+        title: 'Pulse',
+        href: '/bootstrapThemes/pulse.css'
+    },
+    {
+        title: 'Materia',
+        href: '/bootstrapThemes/materia.css'
+    },
+    {
+        title: 'Lux',
+        href: '/bootstrapThemes/lux.css'
+    },
+    {
+        title: 'Lumen',
+        href: '/bootstrapThemes/lumen.css'
+    },
+    {
+        title: 'Litera',
+        href: '/bootstrapThemes/litera.css'
+    },
+    {
+        title: 'Journal',
+        href: '/bootstrapThemes/journal.css'
+    },
+    {
+        title: 'Flatly',
+        href: '/bootstrapThemes/flatly.css'
+    },
+    {
+        title: 'Cyborg',
+        href: '/bootstrapThemes/cyborg.css'
+    },
+    {
+        title: 'Cosmo',
+        href: '/bootstrapThemes/cosmo.css'
+    },
+    {
+        title: 'Cerulean',
+        href: '/bootstrapThemes/cerulean.css'
     }
 ]
 
