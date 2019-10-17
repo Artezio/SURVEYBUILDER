@@ -81,10 +81,10 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
                 <div className="col-3">
                     {this.renderOperatorSelect()}
                 </div>
-                <div className="col-5">
+                <div className="col">
                     <QuestionItemProvider item={selectedQuestion} index={index} enableWhen={enableWhen} />
                 </div>
-                <div className="col-1 d-flex justify-content-end">
+                <div className="col-auto">
                     <button className="btn btn-outline-secondary" onClick={this.removeEnableWhen.bind(this)}><i className="fas fa-trash"></i></button>
                 </div>
             </div>
