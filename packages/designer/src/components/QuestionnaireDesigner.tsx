@@ -7,11 +7,17 @@ import ItemCollectionMenu from './ItemCollectionMenu';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
 import QuestionnaireContext from '../helpers/questionnaireContext';
+import { QuestionnaireDesignerState } from '../interfaces/components/QuestionnaireDesignerState';
+import { SETTINGS_DISPLAY } from '../constants/questionnaireDesigner';
 
 export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
 
     static defaultProps: Partial<QuestionnaireDesignerProps> = {
         className: ''
+    }
+
+    state: QuestionnaireDesignerState = {
+        settingsDisplay: SETTINGS_DISPLAY.rightPanel
     }
 
     formApi!: FormApi<Models.IQuestionnaire>;
