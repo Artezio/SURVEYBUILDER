@@ -8,16 +8,16 @@ import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';
 import QuestionnaireContext from '../helpers/questionnaireContext';
 import { QuestionnaireDesignerState } from '../interfaces/components/QuestionnaireDesignerState';
-import { SETTINGS_DISPLAY } from '../constants/questionnaireDesigner';
+import { SETTINGS_DISPLAY_MODE } from '../constants/questionnaireDesigner';
+import ItemSettingsPanel from './ItemSettingsPanel';
 
 export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
-
     static defaultProps: Partial<QuestionnaireDesignerProps> = {
         className: ''
     }
 
     state: QuestionnaireDesignerState = {
-        settingsDisplay: SETTINGS_DISPLAY.rightPanel
+        settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel
     }
 
     formApi!: FormApi<Models.IQuestionnaire>;
@@ -56,7 +56,6 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
     }
 
     componentDidMount() {
-        this.subscribeDocument();
         this.makeItemsDraggable();
     }
     componentDidUpdate() {
@@ -65,24 +64,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.documentListener.bind(this), true);
         this.clearSortables();
-    }
-
-    documentListener(e: Event) {
-        this.clearSelected();
-    }
-
-    clearSelected() {
-        const selectedItems = document.querySelectorAll('.card-active');
-        selectedItems.forEach(selectedItem => {
-            selectedItem && selectedItem.classList.remove('card-active');
-            selectedItem && selectedItem.classList.remove('shadow');
-        })
-    }
-
-    subscribeDocument() {
-        document.addEventListener('click', this.documentListener.bind(this), true);
     }
 
     clearSortables() {
@@ -103,14 +85,6 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
 
     onDragUnchoose(e: SortableEvent) {
         document.body.style.height = "";
-        const item = e.item;
-        this.highlightDraggedItem(item);
-    }
-
-    highlightDraggedItem(item: HTMLElement) {
-        this.clearSelected();
-        item && item.classList.add('card-active');
-        item && item.classList.add('shadow');
     }
 
     onDragEnd(e: SortableEvent) {
@@ -143,10 +117,21 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
         return currentItemList;
     }
 
+    selectTargetItem(item: Models.Item) {
+        this.setState({
+            targetItem: item
+        })
+    }
+
+    clearTargetItem() {
+        this.setState({ targetItem: undefined })
+    }
+
     renderItemList() {
         const { questionnaireModel } = this.props;
+        const { targetItem, settingsDisplayModel } = this.state;
         return <div id="drag-drop-nested">
-            <QuestionnaireContext.Provider value={{ questionnaire: questionnaireModel }}>
+            <QuestionnaireContext.Provider value={{ questionnaire: questionnaireModel, selectTargetItem: this.selectTargetItem.bind(this), targetItem: targetItem, settingsDisplayMode: settingsDisplayModel }}>
                 <QuestionnaireItemList itemList={questionnaireModel.items} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} />
             </QuestionnaireContext.Provider>
         </div>
@@ -154,25 +139,31 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
 
     render() {
         const { questionnaireModel, className } = this.props;
-        return <div className={`questionnaire ${className}`}>
-            <div className="card card-sm mb-3">
-                <div className="card-header d-flex justify-content-end">
-                    <ItemCollectionMenu item={questionnaireModel} />
+        const { targetItem: selectedItem } = this.state;
+        return <div className={`questionnaire media ${className}`}>
+            <div className="questionnaire-items media-body" onClickCapture={this.clearTargetItem.bind(this)}>
+                <div className="card card-sm mb-3">
+                    <div className="card-header d-flex justify-content-end">
+                        <ItemCollectionMenu item={questionnaireModel} />
+                    </div>
+                    <div className="card-body">
+                        <Form getApi={this.getFormApi.bind(this)} key={questionnaireModel.id} initialValues={questionnaireModel} onSubmit={this.handleSubmit.bind(this)} >
+                            <div className="form-group">
+                                <label htmlFor={`${questionnaireModel.id}-title`}>Questionnaire Title</label>
+                                <Text autoComplete="off" className="form-control" id={`${questionnaireModel.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor={`${questionnaireModel.id}-description`}>Questionnaire Description</label>
+                                <TextArea autoComplete="off" className="form-control" id={`${questionnaireModel.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                            </div>
+                        </Form>
+                    </div>
                 </div>
-                <div className="card-body">
-                    <Form getApi={this.getFormApi.bind(this)} key={questionnaireModel.id} initialValues={questionnaireModel} onSubmit={this.handleSubmit.bind(this)} >
-                        <div className="form-group">
-                            <label htmlFor={`${questionnaireModel.id}-title`}>Questionnaire Title</label>
-                            <Text autoComplete="off" className="form-control" id={`${questionnaireModel.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor={`${questionnaireModel.id}-description`}>Questionnaire Description</label>
-                            <TextArea autoComplete="off" className="form-control" id={`${questionnaireModel.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
-                        </div>
-                    </Form>
-                </div>
+                {this.renderItemList()}
             </div>
-            {this.renderItemList()}
+            <div className="question-settings-panel border-left ml-2 pl-2" style={{ width: '350px' }}>
+                {selectedItem && <ItemSettingsPanel questionnaire={questionnaireModel} item={selectedItem} />}
+            </div>
         </div>
     }
 }

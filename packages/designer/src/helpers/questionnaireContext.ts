@@ -1,4 +1,15 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
-export const QuestionnaireContext = React.createContext({ questionnaire: undefined } as { questionnaire?: Models.Questionnaire });
+import SETTINGS_DISPLAY_MODE from '../constants/questionnaireDesigner';
+
+
+interface IQuestionnaireContext {
+    questionnaire?: Models.Questionnaire;
+    selectTargetItem?: (item: Models.Item) => void;
+    targetItem?: Models.Item;
+    settingsDisplayMode: SETTINGS_DISPLAY_MODE;
+}
+
+
+export const QuestionnaireContext = React.createContext<IQuestionnaireContext>({});
 export default QuestionnaireContext;

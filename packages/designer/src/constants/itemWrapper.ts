@@ -1,0 +1,1 @@
+export const activeItemClassName = 'card-active shadow';

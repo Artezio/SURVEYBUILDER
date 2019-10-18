@@ -1,7 +1,7 @@
-import { SETTINGS_DISPLAY } from '../../constants/questionnaireDesigner';
+import { SETTINGS_DISPLAY_MODE } from '../../constants/questionnaireDesigner';
 import * as Models from '@art-forms/models';
 
 export interface QuestionnaireDesignerState {
-    settingsDisplay: SETTINGS_DISPLAY;
-    selectedItem?: Models.Item;
+    settingsDisplayModel: SETTINGS_DISPLAY_MODE;
+    targetItem?: Models.Item;
 }

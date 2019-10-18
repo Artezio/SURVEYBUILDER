@@ -9,10 +9,10 @@ import QuestionTypeMenu from './QuestionTypeMenu';
 import EnableSettings from './enableWhen/EnableSettings';
 import HumanReadableGuid from '../helpers/humanReadableId';
 import QuestionnaireContext from '../helpers/questionnaireContext';
+import { activeItemClassName } from '../constants/itemWrapper';
 
 
 export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
-
     static defaultProps: Partial<ItemWrapperProps> = {
         className: ''
     }
@@ -20,49 +20,12 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     state: { areSettingsOpen: boolean } = {
         areSettingsOpen: false
     }
+
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
-    factory: Models.ItemFactory = new Models.ItemFactory(this.props.item.parent);
     inputRef: React.RefObject<HTMLInputElement> = React.createRef();
     itemRef: React.RefObject<HTMLDivElement> = React.createRef();
     humanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
-
-    clearSelected() {
-        const selectedItems = document.querySelectorAll('.card-active');
-        selectedItems.forEach(selectedItem => {
-            selectedItem && selectedItem.classList.remove('card-active');
-            selectedItem && selectedItem.classList.remove('shadow');
-        })
-    }
-
-    itemListener(e: Event) {
-        const target = e.currentTarget as HTMLElement;
-        if (!target.classList.contains('card-active')) {
-            this.clearSelected();
-            target && target.classList.add('card-active');
-            target && target.classList.add('shadow');
-        }
-    }
-
-    subscribeItem() {
-        const item = this.itemRef.current;
-        if (item) {
-            item.addEventListener('click', this.itemListener.bind(this), true);
-            item.addEventListener('focus', this.itemListener.bind(this), true);
-        }
-    }
-
-    unsubscribeItem() {
-        const item = this.itemRef.current;
-        if (item) {
-            item.removeEventListener('click', this.itemListener.bind(this), true);
-            item.removeEventListener('focus', this.itemListener.bind(this), true);
-        }
-    }
-
-    componentWillUnmount() {
-        this.unsubscribeItem();
-    }
 
     submitForm() {
         if (!this.formApi) return;
@@ -97,7 +60,6 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
             item.focus();
             window.scrollTo(x, y)
         }
-        this.subscribeItem();
     }
 
     componentDidUpdate() {
@@ -144,19 +106,15 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         }
     }
 
-    renderEnableSettings() {
+    renderEnableSettings(questionnaire: Models.Questionnaire) {
         const { item } = this.props;
         return this.state.areSettingsOpen && <div className="item-settings">
             <hr />
-            <QuestionnaireContext.Consumer>
-                {({ questionnaire }) => {
-                    return questionnaire && <EnableSettings questionnaire={questionnaire} item={item} />
-                }}
-            </QuestionnaireContext.Consumer>
+            {questionnaire && <EnableSettings questionnaire={questionnaire} item={item} />}
         </div>
     }
 
-    renderFooter() {
+    renderFooter(questionnaire: Models.Questionnaire) {
         const { item } = this.props;
         const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
         return <div>
@@ -180,7 +138,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                     </button>
                 </div>
             </div>
-            {this.renderEnableSettings()}
+            {this.renderEnableSettings(questionnaire)}
         </div>
     }
 
@@ -197,18 +155,27 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     render() {
         const { item, nestingLevel, className, subscribe } = this.props;
         const classNameIdentifier = this.getClassNameIdentifier();
-        return <div className={`${classNameIdentifier} card card-sm mb-3 ${className}`} data-id={item.id} ref={this.itemRef}>
-            <div className="card-header drag-handle">
-                {this.renderHeader()}
-            </div>
-            <div className="card-body">
-                {this.renderItemHeadLine()}
-                <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
-            </div>
-            <div className="card-footer">
-                {this.renderFooter()}
-            </div>
-        </div>
+        return <QuestionnaireContext.Consumer>
+            {({ questionnaire, selectTargetItem, targetItem }) => {
+                const activeIdentifier = (targetItem && targetItem.id === item.id) ? activeItemClassName : '';
+                const onClick = () => {
+                    selectTargetItem && selectTargetItem(item);
+                }
+                return <div className={`${classNameIdentifier} card card-sm mb-3 ${activeIdentifier} ${className}`} data-id={item.id} ref={this.itemRef} onClickCapture={onClick}>
+                    <div className="card-header drag-handle">
+                        {this.renderHeader()}
+                    </div>
+                    <div className="card-body">
+                        {this.renderItemHeadLine()}
+                        <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
+                    </div>
+                    <div className="card-footer">
+                        {this.renderFooter(questionnaire)}
+                    </div>
+                </div>
+            }
+            }
+        </QuestionnaireContext.Consumer>
     }
 }
 
