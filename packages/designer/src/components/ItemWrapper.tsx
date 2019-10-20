@@ -10,6 +10,7 @@ import EnableSettings from './enableWhen/EnableSettings';
 import HumanReadableGuid from '../helpers/humanReadableId';
 import QuestionnaireContext from '../helpers/questionnaireContext';
 import { activeItemClassName } from '../constants/itemWrapper';
+import SETTINGS_DISPLAY_MODE from '../constants/questionnaireDesigner';
 
 
 export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
@@ -114,7 +115,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         </div>
     }
 
-    renderFooter(questionnaire: Models.Questionnaire) {
+    renderFooter(questionnaire: Models.Questionnaire, showSettingsButton: boolean) {
         const { item } = this.props;
         const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
         return <div>
@@ -132,13 +133,13 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                     </div>
                 </div>
                 <div className="col-6 d-flex justify-content-end">
-                    <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}><i className="fas fa-cog"></i></button>
+                    {showSettingsButton && <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}><i className="fas fa-cog"></i></button>}
                     <button className="btn btn-outline-secondary ml-3" onClick={item.remove.bind(item)}>
                         <i className="fas fa-trash"></i>
                     </button>
                 </div>
             </div>
-            {this.renderEnableSettings(questionnaire)}
+            {showSettingsButton && this.renderEnableSettings(questionnaire)}
         </div>
     }
 
@@ -156,7 +157,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         const { item, nestingLevel, className, subscribe } = this.props;
         const classNameIdentifier = this.getClassNameIdentifier();
         return <QuestionnaireContext.Consumer>
-            {({ questionnaire, selectTargetItem, targetItem }) => {
+            {({ questionnaire, selectTargetItem, targetItem, settingsDisplayMode }) => {
+                const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
                 const activeIdentifier = (targetItem && targetItem.id === item.id) ? activeItemClassName : '';
                 const onClick = () => {
                     selectTargetItem && selectTargetItem(item);
@@ -170,7 +172,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                         <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
                     </div>
                     <div className="card-footer">
-                        {this.renderFooter(questionnaire)}
+                        {this.renderFooter(questionnaire, showSettingsButton)}
                     </div>
                 </div>
             }

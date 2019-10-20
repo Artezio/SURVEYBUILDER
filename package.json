@@ -16,9 +16,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "registry": "http://10.11.40.28:4873/",
-  "publishConfig": {
-    "registry": "http://10.11.40.28:4873/"
-  }
+  ]
 }

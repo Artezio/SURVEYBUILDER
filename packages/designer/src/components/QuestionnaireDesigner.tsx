@@ -11,12 +11,12 @@ import { QuestionnaireDesignerState } from '../interfaces/components/Questionnai
 import { SETTINGS_DISPLAY_MODE } from '../constants/questionnaireDesigner';
 import ItemSettingsPanel from './ItemSettingsPanel';
 
-export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
+export class Questionnaire extends React.Component<QuestionnaireDesignerProps, QuestionnaireDesignerState> {
     static defaultProps: Partial<QuestionnaireDesignerProps> = {
         className: ''
     }
 
-    state: QuestionnaireDesignerState = {
+    state = {
         settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel
     }
 
@@ -137,13 +137,29 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
         </div>
     }
 
+    handleSettingsMode(e) {
+        if (e.target.checked === true) {
+            this.setState({
+                settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel
+            })
+        } else {
+            this.setState({
+                settingsDisplayModel: SETTINGS_DISPLAY_MODE.insideItem
+            })
+        }
+    }
+
     render() {
         const { questionnaireModel, className } = this.props;
-        const { targetItem: selectedItem } = this.state;
+        const { targetItem, settingsDisplayModel } = this.state;
         return <div className={`questionnaire media ${className}`}>
             <div className="questionnaire-items media-body" onClickCapture={this.clearTargetItem.bind(this)}>
                 <div className="card card-sm mb-3">
-                    <div className="card-header d-flex justify-content-end">
+                    <div className="card-header d-flex justify-content-between">
+                        <div>
+                            <input type="checkbox" defaultChecked={settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel} id={`settings-mode-${questionnaireModel.id}`} onChange={this.handleSettingsMode.bind(this)} />
+                            <label htmlFor={`settings-mode-${questionnaireModel.id}`}>Right panel mode</label>
+                        </div>
                         <ItemCollectionMenu item={questionnaireModel} />
                     </div>
                     <div className="card-body">
@@ -161,13 +177,13 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps> {
                 </div>
                 {this.renderItemList()}
             </div>
-            <div className="question-settings-panel border-left ml-2 pl-2" style={{ width: '350px' }}>
-                {selectedItem && <ItemSettingsPanel questionnaire={questionnaireModel} item={selectedItem} />}
-            </div>
+            {settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel && <div className="question-settings-panel border shadow ml-2 p-1" style={{ width: '350px' }}>
+                {targetItem && <ItemSettingsPanel questionnaire={questionnaireModel} item={targetItem} />}
+            </div>}
         </div>
     }
 }
 
-const QuestionnaireDesigner = useObservableModel<QuestionnaireDesignerProps>(Questionnaire);
+const QuestionnaireDesigner = useObservableModel<QuestionnaireDesignerProps, QuestionnaireDesignerState>(Questionnaire);
 export { QuestionnaireDesigner }
 export default QuestionnaireDesigner;
