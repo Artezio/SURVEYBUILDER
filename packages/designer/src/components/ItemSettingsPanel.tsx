@@ -3,15 +3,20 @@ import * as Models from '@art-forms/models';
 import ItemSettingsPanelProps from '../interfaces/components/ItemSettingsPanelProps';
 import { HumanReadableGuid } from '../helpers/humanReadableId';
 import { questionTypes } from '../constants/questionTypes';
-import { EnableSettings } from './enableWhen/EnableSettings';
+import EnableSettings from './enableWhen/EnableSettings';
 
-export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps> {
+
+interface ItemSettingsPanelState {
+    openEnableSettings: boolean;
+}
+
+export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps, ItemSettingsPanelState> {
     static defaultProps: Partial<ItemSettingsPanelProps> = {
         className: ''
     }
 
     state = {
-        
+        openEnableSettings: false,
     }
 
     humanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
@@ -41,25 +46,33 @@ export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps> {
         return <label htmlFor="" className="settings-panel__question-label">Question</label>
     }
 
+    toggleEnableSettingsDisplay() {
+        this.setState({
+            openEnableSettings: !this.state.openEnableSettings
+        })
+    }
+
     renderEnableSettings() {
         const { item, questionnaire } = this.props;
-        return <section>
-            <p>
-                <a className="btn btn-primary" data-toggle="collapse" href={`#${item.id}-collapse-menu`} aria-expanded="false" aria-controls={`${item.id}-collapse-menu`}>
-                    Enable settings
-                </a>
-            </p>
-            <div className="collapse" id={`${item.id}-collapse-menu`}>
+        const { openEnableSettings } = this.state;
+        return <section className={`card ${openEnableSettings ? 'dropup' : ''}`}>
+            {/* <div className="card-header"> */}
+            <button className="btn btn-block card-header dropdown-toggle p-1" onClick={this.toggleEnableSettingsDisplay.bind(this)}>
+                Enable settings
+                </button>
+
+            {/* </div> */}
+            {openEnableSettings && <div className="card-body">
                 <EnableSettings questionnaire={questionnaire} item={item} />
-            </div>
+            </div>}
         </section>
     }
 
     render() {
         const { item } = this.props;
         return <div className="settings-panel">
-            <header>
-                <span>{this.humanReadableGuid.getHumanReadableId(item.id)}</span>
+            <header className="d-flex justify-content-between align-items-center">
+                <span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span>
                 <span>{this.getItemTypeTitle()}</span>
             </header>
             <hr />
