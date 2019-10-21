@@ -1,3 +1,5 @@
-.response-item > label {
-  @extend .font-weight-bold;
+.questionnaire-response {
+  .response-item > label {
+    @extend .font-weight-bold;
+  }
 }

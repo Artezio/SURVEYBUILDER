@@ -1,0 +1,16 @@
+.settings-panel {
+  .settings-panel__question-label,
+  .settings-panel__display-label {
+    @extend .font-weight-bold;
+  }
+  .settings-panel__group-label {
+    @extend .h4;
+  }
+}
+.question-settings-panel {
+  .question-settings-panel__empty-panel {
+    span {
+      @extend .font-weight-bold;
+    }
+  }
+}

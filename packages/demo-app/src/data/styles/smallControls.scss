@@ -1,4 +1,6 @@
-.card-sm {
+.questionnaire-designer,
+.sortable-ghost,
+.sortable-drag {
   .btn {
     @extend .btn-sm;
   }
@@ -8,9 +10,6 @@
   textarea.form-control {
     height: auto;
   }
-  // label {
-  //   @extend .mb-0;
-  // }
   .input-group {
     @extend .input-group-sm;
     .form-control:not(:last-child) {
@@ -31,6 +30,9 @@
       }
     }
   }
+  // label {
+  //   @extend .mb-0;
+  // }
   // .form-group {
   //   @extend .mb-2;
   // }

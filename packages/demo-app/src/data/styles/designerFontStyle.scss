@@ -1,15 +1,29 @@
-.questionnaire-item__headline {
-  label {
+.questionnaire-designer {
+  .questionnaire-item__headline {
+    label {
+      @extend .font-weight-bold;
+    }
+  }
+
+  .questionnaire-group-item__headline {
+    label {
+      @extend .h4;
+    }
+  }
+
+  .questionnaire-display-item__headline {
+    label {
+      @extend .font-weight-bold;
+    }
+  }
+
+  .question-item-label {
     @extend .font-weight-bold;
   }
-}
 
-.questionnaire-group-item__headline {
-  label {
-    @extend .h4;
+  .questionnaire {
+    label {
+      @extend .font-weight-bold;
+    }
   }
-}
-
-.question-item-label {
-  @extend .font-weight-bold;
 }

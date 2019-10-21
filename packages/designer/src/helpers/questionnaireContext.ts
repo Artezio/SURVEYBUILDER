@@ -11,5 +11,5 @@ interface IQuestionnaireContext {
 }
 
 
-export const QuestionnaireContext = React.createContext<IQuestionnaireContext>({});
+export const QuestionnaireContext = React.createContext<IQuestionnaireContext>({ settingsDisplayMode: SETTINGS_DISPLAY_MODE.rightPanel });
 export default QuestionnaireContext;

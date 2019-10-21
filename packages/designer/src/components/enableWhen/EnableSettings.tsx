@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
-import EnableConditionsProps from '../../interfaces/components/enableWhen/EnableConditionsProps';
-import { RadioGroup, Radio, Form, Scope, FormApi, Select, Option } from 'informed';
+import EnableSettingsProps from '../../interfaces/components/enableWhen/EnableConditionsProps';
+import { Form, Scope, FormApi, Select, Option } from 'informed';
 import EnableWhen from './EnableWhen';
 import { useObservableModel } from '../../observableConnector/useObservableModel';
 
-export class EnableSettings extends React.Component<EnableConditionsProps> {
+export class EnableSettings extends React.Component<EnableSettingsProps> {
     formApi?: FormApi<Pick<Models.Item, 'enableWhen' | 'enableBehavior'>>;
     enableWhenFactory: Models.EnableWhenFactory;
 
-    constructor(props: EnableConditionsProps) {
+    constructor(props: EnableSettingsProps) {
         super(props);
         this.enableWhenFactory = new Models.EnableWhenFactory(props.item);
     }
@@ -34,7 +34,7 @@ export class EnableSettings extends React.Component<EnableConditionsProps> {
     }
 
     prepareQuestionList(): Models.QuestionItem<any>[] {
-        const { questionnaire } = this.props;
+        const { questionnaire: questionnaire } = this.props;
         const questionList: Models.QuestionItem<any>[] = [];
         this.fillQuestionList(questionList, questionnaire);
         return questionList;
@@ -75,7 +75,7 @@ export class EnableSettings extends React.Component<EnableConditionsProps> {
                         {!!item.enableWhen.length && <div className="list-group-item list-group-item-action">
                             <div className="row">
                                 <div className="col-3">Question</div>
-                                <div className="col-3">Comparison operator</div>
+                                <div className="col-3">Operator</div>
                                 <div className="col-5">Answer</div>
                                 <div className="col-1"></div>
                             </div>
@@ -91,11 +91,11 @@ export class EnableSettings extends React.Component<EnableConditionsProps> {
                     </div>
                 </div>
                 <div>
-                    <button className="btn btn-outline-secondary btn-block" onClick={this.addEnableWhen.bind(this)}>Add Rule</button>
+                    <button className="btn btn-outline-secondary" onClick={this.addEnableWhen.bind(this)}>Add Rule</button>
                 </div>
             </Form>
         </div>
     }
 }
 
-export default useObservableModel<EnableConditionsProps>(EnableSettings);
+export default useObservableModel<EnableSettingsProps>(EnableSettings);

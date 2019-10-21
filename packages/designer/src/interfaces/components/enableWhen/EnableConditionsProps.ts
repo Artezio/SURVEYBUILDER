@@ -1,8 +1,8 @@
 import * as Models from '@art-forms/models';
 
-export interface EnableConditionsProps {
+export interface EnableSettingsProps {
     questionnaire: Models.IQuestionnaire;
     item: Models.Item;
 }
 
-export default EnableConditionsProps;
+export default EnableSettingsProps;

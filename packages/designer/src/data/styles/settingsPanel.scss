@@ -1,0 +1,21 @@
+.question-settings-panel {
+  min-height: 400px;
+  position: sticky;
+  top: 0;
+  font-size: small;
+}
+.settings-panel__enable-settings {
+  // border-radius: 0 !important;
+  .card-header {
+    // border: 0 !important;
+    // .btn-secondary {
+    //   border-radius: 0 !important;
+    // }
+    button {
+      border: 0 !important;
+    }
+  }
+}
+// .settings-panel__enable-settings.card {
+//   border: 0 !important;
+// }

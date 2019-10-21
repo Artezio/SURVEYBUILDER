@@ -9,14 +9,14 @@ export class Item extends React.Component<ItemProps> {
     formApi!: FormApi<Models.IItem>;
     inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
-    componentDidMount() {
-        if (this.inputRef.current) {
-            const x = window.pageXOffset;
-            const y = window.pageYOffset;
-            this.inputRef.current.focus();
-            window.scrollTo(x, y)
-        }
-    }
+    // componentDidMount() {
+    //     if (this.inputRef.current) {
+    //         const x = window.pageXOffset;
+    //         const y = window.pageYOffset;
+    //         this.inputRef.current.focus();
+    //         window.scrollTo(x, y)
+    //     }
+    // }
 
     submitForm() {
         if (!this.formApi) return;
@@ -39,7 +39,7 @@ export class Item extends React.Component<ItemProps> {
 
     render() {
         const { item } = this.props;
-        return <Form getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
+        return <Form className="questionnaire-display-item__headline" getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div>
                 <label htmlFor={item.id}>Text</label>
                 <TextArea forwardedRef={this.inputRef} autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" onBlur={this.submitForm.bind(this)} />

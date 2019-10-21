@@ -10,6 +10,7 @@ import QuestionnaireContext from '../helpers/questionnaireContext';
 import { QuestionnaireDesignerState } from '../interfaces/components/QuestionnaireDesignerState';
 import { SETTINGS_DISPLAY_MODE } from '../constants/questionnaireDesigner';
 import ItemSettingsPanel from './ItemSettingsPanel';
+import '../data/styles/settingsPanel.scss';
 
 export class Questionnaire extends React.Component<QuestionnaireDesignerProps, QuestionnaireDesignerState> {
     static defaultProps: Partial<QuestionnaireDesignerProps> = {
@@ -17,9 +18,12 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     }
 
     state = {
-        settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel
+        settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel,
+        targetItem: undefined
     }
 
+    questionnaireNodeTopPosition?: string;
+    questionnaireDesignerRef = React.createRef<HTMLDivElement>();
     formApi!: FormApi<Models.IQuestionnaire>;
     itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.questionnaireModel);
 
@@ -83,8 +87,27 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         document.body.style.height = `${document.body.clientHeight}px`;
     }
 
+    fillQuestionList(list: Models.IQuestionItem<any>[], source: Models.IGroupItem | Models.IQuestionnaire) {
+        source.items && source.items.forEach(item => {
+            if (item.type === Models.GROUP) {
+                this.fillQuestionList(list, item as Models.GroupItem);
+            }
+            list.push(item as Models.QuestionItem<any>);
+        })
+    }
+
+    prepareQuestionList(): Models.QuestionItem<any>[] {
+        const { questionnaireModel } = this.props;
+        const questionList: Models.QuestionItem<any>[] = [];
+        this.fillQuestionList(questionList, questionnaireModel);
+        return questionList;
+    }
+
     onDragUnchoose(e: SortableEvent) {
         document.body.style.height = "";
+        const questionList = this.prepareQuestionList();
+        const item = questionList.find(item => item.id === e.item.dataset.id);
+        this.selectTargetItem(item);
     }
 
     onDragEnd(e: SortableEvent) {
@@ -149,12 +172,34 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         }
     }
 
+    getQuestionnaireTopPosition() {
+        if (this.questionnaireNodeTopPosition) return this.questionnaireNodeTopPosition;
+        const questionnaireNode = this.questionnaireDesignerRef.current;
+        if (questionnaireNode) {
+            const questionnaireNodeTopPosition = questionnaireNode.getBoundingClientRect().top;
+            this.questionnaireNodeTopPosition = questionnaireNodeTopPosition ? questionnaireNodeTopPosition + 'px' : '0';
+            return this.questionnaireNodeTopPosition;
+        }
+    }
+
+    getQuestionnaireBottomPosition() {
+        const questionnaireNode = this.questionnaireDesignerRef.current;
+        if (questionnaireNode) {
+            const questionnaireNodeHeight = questionnaireNode.getBoundingClientRect().height;
+            const bodyHeight = document.body.getBoundingClientRect().height;
+            const bottomPosition = bodyHeight - questionnaireNodeHeight;
+            return bottomPosition > 0 ? bottomPosition + 'px' : '150px';
+        }
+    }
+
     render() {
         const { questionnaireModel, className } = this.props;
         const { targetItem, settingsDisplayModel } = this.state;
-        return <div className={`questionnaire media ${className}`}>
-            <div className="questionnaire-items media-body" onClickCapture={this.clearTargetItem.bind(this)}>
-                <div className="card card-sm mb-3">
+        const questionnaireTopPosition = this.getQuestionnaireTopPosition();
+        const settingsPanelHeight = `calc(100vh - ${parseFloat(questionnaireTopPosition) + parseFloat(this.getQuestionnaireBottomPosition())}px)`;
+        return <div className={`questionnaire-designer media ${className}`} ref={this.questionnaireDesignerRef}>
+            <div className="questionnaire-items media-body" onClickCapture={this.clearTargetItem.bind(this)} onFocusCapture={this.clearTargetItem.bind(this)}>
+                <div className="questionnaire card mb-3">
                     <div className="card-header d-flex justify-content-between">
                         <div>
                             <input type="checkbox" defaultChecked={settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel} id={`settings-mode-${questionnaireModel.id}`} onChange={this.handleSettingsMode.bind(this)} />
@@ -177,13 +222,13 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
                 </div>
                 {this.renderItemList()}
             </div>
-            {settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel && <div className="question-settings-panel border shadow ml-2 p-1" style={{ width: '350px' }}>
-                {targetItem && <ItemSettingsPanel questionnaire={questionnaireModel} item={targetItem} />}
+            {settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel && <div className="question-settings-panel ml-4" style={{ width: '350px', overflow: 'auto', top: 0, height: settingsPanelHeight }}>
+                <ItemSettingsPanel questionnaire={questionnaireModel} item={targetItem} />
             </div>}
         </div>
     }
 }
 
-const QuestionnaireDesigner = useObservableModel<QuestionnaireDesignerProps, QuestionnaireDesignerState>(Questionnaire);
+const QuestionnaireDesigner = useObservableModel<QuestionnaireDesignerProps>(Questionnaire);
 export { QuestionnaireDesigner }
 export default QuestionnaireDesigner;

@@ -2,6 +2,7 @@
   "name": "@art-forms/demo-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@art-forms/designer": "^0.1.7",
     "@art-forms/fhir-converter": "^1.0.0",

@@ -4,6 +4,7 @@ import ItemSettingsPanelProps from '../interfaces/components/ItemSettingsPanelPr
 import { HumanReadableGuid } from '../helpers/humanReadableId';
 import { questionTypes } from '../constants/questionTypes';
 import EnableSettings from './enableWhen/EnableSettings';
+import { EmptySettingsPanel } from './EmptySettingsPanel';
 
 
 interface ItemSettingsPanelState {
@@ -23,6 +24,7 @@ export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps, I
 
     getItemTypeTitle(): string {
         const { item } = this.props;
+        if (!item) return;
         if (item.type === Models.GROUP) {
             return 'Group';
         } else if (item.type === Models.DISPLAY) {
@@ -36,7 +38,9 @@ export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps, I
     }
 
     getLabel() {
-        const { item: { type } } = this.props;
+        const { item } = this.props;
+        if (!item) return;
+        const type = item.type;
         if (type === Models.GROUP) {
             return <label htmlFor="" className="settings-panel__group-label">Group Title</label>
         }
@@ -55,34 +59,37 @@ export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps, I
     renderEnableSettings() {
         const { item, questionnaire } = this.props;
         const { openEnableSettings } = this.state;
-        return <section className={`card ${openEnableSettings ? 'dropup' : ''}`}>
-            {/* <div className="card-header"> */}
-            <button className="btn btn-block card-header dropdown-toggle p-1" onClick={this.toggleEnableSettingsDisplay.bind(this)}>
-                Enable settings
+        return <section className="settings-panel__enable-settings form-group">
+            <div className="card-header card-footer p-0">
+                <button className="btn btn-block border-secondary d-flex justify-content-between align-items-center" onClick={this.toggleEnableSettingsDisplay.bind(this)}>
+                    <span>Enable settings</span>
+                    <i className={`fas fa-${openEnableSettings ? 'caret-up' : 'caret-down'}`}></i>
                 </button>
-
-            {/* </div> */}
+            </div>
             {openEnableSettings && <div className="card-body">
-                <EnableSettings questionnaire={questionnaire} item={item} />
+                <EnableSettings key={item.id} questionnaire={questionnaire} item={item} />
             </div>}
         </section>
     }
 
     render() {
         const { item } = this.props;
-        return <div className="settings-panel">
-            <header className="d-flex justify-content-between align-items-center">
-                <span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span>
-                <span>{this.getItemTypeTitle()}</span>
-            </header>
-            <hr />
-            <div className="form-group">
-                {this.getLabel()}
-                <input type="text" className="form-control" value={item.text} disabled={true} />
+        if (item) {
+            return <div className="settings-panel card h-100">
+                <header className="card-header d-flex justify-content-between align-items-center">
+                    <span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span>
+                    <span>{this.getItemTypeTitle()}</span>
+                </header>
+                <div className="card-body">
+                    <div className="form-group">
+                        {this.getLabel()}
+                        <input type="text" className="form-control" value={item.text} disabled={true} />
+                    </div>
+                </div>
+                {this.renderEnableSettings()}
             </div>
-            <hr />
-            {this.renderEnableSettings()}
-        </div>
+        }
+        return <EmptySettingsPanel />
     }
 
 }

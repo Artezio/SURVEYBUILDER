@@ -53,15 +53,15 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         item.updateItem({ ...item, ...values });
     }
 
-    componentDidMount() {
-        const item = this.inputRef.current;
-        if (item) {
-            const x = window.pageXOffset;
-            const y = window.pageYOffset;
-            item.focus();
-            window.scrollTo(x, y)
-        }
-    }
+    // componentDidMount() {
+    // const item = this.inputRef.current;
+    // if (item) {
+    //     const x = window.pageXOffset;
+    //     const y = window.pageYOffset;
+    //     item.focus();
+    //     window.scrollTo(x, y)
+    // }
+    // }
 
     componentDidUpdate() {
         const { item } = this.props;
@@ -160,10 +160,10 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
             {({ questionnaire, selectTargetItem, targetItem, settingsDisplayMode }) => {
                 const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
                 const activeIdentifier = (targetItem && targetItem.id === item.id) ? activeItemClassName : '';
-                const onClick = () => {
+                const choseTargetItem = () => {
                     selectTargetItem && selectTargetItem(item);
                 }
-                return <div className={`${classNameIdentifier} card card-sm mb-3 ${activeIdentifier} ${className}`} data-id={item.id} ref={this.itemRef} onClickCapture={onClick}>
+                return <div className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`} data-id={item.id} ref={this.itemRef} onClickCapture={choseTargetItem} onFocusCapture={choseTargetItem}>
                     <div className="card-header drag-handle">
                         {this.renderHeader()}
                     </div>
