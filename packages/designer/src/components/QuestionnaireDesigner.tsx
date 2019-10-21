@@ -154,22 +154,18 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         const { questionnaireModel } = this.props;
         const { targetItem, settingsDisplayModel } = this.state;
         return <div id="drag-drop-nested">
-            <QuestionnaireContext.Provider value={{ questionnaire: questionnaireModel, selectTargetItem: this.selectTargetItem.bind(this), targetItem: targetItem, settingsDisplayMode: settingsDisplayModel }}>
-                <QuestionnaireItemList itemList={questionnaireModel.items} nestingLevel={this.nestingLevel} subscribe={this.makeItemsDraggable.bind(this)} />
+            <QuestionnaireContext.Provider
+                value={{
+                    questionnaire: questionnaireModel, selectTargetItem: this.selectTargetItem.bind(this),
+                    targetItem: targetItem, settingsDisplayMode: settingsDisplayModel
+                }}
+            >
+                <QuestionnaireItemList itemList={questionnaireModel.items}
+                    nestingLevel={this.nestingLevel}
+                    subscribe={this.makeItemsDraggable.bind(this)}
+                />
             </QuestionnaireContext.Provider>
         </div>
-    }
-
-    handleSettingsMode(e) {
-        if (e.target.checked === true) {
-            this.setState({
-                settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel
-            })
-        } else {
-            this.setState({
-                settingsDisplayModel: SETTINGS_DISPLAY_MODE.insideItem
-            })
-        }
     }
 
     getQuestionnaireTopPosition() {
@@ -198,33 +194,55 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         const questionnaireTopPosition = this.getQuestionnaireTopPosition();
         const settingsPanelHeight = `calc(100vh - ${parseFloat(questionnaireTopPosition) + parseFloat(this.getQuestionnaireBottomPosition())}px)`;
         return <div className={`questionnaire-designer media ${className}`} ref={this.questionnaireDesignerRef}>
-            <div className="questionnaire-items media-body" onClickCapture={this.clearTargetItem.bind(this)} onFocusCapture={this.clearTargetItem.bind(this)}>
+            <div className="questionnaire-items media-body"
+                onClickCapture={this.clearTargetItem.bind(this)}
+                onFocusCapture={this.clearTargetItem.bind(this)}
+            >
                 <div className="questionnaire card mb-3">
-                    <div className="card-header d-flex justify-content-between">
-                        <div>
-                            <input type="checkbox" defaultChecked={settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel} id={`settings-mode-${questionnaireModel.id}`} onChange={this.handleSettingsMode.bind(this)} />
-                            <label htmlFor={`settings-mode-${questionnaireModel.id}`}>Right panel mode</label>
-                        </div>
+                    <div className="card-header d-flex justify-content-end">
                         <ItemCollectionMenu item={questionnaireModel} />
                     </div>
                     <div className="card-body">
-                        <Form getApi={this.getFormApi.bind(this)} key={questionnaireModel.id} initialValues={questionnaireModel} onSubmit={this.handleSubmit.bind(this)} >
+                        <Form
+                            getApi={this.getFormApi.bind(this)}
+                            key={questionnaireModel.id}
+                            initialValues={questionnaireModel}
+                            onSubmit={this.handleSubmit.bind(this)}
+                        >
                             <div className="form-group">
                                 <label htmlFor={`${questionnaireModel.id}-title`}>Questionnaire Title</label>
-                                <Text autoComplete="off" className="form-control" id={`${questionnaireModel.id}-title`} field="title" placeholder="My Questionnaire" autoFocus={true} onBlur={this.submitForm.bind(this)} />
+                                <Text
+                                    autoComplete="off"
+                                    className="form-control"
+                                    id={`${questionnaireModel.id}-title`}
+                                    field="title"
+                                    placeholder="My Questionnaire"
+                                    autoFocus={true}
+                                    onBlur={this.submitForm.bind(this)}
+                                />
                             </div>
                             <div className="form-group">
                                 <label htmlFor={`${questionnaireModel.id}-description`}>Questionnaire Description</label>
-                                <TextArea autoComplete="off" className="form-control" id={`${questionnaireModel.id}-description`} field="description" placeholder="My description" onBlur={this.submitForm.bind(this)} />
+                                <TextArea autoComplete="off"
+                                    className="form-control"
+                                    id={`${questionnaireModel.id}-description`}
+                                    field="description"
+                                    placeholder="My description"
+                                    onBlur={this.submitForm.bind(this)}
+                                />
                             </div>
                         </Form>
                     </div>
                 </div>
                 {this.renderItemList()}
             </div>
-            {settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel && <div className="question-settings-panel ml-4" style={{ width: '350px', overflow: 'auto', top: 0, height: settingsPanelHeight }}>
-                <ItemSettingsPanel questionnaire={questionnaireModel} item={targetItem} />
-            </div>}
+            {settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel &&
+                <div
+                    className="question-settings-panel ml-4"
+                    style={{ width: '350px', overflow: 'auto', top: 0, height: settingsPanelHeight }}
+                >
+                    <ItemSettingsPanel questionnaire={questionnaireModel} item={targetItem} />
+                </div>}
         </div>
     }
 }

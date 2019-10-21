@@ -83,7 +83,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                 <i className="fas fa-grip-horizontal text-muted"></i>
             </div>
             <div className="col-4 d-flex justify-content-end align-items-center">
-                {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
+                <button className="btn btn-outline-secondary ml-3" onClick={item.remove.bind(item)}>
+                    <i className="fas fa-trash"></i>
+                </button>
             </div>
         </div>
     }
@@ -96,7 +98,14 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                     <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
                             <label htmlFor={`${item.id}-text`}>Question</label>
-                            <Text forwardedRef={this.inputRef} autoComplete="off" className="form-control" id={`${item.id}-text`} field="text" placeholder="My Question" onBlur={this.submitForm.bind(this)} />
+                            <Text forwardedRef={this.inputRef}
+                                autoComplete="off"
+                                className="form-control"
+                                id={`${item.id}-text`}
+                                field="text"
+                                placeholder="My Question"
+                                onBlur={this.submitForm.bind(this)}
+                            />
                         </div>
                     </Form>
                 </div>
@@ -133,10 +142,10 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                     </div>
                 </div>
                 <div className="col-6 d-flex justify-content-end">
-                    {showSettingsButton && <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}><i className="fas fa-cog"></i></button>}
-                    <button className="btn btn-outline-secondary ml-3" onClick={item.remove.bind(item)}>
-                        <i className="fas fa-trash"></i>
-                    </button>
+                    {showSettingsButton && <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}>
+                        <i className="fas fa-cog"></i>
+                    </button>}
+                    {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
                 </div>
             </div>
             {showSettingsButton && this.renderEnableSettings(questionnaire)}
@@ -163,7 +172,13 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                 const choseTargetItem = () => {
                     selectTargetItem && selectTargetItem(item);
                 }
-                return <div className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`} data-id={item.id} ref={this.itemRef} onClickCapture={choseTargetItem} onFocusCapture={choseTargetItem}>
+                return <div
+                    className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`}
+                    data-id={item.id}
+                    ref={this.itemRef}
+                    onClickCapture={choseTargetItem}
+                    onFocusCapture={choseTargetItem}
+                >
                     <div className="card-header drag-handle">
                         {this.renderHeader()}
                     </div>

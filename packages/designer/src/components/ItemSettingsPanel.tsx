@@ -59,9 +59,9 @@ export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps, I
     renderEnableSettings() {
         const { item, questionnaire } = this.props;
         const { openEnableSettings } = this.state;
-        return <section className="settings-panel__enable-settings form-group">
-            <div className="card-header card-footer p-0">
-                <button className="btn btn-block border-secondary d-flex justify-content-between align-items-center" onClick={this.toggleEnableSettingsDisplay.bind(this)}>
+        return <section className="settings-panel__enable-settings">
+            <div className="card-header card-footer form-group p-0">
+                <button className="btn btn-block d-flex justify-content-between align-items-center" onClick={this.toggleEnableSettingsDisplay.bind(this)}>
                     <span>Enable settings</span>
                     <i className={`fas fa-${openEnableSettings ? 'caret-up' : 'caret-down'}`}></i>
                 </button>

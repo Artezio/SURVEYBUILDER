@@ -13,4 +13,7 @@
       @extend .font-weight-bold;
     }
   }
+  .card-body {
+    flex: 0 1 auto;
+  }
 }
