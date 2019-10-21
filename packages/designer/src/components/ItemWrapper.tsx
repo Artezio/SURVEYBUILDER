@@ -83,9 +83,14 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                 <i className="fas fa-grip-horizontal text-muted"></i>
             </div>
             <div className="col-4 d-flex justify-content-end align-items-center">
-                <button className="btn btn-outline-secondary ml-3" onClick={item.remove.bind(item)}>
-                    <i className="fas fa-trash"></i>
-                </button>
+                <div className="button-toolbar">
+                    {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
+                    <div className="btn-group">
+                        <button className="btn btn-outline-secondary ml-2" onClick={item.remove.bind(item)}>
+                            <i className="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     }
@@ -145,7 +150,6 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                     {showSettingsButton && <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}>
                         <i className="fas fa-cog"></i>
                     </button>}
-                    {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
                 </div>
             </div>
             {showSettingsButton && this.renderEnableSettings(questionnaire)}
