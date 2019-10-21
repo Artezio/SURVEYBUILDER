@@ -11,6 +11,7 @@ import { QuestionnaireDesignerState } from '../interfaces/components/Questionnai
 import { SETTINGS_DISPLAY_MODE } from '../constants/questionnaireDesigner';
 import ItemSettingsPanel from './ItemSettingsPanel';
 import '../data/styles/settingsPanel.scss';
+import { QuestionnaireSettingsPanel } from './QuestionnaireSettingsPanel';
 
 export class Questionnaire extends React.Component<QuestionnaireDesignerProps, QuestionnaireDesignerState> {
     static defaultProps: Partial<QuestionnaireDesignerProps> = {
@@ -59,8 +60,15 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         this.formApi = formApi;
     }
 
+    escListener(e) {
+        if (e.keyCode === 27) {
+            this.clearTargetItem();
+        }
+    }
+
     componentDidMount() {
         this.makeItemsDraggable();
+        document.addEventListener('keydown', this.escListener.bind(this))
     }
     componentDidUpdate() {
         const { questionnaireModel } = this.props;
@@ -241,7 +249,8 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
                     className="question-settings-panel ml-4"
                     style={{ width: '350px', overflow: 'auto', top: 0, height: settingsPanelHeight }}
                 >
-                    <ItemSettingsPanel questionnaire={questionnaireModel} item={targetItem} />
+                    {targetItem ? <ItemSettingsPanel key={targetItem.id} questionnaire={questionnaireModel} item={targetItem} />
+                        : <QuestionnaireSettingsPanel questionnaire={questionnaireModel} />}
                 </div>}
         </div>
     }

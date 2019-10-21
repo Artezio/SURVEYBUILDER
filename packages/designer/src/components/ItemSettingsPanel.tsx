@@ -4,7 +4,7 @@ import ItemSettingsPanelProps from '../interfaces/components/ItemSettingsPanelPr
 import { HumanReadableGuid } from '../helpers/humanReadableId';
 import { questionTypes } from '../constants/questionTypes';
 import EnableSettings from './enableWhen/EnableSettings';
-import { EmptySettingsPanel } from './EmptySettingsPanel';
+import useObservableModel from '../observableConnector/useObservableModel';
 
 
 interface ItemSettingsPanelState {
@@ -24,7 +24,6 @@ export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps, I
 
     getItemTypeTitle(): string {
         const { item } = this.props;
-        if (!item) return;
         if (item.type === Models.GROUP) {
             return 'Group';
         } else if (item.type === Models.DISPLAY) {
@@ -39,7 +38,6 @@ export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps, I
 
     getLabel() {
         const { item } = this.props;
-        if (!item) return;
         const type = item.type;
         if (type === Models.GROUP) {
             return <label htmlFor="" className="settings-panel__group-label">Group Title</label>
@@ -72,26 +70,43 @@ export class ItemSettingsPanel extends React.Component<ItemSettingsPanelProps, I
         </section>
     }
 
+    onChange(e) {
+        const { item } = this.props;
+        if (e.target.checked && !item.required) {
+            item.required = true;
+        } else {
+            item.required = false;
+        }
+    }
+
     render() {
         const { item } = this.props;
-        if (item) {
-            return <div className="settings-panel card h-100">
-                <header className="card-header d-flex justify-content-between align-items-center">
-                    <span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span>
-                    <span>{this.getItemTypeTitle()}</span>
-                </header>
-                <div className="card-body">
-                    <div className="form-group">
-                        {this.getLabel()}
-                        <input type="text" className="form-control" value={item.text} disabled={true} />
-                    </div>
+        return <div className="settings-panel card h-100">
+            <header className="card-header d-flex justify-content-between align-items-center">
+                <span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span>
+                <span>{this.getItemTypeTitle()}</span>
+            </header>
+            <div className="card-body">
+                <div className="form-group">
+                    {this.getLabel()}
+                    <input type="text" className="form-control" value={item.text} disabled={true} />
                 </div>
-                {this.renderEnableSettings()}
+                {item.type !== Models.GROUP && item.type !== Models.DISPLAY && <div className="form-check">
+                    <input
+                        defaultChecked={item.required}
+                        name="required"
+                        type="checkbox"
+                        className="form-check-input"
+                        id={`${item.id}-required-settings-panel`}
+                        onChange={this.onChange.bind(this)}
+                    />
+                    <label className="mb-0" htmlFor={`${item.id}-required-settings-panel`}>Required</label>
+                </div>}
             </div>
-        }
-        return <EmptySettingsPanel />
+            {this.renderEnableSettings()}
+        </div>
     }
 
 }
 
-export default ItemSettingsPanel;
+export default useObservableModel<ItemSettingsPanelProps>(ItemSettingsPanel);
