@@ -107,7 +107,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
                 <header className="header">
                     {this.renderHeader()}
                 </header>
-                <section className="main-content p-3" style={{ minHeight: `calc(100% - 86px)` }}>
+                <section className="main-content p-3">
                     <Switch>
                         <Route exact={true} path="/" component={QuestionnaireListPage} />
                         <Route exact={true} path="/questionnaire" component={QuestionnaireEditor} />
@@ -119,7 +119,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
                     </Switch>
                 </section>
             </Router>
-            <footer className="footer text-center bg-secondary">
+            <footer className="footer text-center bg-light">
                 {this.renderFooter()}
             </footer>
         </div>

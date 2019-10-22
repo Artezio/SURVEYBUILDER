@@ -1,6 +1,5 @@
 import * as React from 'react';
 import 'bootstrap/dist/js/bootstrap';
-import 'bootstrap-scss';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './data/styles/artezioBootstrapTheme.scss';
 import './data/styles/layoutContent.scss';

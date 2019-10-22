@@ -11,21 +11,4 @@
   .card-body {
     flex: 0 1 auto;
   }
-  header.card-header {
-    span {
-      @extend .font-weight-bold;
-    }
-  }
-}
-
-.question-settings-panel__questionnaire-panel {
-  .card-header {
-    span:first-of-type {
-      @extend .mr-3;
-      @extend .overflow-hidden;
-    }
-    span {
-      @extend .font-weight-bold;
-    }
-  }
 }

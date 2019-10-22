@@ -41,7 +41,7 @@ export class OpenChoiceItem extends QuestionItem<OpenChoiceItemProps> {
     render() {
         return <div>
             <button className="btn btn-link text-secondary pl-0" onClick={this.reset.bind(this)}>
-                Remove default value <i className="fas fa-undo"></i>
+                Remove default value
             </button>
             {this.renderChoiceOptions()}
             <div>
