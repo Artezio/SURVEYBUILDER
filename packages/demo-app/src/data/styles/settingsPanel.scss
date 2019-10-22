@@ -6,6 +6,26 @@
   .settings-panel__group-label {
     @extend .h4;
   }
+  .item-info {
+    @extend .d-flex;
+    @extend .align-items-center;
+    :first-child {
+      @extend .mr-3;
+    }
+  }
+  .enable-when {
+    .row {
+      .col:not(:first-child):not(:last-child) {
+        @extend .px-1;
+      }
+      .col:first-child {
+        @extend .pr-1;
+      }
+      .col:last-child {
+        @extend .pl-1;
+      }
+    }
+  }
 }
 .question-settings-panel {
   .card-body {

@@ -50,7 +50,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
     handleSubmit_2(values: Partial<Omit<Models.IQuestionItem<any>, 'type'>>) {
         const { item } = this.props;
-        item.updateItem({ ...item, ...values });
+        // item.updateItem({ ...item, ...values });
+        item.required = values.required;
     }
 
     // componentDidMount() {
@@ -136,9 +137,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
             <div className="row align-items-center">
                 <div className="col-6 d-flex justify-content-start">
                     {item.type !== Models.GROUP && item.type !== Models.DISPLAY &&
-                        <Form className="mr-3" getApi={this.getFormApi_2.bind(this)} key={item.id} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
+                        <Form className="mr-3" getApi={this.getFormApi_2.bind(this)} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
                             <div className="form-check">
-                                <Checkbox field="required" type="checkbox" className="form-check-input" id={`${item.id}-required`} onChange={this.submitForm_2.bind(this)} />
+                                <Checkbox key={item.required + ''} field="required" type="checkbox" className="form-check-input" id={`${item.id}-required`} onChange={this.submitForm_2.bind(this)} />
                                 <label className="mb-0" htmlFor={`${item.id}-required`}>Required</label>
                             </div>
                         </Form>}
@@ -190,9 +191,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
                         {this.renderItemHeadLine()}
                         <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
                     </div>
-                    <div className="card-footer">
+                    {showSettingsButton && <div className="card-footer">
                         {this.renderFooter(questionnaire, showSettingsButton)}
-                    </div>
+                    </div>}
                 </div>
             }
             }

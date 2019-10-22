@@ -74,10 +74,10 @@ export class EnableSettings extends React.Component<EnableSettingsProps> {
                     <div className="list-group list-group-flush form-group">
                         {!!item.enableWhen.length && <div className="list-group-item list-group-item-action">
                             <div className="row">
-                                <div className="col-3">Question</div>
-                                <div className="col-3">Operator</div>
-                                <div className="col-5">Answer</div>
-                                <div className="col-1"></div>
+                                <div className="col col-3">Question</div>
+                                <div className="col col-3">Operator</div>
+                                <div className="col col-5">Answer</div>
+                                <div className="col col-1"></div>
                             </div>
                         </div>}
                         <Scope scope="enableWhen">
