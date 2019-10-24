@@ -11,15 +11,22 @@ import HumanReadableGuid from '../helpers/humanReadableId';
 import QuestionnaireContext from '../helpers/questionnaireContext';
 import { activeItemClassName } from '../constants/itemWrapper';
 import SETTINGS_DISPLAY_MODE from '../constants/questionnaireDesigner';
+import { IQuestionnaireContext } from '../interfaces/helpers/IQuestionnaireContext';
+import BottomItemCollectionMenu from './BottomItemCollectionMenu';
 
+interface ItemWrapperState {
+    areSettingsOpen: boolean;
+    bottomMenuShowed: boolean;
+}
 
-export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
+export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapperState> {
     static defaultProps: Partial<ItemWrapperProps> = {
         className: ''
     }
 
-    state: { areSettingsOpen: boolean } = {
-        areSettingsOpen: false
+    state = {
+        areSettingsOpen: false,
+        bottomMenuShowed: false
     }
 
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
@@ -50,19 +57,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
     }
     handleSubmit_2(values: Partial<Omit<Models.IQuestionItem<any>, 'type'>>) {
         const { item } = this.props;
-        // item.updateItem({ ...item, ...values });
-        item.required = values.required;
+        item.updateItem({ ...item, ...values });
     }
-
-    // componentDidMount() {
-    // const item = this.inputRef.current;
-    // if (item) {
-    //     const x = window.pageXOffset;
-    //     const y = window.pageYOffset;
-    //     item.focus();
-    //     window.scrollTo(x, y)
-    // }
-    // }
 
     componentDidUpdate() {
         const { item } = this.props;
@@ -85,7 +81,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
             </div>
             <div className="col-4 d-flex justify-content-end align-items-center">
                 <div className="button-toolbar">
-                    {item.type === Models.GROUP && < ItemCollectionMenu title="Context menu" item={item as Models.GroupItem} />}
+                    {item.type === Models.GROUP && < ItemCollectionMenu item={item as Models.GroupItem} />}
                     <div className="btn-group">
                         <button className="btn btn-outline-secondary ml-2" onClick={item.remove.bind(item)}>
                             <i className="fas fa-trash"></i>
@@ -167,36 +163,62 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps> {
         return 'questionnaire-item';
     }
 
-    render() {
+    toggleBottomMenuShow() {
+        this.setState({
+            bottomMenuShowed: !this.state.bottomMenuShowed
+        })
+    }
+
+    closeBottomMenuShow() {
+        this.setState({
+            bottomMenuShowed: false
+        })
+    }
+
+    // prepare
+
+    renderItemWrapper(consumeValues: IQuestionnaireContext) {
+        const { questionnaire, selectTargetItem, targetItem, settingsDisplayMode } = consumeValues;
         const { item, nestingLevel, className, subscribe } = this.props;
+        const { bottomMenuShowed } = this.state;
         const classNameIdentifier = this.getClassNameIdentifier();
-        return <QuestionnaireContext.Consumer>
-            {({ questionnaire, selectTargetItem, targetItem, settingsDisplayMode }) => {
-                const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
-                const activeIdentifier = (targetItem && targetItem.id === item.id) ? activeItemClassName : '';
-                const choseTargetItem = () => {
-                    selectTargetItem && selectTargetItem(item);
-                }
-                return <div
-                    className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`}
-                    data-id={item.id}
-                    ref={this.itemRef}
-                    onClickCapture={choseTargetItem}
-                    onFocusCapture={choseTargetItem}
-                >
-                    <div className="card-header drag-handle">
-                        {this.renderHeader()}
-                    </div>
-                    <div className="card-body">
-                        {this.renderItemHeadLine()}
-                        <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
-                    </div>
-                    {showSettingsButton && <div className="card-footer">
-                        {this.renderFooter(questionnaire, showSettingsButton)}
-                    </div>}
+        const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
+        const activeIdentifier = (targetItem && targetItem.id === item.id) ? activeItemClassName : '';
+        const choseTargetItem = () => {
+            selectTargetItem && selectTargetItem(item);
+        }
+        return <div
+            className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`}
+            data-id={item.id}
+            ref={this.itemRef}
+            onClickCapture={choseTargetItem}
+            onFocusCapture={choseTargetItem}
+        >
+            <div className="card-header drag-handle">
+                {this.renderHeader()}
+            </div>
+            <div className="card-body">
+                {this.renderItemHeadLine()}
+                <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
+            </div>
+            {showSettingsButton && <div className="card-footer">
+                {this.renderFooter(questionnaire, showSettingsButton)}
+            </div>}
+            <div className="bottom-line">
+                <hr />
+                <div className="dropdown d-flex">
+                    <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenuShow.bind(this)}>
+                        <i className="fas fa-plus"></i>
+                    </button>
+                    {bottomMenuShowed && <BottomItemCollectionMenu item={item} />}
                 </div>
-            }
-            }
+            </div>
+        </div>
+    }
+
+    render() {
+        return <QuestionnaireContext.Consumer>
+            {consumeValues => this.renderItemWrapper(consumeValues)}
         </QuestionnaireContext.Consumer>
     }
 }

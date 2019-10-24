@@ -1,5 +1,7 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
+import '../data/styles/settingsPanel.scss';
+import '../data/styles/item-bottomline-menu.scss';
 import { QuestionnaireDesignerProps } from '../interfaces/components/QuestionnaireDesignerProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
 import { useObservableModel } from '../observableConnector/useObservableModel';
@@ -10,7 +12,6 @@ import QuestionnaireContext from '../helpers/questionnaireContext';
 import { QuestionnaireDesignerState } from '../interfaces/components/QuestionnaireDesignerState';
 import { SETTINGS_DISPLAY_MODE } from '../constants/questionnaireDesigner';
 import ItemSettingsPanel from './ItemSettingsPanel';
-import '../data/styles/settingsPanel.scss';
 import { QuestionnaireSettingsPanel } from './QuestionnaireSettingsPanel';
 
 export class Questionnaire extends React.Component<QuestionnaireDesignerProps, QuestionnaireDesignerState> {

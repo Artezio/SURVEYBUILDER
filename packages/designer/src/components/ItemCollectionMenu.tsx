@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ItemCollectionMenuProps } from '../interfaces/components/MenuProps';
+import { ItemCollectionMenuProps } from '../interfaces/components/ItemCollectionMenuProps';
 import * as Models from '@art-forms/models';
 
 
@@ -28,9 +28,9 @@ export class ItemCollectionMenu extends React.Component<ItemCollectionMenuProps>
 
     render() {
         return <div className="item-collection-menu btn-group no-drag">
-            <a className="btn btn-outline-secondary" title="Add text" href="javascript:void(0)" onClick={this.addItem.bind(this)}><i className="fas fa-align-left"></i></a>
-            <a className="btn btn-outline-secondary" title="Add group" href="javascript:void(0)" onClick={this.addGroupItem.bind(this)}><i className="fas fa-layer-group"></i></a>
-            <a className="btn btn-outline-secondary" title="Add question" href="javascript:void(0)" onClick={this.addChoiceItem.bind(this)}><i className="fas fa-plus"></i></a>
+            <button className="btn btn-outline-secondary" title="Add text" onClick={this.addItem.bind(this)}><i className="fas fa-align-left"></i></button>
+            <button className="btn btn-outline-secondary" title="Add group" onClick={this.addGroupItem.bind(this)}><i className="fas fa-layer-group"></i></button>
+            <button className="btn btn-outline-secondary" title="Add question" onClick={this.addChoiceItem.bind(this)}><i className="fas fa-plus"></i></button>
         </div>
     }
 }

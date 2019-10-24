@@ -1,0 +1,37 @@
+$right-protrusion: 20px;
+$bottom-line-height: 16px;
+
+.questionnaire-item {
+  position: relative;
+}
+
+.bottom-line {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  right: -$right-protrusion;
+  width: calc(100% + #{$right-protrusion});
+  height: $bottom-line-height;
+  bottom: -$bottom-line-height/2;
+  padding-right: 1px;
+  button.toggle {
+    padding: 2px !important;
+    border: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    flex: 0 0 auto;
+  }
+  hr {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+  .dropdown-menu {
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+  .btn-group-vertical {
+    position: absolute;
+  }
+}

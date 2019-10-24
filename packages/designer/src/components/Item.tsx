@@ -9,15 +9,6 @@ export class Item extends React.Component<ItemProps> {
     formApi!: FormApi<Models.IItem>;
     inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
-    // componentDidMount() {
-    //     if (this.inputRef.current) {
-    //         const x = window.pageXOffset;
-    //         const y = window.pageYOffset;
-    //         this.inputRef.current.focus();
-    //         window.scrollTo(x, y)
-    //     }
-    // }
-
     submitForm() {
         if (!this.formApi) return;
         this.formApi.submitForm();

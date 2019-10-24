@@ -29,15 +29,6 @@ export class GroupItem extends React.Component<GroupItemProps> {
         return <QuestionnaireItemList itemList={item.items} nestingLevel={nestingLevel} subscribe={subscribe} />
     }
 
-    // componentDidMount() {
-    //     if (this.inputRef.current) {
-    //         const x = window.pageXOffset;
-    //         const y = window.pageYOffset;
-    //         this.inputRef.current.focus();
-    //         window.scrollTo(x, y)
-    //     }
-    // }
-
     componentDidUpdate() {
         const { item } = this.props;
         this.formApi.setValues(item);
