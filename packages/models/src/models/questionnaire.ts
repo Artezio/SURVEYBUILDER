@@ -32,7 +32,7 @@ export class Questionnaire implements IQuestionnaire, IItemCollection {
     }
 
     addDescendantItemAfter(thisItem: Item, newItem: Item) {
-        this.addItem(newItem, thisItem.position);
+        this.addItem(newItem, thisItem.position + 1);
     }
 
     updateQuestionnaire(questionnaire: IQuestionnaire) {

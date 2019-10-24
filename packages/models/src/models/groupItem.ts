@@ -21,7 +21,7 @@ export class GroupItem extends Item implements IGroupItem, IItemCollection {
     }
 
     addDescendantItemAfter(thisItem: Item, newItem: Item) {
-        this.addItem(newItem, thisItem.position);
+        this.addItem(newItem, thisItem.position + 1);
     }
 
     completeItems(item?: Partial<Omit<IGroupItem, 'type'>>) {
