@@ -3,9 +3,10 @@ import { observable, observableProperty, getObservable } from '@art-forms/observ
 import ItemByTypeFactory from "../factories/itemByTypeFactory";
 import IQuestionnaire from '../interfaces/IQuestionnaire';
 import Item from './item';
+import IItemCollection from '../interfaces/IItemCollection';
 
 @observable
-export class Questionnaire implements IQuestionnaire {
+export class Questionnaire implements IQuestionnaire, IItemCollection {
     id!: string;
     description?: string;
     @observableProperty
@@ -28,6 +29,10 @@ export class Questionnaire implements IQuestionnaire {
         } else {
             this.items = [];
         }
+    }
+
+    addDescendantItemAfter(thisItem: Item, newItem: Item) {
+        this.addItem(newItem, thisItem.position);
     }
 
     updateQuestionnaire(questionnaire: IQuestionnaire) {

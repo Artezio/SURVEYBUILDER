@@ -7,17 +7,21 @@ import { GROUP } from "../constants/itemTypes";
 
 
 @observable
-export class GroupItem extends Item implements IGroupItem {
+export class GroupItem extends Item implements IGroupItem, IItemCollection {
     @observableProperty
     items!: Item[];
     type: GROUP = GROUP;
     itemIdMap: Map<string, boolean> = new Map();
     itemByTypeFactory: ItemByTypeFactory = new ItemByTypeFactory(this);
 
-    constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: IItemCollection<IGroupItem>) {
+    constructor(item: Partial<Omit<IGroupItem, 'type'>> | undefined, parent?: IItemCollection) {
         super(item, parent);
         this.completeItems(item);
         this.items.forEach(item => this.itemIdMap.set(item.id, true));
+    }
+
+    addDescendantItemAfter(thisItem: Item, newItem: Item) {
+        this.addItem(newItem, thisItem.position);
     }
 
     completeItems(item?: Partial<Omit<IGroupItem, 'type'>>) {

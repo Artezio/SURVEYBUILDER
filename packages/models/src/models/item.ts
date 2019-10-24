@@ -6,14 +6,13 @@ import EnableWhenFactory from '../factories/enableWhenFactory';
 import IItem from '../interfaces/IItem';
 import { ITEM_TYPE, DISPLAY } from '../constants/itemTypes';
 import EnableWhen from './enableWhen';
-import 'reflect-metadata';
 
 @observable
 export class Item implements IItem {
     id!: string;
     text?: string;
     type: ITEM_TYPE = DISPLAY;
-    parent?: IItemCollection<IItem>;
+    parent?: IItemCollection;
     position!: number;
     required?: boolean;
     @observableProperty
@@ -22,7 +21,7 @@ export class Item implements IItem {
     enableWhenIdMap: Map<string, boolean> = new Map();
     enableWhenFactory: EnableWhenFactory = new EnableWhenFactory(this);
 
-    constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection<IItem>) {
+    constructor(item: Partial<Omit<IItem, 'type'>> | undefined, parent?: IItemCollection) {
         this.id = item && item.id || uuid();
         this.required = !!item && !!item.required;
         this.text = item && item.text;
@@ -49,6 +48,10 @@ export class Item implements IItem {
                 return position;
             }
         })
+    }
+
+    addSiblingItemAfter(item: Item) {
+        this.parent && this.parent.addDescendantItemAfter(this, item);
     }
 
     addEnableWhen(enableWhen: EnableWhen) {
