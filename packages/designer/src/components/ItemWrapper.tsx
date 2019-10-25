@@ -7,10 +7,8 @@ import { FormApi, Form, Text, Checkbox } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
 import EnableSettings from './enableWhen/EnableSettings';
 import HumanReadableGuid from '../helpers/humanReadableId';
-import QuestionnaireContext from '../helpers/questionnaireContext';
 import { activeItemClassName } from '../constants/itemWrapper';
 import SETTINGS_DISPLAY_MODE from '../constants/questionnaireDesigner';
-import { IQuestionnaireContext } from '../interfaces/helpers/IQuestionnaireContext';
 import BottomItemCollectionMenu from './BottomItemCollectionMenu';
 
 interface ItemWrapperState {
@@ -201,11 +199,11 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     render() {
-        const { item, nestingLevel, className, subscribe, questionnaire, selectTargetItem, targetItem, settingsDisplayMode } = this.props;
+        const { item, nestingLevel, className, subscribe, selectTargetItem, targetItemId, settingsDisplayMode } = this.props;
         const { bottomMenuShowed } = this.state;
         const classNameIdentifier = this.getClassNameIdentifier();
         const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
-        const activeIdentifier = (targetItem && targetItem.id === item.id) ? activeItemClassName : '';
+        const activeIdentifier = (targetItemId === item.id) ? activeItemClassName : '';
         const choseTargetItem = () => {
             selectTargetItem && selectTargetItem(item);
         }

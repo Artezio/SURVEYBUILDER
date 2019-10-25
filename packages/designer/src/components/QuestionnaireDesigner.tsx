@@ -167,7 +167,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
                 value={{
                     questionnaire: questionnaireModel,
                     selectTargetItem: this.selectTargetItem.bind(this),
-                    targetItem: targetItem,
+                    targetItemId: targetItem && targetItem.id,
                     settingsDisplayMode: settingsDisplayModel,
                     clearTargetItem: this.clearTargetItem.bind(this)
                 }}
