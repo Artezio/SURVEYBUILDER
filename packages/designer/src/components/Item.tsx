@@ -7,7 +7,7 @@ import { useObservableModel } from '../observableConnector/useObservableModel';
 
 export class Item extends React.Component<ItemProps> {
     formApi!: FormApi<Models.IItem>;
-    inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+    // inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
     submitForm() {
         if (!this.formApi) return;
@@ -33,7 +33,16 @@ export class Item extends React.Component<ItemProps> {
         return <Form className="questionnaire-display-item__headline" getApi={this.getFormApi.bind(this)} initialValues={item} key={item.id} onSubmit={this.handleSubmit.bind(this)}>
             <div>
                 <label htmlFor={item.id}>Text</label>
-                <TextArea forwardedRef={this.inputRef} autoComplete="off" className="form-control" id={item.id} field="text" placeholder="My text" onBlur={this.submitForm.bind(this)} />
+                <TextArea
+                    // forwardedRef={this.inputRef} 
+                    autoFocus={true}
+                    autoComplete="off"
+                    className="form-control"
+                    id={item.id}
+                    field="text"
+                    placeholder="My text"
+                    onBlur={this.submitForm.bind(this)}
+                />
             </div>
         </Form>
     }

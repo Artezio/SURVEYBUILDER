@@ -6,4 +6,5 @@ export interface IQuestionnaireContext {
     selectTargetItem?: (item: Models.Item) => void;
     targetItem?: Models.Item;
     settingsDisplayMode: SETTINGS_DISPLAY_MODE;
+    clearTargetItem?: (item: Models.Item) => void;
 }

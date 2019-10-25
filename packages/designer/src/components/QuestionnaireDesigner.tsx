@@ -165,11 +165,15 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         return <div id="drag-drop-nested">
             <QuestionnaireContext.Provider
                 value={{
-                    questionnaire: questionnaireModel, selectTargetItem: this.selectTargetItem.bind(this),
-                    targetItem: targetItem, settingsDisplayMode: settingsDisplayModel
+                    questionnaire: questionnaireModel,
+                    selectTargetItem: this.selectTargetItem.bind(this),
+                    targetItem: targetItem,
+                    settingsDisplayMode: settingsDisplayModel,
+                    clearTargetItem: this.clearTargetItem.bind(this)
                 }}
             >
-                <QuestionnaireItemList itemList={questionnaireModel.items}
+                <QuestionnaireItemList
+                    itemList={questionnaireModel.items}
                     nestingLevel={this.nestingLevel}
                     subscribe={this.makeItemsDraggable.bind(this)}
                 />
@@ -209,7 +213,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
             >
                 <div className="questionnaire card mb-3">
                     <div className="card-header d-flex justify-content-end">
-                        <ItemCollectionMenu item={questionnaireModel} />
+                        {/* <ItemCollectionMenu item={questionnaireModel} /> */}
                     </div>
                     <div className="card-body">
                         <Form
@@ -243,6 +247,9 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
                         </Form>
                     </div>
                 </div>
+                {questionnaireModel.items.length === 0 && <div className="w-100 d-flex justify-content-center align-items-center">
+                    <ItemCollectionMenu item={questionnaireModel} />
+                </div>}
                 {this.renderItemList()}
             </div>
             {settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel &&

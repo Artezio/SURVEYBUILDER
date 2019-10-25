@@ -1,6 +1,7 @@
 import * as React from 'react';
 import QuestionnaireItemListProps from '../interfaces/components/QuestionnaireItemListProps';
 import ItemWrapper from './ItemWrapper';
+import QuestionnaireContext from '../helpers/questionnaireContext';
 
 
 export class QuestionnaireItemList extends React.Component<QuestionnaireItemListProps> {
@@ -13,7 +14,9 @@ export class QuestionnaireItemList extends React.Component<QuestionnaireItemList
     render() {
         const { itemList, className = '', nestingLevel, subscribe } = this.props;
         return <div className={`questionnaire-item-list ${className}`} data-nesting-level={nestingLevel}>
-            {itemList.map((item, i) => <ItemWrapper item={item} key={item.id} nestingLevel={`${nestingLevel}:${i}`} subscribe={subscribe} />)}
+            {itemList.map((item, i) => <QuestionnaireContext.Consumer key={item.id}>
+                {consumeValues => <ItemWrapper item={item} nestingLevel={`${nestingLevel}:${i}`} subscribe={subscribe} {...consumeValues} />}
+            </QuestionnaireContext.Consumer>)}
         </div>
     }
 }

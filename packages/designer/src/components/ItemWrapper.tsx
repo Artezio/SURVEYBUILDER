@@ -3,7 +3,6 @@ import * as Models from '@art-forms/models';
 import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
 import { useObservableModel } from '../observableConnector/useObservableModel';
 import ItemProvider from './ItemProvider';
-import ItemCollectionMenu from './ItemCollectionMenu';
 import { FormApi, Form, Text, Checkbox } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
 import EnableSettings from './enableWhen/EnableSettings';
@@ -29,9 +28,10 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         bottomMenuShowed: false
     }
 
+    closingBottomMenuTimeOutKey: any;
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
-    inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+    // inputRef: React.RefObject<HTMLInputElement> = React.createRef();
     itemRef: React.RefObject<HTMLDivElement> = React.createRef();
     humanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
 
@@ -66,6 +66,21 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         this.formApi_2 && this.formApi_2.setValues(item);
     }
 
+    componentWillUnmount() {
+        const { clearTargetItem } = this.props;
+        clearTargetItem && clearTargetItem();
+    }
+
+    // componentDidMount() {
+    //     const item = this.inputRef.current;
+    //     if (item) {
+    //         const x = window.pageXOffset;
+    //         const y = window.pageYOffset;
+    //         item.focus();
+    //         window.scrollTo(x, y)
+    //     }
+    // }
+
     toggleSettings() {
         this.setState({
             areSettingsOpen: !this.state.areSettingsOpen
@@ -80,8 +95,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 <i className="fas fa-grip-horizontal text-muted"></i>
             </div>
             <div className="col-4 d-flex justify-content-end align-items-center">
-                <div className="button-toolbar">
-                    {item.type === Models.GROUP && < ItemCollectionMenu item={item as Models.GroupItem} />}
+                <div className="button-toolbar no-drag">
+                    {/* {item.type === Models.GROUP && < ItemCollectionMenu item={item as Models.GroupItem} />} */}
                     <div className="btn-group">
                         <button className="btn btn-outline-secondary ml-2" onClick={item.remove.bind(item)}>
                             <i className="fas fa-trash"></i>
@@ -100,7 +115,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                     <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
                             <label htmlFor={`${item.id}-text`}>Question</label>
-                            <Text forwardedRef={this.inputRef}
+                            <Text
+                                // forwardedRef={this.inputRef}
+                                autoFocus={true}
                                 autoComplete="off"
                                 className="form-control"
                                 id={`${item.id}-text`}
@@ -118,15 +135,15 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         }
     }
 
-    renderEnableSettings(questionnaire: Models.Questionnaire) {
-        const { item } = this.props;
+    renderEnableSettings() {
+        const { item, questionnaire } = this.props;
         return this.state.areSettingsOpen && <div className="item-settings">
             <hr />
             {questionnaire && <EnableSettings questionnaire={questionnaire} item={item} />}
         </div>
     }
 
-    renderFooter(questionnaire: Models.Questionnaire, showSettingsButton: boolean) {
+    renderFooter(showSettingsButton: boolean) {
         const { item } = this.props;
         const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
         return <div>
@@ -149,7 +166,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                     </button>}
                 </div>
             </div>
-            {showSettingsButton && this.renderEnableSettings(questionnaire)}
+            {showSettingsButton && this.renderEnableSettings()}
         </div>
     }
 
@@ -163,23 +180,28 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         return 'questionnaire-item';
     }
 
-    toggleBottomMenuShow() {
+    toggleBottomMenu() {
         this.setState({
             bottomMenuShowed: !this.state.bottomMenuShowed
         })
     }
 
-    closeBottomMenuShow() {
+    closeBottomMenu() {
         this.setState({
             bottomMenuShowed: false
         })
     }
 
-    // prepare
+    prepareClosingBottomMenu() {
+        this.closingBottomMenuTimeOutKey = setTimeout(() => { this.closeBottomMenu() })
+    }
 
-    renderItemWrapper(consumeValues: IQuestionnaireContext) {
-        const { questionnaire, selectTargetItem, targetItem, settingsDisplayMode } = consumeValues;
-        const { item, nestingLevel, className, subscribe } = this.props;
+    preventClosingBottomMenu() {
+        clearTimeout(this.closingBottomMenuTimeOutKey);
+    }
+
+    render() {
+        const { item, nestingLevel, className, subscribe, questionnaire, selectTargetItem, targetItem, settingsDisplayMode } = this.props;
         const { bottomMenuShowed } = this.state;
         const classNameIdentifier = this.getClassNameIdentifier();
         const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
@@ -202,24 +224,18 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
             </div>
             {showSettingsButton && <div className="card-footer">
-                {this.renderFooter(questionnaire, showSettingsButton)}
+                {this.renderFooter(showSettingsButton)}
             </div>}
-            <div className="bottom-line">
+            <div className="bottom-line" onFocus={this.preventClosingBottomMenu.bind(this)} onBlur={this.prepareClosingBottomMenu.bind(this)}>
                 <hr />
-                <div className="dropdown d-flex">
-                    <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenuShow.bind(this)}>
+                <div className="dropup d-flex">
+                    <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenu.bind(this)}>
                         <i className="fas fa-plus"></i>
                     </button>
                     {bottomMenuShowed && <BottomItemCollectionMenu item={item} />}
                 </div>
             </div>
         </div>
-    }
-
-    render() {
-        return <QuestionnaireContext.Consumer>
-            {consumeValues => this.renderItemWrapper(consumeValues)}
-        </QuestionnaireContext.Consumer>
     }
 }
 
