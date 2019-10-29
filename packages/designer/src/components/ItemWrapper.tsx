@@ -87,7 +87,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     renderHeader() {
-        const { item } = this.props;
+        const { item, targetItemId } = this.props;
         return <div className="row">
             <div className="col-4 d-flex align-items-center"><span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span></div>
             <div className="col-4 d-flex justify-content-center align-items-center">
@@ -97,9 +97,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 <div className="button-toolbar no-drag">
                     {/* {item.type === Models.GROUP && < ItemCollectionMenu item={item as Models.GroupItem} />} */}
                     <div className="btn-group">
-                        <button className="btn btn-outline-secondary ml-2" onClick={item.remove.bind(item)}>
+                        {targetItemId === item.id && <button className="btn btn-outline-secondary" onClick={item.remove.bind(item)}>
                             <i className="fas fa-trash"></i>
-                        </button>
+                        </button>}
                     </div>
                 </div>
             </div>

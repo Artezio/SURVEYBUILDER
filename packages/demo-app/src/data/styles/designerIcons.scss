@@ -1,0 +1,24 @@
+.questionnaire-item {
+  .card-header {
+    .btn-outline-secondary {
+      @extend .border-0;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+// .fa-grip-horizontal {
+//   display: none;
+// }
+.questionnaire-item:not(.card-active) {
+  > .drag-handle:not(:hover) {
+    .fa-grip-horizontal {
+      display: none;
+    }
+  }
+}
+// .drag-handle.card-active {
+//   .fa-grip-horizontal {
+//     display: inline;
+//   }
+// }
