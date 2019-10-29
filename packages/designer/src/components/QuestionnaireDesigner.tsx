@@ -78,6 +78,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
 
     componentWillUnmount() {
         this.clearSortables();
+        document.removeEventListener('keydown', this.escListener.bind(this))
     }
 
     clearSortables() {
@@ -205,7 +206,8 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         const { questionnaireModel, className } = this.props;
         const { targetItem, settingsDisplayModel } = this.state;
         const questionnaireTopPosition = this.getQuestionnaireTopPosition();
-        const settingsPanelHeight = `calc(100vh - ${parseFloat(questionnaireTopPosition) + parseFloat(this.getQuestionnaireBottomPosition())}px)`;
+        // const settingsPanelHeight = `calc(100vh - ${parseFloat(questionnaireTopPosition) + parseFloat(this.getQuestionnaireBottomPosition())}px)`;
+        const settingsPanelHeight = `calc(100vh - 150px)`;
         return <div className={`questionnaire-designer media ${className}`} ref={this.questionnaireDesignerRef}>
             <div className="questionnaire-items media-body"
                 onClickCapture={this.clearTargetItem.bind(this)}
@@ -255,7 +257,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
             {settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel &&
                 <div
                     className="question-settings-panel ml-4"
-                    style={{ width: '350px', overflow: 'auto', top: 0, height: settingsPanelHeight }}
+                    style={{ height: settingsPanelHeight }}
                 >
                     {targetItem ? <ItemSettingsPanel key={targetItem.id} questionnaire={questionnaireModel} item={targetItem} />
                         : <QuestionnaireSettingsPanel questionnaire={questionnaireModel} />}
