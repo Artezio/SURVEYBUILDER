@@ -8,6 +8,8 @@ export * from './constants/errorMessages';
 export * from './interfaces/IItem';
 export * from './interfaces/IGroupItem';
 
+export * from './interfaces/IItemCollection';
+
 export * from './interfaces/IEnableWhen';
 
 export * from './interfaces/questionItems/IQuestionItem';
