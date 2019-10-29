@@ -21,7 +21,8 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
 
     state = {
         settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel,
-        targetItem: undefined
+        targetItem: undefined,
+        targetGroup: this.props.questionnaireModel
     }
 
     questionnaireNodeTopPosition?: string;
@@ -161,17 +162,22 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
 
     selectTargetItem(item: Models.Item) {
         this.setState({
-            targetItem: item
+            targetItem: item,
+            targetGroup: item.type === Models.GROUP ? (item as any) : item.parent
         })
     }
 
     clearTargetItem() {
-        this.setState({ targetItem: undefined })
+        const { questionnaireModel } = this.props;
+        this.setState({
+            targetItem: undefined,
+            targetGroup: questionnaireModel
+        })
     }
 
     renderItemList() {
         const { questionnaireModel } = this.props;
-        const { targetItem, settingsDisplayModel } = this.state;
+        const { targetItem, settingsDisplayModel, targetGroup } = this.state;
         return <div id="drag-drop-nested">
             <QuestionnaireContext.Provider
                 value={{
@@ -179,7 +185,8 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
                     selectTargetItem: this.selectTargetItem.bind(this),
                     targetItemId: targetItem && targetItem.id,
                     settingsDisplayMode: settingsDisplayModel,
-                    clearTargetItem: this.clearTargetItem.bind(this)
+                    clearTargetItem: this.clearTargetItem.bind(this),
+                    targetGroupId: targetGroup && targetGroup.id
                 }}
             >
                 <QuestionnaireItemList

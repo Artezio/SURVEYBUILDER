@@ -7,4 +7,5 @@ export interface IQuestionnaireContext {
     targetItemId?: string;
     settingsDisplayMode: SETTINGS_DISPLAY_MODE;
     clearTargetItem?: () => void;
+    targetGroupId?: string;
 }

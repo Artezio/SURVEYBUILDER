@@ -213,7 +213,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     render() {
-        const { item, nestingLevel, className, subscribe, targetItemId, settingsDisplayMode } = this.props;
+        const { item, nestingLevel, className, subscribe, targetItemId, settingsDisplayMode, targetGroupId } = this.props;
         const { bottomMenuShowed } = this.state;
         const classNameIdentifier = this.getClassNameIdentifier();
         const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
@@ -236,7 +236,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             {showSettingsButton && <div className="card-footer">
                 {this.renderFooter(showSettingsButton)}
             </div>}
-            <div className="bottom-line" onFocus={this.preventClosingBottomMenu.bind(this)} onBlur={this.prepareClosingBottomMenu.bind(this)} ref={this.bottomLineRef}>
+            {item.parent && (item.parent as any).id === targetGroupId && <div className="bottom-line" onFocus={this.preventClosingBottomMenu.bind(this)} onBlur={this.prepareClosingBottomMenu.bind(this)} ref={this.bottomLineRef}>
                 <hr />
                 <div className="dropup d-flex">
                     <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenu.bind(this)}>
@@ -244,7 +244,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                     </button>
                     {bottomMenuShowed && <BottomItemCollectionMenu item={item} />}
                 </div>
-            </div>
+            </div>}
         </div>
     }
 }
