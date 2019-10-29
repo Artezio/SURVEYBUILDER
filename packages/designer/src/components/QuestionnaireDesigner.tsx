@@ -25,6 +25,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     }
 
     questionnaireNodeTopPosition?: string;
+    settingsPanelRef = React.createRef<HTMLDivElement>();
     questionnaireDesignerRef = React.createRef<HTMLDivElement>();
     formApi!: FormApi<Models.IQuestionnaire>;
     itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.questionnaireModel);
@@ -67,9 +68,16 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         }
     }
 
+    documentClickListener(e) {
+        if (!this.settingsPanelRef.current || !this.settingsPanelRef.current.contains(e.target)) {
+            this.clearTargetItem();
+        }
+    }
+
     componentDidMount() {
         this.makeItemsDraggable();
-        document.addEventListener('keydown', this.escListener.bind(this))
+        document.addEventListener('keydown', this.escListener.bind(this));
+        document.addEventListener('click', this.documentClickListener.bind(this), true);
     }
     componentDidUpdate() {
         const { questionnaireModel } = this.props;
@@ -79,6 +87,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     componentWillUnmount() {
         this.clearSortables();
         document.removeEventListener('keydown', this.escListener.bind(this))
+        document.addEventListener('click', this.documentClickListener.bind(this), true);
     }
 
     clearSortables() {
@@ -182,37 +191,32 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         </div>
     }
 
-    getQuestionnaireTopPosition() {
-        if (this.questionnaireNodeTopPosition) return this.questionnaireNodeTopPosition;
-        const questionnaireNode = this.questionnaireDesignerRef.current;
-        if (questionnaireNode) {
-            const questionnaireNodeTopPosition = questionnaireNode.getBoundingClientRect().top;
-            this.questionnaireNodeTopPosition = questionnaireNodeTopPosition ? questionnaireNodeTopPosition + 'px' : '0';
-            return this.questionnaireNodeTopPosition;
-        }
-    }
+    // getQuestionnaireTopPosition() {
+    //     if (this.questionnaireNodeTopPosition) return this.questionnaireNodeTopPosition;
+    //     const questionnaireNode = this.questionnaireDesignerRef.current;
+    //     if (questionnaireNode) {
+    //         const questionnaireNodeTopPosition = questionnaireNode.getBoundingClientRect().top;
+    //         this.questionnaireNodeTopPosition = questionnaireNodeTopPosition ? questionnaireNodeTopPosition + 'px' : '0';
+    //         return this.questionnaireNodeTopPosition;
+    //     }
+    // }
 
-    getQuestionnaireBottomPosition() {
-        const questionnaireNode = this.questionnaireDesignerRef.current;
-        if (questionnaireNode) {
-            const questionnaireNodeHeight = questionnaireNode.getBoundingClientRect().height;
-            const bodyHeight = document.body.getBoundingClientRect().height;
-            const bottomPosition = bodyHeight - questionnaireNodeHeight;
-            return bottomPosition > 0 ? bottomPosition + 'px' : '150px';
-        }
-    }
+    // getQuestionnaireBottomPosition() {
+    //     const questionnaireNode = this.questionnaireDesignerRef.current;
+    //     if (questionnaireNode) {
+    //         const questionnaireNodeHeight = questionnaireNode.getBoundingClientRect().height;
+    //         const bodyHeight = document.body.getBoundingClientRect().height;
+    //         const bottomPosition = bodyHeight - questionnaireNodeHeight;
+    //         return bottomPosition > 0 ? bottomPosition + 'px' : '150px';
+    //     }
+    // }
 
     render() {
         const { questionnaireModel, className } = this.props;
         const { targetItem, settingsDisplayModel } = this.state;
-        const questionnaireTopPosition = this.getQuestionnaireTopPosition();
-        // const settingsPanelHeight = `calc(100vh - ${parseFloat(questionnaireTopPosition) + parseFloat(this.getQuestionnaireBottomPosition())}px)`;
         const settingsPanelHeight = `calc(100vh - 150px)`;
-        return <div className={`questionnaire-designer media ${className}`} ref={this.questionnaireDesignerRef}>
-            <div className="questionnaire-items media-body"
-                onClickCapture={this.clearTargetItem.bind(this)}
-                onFocusCapture={this.clearTargetItem.bind(this)}
-            >
+        return <div className={`questionnaire-designer media ${className}`} /*ref={this.questionnaireDesignerRef}*/>
+            <div className="questionnaire-items media-body">
                 <div className="questionnaire card mb-3">
                     <div className="card-header d-flex justify-content-end">
                         {/* <ItemCollectionMenu item={questionnaireModel} /> */}
@@ -255,10 +259,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
                 {this.renderItemList()}
             </div>
             {settingsDisplayModel === SETTINGS_DISPLAY_MODE.rightPanel &&
-                <div
-                    className="question-settings-panel ml-4"
-                    style={{ height: settingsPanelHeight }}
-                >
+                <div className="question-settings-panel ml-4" style={{ height: settingsPanelHeight }} ref={this.settingsPanelRef}>
                     {targetItem ? <ItemSettingsPanel key={targetItem.id} questionnaire={questionnaireModel} item={targetItem} />
                         : <QuestionnaireSettingsPanel questionnaire={questionnaireModel} />}
                 </div>}

@@ -26,6 +26,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         bottomMenuShowed: false
     }
 
+    bottomLineRef = React.createRef<HTMLDivElement>();
     closingBottomMenuTimeOutKey: any;
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
@@ -198,21 +199,32 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         clearTimeout(this.closingBottomMenuTimeOutKey);
     }
 
+    selectTargetItem(e) {
+        const { item, selectTargetItem } = this.props;
+        e.stopPropagation();
+        if (!this.bottomLineRef.current || !this.bottomLineRef.current.contains(e.target)) {
+            selectTargetItem && selectTargetItem(item);
+        }
+    }
+
+    clearTargetItem() {
+        const { clearTargetItem } = this.props;
+        clearTargetItem && clearTargetItem();
+    }
+
     render() {
-        const { item, nestingLevel, className, subscribe, selectTargetItem, targetItemId, settingsDisplayMode } = this.props;
+        const { item, nestingLevel, className, subscribe, targetItemId, settingsDisplayMode } = this.props;
         const { bottomMenuShowed } = this.state;
         const classNameIdentifier = this.getClassNameIdentifier();
         const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
         const activeIdentifier = (targetItemId === item.id) ? activeItemClassName : '';
-        const choseTargetItem = () => {
-            selectTargetItem && selectTargetItem(item);
-        }
         return <div
             className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`}
             data-id={item.id}
             ref={this.itemRef}
-            onClickCapture={choseTargetItem}
-            onFocusCapture={choseTargetItem}
+            onBlur={this.clearTargetItem.bind(this)}
+            onFocus={this.selectTargetItem.bind(this)}
+            onClick={this.selectTargetItem.bind(this)}
         >
             <div className="card-header drag-handle">
                 {this.renderHeader()}
@@ -224,7 +236,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             {showSettingsButton && <div className="card-footer">
                 {this.renderFooter(showSettingsButton)}
             </div>}
-            <div className="bottom-line" onFocus={this.preventClosingBottomMenu.bind(this)} onBlur={this.prepareClosingBottomMenu.bind(this)}>
+            <div className="bottom-line" onFocus={this.preventClosingBottomMenu.bind(this)} onBlur={this.prepareClosingBottomMenu.bind(this)} ref={this.bottomLineRef}>
                 <hr />
                 <div className="dropup d-flex">
                     <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenu.bind(this)}>
