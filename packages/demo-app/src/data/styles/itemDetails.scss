@@ -1,0 +1,5 @@
+.questionnaire-question-item:not(.card-active) {
+  .questionnaire-item__details {
+    display: none;
+  }
+}
