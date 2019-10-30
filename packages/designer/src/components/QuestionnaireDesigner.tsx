@@ -21,6 +21,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
 
     state = {
         settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel,
+        // settingsDisplayModel: SETTINGS_DISPLAY_MODE.insideItem,
         targetItem: undefined,
         targetGroup: this.props.questionnaireModel
     }
@@ -80,6 +81,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         this.makeItemsDraggable();
         document.addEventListener('keydown', this.escListener.bind(this));
         document.body.addEventListener('click', this.bodyClickListener.bind(this));
+        this.clearTargetItem();
     }
     componentDidUpdate() {
         const { questionnaireModel } = this.props;

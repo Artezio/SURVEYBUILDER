@@ -30,7 +30,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     closingBottomMenuTimeOutKey: any;
     formApi?: FormApi<Omit<Models.IItem, 'type'>>;
     formApi_2?: FormApi<Omit<Models.IQuestionItem<any>, 'type'>>;
-    // inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+    inputRef: React.RefObject<HTMLInputElement> = React.createRef();
     itemRef: React.RefObject<HTMLDivElement> = React.createRef();
     humanReadableGuid = HumanReadableGuid.getHumanReadableGuid();
 
@@ -70,15 +70,15 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         clearTargetItem && clearTargetItem();
     }
 
-    // componentDidMount() {
-    //     const item = this.inputRef.current;
-    //     if (item) {
-    //         const x = window.pageXOffset;
-    //         const y = window.pageYOffset;
-    //         item.focus();
-    //         window.scrollTo(x, y)
-    //     }
-    // }
+    componentDidMount() {
+        const item = this.inputRef.current;
+        if (item) {
+            const x = window.pageXOffset;
+            const y = window.pageYOffset;
+            item.focus();
+            window.scrollTo(x, y)
+        }
+    }
 
     toggleSettings() {
         this.setState({
@@ -113,8 +113,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 <div>
                     <label htmlFor={`${item.id}-text`}>Text</label>
                     <TextArea
-                        // forwardedRef={this.inputRef} 
-                        autoFocus={true}
+                        forwardedRef={this.inputRef} 
+                        // autoFocus={true}
                         autoComplete="off"
                         className="form-control"
                         id={`${item.id}-text`}
@@ -129,8 +129,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             return <Form className="questionnaire-group-item__headline form-group" getApi={this.getFormApi.bind(this)} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
                 <label htmlFor={`${item.id}-text`}>Group Title</label>
                 <Text
-                    // forwardedRef={this.inputRef}
-                    autoFocus={true}
+                    forwardedRef={this.inputRef}
+                    // autoFocus={true}
                     autoComplete="off"
                     className="form-control"
                     id={`${item.id}-text`}
@@ -146,8 +146,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                     <div className="form-group">
                         <label htmlFor={`${item.id}-text`}>Question</label>
                         <Text
-                            // forwardedRef={this.inputRef}
-                            autoFocus={true}
+                            forwardedRef={this.inputRef}
+                            // autoFocus={true}
                             autoComplete="off"
                             className="form-control"
                             id={`${item.id}-text`}
@@ -166,18 +166,18 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
 
     renderEnableSettings() {
         const { item, questionnaire } = this.props;
-        return this.state.areSettingsOpen && <div className="item-settings">
+        return <div className="item-settings">
             <hr />
             {questionnaire && <EnableSettings questionnaire={questionnaire} item={item} />}
         </div>
     }
 
     renderFooter(showSettingsButton: boolean) {
-        const { item } = this.props;
+        const { item, targetItemId } = this.props;
         const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
         return <div>
-            <div className="row align-items-center">
-                <div className="col-6 d-flex justify-content-start">
+            <div className="align-items-center">
+                <div className="d-flex justify-content-start">
                     {item.type !== Models.GROUP && item.type !== Models.DISPLAY &&
                         <Form className="mr-3" getApi={this.getFormApi_2.bind(this)} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
                             <div className="form-check">
@@ -185,17 +185,18 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                                 <label className="mb-0" htmlFor={`${item.id}-required`}>Required</label>
                             </div>
                         </Form>}
-                    <div>
+                    {/* <div>
                         {`Dependent: ${correctEnableWhens.length ? 'On' : 'Off'}`}
-                    </div>
+                    </div> */}
                 </div>
-                <div className="col-6 d-flex justify-content-end">
-                    {showSettingsButton && <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}>
+                {/* <div className="col-6 d-flex justify-content-end">
+                    {this.state.areSettingsOpen && showSettingsButton && <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}>
                         <i className="fas fa-cog"></i>
                     </button>}
-                </div>
+                </div> */}
             </div>
-            {showSettingsButton && this.renderEnableSettings()}
+            {/* {showSettingsButton && this.renderEnableSettings()} */}
+            {item.id === targetItemId && showSettingsButton && this.renderEnableSettings()}
         </div>
     }
 
