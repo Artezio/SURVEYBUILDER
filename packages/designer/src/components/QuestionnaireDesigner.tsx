@@ -26,6 +26,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     }
 
     questionnaireNodeTopPosition?: string;
+    questionnaireItemsRef = React.createRef<HTMLDivElement>();
     settingsPanelRef = React.createRef<HTMLDivElement>();
     questionnaireDesignerRef = React.createRef<HTMLDivElement>();
     formApi!: FormApi<Models.IQuestionnaire>;
@@ -69,8 +70,8 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         }
     }
 
-    documentClickListener(e) {
-        if (!this.settingsPanelRef.current || !this.settingsPanelRef.current.contains(e.target)) {
+    bodyClickListener(e) {
+        if ((!this.settingsPanelRef.current || !this.settingsPanelRef.current.contains(e.target)) && (!this.questionnaireItemsRef.current || !this.questionnaireItemsRef.current.contains(e.target))) {
             this.clearTargetItem();
         }
     }
@@ -78,7 +79,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     componentDidMount() {
         this.makeItemsDraggable();
         document.addEventListener('keydown', this.escListener.bind(this));
-        document.addEventListener('click', this.documentClickListener.bind(this), true);
+        document.body.addEventListener('click', this.bodyClickListener.bind(this));
     }
     componentDidUpdate() {
         const { questionnaireModel } = this.props;
@@ -88,7 +89,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     componentWillUnmount() {
         this.clearSortables();
         document.removeEventListener('keydown', this.escListener.bind(this))
-        document.addEventListener('click', this.documentClickListener.bind(this), true);
+        document.body.addEventListener('click', this.bodyClickListener.bind(this));
     }
 
     clearSortables() {
@@ -221,9 +222,9 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     render() {
         const { questionnaireModel, className } = this.props;
         const { targetItem, settingsDisplayModel } = this.state;
-        const settingsPanelHeight = `calc(100vh - 150px)`;
+        const settingsPanelHeight = `calc(100vh - 250px)`;
         return <div className={`questionnaire-designer media ${className}`} /*ref={this.questionnaireDesignerRef}*/>
-            <div className="questionnaire-items media-body">
+            <div className="questionnaire-items media-body" ref={this.questionnaireItemsRef}>
                 <div className="questionnaire card mb-3">
                     <div className="card-header d-flex justify-content-end">
                         {/* <ItemCollectionMenu item={questionnaireModel} /> */}
