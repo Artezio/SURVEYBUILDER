@@ -3,7 +3,7 @@ import * as Models from '@art-forms/models';
 import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
 import { useObservableModel } from '../observableConnector/useObservableModel';
 import ItemProvider from './ItemProvider';
-import { FormApi, Form, Text, Checkbox } from 'informed';
+import { FormApi, Form, Text, Checkbox, TextArea } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';
 import EnableSettings from './enableWhen/EnableSettings';
 import HumanReadableGuid from '../helpers/humanReadableId';
@@ -108,30 +108,60 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
 
     renderItemHeadLine() {
         const { item } = this.props;
-        if (item.type !== Models.GROUP && item.type !== Models.DISPLAY) {
-            return <div className="form-row questionnaire-item__headline">
-                <div className="col-md-8">
-                    <Form getApi={this.getFormApi.bind(this)} key={item.id} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                        <div className="form-group">
-                            <label htmlFor={`${item.id}-text`}>Question</label>
-                            <Text
-                                // forwardedRef={this.inputRef}
-                                autoFocus={true}
-                                autoComplete="off"
-                                className="form-control"
-                                id={`${item.id}-text`}
-                                field="text"
-                                placeholder="My Question"
-                                onBlur={this.submitForm.bind(this)}
-                            />
-                        </div>
-                    </Form>
+        if (item.type === Models.DISPLAY) {
+            return <Form className="questionnaire-display-item__headline" getApi={this.getFormApi.bind(this)} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
+                <div>
+                    <label htmlFor={`${item.id}-text`}>Text</label>
+                    <TextArea
+                        // forwardedRef={this.inputRef} 
+                        autoFocus={true}
+                        autoComplete="off"
+                        className="form-control"
+                        id={`${item.id}-text`}
+                        field="text"
+                        placeholder="My text"
+                        onBlur={this.submitForm.bind(this)}
+                    />
                 </div>
-                <div className="col-md-4">
-                    <QuestionTypeMenu title="Question Type" item={item as Models.QuestionItem<any>} />
-                </div>
-            </div>
+            </Form>
         }
+        if (item.type === Models.GROUP) {
+            return <Form className="questionnaire-group-item__headline form-group" getApi={this.getFormApi.bind(this)} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
+                <label htmlFor={`${item.id}-text`}>Group Title</label>
+                <Text
+                    // forwardedRef={this.inputRef}
+                    autoFocus={true}
+                    autoComplete="off"
+                    className="form-control"
+                    id={`${item.id}-text`}
+                    field="text"
+                    placeholder="Questions group"
+                    onBlur={this.submitForm.bind(this)}
+                />
+            </Form>
+        }
+        return <div className="form-row questionnaire-item__headline">
+            <div className="col-md-8">
+                <Form getApi={this.getFormApi.bind(this)} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
+                    <div className="form-group">
+                        <label htmlFor={`${item.id}-text`}>Question</label>
+                        <Text
+                            // forwardedRef={this.inputRef}
+                            autoFocus={true}
+                            autoComplete="off"
+                            className="form-control"
+                            id={`${item.id}-text`}
+                            field="text"
+                            placeholder="My Question"
+                            onBlur={this.submitForm.bind(this)}
+                        />
+                    </div>
+                </Form>
+            </div>
+            <div className="col-md-4">
+                <QuestionTypeMenu title="Question Type" item={item as Models.QuestionItem<any>} />
+            </div>
+        </div>
     }
 
     renderEnableSettings() {
@@ -176,7 +206,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         } else if (item.type === Models.DISPLAY) {
             return 'questionnaire-item questionnaire-display-item';
         }
-        return 'questionnaire-item';
+        return 'questionnaire-item questionnaire-question-item';
     }
 
     toggleBottomMenu() {
@@ -222,7 +252,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`}
             data-id={item.id}
             ref={this.itemRef}
-            onBlur={this.clearTargetItem.bind(this)}
+            // onBlur={this.clearTargetItem.bind(this)}
             onFocus={this.selectTargetItem.bind(this)}
             onClick={this.selectTargetItem.bind(this)}
         >
@@ -231,7 +261,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             </div>
             <div className="card-body">
                 {this.renderItemHeadLine()}
-                <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
+                <div className="questionnaire-item__details">
+                    <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
+                </div>
             </div>
             {showSettingsButton && <div className="card-footer">
                 {this.renderFooter(showSettingsButton)}
