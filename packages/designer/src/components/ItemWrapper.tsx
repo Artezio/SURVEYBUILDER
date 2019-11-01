@@ -97,7 +97,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 <div className="button-toolbar no-drag">
                     {/* {item.type === Models.GROUP && < ItemCollectionMenu item={item as Models.GroupItem} />} */}
                     <div className="btn-group">
-                        {targetItemId === item.id && <button className="btn btn-outline-secondary" onClick={item.remove.bind(item)}>
+                        {targetItemId === item.id && <button className="btn btn-outline-secondary border-0" onClick={item.remove.bind(item)}>
                             <i className="fas fa-trash"></i>
                         </button>}
                     </div>
@@ -106,61 +106,106 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         </div>
     }
 
-    renderItemHeadLine() {
+    getHeadlineControl() {
         const { item } = this.props;
         if (item.type === Models.DISPLAY) {
-            return <Form className="questionnaire-display-item__headline" getApi={this.getFormApi.bind(this)} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                <div>
-                    <label htmlFor={`${item.id}-text`}>Text</label>
-                    <TextArea
-                        forwardedRef={this.inputRef} 
-                        // autoFocus={true}
-                        autoComplete="off"
-                        className="form-control"
-                        id={`${item.id}-text`}
-                        field="text"
-                        placeholder="My text"
-                        onBlur={this.submitForm.bind(this)}
-                    />
+            return <TextArea
+                forwardedRef={this.inputRef}
+                // autoFocus={true}
+                autoComplete="off"
+                className="form-control"
+                id={`${item.id}-text`}
+                field="text"
+                placeholder="My text"
+                onBlur={this.submitForm.bind(this)}
+            />
+        }
+        return <Text
+            forwardedRef={this.inputRef}
+            // autoFocus={true}
+            autoComplete="off"
+            className="form-control"
+            id={`${item.id}-text`}
+            field="text"
+            placeholder="Questions group"
+            onBlur={this.submitForm.bind(this)}
+        />
+    }
+
+    getHeadlineFromClassName() {
+        const { item } = this.props;
+        switch (item.type) {
+            case Models.GROUP: {
+                return "questionnaire-group-item__headline form-group";
+            }
+            case Models.DISPLAY: {
+                return "questionnaire-display-item__headline";
+            }
+            default: {
+                return "questionnaire-item__headline form-group";
+            }
+        }
+    }
+
+    getHeadlineLogoText() {
+        const { item } = this.props;
+        switch (item.type) {
+            case Models.GROUP: {
+                return "Group Title";
+            }
+            case Models.DISPLAY: {
+                return "Text";
+            }
+            default: {
+                return "Question";
+            }
+        }
+    }
+
+    renderHeadlineLabelReplacerText() {
+        const { item } = this.props;
+        switch (item.type) {
+            case Models.GROUP: {
+                return "Group";
+            }
+            case Models.DISPLAY: {
+                return "Text";
+            }
+            default: {
+                return "Question";
+            }
+        }
+    }
+
+    renderHeadline() {
+        const { item, targetItemId } = this.props;
+        const itemIsActive = item.id === targetItemId;
+        return <div className={`form-row ${this.getHeadlineFromClassName()}`}>
+            {itemIsActive ?
+                <div className="col">
+                    <Form
+                        getApi={this.getFormApi.bind(this)}
+                        initialValues={item}
+                        onSubmit={this.handleSubmit.bind(this)}
+                    >
+                        <div>
+                            <label htmlFor={`${item.id}-text`}>{this.getHeadlineLogoText()}</label>
+                            {this.getHeadlineControl()}
+                        </div>
+                    </Form>
                 </div>
-            </Form>
-        }
-        if (item.type === Models.GROUP) {
-            return <Form className="questionnaire-group-item__headline form-group" getApi={this.getFormApi.bind(this)} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                <label htmlFor={`${item.id}-text`}>Group Title</label>
-                <Text
-                    forwardedRef={this.inputRef}
-                    // autoFocus={true}
-                    autoComplete="off"
-                    className="form-control"
-                    id={`${item.id}-text`}
-                    field="text"
-                    placeholder="Questions group"
-                    onBlur={this.submitForm.bind(this)}
-                />
-            </Form>
-        }
-        return <div className="form-row questionnaire-item__headline">
-            <div className="col-md-8">
-                <Form getApi={this.getFormApi.bind(this)} initialValues={item} onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="form-group">
-                        <label htmlFor={`${item.id}-text`}>Question</label>
-                        <Text
-                            forwardedRef={this.inputRef}
-                            // autoFocus={true}
-                            autoComplete="off"
-                            className="form-control"
-                            id={`${item.id}-text`}
-                            field="text"
-                            placeholder="My Question"
-                            onBlur={this.submitForm.bind(this)}
-                        />
-                    </div>
-                </Form>
-            </div>
-            <div className="col-md-4">
-                <QuestionTypeMenu title="Question Type" item={item as Models.QuestionItem<any>} />
-            </div>
+                : <div className="col">
+                    <label className="labelReplacer">
+                        {item.text || this.renderHeadlineLabelReplacerText()}
+                        {item.required && <span className="text-danger">*</span>}
+                    </label>
+                </div>}
+            {item.type !== Models.DISPLAY
+                && item.type !== Models.GROUP
+                && itemIsActive
+                && <div className="col-md-4">
+                    <QuestionTypeMenu title="Question Type" item={item as Models.QuestionItem<any>} />
+                </div>}
         </div>
     }
 
@@ -172,9 +217,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         </div>
     }
 
-    renderFooter(showSettingsButton: boolean) {
-        const { item, targetItemId } = this.props;
-        const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
+    renderFooter() {
+        const { item } = this.props;
+        // const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
         return <div>
             <div className="align-items-center">
                 <div className="d-flex justify-content-start">
@@ -195,8 +240,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                     </button>}
                 </div> */}
             </div>
-            {/* {showSettingsButton && this.renderEnableSettings()} */}
-            {item.id === targetItemId && showSettingsButton && this.renderEnableSettings()}
+            {this.renderEnableSettings()}
         </div>
     }
 
@@ -261,13 +305,14 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 {this.renderHeader()}
             </div>
             <div className="card-body">
-                {this.renderItemHeadLine()}
+                {/* {this.renderItemHeadLine()} */}
+                {this.renderHeadline()}
                 <div className="questionnaire-item__details">
                     <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
                 </div>
             </div>
-            {showSettingsButton && <div className="card-footer">
-                {this.renderFooter(showSettingsButton)}
+            {showSettingsButton && item.id === targetItemId && <div className="card-footer">
+                {this.renderFooter()}
             </div>}
             {item.parent && (item.parent as any).id === targetGroupId && <div className="bottom-line" onFocus={this.preventClosingBottomMenu.bind(this)} onBlur={this.prepareClosingBottomMenu.bind(this)} ref={this.bottomLineRef}>
                 <hr />

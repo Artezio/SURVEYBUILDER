@@ -1,12 +1,9 @@
-.questionnaire-item {
-  .card-header {
-    .btn-outline-secondary {
-      @extend .border-0;
-    }
-  }
-}
-// .fa-grip-horizontal {
-//   display: none;
+// .questionnaire-item {
+//   .card-header {
+//     .btn-outline-secondary {
+//       @extend .border-0;
+//     }
+//   }
 // }
 .questionnaire-item:not(.card-active) {
   > .drag-handle:not(:hover) {
@@ -15,8 +12,3 @@
     }
   }
 }
-// .drag-handle.card-active {
-//   .fa-grip-horizontal {
-//     display: inline;
-//   }
-// }

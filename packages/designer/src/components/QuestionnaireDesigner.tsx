@@ -20,8 +20,8 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     }
 
     state = {
-        settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel,
-        // settingsDisplayModel: SETTINGS_DISPLAY_MODE.insideItem,
+        // settingsDisplayModel: SETTINGS_DISPLAY_MODE.rightPanel,
+        settingsDisplayModel: SETTINGS_DISPLAY_MODE.insideItem,
         targetItem: undefined,
         targetGroup: this.props.questionnaireModel
     }

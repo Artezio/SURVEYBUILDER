@@ -24,7 +24,9 @@ export class MultiChoiceItem extends React.Component<MultiChoiceItemProps> {
         return <div>
             {this.renderChoiceOptions()}
             <div>
-                <button className="btn btn-outline-secondary btn-block" onClick={this.addOption.bind(this)}>Add option</button>
+                <button className="btn btn-outline-secondary border-0" onClick={this.addOption.bind(this)}>
+                    <i className="fas fa-plus mr-1"></i><span>Add option</span>
+                </button>
             </div>
         </div>
     }

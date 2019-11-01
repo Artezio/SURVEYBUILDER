@@ -1,5 +1,15 @@
 .questionnaire-question-item:not(.card-active) {
   .questionnaire-item__details {
-    display: none;
+    .input-group-text {
+      label {
+        display: none;
+      }
+    }
+    .question-item-label {
+      display: none;
+    }
+    .btn {
+      display: none;
+    }
   }
 }

@@ -3,7 +3,7 @@ import MultiChoiceOptionProps from '../interfaces/components/MultiChoiceOptionPr
 import QuestionItem from './questionItems/QuestionItem';
 import { useObservableModel } from '../observableConnector/useObservableModel';
 
-export class MultiChoiceOption extends QuestionItem<MultiChoiceOptionProps> {
+export class MultiChoiceOption extends React.Component<MultiChoiceOptionProps> {
 
     onBlur(e: any) {
         const { option } = this.props;

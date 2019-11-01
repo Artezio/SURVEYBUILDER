@@ -1,29 +1,36 @@
 .questionnaire-designer {
   .questionnaire-item__headline {
-    label {
-      @extend .font-weight-bold;
+    label:not(.labelReplacer) {
+      // @extend .font-weight-bold;
+      @extend .text-muted;
     }
   }
 
+  input,
+  textarea {
+    font-weight: 600;
+  }
+
   .questionnaire-group-item__headline {
-    label {
-      @extend .h4;
+    label:not(.labelReplacer) {
+      @extend .text-muted;
+      // @extend .h4;
     }
   }
 
   .questionnaire-display-item__headline {
-    label {
-      @extend .font-weight-bold;
+    label:not(.labelReplacer) {
+      @extend .text-muted;
     }
   }
 
   .question-item-label {
-    @extend .font-weight-bold;
+    @extend .text-muted;
   }
 
   .questionnaire {
     label {
-      @extend .font-weight-bold;
+      @extend .text-muted;
     }
   }
 }

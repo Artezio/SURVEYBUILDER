@@ -4,51 +4,57 @@
   .btn {
     @extend .btn-sm;
   }
-  .form-control {
-    @extend .form-control-sm;
-  }
-  textarea.form-control {
-    height: auto;
-  }
-  .input-group {
-    @extend .input-group-sm;
-    .form-control:not(:last-child) {
-      border-radius: 0 !important;
+  .item-settings {
+    .form-control {
+      @extend .form-control-sm;
     }
-    .input-group-append {
-      .input-group-text,
-      .btn {
-        border-top-left-radius: 0 !important;
-        border-bottom-left-radius: 0 !important;
+  }
+  .questionnaire-question-item {
+    .form-control {
+      @extend .form-control-sm;
+    }
+    .input-group {
+      @extend .input-group-sm;
+      .form-control:not(:last-child) {
+        border-radius: 0 !important;
+      }
+      .input-group-append {
+        .input-group-text,
+        .btn {
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+        }
+      }
+      .input-group-prepend {
+        .input-group-text,
+        .btn {
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+        }
       }
     }
-    .input-group-prepend {
-      .input-group-text,
-      .btn {
-        border-top-right-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-      }
-    }
   }
-  // label {
-  //   @extend .mb-0;
+  // textarea.form-control {
+  //   height: auto;
   // }
-  // .form-group {
-  //   @extend .mb-2;
-  // }
-  // .card-body {
-  //   @extend .p-2;
-  // }
-  // .card-header {
-  //   @extend .p-2;
-  // }
-  // .card-footer {
-  //   @extend .p-2;
-  // }
-  // hr {
-  //   @extend .my-1;
-  // }
-  // .list-group-item {
-  //   @extend .py-1;
+  // .input-group {
+  //   @extend .input-group-sm;
+  //   .form-control:not(:last-child) {
+  //     border-radius: 0 !important;
+  //   }
+  //   .input-group-append {
+  //     .input-group-text,
+  //     .btn {
+  //       border-top-left-radius: 0 !important;
+  //       border-bottom-left-radius: 0 !important;
+  //     }
+  //   }
+  //   .input-group-prepend {
+  //     .input-group-text,
+  //     .btn {
+  //       border-top-right-radius: 0 !important;
+  //       border-bottom-right-radius: 0 !important;
+  //     }
+  //   }
   // }
 }

@@ -63,9 +63,9 @@ export class EnableSettings extends React.Component<EnableSettingsProps> {
         const questionList = this.prepareQuestionList();
         return <div className="enable-when">
             <Form initialValues={item} getApi={this.getFormApi.bind(this)}>
-                <div className="form-group">
-                    <label htmlFor={`enableWhenBehavior-${item.id}`}>Logic operator: </label>
-                    <Select id={`enableWhenBehavior-${item.id}`} className="form-control" field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
+                <div className="d-flex form-group">
+                    <label htmlFor={`enableWhenBehavior-${item.id}`} className="mr-3">Logic operator: </label>
+                    <Select id={`enableWhenBehavior-${item.id}`} className="form-control w-auto" field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
                         <Option value={Models.AND}>All</Option>
                         <Option value={Models.OR}>Or</Option>
                     </Select>
@@ -91,7 +91,9 @@ export class EnableSettings extends React.Component<EnableSettingsProps> {
                     </div>
                 </div>
                 <div>
-                    <button className="btn btn-outline-secondary" onClick={this.addEnableWhen.bind(this)}>Add Rule</button>
+                    <button className="btn btn-outline-secondary border-0" onClick={this.addEnableWhen.bind(this)}>
+                        <i className="fas fa-plus mr-1"></i>Add Rule
+                    </button>
                 </div>
             </Form>
         </div>

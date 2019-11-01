@@ -185,7 +185,7 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
 
     render() {
         const { item, title } = this.props;
-        return <div className="form-group">
+        return <div>
             <label htmlFor={`${item.id}-select-menu`}>{title}</label>
             <select id={`${item.id}-select-menu`} className="form-control" defaultValue={item.type} onChange={this.onChange.bind(this)}>
                 {this.options.map(option => {
