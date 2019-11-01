@@ -6,9 +6,12 @@
     }
   }
 
-  input,
-  textarea {
-    font-weight: 600;
+  .card-active,
+  .questionnaire {
+    input,
+    textarea {
+      font-weight: 600;
+    }
   }
 
   .questionnaire-group-item__headline {
