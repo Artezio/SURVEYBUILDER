@@ -7,23 +7,26 @@ export class ItemCollectionMenu extends React.Component<ItemCollectionMenuProps>
     itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.item);
 
     addItem() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.itemFactory.createItem();
         item.addItem(newItem);
+        selectTargetItem && selectTargetItem(newItem);
     }
 
     addGroupItem() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.itemFactory.createGroupItem();
         item.addItem(newItem);
+        selectTargetItem && selectTargetItem(newItem);
     }
 
     addChoiceItem() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.itemFactory.createChoiceItem();
         const answerOptionFactory = new Models.AnswerOptionFactory(newItem);
         newItem.addAnswerOption(answerOptionFactory.createAnswerOption({ value: 'Option 1' }));
         item.addItem(newItem);
+        selectTargetItem && selectTargetItem(newItem);
     }
 
     render() {

@@ -71,7 +71,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         }
     }
 
-    bodyClickListener(e) {
+    bodyListener(e) {
         if ((!this.settingsPanelRef.current || !this.settingsPanelRef.current.contains(e.target)) && (!this.questionnaireItemsRef.current || !this.questionnaireItemsRef.current.contains(e.target))) {
             this.clearTargetItem();
         }
@@ -80,7 +80,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     componentDidMount() {
         this.makeItemsDraggable();
         document.addEventListener('keydown', this.escListener.bind(this));
-        document.body.addEventListener('click', this.bodyClickListener.bind(this));
+        document.body.addEventListener('mousedown', this.bodyListener.bind(this));
         this.clearTargetItem();
     }
     componentDidUpdate() {
@@ -91,7 +91,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     componentWillUnmount() {
         this.clearSortables();
         document.removeEventListener('keydown', this.escListener.bind(this))
-        document.body.addEventListener('click', this.bodyClickListener.bind(this));
+        document.body.addEventListener('mousedown', this.bodyListener.bind(this));
     }
 
     clearSortables() {
@@ -264,7 +264,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
                     </div>
                 </div>
                 {questionnaireModel.items.length === 0 && <div className="w-100 d-flex justify-content-center align-items-center">
-                    <ItemCollectionMenu item={questionnaireModel} />
+                    <ItemCollectionMenu item={questionnaireModel} selectTargetItem={this.selectTargetItem.bind(this)} />
                 </div>}
                 {this.renderItemList()}
             </div>

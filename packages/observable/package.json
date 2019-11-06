@@ -2,7 +2,7 @@
   "name": "@art-forms/observable",
   "version": "1.0.0",
   "author": "ddanteyakov",
-  "main": "./src/index.ts",
+  "main": "./bundle/index.js",
   "license": "MIT",
   "scripts": {
     "build": "webpack",

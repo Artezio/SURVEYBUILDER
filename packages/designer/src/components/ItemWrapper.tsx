@@ -166,7 +166,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         const { item } = this.props;
         switch (item.type) {
             case Models.GROUP: {
-                return "Group";
+                return "Questions group";
             }
             case Models.DISPLAY: {
                 return "Text";
@@ -178,7 +178,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     renderHeadline() {
-        const { item, targetItemId } = this.props;
+        const { item, targetItemId, selectTargetItem } = this.props;
         const itemIsActive = item.id === targetItemId;
         return <div className={`form-row ${this.getHeadlineFromClassName()}`}>
             {itemIsActive ?
@@ -204,7 +204,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 && item.type !== Models.GROUP
                 && itemIsActive
                 && <div className="col-md-4">
-                    <QuestionTypeMenu title="Question Type" item={item as Models.QuestionItem<any>} />
+                    <QuestionTypeMenu selectTargetItem={selectTargetItem} title="Question Type" item={item as Models.QuestionItem<any>} />
                 </div>}
         </div>
     }
@@ -224,9 +224,21 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             <div className="align-items-center">
                 <div className="d-flex justify-content-start">
                     {item.type !== Models.GROUP && item.type !== Models.DISPLAY &&
-                        <Form className="mr-3" getApi={this.getFormApi_2.bind(this)} initialValues={(item as Models.QuestionItem<any>)} onSubmit={this.handleSubmit_2.bind(this)}>
+                        <Form
+                            className="mr-3"
+                            getApi={this.getFormApi_2.bind(this)}
+                            initialValues={(item as Models.QuestionItem<any>)}
+                            onSubmit={this.handleSubmit_2.bind(this)}
+                        >
                             <div className="form-check">
-                                <Checkbox key={item.required + ''} field="required" type="checkbox" className="form-check-input" id={`${item.id}-required`} onChange={this.submitForm_2.bind(this)} />
+                                <Checkbox
+                                    key={item.required + ''}
+                                    field="required"
+                                    type="checkbox"
+                                    className="form-check-input"
+                                    id={`${item.id}-required`}
+                                    onChange={this.submitForm_2.bind(this)}
+                                />
                                 <label className="mb-0" htmlFor={`${item.id}-required`}>Required</label>
                             </div>
                         </Form>}
@@ -261,9 +273,11 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     closeBottomMenu() {
-        this.setState({
-            bottomMenuShowed: false
-        })
+        if (this.state.bottomMenuShowed) {
+            this.setState({
+                bottomMenuShowed: false
+            })
+        }
     }
 
     prepareClosingBottomMenu() {
@@ -275,8 +289,11 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     selectTargetItem(e) {
-        const { item, selectTargetItem } = this.props;
+        const { item, selectTargetItem, targetItemId } = this.props;
         e.stopPropagation();
+        if (e.type === 'click' && item.id === targetItemId && (!this.itemRef.current || this.itemRef.current.contains(e.target))) {
+            return;
+        }
         if (!this.bottomLineRef.current || !this.bottomLineRef.current.contains(e.target)) {
             selectTargetItem && selectTargetItem(item);
         }
@@ -288,7 +305,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     render() {
-        const { item, nestingLevel, className, subscribe, targetItemId, settingsDisplayMode, targetGroupId } = this.props;
+        const { item, nestingLevel, className, subscribe, targetItemId, settingsDisplayMode, targetGroupId, selectTargetItem } = this.props;
         const { bottomMenuShowed } = this.state;
         const classNameIdentifier = this.getClassNameIdentifier();
         const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
@@ -305,7 +322,6 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 {this.renderHeader()}
             </div>
             <div className="card-body">
-                {/* {this.renderItemHeadLine()} */}
                 {this.renderHeadline()}
                 <div className="questionnaire-item__details">
                     <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
@@ -314,13 +330,18 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             {showSettingsButton && item.id === targetItemId && <div className="card-footer">
                 {this.renderFooter()}
             </div>}
-            {item.parent && (item.parent as any).id === targetGroupId && <div className="bottom-line" onFocus={this.preventClosingBottomMenu.bind(this)} onBlur={this.prepareClosingBottomMenu.bind(this)} ref={this.bottomLineRef}>
+            {item.parent && (item.parent as any).id === targetGroupId && <div
+                className="bottom-line"
+                onFocus={this.preventClosingBottomMenu.bind(this)}
+                onBlur={this.prepareClosingBottomMenu.bind(this)}
+                ref={this.bottomLineRef}
+            >
                 <hr />
                 <div className="dropup d-flex">
-                    <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenu.bind(this)}>
+                    <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenu.bind(this)} title="Add item">
                         <i className="fas fa-plus"></i>
                     </button>
-                    {bottomMenuShowed && <BottomItemCollectionMenu item={item} />}
+                    {bottomMenuShowed && <BottomItemCollectionMenu close={this.closeBottomMenu.bind(this)} selectTargetItem={selectTargetItem} item={item} />}
                 </div>
             </div>}
         </div>

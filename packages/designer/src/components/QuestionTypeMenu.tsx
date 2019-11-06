@@ -67,56 +67,63 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
     }
 
     changeItemToString() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.factory.createStringItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToText() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.factory.createTextItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToBoolean() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.factory.createBooleanItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDecimal() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.factory.createDecimalItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToTime() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.factory.createTimeItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDate() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.factory.createDateItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToDateTime() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.factory.createDateTimeItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToChoice() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const answerOptionFactory = new Models.AnswerOptionFactory();
         let options;
         if ((item as Models.OpenChoiceItem).options === undefined ||
@@ -133,11 +140,12 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         const newItem = this.factory.createChoiceItem({ text: item.text, options, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToOpenChoice() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const answerOptionFactory = new Models.AnswerOptionFactory();
         let options: Models.AnswerOption[];
         if ((item as Models.OpenChoiceItem).options === undefined) {
@@ -152,11 +160,12 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         const newItem = this.factory.createOpenChoiceItem({ text: item.text, options, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToMultiChoice() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const answerOptionFactory = new Models.AnswerOptionFactory();
         let options;
         if ((item as Models.OpenChoiceItem).options === undefined ||
@@ -173,13 +182,15 @@ export class QuestionTypeMenu extends React.Component<QuestionTypeMenuProps> {
         const newItem = this.factory.createMultiChoiceItem({ text: item.text, options, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         newItem.options.forEach(option => { option.parent = newItem });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 
     changeItemToAttachment() {
-        const { item } = this.props;
+        const { item, selectTargetItem } = this.props;
         const newItem = this.factory.createAttachmentItem({ text: item.text, required: item.required, enableWhen: item.enableWhen, enableBehavior: item.enableBehavior });
         item.replace(newItem);
+        selectTargetItem && selectTargetItem(newItem);
         this.humanReadableGuide.updateKey(item.id, newItem.id);
     }
 

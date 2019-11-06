@@ -1,4 +1,4 @@
-$right-protrusion: 20px;
+$right-protrusion: 27px;
 $bottom-line-height: 16px;
 
 .questionnaire-item {
@@ -17,15 +17,15 @@ $bottom-line-height: 16px;
   button.toggle {
     padding: 2px !important;
     border: 0 !important;
-    width: auto !important;
-    height: auto !important;
+    width: 32px !important;
+    height: 32px !important;
     flex: 0 0 auto;
+    z-index: 100;
   }
   hr {
     flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
-    opacity: 0;
   }
   .dropdown-menu {
     padding: 0;
@@ -34,5 +34,10 @@ $bottom-line-height: 16px;
   }
   .btn-group-vertical {
     position: absolute;
+  }
+}
+.bottom-line:not(:hover) {
+  hr {
+    opacity: 0;
   }
 }

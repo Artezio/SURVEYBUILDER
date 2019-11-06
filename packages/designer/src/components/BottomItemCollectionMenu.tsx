@@ -7,23 +7,29 @@ export class BottomItemCollectionMenu extends React.Component<BottomItemCollecti
     itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.item);
 
     addItem() {
-        const { item } = this.props;
+        const { item, selectTargetItem, close } = this.props;
         const newItem = this.itemFactory.createItem();
         item.addSiblingItemAfter(newItem);
+        selectTargetItem && selectTargetItem(newItem);
+        close && close();
     }
 
     addGroupItem() {
-        const { item } = this.props;
+        const { item, selectTargetItem, close } = this.props;
         const newItem = this.itemFactory.createGroupItem();
         item.addSiblingItemAfter(newItem);
+        selectTargetItem && selectTargetItem(newItem);
+        close && close();
     }
 
     addChoiceItem() {
-        const { item } = this.props;
+        const { item, selectTargetItem, close } = this.props;
         const newItem = this.itemFactory.createChoiceItem();
         const answerOptionFactory = new Models.AnswerOptionFactory(newItem);
         newItem.addAnswerOption(answerOptionFactory.createAnswerOption({ value: 'Option 1' }));
         item.addSiblingItemAfter(newItem);
+        selectTargetItem && selectTargetItem(newItem);
+        close && close();
     }
 
     render() {
