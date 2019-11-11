@@ -11,7 +11,6 @@
         "moduleResolution": "node",
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "jsx": "react",
         "isolatedModules": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
