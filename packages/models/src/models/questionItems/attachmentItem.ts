@@ -9,7 +9,7 @@ export class AttachmentItem extends QuestionItem<void> implements IAttachmentIte
     type: ATTACHMENT = ATTACHMENT;
     multipleFiles: boolean;
 
-    constructor(item: Partial<Omit<IAttachmentItem, 'type'>> | undefined, parent?: IItemCollection<IAttachmentItem>) {
+    constructor(item: Partial<Omit<IAttachmentItem, 'type'>> | undefined, parent?: IItemCollection) {
         super(item, parent);
         this.multipleFiles = !!(item && item.multipleFiles);
     }

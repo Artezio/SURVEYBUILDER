@@ -7,7 +7,7 @@ import { ATTACHMENT, BOOLEAN, CHOICE, DATE, DATE_TIME, DECIMAL, DISPLAY, GROUP, 
 export class ItemByTypeFactory {
     itemFactory: ItemFactory;
 
-    constructor(parent?: IItemCollection<IItem>) {
+    constructor(parent?: IItemCollection) {
         this.itemFactory = new ItemFactory(parent);
     }
 

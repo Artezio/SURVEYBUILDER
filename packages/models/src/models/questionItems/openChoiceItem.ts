@@ -16,7 +16,7 @@ export class OpenChoiceItem extends QuestionItem<any> implements IOpenChoiceItem
     answerOptionFactory: AnswerOptionFactory = new AnswerOptionFactory(this);
     defaultOption?: AnswerOption;
 
-    constructor(item: Partial<Omit<IOpenChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IOpenChoiceItem>) {
+    constructor(item: Partial<Omit<IOpenChoiceItem, 'type'>> | undefined, parent?: IItemCollection) {
         super(item, parent);
         this.completeOptions(item);
         this.options.forEach(option => this.optionIdMap.set(option.id, true));

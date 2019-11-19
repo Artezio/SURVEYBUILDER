@@ -1,7 +1,7 @@
 {
   "name": "@art-forms/models",
   "version": "0.1.6",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "webpack",
@@ -15,12 +15,12 @@
   "dependencies": {
     "@art-forms/observable": "^1.0.0",
     "json-logic-js": "^1.2.2",
-    "ts-loader": "^6.1.0",
-    "uuid": "^3.3.2",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "ts-loader": "^6.1.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8",
     "@types/expect": "^1.20.4",
     "@types/mocha": "^5.2.7",
     "@types/uuid": "^3.4.4",

@@ -5,7 +5,7 @@
       "es5",
       "es6",
       "dom",
-      "esnext"
+      "es2015"
     ],
     "allowJs": true,
     "esModuleInterop": true,
@@ -15,8 +15,7 @@
     "moduleResolution": "node",
     "jsx": "react",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noEmit": true
+    "emitDecoratorMetadata": true
   },
   "exclude": [
     "tests",

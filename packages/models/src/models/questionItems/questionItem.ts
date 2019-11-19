@@ -14,7 +14,7 @@ export abstract class QuestionItem<T> extends Item implements IQuestionItem<T> {
     initialAnswerIdMap: Map<string, boolean> = new Map();
     initialAnswersFactory: InitialAnswerFactory = new InitialAnswerFactory(this);
 
-    constructor(item: Partial<Omit<IQuestionItem<T>, 'type'>> | undefined, parent?: IItemCollection<IQuestionItem<T>>) {
+    constructor(item: Partial<Omit<IQuestionItem<T>, 'type'>> | undefined, parent?: IItemCollection) {
         super(item, parent);
         this.completeInitialAnswers(item);
         this.initialAnswers.forEach(initialAnswer => this.initialAnswerIdMap.set(initialAnswer.id, true));

@@ -27,9 +27,9 @@ import IMultiChoiceItem from "../interfaces/questionItems/IMultiChoiceItem";
 import MultiChoiceItem from "../models/questionItems/multiChoiceItem";
 
 export class ItemFactory {
-    parent?: IItemCollection<IItem>;
+    parent?: IItemCollection;
 
-    constructor(parent?: IItemCollection<IItem>) {
+    constructor(parent?: IItemCollection) {
         this.parent = parent;
     }
 

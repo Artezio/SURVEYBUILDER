@@ -15,7 +15,7 @@ export class MultiChoiceItem extends QuestionItem<any> implements IMultiChoiceIt
     optionIdMap: Map<string, boolean> = new Map();
     answerOptionFactory: AnswerOptionFactory = new AnswerOptionFactory(this);
 
-    constructor(item: Partial<Omit<IMultiChoiceItem, 'type'>> | undefined, parent?: IItemCollection<IMultiChoiceItem>) {
+    constructor(item: Partial<Omit<IMultiChoiceItem, 'type'>> | undefined, parent?: IItemCollection) {
         super(item, parent);
         this.completeOptions(item);
         this.options.forEach(option => this.optionIdMap.set(option.id, true));

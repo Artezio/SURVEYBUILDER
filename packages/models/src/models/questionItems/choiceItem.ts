@@ -17,7 +17,7 @@ export class ChoiceItem extends QuestionItem<any> implements IChoiceItem, IAnswe
     answerOptionFactory: AnswerOptionFactory = new AnswerOptionFactory(this);
     defaultOption?: AnswerOption;
 
-    constructor(item?: Partial<Omit<IChoiceItem, 'type'>>, parent?: IItemCollection<IChoiceItem>) {
+    constructor(item?: Partial<Omit<IChoiceItem, 'type'>>, parent?: IItemCollection) {
         super(item, parent);
         this.completeOptions(item);
         this.options.forEach(option => this.optionIdMap.set(option.id, true));
