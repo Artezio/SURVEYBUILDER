@@ -2,7 +2,7 @@
   "name": "@art-forms/player",
   "version": "0.1.2",
   "license": "MIT",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "dependencies": {
     "@art-forms/models": "^0.1.6",
     "@art-forms/observable": "^1.0.0",
