@@ -1,22 +1,20 @@
 {
   "compilerOptions": {
     "outDir": "build",
-    "module": "es6",
+    "module": "commonjs",
     "target": "es6",
     "lib": [
       "es5",
       "es6",
-      "dom"
+      "dom",
+      "es2015"
     ],
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",
-    "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
     "declaration": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
@@ -24,6 +22,7 @@
   "exclude": [
     "node_modules",
     "build",
-    "tests"
+    "tests",
+    "dist"
   ]
 }

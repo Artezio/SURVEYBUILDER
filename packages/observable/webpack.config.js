@@ -1,5 +1,4 @@
 const path = require('path');
-const pathToSrc = path.resolve(__dirname, "./src");
 
 module.exports = {
     mode: "development",
@@ -7,10 +6,13 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".js"]
     },
-
     output: {
-        path: path.resolve(__dirname, './bundle'),
-        filename: 'index.js'
+        path: path.resolve(__dirname, './dist'),
+        filename: 'index.js',
+        globalObject: 'this',
+        libraryTarget: 'umd',
+        library: 'Observable',
+        crossOriginLoading: 'use-credentials'
     },
     module: {
         rules: [

@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "module": "umd",
-        "target": "es5",
+        "module": "commonjs",
+        "target": "esnext",
         "lib": [
             "es6",
             "dom",
@@ -17,6 +17,7 @@
     },
     "exclude": [
         "tests",
-        "bundle"
+        "dist",
+        "build"
     ]
 }
