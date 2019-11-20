@@ -24,4 +24,7 @@ module.exports = {
             }
         ]
     },
+    externals: {
+        "@art-forms/observable": "@art-forms/observable"
+    }
 }

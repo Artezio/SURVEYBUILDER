@@ -93,7 +93,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "transform": "tsc -p tsconfig.build.json",
-    "build": "node scripts/build.js",
+    "build": "webpack",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

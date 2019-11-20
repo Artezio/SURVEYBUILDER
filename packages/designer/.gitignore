@@ -1,6 +1,4 @@
 /node_modules/
-/build/
-/bundle/
-/dist/
-/.idea/
-/.vscode/
+/config/
+/scripts/
+/**/*.log

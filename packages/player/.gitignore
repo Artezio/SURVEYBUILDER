@@ -1,4 +1,4 @@
 /node_modules/
-/build/
-/bundle/
-/dist/
+/config/
+/scripts/
+/**/*.log
