@@ -1,0 +1,22 @@
+{
+  "name": "@art-forms/observable-react",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "hoist-non-react-statics": "^3.3.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.3",
+    "@art-form/observable": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.4.1",
+    "ts-loader": "^6.1.0",
+    "webpack": "^4.40.1",
+    "webpack-cli": "^3.3.8"
+  }
+}
