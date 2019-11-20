@@ -91,7 +91,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     componentWillUnmount() {
         this.clearSortables();
         document.removeEventListener('keydown', this.escListener.bind(this))
-        document.body.addEventListener('mousedown', this.bodyListener.bind(this));
+        document.body.removeEventListener('mousedown', this.bodyListener.bind(this));
     }
 
     clearSortables() {
