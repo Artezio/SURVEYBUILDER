@@ -6,7 +6,7 @@ module.exports = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
-        library: 'Designer',
+        library: 'Player',
         libraryTarget: 'umd'
     },
     resolve: {

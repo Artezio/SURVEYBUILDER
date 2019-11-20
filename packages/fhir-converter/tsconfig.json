@@ -1,24 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "lib": [
-        "es5",
-        "es6",
-        "dom"
-    ],
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "jsx": "react",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+      "module": "commonjs",
+      "target": "esnext",
+      "lib": [
+          "es6",
+          "dom",
+          "es2015"
+      ],
+      "allowJs": true,
+      "moduleResolution": "node",
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "isolatedModules": false,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
   },
   "exclude": [
-    "tests",
-    "build",
-    "bundle"
+      "tests",
+      "dist",
+      "build"
   ]
 }
