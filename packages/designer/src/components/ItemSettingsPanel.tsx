@@ -4,7 +4,7 @@ import ItemSettingsPanelProps from '../interfaces/components/ItemSettingsPanelPr
 import { HumanReadableGuid } from '../helpers/humanReadableId';
 import { questionTypes } from '../constants/questionTypes';
 import EnableSettings from './enableWhen/EnableSettings';
-import useObservableModel from '../observableConnector/useObservableModel';
+import { useObservableModel } from '@art-forms/observable-react';
 import { Form, Checkbox, FormApi } from 'informed';
 
 
