@@ -3,7 +3,7 @@ import * as Models from '@art-forms/models';
 import EnableWhenProps from '../../interfaces/components/enableWhen/EnableWhenProps';
 import { Select, Option, withFormApi, FormState } from 'informed';
 import QuestionItemProvider from './QuestionItemProvider';
-import { useObservableModel } from '../../observableConnector/useObservableModel';
+import { useObservableModel } from '@art-forms/observable-react';
 import HumanReadableGuid from '../../helpers/humanReadableId';
 
 type OperatorType = { value: Models.EnableWhenOperator, text: string };

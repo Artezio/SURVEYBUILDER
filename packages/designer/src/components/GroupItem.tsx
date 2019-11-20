@@ -1,6 +1,6 @@
 import * as React from 'react';
 import GroupItemProps from '../interfaces/components/GroupItemProps';
-import { useObservableModel } from '../observableConnector/useObservableModel';
+import { useObservableModel } from '@art-forms/observable-react';
 import { FormApi, Form, Text } from 'informed';
 import * as Models from '@art-forms/models';
 import QuestionnaireItemList from './QuestionnaireItemList';

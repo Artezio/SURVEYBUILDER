@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MultiChoiceItemProps } from '../../interfaces/components/questionItems/MultiChoiceItemProps';
 import * as Models from '@art-forms/models';
-import { useObservableModel } from '../../observableConnector/useObservableModel';
+import { useObservableModel } from '@art-forms/observable-react';
 import MultiChoiceOption from '../MultiChoiceOption';
 
 

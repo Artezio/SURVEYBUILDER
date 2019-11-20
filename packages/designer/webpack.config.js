@@ -39,6 +39,7 @@ module.exports = {
     },
     externals: {
         "react": "react",
-        "@art-forms/observable": "@art-forms/observable"
+        "@art-forms/observable": "@art-forms/observable",
+        "@art-forms/observable-react": "@art-forms/observable-react"
     }
 };

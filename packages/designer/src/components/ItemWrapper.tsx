@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
 import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
-import { useObservableModel } from '../observableConnector/useObservableModel';
+import { useObservableModel } from '@art-forms/observable-react';
 import ItemProvider from './ItemProvider';
 import { FormApi, Form, Text, Checkbox, TextArea } from 'informed';
 import QuestionTypeMenu from './QuestionTypeMenu';

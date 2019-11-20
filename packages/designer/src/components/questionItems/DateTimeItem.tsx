@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DateTimeItemProps } from '../../interfaces/components/questionItems/DateTimeItemProps';
 import { Form, Text } from 'informed';
-import { useObservableModel } from '../../observableConnector/useObservableModel';
+import { useObservableModel } from '@art-forms/observable-react';
 import QuestionItem from './QuestionItem';
 
 

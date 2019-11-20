@@ -13,13 +13,11 @@
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "jsx": "react",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
   "exclude": [
     "tests",
-    "build",
-    "bundle"
+    "dist"
   ]
 }
