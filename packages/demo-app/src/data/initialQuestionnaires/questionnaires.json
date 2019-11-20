@@ -286,14 +286,6 @@
         ],
         "enableWhen": [],
         "enableBehavior": "all"
-      },
-      {
-        "linkId": "425c9480-d559-11e9-8e60-37442f196308",
-        "required": false,
-        "text": "Thank you!",
-        "type": "display",
-        "enableWhen": [],
-        "enableBehavior": "all"
       }
     ]
   },

@@ -1,7 +1,7 @@
 import { IResponseService } from '../../../interface/providers/IResponseService';
 import { LocalStorageHelper } from './localStorageHelper';
 import packageJSON from '../../../../package.json';
-import responses from './data/responses.json';
+import responses from '../../../data/initialQuestionnaires/responses.json';
 
 const localStorageKey = `responses@${packageJSON.version}`;
 

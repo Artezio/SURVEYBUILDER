@@ -1,7 +1,7 @@
 import { IQuestionnaireService } from '../../../interface/providers/IQuestionnaireService';
 import { LocalStorageHelper } from './localStorageHelper';
 import packageJSON from '../../../../package.json';
-import questionnaires from './data/questionnaires.json';
+import questionnaires from '../../../data/initialQuestionnaires/questionnaires.json';
 
 const localStorageKey = `questionnaires@${packageJSON.version}`;
 
