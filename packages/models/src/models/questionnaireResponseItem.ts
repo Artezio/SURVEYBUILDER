@@ -107,11 +107,16 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         }
     }
 
+    initiateEnableWhen() {
+        this.items.forEach(item => item.initiateEnableWhen());
+        this.evaluateEnableWhen(this.answerCollection);
+    }
+
     evaluateEnableWhen(answerCollection: AnswerCollection) {
-        if (this.questionItem.enableBehavior === undefined) return;
+        if (this.questionItem.enableBehavior === undefined || !this.questionItem.enableWhen || this.questionItem.enableWhen.length < 1) return;
         const answers = answerCollection.answers;
         const interestingAnswer = answers.filter(answer => this.enableWhenQuestionIds[answer.parentId]);
-        const enableWhenConfigs = !this.questionItem.enableWhen ? [] : this.questionItem.enableWhen.reduce((arr: boolean[], enableWhen) => {
+        const enableWhenConfigs = this.questionItem.enableWhen.reduce((arr: boolean[], enableWhen) => {
             if (!enableWhen.questionId || !enableWhen.operator || !enableWhen.answer) {
                 return arr.concat(true);
             }

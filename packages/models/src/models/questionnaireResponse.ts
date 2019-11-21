@@ -27,6 +27,7 @@ export class QuestionnaireResponse implements IQuestionnaireResponse {
             this.items = [];
         }
         this.items.forEach(item => this.itemIdMap.set(item.id, true));
+        this.items.forEach(item => item.initiateEnableWhen());
     }
 
     addQuestionnaireResponseItem(item: QuestionnaireResponseItem) {
