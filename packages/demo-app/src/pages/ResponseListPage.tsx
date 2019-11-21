@@ -25,20 +25,28 @@ export class ResponseListPage extends React.Component<ResponseListPageProps> {
 
     onClick() {
         const { dispatch, questionnaire, history } = this.props;
-        if (questionnaire.immortal) {
-            alert('Impossible to delete this questionnaire!');
-            return;
-        }
-        if (confirm('Are you sure you want to delete this questionnaire?')) {
-            dispatch(questionnaireListPageActions.deleteQuestionnaire(questionnaire.id))
-                .then(({ data, error }) => {
-                    if (error) {
-                        alert(error.message);
-                    } else {
-                        history.push('/');
-                    }
-                })
-        }
+        dispatch(questionnaireListPageActions.deleteQuestionnaireConfirmed(questionnaire.id))
+            .then(({ data, error }) => {
+                if (error) {
+                    alert(error.message);
+                } else {
+                    history.push('/');
+                }
+            })
+        // if (questionnaire.immortal) {
+        //     alert('Impossible to delete this questionnaire!');
+        //     return;
+        // }
+        // if (confirm('Are you sure you want to delete this questionnaire?')) {
+        //     dispatch(questionnaireListPageActions.deleteQuestionnaire(questionnaire.id))
+        //         .then(({ data, error }) => {
+        //             if (error) {
+        //                 alert(error.message);
+        //             } else {
+        //                 history.push('/');
+        //             }
+        //         })
+        // }
     }
 
     renderSpinner() {
