@@ -13,6 +13,7 @@ import IInitialAnswer from '../interfaces/IInitialAnswer';
 import IItem from '../interfaces/IItem';
 import IGroupItem from '../interfaces/IGroupItem';
 import questionResponseFactory from '../factories/questionResponseFactory';
+import * as ENABLE_WHEN_OPERATOR from '../constants/enableWhenOperators';
 
 
 @observable
@@ -32,7 +33,6 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     isValid!: boolean;
     isEnable: boolean = true;
     answerCollection: AnswerCollection;
-    enableWhenQuestionIds: any;
     itemIdMap: Map<string, boolean> = new Map();
     answerIdMap: Map<string, boolean> = new Map();
 
@@ -41,20 +41,28 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         this.questionId = questionItem.id;
         this.text = questionItem.text;
         this.answerCollection = answerCollection;
-        this._fillAnswers(initialResponseItem, questionItem);
-        this._fillItems(initialResponseItem, questionItem);
+        this.fillAnswers(initialResponseItem, questionItem);
+        this.fillItems(initialResponseItem, questionItem);
         this.validationRules = validationRules;
         this.replyStrategy = replyStrategy;
         this.questionItem = questionItem;
         this.validate();
         this.decideEnablingObservation();
         this.answerCollection.updateResponseAnswers(this.questionId, this.answers);
-        this._defineOwnProperties();
+        this.defineOwnProperties();
         this.items.forEach(item => this.itemIdMap.set(item.id, true));
         this.answers.forEach(answer => this.answerIdMap.set(answer.id, true));
     }
 
-    _fillAnswers(initialResponseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem) {
+    private defineOwnProperties() {
+        Object.defineProperty(this, 'isValid', {
+            get() {
+                return this.errorMessages.length === 0;
+            }
+        })
+    }
+
+    private fillAnswers(initialResponseItem: Partial<IQuestionnaireResponseItem> | undefined, questionItem) {
         if (initialResponseItem && initialResponseItem.answers) {
             this.answers = initialResponseItem.answers.map(answer => this.answerFactory.createAnswer(answer))
         } else {
@@ -75,7 +83,7 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         }
     }
 
-    _fillItems(initialResponseItem, questionItem) {
+    private fillItems(initialResponseItem, questionItem) {
         if ((questionItem as IGroupItem).items) {
             this.items = ((questionItem as IGroupItem).items as IItem[]).map(item => {
                 const existingResponseItem = initialResponseItem && initialResponseItem.items && initialResponseItem.items.find(itm => itm.questionId === item.id);
@@ -86,24 +94,10 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
         }
     }
 
-    _defineOwnProperties() {
-        Object.defineProperty(this, 'isValid', {
-            get() {
-                return this.errorMessages.length === 0;
-            }
-        })
-    }
-
     decideEnablingObservation() {
         if (this.questionItem.enableWhen && this.questionItem.enableWhen.length) {
             const obs = getObservable(this.answerCollection);
             obs && obs.subscribe(this.evaluateEnableWhen.bind(this));
-            this.enableWhenQuestionIds = this.questionItem.enableWhen.reduce<any>((map, enableWhen) => {
-                if (enableWhen.questionId && enableWhen.operator && enableWhen.answer !== undefined && !map[enableWhen.questionId]) {
-                    map[enableWhen.questionId] = true;
-                }
-                return map;
-            }, {})
         }
     }
 
@@ -115,17 +109,14 @@ export class QuestionnaireResponseItem implements IQuestionnaireResponseItem {
     evaluateEnableWhen(answerCollection: AnswerCollection) {
         if (this.questionItem.enableBehavior === undefined || !this.questionItem.enableWhen || this.questionItem.enableWhen.length < 1) return;
         const answers = answerCollection.answers;
-        const interestingAnswer = answers.filter(answer => this.enableWhenQuestionIds[answer.parentId]);
-        const enableWhenConfigs = this.questionItem.enableWhen.reduce((arr: boolean[], enableWhen) => {
-            if (!enableWhen.questionId || !enableWhen.operator || !enableWhen.answer) {
-                return arr.concat(true);
+        const interestingEnableWhenRules = this.questionItem.enableWhen.filter(enableWhen => !!enableWhen.questionId && (enableWhen.answer !== undefined || enableWhen.operator === ENABLE_WHEN_OPERATOR.EXISTS));
+        const enableWhenConfigs = interestingEnableWhenRules.map(rule => {
+            if (rule.operator === ENABLE_WHEN_OPERATOR.EXISTS) {
+                return answers.find(answer => answer.parentId === rule.questionId) !== undefined;
             }
-            return arr.concat(interestingAnswer
-                .filter(answer => answer.parentId === enableWhen.questionId)
-                .some(answer => {
-                    return (JL.apply({ [enableWhen.operator]: ['' + answer.value, '' + enableWhen.answer] }));
-                }));
-        }, []);
+            const interestingAnswers = answers.filter(answer => answer.parentId === rule.questionId);
+            return interestingAnswers.some(answer => JL.apply({ [rule.operator]: ['' + answer.value, '' + rule.answer] }));
+        })
         this.isEnable = JL.apply({ [this.questionItem.enableBehavior]: enableWhenConfigs });
     }
 

@@ -1,9 +1,9 @@
 import { assert, expect } from 'chai';
 import AnswerCollection from '../../src/models/answersCollection';
 import { Questionnaire } from '../../src/models/questionnaire';
-import { BOOLEAN, CHOICE } from '../../src/constants/itemTypes';
+import { BOOLEAN, CHOICE, STRING } from '../../src/constants/itemTypes';
 import { AND } from '../../src/constants/enableBehavior';
-import { EQUAL } from '../../src/constants/enableWhenOperators';
+import { EQUAL, EXISTS } from '../../src/constants/enableWhenOperators';
 import IQuestionItem from '../../src/interfaces/questionItems/IQuestionItem';
 import QuestionnaireResponse from '../../src/models/questionnaireResponse';
 import IBooleanItem from '../../src/interfaces/questionItems/IBooleanItem';
@@ -12,6 +12,22 @@ import QuestionnaireResponseItem from '../../src/models/questionnaireResponseIte
 import IChoiceItem from '../../src/interfaces/questionItems/IChoiceItem';
 
 describe('questionnaire response item', () => {
+    describe("evaluateEnableWhen", () => {
+        it("exists", (done) => {
+            const questionnaire = new Questionnaire({
+                items: [
+                    { id: 'one', type: STRING },
+                    { id: 'two', type: CHOICE, enableBehavior: AND, enableWhen: [{ questionId: 'one', operator: EXISTS }] },
+                ] as IQuestionItem<any>[]
+            });
+            const questionnaireResponse = new QuestionnaireResponse(questionnaire);
+            questionnaireResponse.items[0].reply('1');
+            setTimeout(() => {
+                assert.equal(questionnaireResponse.items[1].isEnable, true);
+                done();
+            }, 50)
+        })
+    })
     it('question become enable after answering on depended question', (done) => {
         const questionnaire = new Questionnaire({
             items: [
