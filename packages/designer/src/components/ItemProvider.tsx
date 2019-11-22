@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as Models from '@art-forms/models';
-import { Item } from './Item';
 import { GroupItem } from '../components/GroupItem';
 import { TextItem } from './questionItems/TextItem';
 import { StringItem } from './questionItems/StringItem';
@@ -18,9 +17,6 @@ import { MultiChoiceItem } from './questionItems/MultiChoiceItem';
 export const ItemProvider = (props: any) => {
     const { item } = props;
     switch ((item as Models.IItem).type) {
-        // case Models.DISPLAY: {
-        //     return <Item {...props} />
-        // }
         case Models.GROUP: {
             return <GroupItem {...props} />
         }

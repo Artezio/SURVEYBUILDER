@@ -4,7 +4,7 @@ import BottomItemCollectionMenuProps from '../interfaces/components/BottomItemCo
 
 
 export class BottomItemCollectionMenu extends React.Component<BottomItemCollectionMenuProps> {
-    itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.item);
+    itemFactory: Models.ItemFactory = new Models.ItemFactory();
 
     addItem() {
         const { item, selectTargetItem, close } = this.props;

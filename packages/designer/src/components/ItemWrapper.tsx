@@ -12,7 +12,6 @@ import SETTINGS_DISPLAY_MODE from '../constants/questionnaireDesigner';
 import BottomItemCollectionMenu from './BottomItemCollectionMenu';
 
 interface ItemWrapperState {
-    areSettingsOpen: boolean;
     bottomMenuShowed: boolean;
 }
 
@@ -22,7 +21,6 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     state = {
-        areSettingsOpen: false,
         bottomMenuShowed: false
     }
 
@@ -81,30 +79,37 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         }
     }
 
-    toggleSettings() {
+    toggleBottomMenu() {
         this.setState({
-            areSettingsOpen: !this.state.areSettingsOpen
+            bottomMenuShowed: !this.state.bottomMenuShowed
         })
     }
 
-    renderHeader() {
-        const { item, targetItemId } = this.props;
-        return <div className="row">
-            <div className="col-4 d-flex align-items-center"><span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span></div>
-            <div className="col-4 d-flex justify-content-center align-items-center">
-                <i className="fas fa-grip-horizontal text-muted"></i>
-            </div>
-            <div className="col-4 d-flex justify-content-end align-items-center">
-                <div className="button-toolbar no-drag">
-                    {/* {item.type === Models.GROUP && < ItemCollectionMenu item={item as Models.GroupItem} />} */}
-                    <div className="btn-group">
-                        {targetItemId === item.id && <button className="btn btn-outline-secondary border-0" onClick={item.remove.bind(item)}>
-                            <i className="fas fa-trash"></i>
-                        </button>}
-                    </div>
-                </div>
-            </div>
-        </div>
+    closeBottomMenu() {
+        if (this.state.bottomMenuShowed) {
+            this.setState({
+                bottomMenuShowed: false
+            })
+        }
+    }
+
+    prepareClosingBottomMenu() {
+        this.closingBottomMenuTimeOutKey = setTimeout(() => { this.closeBottomMenu() })
+    }
+
+    preventClosingBottomMenu() {
+        clearTimeout(this.closingBottomMenuTimeOutKey);
+    }
+
+    selectTargetItem(e) {
+        const { item, selectTargetItem, targetItemId } = this.props;
+        e.stopPropagation();
+        if (e.type === 'click' && item.id === targetItemId && (!this.itemRef.current || this.itemRef.current.contains(e.target))) {
+            return;
+        }
+        if (!this.bottomLineRef.current || !this.bottomLineRef.current.contains(e.target)) {
+            selectTargetItem && selectTargetItem(item);
+        }
     }
 
     getHeadlineControl() {
@@ -112,7 +117,6 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         if (item.type === Models.DISPLAY) {
             return <TextArea
                 forwardedRef={this.inputRef}
-                // autoFocus={true}
                 autoComplete="off"
                 className="form-control"
                 id={`${item.id}-text`}
@@ -123,7 +127,6 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         }
         return <Text
             forwardedRef={this.inputRef}
-            // autoFocus={true}
             autoComplete="off"
             className="form-control"
             id={`${item.id}-text`}
@@ -163,6 +166,16 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         }
     }
 
+    getClassNameIdentifier() {
+        const { item } = this.props;
+        if (item.type === Models.GROUP) {
+            return 'questionnaire-item questionnaire-group-item';
+        } else if (item.type === Models.DISPLAY) {
+            return 'questionnaire-item questionnaire-display-item';
+        }
+        return 'questionnaire-item questionnaire-question-item';
+    }
+
     renderHeadlineLabelReplacerText() {
         const { item } = this.props;
         switch (item.type) {
@@ -176,6 +189,25 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 return "Question";
             }
         }
+    }
+
+    renderHeader() {
+        const { item, targetItemId } = this.props;
+        return <div className="row">
+            <div className="col-4 d-flex align-items-center"><span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span></div>
+            <div className="col-4 d-flex justify-content-center align-items-center">
+                <i className="fas fa-grip-horizontal text-muted"></i>
+            </div>
+            <div className="col-4 d-flex justify-content-end align-items-center">
+                <div className="button-toolbar no-drag">
+                    <div className="btn-group">
+                        {targetItemId === item.id && <button className="btn btn-outline-secondary border-0" onClick={item.remove.bind(item)}>
+                            <i className="fas fa-trash"></i>
+                        </button>}
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 
     renderHeadline() {
@@ -210,17 +242,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         </div>
     }
 
-    renderEnableSettings() {
-        const { item, questionnaire } = this.props;
-        return <div className="item-settings">
-            <hr />
-            {questionnaire && <EnableSettings questionnaire={questionnaire} item={item} />}
-        </div>
-    }
-
     renderFooter() {
-        const { item } = this.props;
-        // const correctEnableWhens = item.enableWhen.filter(enableWhen => enableWhen.questionId !== undefined && enableWhen.operator !== undefined && enableWhen.answer !== undefined);
+        const { item, questionnaire } = this.props;
         return <div>
             <div className="align-items-center">
                 <div className="d-flex justify-content-start">
@@ -243,66 +266,13 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                                 <label className="mb-0" htmlFor={`${item.id}-required`}>Required</label>
                             </div>
                         </Form>}
-                    {/* <div>
-                        {`Dependent: ${correctEnableWhens.length ? 'On' : 'Off'}`}
-                    </div> */}
                 </div>
-                {/* <div className="col-6 d-flex justify-content-end">
-                    {this.state.areSettingsOpen && showSettingsButton && <button className="btn btn-outline-secondary" onClick={this.toggleSettings.bind(this)}>
-                        <i className="fas fa-cog"></i>
-                    </button>}
-                </div> */}
             </div>
-            {this.renderEnableSettings()}
+            <div className="item-settings">
+                <hr />
+                {questionnaire && <EnableSettings questionnaire={questionnaire} item={item} />}
+            </div>
         </div>
-    }
-
-    getClassNameIdentifier() {
-        const { item } = this.props;
-        if (item.type === Models.GROUP) {
-            return 'questionnaire-item questionnaire-group-item';
-        } else if (item.type === Models.DISPLAY) {
-            return 'questionnaire-item questionnaire-display-item';
-        }
-        return 'questionnaire-item questionnaire-question-item';
-    }
-
-    toggleBottomMenu() {
-        this.setState({
-            bottomMenuShowed: !this.state.bottomMenuShowed
-        })
-    }
-
-    closeBottomMenu() {
-        if (this.state.bottomMenuShowed) {
-            this.setState({
-                bottomMenuShowed: false
-            })
-        }
-    }
-
-    prepareClosingBottomMenu() {
-        this.closingBottomMenuTimeOutKey = setTimeout(() => { this.closeBottomMenu() })
-    }
-
-    preventClosingBottomMenu() {
-        clearTimeout(this.closingBottomMenuTimeOutKey);
-    }
-
-    selectTargetItem(e) {
-        const { item, selectTargetItem, targetItemId } = this.props;
-        e.stopPropagation();
-        if (e.type === 'click' && item.id === targetItemId && (!this.itemRef.current || this.itemRef.current.contains(e.target))) {
-            return;
-        }
-        if (!this.bottomLineRef.current || !this.bottomLineRef.current.contains(e.target)) {
-            selectTargetItem && selectTargetItem(item);
-        }
-    }
-
-    clearTargetItem() {
-        const { clearTargetItem } = this.props;
-        clearTargetItem && clearTargetItem();
     }
 
     render() {
@@ -315,7 +285,6 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`}
             data-id={item.id}
             ref={this.itemRef}
-            // onBlur={this.clearTargetItem.bind(this)}
             onFocus={this.selectTargetItem.bind(this)}
             onClick={this.selectTargetItem.bind(this)}
         >

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import MultiChoiceOptionProps from '../interfaces/components/MultiChoiceOptionProps';
-import QuestionItem from './questionItems/QuestionItem';
 import { useObservableModel } from '@art-forms/observable-react';
 
 export class MultiChoiceOption extends React.Component<MultiChoiceOptionProps> {
