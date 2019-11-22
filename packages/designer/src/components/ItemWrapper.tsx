@@ -58,9 +58,11 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     componentDidUpdate() {
-        const { item } = this.props;
-        this.formApi && this.formApi.setValues(item);
-        this.formApi_2 && this.formApi_2.setValues(item);
+        const { item, targetItemId } = this.props;
+        if (item.id === targetItemId) {
+            this.formApi && this.formApi.setValues(item);
+            this.formApi_2 && this.formApi_2.setValues(item);
+        }
     }
 
     componentWillUnmount() {

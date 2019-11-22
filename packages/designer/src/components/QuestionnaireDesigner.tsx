@@ -66,7 +66,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
         }
     }
 
-    bodyListener(e) {
+    bodyListener = (e) => {
         if ((!this.settingsPanelRef.current || !this.settingsPanelRef.current.contains(e.target)) && (!this.questionnaireItemsRef.current || !this.questionnaireItemsRef.current.contains(e.target))) {
             this.clearTargetItem();
         }
@@ -75,7 +75,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     componentDidMount() {
         this.makeItemsDraggable();
         document.addEventListener('keydown', this.escListener.bind(this));
-        document.body.addEventListener('mousedown', this.bodyListener.bind(this));
+        document.body.addEventListener('mousedown', this.bodyListener);
         this.clearTargetItem();
     }
     componentDidUpdate() {
@@ -86,7 +86,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     componentWillUnmount() {
         this.clearSortables();
         document.removeEventListener('keydown', this.escListener.bind(this))
-        document.body.removeEventListener('mousedown', this.bodyListener.bind(this));
+        document.body.removeEventListener('mousedown', this.bodyListener);
     }
 
     clearSortables() {
