@@ -19,11 +19,11 @@ export class Questionnaire implements IQuestionnaire, IItemCollection {
         this.id = questionnaire && questionnaire.id || uuid();
         this.description = questionnaire && questionnaire.description;
         this.title = questionnaire && questionnaire.title;
-        this._completeItems(questionnaire);
+        this.completeItems(questionnaire);
         this.items.forEach(item => this.itemIdMap.set(item.id, true));
     }
 
-    private _completeItems(questionnaire?: Partial<IQuestionnaire>) {
+    private completeItems(questionnaire?: Partial<IQuestionnaire>) {
         if (questionnaire && questionnaire.items) {
             this.items = questionnaire.items.map(item => this.itemByTypeFactory.createItem(item));
         } else {

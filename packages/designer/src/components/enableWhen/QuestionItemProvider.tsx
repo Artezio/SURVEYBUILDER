@@ -28,7 +28,7 @@ export const QuestionItemProvider = (props: QuestionItemProviderProps) => {
         case Models.DECIMAL: {
             return <Input enableWhen={enableWhen} index={index} type="number" />
         }
-        case Models.CHOICE: ;
+        case Models.CHOICE:
         case Models.MULTI_CHOICE: {
             return <Choice enableWhen={enableWhen} index={index} item={item as Models.ChoiceItem} />
         }

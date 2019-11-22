@@ -46,7 +46,6 @@ export class EnableWhen extends React.Component<EnableWhenProps> {
     setOperator(e: React.ChangeEvent<HTMLInputElement>) {
         const { enableWhen } = this.props;
         const operator = e.target.value as Models.EnableWhenOperator;
-
         enableWhen.operator = operator;
     }
 

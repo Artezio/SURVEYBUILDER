@@ -29,10 +29,10 @@ export class Item implements IItem {
         this.enableBehavior = (item && item.enableBehavior) ? item.enableBehavior : AND;
         this.parent = parent;
         this.enableWhen.forEach(enableWhen => this.enableWhenIdMap.set(enableWhen.id, true));
-        this._definePrototypeProperties();
+        this.definePrototypeProperties();
     }
 
-    private _definePrototypeProperties() {
+    private definePrototypeProperties() {
         Object.defineProperty(Item.prototype, 'position', {
             enumerable: true,
             configurable: true,
