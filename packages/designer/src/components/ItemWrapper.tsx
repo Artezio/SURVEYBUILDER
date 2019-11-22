@@ -68,6 +68,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     componentWillUnmount() {
         const { clearTargetItem } = this.props;
         clearTargetItem && clearTargetItem();
+        clearTimeout(this.closingBottomMenuTimeOutKey);
     }
 
     componentDidMount() {
