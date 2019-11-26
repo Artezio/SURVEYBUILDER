@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "bootstrap": "npx lerna bootstrap",
     "publish": "npx lerna publish",
-    "build": "lerna bootstrap & lerna run build --scope @art-forms/observable & lerna run build --scope @art-forms/fhir-converter & lerna run build --scope @art-forms/models & lerna run build --scope @art-forms/player & lerna run build --scope @art-forms/designer"
+    "build": "lerna bootstrap & lerna run build --scope @art-forms/observable & lerna run build --scope @art-forms/fhir-converter & lerna run build --scope @art-forms/models & lerna run build --scope @art-forms/player & lerna run build --scope @art-forms/designer",
+    "start": "cd packages/demo-app && yarn start"
   },
   "dependencies": {
     "lerna": "^3.13.0"
