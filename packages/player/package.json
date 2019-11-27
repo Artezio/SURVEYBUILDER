@@ -3,9 +3,11 @@
   "version": "0.1.2",
   "license": "MIT",
   "main": "./dist/index.js",
-  "dependencies": {
+  "peerDependencies": {
     "@art-forms/models": "^0.1.6",
-    "@art-forms/observable": "^1.0.0",
+    "@art-forms/observable": "^1.0.0"
+  },
+  "dependencies": {
     "@babel/core": "7.6.0",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-decorators": "^7.6.0",

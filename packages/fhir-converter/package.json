@@ -8,7 +8,7 @@
     "build": "webpack",
     "test": "ts-mocha tests/**/*.test.ts"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@art-forms/models": "^0.1.6"
   },
   "devDependencies": {

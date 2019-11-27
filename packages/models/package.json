@@ -12,8 +12,10 @@
     "./Uml-diagram-models.JPG",
     "./Uml-diagram-models.xml"
   ],
+  "peerDependencies": {
+    "@art-forms/observable": "^1.0.0"
+  },
   "dependencies": {
-    "@art-forms/observable": "^1.0.0",
     "json-logic-js": "^1.2.2",
     "uuid": "^3.3.2"
   },
