@@ -10,11 +10,11 @@ Art-forms is a set of typescript packages. It presents two react components: "Qu
 * Questionnaire response FHIR model - https://www.hl7.org/fhir/questionnaireresponse.html
 
 
-# _Components diagram_
+# Components diagram
 
 ![uml diagram](./Uml-diagram-modules.jpg)
 
-# _Learn more about packages_
+# Learn more about packages
 * [designer](./packages/designer/README.md "@art-forms/designer package")
 * [player](./packages/player/README.md "@art-forms/player package")
 * [models](./packages/models/README.md "@art-forms/models package")
