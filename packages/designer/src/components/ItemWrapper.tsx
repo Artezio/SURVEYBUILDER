@@ -123,7 +123,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 className="form-control"
                 id={`${item.id}-text`}
                 field="text"
-                placeholder="My text"
+                placeholder="Static text"
                 onBlur={this.submitForm.bind(this)}
             />
         }
@@ -133,7 +133,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             className="form-control"
             id={`${item.id}-text`}
             field="text"
-            placeholder="Questions group"
+            placeholder={item.type === Models.GROUP ? 'Questions group' : 'Question text'}
             onBlur={this.submitForm.bind(this)}
         />
     }
