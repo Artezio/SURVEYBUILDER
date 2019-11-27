@@ -23,8 +23,8 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-const pathToArtForms = path.resolve(__dirname, "./../../../node_modules/@art-forms");
-
+// const pathToArtForms = path.resolve(__dirname, "./../../node_modules/@art-forms");
+const pathToArtForms = path.resolve(__dirname, "./../node_modules/@art-forms");
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
