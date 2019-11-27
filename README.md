@@ -82,4 +82,4 @@ Each converter must have 2 functions:
 | toModel | customModel | This function must receive custom mode and return model in format described below |
 | fromModel | model | This function must receive model in format described below and return custom model |
 
-Models interfaces are described [models package](./packages/models/README.md "@art-forms/models package").
+Models interfaces are described in [models package](./packages/models/README.md "@art-forms/models package") in "Detailed description for models" section.
