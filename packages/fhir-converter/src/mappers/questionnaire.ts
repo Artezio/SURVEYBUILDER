@@ -1,9 +1,10 @@
 import FHIRQuestionnaire from "../interfaces/FHIRModels/Questionnaire";
 import * as Models from '@art-forms/models';
 import { questionnaireItemConverter } from "./questionnaireItem";
+import { IQuestionnaireConverter } from '../interfaces/IQuestionnaireConverter';
 
 
-export const questionnaireConverter = {
+export const questionnaireConverter: IQuestionnaireConverter = {
     toModel(questionnaire: FHIRQuestionnaire): Models.IQuestionnaire {
         const mappedQuestionnaire: Models.IQuestionnaire = {
             description: questionnaire.description,

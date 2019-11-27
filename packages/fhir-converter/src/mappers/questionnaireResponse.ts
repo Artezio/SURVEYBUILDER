@@ -1,8 +1,9 @@
 import * as Models from '@art-forms/models';
 import QuestionnaireResponse from "../interfaces/FHIRModels/QuestionnaireResponse";
 import { questionnaireResponseItemConverter } from './questionnaireResponseItem';
+import { IQuestionnaireResponseConverter } from '../interfaces/IQuestionnaireResponseConverter';
 
-export const questionnaireResponseConverter = {
+export const questionnaireResponseConverter: IQuestionnaireResponseConverter = {
     toModel(questionnaireResponse: QuestionnaireResponse): Models.IQuestionnaireResponse {
         const newQuestionnaireResponse: Models.IQuestionnaireResponse = {
             id: questionnaireResponse.id,

@@ -42,3 +42,44 @@ We created demo app to show you how our components can be used.
 
 # Applying custom converter
 
+Your custom converter must have 2 objects: questionnaire converter and questionnaire response converter. For an example lets consider how they are used with fhir-converter:
+
+```javascript
+import { questionnaireConverter } from "@art-forms/fhir-converter";
+
+const questionnaireModel = {
+    "id": '1',
+    "title": 'Questionnaire',
+    "items": [
+        {
+            "id": 'item_1',
+            "type": 'CHOICE'
+        }
+    ]
+};
+const questionnaireFhirR4Model = questionnaireConverter.fromModel(questionnaireModel);
+```
+
+```javascript
+import { questionnaireResponseConverter } from "@art-forms/fhir-converter";
+
+const responseFhirR4Model = {
+    "resourceType": "QuestionnaireResponse",
+    "id": "3141",
+    "item": [
+        {
+        "linkId": "1"
+        }
+    ]
+};
+const responseModel = questionnaireResponseConverter.toModel(responseFhirR4Model);
+```
+
+Each converter must have 2 functions:
+
+| Name | argument | Description | 
+| :---- | :-------- | :----- |
+| toModel | customModel | This function must receive custom mode and return model in format described below |
+| fromModel | model | This function must receive model in format described below and return custom model |
+
+Models interfaces are described [models package](./packages/models/README.md "@art-forms/models package").
