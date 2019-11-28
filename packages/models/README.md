@@ -34,13 +34,13 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 
 ## Table of content
 
-* [Questionnaire model](questionnaire-model)
-    * [Item model](item-model)
-        * [Enable When](enable-when)
-        * [Answer option](answer-option)
-* [Questionnaire response model](questionnaire-response-model)
-    * [Questionnaire response item model](questionnaire-response-item-model)
-        * [Questionnaire response item answer](questionnaire-response-item-answer)
+* [Questionnaire model](#questionnaire-model)
+    * [Item model](#item-model)
+        * [Enable When](#enable-when)
+        * [Answer option](#answer-option)
+* [Questionnaire response model](#questionnaire-response-model)
+    * [Questionnaire response item model](#questionnaire-response-item-model)
+        * [Questionnaire response item answer](#questionnaire-response-item-answer)
 
 ## Questionnaire model
 
@@ -49,7 +49,7 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 | id | true | string | Questionnaire identifier. Must be uniq among all questionnaires |
 | title | false | string | Questionnaire title |
 | description | false | string | Description for questionnaire |
-| items | false | array | Each element is [Item model](item-model) |
+| items | false | array | Each element is [Item model](#item-model) |
 
 ## Item model
 
@@ -59,11 +59,11 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 | type | true | string | They should be imported as variable from @art-forms/models |
 | text | false | string | Question |
 | required | false | boolean | Whether item required or not |
-| enableWhen | false | array | Each element is [Enable When](enable-when) |
+| enableWhen | false | array | Each element is [Enable When](#enable-when) |
  enableBehavior | false | string | Should be imported as variable from @art-forms/models |
 | initialAnswer | false | string | Should be imported as variable from @art-forms/models |
 | multipleFiles | false | boolean | Specific parametr especially for attachment items; Define whether user can apply multiple files(true) or single(false) |
-| options | false | array | Each element is [Answer option](answer-option) |
+| options | false | array | Each element is [Answer option](#answer-option) |
 
 ## Enable when
 
@@ -88,7 +88,7 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 | :---- | :------ | :--- | :----- |
 | id | true | string | QuestionnaireResponse identifier. Must be uniq amon all QuestionnaireResponses |
 | questionnaireId | true | string | id of particular questionnaire for which this response is referenced |
-| items | false | array | Each element is [Questionnaire response item model](questionnaire-response-item-model) |
+| items | false | array | Each element is [Questionnaire response item model](#questionnaire-response-item-model) |
 
 ## Questionnaire response item model
 
@@ -97,11 +97,12 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 | id | true | string | QuestionnaireResponseItem identifier. Must be uniq amon all QuestionnaireResponseItems inside QuestionnaireResponse |
 | questionId | true | string | id of particular item |
 | text | false | string | Question |
-| answers | false | array | Each element is [Questionnaire response answer](questionnaire-response-answer) |
+| answers | false | array | Each element is [Questionnaire response answer](#questionnaire-response-answer) |
 
 ## Questionnaire response item answer
 
 | Name | required | type | Description | 
 | :---- | :------ | :--- | :----- |
 | id | true | string | id must be uniq inside QuestionnaireResponseItem |
-| items | false | array | Each element is [Questionnaire response item model](questionnaire-response-item-model) |
+| value | false | any | Answer value |
+| items | false | array | Each element is [Questionnaire response item model](#questionnaire-response-item-model) |

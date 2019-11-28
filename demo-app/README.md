@@ -39,8 +39,11 @@ To run demo app, you need the following prerequisites:
 
 &nbsp;
 # Usage
-Make sure you have installed all dependencies, if not run following:
+Make sure you have installed all dependencies, if not run following in the root directory (art-forms/):
 >$ yarn 
+
+Run same command in art-forms/demo-app/ to install dependencies for demo-app:
+>$ yarn
 
 To run app, type following in the current directory(art-forms/packages/demo-app/):
 >$ yarn start

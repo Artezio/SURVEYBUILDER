@@ -63,12 +63,14 @@ export class EnableSettings extends React.Component<EnableSettingsProps> {
         const questionList = this.prepareQuestionList();
         return <div className="enable-when">
             <Form initialValues={item} getApi={this.getFormApi.bind(this)}>
-                <div className="d-flex form-group">
-                    <label htmlFor={`enableWhenBehavior-${item.id}`} className="mr-3">Logic operator: </label>
-                    <Select id={`enableWhenBehavior-${item.id}`} className="form-control w-auto" field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
-                        <Option value={Models.AND}>All</Option>
-                        <Option value={Models.OR}>Or</Option>
-                    </Select>
+                <div className="d-flex">
+                    <label htmlFor={`enableWhenBehavior-${item.id}`} className="mr-3">
+                        <span>This component should Display if </span>
+                        <Select id={`enableWhenBehavior-${item.id}`} className="form-control w-auto d-inline" field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
+                            <Option value={Models.AND}>all the rules are consistent</Option>
+                            <Option value={Models.OR}>one of the rules is consistent</Option>
+                        </Select>
+                    </label>
                 </div>
                 <div>
                     <div className="list-group list-group-flush form-group">

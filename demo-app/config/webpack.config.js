@@ -603,7 +603,7 @@ module.exports = function (webpackEnv) {
           '!**/src/setupProxy.*',
           '!**/src/setupTests.*',
         ],
-        watch: paths.appSrc,
+        watch: [paths.appSrc, pathToArtForms],
         silent: true,
         formatter: typescriptFormatter,
       }),
