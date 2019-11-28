@@ -10,12 +10,13 @@
     "bootstrap": "npx lerna bootstrap",
     "publish": "npx lerna publish",
     "build": "lerna bootstrap & lerna run build --scope @art-forms/observable & lerna run build --scope @art-forms/fhir-converter & lerna run build --scope @art-forms/models & lerna run build --scope @art-forms/player & lerna run build --scope @art-forms/designer",
-    "start": "cd demo-app && yarn && yarn start"
+    "start": "cd demo-app && yarn start"
   },
   "dependencies": {
     "lerna": "^3.13.0"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "demo-app"
   ]
 }
