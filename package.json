@@ -17,6 +17,6 @@
   },
   "workspaces": [
     "packages/*",
-    "demo-app"
+    "./demo-app"
   ]
 }
