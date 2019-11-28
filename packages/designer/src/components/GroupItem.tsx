@@ -7,12 +7,12 @@ import ItemCollectionMenu from './ItemCollectionMenu';
 
 export class GroupItem extends React.Component<GroupItemProps> {
     render() {
-        const { item, nestingLevel, subscribe } = this.props;
+        const { item, nestingLevel, subscribe, isItemActive } = this.props;
         return <div>
-            {item.items.length === 0 && <div className="w-100 d-flex justify-content-center align-items-center">
+            {item.items.length === 0 && isItemActive && <div className="w-100 d-flex justify-content-center align-items-center">
                 <ItemCollectionMenu item={item} />
             </div>}
-            <QuestionnaireItemList itemList={item.items} nestingLevel={nestingLevel} subscribe={subscribe} />
+            <QuestionnaireItemList itemList={item.items} nestingLevel={nestingLevel} subscribe={subscribe} isItemActive={isItemActive} />
         </div>
     }
 }

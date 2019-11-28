@@ -6,6 +6,7 @@ export interface QuestionnaireItemListProps {
     className?: string;
     itemList: Models.Item[];
     subscribe?: () => void;
+    isItemActive?: boolean;
 }
 
 export default QuestionnaireItemListProps;

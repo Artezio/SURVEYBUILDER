@@ -282,7 +282,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         const { bottomMenuShowed } = this.state;
         const classNameIdentifier = this.getClassNameIdentifier();
         const showSettingsButton = settingsDisplayMode === SETTINGS_DISPLAY_MODE.insideItem;
-        const activeIdentifier = (targetItemId === item.id) ? activeItemClassName : '';
+        const isItemActive = targetItemId === item.id;
+        const activeIdentifier = isItemActive ? activeItemClassName : '';
         return <div
             className={`${classNameIdentifier} card mb-3 ${activeIdentifier} ${className}`}
             data-id={item.id}
@@ -296,10 +297,10 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
             <div className="card-body">
                 {this.renderHeadline()}
                 <div className="questionnaire-item__details">
-                    <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} />
+                    <ItemProvider item={item} key={item.id} nestingLevel={nestingLevel} subscribe={subscribe} isItemActive={isItemActive} />
                 </div>
             </div>
-            {showSettingsButton && item.id === targetItemId && <div className="card-footer">
+            {showSettingsButton && isItemActive && <div className="card-footer">
                 {this.renderFooter()}
             </div>}
             {item.parent && (item.parent as any).id === targetGroupId && <div
