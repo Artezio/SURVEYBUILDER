@@ -16,7 +16,7 @@
     "lerna": "^3.13.0"
   },
   "workspaces": [
-    "packages/*",
-    "./demo-app"
+    "demo-app",
+    "packages/*"
   ]
 }

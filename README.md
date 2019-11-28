@@ -27,7 +27,7 @@ Art-forms is a set of typescript packages. It presents two react components: "Qu
 # What does it look like
 We created demo app to show you how our components can be used.
 * ## Demo
-    https://kkvdj.csb.app/
+    https://siles.sse.codesandbox.io/
 
 * ## Demo with code in sandbox
         Is coming soon...
