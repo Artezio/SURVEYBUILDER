@@ -30,7 +30,9 @@ We created demo app to show you how our components can be used.
     https://siles.sse.codesandbox.io/
 
 * ## Demo with code in sandbox
-        Is coming soon...
+    https://codesandbox.io/s/art-forms-siles
+    
+    `Currently to make changes you must fork sandbox`
 
 * ## Launch on your computer
     First clone the repository. Then you are to download all dependencies, to do it run following command in the root dir(art-forms/): 
