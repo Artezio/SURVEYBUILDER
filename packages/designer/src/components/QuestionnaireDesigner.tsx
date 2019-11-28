@@ -34,7 +34,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     itemListsMap: Map<HTMLElement, Sortable> = new Map();
     sortableOptions: Sortable.Options = {
         group: 'nested',
-        animation: 350,
+        animation: 550,
         fallbackOnBody: true,
         swapThreshold: 0.35,           //has no type definition in .d.ts
         handle: '.drag-handle',
