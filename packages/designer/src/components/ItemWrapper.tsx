@@ -194,20 +194,11 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     renderHeader() {
-        const { item, targetItemId } = this.props;
+        const { item } = this.props;
         return <div className="row">
             <div className="col-4 d-flex align-items-center"><span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span></div>
             <div className="col-4 d-flex justify-content-center align-items-center">
                 <i className="fas fa-grip-horizontal text-muted"></i>
-            </div>
-            <div className="col-4 d-flex justify-content-end align-items-center">
-                <div className="button-toolbar no-drag">
-                    <div className="btn-group">
-                        {targetItemId === item.id && <button className="btn btn-outline-secondary border-0" onClick={item.remove.bind(item)}>
-                            <i className="fas fa-trash"></i>
-                        </button>}
-                    </div>
-                </div>
             </div>
         </div>
     }
@@ -247,8 +238,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     renderFooter() {
         const { item, questionnaire } = this.props;
         return <div>
-            <div className="align-items-center">
-                <div className="d-flex justify-content-start">
+            <div className="d-flex justify-content-between align-items-center">
+                <div>
                     {item.type !== Models.GROUP && item.type !== Models.DISPLAY &&
                         <Form
                             className="mr-3"
@@ -268,6 +259,15 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                                 <label className="mb-0" htmlFor={`${item.id}-required`}>Required</label>
                             </div>
                         </Form>}
+                </div>
+                <div>
+                    <button
+                        className="btn btn-outline-secondary border-0"
+                        title="Delete item"
+                        onClick={item.remove.bind(item)}
+                    >
+                        <i className="fas fa-trash"></i>
+                    </button>
                 </div>
             </div>
             <div className="item-settings">
