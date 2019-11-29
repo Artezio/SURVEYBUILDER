@@ -26,6 +26,7 @@
     "build",
     "config",
     "public",
-    "scripts"
+    "scripts",
+    "setupTests.js"
   ]
 }
