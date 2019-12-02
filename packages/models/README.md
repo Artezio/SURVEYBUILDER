@@ -36,6 +36,7 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 
 * [Questionnaire model](#questionnaire-model)
     * [Item model](#item-model)
+        * [Initial answer](#initial-answer)
         * [Enable When](#enable-when)
         * [Answer option](#answer-option)
 * [Questionnaire response model](#questionnaire-response-model)
@@ -55,22 +56,29 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 
 | Name | required | type | Description | 
 | :---- | :------ | :--- | :----- |
-| id | true | string | Item identifier. Must be uniq among all Items inside the questionnaire |
-| type | true | string | They should be imported as variable from @art-forms/models |
+| id | true | string | Item identifier. Must be uniq among all Items within the questionnaire |
+| type | true | string | Should be imported as variable from @art-forms/models. Variable names: STRING, ATTACHMENT, OPEN_CHOICE, CHOICE, TEXT, TIME, DATE_TIME, DATE, DECIMAL, BOOLEAN, MULTI_CHOICE. |
 | text | false | string | Question |
 | required | false | boolean | Whether item required or not |
 | enableWhen | false | array | Each element is [Enable When](#enable-when) |
- enableBehavior | false | string | Should be imported as variable from @art-forms/models |
-| initialAnswer | false | string | Should be imported as variable from @art-forms/models |
+ enableBehavior | false | string | Should be imported as variable from @art-forms/models. Variable names are: OR, AND |
+| initialAnswers | false | array | Each element is [Initial answer](#initial-answer) |
 | multipleFiles | false | boolean | Specific parametr especially for attachment items; Define whether user can apply multiple files(true) or single(false) |
 | options | false | array | Each element is [Answer option](#answer-option) |
+
+## Initial answer
+
+| Name | required | type | Description | 
+| :---- | :------ | :--- | :----- |
+| id | true | string | Initial answers identifier. Must be uniq within the item |
+| value | false | any | Initial answers value |
 
 ## Enable when
 
 | Name | required | type | Description | 
 | :---- | :------ | :--- | :----- |
-| id | true | string | EnableWhen identifier. Must be uniq inside the item |
-| operator | true | string | Should be imported as variable from @art-forms/models |
+| id | true | string | EnableWhen identifier. Must be uniq within the item |
+| operator | true | string | Should be imported as variable from @art-forms/models. Variable names are: EXISTS, EQUAL, NOT_EQUAL, MORE, LESS, MORE_OR_EQUAL, LESS_OR_EQUAL. |
 | questionId | false | string | id of the particular item |
 | answer | false | any | expected answer fro particular question |
 
@@ -78,7 +86,7 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 
 | Name | required | type | Description | 
 | :---- | :------ | :--- | :----- |
-| id | true | string | AnswerOption identifier. Must be uniq inside the item |
+| id | true | string | AnswerOption identifier. Must be uniq within the item |
 | value | false | any | Option value |
 | defaultSelected | false | boolean | Whether option must be selected by default( in items like choice and openChoice only one option should have this property set to true ) |
 
@@ -94,7 +102,7 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 
 | Name | required | type | Description | 
 | :---- | :------ | :--- | :----- |
-| id | true | string | QuestionnaireResponseItem identifier. Must be uniq amon all QuestionnaireResponseItems inside QuestionnaireResponse |
+| id | true | string | QuestionnaireResponseItem identifier. Must be uniq amon all QuestionnaireResponseItems within QuestionnaireResponse |
 | questionId | true | string | id of particular item |
 | text | false | string | Question |
 | answers | false | array | Each element is [Questionnaire response answer](#questionnaire-response-answer) |
@@ -103,6 +111,6 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 
 | Name | required | type | Description | 
 | :---- | :------ | :--- | :----- |
-| id | true | string | id must be uniq inside QuestionnaireResponseItem |
+| id | true | string | id must be uniq within QuestionnaireResponseItem |
 | value | false | any | Answer value |
 | items | false | array | Each element is [Questionnaire response item model](#questionnaire-response-item-model) |
