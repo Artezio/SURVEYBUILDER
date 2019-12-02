@@ -10,6 +10,8 @@
     "bootstrap": "npx lerna bootstrap",
     "publish": "npx lerna publish",
     "build": "lerna bootstrap & lerna run build --scope @art-forms/observable & lerna run build --scope @art-forms/fhir-converter & lerna run build --scope @art-forms/models & lerna run build --scope @art-forms/player & lerna run build --scope @art-forms/designer",
+    "dev": "yarn workspace demo-app install",
+    "serve": "lerna run build --scope @art-forms/observable & lerna run build --scope @art-forms/fhir-converter & lerna run build --scope @art-forms/models & lerna run build --scope @art-forms/player & lerna run build --scope @art-forms/designer & lerna run build --scope @art-forms/observable-react",
     "start": "cd demo-app && yarn start"
   },
   "dependencies": {
