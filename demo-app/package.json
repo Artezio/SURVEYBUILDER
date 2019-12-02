@@ -4,12 +4,6 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@surveybuilder/designer": "./packages/designer",
-    "@surveybuilder/fhir-converter": "./packages/fhir-converter",
-    "@surveybuilder/models": "./packages/models",
-    "@surveybuilder/player": "./packages/player",
-    "@surveybuilder/observable": "./packages/observable",
-    "@surveybuilder/observable-react": "./packages/observable-react",
     "@babel/core": "7.2.2",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-typescript": "^7.6.0",
