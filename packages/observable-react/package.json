@@ -1,5 +1,5 @@
 {
-  "name": "@art-forms/observable-react",
+  "name": "@surveybuilder/observable-react",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "license": "MIT",
@@ -11,7 +11,7 @@
   },
   "peerDependencies": {
     "react": "^16.8.3",
-    "@art-form/observable": "^1.0.0"
+    "@surveybuilder/observable": "^1.0.0"
   },
   "devDependencies": {
     "typescript": "^3.4.1",

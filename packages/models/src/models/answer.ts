@@ -1,7 +1,7 @@
 import IAnswer from "../interfaces/IAnswer";
 import uuid from 'uuid/v1';
 import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
-import { observable, observableProperty } from "@art-forms/observable";
+import { observable, observableProperty } from "@surveybuilder/observable";
 import IResponseItemCollection from "../interfaces/IResponseItemCollection";
 
 @observable

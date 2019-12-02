@@ -1,4 +1,4 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import { FHIRItem } from '../interfaces/FHIRModels/Item';
 import { itemTypeToModelConverter } from './FhirToModelConverters/itemType';
 import { enableWhenToModelConverter } from './FhirToModelConverters/enableWhen';

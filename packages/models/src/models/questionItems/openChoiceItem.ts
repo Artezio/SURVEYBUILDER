@@ -1,7 +1,7 @@
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IOpenChoiceItem } from "../../interfaces/questionItems/IOpenChoiceItem";
 import { OPEN_CHOICE } from "../../constants/itemTypes";
-import { observable, observableProperty } from '@art-forms/observable';
+import { observable, observableProperty } from '@surveybuilder/observable';
 import AnswerOptionFactory from "../../factories/answerOptionFactory";
 import IAnswerOptionCollection from "../../interfaces/IAnswerOptionCollection";
 import QuestionItem from "./questionItem";

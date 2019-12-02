@@ -1,6 +1,6 @@
-# **art-forms/fhir-converter**
+# **surveybuilder/fhir-converter**
 
-It's a mapper designed to convert json models from fhire format to [@art-forms/models](./../models/README.md "@art-forms/models") and back.
+It's a mapper designed to convert json models from fhire format to [@surveybuilder/models](./../models/README.md "@surveybuilder/models") and back.
 
 
 # Installation
@@ -14,14 +14,14 @@ with yarn
 # Usage
 
 ```typescript
-import { questionnaireConverter } from '@art-forms/fhir-converter';
+import { questionnaireConverter } from '@surveybuilder/fhir-converter';
 import { service } from 'some FHIR service';
 
 const myFHIRModel = service.getQuestionnaire();// fetching fhir model in json
 
 const myQuestionnaireModel = questionnaireConverter.toModel(myFHIRModel);//json object
 ```
-You can put myQuestionnaireModel to Questionnaire constructor from [@art-forms/models](./../models/README.md "@art-forms/models") to make a model;
+You can put myQuestionnaireModel to Questionnaire constructor from [@surveybuilder/models](./../models/README.md "@surveybuilder/models") to make a model;
 
 Then you can do manipulations with model in your code and convert it back:
 ```typescript

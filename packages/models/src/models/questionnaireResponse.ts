@@ -1,6 +1,6 @@
 import { IQuestionnaireResponse } from "../interfaces/IQuestionnaireResponse";
 import uuid from 'uuid/v1';
-import { observable, observableProperty } from '@art-forms/observable';
+import { observable, observableProperty } from '@surveybuilder/observable';
 import { QuestionnaireResponseItem } from "./questionnaireResponseItem";
 import AnswerCollection from "./answersCollection";
 import questionResponseFactory from '../factories/questionResponseFactory';

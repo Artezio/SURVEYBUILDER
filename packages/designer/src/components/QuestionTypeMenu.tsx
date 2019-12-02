@@ -1,6 +1,6 @@
 import * as React from 'react';
 import QuestionTypeMenuProps, { QuestionTypeMenuOption } from '../interfaces/components/SelectMenuProps';
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import HumanReadableGuide from '../helpers/humanReadableId';
 import { questionTypes } from '../constants/questionTypes';
 

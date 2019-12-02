@@ -1,5 +1,5 @@
 {
-  "name": "@art-forms/models",
+  "name": "@surveybuilder/models",
   "version": "0.1.6",
   "main": "./dist/index.js",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "./Uml-diagram-models.xml"
   ],
   "peerDependencies": {
-    "@art-forms/observable": "^1.0.0"
+    "@surveybuilder/observable": "^1.0.0"
   },
   "dependencies": {
     "json-logic-js": "^1.2.2",

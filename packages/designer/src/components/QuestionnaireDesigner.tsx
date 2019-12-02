@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import '../data/styles/item-bottomline-menu.scss';
 import { QuestionnaireDesignerProps } from '../interfaces/components/QuestionnaireDesignerProps';
 import { Form, Text, TextArea, FormApi } from 'informed';
-import { useObservableModel } from '@art-forms/observable-react';
+import { useObservableModel } from '@surveybuilder/observable-react';
 import ItemCollectionMenu from './ItemCollectionMenu';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import Sortable, { SortableEvent } from 'sortablejs';

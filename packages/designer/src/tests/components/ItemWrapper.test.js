@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import ItemWrapper from '../../../src/components/ItemWrapper';
 import { mount } from 'enzyme';
 

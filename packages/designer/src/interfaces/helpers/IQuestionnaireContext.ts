@@ -1,4 +1,4 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import SETTINGS_DISPLAY_MODE from '../../constants/questionnaireDesigner';
 
 export interface IQuestionnaireContext {

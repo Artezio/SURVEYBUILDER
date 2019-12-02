@@ -1,4 +1,4 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 
 export const initialAnswerFromModelConverter = (initialAnswer: Models.IInitialAnswer<any>, questionType: Models.ITEM_TYPE): any => {
     let keyName;

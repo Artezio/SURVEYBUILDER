@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import { ResponseEditorPageProps } from '../interface/responseERditorPage/ResponseEditorPageProps';
 import { Spinner } from '../components/Spinner';
 import { STATUS_QUESTIONNAIRE_LOADING, STATUS_RESPONSE_LOADING, STATUS_SAVING_RESPONSE, STATUS_UPDATING_RESPONSE } from '../constants/responseEditorPage';
-import { QuestionnairePlayer } from '@art-forms/player';
+import { QuestionnairePlayer } from '@surveybuilder/player';
 import { connect } from 'react-redux';
 import { responseEditorPageActions } from '../redux/actions/responseEditorPageActions';
 import { ResponseSavedPage } from '../components/responseListPage/ResponseSavedPage';

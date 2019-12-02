@@ -1,5 +1,5 @@
-# **@art-forms/designer**
-Designer is a react component with which you can build or update questionnaire. This component requires a questionnaire model from [@art-forms/models](./../models/README.md "@art-forms/models") to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
+# **@surveybuilder/designer**
+Designer is a react component with which you can build or update questionnaire. This component requires a questionnaire model from [@surveybuilder/models](./../models/README.md "@surveybuilder/models") to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
 
 # Installation
 
@@ -15,8 +15,8 @@ Using yarn:
 ```TSX
 import React from 'react';
 import { render } from 'react-dom';
-import { QuestionnaireDesigner } from '@art-forms/designer';
-import { Questionnaire } from '@art-forms/models';
+import { QuestionnaireDesigner } from '@surveybuilder/designer';
+import { Questionnaire } from '@surveybuilder/models';
 
 const questionnaire = new Questionnaire();
 

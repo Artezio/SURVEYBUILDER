@@ -11,7 +11,7 @@ Using yarn:
 &nbsp;
 # Example
 
-This models are mostly used with [designer](./../designer/README.md "@art-forms/designer package") and [player](./../player/README.md "@art-forms/player package") so it's enough to use it like this:
+This models are mostly used with [designer](./../designer/README.md "@surveybuilder/designer package") and [player](./../player/README.md "@surveybuilder/player package") so it's enough to use it like this:
 ```JSX
 import { Questionnaire, QuestionnaireResponse } from '@art-form/models';
 
@@ -57,11 +57,11 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 | Name | required | type | Description | 
 | :---- | :------ | :--- | :----- |
 | id | true | string | Item identifier. Must be uniq among all Items within the questionnaire |
-| type | true | string | Should be imported as variable from @art-forms/models. Variable names: STRING, ATTACHMENT, OPEN_CHOICE, CHOICE, TEXT, TIME, DATE_TIME, DATE, DECIMAL, BOOLEAN, MULTI_CHOICE. |
+| type | true | string | Should be imported as variable from @surveybuilder/models. Variable names: STRING, ATTACHMENT, OPEN_CHOICE, CHOICE, TEXT, TIME, DATE_TIME, DATE, DECIMAL, BOOLEAN, MULTI_CHOICE. |
 | text | false | string | Question |
 | required | false | boolean | Whether item required or not |
 | enableWhen | false | array | Each element is [Enable When](#enable-when) |
- enableBehavior | false | string | Should be imported as variable from @art-forms/models. Variable names are: OR, AND |
+ enableBehavior | false | string | Should be imported as variable from @surveybuilder/models. Variable names are: OR, AND |
 | initialAnswers | false | array | Each element is [Initial answer](#initial-answer) |
 | multipleFiles | false | boolean | Specific parametr especially for attachment items; Define whether user can apply multiple files(true) or single(false) |
 | options | false | array | Each element is [Answer option](#answer-option) |
@@ -78,7 +78,7 @@ Then you should pass them straight to QuestionnaireDesigner and QuestionnairePla
 | Name | required | type | Description | 
 | :---- | :------ | :--- | :----- |
 | id | true | string | EnableWhen identifier. Must be uniq within the item |
-| operator | true | string | Should be imported as variable from @art-forms/models. Variable names are: EXISTS, EQUAL, NOT_EQUAL, MORE, LESS, MORE_OR_EQUAL, LESS_OR_EQUAL. |
+| operator | true | string | Should be imported as variable from @surveybuilder/models. Variable names are: EXISTS, EQUAL, NOT_EQUAL, MORE, LESS, MORE_OR_EQUAL, LESS_OR_EQUAL. |
 | questionId | false | string | id of the particular item |
 | answer | false | any | expected answer fro particular question |
 

@@ -1,4 +1,4 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import * as FHIREnableBehavior from '../../constants/FHIREnableBehavior';
 
 export const enableBehaviorFromModelConverter = (enableBehavior: Models.EnableBehavior): FHIREnableBehavior.FHIREnableBehavior => {

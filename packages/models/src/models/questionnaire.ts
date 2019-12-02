@@ -1,5 +1,5 @@
 import uuid from 'uuid/v1';
-import { observable, observableProperty, getObservable } from '@art-forms/observable';
+import { observable, observableProperty, getObservable } from '@surveybuilder/observable';
 import ItemByTypeFactory from "../factories/itemByTypeFactory";
 import IQuestionnaire from '../interfaces/IQuestionnaire';
 import Item from './item';

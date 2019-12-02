@@ -1,5 +1,5 @@
 import { DECIMAL } from "../../constants/itemTypes";
-import { observable } from '@art-forms/observable';
+import { observable } from '@surveybuilder/observable';
 import IDecimalItem from "../../interfaces/questionItems/IDecimalItem";
 import QuestionItem from "./questionItem";
 

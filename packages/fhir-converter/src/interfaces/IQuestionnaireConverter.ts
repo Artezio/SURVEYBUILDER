@@ -1,4 +1,4 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import FHIRQuestionnaire from './FHIRModels/Questionnaire';
 
 export interface IQuestionnaireConverter {

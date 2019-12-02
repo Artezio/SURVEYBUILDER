@@ -1,6 +1,6 @@
 import * as React from 'react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
-import { isObservable, getObservable } from '@art-forms/observable';
+import { isObservable, getObservable } from '@surveybuilder/observable';
 
 
 interface IDisposable {

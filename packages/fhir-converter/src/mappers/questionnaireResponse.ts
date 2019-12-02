@@ -1,4 +1,4 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import QuestionnaireResponse from "../interfaces/FHIRModels/QuestionnaireResponse";
 import { questionnaireResponseItemConverter } from './questionnaireResponseItem';
 import { IQuestionnaireResponseConverter } from '../interfaces/IQuestionnaireResponseConverter';

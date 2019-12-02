@@ -1,7 +1,7 @@
 import * as React from 'react';
 import StringItemProps from '../../interfaces/components/questionItems/StringItemProps';
 import { Form, Text } from 'informed';
-import { useObservableModel } from '@art-forms/observable-react';
+import { useObservableModel } from '@surveybuilder/observable-react';
 import QuestionItem from './QuestionItem';
 
 

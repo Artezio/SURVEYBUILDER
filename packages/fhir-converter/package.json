@@ -1,5 +1,5 @@
 {
-  "name": "@art-forms/fhir-converter",
+  "name": "@surveybuilder/fhir-converter",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "test": "ts-mocha tests/**/*.test.ts"
   },
   "peerDependencies": {
-    "@art-forms/models": "^0.1.6"
+    "@surveybuilder/models": "^0.1.6"
   },
   "devDependencies": {
     "@types/expect": "^1.20.4",

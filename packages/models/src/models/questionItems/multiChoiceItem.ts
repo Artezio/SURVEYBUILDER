@@ -2,7 +2,7 @@ import QuestionItem from "./questionItem";
 import IMultiChoiceItem from "../../interfaces/questionItems/IMultiChoiceItem";
 import { MULTI_CHOICE } from "../../constants/itemTypes";
 import IItemCollection from "../../interfaces/IItemCollection";
-import { observable, observableProperty } from '@art-forms/observable';
+import { observable, observableProperty } from '@surveybuilder/observable';
 import IAnswerOptionCollection from "../../interfaces/IAnswerOptionCollection";
 import AnswerOptionFactory from "../../factories/answerOptionFactory";
 import AnswerOption from "../answerOption";

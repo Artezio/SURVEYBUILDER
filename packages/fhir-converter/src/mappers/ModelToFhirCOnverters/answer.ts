@@ -1,4 +1,4 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import questionnaireResponseItemConverter from '../questionnaireResponseItem';
 
 export const answerFromModelConverter = (answer: Models.IAnswer<any>): any => {

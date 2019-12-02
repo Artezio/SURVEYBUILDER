@@ -39,7 +39,7 @@ module.exports = {
     },
     externals: {
         "react": "react",
-        "@art-forms/observable": "@art-forms/observable",
-        "@art-forms/observable-react": "@art-forms/observable-react"
+        "@surveybuilder/observable": "@surveybuilder/observable",
+        "@surveybuilder/observable-react": "@surveybuilder/observable-react"
     }
 };

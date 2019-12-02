@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    mode: "development",
+    mode: "production",
     entry: './src/index.ts',
     resolve: {
         extensions: [".ts", ".js"]
@@ -25,6 +25,6 @@ module.exports = {
         ]
     },
     externals: {
-        "@art-forms/models": "@art-forms/models"
+        "@surveybuilder/models": "@surveybuilder/models"
     }
 }

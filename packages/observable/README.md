@@ -1,12 +1,12 @@
-# **@art-forms/observable**
+# **@surveybuilder/observable**
 Typescript library helps you to observe models changes. Library is written with es7 decorators. The decorator listens for any changes in the observable object thanks to the proxy and generates an event.
 
 # Installation
 Using npm:
->$ npm install -D @art-forms/observable
+>$ npm install -D @surveybuilder/observable
 
 Using yarn:
->$ yarn add -D @art-forms/observable
+>$ yarn add -D @surveybuilder/observable
 
 &nbsp;
 # Example
@@ -14,7 +14,7 @@ Using yarn:
 Use observable decorator to make all instances observable. To understand that changes have been made we compare old value with new, so to catch changes in complex types like array you should mark array property with "observableProperty" decorator.
 
 ```typescript
-import { observable, observableProperty, getObservable } from 'art-forms/observable';
+import { observable, observableProperty, getObservable } from 'surveybuilder/observable';
 
 @observable
 class Person {
@@ -43,14 +43,14 @@ person.addPet('Cat');/// will log "updated Person: Person {name: "Name", pets: A
 
 To make you object observable simply run this:
 ```typescript
-import { toObservable } from 'art-forms/observable';
+import { toObservable } from 'surveybuilder/observable';
 var myObject = {...};
 myObject = toObservable(myObject);
 ```
 Now your object is observable and you can subscribe on its changes, to do it you should get method subscribe:
 
 ```typescript
-import { getObservable } from 'art-forms/observable';
+import { getObservable } from 'surveybuilder/observable';
 getObservable(myObject).subscribe(obj => {
     console.log("My object has changed, now it:", obj);
 })
@@ -81,13 +81,13 @@ myObject.name = 'oldName';// will log "My object has changed, now it: {name: old
 
 To find out if the object is observable use isObservable():
 ```typescript
-import { isObservable } from 'art-forms/observable';
+import { isObservable } from 'surveybuilder/observable';
 console.log(isObservable(myObject));// true;
 ```
 
 To make all instances of particular Class mark it with observable decorator
 ```typescript
-import { observable } from 'art-forms/observable';
+import { observable } from 'surveybuilder/observable';
 
 @observable
 class MyClass {
@@ -98,7 +98,7 @@ class MyClass {
 To understand that changes have been made we compare old value with new, so to catch changes in complex types like array you should mark array property with "observableProperty" decorator.
 
 ```typescript
-import { observable, observableProperty } from 'art-forms/observable';
+import { observable, observableProperty } from 'surveybuilder/observable';
 
 @observable
 class MyClass {

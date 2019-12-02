@@ -1,9 +1,0 @@
-0 silly argv { _: [ 'bootstrap' ],
-0 silly argv   lernaVersion: '3.13.0',
-0 silly argv   '$0': 'node_modules/.bin/lerna' }
-1 notice cli v3.13.0
-2 verbose rootPath /Users/dmitry/Documents/work/artezio/art-forms
-3 info versioning independent
-4 error JSONError: Unexpected token } in JSON at position 145 while parsing near '...10.11.40.28:4873/",}' in packages/models/package.json
-4 error     at module.exports (/Users/dmitry/Documents/work/artezio/art-forms/node_modules/parse-json/index.js:26:19)
-4 error     at parse (/Users/dmitry/Documents/work/artezio/art-forms/node_modules/load-json-file/index.js:8:29)

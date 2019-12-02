@@ -1,5 +1,5 @@
 import { IItemCollection } from "../interfaces/IItemCollection";
-import { observable, observableProperty } from '@art-forms/observable';
+import { observable, observableProperty } from '@surveybuilder/observable';
 import ItemByTypeFactory from "../factories/itemByTypeFactory";
 import Item from "./item";
 import IGroupItem from "../interfaces/IGroupItem";

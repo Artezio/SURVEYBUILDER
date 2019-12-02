@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import { GroupItem } from '../components/GroupItem';
 import { TextItem } from './questionItems/TextItem';
 import { StringItem } from './questionItems/StringItem';

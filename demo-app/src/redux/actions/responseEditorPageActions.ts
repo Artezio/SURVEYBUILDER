@@ -3,7 +3,7 @@ import { questionnaireProvider } from '../../providers/questionnaireProvider'
 import { createActionAsync } from "./actionCreators";
 import { ACTIONS } from "../../constants/responseEditorPage";
 import { createAction } from "redux-actions";
-import { questionnaireResponseConverter } from '@art-forms/fhir-converter';
+import { questionnaireResponseConverter } from '@surveybuilder/fhir-converter';
 import { Store } from '../../interface/Store';
 import { MODE } from '../../constants/responseEditorPage';
 

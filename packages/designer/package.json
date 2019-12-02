@@ -1,5 +1,5 @@
 {
-  "name": "@art-forms/designer",
+  "name": "@surveybuilder/designer",
   "version": "0.1.7",
   "license": "MIT",
   "main": "./dist/index.js",
@@ -82,8 +82,8 @@
     "typescript": "^3.6.2"
   },
   "peerDependencies": {
-    "@art-forms/models": "^0.1.6",
-    "@art-forms/observable": "^1.0.0",
+    "@surveybuilder/models": "^0.1.6",
+    "@surveybuilder/observable": "^1.0.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "bootstrap": "^4.3.1",
     "bootstrap-scss": "4.3.1",

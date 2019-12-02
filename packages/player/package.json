@@ -1,11 +1,11 @@
 {
-  "name": "@art-forms/player",
+  "name": "@surveybuilder/player",
   "version": "0.1.2",
   "license": "MIT",
   "main": "./dist/index.js",
   "peerDependencies": {
-    "@art-forms/models": "^0.1.6",
-    "@art-forms/observable": "^1.0.0"
+    "@surveybuilder/models": "^0.1.6",
+    "@surveybuilder/observable": "^1.0.0"
   },
   "dependencies": {
     "@babel/core": "7.6.0",

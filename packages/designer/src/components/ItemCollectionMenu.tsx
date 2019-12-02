@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ItemCollectionMenuProps } from '../interfaces/components/ItemCollectionMenuProps';
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 
 
 export class ItemCollectionMenu extends React.Component<ItemCollectionMenuProps> {

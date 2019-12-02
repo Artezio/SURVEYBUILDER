@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
-import { useObservableModel } from '@art-forms/observable-react';
+import { useObservableModel } from '@surveybuilder/observable-react';
 import ItemProvider from './ItemProvider';
 import { FormState, withFormApi } from 'informed';
 

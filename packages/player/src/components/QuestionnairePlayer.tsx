@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { QuestionnairePlayerProps } from '../interfaces/components/QuestionnairePlayerProps';
-import { useObservableModel } from '@art-forms/observable-react';
+import { useObservableModel } from '@surveybuilder/observable-react';
 import ItemWrapper from './ItemWrapper';
 import { Form, FormApi } from 'informed';
 import IFormState from '../interfaces/IFormState';

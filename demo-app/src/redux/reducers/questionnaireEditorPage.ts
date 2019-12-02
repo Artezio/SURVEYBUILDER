@@ -1,8 +1,8 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import { ACTIONS, STATUS_LOADING, MODE, STATUS_SAVING } from '../../constants/questionnaireEditorPage';
 import { QuestionnaireEditorPageStore } from '../../interface/questionnaireEditorPage/QuestionnaireEditorPageStore';
 import { Action } from '../../interface/Action';
-import { questionnaireConverter } from '@art-forms/fhir-converter';
+import { questionnaireConverter } from '@surveybuilder/fhir-converter';
 
 const INITIAL_STATE: QuestionnaireEditorPageStore = { status: {} };
 

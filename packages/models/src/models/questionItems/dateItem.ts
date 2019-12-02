@@ -1,4 +1,4 @@
-import { observable } from '@art-forms/observable';
+import { observable } from '@surveybuilder/observable';
 import { IDateItem } from "../../interfaces/questionItems/IDateItem";
 import QuestionItem from './questionItem';
 import { DATE } from '../../constants/itemTypes';

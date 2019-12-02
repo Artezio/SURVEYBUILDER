@@ -1,5 +1,5 @@
 {
-  "name": "art-forms",
+  "name": "surveybuilder",
   "private": true,
   "description": "",
   "main": "index.js",
@@ -9,9 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "bootstrap": "npx lerna bootstrap",
     "publish": "npx lerna publish",
-    "build": "lerna bootstrap & lerna run build --scope @art-forms/observable & lerna run build --scope @art-forms/fhir-converter & lerna run build --scope @art-forms/models & lerna run build --scope @art-forms/player & lerna run build --scope @art-forms/designer",
+    "build": "lerna bootstrap & lerna run build --scope @surveybuilder/observable & lerna run build --scope @surveybuilder/fhir-converter & lerna run build --scope @surveybuilder/models & lerna run build --scope @surveybuilder/player & lerna run build --scope @surveybuilder/designer",
     "dev": "yarn workspace demo-app install",
-    "serve": "lerna run build --scope @art-forms/observable & lerna run build --scope @art-forms/fhir-converter & lerna run build --scope @art-forms/models & lerna run build --scope @art-forms/player & lerna run build --scope @art-forms/designer & lerna run build --scope @art-forms/observable-react",
     "start": "cd demo-app && yarn start"
   },
   "dependencies": {

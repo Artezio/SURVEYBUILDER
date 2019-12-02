@@ -1,6 +1,6 @@
 import * as React from 'react';
 import GroupItemProps from '../interfaces/components/GroupItemProps';
-import { useObservableModel } from '@art-forms/observable-react';
+import { useObservableModel } from '@surveybuilder/observable-react';
 import QuestionnaireItemList from './QuestionnaireItemList';
 import ItemCollectionMenu from './ItemCollectionMenu';
 

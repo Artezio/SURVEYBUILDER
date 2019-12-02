@@ -1,5 +1,5 @@
 import QuestionItemProps from "./QuestionItemProps";
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 
 
 export interface MultiChoiceItemProps extends QuestionItemProps<any> {

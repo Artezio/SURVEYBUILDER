@@ -1,4 +1,4 @@
-import { observable, observableProperty } from '@art-forms/observable';
+import { observable, observableProperty } from '@surveybuilder/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import { IChoiceItem } from "../../interfaces/questionItems/IChoiceItem";
 import IAnswerOptionCollection from "../../interfaces/IAnswerOptionCollection";

@@ -74,7 +74,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
                     <NavLink to="/" exact={true} className="nav-link" activeClassName="active">Questionnaires</NavLink>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="https://github.com/Artezio/ART-FORMS" target="_blank">Documentation</a>
+                    <a className="nav-link" href="https://github.com/Artezio/SURVEYBUILDER" target="_blank">Documentation</a>
                 </li>
             </ul>
             <ul className="navbar-nav">

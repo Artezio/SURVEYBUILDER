@@ -1,4 +1,4 @@
-import * as Models from '@art-forms/models';
+import * as Models from '@surveybuilder/models';
 import { QuestionTypeMenuOption } from '../interfaces/components/SelectMenuProps';
 
 export const questionTypes: QuestionTypeMenuOption[] = [
