@@ -12,7 +12,7 @@ Surveybuilder is a set of typescript packages. It presents two react components:
 
 # Components diagram
 
-![uml diagram](./Uml-diagram-modules.jpg)
+![uml diagram](./doc/Uml-diagram-modules.jpg)
 
 # Learn more about packages
 * [designer](./packages/designer/README.md "@surveybuilder/designer package")
@@ -39,7 +39,7 @@ We created demo app to show you how our components can be used.
 
     > $ yarn
 
-    To find out how to run it follow the link [README.md](https://github.com/Artezio/SURVEYBUILDER/blob/master/packages/demo-app/README.md "@surveybuilder/demo-app").
+    To find out how to run it follow the link [README.md](./doc/DEMO-APP.md "@surveybuilder/demo-app").
 
 
 # Applying custom converter
