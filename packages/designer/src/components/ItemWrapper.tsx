@@ -59,15 +59,15 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
 
     componentDidUpdate() {
         const { item, targetItemId } = this.props;
-        if (item.id === targetItemId) {
+        const itemInTarget = item.id === targetItemId;
+        if (itemInTarget) {
             this.formApi && this.formApi.setValues(item);
             this.formApi_2 && this.formApi_2.setValues(item);
         }
     }
 
     componentWillUnmount() {
-        const { clearTargetItem } = this.props;
-        clearTargetItem && clearTargetItem();
+        this.clearTargetItem();
         clearTimeout(this.closingBottomMenuTimeOutKey);
     }
 
@@ -103,14 +103,35 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
         clearTimeout(this.closingBottomMenuTimeOutKey);
     }
 
+    clearTargetItem() {
+        const { clearTargetItem } = this.props;
+        clearTargetItem && clearTargetItem();
+    }
+
+    makeItemTarget() {
+        const { selectTargetItem, item } = this.props;
+        selectTargetItem && selectTargetItem(item);
+    }
+
+    toggleTargetItem() {
+        const { item, targetItemId } = this.props;
+        const itemInTarget = item.id === targetItemId;
+        if (itemInTarget) {
+            this.clearTargetItem();
+        } else {
+            this.makeItemTarget();
+        }
+    }
+
     selectTargetItem(e) {
-        const { item, selectTargetItem, targetItemId } = this.props;
+        const { item, targetItemId } = this.props;
+        const itemInTarget = item.id === targetItemId;
         e.stopPropagation();
-        if (e.type === 'click' && item.id === targetItemId && (!this.itemRef.current || this.itemRef.current.contains(e.target))) {
+        if (e.type === 'click' && itemInTarget && (!this.itemRef.current || this.itemRef.current.contains(e.target))) {
             return;
         }
         if (!this.bottomLineRef.current || !this.bottomLineRef.current.contains(e.target)) {
-            selectTargetItem && selectTargetItem(item);
+            this.makeItemTarget();
         }
     }
 
@@ -194,20 +215,40 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     }
 
     renderHeader() {
-        const { item } = this.props;
+        const { item, targetItemId } = this.props;
+        const itemInTarget = item.id === targetItemId;
         return <div className="row">
-            <div className="col-4 d-flex align-items-center"><span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span></div>
+            <div className="col-4 d-flex align-items-center">
+                <button
+                    className="btn btn-outline-secondary border-0 mr-2 no-drag"
+                    title={itemInTarget ? 'collapse' : 'expand'}
+                    onClick={this.toggleTargetItem.bind(this)}
+                >
+                    {itemInTarget
+                        ? <i className="fas fa-compress-arrows-alt"></i>
+                        : <i className="fas fa-expand-arrows-alt"></i>
+                    }
+                </button>
+                <span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span>
+            </div>
             <div className="col-4 d-flex justify-content-center align-items-center">
                 <i className="fas fa-grip-horizontal text-muted"></i>
+            </div>
+            <div className="col-4 d-flex justify-content-end align-items-center">
+                <div className="btn-group no-drag">
+                    {targetItemId === item.id && <button className="btn btn-outline-secondary border-0" onClick={item.remove.bind(item)}>
+                        <i className="fas fa-trash"></i>
+                    </button>}
+                </div>
             </div>
         </div>
     }
 
     renderHeadline() {
         const { item, targetItemId, selectTargetItem } = this.props;
-        const itemIsActive = item.id === targetItemId;
+        const itemInTarget = item.id === targetItemId;
         return <div className={`form-row ${this.getHeadlineFromClassName()}`}>
-            {itemIsActive ?
+            {itemInTarget ?
                 <div className="col">
                     <Form
                         getApi={this.getFormApi.bind(this)}
@@ -228,7 +269,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 </div>}
             {item.type !== Models.DISPLAY
                 && item.type !== Models.GROUP
-                && itemIsActive
+                && itemInTarget
                 && <div className="col-md-4">
                     <QuestionTypeMenu selectTargetItem={selectTargetItem} title="Question Type" item={item as Models.QuestionItem<any>} />
                 </div>}
@@ -238,7 +279,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
     renderFooter() {
         const { item, questionnaire } = this.props;
         return <div>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-start align-items-center">
                 <div>
                     {item.type !== Models.GROUP && item.type !== Models.DISPLAY &&
                         <Form
@@ -260,18 +301,9 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                             </div>
                         </Form>}
                 </div>
-                <div>
-                    <button
-                        className="btn btn-outline-secondary border-0"
-                        title="Delete item"
-                        onClick={item.remove.bind(item)}
-                    >
-                        <i className="fas fa-trash"></i>
-                    </button>
-                </div>
             </div>
             <div className="item-settings">
-                <hr />
+                {item.type !== Models.GROUP && item.type !== Models.DISPLAY && <hr />}
                 {questionnaire && <EnableSettings questionnaire={questionnaire} item={item} />}
             </div>
         </div>
@@ -312,7 +344,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 <hr />
                 <div className="dropup d-flex">
                     <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenu.bind(this)} title="Add item">
-                        <i className="fas fa-plus"></i>
+                        <i className="fas fa-chevron-circle-left"></i>
                     </button>
                     {bottomMenuShowed && <BottomItemCollectionMenu close={this.closeBottomMenu.bind(this)} selectTargetItem={selectTargetItem} item={item} />}
                 </div>

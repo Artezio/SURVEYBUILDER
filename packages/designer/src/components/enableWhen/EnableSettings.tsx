@@ -66,7 +66,7 @@ export class EnableSettings extends React.Component<EnableSettingsProps> {
                 <div className="d-flex">
                     <label htmlFor={`enableWhenBehavior-${item.id}`} className="mr-3">
                         <span>This component should Display if </span>
-                        <Select id={`enableWhenBehavior-${item.id}`} className="form-control w-auto d-inline" field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
+                        <Select id={`enableWhenBehavior-${item.id}`} className="form-control w-auto d-inline ml-2" field="enableBehavior" onChange={this.setEnableBehavior.bind(this)}>
                             <Option value={Models.AND}>all the rules are consistent</Option>
                             <Option value={Models.OR}>one of the rules is consistent</Option>
                         </Select>

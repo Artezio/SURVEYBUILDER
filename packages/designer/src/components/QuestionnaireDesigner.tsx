@@ -23,8 +23,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     }
 
     questionnaireNodeTopPosition?: string;
-    questionnaireItemsRef = React.createRef<HTMLDivElement>();
-    settingsPanelRef = React.createRef<HTMLDivElement>();
+    questionnaireItemListRef = React.createRef<HTMLDivElement>();
     formApi!: FormApi<Models.IQuestionnaire>;
     itemFactory: Models.ItemFactory = new Models.ItemFactory(this.props.questionnaireModel);
 
@@ -67,7 +66,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     }
 
     bodyListener = (e) => {
-        if ((!this.settingsPanelRef.current || !this.settingsPanelRef.current.contains(e.target)) && (!this.questionnaireItemsRef.current || !this.questionnaireItemsRef.current.contains(e.target))) {
+        if (!this.questionnaireItemListRef.current || !this.questionnaireItemListRef.current.contains(e.target)) {
             this.clearTargetItem();
         }
     }
@@ -199,7 +198,7 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
     render() {
         const { questionnaireModel, className } = this.props;
         return <div className={`questionnaire-designer media ${className}`}>
-            <div className="questionnaire-items media-body" ref={this.questionnaireItemsRef}>
+            <div className="questionnaire-items media-body">
                 <div className="questionnaire card mb-3">
                     <div className="card-header d-flex justify-content-end"></div>
                     <div className="card-body">
@@ -237,7 +236,9 @@ export class Questionnaire extends React.Component<QuestionnaireDesignerProps, Q
                 {questionnaireModel.items.length === 0 && <div className="w-100 d-flex justify-content-center align-items-center">
                     <ItemCollectionMenu item={questionnaireModel} selectTargetItem={this.selectTargetItem.bind(this)} />
                 </div>}
-                {this.renderItemList()}
+                <div ref={this.questionnaireItemListRef}>
+                    {this.renderItemList()}
+                </div>
             </div>
         </div>
     }

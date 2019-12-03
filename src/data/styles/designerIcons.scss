@@ -1,10 +1,3 @@
-// .questionnaire-item {
-//   .card-header {
-//     .btn-outline-secondary {
-//       @extend .border-0;
-//     }
-//   }
-// }
 .questionnaire-item:not(.card-active) {
   > .drag-handle:not(:hover) {
     .fa-grip-horizontal {
