@@ -332,6 +332,7 @@ module.exports = function (webpackEnv) {
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: [paths.appSrc, pathToArtForms],
+              exclude: /\.test\.(ts|js|tsx|jsx)$/,
               loader: require.resolve('ts-loader'),
               options: {
                 transpileOnly: true

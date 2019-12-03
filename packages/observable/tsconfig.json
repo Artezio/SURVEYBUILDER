@@ -10,8 +10,8 @@
         "allowJs": true,
         "moduleResolution": "node",
         "skipLibCheck": true,
-        "esModuleInterop": true,
         "isolatedModules": false,
+        "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
     },

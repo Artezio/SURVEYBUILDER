@@ -6,9 +6,13 @@
   "peerDependencies": {
     "@surveybuilder/models": "^0.1.6",
     "@surveybuilder/observable": "^1.0.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-scss": "4.3.1",
     "react": "16.8.3"
   },
   "dependencies": {
+    "informed": "2.1.9",
+    "sortablejs": "^1.9.0",
     "@fortawesome/fontawesome-free": "^5.8.1"
   },
   "devDependencies": {
@@ -35,14 +39,11 @@
     "resolve-url-loader": "3.1.0",
     "sass-loader": "7.2.0",
     "semver": "6.3.0",
-    "sortablejs": "^1.9.0",
     "style-loader": "1.0.0",
     "terser-webpack-plugin": "1.4.1",
     "ts-pnp": "1.1.4",
     "url-loader": "2.1.0",
     "webpack": "4.40.2",
-    "bootstrap": "^4.3.1",
-    "bootstrap-scss": "4.3.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
     "babel-eslint": "10.0.3",
@@ -68,7 +69,6 @@
     "hoist-non-react-statics": "^3.3.0",
     "html-webpack-plugin": "4.0.0-beta.5",
     "identity-obj-proxy": "3.0.0",
-    "informed": "2.1.9",
     "is-wsl": "^1.1.0",
     "jest": "24.9.0",
     "jest-environment-jsdom-fourteen": "0.1.0",
