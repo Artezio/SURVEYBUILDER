@@ -225,8 +225,8 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                     onClick={this.toggleTargetItem.bind(this)}
                 >
                     {itemInTarget
-                        ? <i className="fas fa-compress-arrows-alt"></i>
-                        : <i className="fas fa-expand-arrows-alt"></i>
+                        ? <i className="fas fa-angle-down"></i>
+                        : <i className="fas fa-angle-right"></i>
                     }
                 </button>
                 <span>#{this.humanReadableGuid.getHumanReadableId(item.id)}</span>
@@ -344,7 +344,7 @@ export class ItemWrapper extends React.PureComponent<ItemWrapperProps, ItemWrapp
                 <hr />
                 <div className="dropup d-flex">
                     <button className="toggle btn btn-outline-secondary" onClick={this.toggleBottomMenu.bind(this)} title="Add item">
-                        <i className="fas fa-chevron-circle-left"></i>
+                        <i className="fas fa-bars"></i>
                     </button>
                     {bottomMenuShowed && <BottomItemCollectionMenu close={this.closeBottomMenu.bind(this)} selectTargetItem={selectTargetItem} item={item} />}
                 </div>
