@@ -27,7 +27,7 @@ Surveybuilder is a set of typescript packages. It presents two react components:
 # What does it look like
 We created demo app to show you how our components can be used.
 * ## Demo
-    https://n20b6.sse.codesandbox.io/
+    https://surveybuilder.now.sh/
 
 * ## Demo with code in sandbox
     https://codesandbox.io/s/github/Artezio/SURVEYBUILDER/tree/master/?fontsize=14&hidenavigation=1&theme=dark

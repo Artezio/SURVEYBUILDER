@@ -5,6 +5,7 @@
   "main": "./src/index.ts",
   "version": "1.0.1",
   "license": "ISC",
+  "homepage": ".",
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
     "publish": "npx lerna publish",
