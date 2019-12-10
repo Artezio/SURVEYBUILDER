@@ -52,7 +52,7 @@ export class QuestionnaireEditor extends React.Component<QuestionnaireEditorPage
     renderButtons() {
         const { status } = this.props;
         if (status.loading === STATUS_LOADING.loaded) {
-            return <div className="d-flex justify-content-start">
+            return <div className="d-flex justify-content-start buttons-below-designer">
                 <button onClick={() => { history.back() }} className="btn btn-outline-danger mr-2" title="Cancel changes">Cancel</button>
                 <button onClick={this.onClick.bind(this)} className="btn btn-outline-primary" title="Save changes">Save</button>
             </div>
