@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { QuestionnairePlayerProps } from '../interfaces/components/QuestionnairePlayerProps';
 import { useObservableModel } from '@surveybuilder/observable-react';
-import ItemWrapper from './ItemWrapper';
+import ItemWrapper, { ERROR_ITEM_CLASS_NAME } from './ItemWrapper';
 import { Form, FormApi } from 'informed';
 import IFormState from '../interfaces/IFormState';
 
@@ -22,7 +22,7 @@ export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
         const { onError } = this.props;
         this.forceUpdate();
         setTimeout(() => {
-            const firstIncorrectAnswer = document.querySelector('.error-item');
+            const firstIncorrectAnswer = document.querySelector(`.${ERROR_ITEM_CLASS_NAME}`);
             firstIncorrectAnswer && firstIncorrectAnswer.scrollIntoView();
         })
         onError && onError(e);

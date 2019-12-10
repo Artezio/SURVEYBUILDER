@@ -5,6 +5,8 @@ import { useObservableModel } from '@surveybuilder/observable-react';
 import ItemProvider from './ItemProvider';
 import { FormState, withFormApi } from 'informed';
 
+export const ERROR_ITEM_CLASS_NAME = 'error-item';
+
 export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
     static defaultProps: Partial<ItemWrapperProps> = {
@@ -34,11 +36,8 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
 
     render() {
         const { className, item, questionnaireResponseItem, formApi } = this.props;
-        const validationStatus = formApi.getTouched(item.id)
-            ? questionnaireResponseItem.isValid
-                ? ''
-                : 'is-invalid'
-            : '';
+        const isTouchedAndNotValid = formApi.getTouched(item.id) && !questionnaireResponseItem.isValid;
+        const validationStatus = isTouchedAndNotValid ? 'is-invalid' : '';
         let specificClassName;
         if (item.type === Models.GROUP) {
             specificClassName = 'response-group-item';
@@ -47,7 +46,7 @@ export class ItemWrapper extends React.Component<ItemWrapperProps> {
         } else {
             specificClassName = 'response-item';
         }
-        return questionnaireResponseItem.isEnable && <div className={`${specificClassName} ${className}`}>
+        return questionnaireResponseItem.isEnable && <div className={`${specificClassName} ${isTouchedAndNotValid ? ERROR_ITEM_CLASS_NAME : ''} ${className}`}>
             {this.renderQuestionText()}
             {this.renderErrorMessage()}
             <ItemProvider item={item} questionnaireResponseItem={questionnaireResponseItem} validationStatus={validationStatus} />
