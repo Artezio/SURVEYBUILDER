@@ -23,7 +23,16 @@ export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
         this.forceUpdate();
         setTimeout(() => {
             const firstIncorrectAnswer = document.querySelector(`.${ERROR_ITEM_CLASS_NAME}`);
-            firstIncorrectAnswer && firstIncorrectAnswer.scrollIntoView();
+            if (firstIncorrectAnswer) {
+                let inputControl: HTMLInputElement | HTMLTextAreaElement = firstIncorrectAnswer.querySelector('input:not([type=radio]):not([type=checkbox]):not([type=file])');
+                if (!inputControl) {
+                    inputControl = firstIncorrectAnswer.querySelector('textarea');
+                }
+                if (inputControl) {
+                    inputControl.focus();
+                }
+            }
+            firstIncorrectAnswer.scrollIntoView();
         })
         onError && onError(e);
     }
