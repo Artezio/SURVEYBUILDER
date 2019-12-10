@@ -8,23 +8,23 @@ import { Theme } from './interface/layouts/MainLayoutProps';
 
 const themes: Theme[] = [
     {
-        title: 'Minty(+)',
+        title: 'Minty',
         href: '/bootstrapThemes/minty.css'
     },
     {
-        title: 'Stale(+)',
+        title: 'Stale',
         href: '/bootstrapThemes/stale.css'
     },
     {
-        title: 'Sandstone(+)',
+        title: 'Sandstone',
         href: '/bootstrapThemes/sandstone.css'
     },
     {
-        title: 'Litera(+)',
+        title: 'Litera',
         href: '/bootstrapThemes/litera.css'
     },
     {
-        title: 'Journal(+)',
+        title: 'Journal',
         href: '/bootstrapThemes/journal.css'
     }
 ]
