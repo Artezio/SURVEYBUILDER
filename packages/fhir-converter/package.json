@@ -6,7 +6,7 @@
   "scripts": {
     "transform": "tsc -p tsconfig.build.json",
     "build": "webpack",
-    "test": "ts-mocha tests/**/*.test.ts"
+    "test": "ts-mocha tests/**/*.spec.ts"
   },
   "peerDependencies": {
     "@surveybuilder/models": "^0.1.6"
