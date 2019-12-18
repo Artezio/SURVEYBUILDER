@@ -1,8 +1,11 @@
 {
-  "name": "@surveybuilder/observable",
+  "name": "@artezio/observable",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "webpack",
     "transform": "tsc -p tsconfig.build.json",

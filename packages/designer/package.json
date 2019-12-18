@@ -1,11 +1,14 @@
 {
-  "name": "@surveybuilder/designer",
+  "name": "@artezio/designer",
   "version": "0.1.7",
   "license": "MIT",
   "main": "./dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@surveybuilder/models": "^0.1.6",
-    "@surveybuilder/observable": "^1.0.0",
+    "@artezio/models": "^0.1.6",
+    "@artezio/observable": "^1.0.0",
     "bootstrap": "^4.3.1",
     "bootstrap-scss": "4.3.1",
     "react": "16.8.3"

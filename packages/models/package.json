@@ -1,8 +1,11 @@
 {
-  "name": "@surveybuilder/models",
+  "name": "@artezio/models",
   "version": "0.1.6",
   "main": "./dist/index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "webpack",
     "transform": "tsc -p tsconfig.build.json",
@@ -13,7 +16,7 @@
     "./Uml-diagram-models.xml"
   ],
   "peerDependencies": {
-    "@surveybuilder/observable": "^1.0.0"
+    "@artezio/observable": "^1.0.0"
   },
   "dependencies": {
     "json-logic-js": "^1.2.2",

@@ -1,11 +1,14 @@
 {
-  "name": "@surveybuilder/player",
+  "name": "@artezio/player",
   "version": "0.1.2",
   "license": "MIT",
   "main": "./dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
-    "@surveybuilder/models": "^0.1.6",
-    "@surveybuilder/observable": "^1.0.0",
+    "@artezio/models": "^0.1.6",
+    "@artezio/observable": "^1.0.0",
     "react": "16.8.3"
   },
   "dependencies": {

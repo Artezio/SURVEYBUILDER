@@ -1,8 +1,11 @@
 {
-  "name": "@surveybuilder/observable-react",
+  "name": "@artezio/observable-react",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "webpack"
   },
@@ -11,7 +14,7 @@
   },
   "peerDependencies": {
     "react": "^16.8.3",
-    "@surveybuilder/observable": "^1.0.0"
+    "@artezio/observable": "^1.0.0"
   },
   "devDependencies": {
     "typescript": "^3.4.1",
