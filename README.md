@@ -15,12 +15,13 @@ Surveybuilder is a set of typescript packages. It presents two react components:
 ![uml diagram](./doc/Uml-diagram-modules.jpg)
 
 # Learn more about packages
-* [designer](./packages/designer/README.md "@surveybuilder/designer package")
-* [player](./packages/player/README.md "@surveybuilder/player package")
-* [models](./packages/models/README.md "@surveybuilder/models package")
-* [fhir-converter](./packages/fhir-converter/README.md "@surveybuilder/fhir-converter package")
-* [observable](./packages/observable/README.md "@surveybuilder/observable package")
-* [demo-app](./demo-app/README.md "@surveybuilder/demo-app")
+* [designer](./packages/designer/README.md "@artezio/designer package")
+* [player](./packages/player/README.md "@artezio/player package")
+* [models](./packages/models/README.md "@artezio/models package")
+* [fhir-converter](./packages/fhir-converter/README.md "@artezio/fhir-converter package")
+* [observable](./packages/observable/README.md "@artezio/observable package")
+* [observable-react](./packages/observable-react/README.md)
+* [demo-app](./demo-app/README.md "@artezio/demo-app")
 
 
 &nbsp;
@@ -39,7 +40,7 @@ We created demo app to show you how our components can be used.
 
     > $ yarn
 
-    To find out how to run it follow the link [README.md](./doc/DEMO-APP.md "@surveybuilder/demo-app").
+    To find out how to run it follow the link [README.md](./doc/DEMO-APP.md).
 
 
 # Applying custom converter
@@ -47,7 +48,7 @@ We created demo app to show you how our components can be used.
 Your custom converter must have 2 objects: questionnaire converter and questionnaire response converter. For example lets consider how they are used with fhir-converter:
 
 ```javascript
-import { questionnaireConverter } from "@surveybuilder/fhir-converter";
+import { questionnaireConverter } from "@artezio/fhir-converter";
 
 const questionnaireModel = {
     "id": '1',
@@ -63,7 +64,7 @@ const questionnaireFhirR4Model = questionnaireConverter.fromModel(questionnaireM
 ```
 
 ```javascript
-import { questionnaireResponseConverter } from "@surveybuilder/fhir-converter";
+import { questionnaireResponseConverter } from "@artezio/fhir-converter";
 
 const responseFhirR4Model = {
     "resourceType": "QuestionnaireResponse",
@@ -84,4 +85,4 @@ Each converter must have 2 functions:
 | toModel | customModel | This function must receive custom mode and return model in format described below |
 | fromModel | model | This function must receive model in format described below and return custom model |
 
-Models interfaces are described in [models package](./packages/models/README.md "@surveybuilder/models package") in "Detailed description for models" section.
+Models interfaces are described in [models package](./packages/models/README.md "@artezio/models package") in "Detailed description for models" section.

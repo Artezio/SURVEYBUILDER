@@ -1,13 +1,13 @@
-# **@surveybuilder/designer**
-Designer is a react component with which you can build or update questionnaire. This component requires a questionnaire model from [@surveybuilder/models](./../models/README.md "@surveybuilder/models") to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
+# **@artezio/designer**
+Designer is a react component with which you can build or update questionnaire. This component requires a questionnaire model from [@artezio/models](./../models/README.md "@artezio/models") to be passed as a property. Yoy may also pass a className as a property and it will be transferred to main container of the component.
 
 # Installation
 
 Using npm:
->$ npm install @art-form/designer
+>$ npm install @artezio/designer
 
 Using yarn:
->$ yarn add @art-form/designer
+>$ yarn add @artezio/designer
 
 &nbsp;
 # Example
@@ -15,8 +15,8 @@ Using yarn:
 ```TSX
 import React from 'react';
 import { render } from 'react-dom';
-import { QuestionnaireDesigner } from '@surveybuilder/designer';
-import { Questionnaire } from '@surveybuilder/models';
+import { QuestionnaireDesigner } from '@artezio/designer';
+import { Questionnaire } from '@artezio/models';
 
 const questionnaire = new Questionnaire();
 

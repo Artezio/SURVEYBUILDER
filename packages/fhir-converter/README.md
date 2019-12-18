@@ -1,27 +1,27 @@
-# **surveybuilder/fhir-converter**
+# **artezio/fhir-converter**
 
-It's a mapper designed to convert json models from fhire format to [@surveybuilder/models](./../models/README.md "@surveybuilder/models") and back.
+It's a mapper designed to convert json models from fhire format to [@artezio/models](./../models/README.md "@artezio/models") and back.
 
 
 # Installation
 with npm
->$ npm install -D @art-form/models
+>$ npm install @artezio/models
 
 with yarn
->$ yarn add -D @art-form/models
+>$ yarn add @artezio/models
 
 &nbsp;
 # Usage
 
 ```typescript
-import { questionnaireConverter } from '@surveybuilder/fhir-converter';
+import { questionnaireConverter } from '@artezio/fhir-converter';
 import { service } from 'some FHIR service';
 
 const myFHIRModel = service.getQuestionnaire();// fetching fhir model in json
 
 const myQuestionnaireModel = questionnaireConverter.toModel(myFHIRModel);//json object
 ```
-You can put myQuestionnaireModel to Questionnaire constructor from [@surveybuilder/models](./../models/README.md "@surveybuilder/models") to make a model;
+You can put myQuestionnaireModel to Questionnaire constructor from [@artezio/models](./../models/README.md "@artezio/models") to make a model;
 
 Then you can do manipulations with model in your code and convert it back:
 ```typescript

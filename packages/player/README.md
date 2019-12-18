@@ -1,6 +1,6 @@
-# **@surveybuilder/player**
+# **@artezio/player**
 
-QuestionnairePlayer is a react component, use it to pass the questionnaire. It requires two properties to be rendered: questionnaire and questionnaireResponse model made with [@surveybuilder/models](./../models/README.md "@surveybuilder/models").
+QuestionnairePlayer is a react component, use it to pass the questionnaire. It requires two properties to be rendered: questionnaire and questionnaireResponse model made with [@artezio/models](./../models/README.md "@artezio/models").
 Component has 3 more properties: onSubmit, onError, forwardRef. Use them to handle submit, handle error, initiate submit.
 
 * onSubmit - A function that gets called when form is submitted successfully. The function receives the questionnaireResponse as a parameter.
@@ -17,7 +17,7 @@ const onClick = () => {
     }
 }
 return (<>
-    <QuestionnairePlayer ref={formRef} ... />
+    <QuestionnairePlayer forwardRef={formRef} questionnaireResponseModel={yourModel} questionnaire={yourQuestionnaire} />
     <button onClick={onClick}>Submit</button>
     </>)
 }
@@ -26,10 +26,10 @@ return (<>
 # Installation
 
 Using npm:
->npm install @surveybuilder/player
+>npm install @artezio/player
 
 Using yarn:
->yarn add @surveybuilder/player
+>yarn add @artezio/player
 
 &nbsp;
 # Example
@@ -37,7 +37,7 @@ Using yarn:
 ```TSX
 import React from 'react';
 import { render } from 'react-dom';
-import { QuestionnaireResponse } from '@surveybuilder/models';
+import { QuestionnaireResponse } from '@artezio/models';
 import axios from 'axios';// for example
 
 export class MyComponent extends React.Component {
