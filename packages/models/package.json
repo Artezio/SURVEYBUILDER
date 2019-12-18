@@ -1,6 +1,6 @@
 {
   "name": "@artezio/models",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "main": "./dist/index.js",
   "license": "MIT",
   "publishConfig": {
@@ -23,17 +23,17 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "ts-loader": "^6.1.0",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8",
     "@types/expect": "^1.20.4",
     "@types/mocha": "^5.2.7",
     "@types/uuid": "^3.4.4",
     "expect": "^24.9.0",
     "mocha": "^6.2.0",
     "sinon": "^7.4.2",
+    "ts-loader": "^6.1.0",
     "ts-mocha": "6.0.0",
     "ts-node": "^8.3.0",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.3.4000",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
   }
 }

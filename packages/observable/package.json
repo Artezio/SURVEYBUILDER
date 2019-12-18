@@ -1,6 +1,6 @@
 {
   "name": "@artezio/observable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/index.js",
   "license": "MIT",
   "publishConfig": {
@@ -17,12 +17,12 @@
     "@types/node": "^12.7.9",
     "@types/reflect-metadata": "^0.1.0",
     "chai": "^4.2.0",
-    "ts-mocha": "^6.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "ts-loader": "^6.1.0",
+    "ts-mocha": "^6.0.0",
     "ts-node": "^8.0.3",
     "typescript": "^3.4.1",
-    "ts-loader": "^6.1.0",
     "webpack": "^4.40.1",
     "webpack-cli": "^3.3.8"
   },
