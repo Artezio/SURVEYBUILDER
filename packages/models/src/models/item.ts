@@ -61,13 +61,7 @@ export class Item implements IItem {
     }
 
     removeEnableWhen(enableWhen: EnableWhen) {
-        let position;
-        this.enableWhen.find((EW, i) => {
-            if (EW.id === enableWhen.id) {
-                position = i;
-                return true;
-            }
-        })
+        const position = this.enableWhen.findIndex(EW => EW.id === enableWhen.id);
         if (position !== undefined) {
             this.enableWhen.splice(position, 1);
             this.enableWhenIdMap.delete(enableWhen.id);
