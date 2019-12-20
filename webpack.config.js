@@ -1,4 +1,5 @@
 const path = require('path');
+const pathToArtezioPackages = path.resolve(__dirname, './node_modules/@artezio');
 
 module.exports = {
     mode: "production",
@@ -10,13 +11,14 @@ module.exports = {
         libraryTarget: 'umd'
     },
     resolve: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"]
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        modules: ['node_modules'],
+        symlinks: false
     },
     module: {
         rules: [
             {
-                test: /\.ts(x?)$/,
-                exclude: /node_modules/,
+                test: /\.(ts|js|tsx|jsx)$/,
                 use: [
                     {
                         loader: "ts-loader"
@@ -36,5 +38,8 @@ module.exports = {
                 ],
             }
         ]
+    },
+    externals: {
+        "react": "react",
     }
 };

@@ -1,10 +1,9 @@
 {
   "name": "@artezio/surveybuilder",
   "private": true,
-  "main": "./src/index.ts",
+  "main": "./dist/bundle.js",
   "version": "1.0.1",
   "license": "ISC",
-  "homepage": ".",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "publish": "lerna publish",
@@ -22,7 +21,9 @@
     "@artezio/observable": "^1.0.3",
     "@artezio/observable-react": "^1.0.2",
     "@artezio/player": "^0.1.4",
-    "lerna": "^3.13.0",
+    "lerna": "^3.13.0"
+  },
+  "peerDependencies": {
     "bootstrap": "^4.3.1",
     "bootstrap-scss": "4.3.1",
     "react": "^16.8.3"
