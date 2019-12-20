@@ -16,12 +16,12 @@
     "bundle": "webpack"
   },
   "dependencies": {
-    "@artezio/designer": "@artezio/designer",
-    "@artezio/fhir-converter": "@artezio/fhir-converter",
-    "@artezio/models": "@artezio/models",
-    "@artezio/observable": "@artezio/observable",
-    "@artezio/observable-react": "@artezio/observable-react",
-    "@artezio/player": "@artezio/player",
+    "@artezio/designer": "^0.1.9",
+    "@artezio/fhir-converter": "^1.0.2",
+    "@artezio/models": "^0.1.8",
+    "@artezio/observable": "^1.0.3",
+    "@artezio/observable-react": "^1.0.2",
+    "@artezio/player": "^0.1.4",
     "lerna": "^3.13.0",
     "bootstrap": "^4.3.1",
     "bootstrap-scss": "4.3.1",

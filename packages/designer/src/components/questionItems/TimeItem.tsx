@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TimeItemProps } from '../../interfaces/components/questionItems/TimeItemProps';
 import { Form, Text } from 'informed';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import QuestionItem from './QuestionItem';
 
 

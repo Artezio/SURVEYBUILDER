@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ChoiceOptionProps from '../interfaces/components/ChoiceOptionProps';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 
 export class ChoiceOption extends React.Component<ChoiceOptionProps> {
     RadioRef: React.RefObject<HTMLInputElement> = React.createRef();

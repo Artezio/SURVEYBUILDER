@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import BottomItemCollectionMenuProps from '../interfaces/components/BottomItemCollectionMenuProps';
 
 

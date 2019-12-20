@@ -1,10 +1,10 @@
 import * as React from 'react';
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import ItemSettingsPanelProps from '../interfaces/components/ItemSettingsPanelProps';
 import { HumanReadableGuid } from '../helpers/humanReadableId';
 import { questionTypes } from '../constants/questionTypes';
 import EnableSettings from './enableWhen/EnableSettings';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import { Form, Checkbox, FormApi } from 'informed';
 
 

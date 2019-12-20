@@ -25,6 +25,6 @@ module.exports = {
         ]
     },
     externals: {
-        "@surveybuilder/models": "@surveybuilder/models"
+        "@artezio/models": "@artezio/models"
     }
 }

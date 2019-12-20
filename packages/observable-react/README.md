@@ -14,7 +14,7 @@ Using yarn:
 # Using example
 
 ```TSX
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 
 class MyComponent {
     render() {

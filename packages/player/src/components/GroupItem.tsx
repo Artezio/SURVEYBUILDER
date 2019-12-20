@@ -1,6 +1,6 @@
 import * as React from 'react';
 import GroupItemProps from '../interfaces/components/GroupItemProps';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import ItemWrapper from './ItemWrapper';
 
 

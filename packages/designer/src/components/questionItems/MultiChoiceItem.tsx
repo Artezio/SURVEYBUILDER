@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MultiChoiceItemProps } from '../../interfaces/components/questionItems/MultiChoiceItemProps';
-import * as Models from '@surveybuilder/models';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import * as Models from '@artezio/models';
+import { useObservableModel } from '@artezio/observable-react';
 import MultiChoiceOption from '../MultiChoiceOption';
 
 

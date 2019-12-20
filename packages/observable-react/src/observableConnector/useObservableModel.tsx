@@ -1,6 +1,6 @@
 import * as React from 'react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
-import { isObservable, getObservable } from '@surveybuilder/observable';
+import { isObservable, getObservable } from '@artezio/observable';
 
 
 interface IDisposable {

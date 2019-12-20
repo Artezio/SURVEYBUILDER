@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { QuestionnairePlayerProps } from '../interfaces/components/QuestionnairePlayerProps';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import ItemWrapper, { ERROR_ITEM_CLASS_NAME } from './ItemWrapper';
 import { Form, FormApi } from 'informed';
 import IFormState from '../interfaces/IFormState';

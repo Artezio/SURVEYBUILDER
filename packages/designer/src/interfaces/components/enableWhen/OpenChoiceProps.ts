@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import { FormState, FormApi } from 'informed';
 
 export interface OpenChoiceProps {

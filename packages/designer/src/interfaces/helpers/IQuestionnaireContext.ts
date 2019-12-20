@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import SETTINGS_DISPLAY_MODE from '../../constants/questionnaireDesigner';
 
 export interface IQuestionnaireContext {

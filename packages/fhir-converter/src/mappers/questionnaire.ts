@@ -1,5 +1,5 @@
 import FHIRQuestionnaire from "../interfaces/FHIRModels/Questionnaire";
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import { questionnaireItemConverter } from "./questionnaireItem";
 import { IQuestionnaireConverter } from '../interfaces/IQuestionnaireConverter';
 

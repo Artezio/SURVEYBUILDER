@@ -1,5 +1,5 @@
 import { ATTACHMENT } from "../../constants/itemTypes";
-import { observable, getObservable } from '@surveybuilder/observable';
+import { observable, getObservable } from '@artezio/observable';
 import { IItemCollection } from "../../interfaces/IItemCollection";
 import IAttachmentItem from "../../interfaces/questionItems/IAttachmentItem";
 import QuestionItem from "./questionItem";

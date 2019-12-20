@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import MultiChoiceItemProps from '../../interfaces/components/questionItems/MultiChoiceItemProps';
 import MultiChoiceItemOption from '../MultiChoiceItemOption';
 import { Scope, withFormApi, FormState } from 'informed';

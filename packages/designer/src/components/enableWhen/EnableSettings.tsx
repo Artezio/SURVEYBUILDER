@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import EnableSettingsProps from '../../interfaces/components/enableWhen/EnableConditionsProps';
 import { Form, Scope, FormApi, Select, Option } from 'informed';
 import EnableWhen from './EnableWhen';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 
 export class EnableSettings extends React.Component<EnableSettingsProps> {
     formApi?: FormApi<Pick<Models.Item, 'enableWhen' | 'enableBehavior'>>;

@@ -1,4 +1,4 @@
-import { observable } from '@surveybuilder/observable';
+import { observable } from '@artezio/observable';
 import { IDateTimeItem } from "../../interfaces/questionItems/IDateTimeItem";
 import { DATE_TIME } from "../../constants/itemTypes";
 import QuestionItem from './questionItem';

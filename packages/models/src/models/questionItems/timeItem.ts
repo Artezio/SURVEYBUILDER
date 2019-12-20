@@ -1,5 +1,5 @@
 import { ITimeItem } from "../../interfaces/questionItems/ITimeItem";
-import { observable } from '@surveybuilder/observable';
+import { observable } from '@artezio/observable';
 import QuestionItem from "./questionItem";
 import { TIME } from "../../constants/itemTypes";
 

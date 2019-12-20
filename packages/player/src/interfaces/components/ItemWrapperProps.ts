@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import IWithFormApi from '../IWithFormApi';
 
 

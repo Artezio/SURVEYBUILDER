@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import ItemWrapperProps from '../interfaces/components/ItemWrapperProps';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import ItemProvider from './ItemProvider';
 import { FormState, withFormApi } from 'informed';
 

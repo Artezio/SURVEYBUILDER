@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BooleanItemProps } from '../../interfaces/components/questionItems/BooleanItemProps';
 import { Form, RadioGroup, Radio } from 'informed';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import QuestionItem from './QuestionItem';
 
 

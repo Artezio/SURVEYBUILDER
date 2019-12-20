@@ -1,5 +1,5 @@
 import { BOOLEAN } from "../../constants/itemTypes";
-import { observable } from '@surveybuilder/observable';
+import { observable } from '@artezio/observable';
 import QuestionItem from "./questionItem";
 import { IBooleanItem } from "../../interfaces/questionItems/IBooleanItem";
 

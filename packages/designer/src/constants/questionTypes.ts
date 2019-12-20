@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import { QuestionTypeMenuOption } from '../interfaces/components/SelectMenuProps';
 
 export const questionTypes: QuestionTypeMenuOption[] = [

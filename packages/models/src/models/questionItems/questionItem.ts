@@ -1,7 +1,7 @@
 import IQuestionItem from "../../interfaces/questionItems/IQuestionItem";
 import { QUESTION_TYPE } from "../../constants/itemTypes";
 import { IItemCollection } from "../../interfaces/IItemCollection";
-import { observableProperty } from "@surveybuilder/observable";
+import { observableProperty } from "@artezio/observable";
 import Item from "../item";
 import InitialAnswerFactory from "../../factories/initialAnswerFactory";
 import { InitialAnswer } from "../initialAnswer";

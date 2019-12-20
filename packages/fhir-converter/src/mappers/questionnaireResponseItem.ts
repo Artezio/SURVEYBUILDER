@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import ResponseItem from '../interfaces/FHIRModels/ResponseItem';
 import answerToModelConverter from './FhirToModelConverters/answer';
 import answerFromModelConverter from './ModelToFhirCOnverters/answer';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ItemCollectionMenuProps } from '../interfaces/components/ItemCollectionMenuProps';
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 
 
 export class ItemCollectionMenu extends React.Component<ItemCollectionMenuProps> {

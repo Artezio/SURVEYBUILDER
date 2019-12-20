@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MultiChoiceOptionProps from '../interfaces/components/MultiChoiceOptionProps';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 
 export class MultiChoiceOption extends React.Component<MultiChoiceOptionProps> {
 

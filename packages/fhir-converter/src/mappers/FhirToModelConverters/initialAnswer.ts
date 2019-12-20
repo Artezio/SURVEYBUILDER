@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 
 export const initialAnswerToModelConverter = (initialAnswer: any): Models.IInitialAnswer<any> => {
     const newInitialAnswer: Models.IInitialAnswer<any> = {

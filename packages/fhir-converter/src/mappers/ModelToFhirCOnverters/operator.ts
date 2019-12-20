@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import * as FHIREnableWhenOperator from '../../constants/FHIREnableWhenOperator';
 
 export const operatorFromModelConverter = (operator: Models.EnableWhenOperator): FHIREnableWhenOperator.FHIREnableWhenOperator => {

@@ -1,6 +1,6 @@
 import { TEXT } from "../../constants/itemTypes";
 import { QuestionItem } from "./questionItem";
-import { observable } from '@surveybuilder/observable';
+import { observable } from '@artezio/observable';
 import ITextItem from "../../interfaces/questionItems/ITextItem";
 
 @observable

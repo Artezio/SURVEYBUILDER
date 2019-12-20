@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import EnableWhenProps from '../../interfaces/components/enableWhen/EnableWhenProps';
 import { Select, Option, withFormApi, FormState } from 'informed';
 import QuestionItemProvider from './QuestionItemProvider';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import HumanReadableGuid from '../../helpers/humanReadableId';
 
 type OperatorType = { value: Models.EnableWhenOperator, text: string };

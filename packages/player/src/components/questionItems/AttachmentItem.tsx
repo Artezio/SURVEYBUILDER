@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import AttachmentItemProps from '../../interfaces/components/questionItems/AttachmentItemProps';
 import { FileInput } from '../informedCustomInputs/FileInput';
 

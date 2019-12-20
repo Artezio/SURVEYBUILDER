@@ -25,6 +25,6 @@ module.exports = {
         ]
     },
     externals: {
-        "@surveybuilder/observable": "@surveybuilder/observable"
+        "@artezio/observable": "@artezio/observable"
     }
 }

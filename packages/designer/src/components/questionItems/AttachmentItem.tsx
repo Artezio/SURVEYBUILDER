@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import { AttachmentItemProps } from '../../interfaces/components/questionItems/AttachmentItemProps';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import { Form, Checkbox } from 'informed';
 import QuestionItem from './QuestionItem';
 

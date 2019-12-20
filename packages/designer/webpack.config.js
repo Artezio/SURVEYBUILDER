@@ -39,7 +39,7 @@ module.exports = {
     },
     externals: {
         "react": "react",
-        "@surveybuilder/models": "@surveybuilder/models",
-        "@surveybuilder/observable-react": "@surveybuilder/observable-react"
+        "@artezio/models": "@artezio/models",
+        "@artezio/observable-react": "@artezio/observable-react"
     }
 };

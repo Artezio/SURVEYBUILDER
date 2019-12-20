@@ -1,5 +1,5 @@
 import { DECIMAL } from "../../constants/itemTypes";
-import { observable } from '@surveybuilder/observable';
+import { observable } from '@artezio/observable';
 import IDecimalItem from "../../interfaces/questionItems/IDecimalItem";
 import QuestionItem from "./questionItem";
 

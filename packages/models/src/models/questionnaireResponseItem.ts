@@ -1,4 +1,4 @@
-import { observable, observableProperty, getObservable } from '@surveybuilder/observable';
+import { observable, observableProperty, getObservable } from '@artezio/observable';
 import { IQuestionnaireResponseItem } from "../interfaces/IQuestionnaireResponseItem";
 import uuid from 'uuid/v1';
 import Answer from "./answer";

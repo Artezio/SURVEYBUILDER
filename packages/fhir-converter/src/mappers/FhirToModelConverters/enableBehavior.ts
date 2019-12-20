@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import { FHIREnableBehavior, ALL, ANY } from '../../constants/FHIREnableBehavior';
 
 export const enableBehaviorToModelConverter = (enableBehavior: FHIREnableBehavior): Models.EnableBehavior => {

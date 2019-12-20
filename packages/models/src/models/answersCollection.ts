@@ -1,4 +1,4 @@
-import { observable, getObservable } from "@surveybuilder/observable";
+import { observable, getObservable } from "@artezio/observable";
 import IEnableWhenAnswer from "../interfaces/IEnableWhenAnswer";
 import IAnswer from "../interfaces/IAnswer";
 

@@ -1,4 +1,4 @@
-import { observable, observableProperty, getObservable } from '@surveybuilder/observable';
+import { observable, observableProperty, getObservable } from '@artezio/observable';
 import uuid from "uuid/v1";
 import { IItemCollection } from "../interfaces/IItemCollection";
 import { EnableBehavior, AND } from "../constants/enableBehavior";

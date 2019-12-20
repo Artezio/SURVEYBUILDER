@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import QuestionnaireResponse from "../interfaces/FHIRModels/QuestionnaireResponse";
 import { questionnaireResponseItemConverter } from './questionnaireResponseItem';
 import { IQuestionnaireResponseConverter } from '../interfaces/IQuestionnaireResponseConverter';

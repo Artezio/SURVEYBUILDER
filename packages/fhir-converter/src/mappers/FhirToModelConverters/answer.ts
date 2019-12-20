@@ -1,4 +1,4 @@
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import questionnaireResponseItemConverter from '../questionnaireResponseItem';
 
 export const answerToModelConverter = (answer: any): Models.IAnswer<any> => {

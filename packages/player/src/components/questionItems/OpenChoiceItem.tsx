@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as Models from '@surveybuilder/models';
+import * as Models from '@artezio/models';
 import { RadioGroup, Radio, Text, withFormApi, FormState } from 'informed';
-import { useObservableModel } from '@surveybuilder/observable-react';
+import { useObservableModel } from '@artezio/observable-react';
 import OpenChoiceItemProps from '../../interfaces/components/questionItems/OpenChoiceItemProps';
 
 
