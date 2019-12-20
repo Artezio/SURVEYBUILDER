@@ -83,16 +83,10 @@ const _handler = {
             if (target[propertyName] === value) {
                 return true;
             }
-
-            if (Array.isArray(target) && propertyName === 'length') {
-                target[propertyName] = value;
-                return true;
-            }
-
             target[propertyName] = value;
         }
 
-        if (notEqualToSymbols(propertyName as any)) {
+        if (notEqualToSymbols(propertyName as any) && !(Array.isArray(target) && propertyName === 'length')) {
             target[emitChange] && target[emitChange]();
         }
 
