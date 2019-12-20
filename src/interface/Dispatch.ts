@@ -1,1 +1,0 @@
-export type Dispatch = (args?: any) => Promise<{ error?: any, data?: any }>;
