@@ -1,0 +1,7 @@
+.questionnaire-item:not(.card-active) {
+  > .drag-handle:not(:hover) {
+    .fa-grip-horizontal {
+      display: none;
+    }
+  }
+}

@@ -57,7 +57,6 @@ Read instructions how to use packages separately in [section below](#learn-more-
 * [fhir-converter](./packages/fhir-converter/README.md "@artezio/fhir-converter package")
 * [observable](./packages/observable/README.md "@artezio/observable package")
 * [observable-react](./packages/observable-react/README.md)
-* [demo-app](./demo-app/README.md "@artezio/demo-app")
 
 
 &nbsp;
@@ -74,7 +73,7 @@ We created demo app to show you how our components can be used.
 
     > $ yarn
 
-    To find out how to run it follow the link [README.md](./doc/DEMO-APP.md).
+    To find out how to run it follow the link [README.md](./demo-app/README.md).
 
 
 # Applying custom converter

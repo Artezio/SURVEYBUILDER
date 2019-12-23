@@ -15,7 +15,7 @@ Library has peer dependency which you should know about. Install it with followi
 &nbsp;
 # Example
 
-This models are mostly used with [designer](./../designer/README.md "@artezio/designer package") and [player](./../player/README.md "@artezio/player package") so it's enough to use it like this:
+This models are mostly used with [designer](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/designer/README.md "@artezio/designer package") and [player](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/player/README.md "@artezio/player package") so it's enough to use it like this:
 ```JSX
 import { Questionnaire, QuestionnaireResponse } from '@artezio/models';
 

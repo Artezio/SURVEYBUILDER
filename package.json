@@ -1,42 +1,16 @@
 {
   "name": "@artezio/surveybuilder",
   "private": true,
-  "main": "./dist/bundle.js",
   "version": "1.0.1",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "publish": "lerna publish",
-    "build": "lerna bootstrap & lerna run build --scope @artezio/observable & lerna run build --scope @artezio/observable-react & lerna run build --scope @artezio/fhir-converter & lerna run build --scope @artezio/models & lerna run build --scope @artezio/player & lerna run build --scope @artezio/designer",
-    "start": "node scripts/start.js",
-    "build-demo": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "mocha": "ts-mocha tests/**/*.test.ts",
-    "bundle": "webpack"
+    "build": "lerna bootstrap & lerna run build --scope @artezio/observable & lerna run build --scope @artezio/observable-react & lerna run build --scope @artezio/fhir-converter & lerna run build --scope @artezio/models & lerna run build --scope @artezio/player & lerna run build --scope @artezio/designer & lerna run build --scope @artezio/surveybuilder",
+    "start": "node demo-app/scripts/start.js",
+    "test": "ts-mocha tests/**/*.test.ts"
   },
   "dependencies": {
-    "@artezio/designer": "^0.1.9",
-    "@artezio/fhir-converter": "^1.0.2",
-    "@artezio/models": "^0.1.8",
-    "@artezio/observable": "^1.0.3",
-    "@artezio/observable-react": "^1.0.2",
-    "@artezio/player": "^0.1.4",
-    "informed": "^2.11.16",
     "lerna": "^3.13.0"
-  },
-  "peerDependencies": {
-    "bootstrap": "^4.3.1",
-    "bootstrap-scss": "4.3.1",
-    "react": "^16.8.3"
-  },
-  "devDependencies": {
-    "css-loader": "2.1.1",
-    "sass-loader": "7.2.0",
-    "style-loader": "1.0.0",
-    "ts-loader": "^6.1.0",
-    "typescript": "^3.6.2",
-    "webpack": "4.40.2",
-    "webpack-cli": "^3.3.9"
   },
   "workspaces": [
     "packages/*"

@@ -1,6 +1,6 @@
 # **@artezio/observable-react**
 
-Heigh-ordered-component was designed to work together with @artezio/observable. Read about @artezio/observable here [README](../observable/README.md).
+Heigh-ordered-component was designed to work together with @artezio/observable. Read about @artezio/observable here [README](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/observable/README.md).
 
 This HOC subscribes on every observable model that is passed to the component and puts it to the state. Observable models are substituted by models from the state, other props are passed through the HOC without changes. When models changed HOC does setState and pass new objects to the component and it will cause rerender.
 
