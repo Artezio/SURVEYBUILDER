@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/index.ts",
   "version": "1.0.1",
-  "license": "MIT",
+  "license": "ISC",
   "homepage": ".",
   "scripts": {
     "start": "node scripts/start.js",

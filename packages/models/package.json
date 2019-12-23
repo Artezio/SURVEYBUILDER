@@ -2,7 +2,7 @@
   "name": "@artezio/models",
   "version": "0.1.11",
   "main": "./dist/index.js",
-  "license": "MIT",
+  "license": "ISC",
   "publishConfig": {
     "access": "public"
   },
@@ -35,5 +35,6 @@
     "typescript": "^3.3.4000",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8"
-  }
+  },
+  "gitHead": "689963dcb9612cc39603d3a46d9170e0876ec0e8"
 }
