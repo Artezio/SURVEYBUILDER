@@ -51,12 +51,12 @@ Read instructions how to use packages separately in [section below](#learn-more-
 ![uml diagram](./doc/Uml-diagram-modules.jpg)
 
 # Learn more about packages
-* [designer](./packages/designer/README.md "@artezio/designer package")
-* [player](./packages/player/README.md "@artezio/player package")
-* [models](./packages/models/README.md "@artezio/models package")
-* [fhir-converter](./packages/fhir-converter/README.md "@artezio/fhir-converter package")
-* [observable](./packages/observable/README.md "@artezio/observable package")
-* [observable-react](./packages/observable-react/README.md)
+* [designer](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/designer/README.md "@artezio/designer package")
+* [player](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/player/README.md "@artezio/player package")
+* [models](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/models/README.md "@artezio/models package")
+* [fhir-converter](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/fhir-converter/README.md "@artezio/fhir-converter package")
+* [observable](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/observable/README.md "@artezio/observable package")
+* [observable-react](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/observable-react/README.md)
 
 
 &nbsp;
@@ -66,14 +66,14 @@ We created demo app to show you how our components can be used.
     https://surveybuilder.now.sh/
 
 * ## Demo with code in sandbox
-    https://codesandbox.io/s/github/Artezio/SURVEYBUILDER/tree/master/?fontsize=14&hidenavigation=1&theme=dark
+    https://codesandbox.io/s/github/Artezio/SURVEYBUILDER/tree/master/demo-app?fontsize=14&hidenavigation=1&theme=dark
 
 * ## Launch on your computer
     First clone the repository. Then you are to download all dependencies, to do it run following command in the root dir(surveybuilder/): 
 
     > $ yarn
 
-    To find out how to run it follow the link [README.md](./demo-app/README.md).
+    To find out how to run it follow the link [README.md](https://github.com/Artezio/SURVEYBUILDER/tree/master/demo-app/README.md).
 
 
 # Applying custom converter
@@ -118,4 +118,4 @@ Each converter must have 2 functions:
 | toModel | customModel | This function must receive custom mode and return model in format described below |
 | fromModel | model | This function must receive model in format described below and return custom model |
 
-Models interfaces are described in [models package](./packages/models/README.md "@artezio/models package") in "Detailed description for models" section.
+Models interfaces are described in [models package](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/models/README.md "@artezio/models package") in "Detailed description for models" section.

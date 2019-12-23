@@ -1,6 +1,6 @@
 # **@artezio/player**
 
-QuestionnairePlayer is a react component, use it to pass the questionnaire. It requires two properties to be rendered: questionnaire and questionnaireResponse model made with [@artezio/models](./../models/README.md "@artezio/models").
+QuestionnairePlayer is a react component, use it to pass the questionnaire. It requires two properties to be rendered: questionnaire and questionnaireResponse model made with [@artezio/models](https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/models/README.md "@artezio/models").
 Component has 3 more properties: onSubmit, onError, forwardRef. Use them to handle submit, handle error, initiate submit.
 
 * onSubmit - A function that gets called when form is submitted successfully. The function receives the questionnaireResponse as a parameter.
@@ -35,7 +35,7 @@ Library has few peer dependencies which you should know about. Install them all 
 
 >$ npm install @artezio/observable @artezio/observable-react @artezio/models
 
-As an alternative you may want to install all in one touch. Check it out [README](../../README.md).
+As an alternative you may want to install all in one touch. Check it out [README](https://github.com/Artezio/SURVEYBUILDER/).
 
 &nbsp;
 # Example

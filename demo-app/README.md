@@ -1,122 +1,51 @@
-# **SURVEYBUILDER**
-FHIR R4 compatibly questionnaire designer/player. If you are not familiar with medical standard FHIR R4 check out the [following refs](#interesting-references).
+# **About**
 
-Surveybuilder is a set of typescript packages. It presents two react components: "Questionnaire Designer" and "Questionnaire Player". Questionnaire designer is designed to create/update questionnaires. Questionnaire player is designed to answer questionnaires. Components are designed in bootstrap style, so you can easily add bootstrap themes to change there appearance. This components work with our observable models from models package, but this models are fully compatible with FHIR R4 standard. All models can be converted to FHIR R4 standard and back via fhir-converter package. Surveybuilder can be also used in other spheres. To serialize models to another format different from FHIR R4 you must use your custom converter. See how to add your converter in section [below](#applying-custom-converter).
+This app was designed to show how components, models, and converters work together. If you don't know about surveybuilder check it [README.md](../README.md "@surveybuilder").
+***
+### **This application has 4 pages:**
+* Questionnaire list
 
-# Interesting references
+A main page provides a list of already existing questionnaires. Click on the name of exact questionnaire will link you to questionnaire editor page where you can change the questionnaire structure. Or you can create a new one. See the #Routes
 
-* HL7 FHIR - http://hl7.org/fhir/
-* Questionnaire FHIR model - https://www.hl7.org/fhir/questionnaire.html
-* Questionnaire response FHIR model - https://www.hl7.org/fhir/questionnaireresponse.html
+* Questionnaire editor
 
+Page contains [questionnaire designer](../packages/designer/README.md "@surveybuilder/designer") which works in two modes: creating and updating. See [Routes section](#Routes) below to distinguish them.
 
-# Installation
+* Response List
 
-Using npm:
->$ npm install @artezio/surveybuilder
+Page with list of responses(if exists) for concrete questionnaire. You can give a new response or update an existing one.
 
-Using yarn:
->$ yarn add @artezio/surveybuilder
+* Response editor
 
-# Usage 
+Page contains [questionnaire player](../packages/player/README.md "@surveybuilder/player") which works in two modes: creating and updating. See [Routes section](#Routes) below to distinguish them.
 
-Designer
-```TSX
-import { render } from 'react-dom';
-import { Questionnaire, QuestionnaireDesigner } from '@artezio/surveybuilder';
+&nbsp;
+# Routes
 
-const questionnaireModel = new Questionnaire();
-render(<QuestionnaireDesigner questionnaireModel={questionnaireModel} />, document.getElementById('root'));
-```
+* List of existing questionnaire - "/"
+* Questionnaire editor(creating) - "/questionnaire"
+* Questionnaire editor(updating) - "/questionnaire/:questionnaireId"
+* List of existing responses to concrete questionnaire - "/responses/:questionnaireId"
+* Questionnaire player(new response) - "/questionnaire/:questionnaireId/response"
+* Questionnaire player(update existing response) - "/questionnaire/:questionnaireId/response/responseId"
 
-Player
-```TSX
-import { render } from 'react-dom';
-import { QuestionnaireResponse, QuestionnairePlayer } from '@artezio/surveybuilder';
-
-const questionnaire = { 
-    title: 'My Questionnaire', 
-    items: [
-        { test: 'Do you smoke?', type: 'BOOLEAN' }
-    ] 
-};
-const questionnaireResponseModel = new QuestionnaireResponse(questionnaire);
-render(<QuestionnairePlayer questionnaireResponseModel={questionnaireModel} questionnaire={questionnaire} />, document.getElementById('root'));
-```
-
-Read instructions how to use packages separately in [section below](#learn-more-about-packages).
-
-# Components diagram
-
-![uml diagram](./doc/Uml-diagram-modules.jpg)
-
-# Learn more about packages
-* [designer](./packages/designer/README.md "@artezio/designer package")
-* [player](./packages/player/README.md "@artezio/player package")
-* [models](./packages/models/README.md "@artezio/models package")
-* [fhir-converter](./packages/fhir-converter/README.md "@artezio/fhir-converter package")
-* [observable](./packages/observable/README.md "@artezio/observable package")
-* [observable-react](./packages/observable-react/README.md)
-* [demo-app](./demo-app/README.md "@artezio/demo-app")
+&nbsp;
+# Prerequisites
+To run demo app, you need the following prerequisites:
+* Node 10.16.3 or greater.
+* Yarn 1.13.0 or greater.
+* Git 2.18.0 or greater.
 
 
 &nbsp;
-# What does it look like
-We created demo app to show you how our components can be used.
-* ## Demo
-    https://surveybuilder.now.sh/
+# Usage
+Make sure you have installed all dependencies, if not run following in the root directory (surveybuilder/):
+>$ yarn 
 
-* ## Demo with code in sandbox
-    https://codesandbox.io/s/github/Artezio/SURVEYBUILDER/tree/master/?fontsize=14&hidenavigation=1&theme=dark
+Run same command in surveybuilder/demo-app/ to install dependencies for demo-app:
+>$ yarn
 
-* ## Launch on your computer
-    First clone the repository. Then you are to download all dependencies, to do it run following command in the root dir(surveybuilder/): 
+To run app, type following in the current directory(surveybuilder/packages/demo-app/):
+>$ yarn start
 
-    > $ yarn
-
-    To find out how to run it follow the link [README.md](./doc/DEMO-APP.md).
-
-
-# Applying custom converter
-
-Your custom converter must have 2 objects: questionnaire converter and questionnaire response converter. For example lets consider how they are used with fhir-converter:
-
-```javascript
-import { questionnaireConverter } from "@artezio/fhir-converter";
-
-const questionnaireModel = {
-    "id": '1',
-    "title": 'Questionnaire',
-    "items": [
-        {
-            "id": 'item_1',
-            "type": 'CHOICE'
-        }
-    ]
-};
-const questionnaireFhirR4Model = questionnaireConverter.fromModel(questionnaireModel);
-```
-
-```javascript
-import { questionnaireResponseConverter } from "@artezio/fhir-converter";
-
-const responseFhirR4Model = {
-    "resourceType": "QuestionnaireResponse",
-    "id": "3141",
-    "item": [
-        {
-        "linkId": "1"
-        }
-    ]
-};
-const responseModel = questionnaireResponseConverter.toModel(responseFhirR4Model);
-```
-
-Each converter must have 2 functions:
-
-| Name | argument | Description | 
-| :---- | :-------- | :----- |
-| toModel | customModel | This function must receive custom mode and return model in format described below |
-| fromModel | model | This function must receive model in format described below and return custom model |
-
-Models interfaces are described in [models package](./packages/models/README.md "@artezio/models package") in "Detailed description for models" section.
+After you run app, webpack devServer will be launched on 3000 port http://localhost:3000/.
