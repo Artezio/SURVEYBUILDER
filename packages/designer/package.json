@@ -1,7 +1,7 @@
 {
   "name": "@artezio/designer",
   "version": "0.1.13",
-  "license": "ISC",
+  "license": "MIT",
   "main": "./dist/index.js",
   "publishConfig": {
     "access": "public"
@@ -160,5 +160,5 @@
       "react-app"
     ]
   },
-  "gitHead": "689963dcb9612cc39603d3a46d9170e0876ec0e8"
+  "gitHead": "44a99cc0369a888480fbd636048bb7a54e19a776"
 }

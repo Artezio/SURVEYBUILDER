@@ -2,7 +2,7 @@
   "name": "@artezio/observable",
   "version": "1.0.4",
   "main": "./dist/index.js",
-  "license": "ISC",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
@@ -29,5 +29,6 @@
   },
   "dependencies": {
     "reflect-metadata": "^0.1.13"
-  }
+  },
+  "gitHead": "44a99cc0369a888480fbd636048bb7a54e19a776"
 }

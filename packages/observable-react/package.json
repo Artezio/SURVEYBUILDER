@@ -2,7 +2,7 @@
   "name": "@artezio/observable-react",
   "version": "1.0.6",
   "main": "./dist/index.js",
-  "license": "ISC",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
@@ -22,5 +22,5 @@
     "webpack": "^4.40.1",
     "webpack-cli": "^3.3.8"
   },
-  "gitHead": "689963dcb9612cc39603d3a46d9170e0876ec0e8"
+  "gitHead": "44a99cc0369a888480fbd636048bb7a54e19a776"
 }

@@ -2,7 +2,7 @@
   "name": "@artezio/surveybuilder",
   "private": true,
   "version": "1.0.1",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna bootstrap & lerna run build --scope @artezio/observable & lerna run build --scope @artezio/observable-react & lerna run build --scope @artezio/fhir-converter & lerna run build --scope @artezio/models & lerna run build --scope @artezio/player & lerna run build --scope @artezio/designer & lerna run build --scope @artezio/surveybuilder",
