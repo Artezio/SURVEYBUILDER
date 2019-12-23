@@ -1,18 +1,18 @@
 {
   "name": "@artezio/surveybuilder",
   "main": "./dist/bundle.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "scripts": {
     "build": "webpack"
   },
   "dependencies": {
-    "@artezio/designer": "^0.1.12",
-    "@artezio/fhir-converter": "^1.0.5",
-    "@artezio/models": "^0.1.11",
-    "@artezio/observable": "^1.0.3",
-    "@artezio/observable-react": "^1.0.5",
-    "@artezio/player": "^0.1.7"
+    "@artezio/designer": "^0.1.13",
+    "@artezio/fhir-converter": "^1.0.6",
+    "@artezio/models": "^0.1.12",
+    "@artezio/observable": "^1.0.4",
+    "@artezio/observable-react": "^1.0.6",
+    "@artezio/player": "^0.1.8"
   },
   "peerDependencies": {
     "react": "^16.8.3"
