@@ -1,0 +1,9 @@
+.list-group-item {
+  @extend .px-0;
+}
+
+.list-group-flush {
+  .list-group-item {
+    background-color: inherit;
+  }
+}

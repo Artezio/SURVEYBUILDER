@@ -1,0 +1,21 @@
+.main-content {
+  position: relative;
+}
+
+.buttons-below-designer {
+  position: sticky;
+  bottom: 0;
+  @extend .py-2;
+}
+
+#root,
+.wrapper,
+.main-content,
+.buttons-below-designer {
+  background-color: inherit;
+}
+.main-content {
+  div:first-child {
+    background-color: inherit;
+  }
+}

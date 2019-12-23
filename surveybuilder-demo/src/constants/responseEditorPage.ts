@@ -1,0 +1,46 @@
+export enum ACTIONS {
+    LOAD_QUESTIONNAIRE_FETCHING = 'LOAD_QUESTIONNAIRE_FETCHING_REP',
+    LOAD_QUESTIONNAIRE_LOADED = 'LOAD_QUESTIONNAIRE_LOADED_REP',
+    LOAD_QUESTIONNAIRE_ERROR = 'LOAD_QUESTIONNAIRE_ERROR_REP',
+    LOAD_RESPONSE_FETCHING = 'LOAD_RESPONSE_FETCHING_REP',
+    LOAD_RESPONSE_LOADED = 'LOAD_RESPONSE_LOADED_REP',
+    LOAD_RESPONSE_ERROR = 'LOAD_RESPONSE_ERROR_REP',
+    CREATE_NEW_RESPONSE = 'CREATE_NEW_RESPONSE',
+    SAVE_RESPONSE_SAVING = 'SAVE_RESPONSE_SAVING_REP',
+    SAVE_RESPONSE_SAVED = 'SAVE_RESPONSE_SAVED_REP',
+    SAVE_RESPONSE_ERROR = 'SAVE_RESPONSE_ERROR_REP',
+    UPDATE_RESPONSE_UPDATING = 'UPDATE_RESPONSE_UPDATING_REP',
+    UPDATE_RESPONSE_UPDATED = 'UPDATE_RESPONSE_UPDATED_REP',
+    UPDATE_RESPONSE_ERROR = 'UPDATE_RESPONSE_ERROR_REP',
+    RESET_SAVING_STATUS = 'RESET_SAVING_STATUS_REP',
+    RESET_RESOURCES = 'RESET_RESOURCES'
+}
+
+export enum STATUS_RESPONSE_LOADING {
+    fetching = 'fetching',
+    loaded = 'loaded',
+    error = 'error'
+}
+
+export enum STATUS_QUESTIONNAIRE_LOADING {
+    fetching = 'fetching',
+    loaded = 'loaded',
+    error = 'error'
+}
+
+export enum STATUS_SAVING_RESPONSE {
+    saving = 'saving',
+    saved = 'saved',
+    error = 'error'
+}
+
+export enum STATUS_UPDATING_RESPONSE {
+    updating = 'updating',
+    updated = 'updated',
+    error = 'error'
+}
+
+export enum MODE {
+    creating = 'creating',
+    updating = 'updating'
+}

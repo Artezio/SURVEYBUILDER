@@ -1,0 +1,202 @@
+[
+    {
+        "authored": "2019-10-14T11:54:37.939Z",
+        "id": "8f660ab0-d575-11e9-a346-ed8aafeddd8d",
+        "questionnaire": "Questionnaire/6c8e4e40-d556-11e9-8e60-37442f196308",
+        "resourceType": "QuestionnaireResponse",
+        "item": [
+            {
+                "id": "8f6631c0-d575-11e9-a346-ed8aafeddd8d",
+                "linkId": "0dd73730-d557-11e9-8e60-37442f196308",
+                "text": "General Information:",
+                "answer": [],
+                "item": [
+                    {
+                        "id": "8f6631c1-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "4280b4f0-d572-11e9-b6ee-732b8cd43dfe",
+                        "text": "Date",
+                        "answer": [
+                            {
+                                "id": "a7b57dd0-d575-11e9-a346-ed8aafeddd8d",
+                                "valueString": "2019-09-12T18:54",
+                                "item": []
+                            }
+                        ],
+                        "item": []
+                    },
+                    {
+                        "id": "8f6658d0-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "740f1f90-d557-11e9-8e60-37442f196308",
+                        "text": "Patient Name",
+                        "answer": [
+                            {
+                                "id": "a96cf1d0-d575-11e9-a346-ed8aafeddd8d",
+                                "valueString": "Alex",
+                                "item": []
+                            }
+                        ],
+                        "item": []
+                    },
+                    {
+                        "id": "8f6658d1-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "7c2c9b80-d557-11e9-8e60-37442f196308",
+                        "text": "Date of Birth",
+                        "answer": [
+                            {
+                                "id": "ad683b50-d575-11e9-a346-ed8aafeddd8d",
+                                "valueString": "1987-05-19",
+                                "item": []
+                            }
+                        ],
+                        "item": []
+                    },
+                    {
+                        "id": "8f667fe0-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "1a170ca0-d557-11e9-8e60-37442f196308",
+                        "text": "Gender",
+                        "answer": [
+                            {
+                                "id": "866640b0-d557-11e9-8e60-37442f196308",
+                                "valueString": "Male",
+                                "item": []
+                            }
+                        ],
+                        "item": []
+                    },
+                    {
+                        "id": "8f667fe1-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "8f861170-d557-11e9-8e60-37442f196308",
+                        "text": "Height",
+                        "answer": [
+                            {
+                                "id": "afbbef50-d575-11e9-a346-ed8aafeddd8d",
+                                "valueString": 185,
+                                "item": []
+                            }
+                        ],
+                        "item": []
+                    },
+                    {
+                        "id": "8f667fe2-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "945e4d70-d557-11e9-8e60-37442f196308",
+                        "text": "Weight",
+                        "answer": [
+                            {
+                                "id": "b09deae0-d575-11e9-a346-ed8aafeddd8d",
+                                "valueString": 81,
+                                "item": []
+                            }
+                        ],
+                        "item": []
+                    },
+                    {
+                        "id": "8f66a6f0-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "9eb4c970-d557-11e9-8e60-37442f196308",
+                        "text": "Do you smoke?",
+                        "answer": [
+                            {
+                                "id": "b1eb7980-d575-11e9-a346-ed8aafeddd8d",
+                                "valueString": false,
+                                "item": []
+                            }
+                        ],
+                        "item": []
+                    },
+                    {
+                        "id": "8f66a6f1-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "a58db770-d557-11e9-8e60-37442f196308",
+                        "text": "Packs/day",
+                        "answer": [],
+                        "item": []
+                    },
+                    {
+                        "id": "8f66ce00-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "b1ec3870-d557-11e9-8e60-37442f196308",
+                        "text": "Number of years",
+                        "answer": [],
+                        "item": []
+                    },
+                    {
+                        "id": "8f66f510-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "c893a0e0-d557-11e9-8e60-37442f196308",
+                        "text": "Have you had problems with drug/alcohol addiction or withdrawals?",
+                        "answer": [],
+                        "item": []
+                    }
+                ]
+            },
+            {
+                "id": "8f66f511-d575-11e9-a346-ed8aafeddd8d",
+                "linkId": "16a95d20-d557-11e9-8e60-37442f196308",
+                "text": "Medical History:",
+                "answer": [],
+                "item": [
+                    {
+                        "id": "8f66f512-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "179fcb10-d557-11e9-8e60-37442f196308",
+                        "text": "Do you have any allergies ?",
+                        "answer": [],
+                        "item": []
+                    },
+                    {
+                        "id": "8f671c20-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "e962ad20-d557-11e9-8e60-37442f196308",
+                        "text": "Allergies (Include medications, food, tape, iodine, latex)",
+                        "answer": [],
+                        "item": []
+                    },
+                    {
+                        "id": "8f671c21-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "fa8a7600-d557-11e9-8e60-37442f196308",
+                        "text": "Have you ever had anesthesia?",
+                        "answer": [],
+                        "item": []
+                    },
+                    {
+                        "id": "8f674330-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "02b0cb90-d558-11e9-8e60-37442f196308",
+                        "text": "Surgeries and dates",
+                        "answer": [],
+                        "item": []
+                    },
+                    {
+                        "id": "8f674331-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "11cf7e00-d558-11e9-8e60-37442f196308",
+                        "text": "Medical History (check if you have or have ever had any of the following)",
+                        "answer": [],
+                        "item": []
+                    },
+                    {
+                        "id": "8f676a40-d575-11e9-a346-ed8aafeddd8d",
+                        "linkId": "3bf51c40-d575-11e9-9c9d-c772f9c7e1e6",
+                        "text": "Medications:",
+                        "answer": [],
+                        "item": [
+                            {
+                                "id": "8f6854a0-d575-11e9-a346-ed8aafeddd8d",
+                                "linkId": "5dec06b0-d575-11e9-9c9d-c772f9c7e1e6",
+                                "text": "List of the medications that you take",
+                                "answer": [],
+                                "item": []
+                            },
+                            {
+                                "id": "8f687bb0-d575-11e9-a346-ed8aafeddd8d",
+                                "linkId": "1e5d76a0-d55c-11e9-95b0-63475177d318",
+                                "text": "Attach list if necessary",
+                                "answer": [],
+                                "item": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "8f68c9d0-d575-11e9-a346-ed8aafeddd8d",
+                "linkId": "425c9480-d559-11e9-8e60-37442f196308",
+                "text": "Thank you!",
+                "answer": [],
+                "item": []
+            }
+        ]
+    }
+]

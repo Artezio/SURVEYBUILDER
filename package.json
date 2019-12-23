@@ -6,12 +6,9 @@
   "license": "ISC",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "publish": "lerna publish",
     "build": "lerna bootstrap & lerna run build --scope @artezio/observable & lerna run build --scope @artezio/observable-react & lerna run build --scope @artezio/fhir-converter & lerna run build --scope @artezio/models & lerna run build --scope @artezio/player & lerna run build --scope @artezio/designer",
-    "start": "node scripts/start.js",
-    "build-demo": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "mocha": "ts-mocha tests/**/*.test.ts",
+    "start": "node demo-app/scripts/start.js",
+    "test": "ts-mocha tests/**/*.test.ts",
     "bundle": "webpack"
   },
   "dependencies": {
