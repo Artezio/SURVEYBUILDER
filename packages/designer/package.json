@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
-    "informed": "2.1.9",
+    "informed": "^2.11.16",
     "sortablejs": "^1.9.0"
   },
   "devDependencies": {

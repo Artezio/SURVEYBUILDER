@@ -21,7 +21,6 @@
     "emitDecoratorMetadata": true
   },
   "exclude": [
-    "dist",
     "tests",
     "build",
     "config",

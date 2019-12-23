@@ -11,14 +11,13 @@ module.exports = {
         libraryTarget: 'umd'
     },
     resolve: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
-        modules: ['node_modules'],
-        symlinks: false
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
     },
     module: {
         rules: [
             {
                 test: /\.(ts|js|tsx|jsx)$/,
+                include: [pathToArtezioPackages],
                 use: [
                     {
                         loader: "ts-loader"
@@ -27,10 +26,12 @@ module.exports = {
             },
             {
                 test: /\.json$/,
+                include: [pathToArtezioPackages],
                 loader: 'json-loader'
             },
             {
                 test: /\.s[ac]ss$/i,
+                include: [pathToArtezioPackages],
                 use: [
                     'style-loader',
                     'css-loader',
@@ -40,6 +41,6 @@ module.exports = {
         ]
     },
     externals: {
-        "react": "react",
+        'react': 'react'
     }
 };

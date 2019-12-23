@@ -10,6 +10,42 @@ Surveybuilder is a set of typescript packages. It presents two react components:
 * Questionnaire response FHIR model - https://www.hl7.org/fhir/questionnaireresponse.html
 
 
+# Installation
+
+Using npm:
+>$ npm install @artezio/surveybuilder
+
+Using yarn:
+>$ yarn add @artezio/surveybuilder
+
+# Usage 
+
+Designer
+```TSX
+import { render } from 'react-dom';
+import { Questionnaire, QuestionnaireDesigner } from '@artezio/surveybuilder';
+
+const questionnaireModel = new Questionnaire();
+render(<QuestionnaireDesigner questionnaireModel={questionnaireModel} />, document.getElementById('root'));
+```
+
+Player
+```TSX
+import { render } from 'react-dom';
+import { QuestionnaireResponse, QuestionnairePlayer } from '@artezio/surveybuilder';
+
+const questionnaire = { 
+    title: 'My Questionnaire', 
+    items: [
+        { test: 'Do you smoke?', type: 'BOOLEAN' }
+    ] 
+};
+const questionnaireResponseModel = new QuestionnaireResponse(questionnaire);
+render(<QuestionnairePlayer questionnaireResponseModel={questionnaireModel} questionnaire={questionnaire} />, document.getElementById('root'));
+```
+
+Read instructions how to use packages separately in [section below](#learn-more-about-packages).
+
 # Components diagram
 
 ![uml diagram](./doc/Uml-diagram-modules.jpg)
@@ -32,8 +68,6 @@ We created demo app to show you how our components can be used.
 
 * ## Demo with code in sandbox
     https://codesandbox.io/s/github/Artezio/SURVEYBUILDER/tree/master/?fontsize=14&hidenavigation=1&theme=dark
-    
-    `Currently to make changes you must fork sandbox`
 
 * ## Launch on your computer
     First clone the repository. Then you are to download all dependencies, to do it run following command in the root dir(surveybuilder/): 

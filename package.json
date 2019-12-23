@@ -21,6 +21,7 @@
     "@artezio/observable": "^1.0.3",
     "@artezio/observable-react": "^1.0.2",
     "@artezio/player": "^0.1.4",
+    "informed": "^2.11.16",
     "lerna": "^3.13.0"
   },
   "peerDependencies": {
@@ -29,13 +30,13 @@
     "react": "^16.8.3"
   },
   "devDependencies": {
-    "webpack": "4.40.2",
-    "webpack-cli": "^3.3.9",
-    "typescript": "^3.6.2",
-    "ts-loader": "^6.1.0",
-    "style-loader": "1.0.0",
+    "css-loader": "2.1.1",
     "sass-loader": "7.2.0",
-    "css-loader": "2.1.1"
+    "style-loader": "1.0.0",
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.6.2",
+    "webpack": "4.40.2",
+    "webpack-cli": "^3.3.9"
   },
   "workspaces": [
     "packages/*"

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
-    "informed": "2.1.9"
+    "informed": "^2.11.16"
   },
   "devDependencies": {
     "@babel/core": "7.6.0",
