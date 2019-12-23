@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { QuestionnaireDesigner } from '@artezio/designer';
+import { QuestionnaireDesigner } from '@artezio/surveybuilder';
 import { questionnaireEditorPageActions } from '../redux/actions/questionnaireEditorPageActions';
 import { connect } from 'react-redux';
 import { STATUS_LOADING, STATUS_SAVING } from '../constants/questionnaireEditorPage';

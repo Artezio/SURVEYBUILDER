@@ -3,7 +3,7 @@ import { questionnaireProvider } from '../../providers/questionnaireProvider'
 import { createActionAsync } from "./actionCreators";
 import { ACTIONS } from "../../constants/responseEditorPage";
 import { createAction } from "redux-actions";
-import { questionnaireResponseConverter } from '@artezio/fhir-converter';
+import { questionnaireResponseConverter } from '@artezio/surveybuilder';
 import { Store } from '../../interface/Store';
 import { MODE } from '../../constants/responseEditorPage';
 

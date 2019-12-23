@@ -1,4 +1,4 @@
-import * as Models from '@artezio/models';
+import * as Models from '@artezio/surveybuilder';
 
 type QuestionnaireEditorPageStatus = {
     loading?: string;

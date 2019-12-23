@@ -1,8 +1,8 @@
-import * as Models from '@artezio/models';
+import * as Models from '@artezio/surveybuilder';
 import { Action } from "../../interface/Action";
 import { ACTIONS, STATUS_QUESTIONNAIRE_LOADING, STATUS_RESPONSE_LOADING, MODE, STATUS_SAVING_RESPONSE } from '../../constants/responseEditorPage';
 import { ResponseEditorPageStore } from "../../interface/responseERditorPage/ResponseEditorPageStore";
-import { questionnaireConverter, questionnaireResponseConverter } from '@artezio/fhir-converter';
+import { questionnaireConverter, questionnaireResponseConverter } from '@artezio/surveybuilder';
 
 const INITIAL_STATE: ResponseEditorPageStore = { status: {} };
 
