@@ -11,6 +11,10 @@ Using npm:
 Using yarn:
 >$ yarn add @artezio/observable-react
 
+Library has peer dependency which you should know about. Install it with following command: 
+
+>$ npm install @artezio/observable
+
 # Using example
 
 ```TSX

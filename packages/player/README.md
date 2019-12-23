@@ -31,6 +31,12 @@ Using npm:
 Using yarn:
 >yarn add @artezio/player
 
+Library has few peer dependencies which you should know about. Install them all with one command: 
+
+>$ npm install @artezio/observable @artezio/observable-react @artezio/models
+
+As an alternative you may want to install all in one touch. Check it out [README](../../README.md).
+
 &nbsp;
 # Example
 

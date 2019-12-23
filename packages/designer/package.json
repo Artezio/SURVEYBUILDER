@@ -9,8 +9,7 @@
   "peerDependencies": {
     "@artezio/models": "^0.1.6",
     "@artezio/observable": "^1.0.0",
-    "bootstrap": "^4.3.1",
-    "bootstrap-scss": "4.3.1",
+    "@artezio/observable-react": "^1.0.0",
     "react": "16.8.3"
   },
   "dependencies": {
@@ -31,6 +30,8 @@
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
     "awesome-typescript-loader": "^5.2.1",
+    "bootstrap": "^4.3.1",
+    "bootstrap-scss": "4.3.1",
     "babel-eslint": "10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.0.6",

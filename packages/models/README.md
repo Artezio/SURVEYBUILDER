@@ -8,6 +8,10 @@ Using npm:
 Using yarn:
 >$ yarn add -D @artezio/models
 
+Library has peer dependency which you should know about. Install it with following command: 
+
+>$ npm install @artezio/observable
+
 &nbsp;
 # Example
 
