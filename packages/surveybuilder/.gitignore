@@ -1,0 +1,7 @@
+/**/node_modules/
+/**/build/
+/**/.vscode/
+/**/.idea/
+publish_instruction.txt
+/**/*.log
+/**/.scannerwork/
