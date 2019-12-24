@@ -1,7 +1,7 @@
 {
   "name": "@artezio/surveybuilder",
   "main": "./dist/bundle.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -14,12 +14,12 @@
     "url": "https://github.com/Artezio/SURVEYBUILDER"
   },
   "dependencies": {
-    "@artezio/designer": "^0.1.14",
-    "@artezio/fhir-converter": "^1.0.7",
-    "@artezio/models": "^0.1.13",
-    "@artezio/observable": "^1.0.5",
-    "@artezio/observable-react": "^1.0.7",
-    "@artezio/player": "^0.1.9"
+    "@artezio/designer": "^0.1.15",
+    "@artezio/fhir-converter": "^1.0.8",
+    "@artezio/models": "^0.1.14",
+    "@artezio/observable": "^1.0.6",
+    "@artezio/observable-react": "^1.0.8",
+    "@artezio/player": "^0.1.10"
   },
   "peerDependencies": {
     "react": "^16.8.3"
