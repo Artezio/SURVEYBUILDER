@@ -6,6 +6,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/models"
+  },
   "scripts": {
     "build": "webpack",
     "transform": "tsc -p tsconfig.build.json",

@@ -6,6 +6,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Artezio/SURVEYBUILDER/tree/master/packages/fhir-converter"
+  },
   "scripts": {
     "transform": "tsc -p tsconfig.build.json",
     "build": "webpack",
