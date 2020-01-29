@@ -66,7 +66,7 @@ We created demo app to show you how our components can be used.
     https://surveybuilder.now.sh/
 
 * ## Demo with code in sandbox
-    https://codesandbox.io/s/github/Artezio/SURVEYBUILDER/tree/master/?fontsize=14&hidenavigation=1&theme=dark
+    https://codesandbox.io/s/github/Artezio/SURVEYBUILDER/tree/master/demo-app
 
 * ## Launch on your computer
     First clone the repository. Then you are to download all dependencies, to do it run following command in the root dir(surveybuilder/): 
