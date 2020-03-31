@@ -1,6 +1,6 @@
 {
   "name": "@artezio/player",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "MIT",
   "main": "./dist/index.js",
   "publishConfig": {
