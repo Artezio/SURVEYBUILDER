@@ -50,7 +50,19 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
             </div>
         }
         if (status.loadingQuestionnaire === STATUS_QUESTIONNAIRE_LOADING.loaded && status.loadingResponse === STATUS_RESPONSE_LOADING.loaded) {
-            return responseModel && questionnaire && <QuestionnairePlayer forwardRef={this.formRef} key={responseModel.id} onSubmit={this.onSubmit.bind(this)} questionnaire={questionnaire} questionnaireResponseModel={responseModel} />
+            return responseModel && questionnaire &&
+                <QuestionnairePlayer
+                    forwardRef={this.formRef}
+                    key={responseModel.id}
+                    onSubmit={this.onSubmit.bind(this)}
+                    questionnaire={questionnaire}
+                    questionnaireResponseModel={responseModel}
+                    buttons={<div>
+                        <Link to="/" className="btn btn-outline-danger mr-2" title="Cancel form filling">Cancel</Link>
+                        <button type="submit" className="btn btn-outline-primary" onClick={this.onClick.bind(this)} title="Save form">Submit</button>
+                    </div>
+                    }
+                />
         }
         if (status.savingResponse === STATUS_SAVING_RESPONSE.saved) {
             return <ResponseSavedPage />;
@@ -69,10 +81,10 @@ export class ResponseEditorPage extends React.Component<ResponseEditorPageProps>
         return <div className="container">
             {this.renderSpinner()}
             {this.renderQuestionnairePlayer()}
-            {status.savingResponse !== STATUS_SAVING_RESPONSE.saved && <div className="d-flex justify-content-start">
+            {/* {status.savingResponse !== STATUS_SAVING_RESPONSE.saved && <div className="d-flex justify-content-start">
                 <Link to="/" className="btn btn-outline-danger mr-2" title="Cancel form filling">Cancel</Link>
                 <button className="btn btn-outline-primary" onClick={this.onClick.bind(this)} title="Save form">Submit</button>
-            </div>}
+            </div>} */}
         </div>
     }
 }

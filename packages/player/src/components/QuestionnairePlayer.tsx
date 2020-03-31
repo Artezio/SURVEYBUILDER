@@ -1,14 +1,13 @@
-import * as React from 'react';
-import { QuestionnairePlayerProps } from '../interfaces/components/QuestionnairePlayerProps';
+import React from 'react';
+import { QuestionnairePlayerProps } from '@artezio/player/src/interfaces/components/QuestionnairePlayerProps';
 import { useObservableModel } from '@artezio/observable-react';
-import ItemWrapper, { ERROR_ITEM_CLASS_NAME } from './ItemWrapper';
+import ItemWrapper, { ERROR_ITEM_CLASS_NAME } from '@artezio/player/src/components/ItemWrapper';
 import { Form, FormApi } from 'informed';
-import IFormState from '../interfaces/IFormState';
-
+import IFormState from '@artezio/player/src/interfaces/IFormState';
 
 export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
     formApi?: FormApi<IFormState>;
-
+    forRef = React.createRef<{ formApi: { submitForm(): void } }>()
     getFormApi(formApi: FormApi<IFormState>) {
         this.formApi = formApi;
     }
@@ -38,7 +37,7 @@ export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
     }
 
     renderItemList() {
-        const { questionnaire, questionnaireResponseModel, forwardRef } = this.props;
+        const { questionnaire, questionnaireResponseModel, forwardRef, buttons } = this.props;
         return <div className="response-item-list">
             <Form ref={forwardRef}
                 getApi={this.getFormApi.bind(this)}
@@ -50,6 +49,7 @@ export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
                     const questionnaireResponseItem = questionnaireResponseModel.items.find(responseItem => responseItem.questionId === item.id);
                     return questionnaireResponseItem && <ItemWrapper key={item.id} item={item} questionnaireResponseItem={questionnaireResponseItem} />
                 })}
+                {buttons}
             </Form>
         </div >
     }
@@ -66,7 +66,7 @@ export class Questionnaire extends React.Component<QuestionnairePlayerProps> {
     }
 }
 
-
 const QuestionnairePlayer = useObservableModel<QuestionnairePlayerProps>(Questionnaire);
+
 export { QuestionnairePlayer }
 export default QuestionnairePlayer;

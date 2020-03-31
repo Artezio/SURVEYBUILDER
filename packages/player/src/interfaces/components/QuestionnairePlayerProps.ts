@@ -8,6 +8,7 @@ export interface QuestionnairePlayerProps {
     onSubmit?: (questionnaireResponse: Models.IQuestionnaireResponse) => void;
     onError?: (err: any) => void;
     forwardRef?: React.RefObject<any>;
+    buttons?: React.Component
 }
 
 export default QuestionnairePlayerProps;
