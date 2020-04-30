@@ -16,7 +16,7 @@
     "@artezio/surveybuilder": "^1.0.1",
     "@fortawesome/fontawesome-free": "^5.9.0",
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.15.0",
     "bootstrap-scss": "4.3.1",
     "react": "^16.8.3",
